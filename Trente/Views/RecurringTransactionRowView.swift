@@ -28,10 +28,11 @@ struct RecurringTransactionRowView: View {
                     Text(recurringTransactionInstance.rule.frequencyDescription)
                         .font(.subheadline)
                 }
-                .padding(5)
+                .padding(7)
                 .background {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(.secondary.opacity(0.2))
+                    Capsule()
+                        .fill(.thickMaterial)
+                        .stroke(.primary.opacity(0.2), lineWidth: 2)
                 }
             }
             Spacer()
@@ -45,7 +46,13 @@ struct RecurringTransactionRowView: View {
     Text("Recurring Transaction Row View")
         .modelContainer(SampleDataProvider.shared.modelContainer)
     
-    List(Month.month1.recurringTransactionInstances) { recurringTransactionInstance in
-        RecurringTransactionRowView(recurringTransactionInstance: recurringTransactionInstance)
+    ScrollView {
+        LazyVStack {
+            ForEach(Month.month1.recurringTransactionInstances) { recurringTransactionInstance in
+                
+                RecurringTransactionRowView(recurringTransactionInstance: recurringTransactionInstance)
+            }
+        }
+        .padding()
     }
 }

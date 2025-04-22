@@ -24,7 +24,7 @@ struct MonthListView: View {
     var body: some View {
         NavigationSplitView {
             ScrollView {
-                VStack(alignment: .leading) {
+                LazyVStack(alignment: .leading) {
                     if let currentMonth = months.first {
                         Text("CURRENT MONTH")
                             .font(.subheadline)
@@ -86,56 +86,6 @@ struct MonthListView: View {
     }
 }
 
-struct TrenteButton: ButtonStyle {
-    @Environment(\.colorScheme) var colorScheme
-    private var lightMode: Bool { colorScheme == .light }
-
-    func makeBody(configuration: Configuration) -> some View {
-        ZStack {
-            Capsule()
-                .fill(.regularMaterial)
-                .overlay(
-                    ZStack {
-                        Capsule()
-                            .stroke(
-                                lightMode ? Color.black.opacity(configuration.isPressed ? 0.1 : 0.2) :
-                                    Color.white.opacity(configuration.isPressed ? 0.1 : 0.2),
-                                lineWidth: 3
-                            )
-                        if configuration.isPressed {
-                            Capsule()
-                                .fill(
-                                    LinearGradient(
-                                        colors: lightMode ?
-                                        [.black.opacity(0.05), .black.opacity(0.1)] :
-                                            [.white.opacity(0.05), .white.opacity(0.2)],
-                                        startPoint: .top,
-                                        endPoint: .bottom
-                                    )
-                                )
-                        }
-                    }
-                )
-            configuration.label
-                .font(.title2)
-                .bold()
-                .tint(.primary)
-                .padding(.vertical)
-        }
-        .scaleEffect(configuration.isPressed ? 0.95 : 1)
-    }
-}
-
-extension Color {
-    /// Create a Color from a 24‑bit hex code (e.g. 0xFAF6F1) plus optional opacity.
-    init(hex: Int, opacity: Double = 1) {
-        let red   = Double((hex >> 16) & 0xFF) / 255
-        let green = Double((hex >> 8)  & 0xFF) / 255
-        let blue  = Double(hex         & 0xFF) / 255
-        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
-    }
-}
-
 #Preview {
     MonthListView()
         .modelContainer(SampleDataProvider.shared.modelContainer)
@@ -144,6 +94,7 @@ extension Color {
 struct CurrentMonthRowView: View {
     var currentMonth: Month
     @Binding var selectedMonth: Month?
+    @State private var isPressed: Bool = false
     
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
@@ -172,6 +123,14 @@ struct CurrentMonthRowView: View {
                 selectedMonth = currentMonth
             }
         }
+        .onLongPressGesture(
+            minimumDuration: 0,
+            pressing: { inProgress in
+                withAnimation(.easeOut) {
+                    isPressed = inProgress
+                }
+            },perform: { }
+        )
     }
     
     var remainingSpentView: some View {
@@ -181,7 +140,7 @@ struct CurrentMonthRowView: View {
                     .font(.subheadline)
                 Text(currentMonth.remainingAmountDisplay)
                     .font(.title)
-                    .foregroundColor(.green)
+                    .foregroundColor(currentMonth.overSpent ? .red : .green)
             }
             
             Spacer()
@@ -201,7 +160,7 @@ struct CurrentMonthRowView: View {
             RoundedRectangle(cornerRadius: 20)
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.green.opacity(0.4), .red.opacity(0.4)],
+                        colors: [currentMonth.overSpent ? .red.opacity(0.6) : .green.opacity(0.6), .red.opacity(0.6)],
                         startPoint: .bottomLeading,
                         endPoint: .bottomTrailing
                     )
@@ -222,6 +181,10 @@ struct CurrentMonthRowView: View {
                         .stroke(isSelected ? Color.primary :
                                     (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
                 )
+            if isPressed {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
+            }
         }
     }
 }
@@ -240,14 +203,7 @@ struct ArchivedMonthsList: View {
             }
         }
         .background(
-            // 4) Rounded rectangle with gradient fill + border
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundStyle(.thickMaterial)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(
-                            lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2), lineWidth: 3)
-                )
+            TrenteListBackgroundView()
         )
    }
 }
@@ -260,6 +216,7 @@ private struct MonthRowView: View {
     var isSelected: Bool {
         selectedMonth == month
     }
+    @State var isPressed: Bool = false
     
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
@@ -275,26 +232,50 @@ private struct MonthRowView: View {
         }
         .padding()
         .overlay {
-            if isSelected {
-                if month != archivedMonths.last && month != archivedMonths.first {
-                    Rectangle()
+            ZStack {
+                if isSelected {
+                    if month != archivedMonths.last && month != archivedMonths.first {
+                        Rectangle()
+                            .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                    } else if month == archivedMonths.first {
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 20,
+                            bottomLeadingRadius: 0,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 20
+                        )
                         .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
-                } else if month == archivedMonths.first {
-                    UnevenRoundedRectangle(
-                        topLeadingRadius: 20,
-                        bottomLeadingRadius: 0,
-                        bottomTrailingRadius: 0,
-                        topTrailingRadius: 20
-                    )
-                    .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
-                } else {
-                    UnevenRoundedRectangle(
-                        topLeadingRadius: 0,
-                        bottomLeadingRadius: 20,
-                        bottomTrailingRadius: 20,
-                        topTrailingRadius: 0
-                    )
-                    .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                    } else {
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 0,
+                            bottomLeadingRadius: 20,
+                            bottomTrailingRadius: 20,
+                            topTrailingRadius: 0
+                        )
+                        .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                    }
+                }
+                if isPressed {
+                    if month != archivedMonths.last && month != archivedMonths.first {
+                        Rectangle()
+                            .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
+                    } else if month == archivedMonths.first {
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 20,
+                            bottomLeadingRadius: 0,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 20
+                        )
+                        .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
+                    } else {
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 0,
+                            bottomLeadingRadius: 20,
+                            bottomTrailingRadius: 20,
+                            topTrailingRadius: 0
+                        )
+                        .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
+                    }
                 }
             }
         }
@@ -302,6 +283,14 @@ private struct MonthRowView: View {
         .onTapGesture {
             toggleSelection()
         }
+        .onLongPressGesture(
+            minimumDuration: 0,
+            pressing: { inProgress in
+                withAnimation(.easeOut) {
+                    isPressed = inProgress
+                }
+            },perform: { }
+        )
         
         if month != archivedMonths.last {
             Divider()
@@ -322,6 +311,21 @@ private struct NewMonthButtonView: View {
         } label: {
             Label("Start a New Month", systemImage: "calendar.badge.plus")
         }
-        .buttonStyle(TrenteButton())
+        .buttonStyle(TrenteButtonStyle())
+    }
+}
+
+struct TrenteListBackgroundView: View {
+    @Environment(\.colorScheme) var colorScheme
+    private var lightMode: Bool { colorScheme == .light }
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 20)
+            .foregroundStyle(.regularMaterial)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(
+                        lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2), lineWidth: 3)
+            )
     }
 }

@@ -32,4 +32,15 @@ final class TransactionService {
             return defaultEarliest...defaultLatest
         }
     }
+    
+    func fetchTransactionsCount(from model: ModelContext) -> Int {
+        let descriptor = FetchDescriptor<TransactionGroup>()
+        do {
+            let groupsCount = try model.fetchCount(descriptor)
+            return groupsCount
+        } catch {
+            print("⚠️ fetchTransactionsCount failed:", error)
+            return 0
+        }
+    }
 }

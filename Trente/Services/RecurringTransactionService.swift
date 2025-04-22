@@ -45,4 +45,15 @@ final class RecurringTransactionService {
         newInstances.forEach { context.insert($0) }
         try context.save()
     }
+    
+    func fetchRecurringTransactionsCount(from model: ModelContext) -> Int {
+        let descriptor = FetchDescriptor<RecurringTransactionInstance>()
+        do {
+            let groupsCount = try model.fetchCount(descriptor)
+            return groupsCount
+        } catch {
+            print("⚠️ fetchTransactionsCount failed:", error)
+            return 0
+        }
+    }
 }

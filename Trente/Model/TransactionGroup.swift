@@ -105,7 +105,7 @@ extension TransactionGroup {
         )
 
         salary.entries = [
-            TransactionEntry(amountCents: 40_00, category: .needs, group: salary),
+            TransactionEntry(amountCents: 540_00, category: .needs, group: salary),
             TransactionEntry(amountCents: 300_00, category: .wants, group: salary),
             TransactionEntry(amountCents: 200_00, category: .savingsAndDebts, group: salary)
         ]

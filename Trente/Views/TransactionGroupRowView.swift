@@ -13,27 +13,33 @@ struct TransactionGroupRowView: View {
     var body: some View {
         if transactionGroup.entries.count > 1 {
             DisclosureGroup {
-                ForEach(transactionGroup.entries) { entry in
-                    TransactionEntryRowView(transactionEntry: entry)
+                VStack {
+                    Divider()
+                    ForEach(transactionGroup.entries) { entry in
+                        TransactionEntryRowView(transactionEntry: entry)
+                    }
                 }
+                .padding(.leading)
             } label: {
                 HStack {
                     Circle()
                         .fill(.red)
                         .frame(width: 10, height: 10)
-                    VStack(alignment: .leading) {
-                        Text(transactionGroup.title)
-                            .font(.headline)
-                        Text("Income")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                    Group {
+                        VStack(alignment: .leading) {
+                            Text(transactionGroup.title)
+                                .font(.headline)
+                            Text("Income")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Text(transactionGroup.displayAmount)
+                            .font(.title)
                     }
-                    Spacer()
-                    Text(transactionGroup.displayAmount)
-                        .font(.title)
+                    .tint(.primary)
                 }
             }
-            .buttonStyle(.plain)
         } else if transactionGroup.entries.count == 1 {
             TransactionEntryRowView(transactionEntry: transactionGroup.entries[0], title: transactionGroup.title)
         } else {
@@ -74,7 +80,7 @@ struct TransactionEntryRowView: View {
 #Preview {
     let month = Month.month1
     
-    List {
+    VStack {
         Text("Transactions")                .modelContainer(SampleDataProvider.shared.modelContainer)
         ForEach(month.transactionGroups.sorted {
             $0.addedDate > $1.addedDate

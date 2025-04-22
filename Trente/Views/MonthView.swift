@@ -19,17 +19,17 @@ struct MonthView: View {
             .sorted { a, b in
                 let aIsFuture = a.date >= now
                 let bIsFuture = b.date >= now
-
+                
                 switch (aIsFuture, bIsFuture) {
-                // 1) Both in the future → sort earliest first
+                    // 1) Both in the future → sort earliest first
                 case (true, true):
                     return a.date < b.date
-
-                // 2) Both in the past → sort earliest first (chronological)
+                    
+                    // 2) Both in the past → sort earliest first (chronological)
                 case (false, false):
                     return a.date < b.date
-
-                // 3) One future, one past → future comes before past
+                    
+                    // 3) One future, one past → future comes before past
                 case (true, false):
                     return true
                 case (false, true):
@@ -39,7 +39,7 @@ struct MonthView: View {
     }
     
     var body: some View {
-        WidthThresholdReader(widthThreshold: 800) { proxy in
+        WidthThresholdReader(widthThreshold: 730) { proxy in
             
             Group {
                 if proxy.isCompact {
@@ -72,55 +72,122 @@ struct NarrowMonthView: View {
     @State var latestTransactions: [TransactionGroup]
     @State var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
     
+    @Environment(\.modelContext) var modelContext
     @State private var isShowingTransactionList = false
+    private var transactionGroupsCount: Int {
+        TransactionService.shared.fetchTransactionsCount(from: modelContext)
+    }
+    private var recurringTransactionsCount: Int {
+        RecurringTransactionService.shared.fetchRecurringTransactionsCount(from: modelContext)
+    }
     
     var body: some View {
         NavigationStack {
-            List {
-                ScrollView(.horizontal) {
-                    HStack {
-                        Text("Graph Card")
-                            .font(.title)
-                        Text("Other Graph Card")
-                            .font(.subheadline)
-                        Text("Other Graph Card")
-                            .font(.subheadline)
-                    }
-                }
-                
-                // Transactions
-                Section(header: Text("Latest transactions")) {
-                    ForEach(latestTransactions.prefix(3)) { transaction in
-                        TransactionGroupRowView(transactionGroup: transaction)
-                    }
-                    
-                    if month.transactionGroups.count > 3 {
-                        NavigationLink {
-                            TransactionListView(month: month, showRecurring: false)
-                        } label: {
-                            Text("See all transactions")
+            ScrollView {
+                LazyVStack(spacing: 20) {
+                    // Graphs ScrollView
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 20) {
+                            GroupBox(label: Label("Monthly Overview", systemImage: "chart.pie.fill")) {
+                                Text("Graph Card")
+                                    .font(.title)
+                                    .frame(width: 300, height: 280)
+                            }
+                            .groupBoxStyle(TrenteGroupBoxStyle())
+                            
+                            VStack(spacing: 20) {
+                                HStack(spacing: 20) {
+                                    GraphCardView(
+                                        month: month,
+                                        category: BudgetCategory.needs,
+                                        size: 80,
+                                        scaleHorizontally: false
+                                    )
+                                    GraphCardView(
+                                        month: month,
+                                        category: BudgetCategory.wants,
+                                        size: 80,
+                                        scaleHorizontally: false
+                                    )
+                                }
+                                GraphCardView(month: month, category: BudgetCategory.savingsAndDebts, size: 80)
+                            }
                         }
                     }
+                    .scrollTargetBehavior(.paging)
+                    .scrollIndicators(.hidden)
+                    .safeAreaPadding(.horizontal)
+                    .safeAreaPadding(.vertical, 3)
                     
-                    if month.transactionGroups.isEmpty {
-                        Text("Add your first transaction by tapping 'Add Transaction'.")
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                
-                // Recurring Transactions
-                Section(header: Text("Recurring Transactions")) {
-                    ForEach(nextRecurringTransactionsInstances.prefix(3)) { recurringTransactionInstance in
-                        RecurringTransactionRowView(recurringTransactionInstance: recurringTransactionInstance)
-                    }
-                    
-                    if month.recurringTransactionInstances.count > 3 {
-                        NavigationLink {
-                            TransactionListView(month: month, showRecurring: true)
-                        } label: {
-                            Text("See all recurring transactions")
+                    // Transactions
+                    GroupBox(label: Label("Latest Transactions", systemImage: "clock.arrow.circlepath")) {
+                        ForEach(latestTransactions.prefix(3)) { transaction in
+                            TransactionGroupRowView(transactionGroup: transaction)
+                            
+                            if transaction != latestTransactions.prefix(3).last {
+                                Divider()
+                            }
+                        }
+                        
+                        HStack {
+                            if transactionGroupsCount == 0 {
+                                Text("Add your first transaction by tapping 'Add Transaction'.")
+                                    .foregroundStyle(.secondary)
+                            } else if latestTransactions.count == 0 {
+                                Text("Add your first transaction for this month by tapping 'Add Transaction'.")
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                        }
+                        
+                        if transactionGroupsCount > 0 {
+                            NavigationLink {
+                                TransactionListView(month: month, showRecurring: false)
+                            } label: {
+                                Text("See all transactions")
+                            }
+                            .buttonStyle(TrenteButtonStyle())
+                            .padding()
                         }
                     }
+                    .padding(.horizontal)
+                    .groupBoxStyle(TrenteGroupBoxStyle())
+                    
+                    // Recurring Transactions
+                    GroupBox(label: Label("Recurring Transactions", systemImage: "clock.arrow.circlepath")) {
+                        ForEach(nextRecurringTransactionsInstances.prefix(3)) { recurringTransactionInstance in
+                            RecurringTransactionRowView(recurringTransactionInstance: recurringTransactionInstance)
+                            
+                            if recurringTransactionInstance != nextRecurringTransactionsInstances.prefix(3).last {
+                                Divider()
+                            }
+                        }
+                        
+                        HStack {
+                            if recurringTransactionsCount == 0 {
+                                Text("Add your first Recurring Transaction by tapping 'Add Transaction'.")
+                                    .foregroundStyle(.secondary)
+                            } else if nextRecurringTransactionsInstances.count == 0 {
+                                Text("No upcoming recurring transactions for this month.")
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                        }
+                        
+                        if recurringTransactionsCount > 0 {
+                            NavigationLink {
+                                TransactionListView(month: month, showRecurring: true)
+                            } label: {
+                                Text("See all recurring transactions")
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal)
+                            }
+                            .buttonStyle(TrenteButtonStyle())
+                            .padding()
+                        }
+                    }
+                    .padding(.horizontal)
+                    .groupBoxStyle(TrenteGroupBoxStyle())
                 }
             }
         }
@@ -129,54 +196,82 @@ struct NarrowMonthView: View {
 
 struct WideMonthView: View {
     @State var month: Month
-        
     @State var latestTransactions: [TransactionGroup]
     @State var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
     
     var body: some View {
-        HStack {
-            Grid {
-                // Graph Card
-                GridRow {
-                    Rectangle()
-                        .foregroundStyle(.red)
-                        .frame(height: 400)
-                    GroupBox(label:
-                                Label("Latest Transactions", systemImage: "clock.arrow.circlepath")
-                    ) {
-                        List {
-                            ForEach(latestTransactions.prefix(5)) { transaction in
-                                TransactionGroupRowView(transactionGroup: transaction)
+        NavigationStack {
+            ScrollView {
+                Grid(horizontalSpacing: 20, verticalSpacing: 20) {
+                    // Graph Card
+                    GridRow {
+                        GroupBox(label:
+                                    Label("Monthly Overview", systemImage: "chart.pie.fill")
+                        ) {
+                            Text("Graph Card")
+                                .font(.title)
+                                .frame(height: 350)
+                        }
+                        .groupBoxStyle(TrenteGroupBoxStyle())
+                        GroupBox(label:
+                                    Label("Latest Transactions", systemImage: "clock.arrow.circlepath")
+                        ) {
+                            List {
+                                ForEach(latestTransactions.prefix(5)) { transaction in
+                                    TransactionGroupRowView(transactionGroup: transaction)
+                                }
+                                
+                                NavigationLink {
+                                    TransactionListView(month: month, showRecurring: false)
+                                } label: {
+                                    Text("See all transactions")
+                                }
+                            }
+                            .listStyle(.inset)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.secondary.opacity(0.2), lineWidth: 2)
                             }
                         }
-                        .listStyle(.inset)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .groupBoxStyle(TrenteGroupBoxStyle())
+                        .frame(idealWidth: 400)
                     }
-                    .frame(idealWidth: 400)
-                }
-                // Other Graph Cards
-                GridRow {
-                    VStack {
-                        HStack {
-                            GraphCardView(month: month, category: BudgetCategory.needs)
-                            GraphCardView(month: month, category: BudgetCategory.wants)
+                    // Other Graph Cards
+                    GridRow {
+                        VStack(spacing: 20) {
+                            HStack(spacing: 20) {
+                                GraphCardView(month: month, category: BudgetCategory.needs)
+                                GraphCardView(month: month, category: BudgetCategory.wants)
+                            }
+                            GraphCardView(month: month, category: BudgetCategory.savingsAndDebts)
                         }
-                        GraphCardView(month: month, category: BudgetCategory.savingsAndDebts)
-                    }
-                    GroupBox(label:
-                                Label("Recurring Transactions", systemImage: "clock.arrow.circlepath")
-                    ) {
-                        List {
-                            ForEach(nextRecurringTransactionsInstances.prefix(5)) { transaction in
-                                RecurringTransactionRowView(recurringTransactionInstance: transaction)
+                        GroupBox(label:
+                                    Label("Next Recurring Transactions", systemImage: "clock.arrow.circlepath")
+                        ) {
+                            List {
+                                ForEach(nextRecurringTransactionsInstances.prefix(5)) { transaction in
+                                    RecurringTransactionRowView(recurringTransactionInstance: transaction)
+                                }
+                                
+                                NavigationLink {
+                                    TransactionListView(month: month, showRecurring: true)
+                                } label: {
+                                    Text("See all recurring transactions")
+                                }
+                            }
+                            .listStyle(.inset)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.secondary.opacity(0.2), lineWidth: 2)
                             }
                         }
-                        .listStyle(.inset)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .groupBoxStyle(TrenteGroupBoxStyle())
                     }
                 }
+                .padding(35)
             }
-            .padding(35)
         }
     }
 }

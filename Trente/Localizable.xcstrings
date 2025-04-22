@@ -10,7 +10,13 @@
     "À" : {
 
     },
+    "Add your first Recurring Transaction by tapping 'Add Transaction'." : {
+
+    },
     "Add your first transaction by tapping 'Add Transaction'." : {
+
+    },
+    "Add your first transaction for this month by tapping 'Add Transaction'." : {
 
     },
     "All Months" : {
@@ -68,9 +74,6 @@
     "Income" : {
 
     },
-    "Latest transactions" : {
-
-    },
     "Latest Transactions" : {
 
     },
@@ -83,19 +86,25 @@
     "Monthly" : {
 
     },
+    "Monthly Overview" : {
+
+    },
     "Needs" : {
 
     },
+    "Next Recurring Transactions" : {
+
+    },
     "No months available" : {
+
+    },
+    "No upcoming recurring transactions for this month." : {
 
     },
     "OK" : {
 
     },
     "On **%@**" : {
-
-    },
-    "Other Graph Card" : {
 
     },
     "Over Budget" : {

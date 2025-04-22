@@ -10,6 +10,8 @@ import SwiftUI
 struct GraphCardView: View {
     @State var month: Month
     @State var category: BudgetCategory
+    var size: CGFloat = 100
+    var scaleHorizontally: Bool = true
     
     var body: some View {
         GroupBox(label:
@@ -19,10 +21,10 @@ struct GraphCardView: View {
             )
             .foregroundColor(month.overSpending(in: category) ? .red : category.color)
         ) {
-            CategoryRemainingGaugeView(month: month, category: category, size: 100)
-                .padding()
+            CategoryRemainingGaugeView(month: month, category: category, size: size)
+                .padding(8)
         }
-//        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .groupBoxStyle(TrenteGroupBoxStyle(scaleHorizontally: scaleHorizontally))
     }
 }
 
@@ -76,7 +78,7 @@ struct CategoryRemainingGaugeView: View {
     }
 }
 
-// MARK: SpeedometerGaugeStyle
+// MARK: CategoryRemainingGaugeSytyle
 struct CategoryRemainingGaugeSytyle: GaugeStyle {
     var color: Color
     var diameter: CGFloat = 100
@@ -150,17 +152,17 @@ struct CategoryRemainingGaugeSytyle: GaugeStyle {
 #Preview {
     let month = Month.month1
     
-    Grid {
-        GridRow {
+    VStack {
+        Color.red.frame(width: 400, height: 200)
+            .gridCellColumns(2)
+        HStack {
             GraphCardView(month: month, category: .needs)
                 .modelContainer(SampleDataProvider.shared.modelContainer)
             
             GraphCardView(month: month, category: .wants)
                 .modelContainer(SampleDataProvider.shared.modelContainer)
         }
-        GridRow {
-            GraphCardView(month: month, category: .savingsAndDebts)
-                .modelContainer(SampleDataProvider.shared.modelContainer)
-        }
+        GraphCardView(month: month, category: .savingsAndDebts)
+            .modelContainer(SampleDataProvider.shared.modelContainer)
     }
 }
