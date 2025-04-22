@@ -1,0 +1,190 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "À" : {
+
+    },
+    "Add your first transaction by tapping 'Add Transaction'." : {
+
+    },
+    "All Months" : {
+
+    },
+    "Amount" : {
+
+    },
+    "Archived Months" : {
+
+    },
+    "ARCHIVED MONTHS" : {
+
+    },
+    "Categories" : {
+
+    },
+    "Current Month" : {
+
+    },
+    "CURRENT MONTH" : {
+
+    },
+    "Date" : {
+
+    },
+    "Date ↑" : {
+
+    },
+    "Date ↓" : {
+
+    },
+    "Dates" : {
+
+    },
+    "De" : {
+
+    },
+    "Every %@" : {
+
+    },
+    "Every %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Every %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "Filter" : {
+
+    },
+    "From" : {
+
+    },
+    "Graph Card" : {
+
+    },
+    "Income" : {
+
+    },
+    "Latest transactions" : {
+
+    },
+    "Latest Transactions" : {
+
+    },
+    "Montant ↑" : {
+
+    },
+    "Montant ↓" : {
+
+    },
+    "Monthly" : {
+
+    },
+    "Months" : {
+
+    },
+    "Needs" : {
+
+    },
+    "New Month" : {
+
+    },
+    "No months available" : {
+
+    },
+    "OK" : {
+
+    },
+    "On **%@**" : {
+
+    },
+    "Other Graph Card" : {
+
+    },
+    "Over Budget" : {
+
+    },
+    "Over Spent" : {
+
+    },
+    "Recurring Transactions" : {
+
+    },
+    "Remaining" : {
+
+    },
+    "Savings" : {
+
+    },
+    "Savings and Debts" : {
+
+    },
+    "Search by title, amount, date, category…" : {
+
+    },
+    "See all recurring transactions" : {
+
+    },
+    "See all transactions" : {
+
+    },
+    "Select a month" : {
+
+    },
+    "Sort by" : {
+
+    },
+    "Spent" : {
+
+    },
+    "Start a New Month" : {
+
+    },
+    "Sum of displayed transactions" : {
+
+    },
+    "Title" : {
+
+    },
+    "Titre A→Z" : {
+
+    },
+    "Titre Z→A" : {
+
+    },
+    "To" : {
+
+    },
+    "Total" : {
+
+    },
+    "Transactions" : {
+
+    },
+    "Trier par" : {
+
+    },
+    "Under Budget" : {
+
+    },
+    "Wants" : {
+
+    },
+    "Weekly" : {
+
+    },
+    "Yearly" : {
+
+    }
+  },
+  "version" : "1.0"
+}
