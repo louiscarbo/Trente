@@ -62,9 +62,6 @@ struct MonthListView: View {
                 }
             }
         }
-//        .onAppear {
-//            selection = months.first
-//        }
     }
 }
 
