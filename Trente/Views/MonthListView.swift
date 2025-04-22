@@ -2,7 +2,7 @@
 //  MonthListView.swift
 //  Trente
 //
-//  Created by Louis Carbo Estaque on 16/04/2025.
+//  Created by Louis Carbo Estaque on 22/04/2025.
 //
 
 import SwiftUI
@@ -16,35 +16,53 @@ struct MonthListView: View {
     ) var months: [Month]
         
     @State private var selection: Month?
-            
+    @State private var isShowingNewMonth = false
+    
+    @Environment(\.colorScheme) var colorScheme
+    private var lightMode: Bool { colorScheme == .light }
+
     var body: some View {
         NavigationSplitView {
-            List(selection: $selection) {
-                NewMonthButtonView()
-                
-                if let currentMonth = months.first {
-                    Section(header: Text("Current Month")) {
-                        CurrentMonthRowView(currentMonth: currentMonth)
-                            .tag(currentMonth)
+            ScrollView {
+                VStack(alignment: .leading) {
+                    if let currentMonth = months.first {
+                        Text("CURRENT MONTH")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal)
+                        
+                        CurrentMonthRowView(currentMonth: currentMonth, selectedMonth: $selection)
                     }
-                }
-                
-                if months.count > 1 {
-                    Section(header: Text("Archived Months")) {
-                        ForEach(months.dropFirst()) { month in
-                            MonthRowView(month: month)
-                                .tag(month)
-                        }
+                    
+                    // New Month Button
+                    NewMonthButtonView()
+                        .padding(.vertical)
+                    
+                    if months.count > 1 {
+                        Text("ARCHIVED MONTHS")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal)
+                        ArchivedMonthsList(selectedMonth: $selection, archivedMonths: months.dropFirst())
                     }
+                    
+                    Spacer()
+                    
                 }
+                .navigationTitle("All Months")
+                #if os(iOS)
+                .toolbarTitleDisplayMode(.large)
+                #endif
+                .padding()
             }
-            .scrollContentBackground(.hidden)
-            .background {
-                ListBackgroundView(month: months.first)
+            #if os(macOS)
+            .navigationSplitViewColumnWidth(min: 500, ideal: 500)
+            #endif
+            .navigationDestination(item: $selection) { month in
+                MonthView(month: month)
+                    .id(month)
             }
-            .navigationBarHidden(true)
-            .navigationTitle("Months")
-        } detail : {
+        } detail: {
             if months.isEmpty {
                 ContentUnavailableView {
                     Label("No months available", systemImage: "calendar")
@@ -62,6 +80,59 @@ struct MonthListView: View {
                 }
             }
         }
+        .onAppear {
+            selection = months.first
+        }
+    }
+}
+
+struct TrenteButton: ButtonStyle {
+    @Environment(\.colorScheme) var colorScheme
+    private var lightMode: Bool { colorScheme == .light }
+
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            Capsule()
+                .fill(.regularMaterial)
+                .overlay(
+                    ZStack {
+                        Capsule()
+                            .stroke(
+                                lightMode ? Color.black.opacity(configuration.isPressed ? 0.1 : 0.2) :
+                                    Color.white.opacity(configuration.isPressed ? 0.1 : 0.2),
+                                lineWidth: 3
+                            )
+                        if configuration.isPressed {
+                            Capsule()
+                                .fill(
+                                    LinearGradient(
+                                        colors: lightMode ?
+                                        [.black.opacity(0.05), .black.opacity(0.1)] :
+                                            [.white.opacity(0.05), .white.opacity(0.2)],
+                                        startPoint: .top,
+                                        endPoint: .bottom
+                                    )
+                                )
+                        }
+                    }
+                )
+            configuration.label
+                .font(.title2)
+                .bold()
+                .tint(.primary)
+                .padding(.vertical)
+        }
+        .scaleEffect(configuration.isPressed ? 0.95 : 1)
+    }
+}
+
+extension Color {
+    /// Create a Color from a 24‑bit hex code (e.g. 0xFAF6F1) plus optional opacity.
+    init(hex: Int, opacity: Double = 1) {
+        let red   = Double((hex >> 16) & 0xFF) / 255
+        let green = Double((hex >> 8)  & 0xFF) / 255
+        let blue  = Double(hex         & 0xFF) / 255
+        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
     }
 }
 
@@ -70,43 +141,47 @@ struct MonthListView: View {
         .modelContainer(SampleDataProvider.shared.modelContainer)
 }
 
-// MARK: - MonthRowView
-struct MonthRowView: View {
-    var month: Month
+struct CurrentMonthRowView: View {
+    var currentMonth: Month
+    @Binding var selectedMonth: Month?
+    
+    @Environment(\.colorScheme) var colorScheme
+    private var lightMode: Bool { colorScheme == .light }
+
+    private var isSelected : Bool { selectedMonth == currentMonth }
     
     var body: some View {
-        HStack {
-            Image(systemName: month.overSpent ? "xmark.circle.fill" : "checkmark.circle.fill")
-                .foregroundColor(month.overSpent ? . red : .green)
-            
-            VStack(alignment: .leading) {
-                Text(month.name)
+        VStack(alignment: .leading) {
+            HStack {
+                Text("\(currentMonth.name)")
                     .font(.headline)
-                Text(month.overSpent ? "Over Spent" : "Under Budget")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    
+                Spacer()
+                Text(currentMonth.overSpent ? "Over Budget" : "Under Budget")
             }
             
-            Image(systemName: "chevron.right")
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+            Divider()
+            
+            remainingSpentView
+        }
+        .padding()
+        .background(
+            backgroundView
+        )
+        .onTapGesture {
+            withAnimation(.easeOut) {
+                selectedMonth = currentMonth
+            }
         }
     }
-}
-
-// MARK: - Remaining/Spent View
-struct RemainingSpentView: View {
-    @State var month: Month
     
-    var body: some View {
+    var remainingSpentView: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text("Remaining")
                     .font(.subheadline)
-                Text("\(month.remainingAmount.formatted(.currency(code: month.currency.isoCode)))")
-                    .font(.title2)
-                    .foregroundStyle(month.overSpent ? .red : .green)
+                Text(currentMonth.remainingAmountDisplay)
+                    .font(.title)
+                    .foregroundColor(.green)
             }
             
             Spacer()
@@ -114,99 +189,139 @@ struct RemainingSpentView: View {
             VStack(alignment: .trailing) {
                 Text("Spent")
                     .font(.subheadline)
-                Text("\(month.negativeSpentAmount.formatted(.currency(code: month.currency.isoCode)))")
-                    .font(.title2)
-                    .foregroundStyle(.red)
+                Text(currentMonth.spentAmountDisplay)
+                    .font(.title)
+                    .foregroundColor(.red)
             }
         }
     }
-}
-
-// MARK: - Current Month Row View
-struct CurrentMonthRowView: View {
-    @State var currentMonth: Month
     
-    var body: some View {
-        VStack(alignment: .leading) {
-            MonthRowView(month: currentMonth)
-            RemainingSpentView(month: currentMonth)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(.ultraThinMaterial)
+    var backgroundView: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [.green.opacity(0.4), .red.opacity(0.4)],
+                        startPoint: .bottomLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundStyle(
+                    RadialGradient(
+                        colors: [lightMode ? .white : .black, .clear],
+                        center: .top,
+                        startRadius: 0,
+                        endRadius: 500
+                    )
+                )
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundStyle(.regularMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(isSelected ? Color.primary :
+                                    (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
                 )
         }
-        .padding(16)
-        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
 }
 
-// MARK: - New Month Button View
-struct NewMonthButtonView: View {
+struct ArchivedMonthsList: View {
+    @Binding var selectedMonth: Month?
+    var archivedMonths: ArraySlice<Month>
+    
+    @Environment(\.colorScheme) var colorScheme
+    private var lightMode: Bool { colorScheme == .light }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(archivedMonths) { month in
+                MonthRowView(month: month, archivedMonths: archivedMonths, selectedMonth: $selectedMonth)
+            }
+        }
+        .background(
+            // 4) Rounded rectangle with gradient fill + border
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundStyle(.thickMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(
+                            lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2), lineWidth: 3)
+                )
+        )
+   }
+}
+
+private struct MonthRowView: View {
+    var month: Month
+    var archivedMonths: ArraySlice<Month>
+    @Binding var selectedMonth: Month?
+    
+    var isSelected: Bool {
+        selectedMonth == month
+    }
+    
+    @Environment(\.colorScheme) var colorScheme
+    private var lightMode: Bool { colorScheme == .light }
+    
+    var body: some View {
+        
+        HStack {
+            Text(month.name)
+            Spacer()
+            Text(month.overSpent ? "Over Budget" : "Under Budget")
+            Image(systemName: "chevron.right")
+                .foregroundStyle(Color.secondary)
+        }
+        .padding()
+        .overlay {
+            if isSelected {
+                if month != archivedMonths.last && month != archivedMonths.first {
+                    Rectangle()
+                        .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                } else if month == archivedMonths.first {
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 20,
+                        bottomLeadingRadius: 0,
+                        bottomTrailingRadius: 0,
+                        topTrailingRadius: 20
+                    )
+                    .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                } else {
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 0,
+                        bottomLeadingRadius: 20,
+                        bottomTrailingRadius: 20,
+                        topTrailingRadius: 0
+                    )
+                    .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                }
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            toggleSelection()
+        }
+        
+        if month != archivedMonths.last {
+            Divider()
+        }
+    }
+    
+    func toggleSelection() {
+        withAnimation {
+            selectedMonth = month
+        }
+    }
+}
+
+private struct NewMonthButtonView: View {
     var body: some View {
         Button {
             
         } label: {
-            Label("New Month", systemImage: "calendar.badge.plus")
-                .tint(.white)
-                .frame(maxWidth: .infinity)
+            Label("Start a New Month", systemImage: "calendar.badge.plus")
         }
-        .buttonStyle(.borderedProminent)
-        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-    }
-}
-
-// MARK: - List Background View
-struct ListBackgroundView: View {
-    var month: Month?
-    
-    @Environment(\.colorScheme) var colorScheme
-    var opacity: Double {
-        if colorScheme == .dark {
-            0.4
-        } else {
-            0.2
-        }
-    }
-    
-    var gradient: LinearGradient {
-        if let month = month {
-            if month.overSpent {
-                return LinearGradient(
-                    colors: [
-                        .red.opacity(opacity),
-                        .purple.opacity(opacity/2),
-                        .clear
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            } else {
-                return LinearGradient(
-                    colors: [
-                        .green.opacity(opacity),
-                        .blue.opacity(opacity/2),
-                        .clear
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            }
-        } else {
-            return LinearGradient(
-                colors: [
-                    Color.clear,
-                    Color.clear
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        }
-    }
-    
-    var body: some View {
-        Rectangle()
-            .fill(gradient)
-            .ignoresSafeArea()
+        .buttonStyle(TrenteButton())
     }
 }
