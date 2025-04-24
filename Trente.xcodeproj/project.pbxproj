@@ -63,6 +63,7 @@
 		7BBD02042DB8E33C007B606C /* Exceptions for "Trente" folder in "TrenteWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Localizable.xcstrings,
 				Model/BudgetCategory.swift,
 				Model/Currency.swift,
 				Model/IncomeAllocation.swift,

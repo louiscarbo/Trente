@@ -57,6 +57,10 @@ extension Month {
         Double(spentAmountCents) / 100
     }
     
+    private var incomeAmountCents: Int {
+        transactionEntries.filter { $0.amountCents > 0 }.reduce(0) { $0 + $1.amountCents }
+    }
+    
     /// A localized string that displays the spent amount for the month in entire value, truncating the cents.
     var spentAmountDisplay: String {
         let amount = spentAmount
@@ -67,10 +71,17 @@ extension Month {
         Double(remainingAmountCents) / 100
     }
     
+    var incomeAmount: Double {
+        Double(incomeAmountCents) / 100
+    }
+    
+    var incomeAmountDisplay: String {
+        return incomeAmount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
+    }
+    
     /// A localized string that displays the remaining amount for the month in entire value, truncating the cents.
     var remainingAmountDisplay: String {
-        let amount = remainingAmount
-        return amount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
+        return remainingAmount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
     }
     
     var negativeSpentAmount: Double {

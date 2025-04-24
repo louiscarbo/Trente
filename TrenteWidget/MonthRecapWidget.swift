@@ -1,0 +1,319 @@
+//
+//  MonthRecapWidget.swift
+//  MonthRecapWidget
+//
+//  Created by Louis Carbo Estaque on 23/04/2025.
+//
+
+import WidgetKit
+import SwiftUI
+import SwiftData
+
+struct MonthRecapWidget: Widget {
+    let kind: String = "MonthRecapWidget"
+    @Environment(\.widgetFamily) var family
+    
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+            MonthRecapWidgetView(entry: entry)
+                .containerBackground(for: .widget) {
+                    EmptyView()
+                }
+        }
+        .configurationDisplayName("Month Recap")
+        .description(String(localized: "See your remaining budget for the current month, as well as your spending on larger widgets. Quickly see how you're doing, and easily log new transactions.\n\nSee examples below."))
+        .supportedFamilies([.systemMedium, .systemLarge, .systemSmall, .accessoryCircular, .accessoryInline, .accessoryRectangular])
+    }
+}
+
+struct MonthRecapWidgetView: View {
+    var entry: Provider.Entry
+    @Environment(\.widgetFamily) var family
+
+    var body: some View {
+        switch family {
+        case .systemMedium:
+            HomescreenMonthRecapWidgetView(entry: entry)
+        case .systemLarge:
+            HomescreenMonthRecapWidgetView(entry: entry)
+        case .systemSmall:
+            HomescreenMonthRecapWidgetView(entry: entry)
+        case .accessoryCircular:
+            AccessoryCircularMonthRecapWidgetView(entry: entry)
+        case .accessoryInline:
+            AccessoryInlineMonthRecapWidgetView(entry: entry)
+        case .accessoryRectangular:
+            AccessoryRectangularMonthRecapWidgetView(entry: entry)
+        default:
+            Text("Not Implemented Yet.")
+        }
+    }
+}
+
+struct HomescreenMonthRecapWidgetView : View {
+    var entry: Provider.Entry
+    
+    @Environment(\.widgetFamily) var family
+
+    var body: some View {
+        if let currentMonth = entry.month {
+            VStack(spacing: family == .systemMedium ? 6 : 12) {
+                HStack {
+                    Text(currentMonth.name)
+                        .font(.headline)
+                    Spacer()
+                    if family != .systemSmall {
+                        Text("Trente")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                if family != .systemSmall {
+                    Divider()
+                }
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Remaining")
+                            .font(.subheadline)
+                        Text(currentMonth.remainingAmountDisplay)
+                            .font(.title)
+                            .foregroundStyle(currentMonth.overSpent ? .red : .green)
+                            .privacySensitive()
+                    }
+                    
+                    Spacer()
+                    
+                    if family != .systemSmall {
+                        VStack(alignment: .trailing) {
+                            Text("Spent")
+                                .font(.subheadline)
+                            Text(currentMonth.spentAmountDisplay)
+                                .font(.title)
+                                .foregroundStyle(.red)
+                                .privacySensitive()
+                        }
+                    }
+                }
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(entry.date.formatted(.dateTime.day().month(.wide).year()))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Text(entry.date.formatted(.dateTime.hour().minute()))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    if family != .systemSmall {
+                        Link(destination: URL(string: "trente://newtransaction/" + currentMonth.id.uuidString)!) {
+                            Button { } label: {
+                                Label("New Transaction", systemImage: "plus")
+                                    .foregroundStyle(.primary)
+                                    .font(.subheadline)
+                            }
+                            .buttonStyle(TrenteButtonStyle(narrow: true))
+                            .scaledToFit()
+                            .padding(.leading)
+                            .padding(.trailing, -3)
+                        }
+                    } else {
+                        Spacer()
+                    }
+                }
+                
+                if family == .systemLarge {
+                    Divider()
+                    ForEach(currentMonth.latestTransactions.prefix(3)) { transactionGroup in
+                        TransactionGroupRowView(transactionGroup: transactionGroup)
+                            .privacySensitive()
+                    }
+                    
+                    if currentMonth.latestTransactions.isEmpty {
+                        Spacer()
+                        Text("Add your first transactions by tapping 'New Transaction'.")
+                            .foregroundStyle(.secondary)
+                            .padding()
+                        Spacer()
+                    } else if currentMonth.latestTransactions.count < 3 {
+                        Spacer()
+                    }
+                }
+            }
+        } else {
+            if family == .systemLarge {
+                ContentUnavailableView("No month yet", systemImage: "calendar", description: Text("You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!"))
+            } else {
+                Text("Start tracking your budget with Trente by opening the app!")
+                    .multilineTextAlignment(.center)
+            }
+        }
+    }
+}
+
+struct AccessoryCircularMonthRecapWidgetView: View {
+    var entry: Provider.Entry
+    
+    var body: some View {
+        if let currentMonth = entry.month {
+            Gauge(value: currentMonth.remainingAmount, in: 0...currentMonth.incomeAmount) {
+                Text(currentMonth.remainingAmountDisplay)
+                    .privacySensitive()
+            }
+            .gaugeStyle(AccessoryCircularGaugeStyle())
+        } else {
+            Image(systemName: "xmark")
+        }
+    }
+}
+
+struct AccessoryInlineMonthRecapWidgetView: View {
+    var entry: Provider.Entry
+    
+    var body: some View {
+        if let currentMonth = entry.month {
+            Text("- \(currentMonth.remainingAmountDisplay) Remaining")
+                .privacySensitive()
+                .font(.headline)
+                .foregroundStyle(currentMonth.overSpent ? .red : .green)
+        } else {
+            Image(systemName: "xmark")
+        }
+    }
+}
+
+struct AccessoryRectangularMonthRecapWidgetView: View {
+    var entry: Provider.Entry
+    
+    var body: some View {
+        if let currentMonth = entry.month {
+            VStack {
+                Text("\(currentMonth.remainingAmountDisplay) Remaining")
+                    .privacySensitive()
+                Gauge(value: currentMonth.remainingAmount, in: 0...currentMonth.incomeAmount) {
+                }
+                .gaugeStyle(AccessoryLinearGaugeStyle())
+            }
+        } else {
+            Label("Start tracking your budget.", systemImage: "xmark")
+        }
+    }
+}
+
+struct Provider: @preconcurrency TimelineProvider {
+    @MainActor
+    func placeholder(in context: Context) -> SimpleEntry {
+        SimpleEntry(date: Date(), month: createSampleMonth())
+    }
+
+    @MainActor
+    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+        let entry = SimpleEntry(date: Date(), month: createSampleMonth())
+        completion(entry)
+    }
+
+    @MainActor
+    func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
+        
+        var entries: [SimpleEntry] = []
+        // MARK: TODO: Change this in the release version
+        let entry = SimpleEntry(date: Date(), month: getCurrentMonth(inPreview: true))
+        entries.append(entry)
+
+        let timeline = Timeline(entries: entries, policy: .atEnd)
+        completion(timeline)
+    }
+    
+    func createSampleMonth() -> Month {
+        let month1 = Month(
+            startDate: Date(),
+            availableIncomeCents: 1600_00,
+            currency: Currencies.currency(for: "EUR")!,
+            categoryRepartition: [
+                .needs: 50,
+                .wants: 30,
+                .savingsAndDebts: 20
+            ]
+        )
+        let salary = TransactionGroup(
+            addedDate: Date(),
+            title: String(localized: "Salary"),
+            type: .income,
+            month: month1
+        )
+        let supermarket = TransactionGroup(
+            addedDate: Date(),
+            title: String(localized: "Supermarket"),
+            type: .expense,
+            month: month1
+        )
+        let shopping = TransactionGroup(
+            addedDate: Date(),
+            title: String(localized: "Clothes"),
+            type: .expense,
+            month: month1
+        )
+        let rent = TransactionGroup(
+            addedDate: Date().addingTimeInterval(-3600 * 24 * 10),
+            title: String(localized: "Rent"),
+            type: .expense,
+            month: month1
+        )
+
+        supermarket.entries = [
+            TransactionEntry(amountCents: -147_18, category: .needs, group: supermarket)
+        ]
+        shopping.entries = [
+            TransactionEntry(amountCents: -119_99, category: .wants, group: shopping)
+        ]
+        rent.entries = [
+            TransactionEntry(amountCents: -720_00, category: .needs, group: rent)
+        ]
+        salary.entries = [
+            TransactionEntry(amountCents: 1600_00, category: .needs, group: salary),
+            TransactionEntry(amountCents: 300_00, category: .wants, group: salary),
+            TransactionEntry(amountCents: 200_00, category: .savingsAndDebts, group: salary)
+        ]
+        
+        month1.transactionGroups = [supermarket, shopping, rent, salary]
+        
+        return month1
+    }
+}
+
+struct SimpleEntry: TimelineEntry {
+    let date: Date
+    let month: Month?
+}
+
+@MainActor
+private func getCurrentMonth(inPreview: Bool = false) -> Month? {
+    if inPreview {
+        do {
+            let modelContainer = SampleDataProvider.shared.modelContainer
+            let descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .forward)])
+            let month = try modelContainer.mainContext.fetch(descriptor)[3]
+            return month.detachedCopy()
+        } catch {
+            print("Error fetching SAMPLE month budget: \(error)")
+        }
+    }
+    
+    do {
+        let modelContainer = try ModelContainer(for: Month.self)
+        let descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .forward)])
+        if let month = try modelContainer.mainContext.fetch(descriptor).last {
+            return month.detachedCopy()
+        }
+    } catch {
+        print("Error fetching month budgets: \(error)")
+    }
+    return nil
+}
+
+#Preview(as: .accessoryRectangular) {
+    MonthRecapWidget()
+} timeline: {
+    SimpleEntry(date: Date(), month: getCurrentMonth(inPreview: true))
+}

@@ -4,10 +4,19 @@
     "" : {
 
     },
+    "- %@ Remaining" : {
+
+    },
     "%@" : {
 
     },
+    "%@ Remaining" : {
+
+    },
     "À" : {
+
+    },
+    "A an example control that runs a timer." : {
 
     },
     "Add your first Recurring Transaction by tapping 'Add Transaction'." : {
@@ -17,6 +26,9 @@
 
     },
     "Add your first transaction for this month by tapping 'Add Transaction'." : {
+
+    },
+    "Add your first transactions by tapping 'New Transaction'." : {
 
     },
     "All Months" : {
@@ -29,6 +41,9 @@
 
     },
     "Categories" : {
+
+    },
+    "Clothes" : {
 
     },
     "CURRENT MONTH" : {
@@ -83,6 +98,9 @@
     "Montant ↓" : {
 
     },
+    "Month Recap" : {
+
+    },
     "Monthly" : {
 
     },
@@ -92,7 +110,13 @@
     "Needs" : {
 
     },
+    "New Transaction" : {
+
+    },
     "Next Recurring Transactions" : {
+
+    },
+    "No month yet" : {
 
     },
     "No months available" : {
@@ -101,7 +125,16 @@
     "No upcoming recurring transactions for this month." : {
 
     },
+    "Not Implemented Yet." : {
+
+    },
+    "Off" : {
+
+    },
     "OK" : {
+
+    },
+    "On" : {
 
     },
     "On **%@**" : {
@@ -114,6 +147,12 @@
 
     },
     "Remaining" : {
+
+    },
+    "Rent" : {
+
+    },
+    "Salary" : {
 
     },
     "Savings" : {
@@ -131,6 +170,9 @@
     "See all transactions" : {
 
     },
+    "See your remaining budget for the current month, as well as your spending on larger widgets. Quickly see how you're doing, and easily log new transactions.\n\nSee examples below." : {
+
+    },
     "Select a month" : {
 
     },
@@ -143,7 +185,28 @@
     "Start a New Month" : {
 
     },
+    "Start a timer" : {
+
+    },
+    "Start Timer" : {
+
+    },
+    "Start tracking your budget with Trente by opening the app!" : {
+
+    },
+    "Start tracking your budget." : {
+
+    },
     "Sum of displayed transactions" : {
+
+    },
+    "Supermarket" : {
+
+    },
+    "Timer" : {
+
+    },
+    "Timer is running" : {
 
     },
     "Title" : {
@@ -164,6 +227,9 @@
     "Transactions" : {
 
     },
+    "Trente" : {
+
+    },
     "Trier par" : {
 
     },
@@ -177,6 +243,9 @@
 
     },
     "Yearly" : {
+
+    },
+    "You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
 
     }
   },
