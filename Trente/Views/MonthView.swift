@@ -10,9 +10,8 @@ import SwiftUI
 struct MonthView: View {
     @State var month: Month
     
-    var latestTransactions: [TransactionGroup] {
-        month.transactionGroups.sorted(by: { $0.addedDate > $1.addedDate })
-    }
+    var latestTransactions: [TransactionGroup] { month.latestTransactions }
+    
     var nextRecurringTransactionsInstances: [RecurringTransactionInstance] {
         let now = Date()
         return month.recurringTransactionInstances

@@ -54,6 +54,20 @@ extension TransactionGroup {
     }
 }
 
+extension TransactionGroup {
+    func detachedCopy() -> TransactionGroup {
+        let copy = TransactionGroup(
+            addedDate: addedDate,
+            title: title,
+            type: type,
+            month: month
+        )
+        
+        copy.entries = entries.map { $0.detachedCopy() }
+        return copy
+    }
+}
+
 // MARK: - Sample Data
 extension TransactionGroup {
     static func sampleData(month1: Month, month2: Month) -> [TransactionGroup] {

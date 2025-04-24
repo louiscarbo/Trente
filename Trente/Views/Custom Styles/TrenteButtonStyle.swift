@@ -10,6 +10,8 @@ import SwiftUI
 struct TrenteButtonStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
+    
+    var narrow: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
@@ -41,7 +43,7 @@ struct TrenteButtonStyle: ButtonStyle {
                 .font(.title2)
                 .bold()
                 .tint(.primary)
-                .padding(.vertical)
+                .padding(.vertical, narrow ? 5 : 16)
         }
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }

@@ -11,6 +11,7 @@ struct TrenteGroupBoxStyle: GroupBoxStyle {
     @Environment(\.colorScheme) var colorScheme
     
     var scaleHorizontally: Bool = true
+    var scaleVertically: Bool = false
     
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -20,12 +21,17 @@ struct TrenteGroupBoxStyle: GroupBoxStyle {
                 .foregroundColor(.primary)
             
             // 1b) Show the content
-            if scaleHorizontally {
+            if scaleHorizontally && scaleVertically {
+                configuration.content
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if scaleVertically {
+                configuration.content
+                    .frame(maxHeight: .infinity)
+            } else if scaleHorizontally {
                 configuration.content
                     .frame(maxWidth: .infinity)
             } else {
                 configuration.content
-                    .frame(maxHeight: .infinity)
             }
         }
         .padding()

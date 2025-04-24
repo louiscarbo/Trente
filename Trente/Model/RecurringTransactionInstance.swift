@@ -38,3 +38,15 @@ extension RecurringTransactionInstance {
         transactionEntry != nil
     }
 }
+
+extension RecurringTransactionInstance {
+    func detachedCopy() -> RecurringTransactionInstance {
+        let copy = RecurringTransactionInstance(
+            date: date,
+            rule: rule,
+            month: month,
+            confirmed: confirmed
+        )
+        return copy
+    }
+}

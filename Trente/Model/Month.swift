@@ -125,6 +125,26 @@ extension Month {
         components.day! -= 1
         return calendar.date(from: components)!
     }
+    
+    var latestTransactions: [TransactionGroup] {
+        transactionGroups.sorted(by: { $0.addedDate > $1.addedDate })
+    }
+}
+
+extension Month {
+    func detachedCopy() -> Month {
+        let copy = Month(
+            startDate: startDate,
+            availableIncomeCents: availableIncomeCents,
+            currency: currency,
+            categoryRepartition: categoryRepartition
+        )
+        
+        copy.transactionGroups = transactionGroups.map { $0.detachedCopy() }
+        copy.recurringTransactionInstances = recurringTransactionInstances.map { $0.detachedCopy() }
+        
+        return copy
+    }
 }
 
 // MARK: - Sample Data
