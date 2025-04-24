@@ -12,5 +12,6 @@ import SwiftUI
 struct TrenteWidgetBundle: WidgetBundle {
     var body: some Widget {
         MonthRecapWidget()
+        CategoryRemainingWidget()
     }
 }

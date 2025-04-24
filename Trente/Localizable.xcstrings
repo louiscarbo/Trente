@@ -16,9 +16,6 @@
     "À" : {
 
     },
-    "A an example control that runs a timer." : {
-
-    },
     "Add your first Recurring Transaction by tapping 'Add Transaction'." : {
 
     },
@@ -40,7 +37,16 @@
     "ARCHIVED MONTHS" : {
 
     },
+    "Budget Category" : {
+
+    },
     "Categories" : {
+
+    },
+    "Category" : {
+
+    },
+    "Category Recap" : {
 
     },
     "Clothes" : {
@@ -128,13 +134,7 @@
     "Not Implemented Yet." : {
 
     },
-    "Off" : {
-
-    },
     "OK" : {
-
-    },
-    "On" : {
 
     },
     "On **%@**" : {
@@ -170,10 +170,19 @@
     "See all transactions" : {
 
     },
+    "See your remaining budget for the current month in a specific category, or for all categories in the medium widget.\n\nTo select a category, hold the widget." : {
+
+    },
     "See your remaining budget for the current month, as well as your spending on larger widgets. Quickly see how you're doing, and easily log new transactions.\n\nSee examples below." : {
 
     },
+    "Select a category for the widget." : {
+
+    },
     "Select a month" : {
+
+    },
+    "Select Category" : {
 
     },
     "Sort by" : {
@@ -183,12 +192,6 @@
 
     },
     "Start a New Month" : {
-
-    },
-    "Start a timer" : {
-
-    },
-    "Start Timer" : {
 
     },
     "Start tracking your budget with Trente by opening the app!" : {
@@ -201,12 +204,6 @@
 
     },
     "Supermarket" : {
-
-    },
-    "Timer" : {
-
-    },
-    "Timer is running" : {
 
     },
     "Title" : {

@@ -20,7 +20,7 @@ struct MonthRecapWidget: Widget {
                     EmptyView()
                 }
         }
-        .configurationDisplayName("Month Recap")
+        .configurationDisplayName(String(localized: "Month Recap"))
         .description(String(localized: "See your remaining budget for the current month, as well as your spending on larger widgets. Quickly see how you're doing, and easily log new transactions.\n\nSee examples below."))
         .supportedFamilies([.systemMedium, .systemLarge, .systemSmall, .accessoryCircular, .accessoryInline, .accessoryRectangular])
     }
@@ -203,117 +203,36 @@ struct AccessoryRectangularMonthRecapWidgetView: View {
 
 struct Provider: @preconcurrency TimelineProvider {
     @MainActor
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), month: createSampleMonth())
+    func placeholder(in context: Context) -> MonthRecapEntry {
+        MonthRecapEntry(date: Date(), month: Month.getSampleMonthWithTransactions())
     }
 
     @MainActor
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), month: createSampleMonth())
+    func getSnapshot(in context: Context, completion: @escaping (MonthRecapEntry) -> ()) {
+        let entry = MonthRecapEntry(date: Date(), month: Month.getSampleMonthWithTransactions())
         completion(entry)
     }
 
     @MainActor
-    func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> ()) {
         
-        var entries: [SimpleEntry] = []
+        var entries: [MonthRecapEntry] = []
         // MARK: TODO: Change this in the release version
-        let entry = SimpleEntry(date: Date(), month: getCurrentMonth(inPreview: true))
+        let entry = MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
         entries.append(entry)
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-    
-    func createSampleMonth() -> Month {
-        let month1 = Month(
-            startDate: Date(),
-            availableIncomeCents: 1600_00,
-            currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [
-                .needs: 50,
-                .wants: 30,
-                .savingsAndDebts: 20
-            ]
-        )
-        let salary = TransactionGroup(
-            addedDate: Date(),
-            title: String(localized: "Salary"),
-            type: .income,
-            month: month1
-        )
-        let supermarket = TransactionGroup(
-            addedDate: Date(),
-            title: String(localized: "Supermarket"),
-            type: .expense,
-            month: month1
-        )
-        let shopping = TransactionGroup(
-            addedDate: Date(),
-            title: String(localized: "Clothes"),
-            type: .expense,
-            month: month1
-        )
-        let rent = TransactionGroup(
-            addedDate: Date().addingTimeInterval(-3600 * 24 * 10),
-            title: String(localized: "Rent"),
-            type: .expense,
-            month: month1
-        )
-
-        supermarket.entries = [
-            TransactionEntry(amountCents: -147_18, category: .needs, group: supermarket)
-        ]
-        shopping.entries = [
-            TransactionEntry(amountCents: -119_99, category: .wants, group: shopping)
-        ]
-        rent.entries = [
-            TransactionEntry(amountCents: -720_00, category: .needs, group: rent)
-        ]
-        salary.entries = [
-            TransactionEntry(amountCents: 1600_00, category: .needs, group: salary),
-            TransactionEntry(amountCents: 300_00, category: .wants, group: salary),
-            TransactionEntry(amountCents: 200_00, category: .savingsAndDebts, group: salary)
-        ]
-        
-        month1.transactionGroups = [supermarket, shopping, rent, salary]
-        
-        return month1
-    }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct MonthRecapEntry: TimelineEntry {
     let date: Date
     let month: Month?
-}
-
-@MainActor
-private func getCurrentMonth(inPreview: Bool = false) -> Month? {
-    if inPreview {
-        do {
-            let modelContainer = SampleDataProvider.shared.modelContainer
-            let descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .forward)])
-            let month = try modelContainer.mainContext.fetch(descriptor)[3]
-            return month.detachedCopy()
-        } catch {
-            print("Error fetching SAMPLE month budget: \(error)")
-        }
-    }
-    
-    do {
-        let modelContainer = try ModelContainer(for: Month.self)
-        let descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .forward)])
-        if let month = try modelContainer.mainContext.fetch(descriptor).last {
-            return month.detachedCopy()
-        }
-    } catch {
-        print("Error fetching month budgets: \(error)")
-    }
-    return nil
 }
 
 #Preview(as: .accessoryRectangular) {
     MonthRecapWidget()
 } timeline: {
-    SimpleEntry(date: Date(), month: getCurrentMonth(inPreview: true))
+    MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
 }
