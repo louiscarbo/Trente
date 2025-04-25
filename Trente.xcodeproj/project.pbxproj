@@ -78,6 +78,7 @@
 				"Views/Custom Styles/TrenteButtonStyle.swift",
 				"Views/Custom Styles/TrenteGaugeStyle.swift",
 				"Views/Custom Styles/TrenteGroupBoxStyle.swift",
+				"Views/Custom Styles/TrenteToggleStyle.swift",
 				Views/GraphCardView.swift,
 				Views/TransactionsList/TransactionGroupRowView.swift,
 			);

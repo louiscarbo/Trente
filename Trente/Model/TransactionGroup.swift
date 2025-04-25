@@ -18,7 +18,6 @@ class TransactionGroup: Identifiable {
     var type: TransactionType
     var month: Month
     var isDeleted: Bool = false
-
     
     @Relationship(deleteRule: .cascade, inverse: \TransactionEntry.group)
     var entries: [TransactionEntry] = []

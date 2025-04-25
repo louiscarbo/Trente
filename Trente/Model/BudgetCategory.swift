@@ -45,4 +45,15 @@ enum BudgetCategory: String, Codable, CaseIterable {
             return Color.green
         }
     }
+    
+    var shortExamples: String {
+        switch self {
+        case .needs:
+            return String(localized: "Rent, groceries, bills...")
+        case .wants:
+            return String(localized: "Dining out, entertainment...")
+        case .savingsAndDebts:
+            return String(localized: "Savings, debt, retirement...")
+        }
+    }
 }

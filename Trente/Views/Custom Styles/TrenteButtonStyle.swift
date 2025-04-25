@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct TrenteButtonStyle: ButtonStyle {
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.isEnabled) private var isEnabled: Bool
     private var lightMode: Bool { colorScheme == .light }
     
     var narrow: Bool = false
+    var strokeOpacity: Double {
+        isEnabled ? 0.2 : 0.1
+    }
 
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
@@ -21,8 +25,9 @@ struct TrenteButtonStyle: ButtonStyle {
                     ZStack {
                         Capsule()
                             .stroke(
-                                lightMode ? Color.black.opacity(configuration.isPressed ? 0.1 : 0.2) :
-                                    Color.white.opacity(configuration.isPressed ? 0.1 : 0.2),
+                                lightMode
+                                ? Color.black.opacity(strokeOpacity)
+                                : Color.white.opacity(strokeOpacity),
                                 lineWidth: 3
                             )
                         if configuration.isPressed {
@@ -40,9 +45,9 @@ struct TrenteButtonStyle: ButtonStyle {
                     }
                 )
             configuration.label
-                .font(.title2)
                 .bold()
-                .tint(.primary)
+                .foregroundStyle(isEnabled ? Color.primary : Color.secondary)
+                .font(.title2)
                 .padding(.vertical, narrow ? 5 : 16)
         }
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
@@ -57,6 +62,7 @@ struct TrenteButtonStyle: ButtonStyle {
         .buttonStyle(TrenteButtonStyle())
         .frame(height: 50)
         .padding()
+        .disabled(true)
         
         Button {
             print("Button pressed")

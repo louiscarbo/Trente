@@ -16,6 +16,9 @@
     "À" : {
 
     },
+    "Add Transaction" : {
+
+    },
     "Add your first Recurring Transaction by tapping 'Add Transaction'." : {
 
     },
@@ -70,6 +73,15 @@
     "De" : {
 
     },
+    "Dining out, entertainment..." : {
+
+    },
+    "Disabled" : {
+
+    },
+    "Enabled" : {
+
+    },
     "Every %@" : {
 
     },
@@ -89,10 +101,16 @@
     "From" : {
 
     },
+    "Give a title to your transaction" : {
+
+    },
     "Graph Card" : {
 
     },
     "Income" : {
+
+    },
+    "Income/Expense" : {
 
     },
     "Latest Transactions" : {
@@ -119,6 +137,9 @@
     "New Transaction" : {
 
     },
+    "Next" : {
+
+    },
     "Next Recurring Transactions" : {
 
     },
@@ -134,13 +155,25 @@
     "Not Implemented Yet." : {
 
     },
+    "Off" : {
+
+    },
     "OK" : {
+
+    },
+    "On" : {
 
     },
     "On **%@**" : {
 
     },
     "Over Budget" : {
+
+    },
+    "Previous" : {
+
+    },
+    "Recurring transaction" : {
 
     },
     "Recurring Transactions" : {
@@ -152,6 +185,9 @@
     "Rent" : {
 
     },
+    "Rent, groceries, bills..." : {
+
+    },
     "Salary" : {
 
     },
@@ -159,6 +195,9 @@
 
     },
     "Savings and Debts" : {
+
+    },
+    "Savings, debt, retirement..." : {
 
     },
     "Search by title, amount, date, category…" : {
@@ -183,6 +222,9 @@
 
     },
     "Select Category" : {
+
+    },
+    "Select Recurrence" : {
 
     },
     "Sort by" : {
