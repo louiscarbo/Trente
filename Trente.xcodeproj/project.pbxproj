@@ -79,7 +79,7 @@
 				"Views/Custom Styles/TrenteGaugeStyle.swift",
 				"Views/Custom Styles/TrenteGroupBoxStyle.swift",
 				Views/GraphCardView.swift,
-				Views/TransactionGroupRowView.swift,
+				Views/TransactionsList/TransactionGroupRowView.swift,
 			);
 			target = 7BBD01CF2DB8DFAD007B606C /* TrenteWidgetExtension */;
 		};

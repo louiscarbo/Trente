@@ -18,7 +18,7 @@ struct RecurringTransactionRuleTests {
         let eur = Currencies.currency(for: "EUR")!
         // Rule starts on Wednesday April 2, 2025 and recurs weekly
         let ruleStart = calendar.date(from: DateComponents(year: 2025, month: 4, day: 2))!
-        var rule = RecurringTransactionRule(
+        let rule = RecurringTransactionRule(
             title: "Subscription",
             amountCents: 1000,
             category: .wants,
@@ -53,7 +53,7 @@ struct RecurringTransactionRuleTests {
         let eur = Currencies.currency(for: "EUR")!
         // Rule on the 15th of each month
         let ruleStart = calendar.date(from: DateComponents(year: 2025, month: 1, day: 15))!
-        var rule = RecurringTransactionRule(
+        let rule = RecurringTransactionRule(
             title: "Pay Rent",
             amountCents: 50000,
             category: .needs,
@@ -88,7 +88,7 @@ struct RecurringTransactionRuleTests {
         let eur = Currencies.currency(for: "EUR")!
         // Rule on December 25 each year since 2020
         let ruleStart = calendar.date(from: DateComponents(year: 2020, month: 12, day: 25))!
-        var rule = RecurringTransactionRule(
+        let rule = RecurringTransactionRule(
             title: "Holiday",
             amountCents: 0,
             category: .savingsAndDebts,
