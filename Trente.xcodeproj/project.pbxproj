@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
 		7BBD01D32DB8DFAE007B606C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */; };
 		7BBD01D52DB8DFAE007B606C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */; };
 		7BBD01E22DB8DFAF007B606C /* TrenteWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B1F06282DBD7910007EFDC5 /* Trente.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Trente.storekit; sourceTree = "<group>"; };
 		7B28474D2DAFE05300EEF97C /* Trente.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trente.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TrenteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -141,6 +143,7 @@
 		7B2847442DAFE05300EEF97C = {
 			isa = PBXGroup;
 			children = (
+				7B1F06282DBD7910007EFDC5 /* Trente.storekit */,
 				7BBD01E82DB8E135007B606C /* TrenteWidgetExtension.entitlements */,
 				7B28474F2DAFE05300EEF97C /* Trente */,
 				7BC9E7F12DB1081800CFDF19 /* TrenteTests */,
@@ -291,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
