@@ -64,7 +64,8 @@ struct MonthView: View {
         .modelContainer(SampleDataProvider.shared.modelContainer)
 }
 
-struct NarrowMonthView: View {
+// MARK: iPhone view
+private struct NarrowMonthView: View {
     @State var month: Month
     
     @State var latestTransactions: [TransactionGroup]
@@ -74,6 +75,8 @@ struct NarrowMonthView: View {
     @Environment(\.modelContext) var modelContext
     @State private var isShowingTransactionList = false
     @State private var isShowingNewTransactionSheet = false
+    @Environment(\.colorScheme) private var colorScheme
+    private var lightMode: Bool { colorScheme == .light }
     
     private var transactionGroupsCount: Int {
         TransactionService.shared.fetchTransactionsCount(from: modelContext)
@@ -200,8 +203,14 @@ struct NarrowMonthView: View {
                     .ignoresSafeArea()
                     .frame(height: 150)
                     .foregroundStyle (
+                        lightMode ?
                         LinearGradient(
                             colors: [.clear, .white],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                        : LinearGradient(
+                            colors: [.clear, .black],
                             startPoint: .top,
                             endPoint: .bottom
                         )
@@ -226,83 +235,124 @@ struct NarrowMonthView: View {
     }
 }
 
-struct WideMonthView: View {
+// MARK: iPad and Mac view
+private struct WideMonthView: View {
     @State var month: Month
     @State var latestTransactions: [TransactionGroup]
     @State var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
+    @State var isShowingNewTransactionSheet: Bool = false
+    
+    // View properties
+    @Environment(\.colorScheme) private var colorScheme
+    private var lightMode: Bool { colorScheme == .light }
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                Grid(horizontalSpacing: 20, verticalSpacing: 20) {
-                    // Graph Card
-                    GridRow {
-                        GroupBox(label:
-                                    Label("Monthly Overview", systemImage: "chart.pie.fill")
-                        ) {
-                            Text("Graph Card")
-                                .font(.title)
-                                .frame(height: 350)
-                        }
-                        .groupBoxStyle(TrenteGroupBoxStyle())
-                        GroupBox(label:
-                                    Label("Latest Transactions", systemImage: "clock.arrow.circlepath")
-                        ) {
-                            List {
-                                ForEach(latestTransactions.prefix(5)) { transaction in
-                                    TransactionGroupRowView(transactionGroup: transaction)
+            ZStack(alignment: .bottomTrailing) {
+                ScrollView {
+                    Grid(horizontalSpacing: 20, verticalSpacing: 20) {
+                        // Graph Card
+                        GridRow {
+                            GroupBox(label:
+                                        Label("Monthly Overview", systemImage: "chart.pie.fill")
+                            ) {
+                                Text("Graph Card")
+                                    .font(.title)
+                                    .frame(height: 350)
+                            }
+                            .groupBoxStyle(TrenteGroupBoxStyle())
+                            GroupBox(label:
+                                        Label("Latest Transactions", systemImage: "clock.arrow.circlepath")
+                            ) {
+                                List {
+                                    ForEach(latestTransactions.prefix(5)) { transaction in
+                                        TransactionGroupRowView(transactionGroup: transaction)
+                                    }
+                                    
+                                    NavigationLink {
+                                        TransactionListView(month: month, showRecurring: false)
+                                    } label: {
+                                        Text("See all transactions")
+                                    }
                                 }
-                                
-                                NavigationLink {
-                                    TransactionListView(month: month, showRecurring: false)
-                                } label: {
-                                    Text("See all transactions")
+                                .listStyle(.inset)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(.secondary.opacity(0.2), lineWidth: 2)
                                 }
                             }
-                            .listStyle(.inset)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.secondary.opacity(0.2), lineWidth: 2)
-                            }
+                            .groupBoxStyle(TrenteGroupBoxStyle())
+                            .frame(idealWidth: 400)
                         }
-                        .groupBoxStyle(TrenteGroupBoxStyle())
-                        .frame(idealWidth: 400)
+                        // Other Graph Cards
+                        GridRow {
+                            VStack(spacing: 20) {
+                                HStack(spacing: 20) {
+                                    GraphCardView(month: month, category: BudgetCategory.needs)
+                                    GraphCardView(month: month, category: BudgetCategory.wants)
+                                }
+                                GraphCardView(month: month, category: BudgetCategory.savingsAndDebts)
+                            }
+                            GroupBox(label:
+                                        Label("Next Recurring Transactions", systemImage: "clock.arrow.circlepath")
+                            ) {
+                                List {
+                                    ForEach(nextRecurringTransactionsInstances.prefix(5)) { transaction in
+                                        RecurringTransactionRowView(recurringTransactionInstance: transaction)
+                                    }
+                                    
+                                    NavigationLink {
+                                        TransactionListView(month: month, showRecurring: true)
+                                    } label: {
+                                        Text("See all recurring transactions")
+                                    }
+                                }
+                                .listStyle(.inset)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(.secondary.opacity(0.2), lineWidth: 2)
+                                }
+                            }
+                            .groupBoxStyle(TrenteGroupBoxStyle())
+                        }
+                        GridRow {
+                            Spacer()
+                                .frame(height: 150)
+                        }
                     }
-                    // Other Graph Cards
-                    GridRow {
-                        VStack(spacing: 20) {
-                            HStack(spacing: 20) {
-                                GraphCardView(month: month, category: BudgetCategory.needs)
-                                GraphCardView(month: month, category: BudgetCategory.wants)
-                            }
-                            GraphCardView(month: month, category: BudgetCategory.savingsAndDebts)
-                        }
-                        GroupBox(label:
-                                    Label("Next Recurring Transactions", systemImage: "clock.arrow.circlepath")
-                        ) {
-                            List {
-                                ForEach(nextRecurringTransactionsInstances.prefix(5)) { transaction in
-                                    RecurringTransactionRowView(recurringTransactionInstance: transaction)
-                                }
-                                
-                                NavigationLink {
-                                    TransactionListView(month: month, showRecurring: true)
-                                } label: {
-                                    Text("See all recurring transactions")
-                                }
-                            }
-                            .listStyle(.inset)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.secondary.opacity(0.2), lineWidth: 2)
-                            }
-                        }
-                        .groupBoxStyle(TrenteGroupBoxStyle())
-                    }
+                    .padding(35)
                 }
-                .padding(35)
+                
+                Capsule()
+                    .fill(
+                        lightMode ? Color.white :
+                        Color.black.opacity(0.8)
+                    )
+                    .stroke(
+                        lightMode ? Color.white :
+                            Color.black.opacity(0.8),
+                        lineWidth: 40
+                    )
+                    .frame(width: 300, height: 70)
+                    .padding()
+                    .padding(.horizontal)
+                    .blur(radius: 30)
+                
+                Button {
+                    isShowingNewTransactionSheet = true
+                } label: {
+                    Label("Add Transaction", systemImage: "plus")
+                        .font(.title2)
+                }
+                .buttonStyle(TrenteButtonStyle(narrow: true))
+                .frame(width: 300, height: 70)
+                .padding()
+                .padding(.horizontal)
+                .sheet(isPresented: $isShowingNewTransactionSheet) {
+                    NewTransactionView(currency: month.currency)
+                }
             }
         }
     }
