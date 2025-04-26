@@ -24,7 +24,7 @@ class TransactionGroup: Identifiable {
     
     // Trente+
     var note: String? = nil
-    var photoAttachmentURL: URL? = nil
+    @Attribute(.externalStorage) var imageAttachmentData: Data? = nil
     
     init(addedDate: Date, title: String, type: TransactionType, month: Month) {
         self.addedDate = addedDate

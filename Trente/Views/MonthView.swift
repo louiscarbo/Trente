@@ -64,7 +64,7 @@ struct MonthView: View {
         .modelContainer(SampleDataProvider.shared.modelContainer)
 }
 
-// MARK: iPhone view
+// MARK: Narrow view
 private struct NarrowMonthView: View {
     @State var month: Month
     
@@ -223,8 +223,7 @@ private struct NarrowMonthView: View {
                     Label("Add Transaction", systemImage: "plus")
                         .font(.title)
                 }
-                .buttonStyle(TrenteButtonStyle(narrow: true))
-                .scaledToFit()
+                .buttonStyle(TrenteAccentButtonStyle())
                 .padding()
                 .padding(.horizontal)
                 .sheet(isPresented: $isShowingNewTransactionSheet) {
@@ -346,7 +345,7 @@ private struct WideMonthView: View {
                     Label("Add Transaction", systemImage: "plus")
                         .font(.title2)
                 }
-                .buttonStyle(TrenteButtonStyle(narrow: true))
+                .buttonStyle(TrenteAccentButtonStyle())
                 .frame(width: 300, height: 70)
                 .padding()
                 .padding(.horizontal)

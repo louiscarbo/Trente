@@ -16,6 +16,12 @@
     "À" : {
 
     },
+    "Add Image" : {
+
+    },
+    "Add Notes and Images" : {
+
+    },
     "Add Transaction" : {
 
     },
@@ -29,6 +35,9 @@
 
     },
     "Add your first transactions by tapping 'New Transaction'." : {
+
+    },
+    "Add your notes here." : {
 
     },
     "All Months" : {
@@ -50,6 +59,9 @@
 
     },
     "Category Recap" : {
+
+    },
+    "Change Image" : {
 
     },
     "Clothes" : {
@@ -79,6 +91,12 @@
     "Disabled" : {
 
     },
+    "Discover Trente+" : {
+
+    },
+    "Done" : {
+
+    },
     "Enabled" : {
 
     },
@@ -94,6 +112,9 @@
           }
         }
       }
+    },
+    "Explain what Trente+ offers here" : {
+
     },
     "Filter" : {
 
@@ -188,6 +209,9 @@
     "Rent, groceries, bills..." : {
 
     },
+    "Repartition Recurrence View" : {
+
+    },
     "Salary" : {
 
     },
@@ -222,9 +246,6 @@
 
     },
     "Select Category" : {
-
-    },
-    "Select Recurrence" : {
 
     },
     "Sort by" : {
@@ -263,6 +284,9 @@
     "Total" : {
 
     },
+    "Transaction Notes" : {
+
+    },
     "Transactions" : {
 
     },
@@ -279,6 +303,9 @@
 
     },
     "Weekly" : {
+
+    },
+    "With Trente+, you can add images and notes to your transactions. Try it now!" : {
 
     },
     "Yearly" : {

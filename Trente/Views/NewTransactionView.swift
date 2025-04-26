@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct NewTransactionView: View {
     // View Arguments
@@ -17,24 +18,27 @@ struct NewTransactionView: View {
     @State private var type: TransactionType = .expense
     @State private var title: String = ""
     @State private var isRecurrent: Bool = false
+    @State private var image: UIImage?
+    @State private var notes: String = ""
     
     // Buttons Logic
-    var showPreviousButton: Bool {
+    private var showPreviousButton: Bool {
         step != .amountCategory
     }
-    var showNextButton: Bool {
-        step != .recurrence
+    private var showNextButton: Bool {
+        step != .repartitionRecurrence
     }
+    @State private var nextButtonDisabled: Bool = true
     
     // View State
-    @State private var step: NewTransactionStep = .amountCategory
-    @State var nextButtonDisabled: Bool = true
-        
+    @State var step: NewTransactionStep = .amountCategory
+    @State private var showKeyboardDismissButton: Bool = false
+    
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 0) {
                 TabView(selection: $step) {
-                    AmountCategorySelectionView(
+                    AmountCategoryView(
                         selectedCategory: $selectedCategory,
                         amountCents: $amountCents,
                         transactionType: $type,
@@ -47,14 +51,29 @@ struct NewTransactionView: View {
                     
                     TitleView(
                         title: $title,
-                        nextButtonDisabled: $nextButtonDisabled
+                        
+                        nextButtonDisabled: $nextButtonDisabled,
+                        step: $step,
+                        showKeyboardDismissButton: $showKeyboardDismissButton
                     )
                     .newTransactionPage(tag: .title)
                     
-                    RecurrenceView()
-                        .newTransactionPage(tag: .recurrence)
+                    NotesImageView(
+                        image: $image,
+                        notes: $notes,
+                        
+                        showKeyboardDismissButton: $showKeyboardDismissButton
+                    )
+                    .newTransactionPage(tag: .notesImage)
+                    
+                    RepartitionRecurrenceView()
+                        .newTransactionPage(tag: .repartitionRecurrence)
                 }
+#if os(iOS)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+#else
+                .tabViewStyle(.automatic)
+#endif
                 .navigationTitle("New Transaction")
                 .toolbarTitleDisplayMode(.inline)
                 
@@ -64,68 +83,64 @@ struct NewTransactionView: View {
     }
     
     var navigationButtons: some View {
-        HStack(spacing: 20) {
-            if showPreviousButton {
-                Button("Previous") {
+        VStack {
+            HStack(spacing: 20) {
+                if showPreviousButton {
+                    Button("Previous") {
+                        withAnimation {
+                            if let previousStep = step.previous() {
+                                step = previousStep
+                            } else {
+                                print("Already at the first step")
+                            }
+                        }
+                    }
+                    .buttonStyle(TrenteButtonStyle(narrow: true))
+                }
+                
+                Button("Next") {
                     withAnimation {
-                        if let previousStep = step.previous() {
-                            step = previousStep
+                        if let nextStep = step.next(isRecurrent: isRecurrent, isIncome: type == .income) {
+                            step = nextStep
                         } else {
-                            print("Already at the first step")
+                            print("Transaction creation completed")
                         }
                     }
                 }
-                .frame(height: 20)
-                .buttonStyle(TrenteButtonStyle(narrow: true))
+                .disabled(nextButtonDisabled)
+                .buttonStyle(TrenteAccentButtonStyle(narrow: true))
             }
             
-            Button("Next") {
-                withAnimation {
-                    if let nextStep = step.next() {
-                        step = nextStep
-                    } else {
-                        print("Transaction creation completed")
-                    }
+            if showKeyboardDismissButton {
+                Button {
+                    UIApplication.shared.sendAction(
+                        #selector(UIResponder.resignFirstResponder),
+                        to: nil,
+                        from: nil,
+                        for: nil
+                    )
+                    showKeyboardDismissButton = false
+                } label: {
+                    Label("Done", systemImage: "keyboard.chevron.compact.down")
                 }
-            }
-            .disabled(nextButtonDisabled)
-            .frame(height: 20)
-            .buttonStyle(TrenteButtonStyle(narrow: true))
-        }
-        .padding(30)
-    }
-    
-    enum NewTransactionStep {
-        case amountCategory
-        case title
-        case recurrence
-        
-        func next() -> NewTransactionStep? {
-            switch self {
-            case .amountCategory:
-                return .title
-            case .title:
-                return .recurrence
-            case .recurrence:
-                return nil
+                .buttonStyle(TrenteButtonStyle(narrow: true))
             }
         }
-        
-        func previous() -> NewTransactionStep? {
-            switch self {
-            case .amountCategory:
-                return nil
-            case .title:
-                return .amountCategory
-            case .recurrence:
-                return .title
-            }
+        .padding()
+        .background {
+            UnevenRoundedRectangle(
+                cornerRadii:
+                    RectangleCornerRadii(topLeading: 20, bottomLeading: 0, bottomTrailing: 0, topTrailing: 20)
+            )
+            .fill(.regularMaterial)
+            .stroke(.secondary.opacity(0.4), lineWidth: 3)
+            .ignoresSafeArea()
         }
     }
     
     struct NewTransactionViewModifier: ViewModifier {
         let tag: NewTransactionStep
-
+        
         func body(content: Content) -> some View {
             ZStack {
                 Rectangle().fill(.clear)
@@ -138,14 +153,51 @@ struct NewTransactionView: View {
     }
 }
 
+enum NewTransactionStep {
+    case amountCategory
+    case title
+    case notesImage
+    case repartitionRecurrence
+    
+    func next(isRecurrent: Bool, isIncome: Bool) -> NewTransactionStep? {
+        switch self {
+        case .amountCategory:
+            return .title
+        case .title:
+            return .notesImage
+        case .notesImage:
+            if isRecurrent || isIncome {
+                return .repartitionRecurrence
+            } else {
+                return nil
+            }
+        case .repartitionRecurrence:
+            return nil
+        }
+    }
+    
+    func previous() -> NewTransactionStep? {
+        switch self {
+        case .amountCategory:
+            return nil
+        case .title:
+            return .amountCategory
+        case .notesImage:
+            return .title
+        case .repartitionRecurrence:
+            return .notesImage
+        }
+    }
+}
+
 extension View {
-    func newTransactionPage(tag: NewTransactionView.NewTransactionStep) -> some View {
+    func newTransactionPage(tag: NewTransactionStep) -> some View {
         modifier(NewTransactionView.NewTransactionViewModifier(tag: tag))
     }
 }
 
-// MARK: AmountCategorySelectionView
-private struct AmountCategorySelectionView: View {
+// MARK: AmountCategoryView
+private struct AmountCategoryView: View {
     // Bindings
     @Binding var selectedCategory: BudgetCategory?
     @Binding var amountCents: Int
@@ -177,8 +229,8 @@ private struct AmountCategorySelectionView: View {
             Label(transactionType == .income
                   ? "You will select categories for this income in the next steps."
                   : selectedCategory?.shortExamples ?? "Select a category for this transaction.", systemImage: "info.circle")
-                .font(.headline)
-                .foregroundStyle(.secondary)
+            .font(.headline)
+            .foregroundStyle(.secondary)
             
             Spacer()
             
@@ -210,16 +262,14 @@ private struct AmountCategorySelectionView: View {
             }
             .toggleStyle(TrenteToggleStyle())
         }
-        .padding(.horizontal)
+        .padding([.horizontal, .bottom])
         .onChange(of: amountText) { oldValue, newValue in
             processAmountTextChange(newValue: newValue, oldValue: oldValue)
             updateNextButtonState()
-            print("AmountCents: \(amountCents), transactionType: \(transactionType)")
         }
         .onChange(of: transactionType) { oldValue, newValue in
             applySign()
             updateNextButtonState()
-            
             if newValue == .income {
                 selectedCategory = nil
             }
@@ -228,20 +278,20 @@ private struct AmountCategorySelectionView: View {
             updateNextButtonState()
         }
         .onAppear{
+            updateNextButtonState()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                 amountFieldIsFocused = true
             }
-            updateNextButtonState()
         }
     }
     
     // Text validation and amount in cents calculation
     private func processAmountTextChange(newValue: String, oldValue: String) {
         let decimalSep = Locale.current.decimalSeparator ?? "."
-
+        
         // 1) Strip any leading sign for validation
         let unsigned = newValue.trimmingCharacters(in: CharacterSet(charactersIn: "+-"))
-
+        
         // 1a) Prevent more than one decimal separator
         let sepChar = Character(decimalSep)
         let sepCount = unsigned.filter { $0 == sepChar }.count
@@ -249,7 +299,7 @@ private struct AmountCategorySelectionView: View {
             amountText = oldValue
             return
         }
-
+        
         // 1b) Enforce max two decimal places
         if let idx = unsigned.firstIndex(of: sepChar) {
             let frac = unsigned[unsigned.index(after: idx)...]
@@ -258,31 +308,31 @@ private struct AmountCategorySelectionView: View {
                 return
             }
         }
-
+        
         // 1c) If now empty, clear everything
         guard !unsigned.isEmpty else {
             amountText = ""
             amountCents = 0
             return
         }
-
+        
         // 1d) Parse number respecting locale
         let fmt = NumberFormatter()
         fmt.locale = Locale.current
         fmt.numberStyle = .decimal
         let dbl = fmt.number(from: unsigned)?.doubleValue ?? 0
-
+        
         // 1e) Compute absolute cents
         let absCents = Int((dbl * 100).rounded())
-
+        
         // 1f) Update the text to the unsigned digits
         amountText = unsigned
-
+        
         // 1g) Store signed cents & re-attach sign
         amountCents = transactionType == .income ? absCents : -absCents
         applySign()
     }
-
+    
     private func applySign() {
         // 2a) Normalize amountCents to match isIncome
         if transactionType == .income {
@@ -290,7 +340,7 @@ private struct AmountCategorySelectionView: View {
         } else {
             amountCents = -abs(amountCents)
         }
-
+        
         // 2b) Rebuild amountText with proper prefix
         let unsigned = amountText.trimmingCharacters(in: CharacterSet(charactersIn: "+-"))
         let prefix = transactionType == .income ? "" : "-"
@@ -316,9 +366,15 @@ private struct AmountCategorySelectionView: View {
 
 // MARK: TitleView
 private struct TitleView: View {
+    // Transaction Data
     @Binding var title: String
-    @Binding var nextButtonDisabled: Bool
     
+    // View Bindings
+    @Binding var nextButtonDisabled: Bool
+    @Binding var step: NewTransactionStep
+    @Binding var showKeyboardDismissButton: Bool
+    
+    // View Logic
     @FocusState private var titleFieldIsFocused: Bool
     
     var body: some View {
@@ -352,12 +408,21 @@ private struct TitleView: View {
         .onChange(of: title) {
             updateNextButtonState()
         }
+        .onChange(of: titleFieldIsFocused) { oldValue, newValue in
+            if newValue == true {
+                showKeyboardDismissButton = true
+            } else {
+                showKeyboardDismissButton = false
+            }
+        }
         .onAppear {
             updateNextButtonState()
             titleFieldIsFocused = true
         }
-        .onDisappear {
-            titleFieldIsFocused = false
+        .onChange(of: step) { oldStep, newStep in
+            if newStep != .title {
+                titleFieldIsFocused = false
+            }
         }
     }
     
@@ -370,19 +435,148 @@ private struct TitleView: View {
     }
 }
 
-private struct RecurrenceView: View {
+// MARK: NotesImageView
+private struct NotesImageView: View {
+    // Transaction attributes
+    @Binding var image: UIImage?
+    @Binding var notes: String
+    
+    // Bindings
+    @Binding var showKeyboardDismissButton: Bool
+    
+    // View arguments
+    @State private var userSubscriptionIsActive: Bool = true
+    
+    // View logic
+    @State private var photosPickerItem: PhotosPickerItem?
+    @State private var showImageSubscriptionSheet: Bool = false
+    @State private var showFullScreen = false
+    @FocusState private var notesFocused: Bool
+    
     var body: some View {
-        VStack {
-            Text("Select Recurrence")
-                .font(.headline)
-            // Add your UI elements here
+        ZStack {
+            // Content
+            ScrollView {
+                VStack(spacing: 20) {
+                    if photosPickerItem == nil {
+                        PhotosPicker(selection: $photosPickerItem) {
+                            Label("Add Image", systemImage: "photo.badge.plus")
+                        }
+                        .buttonStyle(TrenteButtonStyle())
+                    } else {
+                        if let selectedUIImage = image {
+                            Image(uiImage: selectedUIImage)
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(
+                                    RoundedRectangle(cornerRadius: 20)
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color.white, lineWidth: 10)
+                                )
+                                .frame(height: 200)
+                                .shadow(radius: 20, y: 10)
+                                .padding(.bottom, 30)
+                                .overlay(alignment: .bottom) {
+                                    PhotosPicker(selection: $photosPickerItem) {
+                                        Label("Change Image", systemImage: "photo.badge.plus")
+                                            .font(.headline)
+                                            .padding(.horizontal)
+                                    }
+                                    .buttonStyle(TrenteButtonStyle())
+                                    .fixedSize()
+                                }
+                                .onTapGesture {
+                                    showFullScreen = true
+                                }
+                                .fullScreenCover(isPresented: $showFullScreen) {
+                                    ZoomableImageView(uiImage: selectedUIImage)
+                                }
+                        } else {
+                            // fallback while loading
+                            ProgressView()
+                                .frame(height: 400)
+                        }
+                    }
+                    
+                    GroupBox(label: Label("Transaction Notes", systemImage: "note.text")) {
+                        TextField(
+                            "",
+                            text: $notes,
+                            prompt: Text("Add your notes here."),
+                            axis: .vertical
+                        )
+                        .focused($notesFocused)
+                        .lineLimit(5, reservesSpace: true)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .textFieldStyle(.plain)
+                        .onChange(of: notesFocused) { oldValue, newValue in
+                            if newValue == true {
+                                showKeyboardDismissButton = true
+                            } else {
+                                showKeyboardDismissButton = false
+                            }
+                        }
+                    }
+                    .groupBoxStyle(TrenteGroupBoxStyle())
+                }
+                .padding()
+                .padding(.top, 30)
+            }
+            .subscriptionAccessible(subscribed: userSubscriptionIsActive)
+            .onChange(of: photosPickerItem) { oldItem, newItem in
+                guard let item = newItem else {
+                    image = nil
+                    return
+                }
+                Task {
+                    if let data = try? await item.loadTransferable(type: Data.self), let selectedUIImage = UIImage(data: data) {
+                        image = selectedUIImage
+                    }
+                }
+            }
+            
+            // Subscription Invite
+            if !userSubscriptionIsActive {
+                GroupBox(label: Label("Add Notes and Images", systemImage: "sparkle")) {
+                    Text("With Trente+, you can add images and notes to your transactions. Try it now!")
+                        .padding(.bottom)
+                    
+                    Button {
+                        showImageSubscriptionSheet = true
+                    } label: {
+                        Text("Discover Trente+")
+                            .font(.title3)
+                    }
+                    .buttonStyle(TrenteAccentButtonStyle())
+                    .sheet(isPresented: $showImageSubscriptionSheet) {
+                        SubscriptionBenefitsView()
+                    }
+                }
+                .groupBoxStyle(TrenteGroupBoxStyle())
+                .padding()
+            }
         }
+    }
+}
+
+private struct SubscriptionBenefitsView: View {
+    var body: some View {
+        Text("Explain what Trente+ offers here")
+            .presentationDetents([.fraction(0.9)])
+    }
+}
+
+private struct RepartitionRecurrenceView: View {
+    var body: some View {
+        Text("Repartition Recurrence View")
     }
 }
 
 #Preview {
     Text("Preview")
         .sheet(isPresented: .constant(true)) {
-            NewTransactionView(currency: Currency(isoCode: "EUR", symbol: "eurosign", localizedName: "Euro"))
+            NewTransactionView(currency: Currency(isoCode: "EUR", symbol: "eurosign", localizedName: "Euro"), step: .notesImage)
         }
 }
