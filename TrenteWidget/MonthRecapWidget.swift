@@ -112,8 +112,9 @@ struct HomescreenMonthRecapWidgetView : View {
                                 Label("New Transaction", systemImage: "plus")
                                     .foregroundStyle(.primary)
                                     .font(.subheadline)
+                                    .padding(.horizontal)
                             }
-                            .buttonStyle(TrenteButtonStyle(narrow: true))
+                            .buttonStyle(TrenteAccentButtonStyle(narrow: true))
                             .scaledToFit()
                             .padding(.leading)
                             .padding(.trailing, -3)
