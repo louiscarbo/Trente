@@ -9,8 +9,8 @@ import Foundation
 import SwiftData
 
 @MainActor
-class SampleDataProvider {
-    static let shared = SampleDataProvider()
+class DataProvider {
+    static let shared = DataProvider()
     
     let modelContainer: ModelContainer
     

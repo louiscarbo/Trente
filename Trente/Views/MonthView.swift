@@ -61,7 +61,7 @@ struct MonthView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(SampleDataProvider.shared.modelContainer)
+        .modelContainer(DataProvider.shared.modelContainer)
 }
 
 // MARK: Narrow view
@@ -161,7 +161,7 @@ private struct NarrowMonthView: View {
                         // Recurring Transactions
                         GroupBox(label: Label("Recurring Transactions", systemImage: "clock.arrow.circlepath")) {
                             ForEach(nextRecurringTransactionsInstances.prefix(3)) { recurringTransactionInstance in
-                                RecurringTransactionRowView(recurringTransactionInstance: recurringTransactionInstance)
+                                RecurringTransactionRowView(instance: recurringTransactionInstance)
                                 
                                 if recurringTransactionInstance != nextRecurringTransactionsInstances.prefix(3).last {
                                     Divider()
@@ -298,7 +298,7 @@ private struct WideMonthView: View {
                             ) {
                                 List {
                                     ForEach(nextRecurringTransactionsInstances.prefix(5)) { transaction in
-                                        RecurringTransactionRowView(recurringTransactionInstance: transaction)
+                                        RecurringTransactionRowView(instance: transaction)
                                     }
                                     
                                     NavigationLink {

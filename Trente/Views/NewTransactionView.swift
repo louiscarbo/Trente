@@ -15,11 +15,14 @@ struct NewTransactionView: View {
     // Transaction Data
     @State private var selectedCategory: BudgetCategory? = nil
     @State private var amountCents: Int = 0
-    @State private var type: TransactionType = .expense
+    @State private var type: TransactionType = .income
     @State private var title: String = ""
-    @State private var isRecurrent: Bool = false
+    @State private var isRecurrent: Bool = true
     @State private var image: UIImage?
     @State private var notes: String = ""
+    @State private var recurrenceFrequency: RecurrenceFrequency = .monthly
+    @State private var recurrenceStartDate: Date = Date()
+    @State private var recurrenceEndDate: Date? = nil
     
     // Buttons Logic
     private var showPreviousButton: Bool {
@@ -66,8 +69,11 @@ struct NewTransactionView: View {
                     )
                     .newTransactionPage(tag: .notesImage)
                     
-                    RepartitionRecurrenceView()
-                        .newTransactionPage(tag: .repartitionRecurrence)
+                    RepartitionRecurrenceView(
+                        showRecurrence: isRecurrent,
+                        showIncomeRepartition: type == .income
+                    )
+                    .newTransactionPage(tag: .repartitionRecurrence)
                 }
 #if os(iOS)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -551,7 +557,7 @@ private struct NotesImageView: View {
                     }
                     .buttonStyle(TrenteAccentButtonStyle())
                     .sheet(isPresented: $showImageSubscriptionSheet) {
-                        SubscriptionBenefitsView()
+                        SubscriptionView()
                     }
                 }
                 .groupBoxStyle(TrenteGroupBoxStyle())
@@ -561,22 +567,35 @@ private struct NotesImageView: View {
     }
 }
 
-private struct SubscriptionBenefitsView: View {
-    var body: some View {
-        Text("Explain what Trente+ offers here")
-            .presentationDetents([.fraction(0.9)])
-    }
-}
-
+// MARK: RepartitionRecurrenceView
 private struct RepartitionRecurrenceView: View {
+    @State var showRecurrence: Bool
+    @State var showIncomeRepartition: Bool
+    
     var body: some View {
-        Text("Repartition Recurrence View")
+        ScrollView {
+            VStack {
+                if showIncomeRepartition {
+                    GroupBox(label: Text("Income Repartition")) {
+                        Text("Hello there")
+                    }
+                    .groupBoxStyle(TrenteGroupBoxStyle())
+                }
+                if showRecurrence {
+                    GroupBox(label: Text("Recurrence")) {
+                        Text("Hello here")
+                    }
+                    .groupBoxStyle(TrenteGroupBoxStyle())
+                }
+            }
+            .padding()
+        }
     }
 }
 
 #Preview {
     Text("Preview")
         .sheet(isPresented: .constant(true)) {
-            NewTransactionView(currency: Currency(isoCode: "EUR", symbol: "eurosign", localizedName: "Euro"), step: .notesImage)
+            NewTransactionView(currency: Currency(isoCode: "EUR", symbol: "eurosign", localizedName: "Euro"), step: .repartitionRecurrence)
         }
 }

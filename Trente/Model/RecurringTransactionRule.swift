@@ -11,24 +11,26 @@ import SwiftData
 @Model
 class RecurringTransactionRule {
     var title: String
-    var amountCents: Int
-    var category: BudgetCategory
     var frequency: RecurrenceFrequency
     var startDate: Date
     var endDate: Date? = nil
     var autoConfirm: Bool = false
+    var repartition: [BudgetCategory:Int]
     
     @Relationship(deleteRule: .cascade, inverse: \RecurringTransactionInstance.rule)
     var instances: [RecurringTransactionInstance] = []
 
     var isDeleted: Bool = false
     
-    init(title: String, amountCents: Int, category: BudgetCategory, frequency: RecurrenceFrequency, startDate: Date) {
+    init(title: String, frequency: RecurrenceFrequency, startDate: Date, endDate: Date? = nil, autoConfirm: Bool = false, repartition: [BudgetCategory : Int]) {
         self.title = title
-        self.amountCents = amountCents
-        self.category = category
         self.frequency = frequency
         self.startDate = startDate
+        self.endDate = endDate
+        self.autoConfirm = autoConfirm
+        self.repartition = repartition
+        self.instances = []
+        self.isDeleted = false
     }
 }
 
@@ -54,7 +56,7 @@ extension RecurringTransactionRule {
             return String(localized: "Every \(startDate.formatted(.dateTime.weekday(.wide)))")
         case .monthly:
             let day = Calendar.current.component(.day, from: startDate)
-            let ordinalDay = day.ordinalString 
+            let ordinalDay = day.ordinalString
             return "\(ordinalDay) of every month"
         case .yearly:
             return String(localized: "Every \(startDate.formatted(.dateTime.month(.wide))) \(startDate.formatted(.dateTime.day(.ordinalOfDayInMonth)))")
@@ -207,30 +209,35 @@ extension RecurringTransactionRule {
         // 1) Monthly salary income
         let salary = RecurringTransactionRule(
             title: "Salary",
-            amountCents: 1600_00,
-            category: .needs,
             frequency: .monthly,
-            startDate: start.addingTimeInterval(-15 * 24 * 60 * 60) // One day earlier
+            startDate: start.addingTimeInterval(-15 * 24 * 60 * 60),
+            repartition: [
+                .needs : 1600_00,
+                .wants: 500,
+                .savingsAndDebts: 300
+            ]
         )
         salary.autoConfirm = true
         
         // 2) Monthly rent expense
         let rent = RecurringTransactionRule(
             title: "Rent",
-            amountCents: -800_00,
-            category: .needs,
             frequency: .monthly,
-            startDate: start.addingTimeInterval(-1 * 24 * 60 * 60) // One day earlier
+            startDate: start.addingTimeInterval(-1 * 24 * 60 * 60),
+            repartition: [
+                .needs : -800_00
+            ]
         )
         rent.autoConfirm = true
         
         // 3) Weekly coffee expense
         let coffee = RecurringTransactionRule(
             title: "Coffee",
-            amountCents: -300,
-            category: .wants,
             frequency: .weekly,
-            startDate: start
+            startDate: start.addingTimeInterval(-3 * 24 * 60 * 60),
+            repartition: [
+                .wants : -300
+            ]
         )
         coffee.autoConfirm = true
         

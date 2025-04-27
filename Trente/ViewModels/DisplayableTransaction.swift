@@ -44,7 +44,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
             return title + delimiter + categories + delimiter + date + delimiter + amount
         case .recurring(let r):
             let title = r.rule.title
-            let categories = r.rule.category.name
+            let categories = r.rule.repartition.map { $0.key.name }.joined(separator: delimiter)
             let date = r.date.formatted(.dateTime.year().month(.wide).day().weekday(.wide))
             let amount = displayAmount
             return title + delimiter + categories + delimiter + date + delimiter + amount
@@ -55,13 +55,13 @@ struct DisplayableTransaction: Identifiable, Equatable {
         case .group(let g):
             return g.entries.map { $0.category }
         case .recurring(let r):
-            return [r.rule.category]
+            return r.rule.repartition.map { $0.key }
         }
     }
     var amountCents: Int {
         switch kind {
         case .group(let g):      return g.totalAmountCents
-        case .recurring(let r):  return r.rule.amountCents
+        case .recurring(let r):  return r.rule.repartition.values.reduce(0, +)
         }
     }
     var displayAmount: String {
@@ -78,10 +78,10 @@ struct DisplayableTransaction: Identifiable, Equatable {
     
     // 2. Vue spécifique pour chaque kind
     @ViewBuilder
-    func rowView() -> some View {
+    func rowView(isInList: Bool = false) -> some View {
         switch kind {
-        case .group(let g):      TransactionGroupRowView(transactionGroup: g)
-        case .recurring(let r):  RecurringTransactionRowView(recurringTransactionInstance: r)
+        case .group(let g):      TransactionGroupRowView(transactionGroup: g, isInList: isInList)
+        case .recurring(let r):  RecurringTransactionRowView(instance: r, isInList: isInList)
         }
     }
 }

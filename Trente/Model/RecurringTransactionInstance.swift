@@ -14,7 +14,7 @@ class RecurringTransactionInstance {
     var date: Date
     var rule: RecurringTransactionRule
     var month: Month
-    var transactionEntry: TransactionEntry? = nil
+    var transactionGroup: TransactionGroup? = nil
     
     init(date: Date, rule: RecurringTransactionRule, month: Month, confirmed: Bool) {
         self.date = date
@@ -30,12 +30,12 @@ extension RecurringTransactionInstance {
     }
     
     var displayAmount: String {
-        let amount = rule.amountCents
+        let amount = rule.repartition.values.reduce(0, +)
         return (Double(amount)/100.0).formatted(.currency(code: month.currency.isoCode))
     }
     
     var confirmed: Bool {
-        transactionEntry != nil
+        transactionGroup != nil
     }
 }
 

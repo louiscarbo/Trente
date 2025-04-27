@@ -78,7 +78,7 @@ struct TransactionListView: View {
             List {
                 Section {
                     ForEach(filteredAndSorted) { item in
-                        item.rowView()
+                        item.rowView(isInList: true)
                     }
                 }
                 
@@ -139,7 +139,7 @@ struct TransactionListView: View {
             TransactionListView(month: month, showRecurring: showRecurring)
         }
     }
-    .modelContainer(SampleDataProvider.shared.modelContainer)
+    .modelContainer(DataProvider.shared.modelContainer)
 }
 
 struct FilterSheetView: View {

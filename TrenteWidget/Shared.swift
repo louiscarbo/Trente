@@ -12,7 +12,7 @@ import SwiftData
 func getCurrentMonth(inPreview: Bool = false) -> Month? {
     if inPreview {
         do {
-            let modelContainer = SampleDataProvider.shared.modelContainer
+            let modelContainer = DataProvider.shared.modelContainer
             let descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .forward)])
             let month = try modelContainer.mainContext.fetch(descriptor)[3]
             return month.detachedCopy()

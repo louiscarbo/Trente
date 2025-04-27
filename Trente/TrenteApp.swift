@@ -16,7 +16,7 @@ struct TrenteApp: App {
 //                .modelContainer(for: [
 //                    Month.self
 //                ])
-                .modelContainer(SampleDataProvider.shared.modelContainer)
+                .modelContainer(DataProvider.shared.modelContainer)
         }
     }
 }

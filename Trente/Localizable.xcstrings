@@ -113,9 +113,6 @@
         }
       }
     },
-    "Explain what Trente+ offers here" : {
-
-    },
     "Filter" : {
 
     },
@@ -128,13 +125,25 @@
     "Graph Card" : {
 
     },
+    "Hello here" : {
+
+    },
+    "Hello there" : {
+
+    },
     "Income" : {
+
+    },
+    "Income Repartition" : {
 
     },
     "Income/Expense" : {
 
     },
     "Latest Transactions" : {
+
+    },
+    "Marketing Content Goes Here" : {
 
     },
     "Montant ↑" : {
@@ -185,13 +194,13 @@
     "On" : {
 
     },
-    "On **%@**" : {
-
-    },
     "Over Budget" : {
 
     },
     "Previous" : {
+
+    },
+    "Recurrence" : {
 
     },
     "Recurring transaction" : {
@@ -207,9 +216,6 @@
 
     },
     "Rent, groceries, bills..." : {
-
-    },
-    "Repartition Recurrence View" : {
 
     },
     "Salary" : {

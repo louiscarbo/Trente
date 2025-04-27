@@ -9,12 +9,15 @@ import SwiftUI
 
 struct TransactionGroupRowView: View {
     @State var transactionGroup: TransactionGroup
+    @State var isInList = false
     
     var body: some View {
         if transactionGroup.entries.count > 1 {
             DisclosureGroup {
                 VStack {
-                    Divider()
+                    if !isInList {
+                        Divider()
+                    }
                     ForEach(transactionGroup.entries) { entry in
                         TransactionEntryRowView(transactionEntry: entry)
                     }
@@ -51,7 +54,7 @@ struct TransactionGroupRowView: View {
     }
 }
 
-struct TransactionEntryRowView: View {
+private struct TransactionEntryRowView: View {
     @State var transactionEntry: TransactionEntry
     @State var title: String?
     
@@ -81,7 +84,7 @@ struct TransactionEntryRowView: View {
     let month = Month.month1
     
     VStack {
-        Text("Transactions")                .modelContainer(SampleDataProvider.shared.modelContainer)
+        Text("Transactions")                .modelContainer(DataProvider.shared.modelContainer)
         ForEach(month.transactionGroups.sorted {
             $0.addedDate > $1.addedDate
         }) { transaction in
