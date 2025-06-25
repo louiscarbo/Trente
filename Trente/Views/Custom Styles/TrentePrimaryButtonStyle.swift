@@ -1,20 +1,20 @@
 //
-//  TrenteButtonStyle.swift
+//  TrentePrimaryButtonStyle.swift
 //  Trente
 //
-//  Created by Louis Carbo Estaque on 22/04/2025.
+//  Created by Louis Carbo Estaque on 26/04/2025.
 //
 
 import SwiftUI
 
-struct TrenteButtonStyle: ButtonStyle {
+struct TrentePrimaryButtonStyle: ButtonStyle {
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.isEnabled) private var isEnabled: Bool
     private var lightMode: Bool { colorScheme == .light }
     
     var narrow: Bool = false
     var strokeOpacity: Double {
-        isEnabled ? 0.2 : 0.1
+        isEnabled ? 0.6 : 0.3
     }
 
     func makeBody(configuration: Configuration) -> some View {
@@ -52,6 +52,7 @@ struct TrenteButtonStyle: ButtonStyle {
         }
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
         .fixedSize(horizontal: false, vertical: true)
+        .environment(\.colorScheme, lightMode ? .dark : .light)
     }
 }
 
@@ -60,7 +61,7 @@ struct TrenteButtonStyle: ButtonStyle {
         Button("Test Button") {
             print("Button pressed")
         }
-        .buttonStyle(TrenteButtonStyle())
+        .buttonStyle(TrentePrimaryButtonStyle())
         .padding()
         .disabled(true)
         
@@ -69,7 +70,7 @@ struct TrenteButtonStyle: ButtonStyle {
         } label: {
             Label("Test Button", systemImage: "plus")
         }
-        .buttonStyle(TrenteButtonStyle())
+        .buttonStyle(TrentePrimaryButtonStyle())
         .padding()
     }
 }

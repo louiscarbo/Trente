@@ -101,7 +101,7 @@ struct NewTransactionView: View {
                             }
                         }
                     }
-                    .buttonStyle(TrenteButtonStyle(narrow: true))
+                    .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
                 }
                 
                 Button("Next") {
@@ -114,7 +114,7 @@ struct NewTransactionView: View {
                     }
                 }
                 .disabled(nextButtonDisabled)
-                .buttonStyle(TrenteAccentButtonStyle(narrow: true))
+                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
             }
             
             if showKeyboardDismissButton {
@@ -129,7 +129,7 @@ struct NewTransactionView: View {
                 } label: {
                     Label("Done", systemImage: "keyboard.chevron.compact.down")
                 }
-                .buttonStyle(TrenteButtonStyle(narrow: true))
+                .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
             }
         }
         .padding()
@@ -468,7 +468,7 @@ private struct NotesImageView: View {
                         PhotosPicker(selection: $photosPickerItem) {
                             Label("Add Image", systemImage: "photo.badge.plus")
                         }
-                        .buttonStyle(TrenteButtonStyle())
+                        .buttonStyle(TrenteSecondaryButtonStyle())
                     } else {
                         if let selectedUIImage = image {
                             Image(uiImage: selectedUIImage)
@@ -490,7 +490,7 @@ private struct NotesImageView: View {
                                             .font(.headline)
                                             .padding(.horizontal)
                                     }
-                                    .buttonStyle(TrenteButtonStyle())
+                                    .buttonStyle(TrenteSecondaryButtonStyle())
                                     .fixedSize()
                                 }
                                 .onTapGesture {
@@ -555,7 +555,7 @@ private struct NotesImageView: View {
                         Text("Discover Trente+")
                             .font(.title3)
                     }
-                    .buttonStyle(TrenteAccentButtonStyle())
+                    .buttonStyle(TrentePrimaryButtonStyle())
                     .sheet(isPresented: $showImageSubscriptionSheet) {
                         SubscriptionView()
                     }

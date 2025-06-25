@@ -151,7 +151,7 @@ private struct NarrowMonthView: View {
                                 } label: {
                                     Text("See all transactions")
                                 }
-                                .buttonStyle(TrenteButtonStyle())
+                                .buttonStyle(TrenteSecondaryButtonStyle())
                                 .padding()
                             }
                         }
@@ -187,7 +187,7 @@ private struct NarrowMonthView: View {
                                         .multilineTextAlignment(.center)
                                         .padding(.horizontal)
                                 }
-                                .buttonStyle(TrenteButtonStyle())
+                                .buttonStyle(TrenteSecondaryButtonStyle())
                                 .padding()
                             }
                         }
@@ -223,7 +223,7 @@ private struct NarrowMonthView: View {
                     Label("Add Transaction", systemImage: "plus")
                         .font(.title)
                 }
-                .buttonStyle(TrenteAccentButtonStyle())
+                .buttonStyle(TrentePrimaryButtonStyle())
                 .padding()
                 .padding(.horizontal)
                 .sheet(isPresented: $isShowingNewTransactionSheet) {
@@ -345,7 +345,7 @@ private struct WideMonthView: View {
                     Label("Add Transaction", systemImage: "plus")
                         .font(.title2)
                 }
-                .buttonStyle(TrenteAccentButtonStyle())
+                .buttonStyle(TrentePrimaryButtonStyle())
                 .frame(width: 300, height: 70)
                 .padding()
                 .padding(.horizontal)

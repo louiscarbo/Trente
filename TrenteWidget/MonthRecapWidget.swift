@@ -114,7 +114,7 @@ struct HomescreenMonthRecapWidgetView : View {
                                     .font(.subheadline)
                                     .padding(.horizontal)
                             }
-                            .buttonStyle(TrenteAccentButtonStyle(narrow: true))
+                            .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
                             .scaledToFit()
                             .padding(.leading)
                             .padding(.trailing, -3)

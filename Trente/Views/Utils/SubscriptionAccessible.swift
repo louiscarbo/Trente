@@ -42,7 +42,7 @@ extension View {
         Button("Increase Counter") {
             counter += 1
         }
-        .buttonStyle(TrenteButtonStyle())
+        .buttonStyle(TrenteSecondaryButtonStyle())
     }
     .subscriptionAccessible(subscribed: isSubscribed)
 }

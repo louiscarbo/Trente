@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
+		7B7F9D7C2E0C8C01007296E5 /* Trente Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */; };
 		7BBD01D32DB8DFAE007B606C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */; };
 		7BBD01D52DB8DFAE007B606C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */; };
 		7BBD01E22DB8DFAF007B606C /* TrenteWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		7B1F06282DBD7910007EFDC5 /* Trente.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Trente.storekit; sourceTree = "<group>"; };
 		7B28474D2DAFE05300EEF97C /* Trente.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trente.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Icon.icon"; sourceTree = "<group>"; };
 		7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TrenteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -77,13 +79,13 @@
 				Services/DataProvider.swift,
 				Services/RecurringTransactionService.swift,
 				Views/CurrentMonthRowView.swift,
-				"Views/Custom Styles/TrenteAccentButtonStyle.swift",
-				"Views/Custom Styles/TrenteButtonStyle.swift",
 				"Views/Custom Styles/TrenteGaugeStyle.swift",
 				"Views/Custom Styles/TrenteGroupBoxStyle.swift",
+				"Views/Custom Styles/TrentePrimaryButtonStyle.swift",
+				"Views/Custom Styles/TrenteSecondaryButtonStyle.swift",
 				"Views/Custom Styles/TrenteToggleStyle.swift",
 				Views/GraphCardView.swift,
-				Views/TransactionsList/TransactionGroupRowView.swift,
+				"Views/Transactions Lists/TransactionGroupRowView.swift",
 			);
 			target = 7BBD01CF2DB8DFAD007B606C /* TrenteWidgetExtension */;
 		};
@@ -150,6 +152,7 @@
 				7BBD01D62DB8DFAE007B606C /* TrenteWidget */,
 				7BBD01D12DB8DFAD007B606C /* Frameworks */,
 				7B28474E2DAFE05300EEF97C /* Products */,
+				7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B7F9D7C2E0C8C01007296E5 /* Trente Icon.icon in Resources */,
 				7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,7 +482,7 @@
 		7B2847592DAFE05500EEF97C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -512,7 +516,7 @@
 		7B28475A2DAFE05500EEF97C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
 				CODE_SIGN_STYLE = Automatic;

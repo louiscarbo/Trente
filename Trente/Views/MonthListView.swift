@@ -213,7 +213,7 @@ private struct NewMonthButtonView: View {
         } label: {
             Label("Start a New Month", systemImage: "calendar.badge.plus")
         }
-        .buttonStyle(TrenteButtonStyle())
+        .buttonStyle(TrenteSecondaryButtonStyle())
     }
 }
 

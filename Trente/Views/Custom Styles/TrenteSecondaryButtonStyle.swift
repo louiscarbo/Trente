@@ -1,20 +1,20 @@
 //
-//  TrenteAccentButtonStyle.swift
+//  TrenteSecondaryButtonStyle.swift
 //  Trente
 //
-//  Created by Louis Carbo Estaque on 26/04/2025.
+//  Created by Louis Carbo Estaque on 22/04/2025.
 //
 
 import SwiftUI
 
-struct TrenteAccentButtonStyle: ButtonStyle {
+struct TrenteSecondaryButtonStyle: ButtonStyle {
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.isEnabled) private var isEnabled: Bool
     private var lightMode: Bool { colorScheme == .light }
     
     var narrow: Bool = false
     var strokeOpacity: Double {
-        isEnabled ? 0.6 : 0.3
+        isEnabled ? 0.2 : 0.1
     }
 
     func makeBody(configuration: Configuration) -> some View {
@@ -52,7 +52,6 @@ struct TrenteAccentButtonStyle: ButtonStyle {
         }
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
         .fixedSize(horizontal: false, vertical: true)
-        .environment(\.colorScheme, lightMode ? .dark : .light)
     }
 }
 
@@ -61,7 +60,7 @@ struct TrenteAccentButtonStyle: ButtonStyle {
         Button("Test Button") {
             print("Button pressed")
         }
-        .buttonStyle(TrenteAccentButtonStyle())
+        .buttonStyle(TrenteSecondaryButtonStyle())
         .padding()
         .disabled(true)
         
@@ -70,7 +69,7 @@ struct TrenteAccentButtonStyle: ButtonStyle {
         } label: {
             Label("Test Button", systemImage: "plus")
         }
-        .buttonStyle(TrenteAccentButtonStyle())
+        .buttonStyle(TrenteSecondaryButtonStyle())
         .padding()
     }
 }
