@@ -22,7 +22,11 @@ struct MonthRecapWidget: Widget {
         }
         .configurationDisplayName(String(localized: "Month Recap"))
         .description(String(localized: "See your remaining budget for the current month, as well as your spending on larger widgets. Quickly see how you're doing, and easily log new transactions.\n\nSee examples below."))
+        #if os(iOS)
         .supportedFamilies([.systemMedium, .systemLarge, .systemSmall, .accessoryCircular, .accessoryInline, .accessoryRectangular])
+        #elseif os(macOS)
+        .supportedFamilies([.systemMedium, .systemLarge, .systemSmall])
+        #endif
     }
 }
 
@@ -232,8 +236,10 @@ struct MonthRecapEntry: TimelineEntry {
     let month: Month?
 }
 
+#if os(iOS)
 #Preview(as: .accessoryRectangular) {
     MonthRecapWidget()
 } timeline: {
     MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
 }
+#endif

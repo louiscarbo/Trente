@@ -52,6 +52,8 @@ struct MonthListView: View {
                 .navigationTitle("All Months")
                 #if os(iOS)
                 .toolbarTitleDisplayMode(.large)
+                #elseif os(macOS)
+                .frame(minWidth: 200, idealWidth: 300, maxWidth: 400)
                 #endif
                 .padding()
             }

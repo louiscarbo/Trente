@@ -26,7 +26,11 @@ struct CategoryRemainingWidget: Widget {
         }
         .configurationDisplayName(String(localized: "Category Recap"))
         .description(String(localized: "See your remaining budget for the current month in a specific category, or for all categories in the medium widget.\n\nTo select a category, hold the widget."))
+        #if os(iOS)
         .supportedFamilies([.systemMedium, .systemSmall, .accessoryCircular])
+        #elseif os(macOS)
+        .supportedFamilies([.systemMedium, .systemSmall])
+        #endif
     }
 }
 
