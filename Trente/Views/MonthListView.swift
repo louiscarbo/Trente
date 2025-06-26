@@ -57,9 +57,6 @@ struct MonthListView: View {
                 #endif
                 .padding()
             }
-            #if os(macOS)
-            .navigationSplitViewColumnWidth(min: 500, ideal: 500)
-            #endif
             .navigationDestination(item: $selection) { month in
                 MonthView(month: month)
                     .id(month)
