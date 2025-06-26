@@ -123,6 +123,18 @@ struct WidthThresholdReader_Previews: PreviewProvider {
     }
 }
 
+func createImage(_ value: Data) -> Image? {
+    #if canImport(UIKit)
+    guard let uiImage: UIImage = UIImage(data: value) else { return nil }
+    return Image(uiImage: uiImage)
+    #elseif canImport(AppKit)
+    guard let uiImage: NSImage = NSImage(data: value) else { return nil }
+    return Image(nsImage: uiImage)
+    #else
+    return nil
+    #endif
+}
+
 //MARK: View Extensions
 //TODO: Check if still needed
 extension View {

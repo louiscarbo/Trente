@@ -18,7 +18,7 @@ struct NewTransactionView: View {
     @State private var type: TransactionType = .income
     @State private var title: String = ""
     @State private var isRecurrent: Bool = true
-    @State private var image: UIImage?
+    @State private var image: Image?
     @State private var notes: String = ""
     @State private var recurrenceFrequency: RecurrenceFrequency = .monthly
     @State private var recurrenceStartDate: Date = Date()
@@ -117,6 +117,7 @@ struct NewTransactionView: View {
                 .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
             }
             
+            #if os(iOS)
             if showKeyboardDismissButton {
                 Button {
                     UIApplication.shared.sendAction(
@@ -131,6 +132,7 @@ struct NewTransactionView: View {
                 }
                 .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
             }
+            #endif
         }
         .padding()
         .background {
@@ -254,10 +256,12 @@ private struct AmountCategoryView: View {
                     prompt: Text("\(0.formatted(.currency(code: currencyCode)))")
                 )
                 .focused($amountFieldIsFocused)
+                #if os(iOS)
                 .keyboardType(.decimalPad)
                 .textFieldStyle(.plain)
                 .font(.system(size: 80, weight: .bold))
                 .multilineTextAlignment(.center)
+                #endif
             }
             
             Spacer()
@@ -444,7 +448,7 @@ private struct TitleView: View {
 // MARK: NotesImageView
 private struct NotesImageView: View {
     // Transaction attributes
-    @Binding var image: UIImage?
+    @Binding var image: Image?
     @Binding var notes: String
     
     // Bindings
@@ -470,8 +474,8 @@ private struct NotesImageView: View {
                         }
                         .buttonStyle(TrenteSecondaryButtonStyle())
                     } else {
-                        if let selectedUIImage = image {
-                            Image(uiImage: selectedUIImage)
+                        if let selectedImage = image {
+                            selectedImage
                                 .resizable()
                                 .scaledToFit()
                                 .clipShape(
@@ -496,9 +500,16 @@ private struct NotesImageView: View {
                                 .onTapGesture {
                                     showFullScreen = true
                                 }
-                                .fullScreenCover(isPresented: $showFullScreen) {
-                                    ZoomableImageView(uiImage: selectedUIImage)
+                                .modify { view in
+                                    #if os(iOS)
+                                        view.fullScreenCover(isPresented: $showFullScreen) {
+                                            ZoomableImageView(image: selectedImage)
+                                        }
+                                    #else
+                                        view
+                                    #endif
                                 }
+                                
                         } else {
                             // fallback while loading
                             ProgressView()
@@ -537,8 +548,8 @@ private struct NotesImageView: View {
                     return
                 }
                 Task {
-                    if let data = try? await item.loadTransferable(type: Data.self), let selectedUIImage = UIImage(data: data) {
-                        image = selectedUIImage
+                    if let data = try? await item.loadTransferable(type: Data.self), let selectedImage = createImage(data) {
+                        image = selectedImage
                     }
                 }
             }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ZoomableImageView: View {
-    let uiImage: UIImage
+    let image: Image
     @Environment(\.presentationMode) private var presentationMode
     
     // the *accumulated* scale & offset
@@ -22,7 +22,7 @@ struct ZoomableImageView: View {
         ZStack(alignment: .topTrailing) {
             Color.black.ignoresSafeArea()
             
-            Image(uiImage: uiImage)
+            image
                 .resizable()
                 .scaledToFit()
             // combine accumulated + in-flight for smooth zoom
