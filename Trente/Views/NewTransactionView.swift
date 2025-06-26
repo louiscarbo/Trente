@@ -40,6 +40,7 @@ struct NewTransactionView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
+                // TODO: Create custom view for macOS
                 TabView(selection: $step) {
                     AmountCategoryView(
                         selectedCategory: $selectedCategory,
@@ -75,11 +76,11 @@ struct NewTransactionView: View {
                     )
                     .newTransactionPage(tag: .repartitionRecurrence)
                 }
-#if os(iOS)
+                #if os(iOS)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 #elseif os(macOS)
                 .tabViewStyle(.automatic)
-#endif
+                #endif
                 .navigationTitle("New Transaction")
                 .toolbarTitleDisplayMode(.inline)
                 
