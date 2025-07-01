@@ -24,6 +24,7 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
                 .overlay(
                     ZStack {
                         Capsule()
+                            .inset(by: 1.5)
                             .stroke(
                                 lightMode
                                 ? Color.black.opacity(strokeOpacity)
@@ -50,9 +51,9 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
                 .font(.title2)
                 .padding(.vertical, narrow ? 5 : 16)
         }
-        .scaleEffect(configuration.isPressed ? 0.95 : 1)
         .fixedSize(horizontal: false, vertical: true)
         .environment(\.colorScheme, lightMode ? .dark : .light)
+        .glassOrScale(isPressed: configuration.isPressed, isEnabled: isEnabled)
     }
 }
 

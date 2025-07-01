@@ -79,6 +79,7 @@
 				Services/DataProvider.swift,
 				Services/RecurringTransactionService.swift,
 				Views/CurrentMonthRowView.swift,
+				"Views/Custom Styles/StyleCommons.swift",
 				"Views/Custom Styles/TrenteGaugeStyle.swift",
 				"Views/Custom Styles/TrenteGroupBoxStyle.swift",
 				"Views/Custom Styles/TrentePrimaryButtonStyle.swift",
