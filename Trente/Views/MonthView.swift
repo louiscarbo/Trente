@@ -152,7 +152,6 @@ private struct NarrowMonthView: View {
                                     Text("See all transactions")
                                 }
                                 .buttonStyle(TrenteSecondaryButtonStyle())
-                                .padding()
                             }
                         }
                         .padding(.horizontal)
@@ -188,7 +187,6 @@ private struct NarrowMonthView: View {
                                         .padding(.horizontal)
                                 }
                                 .buttonStyle(TrenteSecondaryButtonStyle())
-                                .padding()
                             }
                         }
                         .padding(.horizontal)
