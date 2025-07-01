@@ -139,17 +139,6 @@ func createImage(_ value: Data) -> Image? {
 //TODO: Check if still needed
 extension View {
     @ViewBuilder
-    func applyIf<T: View>(_ condition: Bool, transform: (Self) -> T) -> some View {
-        if condition {
-            transform(self)
-        } else {
-            self
-        }
-    }
-}
-
-extension View {
-    @ViewBuilder
     func modify<T: View>(_ transform: (Self) -> T) -> some View {
         transform(self)
     }

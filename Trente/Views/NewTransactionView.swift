@@ -77,7 +77,7 @@ struct NewTransactionView: View {
                 }
 #if os(iOS)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-#else
+                #elseif os(macOS)
                 .tabViewStyle(.automatic)
 #endif
                 .navigationTitle("New Transaction")
@@ -138,7 +138,7 @@ struct NewTransactionView: View {
         .background {
             UnevenRoundedRectangle(
                 cornerRadii:
-                    RectangleCornerRadii(topLeading: 20, bottomLeading: 0, bottomTrailing: 0, topTrailing: 20)
+                    RectangleCornerRadii(topLeading: 26, bottomLeading: 0, bottomTrailing: 0, topTrailing: 26)
             )
             .fill(.regularMaterial)
             .stroke(.secondary.opacity(0.4), lineWidth: 3)
@@ -479,14 +479,14 @@ private struct NotesImageView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .clipShape(
-                                    RoundedRectangle(cornerRadius: 20)
+                                    RoundedRectangle(cornerRadius: 26)
                                 )
                                 .overlay(
-                                    RoundedRectangle(cornerRadius: 20)
+                                    RoundedRectangle(cornerRadius: 26)
                                         .stroke(Color.white, lineWidth: 10)
                                 )
                                 .frame(height: 200)
-                                .shadow(radius: 20, y: 10)
+                                .shadow(radius: 26, y: 10)
                                 .padding(.bottom, 30)
                                 .overlay(alignment: .bottom) {
                                     PhotosPicker(selection: $photosPickerItem) {

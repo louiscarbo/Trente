@@ -48,7 +48,7 @@ struct TrenteSecondaryButtonStyle: ButtonStyle {
             configuration.label
                 .bold()
                 .foregroundStyle(isEnabled ? Color.primary : Color.secondary)
-                .font(.title2)
+                .font(.title3)
                 .padding(.vertical, narrow ? 5 : 16)
         }
         .fixedSize(horizontal: false, vertical: true)

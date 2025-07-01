@@ -36,11 +36,11 @@ struct TrenteGroupBoxStyle: GroupBoxStyle {
         }
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 26)
                 .fill(.regularMaterial)
         )
         .overlay(
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 26)
                 .stroke(.primary.opacity(0.2), lineWidth: 3)
         )
         .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)

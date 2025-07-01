@@ -143,17 +143,17 @@ private struct MonthRowView: View {
                             .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
                     } else if month == archivedMonths.first {
                         UnevenRoundedRectangle(
-                            topLeadingRadius: 20,
+                            topLeadingRadius: 26,
                             bottomLeadingRadius: 0,
                             bottomTrailingRadius: 0,
-                            topTrailingRadius: 20
+                            topTrailingRadius: 26
                         )
                         .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
                     } else {
                         UnevenRoundedRectangle(
                             topLeadingRadius: 0,
-                            bottomLeadingRadius: 20,
-                            bottomTrailingRadius: 20,
+                            bottomLeadingRadius: 26,
+                            bottomTrailingRadius: 26,
                             topTrailingRadius: 0
                         )
                         .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
@@ -165,17 +165,17 @@ private struct MonthRowView: View {
                             .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
                     } else if month == archivedMonths.first {
                         UnevenRoundedRectangle(
-                            topLeadingRadius: 20,
+                            topLeadingRadius: 26,
                             bottomLeadingRadius: 0,
                             bottomTrailingRadius: 0,
-                            topTrailingRadius: 20
+                            topTrailingRadius: 26
                         )
                         .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
                     } else {
                         UnevenRoundedRectangle(
                             topLeadingRadius: 0,
-                            bottomLeadingRadius: 20,
-                            bottomTrailingRadius: 20,
+                            bottomLeadingRadius: 26,
+                            bottomTrailingRadius: 26,
                             topTrailingRadius: 0
                         )
                         .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
@@ -224,10 +224,10 @@ struct TrenteListBackgroundView: View {
     private var lightMode: Bool { colorScheme == .light }
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 20)
+        RoundedRectangle(cornerRadius: 26)
             .foregroundStyle(.regularMaterial)
             .overlay(
-                RoundedRectangle(cornerRadius: 20)
+                RoundedRectangle(cornerRadius: 26)
                     .stroke(
                         lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2), lineWidth: 3)
             )

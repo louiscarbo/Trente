@@ -74,7 +74,7 @@ struct CurrentMonthRowView: View {
     
     var backgroundView: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 26)
                 .foregroundStyle(
                     LinearGradient(
                         colors: [currentMonth.overSpent ? .red.opacity(0.6) : .green.opacity(0.6), .red.opacity(0.6)],
@@ -82,7 +82,7 @@ struct CurrentMonthRowView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 26)
                 .foregroundStyle(
                     RadialGradient(
                         colors: [lightMode ? .white : .black, .clear],
@@ -91,15 +91,15 @@ struct CurrentMonthRowView: View {
                         endRadius: 500
                     )
                 )
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 26)
                 .foregroundStyle(.regularMaterial)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 26)
                         .stroke(isSelected ? Color.primary :
                                     (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
                 )
             if isPressed {
-                RoundedRectangle(cornerRadius: 20)
+                RoundedRectangle(cornerRadius: 26)
                     .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
             }
         }
