@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
 		7B7F9D7C2E0C8C01007296E5 /* Trente Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */; };
+		7BA442962E204E4300925EF5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
+		7BA442CA2E2052DD00925EF5 /* Trente Dev Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Dev Icon.icon */; };
 		7BBD01D32DB8DFAE007B606C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */; };
 		7BBD01D52DB8DFAE007B606C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */; };
 		7BBD01E22DB8DFAF007B606C /* TrenteWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -49,6 +51,8 @@
 		7B1F06282DBD7910007EFDC5 /* Trente.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Trente.storekit; sourceTree = "<group>"; };
 		7B28474D2DAFE05300EEF97C /* Trente.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trente.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Icon.icon"; sourceTree = "<group>"; };
+		7BA4429C2E204E4300925EF5 /* Trente Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trente Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BA442C92E2052DD00925EF5 /* Trente Dev Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Dev Icon.icon"; sourceTree = "<group>"; };
 		7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TrenteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -57,6 +61,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7BA442A42E2051E100925EF5 /* Exceptions for "Trente" folder in "Trente" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Dev-Info.plist",
+			);
+			target = 7B28474C2DAFE05300EEF97C /* Trente */;
+		};
 		7BBD01E62DB8DFAF007B606C /* Exceptions for "TrenteWidget" folder in "TrenteWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -96,6 +107,7 @@
 		7B28474F2DAFE05300EEF97C /* Trente */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				7BA442A42E2051E100925EF5 /* Exceptions for "Trente" folder in "Trente" target */,
 				7BBD02042DB8E33C007B606C /* Exceptions for "Trente" folder in "TrenteWidgetExtension" target */,
 			);
 			path = Trente;
@@ -118,6 +130,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		7B28474A2DAFE05300EEF97C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA442932E204E4300925EF5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -154,6 +173,7 @@
 				7BBD01D12DB8DFAD007B606C /* Frameworks */,
 				7B28474E2DAFE05300EEF97C /* Products */,
 				7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */,
+				7BA442C92E2052DD00925EF5 /* Trente Dev Icon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +183,7 @@
 				7B28474D2DAFE05300EEF97C /* Trente.app */,
 				7BC9E7F02DB1081800CFDF19 /* TrenteTests.xctest */,
 				7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */,
+				7BA4429C2E204E4300925EF5 /* Trente Dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +222,28 @@
 			);
 			productName = TrenteVingt;
 			productReference = 7B28474D2DAFE05300EEF97C /* Trente.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7BA4428F2E204E4300925EF5 /* Trente Dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BA442992E204E4300925EF5 /* Build configuration list for PBXNativeTarget "Trente Dev" */;
+			buildPhases = (
+				7BA442922E204E4300925EF5 /* Sources */,
+				7BA442932E204E4300925EF5 /* Frameworks */,
+				7BA442942E204E4300925EF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7B28474F2DAFE05300EEF97C /* Trente */,
+			);
+			name = "Trente Dev";
+			packageProductDependencies = (
+			);
+			productName = TrenteVingt;
+			productReference = 7BA4429C2E204E4300925EF5 /* Trente Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7BBD01CF2DB8DFAD007B606C /* TrenteWidgetExtension */ = {
@@ -289,6 +332,7 @@
 				7B28474C2DAFE05300EEF97C /* Trente */,
 				7BC9E7EF2DB1081800CFDF19 /* TrenteTests */,
 				7BBD01CF2DB8DFAD007B606C /* TrenteWidgetExtension */,
+				7BA4428F2E204E4300925EF5 /* Trente Dev */,
 			);
 		};
 /* End PBXProject section */
@@ -300,6 +344,15 @@
 			files = (
 				7B7F9D7C2E0C8C01007296E5 /* Trente Icon.icon in Resources */,
 				7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA442942E204E4300925EF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BA442962E204E4300925EF5 /* Trente.storekit in Resources */,
+				7BA442CA2E2052DD00925EF5 /* Trente Dev Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +374,13 @@
 
 /* Begin PBXSourcesBuildPhase section */
 		7B2847492DAFE05300EEF97C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA442922E204E4300925EF5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -550,6 +610,78 @@
 			};
 			name = Release;
 		};
+		7BA4429A2E204E4300925EF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Dev Icon";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7T9Q86X738;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Trente/Dev-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = louiscarboestaque.Trente.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7BA4429B2E204E4300925EF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Dev Icon";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7T9Q86X738;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Trente/Dev-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = louiscarboestaque.Trente.dev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		7BBD01E42DB8DFAF007B606C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -689,6 +821,15 @@
 			buildConfigurations = (
 				7B2847592DAFE05500EEF97C /* Debug */,
 				7B28475A2DAFE05500EEF97C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7BA442992E204E4300925EF5 /* Build configuration list for PBXNativeTarget "Trente Dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BA4429A2E204E4300925EF5 /* Debug */,
+				7BA4429B2E204E4300925EF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

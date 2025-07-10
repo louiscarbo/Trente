@@ -10,13 +10,26 @@ import SwiftData
 
 @main
 struct TrenteApp: App {
+    let container: ModelContainer
+
+    init() {
+        do {
+            #if DEBUG
+            container = DataProvider.shared.modelContainer
+            #else
+            let schema = Schema([Month.self])
+            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+            container = try ModelContainer(for: schema, configurations: [config])
+            #endif
+        } catch {
+            fatalError("Failed to initialize ModelContainer: \(error)")
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-//                .modelContainer(for: [
-//                    Month.self
-//                ])
-                .modelContainer(DataProvider.shared.modelContainer)
         }
+        .modelContainer(container) // Inject the correct container into the environment
     }
 }

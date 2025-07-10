@@ -128,7 +128,6 @@ private struct RecurrenceView: View {
 
 #Preview {
     Text("Recurring Transaction Row View")
-        .modelContainer(DataProvider.shared.modelContainer)
     
     ScrollView {
         LazyVStack {

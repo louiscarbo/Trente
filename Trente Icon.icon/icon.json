@@ -17,10 +17,11 @@
       "layers" : [
         {
           "hidden" : false,
-          "image-name" : "4_border.svg",
+          "image-name" : "4_border.png",
           "name" : "4_border"
         },
         {
+          "hidden" : false,
           "image-name" : "3_fill.svg",
           "name" : "3_fill"
         }

@@ -150,5 +150,4 @@ struct TransactionListView: View {
             TransactionListView(month: month, showRecurring: showRecurring)
         }
     }
-    .modelContainer(DataProvider.shared.modelContainer)
 }
