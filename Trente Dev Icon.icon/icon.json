@@ -1,8 +1,8 @@
 {
   "fill" : {
     "linear-gradient" : [
-      "extended-gray:0.52464,1.00000",
-      "extended-gray:0.32913,1.00000"
+      "display-p3:0.31208,0.70820,0.52530,1.00000",
+      "display-p3:0.17472,0.23931,0.29405,1.00000"
     ]
   },
   "groups" : [
@@ -16,7 +16,6 @@
       "blur-material" : null,
       "layers" : [
         {
-          "hidden" : false,
           "image-name" : "4_border.png",
           "name" : "4_border"
         },
