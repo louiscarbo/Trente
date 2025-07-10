@@ -86,12 +86,9 @@ struct CategoryRemainingGaugeView: View {
             .gridCellColumns(2)
         HStack {
             GraphCardView(month: month, category: .needs)
-                .modelContainer(DataProvider.shared.modelContainer)
             
             GraphCardView(month: month, category: .wants)
-                .modelContainer(DataProvider.shared.modelContainer)
         }
         GraphCardView(month: month, category: .savingsAndDebts)
-            .modelContainer(DataProvider.shared.modelContainer)
     }
 }

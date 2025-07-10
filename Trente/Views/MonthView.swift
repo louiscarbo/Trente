@@ -61,7 +61,6 @@ struct MonthView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(DataProvider.shared.modelContainer)
 }
 
 // MARK: Narrow view

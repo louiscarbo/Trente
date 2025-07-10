@@ -84,7 +84,7 @@ private struct TransactionEntryRowView: View {
     let month = Month.month1
     
     VStack {
-        Text("Transactions")                .modelContainer(DataProvider.shared.modelContainer)
+        Text("Transactions")
         ForEach(month.transactionGroups.sorted {
             $0.addedDate > $1.addedDate
         }) { transaction in
