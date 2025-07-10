@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Trente Dev.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>Trente ES.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
@@ -30,6 +35,8 @@
 		</dict>
 		<key>TrenteWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
@@ -37,6 +44,21 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>7B28474C2DAFE05300EEF97C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7BA4428F2E204E4300925EF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7BBD01CF2DB8DFAD007B606C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7BC9E7EF2DB1081800CFDF19</key>
 		<dict>
 			<key>primary</key>
 			<true/>
