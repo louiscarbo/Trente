@@ -6,11 +6,44 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MonthView: View {
+    // Data
     @State var month: Month
-        
-    private var nextRecurringTransactionsInstances: [RecurringTransactionInstance] { getNextRecurringTransactionsInstance() }
+    @Environment(\.modelContext) private var modelContext
+    
+    // View State
+    @State private var error: Error?
+    @State private var errorIsPresented: Bool = false
+    
+    // Computed Properties
+    private var transactionGroupsCount: Int {
+        let descriptor = FetchDescriptor<TransactionGroup>()
+        do {
+            return try modelContext.fetchCount(descriptor)
+        } catch {
+            self.error = error
+            errorIsPresented = true
+            return 0
+        }
+    }
+    
+    private var recurringTransactionsCount: Int {
+        do {
+            let descriptor = FetchDescriptor<RecurringTransactionInstance>()
+            return try modelContext.fetchCount(descriptor)
+        } catch {
+            self.error = error
+            errorIsPresented = true
+            return 0
+        }
+    }
+    
+    private var nextRecurringTransactionsInstances: [RecurringTransactionInstance] {
+        return month.recurringTransactionInstances
+            .sorted { sortRecurringTransactions($0, $1) }
+    }
     
     var body: some View {
         WidthThresholdReader(widthThreshold: 730) { proxy in
@@ -18,42 +51,42 @@ struct MonthView: View {
                 if proxy.isCompact {
                     NarrowMonthView(
                         month: month,
-                        nextRecurringTransactionsInstances: nextRecurringTransactionsInstances
+                        nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
+                        transactionGroupsCount: transactionGroupsCount,
+                        recurringTransactionsCount: recurringTransactionsCount
                     )
                 } else {
                     WideMonthView(
                         month: month,
-                        nextRecurringTransactionsInstances: nextRecurringTransactionsInstances
+                        nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
+                        transactionGroupsCount: transactionGroupsCount,
+                        recurringTransactionsCount: recurringTransactionsCount
                     )
                 }
             }
             .navigationTitle(month.name)
+            .alert("An error occured", isPresented: $errorIsPresented, presenting: error) { _ in
+            } message: { error in
+                Text("\(error.localizedDescription)")
+            }
         }
     }
     
-    private func getNextRecurringTransactionsInstance() -> [RecurringTransactionInstance] {
-        return month.recurringTransactionInstances
-            .sorted { a, b in
-                let now = Date()
-                let aIsFuture = a.date >= now
-                let bIsFuture = b.date >= now
-                
-                switch (aIsFuture, bIsFuture) {
-                    // 1) Both in the future → sort earliest first
-                case (true, true):
-                    return a.date < b.date
-                    
-                    // 2) Both in the past → sort earliest first (chronological)
-                case (false, false):
-                    return a.date < b.date
-                    
-                    // 3) One future, one past → future comes before past
-                case (true, false):
-                    return true
-                case (false, true):
-                    return false
-                }
-            }
+    private func sortRecurringTransactions(_ a: RecurringTransactionInstance, _ b: RecurringTransactionInstance) -> Bool {
+        let now = Date()
+        let aIsFuture = a.date >= now
+        let bIsFuture = b.date >= now
+        
+        switch (aIsFuture, bIsFuture) {
+        case (true, true):
+            return a.date < b.date
+        case (false, false):
+            return a.date < b.date
+        case (true, false):
+            return true
+        case (false, true):
+            return false
+        }
     }
 }
 
@@ -198,137 +231,101 @@ private struct AddTransactionButton: View {
 private struct NarrowMonthView: View {
     // Data
     @State var month: Month
-    @State var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
-    @Environment(\.modelContext) private var modelContext
+    var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
+    var transactionGroupsCount: Int
+    var recurringTransactionsCount: Int
     
     // View State
     @State private var isShowingNewTransactionSheet = false
-    @State private var error: Error?
-    @State private var errorIsPresented: Bool = false
     @Environment(\.colorScheme) private var colorScheme
     private var lightMode: Bool { colorScheme == .light }
     
-    private var transactionGroupsCount: Int {
-        TransactionService.shared.fetchTransactionsCount(from: modelContext)
-    }
-    private var recurringTransactionsCount: Int { fetchRecurringTransactionsCount() }
-        
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottom) {
-                ScrollView {
-                    LazyVStack(spacing: 20) {
-                        ScrollView(.horizontal) {
-                            HStack(spacing: 20) {
-                                MainGraphCard()
-                                SecondaryGraphCards(month: month)
-                            }
+            ScrollView {
+                LazyVStack(spacing: 20) {
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 20) {
+                            MainGraphCard()
+                            SecondaryGraphCards(month: month)
                         }
-                        .scrollTargetBehavior(.paging)
-                        .scrollIndicators(.hidden)
-                        .safeAreaPadding(.horizontal)
-                        .safeAreaPadding(.vertical, 3)
-                        
-                        LatestTransactionsView(
-                            month: month,
-                            transactionGroupsCount: transactionGroupsCount
-                        )
-                        .padding(.horizontal)
-                        
-                        RecurringTransactionsView(
-                            month: month,
-                            nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
-                            recurringTransactionsCount: recurringTransactionsCount
-                        )
-                        .padding(.horizontal)
                     }
-                }
-                .safeAreaInset(edge: .bottom) {
-                    AddTransactionButton {
-                        isShowingNewTransactionSheet = true
-                    }
-                    .sheet(isPresented: $isShowingNewTransactionSheet) {
-                        NewTransactionView(currency: month.currency)
-                    }
-                    .shadow(color: .white, radius: 26)
+                    .scrollTargetBehavior(.paging)
+                    .scrollIndicators(.hidden)
+                    .safeAreaPadding(.horizontal)
+                    .safeAreaPadding(.vertical, 3)
+                    
+                    LatestTransactionsView(
+                        month: month,
+                        transactionGroupsCount: transactionGroupsCount
+                    )
+                    .padding(.horizontal)
+                    
+                    RecurringTransactionsView(
+                        month: month,
+                        nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
+                        recurringTransactionsCount: recurringTransactionsCount
+                    )
+                    .padding(.horizontal)
                 }
             }
-            .alert("An error occured", isPresented: $errorIsPresented, presenting: error) { _ in
-            } message: { error in
-                Text("\(error.localizedDescription)")
+            .safeAreaInset(edge: .bottom) {
+                AddTransactionButton {
+                    isShowingNewTransactionSheet = true
+                }
+                .sheet(isPresented: $isShowingNewTransactionSheet) {
+                    NewTransactionView(currency: month.currency)
+                }
+                .shadow(color: .white, radius: 26)
             }
         }
     }
-    
-    private func fetchRecurringTransactionsCount() -> Int {
-        do {
-            return try RecurringTransactionService.shared.fetchRecurringTransactionsCount(from: modelContext)
-        } catch {
-            self.error = error
-            errorIsPresented = true
-            return 0
-        }
-    }
-
 }
 
-// MARK: iPad and Mac view
+// MARK: Wide view
 private struct WideMonthView: View {
     // Data
     @State var month: Month
-    @State var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
-    @Environment(\.modelContext) var modelContext
+    var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
+    var transactionGroupsCount: Int
+    var recurringTransactionsCount: Int
     
     // View State
     @Environment(\.openWindow) private var openWindow
     @Environment(\.colorScheme) private var colorScheme
     private var lightMode: Bool { colorScheme == .light }
     
-    private var transactionGroupsCount: Int {
-        TransactionService.shared.fetchTransactionsCount(from: modelContext)
-    }
-    
-    private var recurringTransactionsCount: Int {
-        do {
-            return try RecurringTransactionService.shared.fetchRecurringTransactionsCount(from: modelContext)
-        } catch {
-            return 0
-        }
-    }
-    
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottomTrailing) {
-                ScrollView {
-                    Grid(horizontalSpacing: 20, verticalSpacing: 20) {
-                        GridRow {
-                            MainGraphCard()
-                            LatestTransactionsView(
-                                month: month,
-                                transactionGroupsCount: transactionGroupsCount,
-                                transactionCount: 5
-                            )
-                            .frame(idealWidth: 400)
-                        }
-                        GridRow {
-                            SecondaryGraphCards(month: month)
-                            RecurringTransactionsView(
-                                month: month,
-                                nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
-                                recurringTransactionsCount: recurringTransactionsCount,
-                                transactionCount: 5
-                            )
-                        }
+            ScrollView {
+                Grid(horizontalSpacing: 20, verticalSpacing: 20) {
+                    GridRow {
+                        MainGraphCard()
+                        LatestTransactionsView(
+                            month: month,
+                            transactionGroupsCount: transactionGroupsCount,
+                            transactionCount: 5
+                        )
+                        .frame(idealWidth: 400)
                     }
-                    .padding(35)
-                }
-                .safeAreaInset(edge: .bottom) {
-                    AddTransactionButton {
-                        openWindow(id: "new-transaction", value: month.currency)
+                    GridRow {
+                        SecondaryGraphCards(month: month)
+                        RecurringTransactionsView(
+                            month: month,
+                            nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
+                            recurringTransactionsCount: recurringTransactionsCount,
+                            transactionCount: 5
+                        )
                     }
-                    .shadow(color: .white, radius: 26)
-                    .frame(width: 300)
                 }
+                .padding(26)
+            }
+            .safeAreaInset(edge: .bottom) {
+                AddTransactionButton {
+                    openWindow(id: "new-transaction", value: month.currency)
+                }
+                .shadow(color: .white, radius: 26)
+                .frame(width: 300)
             }
         }
     }
