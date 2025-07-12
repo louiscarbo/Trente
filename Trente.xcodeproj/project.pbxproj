@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
+		7B3AA9DC2E2237530072E9CB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */; };
+		7B3AA9DD2E2237530072E9CB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */; };
 		7B7F9D7C2E0C8C01007296E5 /* Trente Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */; };
 		7BA442962E204E4300925EF5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
 		7BA442CA2E2052DD00925EF5 /* Trente Dev Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Dev Icon.icon */; };
@@ -50,6 +52,7 @@
 /* Begin PBXFileReference section */
 		7B1F06282DBD7910007EFDC5 /* Trente.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Trente.storekit; sourceTree = "<group>"; };
 		7B28474D2DAFE05300EEF97C /* Trente.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trente.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Icon.icon"; sourceTree = "<group>"; };
 		7BA4429C2E204E4300925EF5 /* Trente Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trente Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA442C92E2052DD00925EF5 /* Trente Dev Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Dev Icon.icon"; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 		7B2847442DAFE05300EEF97C = {
 			isa = PBXGroup;
 			children = (
+				7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */,
 				7B1F06282DBD7910007EFDC5 /* Trente.storekit */,
 				7BBD01E82DB8E135007B606C /* TrenteWidgetExtension.entitlements */,
 				7B28474F2DAFE05300EEF97C /* Trente */,
@@ -204,6 +208,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B2847582DAFE05500EEF97C /* Build configuration list for PBXNativeTarget "Trente" */;
 			buildPhases = (
+				7BA445512E22359B00925EF5 /* ShellScript */,
 				7B2847492DAFE05300EEF97C /* Sources */,
 				7B28474A2DAFE05300EEF97C /* Frameworks */,
 				7B28474B2DAFE05300EEF97C /* Resources */,
@@ -228,6 +233,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7BA442992E204E4300925EF5 /* Build configuration list for PBXNativeTarget "Trente Dev" */;
 			buildPhases = (
+				7B3AA9DA2E2237080072E9CB /* ShellScript */,
 				7BA442922E204E4300925EF5 /* Sources */,
 				7BA442932E204E4300925EF5 /* Frameworks */,
 				7BA442942E204E4300925EF5 /* Resources */,
@@ -342,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3AA9DD2E2237530072E9CB /* .swiftlint.yml in Resources */,
 				7B7F9D7C2E0C8C01007296E5 /* Trente Icon.icon in Resources */,
 				7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */,
 			);
@@ -351,6 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3AA9DC2E2237530072E9CB /* .swiftlint.yml in Resources */,
 				7BA442962E204E4300925EF5 /* Trente.storekit in Resources */,
 				7BA442CA2E2052DD00925EF5 /* Trente Dev Icon.icon in Resources */,
 			);
@@ -371,6 +379,43 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7B3AA9DA2E2237080072E9CB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		7BA445512E22359B00925EF5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7B2847492DAFE05300EEF97C /* Sources */ = {
@@ -455,7 +500,7 @@
 				DEVELOPMENT_TEAM = 7T9Q86X738;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -520,7 +565,7 @@
 				DEVELOPMENT_TEAM = 7T9Q86X738;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
