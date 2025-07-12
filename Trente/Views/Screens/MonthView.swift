@@ -91,7 +91,7 @@ struct MonthView: View {
 }
 
 #Preview {
-    ContentView()
+    MonthListView()
 }
 
 // MARK: - Shared Views
