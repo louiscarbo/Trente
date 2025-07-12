@@ -211,18 +211,33 @@ private struct SecondaryGraphCards: View {
 }
 
 private struct AddTransactionButton: View {
-    var action: () -> Void
+    var currency: Currency
+    var wide: Bool = false
+    
+    @State private var isShowingNewTransactionSheet: Bool = false
     
     var body: some View {
-        Button(action: action) {
+        Button {
+            #if os(iOS)
+            isShowingNewTransactionSheet = true
+            #else
+            openWindow(id: "new-transaction", value: currency)
+            #endif
+        } label: {
             Label("Add Transaction", systemImage: "plus")
                 .font(.title)
         }
         .buttonStyle(TrentePrimaryButtonStyle())
         .padding(.horizontal)
         .padding(.top)
+        .shadow(color: .white, radius: 26)
+        .frame(width: wide ? 400 : nil)
         #if os(macOS)
         .padding(.bottom)
+        #else
+        .sheet(isPresented: $isShowingNewTransactionSheet) {
+            NewTransactionView(currency: currency)
+        }
         #endif
     }
 }
@@ -270,13 +285,7 @@ private struct NarrowMonthView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                AddTransactionButton {
-                    isShowingNewTransactionSheet = true
-                }
-                .sheet(isPresented: $isShowingNewTransactionSheet) {
-                    NewTransactionView(currency: month.currency)
-                }
-                .shadow(color: .white, radius: 26)
+                AddTransactionButton(currency: month.currency)
             }
         }
     }
@@ -321,11 +330,7 @@ private struct WideMonthView: View {
                 .padding(26)
             }
             .safeAreaInset(edge: .bottom) {
-                AddTransactionButton {
-                    openWindow(id: "new-transaction", value: month.currency)
-                }
-                .shadow(color: .white, radius: 26)
-                .frame(width: 300)
+                AddTransactionButton(currency: month.currency, wide: true)
             }
         }
     }
