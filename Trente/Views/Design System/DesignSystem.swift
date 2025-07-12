@@ -9,6 +9,7 @@ import Foundation
 
 enum DesignSystem {
     enum Radius: CGFloat {
+        /// 26
         case large = 26
     }
 }
