@@ -12,6 +12,7 @@ struct SubscriptionAccessible: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .disabled(!subscriptionIsActive)
             .opacity(subscriptionIsActive ? 1 : 0.8)
             .contentShape(Rectangle())
             .allowsHitTesting(subscriptionIsActive)
