@@ -57,17 +57,17 @@ struct TransactionListView: View {
                 $0.searchableString.localizedCaseInsensitiveContains(searchText)
             }
             .filter { $0.date >= dateLowerBound && $0.date <= dateUpperBound }
-            .filter { tx in
+            .filter { transaction in
                 selectedCategories.isEmpty
-                || tx.categories.contains(where: selectedCategories.contains)
+                || transaction.categories.contains(where: selectedCategories.contains)
             }
             .sorted { a, b in
                 switch sortOption {
-                case .dateAsc:   return a.date < b.date
-                case .dateDesc:  return a.date > b.date
+                case .dateAsc: return a.date < b.date
+                case .dateDesc: return a.date > b.date
                 case .amountAsc: return a.amountCents < b.amountCents
-                case .amountDesc:return a.amountCents > b.amountCents
-                case .titleAsc:  return a.title < b.title
+                case .amountDesc: return a.amountCents > b.amountCents
+                case .titleAsc: return a.title < b.title
                 case .titleDesc: return a.title > b.title
                 }
             }
@@ -90,7 +90,7 @@ struct TransactionListView: View {
                 
                 Section {
                     HStack {
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text("Total")
                                 .font(.headline)
                             Text("Sum of displayed transactions")

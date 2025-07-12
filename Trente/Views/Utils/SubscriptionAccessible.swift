@@ -20,7 +20,6 @@ struct SubscriptionAccessible: ViewModifier {
     }
 }
 
-
 extension View {
     func subscriptionAccessible(subscribed subscriptionIsActive: Bool) -> some View {
         modifier(SubscriptionAccessible(subscriptionIsActive: subscriptionIsActive))

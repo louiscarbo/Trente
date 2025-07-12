@@ -16,35 +16,16 @@ struct FilterSheetView: View {
     @Binding var selectedCategories: Set<BudgetCategory>
     @State var allItems: [DisplayableTransaction]
     
-    private var dateLimits: ClosedRange<Date> {
-        TransactionService.shared.fetchTransactionDateBounds(from: modelContext)
-    }
+    @State private var errorIsPresented: Bool = false
+    @State private var error: Error?
+    
+    private var dateLimits: ClosedRange<Date> { computeDateLimits() }
     
     var body: some View {
         NavigationStack {
             Form {
-                Section("Dates") {
-                    DatePicker("From", selection: $dateLowerBound, in: dateLimits, displayedComponents: .date)
-                    DatePicker("To", selection: $dateUpperBound, in: dateLimits, displayedComponents: .date)
-                }
-                Section("Categories") {
-                    ForEach(BudgetCategory.allCases, id: \.self) { category in
-                        Button {
-                            if selectedCategories.contains(category) {
-                                selectedCategories.remove(category)
-                            } else {
-                                selectedCategories.insert(category)
-                            }
-                        } label: {
-                            HStack {
-                                Image(systemName: selectedCategories.contains(category) ?  "checkmark.circle.fill" : "circle")
-                                    .foregroundStyle(category.color)
-                                Text(category.name)
-                            }
-                        }
-                        .tint(.primary)
-                    }
-                }
+                datesSection
+                categoriesSection
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -53,10 +34,55 @@ struct FilterSheetView: View {
                     }
                 }
             }
+            .alert("An error occured", isPresented: $errorIsPresented, presenting: error) { _ in
+                Button("OK", role: .cancel) {
+                    dismiss()
+                }
+            } message: { error in
+                Text("\(error.localizedDescription)")
+            }
             .navigationTitle("Filter")
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
             #endif
+        }
+    }
+    
+    private var datesSection: some View {
+        Section("Dates") {
+            DatePicker("From", selection: $dateLowerBound, in: dateLimits, displayedComponents: .date)
+            DatePicker("To", selection: $dateUpperBound, in: dateLimits, displayedComponents: .date)
+        }
+    }
+    
+    private var categoriesSection: some View {
+        Section("Categories") {
+            ForEach(BudgetCategory.allCases, id: \.self) { category in
+                Button {
+                    if selectedCategories.contains(category) {
+                        selectedCategories.remove(category)
+                    } else {
+                        selectedCategories.insert(category)
+                    }
+                } label: {
+                    HStack {
+                        Image(systemName: selectedCategories.contains(category) ?  "checkmark.circle.fill" : "circle")
+                            .foregroundStyle(category.color)
+                        Text(category.name)
+                    }
+                }
+                .tint(.primary)
+            }
+        }
+    }
+    
+    private func computeDateLimits() -> ClosedRange<Date> {
+        do {
+            return try TransactionService.shared.fetchTransactionDateBounds(from: modelContext)
+        } catch {
+            self.error = error
+            errorIsPresented = true
+            return Date()...Date()
         }
     }
 }

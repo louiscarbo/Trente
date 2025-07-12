@@ -16,7 +16,7 @@ struct CurrentMonthRowView: View {
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
 
-    private var isSelected : Bool { selectedMonth == currentMonth }
+    private var isSelected: Bool { selectedMonth == currentMonth }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -46,7 +46,8 @@ struct CurrentMonthRowView: View {
                 withAnimation(.easeOut) {
                     isPressed = inProgress
                 }
-            },perform: { }
+            },
+            perform: { }
         )
     }
     
@@ -105,7 +106,3 @@ struct CurrentMonthRowView: View {
         }
     }
 }
-
-//#Preview {
-//    CurrentMonthRowView()
-//}

@@ -13,7 +13,7 @@ struct NewTransactionView: View {
     var currency: Currency
     
     // Transaction Data
-    @State private var selectedCategory: BudgetCategory? = nil
+    @State private var selectedCategory: BudgetCategory?
     @State private var amountCents: Int = 0
     @State private var type: TransactionType = .income
     @State private var title: String = ""
@@ -22,7 +22,7 @@ struct NewTransactionView: View {
     @State private var notes: String = ""
     @State private var recurrenceFrequency: RecurrenceFrequency = .monthly
     @State private var recurrenceStartDate: Date = Date()
-    @State private var recurrenceEndDate: Date? = nil
+    @State private var recurrenceEndDate: Date?
     
     // Buttons Logic
     private var showPreviousButton: Bool {
@@ -277,7 +277,7 @@ private struct AmountCategoryView: View {
             processAmountTextChange(newValue: newValue, oldValue: oldValue)
             updateNextButtonState()
         }
-        .onChange(of: transactionType) { oldValue, newValue in
+        .onChange(of: transactionType) { _, newValue in
             applySign()
             updateNextButtonState()
             if newValue == .income {
@@ -287,7 +287,7 @@ private struct AmountCategoryView: View {
         .onChange(of: selectedCategory) {
             updateNextButtonState()
         }
-        .onAppear{
+        .onAppear {
             updateNextButtonState()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                 amountFieldIsFocused = true
@@ -418,7 +418,7 @@ private struct TitleView: View {
         .onChange(of: title) {
             updateNextButtonState()
         }
-        .onChange(of: titleFieldIsFocused) { oldValue, newValue in
+        .onChange(of: titleFieldIsFocused) { _, newValue in
             if newValue == true {
                 showKeyboardDismissButton = true
             } else {
@@ -429,7 +429,7 @@ private struct TitleView: View {
             updateNextButtonState()
             titleFieldIsFocused = true
         }
-        .onChange(of: step) { oldStep, newStep in
+        .onChange(of: step) { _, newStep in
             if newStep != .title {
                 titleFieldIsFocused = false
             }
@@ -528,7 +528,7 @@ private struct NotesImageView: View {
                         .lineLimit(5, reservesSpace: true)
                         .fixedSize(horizontal: false, vertical: true)
                         .textFieldStyle(.plain)
-                        .onChange(of: notesFocused) { oldValue, newValue in
+                        .onChange(of: notesFocused) { _, newValue in
                             if newValue == true {
                                 showKeyboardDismissButton = true
                             } else {
@@ -542,7 +542,7 @@ private struct NotesImageView: View {
                 .padding(.top, 30)
             }
             .subscriptionAccessible(subscribed: userSubscriptionIsActive)
-            .onChange(of: photosPickerItem) { oldItem, newItem in
+            .onChange(of: photosPickerItem) { _, newItem in
                 guard let item = newItem else {
                     image = nil
                     return

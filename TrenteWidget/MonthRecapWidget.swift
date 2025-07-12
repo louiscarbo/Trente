@@ -21,7 +21,15 @@ struct MonthRecapWidget: Widget {
                 }
         }
         .configurationDisplayName(String(localized: "Month Recap"))
-        .description(String(localized: "See your remaining budget for the current month, as well as your spending on larger widgets. Quickly see how you're doing, and easily log new transactions.\n\nSee examples below."))
+        .description(
+            String(localized: """
+            See your remaining budget for the current month, as well as your spending on larger widgets.
+            Quickly see how you're doing, and easily log new transactions.
+
+            See examples below.
+            """
+            )
+        )
         #if os(iOS)
         .supportedFamilies([.systemMedium, .systemLarge, .systemSmall, .accessoryCircular, .accessoryInline, .accessoryRectangular])
         #elseif os(macOS)
@@ -54,7 +62,7 @@ struct MonthRecapWidgetView: View {
     }
 }
 
-struct HomescreenMonthRecapWidgetView : View {
+struct HomescreenMonthRecapWidgetView: View {
     var entry: Provider.Entry
     
     @Environment(\.widgetFamily) var family
@@ -148,7 +156,14 @@ struct HomescreenMonthRecapWidgetView : View {
             }
         } else {
             if family == .systemLarge {
-                ContentUnavailableView("No month yet", systemImage: "calendar", description: Text("You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!"))
+                ContentUnavailableView(
+                    "No month yet",
+                    systemImage: "calendar",
+                    description:
+                        Text("""
+                            You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!
+                        """)
+                )
             } else {
                 Text("Start tracking your budget with Trente by opening the app!")
                     .multilineTextAlignment(.center)
@@ -213,16 +228,16 @@ struct Provider: @preconcurrency TimelineProvider {
     }
 
     @MainActor
-    func getSnapshot(in context: Context, completion: @escaping (MonthRecapEntry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (MonthRecapEntry) -> Void) {
         let entry = MonthRecapEntry(date: Date(), month: Month.getSampleMonthWithTransactions())
         completion(entry)
     }
 
     @MainActor
-    func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> Void) {
         
         var entries: [MonthRecapEntry] = []
-        // MARK: TODO: Change this in the release version
+        // TODO: Change this in the release version
         let entry = MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
         entries.append(entry)
 

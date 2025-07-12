@@ -67,7 +67,7 @@ private struct RecurringTransactionEntryRowView: View {
     @State var transactionCategoryName: String
     @State var currency: Currency?
     @State var displayAmount: String
-    @State var title: String? = nil
+    @State var title: String?
     
     private var isAlone: Bool {
         return currency != nil && title != nil

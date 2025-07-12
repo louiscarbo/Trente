@@ -12,11 +12,17 @@ excluded:
 - SwiftLint/Common/3rdPartyLib
 
 line_length:
-    warning: 150
+    warning: 170
     error: 200
     ignores_function_declarations: true
     ignores_comments: true
     ignores_urls: true
+    
+type_name:
+    min_length: 3
+    max_length: 40
+    excluded:
+      - AccessoryCircularCategoryRemainingWidgetView
     
 function_body_length:
     warning: 300
@@ -50,3 +56,4 @@ identifier_name:
     - r
     - a
     - b
+    - id

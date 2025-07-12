@@ -137,7 +137,7 @@ private struct NarrowMonthView: View {
                                 if transactionGroupsCount == 0 {
                                     Text("Add your first transaction by tapping 'Add Transaction'.")
                                         .foregroundStyle(.secondary)
-                                } else if latestTransactions.count == 0 {
+                                } else if latestTransactions.isEmpty {
                                     Text("Add your first transaction for this month by tapping 'Add Transaction'.")
                                         .foregroundStyle(.secondary)
                                 }
@@ -170,7 +170,7 @@ private struct NarrowMonthView: View {
                                 if recurringTransactionsCount == 0 {
                                     Text("Add your first Recurring Transaction by tapping 'Add Transaction'.")
                                         .foregroundStyle(.secondary)
-                                } else if nextRecurringTransactionsInstances.count == 0 {
+                                } else if nextRecurringTransactionsInstances.isEmpty {
                                     Text("No upcoming recurring transactions for this month.")
                                         .foregroundStyle(.secondary)
                                 }
@@ -199,7 +199,7 @@ private struct NarrowMonthView: View {
                 Rectangle()
                     .ignoresSafeArea()
                     .frame(height: 150)
-                    .foregroundStyle (
+                    .foregroundStyle(
                         lightMode ?
                         LinearGradient(
                             colors: [.clear, .white],

@@ -13,16 +13,16 @@ class RecurringTransactionRule {
     var title: String
     var frequency: RecurrenceFrequency
     var startDate: Date
-    var endDate: Date? = nil
+    var endDate: Date?
     var autoConfirm: Bool = false
-    var repartition: [BudgetCategory:Int]
+    var repartition: [BudgetCategory: Int]
     
     @Relationship(deleteRule: .cascade, inverse: \RecurringTransactionInstance.rule)
     var instances: [RecurringTransactionInstance] = []
 
     var isDeleted: Bool = false
     
-    init(title: String, frequency: RecurrenceFrequency, startDate: Date, endDate: Date? = nil, autoConfirm: Bool = false, repartition: [BudgetCategory : Int]) {
+    init(title: String, frequency: RecurrenceFrequency, startDate: Date, endDate: Date? = nil, autoConfirm: Bool = false, repartition: [BudgetCategory: Int]) {
         self.title = title
         self.frequency = frequency
         self.startDate = startDate
@@ -114,9 +114,9 @@ extension RecurringTransactionRule {
             while candidate <= windowEnd {
                 instances.append(
                     RecurringTransactionInstance(
-                        date:     candidate,
-                        rule:     self,
-                        month:    month,
+                        date: candidate,
+                        rule: self,
+                        month: month,
                         confirmed: false
                     )
                 )
@@ -152,9 +152,9 @@ extension RecurringTransactionRule {
                 if candidate >= dayWindowStart && candidate <= windowEnd {
                     instances.append(
                         RecurringTransactionInstance(
-                            date:      candidate,
-                            rule:      self,
-                            month:     month,
+                            date: candidate,
+                            rule: self,
+                            month: month,
                             confirmed: false
                         )
                     )
@@ -184,9 +184,9 @@ extension RecurringTransactionRule {
 
                 instances.append(
                     RecurringTransactionInstance(
-                        date:     candidate,
-                        rule:     self,
-                        month:    month,
+                        date: candidate,
+                        rule: self,
+                        month: month,
                         confirmed: false
                     )
                 )
