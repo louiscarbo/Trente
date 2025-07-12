@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct AmountCategoryView: View {
-    // Bindings
+    // Transaction Data
     @Binding var selectedCategory: BudgetCategory?
     @Binding var amountCents: Int
     @Binding var transactionType: TransactionType
-    @Binding var nextButtonDisabled: Bool
-    @Binding var isRecurrent: Bool
-    
-    // View arguments
-    var currencyCode: String
     
     // View State
+    @Binding var nextButtonDisabled: Bool
+    @Binding var isRecurrent: Bool
+    var currencyCode: String
     @State private var amountText = ""
     @FocusState private var amountFieldIsFocused: Bool
     
@@ -174,8 +172,4 @@ struct AmountCategoryView: View {
             }
         }
     }
-}
-
-#Preview {
-    AmountCategoryView()
 }

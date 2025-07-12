@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 // TODO: adapt to macOS
 // TODO: Split into different files
@@ -52,7 +51,7 @@ struct NewTransactionView: View {
         }
     }
     
-    private var iOSTabView: some View {
+    var iOSTabView: some View {
         TabView(selection: $step) {
             AmountCategoryView(
                 selectedCategory: $selectedCategory,
@@ -67,7 +66,6 @@ struct NewTransactionView: View {
             
             TitleView(
                 title: $title,
-                
                 nextButtonDisabled: $nextButtonDisabled,
                 step: $step,
                 showKeyboardDismissButton: $showKeyboardDismissButton
@@ -77,7 +75,6 @@ struct NewTransactionView: View {
             NotesImageView(
                 image: $image,
                 notes: $notes,
-                
                 showKeyboardDismissButton: $showKeyboardDismissButton
             )
             .newTransactionPage(tag: .notesImage)
