@@ -22,6 +22,7 @@ class TransactionEntry {
     }
 }
 
+// MARK: Computed Properties
 extension TransactionEntry {
     /// The amount, not in cents. Can be negative or positive.
     var amount: Double {

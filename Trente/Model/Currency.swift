@@ -16,11 +16,11 @@ struct Currency: Codable {
 
 extension Currency {
     var sfSymbolGaugeName: String {
-        return sfSymbolName.map { "\($0).gauge.chart.lefthalf.righthalf" } ?? ""
+        sfSymbolName.map { "\($0).gauge.chart.lefthalf.righthalf" } ?? ""
     }
     
     var sfSymbolRecurrenceName: String {
-        return sfSymbolName.map { "\($0).arrow.trianglehead.counterclockwise.rotate.90" } ?? ""
+        sfSymbolName.map { "\($0).arrow.trianglehead.counterclockwise.rotate.90" } ?? ""
     }
 }
 
@@ -32,6 +32,6 @@ struct Currencies {
     ]
     
     static func currency(for isoCode: String) -> Currency? {
-        return availableCurrencies.first { $0.isoCode == isoCode }
+        availableCurrencies.first { $0.isoCode == isoCode }
     }
 }

@@ -16,44 +16,44 @@ enum BudgetCategory: String, Codable, CaseIterable {
     var name: String {
         switch self {
         case .needs:
-            return String(localized: "Needs")
+            String(localized: "Needs")
         case .wants:
-            return String(localized: "Wants")
+            String(localized: "Wants")
         case .savingsAndDebts:
-            return String(localized: "Savings and Debts")
+            String(localized: "Savings and Debts")
         }
     }
     
     var shortName: String {
         switch self {
         case .needs:
-            return String(localized: "Needs")
+            String(localized: "Needs")
         case .wants:
-            return String(localized: "Wants")
+            String(localized: "Wants")
         case .savingsAndDebts:
-            return String(localized: "Savings")
+            String(localized: "Savings")
         }
     }
     
     var color: Color {
         switch self {
         case .needs:
-            return Color.blue
+            Color.blue
         case .wants:
-            return Color.yellow
+            Color.yellow
         case .savingsAndDebts:
-            return Color.green
+            Color.green
         }
     }
     
     var shortExamples: String {
         switch self {
         case .needs:
-            return String(localized: "Rent, groceries, bills...")
+            String(localized: "Rent, groceries, bills...")
         case .wants:
-            return String(localized: "Dining out, entertainment...")
+            String(localized: "Dining out, entertainment...")
         case .savingsAndDebts:
-            return String(localized: "Savings, debt, retirement...")
+            String(localized: "Savings, debt, retirement...")
         }
     }
 }
