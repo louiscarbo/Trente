@@ -31,6 +31,13 @@ struct TrenteApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(container) // Inject the correct container into the environment
+        .modelContainer(container)
+        .defaultSize(width: 1200, height: 800)
+
+        #if os(macOS)
+        Window("New Transaction", id: "new-transaction") {
+            Text("Test")
+        }
+        #endif
     }
 }

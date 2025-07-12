@@ -253,6 +253,7 @@ private struct WideMonthView: View {
     @State var latestTransactions: [TransactionGroup]
     @State var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
     @State var isShowingNewTransactionSheet: Bool = false
+    @Environment(\.openWindow) private var openWindow
     
     // View properties
     @Environment(\.colorScheme) private var colorScheme
@@ -353,7 +354,11 @@ private struct WideMonthView: View {
                     .blur(radius: 30)
                 
                 Button {
+                    #if os(iOS)
                     isShowingNewTransactionSheet = true
+                    #elseif os(macOS)
+                    openWindow(id: "new-transaction")
+                    #endif
                 } label: {
                     Label("Add Transaction", systemImage: "plus")
                         .font(.title2)
