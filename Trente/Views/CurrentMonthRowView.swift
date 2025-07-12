@@ -96,7 +96,7 @@ struct CurrentMonthRowView: View {
                 .foregroundStyle(.regularMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 26)
-                        .stroke(isSelected ? Color.primary :
+                        .stroke(isSelected ? Color.black.opacity(0.5) :
                                     (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
                 )
             if isPressed {
