@@ -27,7 +27,7 @@ class DataProvider {
         do {
             modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
             
-            insertSampleData()
+            try insertSampleData()
             
             try context.save()
         } catch {
@@ -35,17 +35,13 @@ class DataProvider {
         }
     }
     
-    private func insertSampleData() {
+    private func insertSampleData() throws {
         for recurringTransactionRule in RecurringTransactionRule.sampleData {
             context.insert(recurringTransactionRule)
         }
         
         for month in Month.sampleData {
-            do {
-                try RecurringTransactionService.shared.generateInstances(for: month, in: context)
-            } catch {
-                print("Error generating instances for month \(month): \(error)")
-            }
+            try RecurringTransactionService.shared.generateInstances(for: month, in: context)
 
             context.insert(month)
         }
