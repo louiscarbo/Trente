@@ -230,7 +230,7 @@ private struct AddTransactionButton: View {
         .buttonStyle(TrentePrimaryButtonStyle())
         .padding(.horizontal)
         .padding(.top)
-        .shadow(color: .white, radius: 26)
+        .shadow(color: .white, radius: DesignSystem.Radius.large.rawValue)
         .frame(width: wide ? 400 : nil)
         #if os(macOS)
         .padding(.bottom)

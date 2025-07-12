@@ -37,14 +37,14 @@ struct NotesImageView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .clipShape(
-                                    RoundedRectangle(cornerRadius: 26)
+                                    RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                                 )
                                 .overlay(
-                                    RoundedRectangle(cornerRadius: 26)
+                                    RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                                         .stroke(Color.white, lineWidth: 10)
                                 )
                                 .frame(height: 200)
-                                .shadow(radius: 26, y: 10)
+                                .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
                                 .padding(.bottom, 30)
                                 .overlay(alignment: .bottom) {
                                     PhotosPicker(selection: $photosPickerItem) {
