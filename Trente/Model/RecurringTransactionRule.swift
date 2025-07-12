@@ -40,11 +40,11 @@ enum RecurrenceFrequency: String, Codable, CaseIterable {
     var displayName: String {
         switch self {
         case .weekly:
-            return String(localized: "Weekly")
+            String(localized: "Weekly")
         case .monthly:
-            return String(localized: "Monthly")
+            String(localized: "Monthly")
         case .yearly:
-            return String(localized: "Yearly")
+            String(localized: "Yearly")
         }
     }
 }
@@ -80,11 +80,10 @@ extension RecurringTransactionRule {
         var instances: [RecurringTransactionInstance] = []
         let calendar = Calendar.current
         
-        // 1. Compute month bounds
         let startOfMonth = month.startDate
         let endOfMonth = month.endDate()
         
-        // 2. Clip rule’s date window to this month
+        // 1. Clip rule’s date window to this month
         let windowStart = max(self.startDate, startOfMonth)
 
         let windowEnd = {
@@ -196,51 +195,4 @@ extension RecurringTransactionRule {
         
         return instances
     }
-}
-
-// MARK: - Sample Data
-extension RecurringTransactionRule {
-    /// A few sample recurring rules so that month1, month2 & month3
-    /// each get at least two instances when you call `generateInstances(...)`
-    static let sampleData: [RecurringTransactionRule] = {
-        // Start all rules two months ago, so they fire in month3, month2 & month1
-        let start = Month.month3.startDate
-        
-        // 1) Monthly salary income
-        let salary = RecurringTransactionRule(
-            title: "Salary",
-            frequency: .monthly,
-            startDate: start.addingTimeInterval(-15 * 24 * 60 * 60),
-            repartition: [
-                .needs : 1600_00,
-                .wants: 500,
-                .savingsAndDebts: 300
-            ]
-        )
-        salary.autoConfirm = true
-        
-        // 2) Monthly rent expense
-        let rent = RecurringTransactionRule(
-            title: "Rent",
-            frequency: .monthly,
-            startDate: start.addingTimeInterval(-1 * 24 * 60 * 60),
-            repartition: [
-                .needs : -800_00
-            ]
-        )
-        rent.autoConfirm = true
-        
-        // 3) Weekly coffee expense
-        let coffee = RecurringTransactionRule(
-            title: "Coffee",
-            frequency: .weekly,
-            startDate: start.addingTimeInterval(-3 * 24 * 60 * 60),
-            repartition: [
-                .wants : -300
-            ]
-        )
-        coffee.autoConfirm = true
-        
-        return [salary, rent, coffee]
-    }()
 }
