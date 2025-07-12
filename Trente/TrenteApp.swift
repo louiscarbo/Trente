@@ -22,6 +22,7 @@ struct TrenteApp: App {
             container = try ModelContainer(for: schema, configurations: [config])
             #endif
         } catch {
+            // TODO: Maybe fail more gracefully?
             fatalError("Failed to initialize ModelContainer: \(error)")
         }
     }

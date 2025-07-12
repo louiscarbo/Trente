@@ -80,9 +80,10 @@ private struct NarrowMonthView: View {
     private var transactionGroupsCount: Int {
         TransactionService.shared.fetchTransactionsCount(from: modelContext)
     }
-    private var recurringTransactionsCount: Int {
-        RecurringTransactionService.shared.fetchRecurringTransactionsCount(from: modelContext)
-    }
+    private var recurringTransactionsCount: Int { fetchRecurringTransactionsCount() }
+    
+    @State private var error: Error?
+    @State private var errorIsPresented: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -227,8 +228,23 @@ private struct NarrowMonthView: View {
                     NewTransactionView(currency: month.currency)
                 }
             }
+            .alert("An error occured", isPresented: $errorIsPresented, presenting: error) { _ in
+            } message: { error in
+                Text("\(error.localizedDescription)")
+            }
         }
     }
+    
+    private func fetchRecurringTransactionsCount() -> Int {
+        do {
+            return try RecurringTransactionService.shared.fetchRecurringTransactionsCount(from: modelContext)
+        } catch {
+            self.error = error
+            errorIsPresented = true
+            return 0
+        }
+    }
+
 }
 
 // MARK: iPad and Mac view

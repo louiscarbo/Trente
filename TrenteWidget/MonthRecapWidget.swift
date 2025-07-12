@@ -235,11 +235,14 @@ struct Provider: @preconcurrency TimelineProvider {
 
     @MainActor
     func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> Void) {
-        
         var entries: [MonthRecapEntry] = []
         // TODO: Change this in the release version
-        let entry = MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
-        entries.append(entry)
+        do {
+            let entry = try MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
+            entries.append(entry)
+        } catch {
+            return
+        }
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -255,6 +258,6 @@ struct MonthRecapEntry: TimelineEntry {
 #Preview(as: .accessoryRectangular) {
     MonthRecapWidget()
 } timeline: {
-    MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
+    MonthRecapEntry(date: Date(), month: try? getCurrentMonth(inPreview: true))
 }
 #endif
