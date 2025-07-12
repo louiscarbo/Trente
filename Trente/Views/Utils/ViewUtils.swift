@@ -136,7 +136,6 @@ func createImage(_ value: Data) -> Image? {
 }
 
 // MARK: View Extensions
-// TODO: Check if still needed
 extension View {
     @ViewBuilder
     func modify<T: View>(_ transform: (Self) -> T) -> some View {
