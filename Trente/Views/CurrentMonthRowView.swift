@@ -11,7 +11,6 @@ struct CurrentMonthRowView: View {
     var currentMonth: Month
     @Binding var selectedMonth: Month?
     @State private var isPressed: Bool = false
-    var scaleVertically: Bool = false
     
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
