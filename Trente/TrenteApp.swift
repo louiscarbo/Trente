@@ -35,9 +35,20 @@ struct TrenteApp: App {
         .defaultSize(width: 1200, height: 800)
 
         #if os(macOS)
-        Window("New Transaction", id: "new-transaction") {
-            Text("Test")
+        WindowGroup("New Transaction", id: "new-transaction", for: Currency.self) { $currency in
+            if let currency {
+                NewTransactionView(currency: currency)
+            } else {
+                ContentUnavailableView(
+                    "An error occured",
+                    image: "xmark",
+                    description:
+                        Text("Please open this window from a month dashboard.")
+                )
+            }
         }
+        .modelContainer(container)
+        .defaultSize(width: 500, height: 700)
         #endif
     }
 }

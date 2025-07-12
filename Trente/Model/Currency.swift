@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Currency: Codable {
-    let isoCode: String // ISO currency code ("EUR", "USD")
+struct Currency: Codable, Hashable {
+    let isoCode: String
     var symbol: String
     var sfSymbolName: String?
     var localizedName: String
