@@ -7,16 +7,14 @@
 
 import SwiftUI
 
-private struct TitleView: View {
+struct TitleView: View {
     // Transaction Data
     @Binding var title: String
     
-    // View Bindings
+    // View State
     @Binding var nextButtonDisabled: Bool
     @Binding var step: NewTransactionStep
     @Binding var showKeyboardDismissButton: Bool
-    
-    // View Logic
     @FocusState private var titleFieldIsFocused: Bool
     
     var body: some View {
@@ -75,10 +73,4 @@ private struct TitleView: View {
             nextButtonDisabled = false
         }
     }
-}
-
-
-
-#Preview {
-    TitleView()
 }

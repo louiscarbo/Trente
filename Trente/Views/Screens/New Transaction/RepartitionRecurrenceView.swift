@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-private struct RepartitionRecurrenceView: View {
+struct RepartitionRecurrenceView: View {
+    // Transaction Data
+    
+    // View State
     @State var showRecurrence: Bool
     @State var showIncomeRepartition: Bool
     
@@ -30,8 +33,4 @@ private struct RepartitionRecurrenceView: View {
             .padding()
         }
     }
-}
-
-#Preview {
-    RepartitionRecurrenceView()
 }

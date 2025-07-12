@@ -6,19 +6,16 @@
 //
 
 import SwiftUI
+import PhotosUI
 
-private struct NotesImageView: View {
-    // Transaction attributes
+struct NotesImageView: View {
+    // Transaction Data
     @Binding var image: Image?
     @Binding var notes: String
-    
-    // Bindings
+            
+    // View State
     @Binding var showKeyboardDismissButton: Bool
-    
-    // View arguments
     @State private var userSubscriptionIsActive: Bool = true
-    
-    // View logic
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showImageSubscriptionSheet: Bool = false
     @State private var showFullScreen = false
@@ -137,9 +134,4 @@ private struct NotesImageView: View {
             }
         }
     }
-}
-
-
-#Preview {
-    NotesImageView()
 }
