@@ -13,28 +13,8 @@ struct MonthView: View {
     var latestTransactions: [TransactionGroup] { month.latestTransactions }
     
     var nextRecurringTransactionsInstances: [RecurringTransactionInstance] {
-        let now = Date()
         return month.recurringTransactionInstances
-            .sorted { a, b in
-                let aIsFuture = a.date >= now
-                let bIsFuture = b.date >= now
-                
-                switch (aIsFuture, bIsFuture) {
-                    // 1) Both in the future → sort earliest first
-                case (true, true):
-                    return a.date < b.date
-                    
-                    // 2) Both in the past → sort earliest first (chronological)
-                case (false, false):
-                    return a.date < b.date
-                    
-                    // 3) One future, one past → future comes before past
-                case (true, false):
-                    return true
-                case (false, true):
-                    return false
-                }
-            }
+            .sorted { sortRecurringTransactions($0, $1) }
     }
     
     var body: some View {
@@ -55,6 +35,28 @@ struct MonthView: View {
                 }
             }
             .navigationTitle(month.name)
+        }
+    }
+    
+    private func sortRecurringTransactions(_ a: RecurringTransactionInstance, _ b: RecurringTransactionInstance) -> Bool {
+        let now = Date()
+        let aIsFuture = a.date >= now
+        let bIsFuture = b.date >= now
+        
+        switch (aIsFuture, bIsFuture) {
+            // 1) Both in the future → sort earliest first
+        case (true, true):
+            return a.date < b.date
+            
+            // 2) Both in the past → sort earliest first (chronological)
+        case (false, false):
+            return a.date < b.date
+            
+            // 3) One future, one past → future comes before past
+        case (true, false):
+            return true
+        case (false, true):
+            return false
         }
     }
 }
