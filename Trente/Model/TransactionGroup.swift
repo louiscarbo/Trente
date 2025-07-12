@@ -23,8 +23,8 @@ class TransactionGroup: Identifiable {
     var entries: [TransactionEntry] = []
     
     // Trente+
-    var note: String? = nil
-    @Attribute(.externalStorage) var imageAttachmentData: Data? = nil
+    var note: String?
+    @Attribute(.externalStorage) var imageAttachmentData: Data?
     
     init(addedDate: Date, title: String, type: TransactionType, month: Month) {
         self.addedDate = addedDate

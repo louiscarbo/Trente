@@ -46,6 +46,7 @@ final class RecurringTransactionService {
         try context.save()
     }
     
+    // TODO: MAKE IT THROW
     func fetchRecurringTransactionsCount(from model: ModelContext) -> Int {
         let descriptor = FetchDescriptor<RecurringTransactionInstance>()
         do {

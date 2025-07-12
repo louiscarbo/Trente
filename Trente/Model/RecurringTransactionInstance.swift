@@ -14,7 +14,7 @@ class RecurringTransactionInstance {
     var date: Date
     var rule: RecurringTransactionRule
     var month: Month
-    var transactionGroup: TransactionGroup? = nil
+    var transactionGroup: TransactionGroup?
     
     init(date: Date, rule: RecurringTransactionRule, month: Month, confirmed: Bool) {
         self.date = date

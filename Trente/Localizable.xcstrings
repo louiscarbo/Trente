@@ -43,6 +43,9 @@
     "Amount" : {
 
     },
+    "An error occured" : {
+
+    },
     "ARCHIVED MONTHS" : {
 
     },
@@ -236,9 +239,6 @@
     "See your remaining budget for the current month in a specific category, or for all categories in the medium widget.\n\nTo select a category, hold the widget." : {
 
     },
-    "See your remaining budget for the current month, as well as your spending on larger widgets. Quickly see how you're doing, and easily log new transactions.\n\nSee examples below." : {
-
-    },
     "Select a category for the widget." : {
 
     },
@@ -306,9 +306,6 @@
 
     },
     "Yearly" : {
-
-    },
-    "You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
 
     }
   },

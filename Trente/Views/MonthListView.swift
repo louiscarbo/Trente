@@ -192,7 +192,8 @@ private struct MonthRowView: View {
                 withAnimation(.easeOut) {
                     isPressed = inProgress
                 }
-            },perform: { }
+            },
+            perform: { }
         )
         
         if month != archivedMonths.last {

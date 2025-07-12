@@ -56,7 +56,6 @@ class DataProvider {
     }
 }
 
-
 // MARK: Sample Data - Month
 extension Month {
     static let month1 = Month(
@@ -176,7 +175,7 @@ private extension RecurringTransactionRule {
             frequency: .monthly,
             startDate: start.addingTimeInterval(-15 * 24 * 60 * 60),
             repartition: [
-                .needs : 1600_00,
+                .needs: 1600_00,
                 .wants: 500,
                 .savingsAndDebts: 300
             ]
@@ -189,7 +188,7 @@ private extension RecurringTransactionRule {
             frequency: .monthly,
             startDate: start.addingTimeInterval(-1 * 24 * 60 * 60),
             repartition: [
-                .needs : -800_00
+                .needs: -800_00
             ]
         )
         rent.autoConfirm = true
@@ -200,7 +199,7 @@ private extension RecurringTransactionRule {
             frequency: .weekly,
             startDate: start.addingTimeInterval(-3 * 24 * 60 * 60),
             repartition: [
-                .wants : -300
+                .wants: -300
             ]
         )
         coffee.autoConfirm = true

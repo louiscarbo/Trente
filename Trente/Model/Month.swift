@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class Month : Identifiable, Hashable, Equatable {
+final class Month: Identifiable, Hashable, Equatable {
     var id: UUID = UUID()
     var startDate: Date
     var availableIncomeCents: Int
@@ -88,7 +88,7 @@ extension Month {
         Double(spentAmountCents) / 100
     }
     
-    var overSpent : Bool {
+    var overSpent: Bool {
         remainingAmountCents < 0
     }
     

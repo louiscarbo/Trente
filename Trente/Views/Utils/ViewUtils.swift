@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//MARK: Color Extension
+// MARK: Color Extension
 extension Color {
     /// Create a Color from a 24‑bit hex code (e.g. 0xFAF6F1) plus optional opacity.
     init(hex: Int, opacity: Double = 1) {
@@ -18,7 +18,7 @@ extension Color {
     }
 }
 
-//MARK: WidthThresholdReader
+// MARK: WidthThresholdReader
 /**
  A view useful for determining if a child view should act like it is horizontally compressed.
  
@@ -135,8 +135,8 @@ func createImage(_ value: Data) -> Image? {
     #endif
 }
 
-//MARK: View Extensions
-//TODO: Check if still needed
+// MARK: View Extensions
+// TODO: Check if still needed
 extension View {
     @ViewBuilder
     func modify<T: View>(_ transform: (Self) -> T) -> some View {

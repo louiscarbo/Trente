@@ -58,7 +58,6 @@ struct TrenteGaugeStyle: GaugeStyle {
         .frame(width: diameter, height: diameter)
     }
     
-    
     func adjustHue(of color: Color, by degrees: Double) -> Color {
         #if os(iOS)
         let uiColor = UIColor(color)
