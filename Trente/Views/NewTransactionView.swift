@@ -8,6 +8,8 @@
 import SwiftUI
 import PhotosUI
 
+// TODO: adapt to macOS
+// TODO: Split into different files
 struct NewTransactionView: View {
     // View Arguments
     var currency: Currency
