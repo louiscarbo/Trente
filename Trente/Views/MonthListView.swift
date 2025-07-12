@@ -57,6 +57,9 @@ struct MonthListView: View {
                 #endif
                 .padding()
             }
+            #if os(macOS)
+            .navigationSplitViewColumnWidth(min: 200, ideal: 300, max: 350)
+            #endif
             .navigationDestination(item: $selection) { month in
                 MonthView(month: month)
                     .id(month)
@@ -122,7 +125,6 @@ private struct MonthRowView: View {
     private var lightMode: Bool { colorScheme == .light }
     
     var body: some View {
-        
         HStack {
             Text(month.name)
             Spacer()
@@ -136,7 +138,7 @@ private struct MonthRowView: View {
                 if isSelected {
                     if month != archivedMonths.last && month != archivedMonths.first {
                         Rectangle()
-                            .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                            .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
                     } else if month == archivedMonths.first {
                         UnevenRoundedRectangle(
                             topLeadingRadius: 26,
@@ -144,7 +146,7 @@ private struct MonthRowView: View {
                             bottomTrailingRadius: 0,
                             topTrailingRadius: 26
                         )
-                        .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
                     } else {
                         UnevenRoundedRectangle(
                             topLeadingRadius: 0,
@@ -152,7 +154,7 @@ private struct MonthRowView: View {
                             bottomTrailingRadius: 26,
                             topTrailingRadius: 0
                         )
-                        .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
                     }
                 }
                 if isPressed {
