@@ -14,7 +14,11 @@ extension View {
         if #available(iOS 26.0, macOS 26.0, *) {
             self.glassEffect(.regular.interactive(isEnabled))
         } else {
+            #if os(iOS)
             self.scaleEffect(isPressed ? 1.05 : 1)
+            #else
+            self
+            #endif
         }
     }
 }
