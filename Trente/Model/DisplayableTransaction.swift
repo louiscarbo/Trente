@@ -77,6 +77,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
     }
     
     // 2. Vue spécifique pour chaque kind
+    // TODO: Change/Vary for macOS (or maybe the list that holds them?)
     @ViewBuilder
     func rowView(isInList: Bool = false) -> some View {
         switch kind {
