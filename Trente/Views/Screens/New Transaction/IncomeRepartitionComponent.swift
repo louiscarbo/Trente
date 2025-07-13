@@ -12,17 +12,16 @@ struct IncomeRepartitionComponent: View {
     let amountToSplit: Int
     let categories: [BudgetCategory]
     let formatter: NumberFormatter
-    let onDone: () -> Void
+    @Binding var isRepartitionComplete: Bool
 
     @State private var remainingAmount: Int = 0
-    @State private var doneButtonScale: CGFloat = 1.0
 
-    init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, categories: [BudgetCategory], formatter: NumberFormatter, onDone: @escaping () -> Void) {
+    init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, categories: [BudgetCategory], formatter: NumberFormatter, isRepartitionComplete: Binding<Bool>) {
         self._repartition = repartition
         self.amountToSplit = amountToSplit
         self.categories = categories
         self.formatter = formatter
-        self.onDone = onDone
+        self._isRepartitionComplete = isRepartitionComplete
     }
 
     var body: some View {
@@ -43,7 +42,7 @@ struct IncomeRepartitionComponent: View {
                         color.lighten(0.25)
 
                         Rectangle()
-                            .fill(color)
+                            .fill(color.gradient)
                             .frame(width: proportion * geo.size.width + 3)
                     }
                 }
@@ -67,31 +66,14 @@ struct IncomeRepartitionComponent: View {
                     formatter: formatter
                 )
             }
-            
-            HStack {
-                Button(action: onDone) {
-                    Text("Done")
-                }
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                .disabled(remainingAmount != 0)
-                .scaleEffect(doneButtonScale)
-                .padding(.top)
-            }
         }
         .onAppear {
             let allocatedAmount = repartition.values.reduce(0, +)
             remainingAmount = amountToSplit - allocatedAmount
+            isRepartitionComplete = remainingAmount == 0
         }
         .onChange(of: remainingAmount) { _, newValue in
-            if newValue == 0 {
-                withAnimation(.bouncy(duration: 0.3, extraBounce: 0.2)) {
-                    doneButtonScale = 1.05
-                } completion: {
-                    withAnimation(.bouncy(duration: 0.2)) {
-                        doneButtonScale = 1.0
-                    }
-                }
-            }
+            isRepartitionComplete = newValue == 0
         }
     }
 }
@@ -302,6 +284,7 @@ struct RepartitionSlider: View {
     @Previewable @State var repartition: [BudgetCategory: Int] = Dictionary(
         uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) }
     )
+    @Previewable @State var isRepartitionComplete = false
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -311,9 +294,16 @@ struct RepartitionSlider: View {
     
     VStack {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
-            IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 100, categories: BudgetCategory.allCases, formatter: formatter, onDone: {})
+            IncomeRepartitionComponent(
+                repartition: $repartition,
+                amountToSplit: 100,
+                categories: BudgetCategory.allCases,
+                formatter: formatter,
+                isRepartitionComplete: $isRepartitionComplete
+            )
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
+        Text("Is Repartition Complete: \(isRepartitionComplete ? "Yes" : "No")")
         Spacer()
             .frame(height: 300)
     }
