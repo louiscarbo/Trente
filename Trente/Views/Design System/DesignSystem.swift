@@ -17,7 +17,10 @@ enum DesignSystem {
         /// 8
         case small = 8
         
+        /// 12
+        case medium = 12
+        
         /// 18
-        case medium = 18
+        case large = 18
     }
 }
