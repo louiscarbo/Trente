@@ -69,6 +69,26 @@ struct IncomeRepartitionComponent: View {
     }
 }
 
+struct TrenteSliderButtonStyle: ButtonStyle {
+    let color: Color
+    @Environment(\.isEnabled) private var isEnabled: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: .large)
+                .fill(color)
+            configuration.label
+                .bold()
+                .opacity(isEnabled ? 1.0 : 0.3)
+            RoundedRectangle(cornerRadius: .large)
+                .strokeBorder(color.darken(0.1), lineWidth: 3)
+        }
+        .scaleEffect(isEnabled ? (configuration.isPressed ? 0.95 : 1.0) : 1)
+        .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 1)
+        .tint(color.darken(0.8))
+    }
+}
+
 struct BudgetCategorySliderRow: View {
     let category: BudgetCategory
     @Binding var repartition: [BudgetCategory: Int]
@@ -90,17 +110,10 @@ struct BudgetCategorySliderRow: View {
                         remainingAmount -= delta
                     }
                 } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: .large)
-                            .fill(category.color)
-                        Image(systemName: "minus")
-                            .bold()
-                        RoundedRectangle(cornerRadius: .large)
-                            .strokeBorder(category.color.darken(0.1), lineWidth: 3)
-                    }
+                    Image(systemName: "minus")
                 }
                 .frame(width: 40, height: 60)
-                .tint(category.color.darken(0.8))
+                .buttonStyle(TrenteSliderButtonStyle(color: category.color))
 
                 let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
@@ -131,17 +144,10 @@ struct BudgetCategorySliderRow: View {
                         remainingAmount -= delta
                     }
                 } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: .large)
-                            .fill(category.color)
-                        Image(systemName: "plus")
-                            .bold()
-                        RoundedRectangle(cornerRadius: .large)
-                            .strokeBorder(category.color.darken(0.1), lineWidth: 3)
-                    }
+                    Image(systemName: "plus")
                 }
                 .frame(width: 40, height: 60)
-                .tint(category.color.darken(0.8))
+                .buttonStyle(TrenteSliderButtonStyle(color: category.color))
             }
         }
     }
