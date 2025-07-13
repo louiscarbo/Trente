@@ -16,7 +16,7 @@ struct RepartitionRecurrenceView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: DesignSystem.Spacing.medium.rawValue) {
+            VStack(spacing: .large) {
                 if showIncomeRepartition {
                     IncomeRepartitionView()
                 }

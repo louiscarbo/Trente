@@ -21,7 +21,7 @@ struct IncomeRepartitionComponent: View {
     }
 
     var body: some View {
-        VStack(spacing: .small) {
+        VStack(spacing: .medium) {
             VStack {
                 let color: Color = .pink
                 HStack {
@@ -35,7 +35,7 @@ struct IncomeRepartitionComponent: View {
                         : 0
 
                     ZStack(alignment: .leading) {
-                        color.darken(brightnessDrop: -0.6, saturationBoost: -0.2)
+                        color.lighten(0.25)
 
                         Rectangle()
                             .fill(color)
@@ -54,81 +54,95 @@ struct IncomeRepartitionComponent: View {
             }
 
             ForEach(categories, id: \.self) { category in
-                VStack {
-                    HStack {
-                        Text(category.name)
-                        Spacer()
-                    }
-                    HStack {
-                        Button {
-                            withAnimation(.spring) {
-                                let currentValue = repartition[category] ?? 0
-                                let amountToDecrease = 1
-                                let newValue = max(0, currentValue - amountToDecrease)
-                                let delta = newValue - currentValue // will be negative or zero
-                                repartition[category] = newValue
-                                remainingAmount -= delta
-                            }
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: .large)
-                                    .fill(category.color)
-                                Image(systemName: "minus")
-                                    .bold()
-                                RoundedRectangle(cornerRadius: .large)
-                                    .strokeBorder(category.color.darken(0.1), lineWidth: 3)
-                            }
-                        }
-                        .frame(width: 40, height: 60)
-                        .tint(category.color.darken(0.8))
-
-                        let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
-
-                        RepartitionSlider(
-                            color: category.color,
-                            value: Binding(
-                                get: { repartition[category] ?? 0 },
-                                set: { newValue in
-                                    let oldValue = repartition[category] ?? 0
-                                    let clampedNewValue = min(newValue, oldValue + remainingAmount)
-                                    let delta = clampedNewValue - oldValue
-
-                                    repartition[category] = clampedNewValue
-                                    remainingAmount -= delta
-                                }
-                            ),
-                            total: amountToSplit,
-                            maxValue: maxValueForSlider
-                        )
-
-                        Button {
-                            withAnimation(.spring) {
-                                let currentValue = repartition[category] ?? 0
-                                let amountToIncrease = 1
-                                let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
-                                let delta = newValue - currentValue // will be positive or zero
-                                repartition[category] = newValue
-                                remainingAmount -= delta
-                            }
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: .large)
-                                    .fill(category.color)
-                                Image(systemName: "plus")
-                                    .bold()
-                                RoundedRectangle(cornerRadius: .large)
-                                    .strokeBorder(category.color.darken(0.1), lineWidth: 3)
-                            }
-                        }
-                        .frame(width: 40, height: 60)
-                        .tint(category.color.darken(0.8))
-                    }
-                }
+                BudgetCategorySliderRow(
+                    category: category,
+                    repartition: $repartition,
+                    remainingAmount: $remainingAmount,
+                    amountToSplit: amountToSplit
+                )
             }
         }
         .onAppear {
             let allocatedAmount = repartition.values.reduce(0, +)
             remainingAmount = amountToSplit - allocatedAmount
+        }
+    }
+}
+
+struct BudgetCategorySliderRow: View {
+    let category: BudgetCategory
+    @Binding var repartition: [BudgetCategory: Int]
+    @Binding var remainingAmount: Int
+    let amountToSplit: Int
+
+    var body: some View {
+        VStack(spacing: .small) {
+            Text(category.name)
+                .font(.subheadline)
+            HStack {
+                Button {
+                    withAnimation(.spring) {
+                        let currentValue = repartition[category] ?? 0
+                        let amountToDecrease = 1
+                        let newValue = max(0, currentValue - amountToDecrease)
+                        let delta = newValue - currentValue // will be negative or zero
+                        repartition[category] = newValue
+                        remainingAmount -= delta
+                    }
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: .large)
+                            .fill(category.color)
+                        Image(systemName: "minus")
+                            .bold()
+                        RoundedRectangle(cornerRadius: .large)
+                            .strokeBorder(category.color.darken(0.1), lineWidth: 3)
+                    }
+                }
+                .frame(width: 40, height: 60)
+                .tint(category.color.darken(0.8))
+
+                let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
+
+                RepartitionSlider(
+                    color: category.color,
+                    value: Binding(
+                        get: { repartition[category] ?? 0 },
+                        set: { newValue in
+                            let oldValue = repartition[category] ?? 0
+                            let clampedNewValue = min(newValue, oldValue + remainingAmount)
+                            let delta = clampedNewValue - oldValue
+
+                            repartition[category] = clampedNewValue
+                            remainingAmount -= delta
+                        }
+                    ),
+                    total: amountToSplit,
+                    maxValue: maxValueForSlider
+                )
+
+                Button {
+                    withAnimation(.spring) {
+                        let currentValue = repartition[category] ?? 0
+                        let amountToIncrease = 1
+                        let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
+                        let delta = newValue - currentValue // will be positive or zero
+                        repartition[category] = newValue
+                        remainingAmount -= delta
+                    }
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: .large)
+                            .fill(category.color)
+                        Image(systemName: "plus")
+                            .bold()
+                        RoundedRectangle(cornerRadius: .large)
+                            .strokeBorder(category.color.darken(0.1), lineWidth: 3)
+                    }
+                }
+                .frame(width: 40, height: 60)
+                .tint(category.color.darken(0.8))
+            }
         }
     }
 }
