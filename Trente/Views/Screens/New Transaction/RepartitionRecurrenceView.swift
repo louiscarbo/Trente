@@ -33,45 +33,17 @@ struct RepartitionRecurrenceView: View {
 }
 
 struct IncomeRepartitionView: View {
+    @State var repartition: [BudgetCategory: Int] = Dictionary(
+        uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) })
+    
     var body: some View {
-        GroupBox(label: Text("Income Repartition")) {
+        GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
             VStack(spacing: .small) {
                 Text("In which categories would you like to split this income?")
-                
-                ForEach(BudgetCategory.allCases, id: \.self) { category in
-                    HStack {
-                        Text("-")
-                            .background {
-                                RoundedRectangle(cornerRadius: .large)
-                                    .fill(category.color.opacity(0.3))
-                            }
-                            .overlay {
-                                RoundedRectangle(cornerRadius: .large)
-                                    .stroke(category.color, lineWidth: 2)
-                            }
-                        Text(category.name)
-                        Text("+")
-                            .background {
-                                RoundedRectangle(cornerRadius: .large)
-                                    .fill(category.color.opacity(0.3))
-                            }
-                            .overlay {
-                                RoundedRectangle(cornerRadius: .large)
-                                    .stroke(category.color, lineWidth: 2)
-                            }
-                    }
-                    .padding(8)
-                    .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: .large)
-                            .fill(category.color.opacity(0.3))
-                    }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: .large)
-                            .stroke(category.color, lineWidth: 2)
-                    }
-                }
+                IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 100, categories: BudgetCategory.allCases)
             }
+            .padding()
+            
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
     }
