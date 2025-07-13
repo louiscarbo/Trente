@@ -11,13 +11,18 @@ struct IncomeRepartitionComponent: View {
     @Binding var repartition: [BudgetCategory: Int]
     let amountToSplit: Int
     let categories: [BudgetCategory]
+    let formatter: NumberFormatter
+    let onDone: () -> Void
 
     @State private var remainingAmount: Int = 0
+    @State private var doneButtonScale: CGFloat = 1.0
 
-    init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, categories: [BudgetCategory]) {
+    init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, categories: [BudgetCategory], formatter: NumberFormatter, onDone: @escaping () -> Void) {
         self._repartition = repartition
         self.amountToSplit = amountToSplit
         self.categories = categories
+        self.formatter = formatter
+        self.onDone = onDone
     }
 
     var body: some View {
@@ -27,7 +32,7 @@ struct IncomeRepartitionComponent: View {
                 HStack {
                     Text("Amount to distribute")
                     Spacer()
-                    Text("\(remainingAmount) €")
+                    Text(formatter.string(from: NSNumber(value: remainingAmount)) ?? "")
                 }
                 GeometryReader { geo in
                     let proportion = amountToSplit > 0
@@ -58,13 +63,35 @@ struct IncomeRepartitionComponent: View {
                     category: category,
                     repartition: $repartition,
                     remainingAmount: $remainingAmount,
-                    amountToSplit: amountToSplit
+                    amountToSplit: amountToSplit,
+                    formatter: formatter
                 )
+            }
+            
+            HStack {
+                Button(action: onDone) {
+                    Text("Done")
+                }
+                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
+                .disabled(remainingAmount != 0)
+                .scaleEffect(doneButtonScale)
+                .padding(.top)
             }
         }
         .onAppear {
             let allocatedAmount = repartition.values.reduce(0, +)
             remainingAmount = amountToSplit - allocatedAmount
+        }
+        .onChange(of: remainingAmount) { _, newValue in
+            if newValue == 0 {
+                withAnimation(.bouncy(duration: 0.3, extraBounce: 0.2)) {
+                    doneButtonScale = 1.05
+                } completion: {
+                    withAnimation(.bouncy(duration: 0.2)) {
+                        doneButtonScale = 1.0
+                    }
+                }
+            }
         }
     }
 }
@@ -94,8 +121,9 @@ struct BudgetCategorySliderRow: View {
     @Binding var repartition: [BudgetCategory: Int]
     @Binding var remainingAmount: Int
     let amountToSplit: Int
+    let formatter: NumberFormatter
     
-    @State private var timer: Timer? = nil
+    @State private var timer: Timer?
     @State private var isLongPressing = false
 
     var body: some View {
@@ -150,7 +178,8 @@ struct BudgetCategorySliderRow: View {
                         }
                     ),
                     total: amountToSplit,
-                    maxValue: maxValueForSlider
+                    maxValue: maxValueForSlider,
+                    formatter: formatter
                 )
                 
                 let increaseAction = {
@@ -194,6 +223,7 @@ struct RepartitionSlider: View {
     @Binding var value: Int
     let total: Int
     let maxValue: Int
+    let formatter: NumberFormatter
     
     @State private var scale: CGFloat = 1.0
 
@@ -211,7 +241,7 @@ struct RepartitionSlider: View {
                     .fill(color)
                     .frame(width: fillWidth)
 
-                let textView = Text("\(value) €")
+                let textView = Text(formatter.string(from: NSNumber(value: value)) ?? "")
                     .font(.title)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -272,9 +302,16 @@ struct RepartitionSlider: View {
     @Previewable @State var repartition: [BudgetCategory: Int] = Dictionary(
         uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) }
     )
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "EUR"
+        return formatter
+    }()
+    
     VStack {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
-            IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 100, categories: BudgetCategory.allCases)
+            IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 100, categories: BudgetCategory.allCases, formatter: formatter, onDone: {})
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
         Spacer()
