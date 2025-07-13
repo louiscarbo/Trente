@@ -7,6 +7,9 @@
     "    You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
 
     },
+    "-" : {
+
+    },
     "- %@ Remaining" : {
 
     },
@@ -14,6 +17,9 @@
 
     },
     "%@ Remaining" : {
+
+    },
+    "+" : {
 
     },
     "Add Image" : {
@@ -128,7 +134,7 @@
     "Hello here" : {
 
     },
-    "Hello there" : {
+    "In which categories would you like to split this income?" : {
 
     },
     "Income" : {
