@@ -94,13 +94,16 @@ struct BudgetCategorySliderRow: View {
     @Binding var repartition: [BudgetCategory: Int]
     @Binding var remainingAmount: Int
     let amountToSplit: Int
+    
+    @State private var timer: Timer? = nil
+    @State private var isLongPressing = false
 
     var body: some View {
         VStack(spacing: .small) {
             Text(category.name)
                 .font(.subheadline)
             HStack {
-                Button {
+                let decreaseAction = {
                     withAnimation(.spring) {
                         let currentValue = repartition[category] ?? 0
                         let amountToDecrease = 1
@@ -109,12 +112,27 @@ struct BudgetCategorySliderRow: View {
                         repartition[category] = newValue
                         remainingAmount -= delta
                     }
-                } label: {
-                    Image(systemName: "minus")
                 }
+                
+                Button(action: decreaseAction, label: {
+                    Image(systemName: "minus")
+                })
                 .frame(width: 40, height: 60)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
                 .disabled((repartition[category] ?? 0) == 0)
+                .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
+                    isLongPressing = true
+                    timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                        decreaseAction()
+                    }
+                })
+                .simultaneousGesture(DragGesture(minimumDistance: 0).onEnded { _ in
+                    if isLongPressing {
+                        timer?.invalidate()
+                        timer = nil
+                        isLongPressing = false
+                    }
+                })
 
                 let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
@@ -134,8 +152,8 @@ struct BudgetCategorySliderRow: View {
                     total: amountToSplit,
                     maxValue: maxValueForSlider
                 )
-
-                Button {
+                
+                let increaseAction = {
                     withAnimation(.spring) {
                         let currentValue = repartition[category] ?? 0
                         let amountToIncrease = 1
@@ -144,12 +162,27 @@ struct BudgetCategorySliderRow: View {
                         repartition[category] = newValue
                         remainingAmount -= delta
                     }
-                } label: {
-                    Image(systemName: "plus")
                 }
+
+                Button(action: increaseAction, label: {
+                    Image(systemName: "plus")
+                })
                 .frame(width: 40, height: 60)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
                 .disabled(remainingAmount == 0)
+                .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
+                    isLongPressing = true
+                    timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                        increaseAction()
+                    }
+                })
+                .simultaneousGesture(DragGesture(minimumDistance: 0).onEnded { _ in
+                    if isLongPressing {
+                        timer?.invalidate()
+                        timer = nil
+                        isLongPressing = false
+                    }
+                })
             }
         }
     }
