@@ -9,16 +9,25 @@ import SwiftUI
 
 struct RepartitionRecurrenceView: View {
     // Transaction Data
+    let currency: Currency
+    var transactionAmount: Int
+    @Binding var repartition: [BudgetCategory: Int]
+    @Binding var isRepartitionComplete: Bool
     
     // View State
-    @State var showRecurrence: Bool
-    @State var showIncomeRepartition: Bool
+    var showRecurrence: Bool
+    var showIncomeRepartition: Bool
     
     var body: some View {
         ScrollView {
             VStack(spacing: .large) {
                 if showIncomeRepartition {
-                    IncomeRepartitionView()
+                    IncomeRepartitionView(
+                        currency: currency,
+                        transactionAmount: transactionAmount,
+                        repartition: $repartition,
+                        isRepartitionComplete: $isRepartitionComplete
+                    )
                 }
                 if showRecurrence {
                     GroupBox(label: Text("Recurrence")) {
@@ -33,23 +42,24 @@ struct RepartitionRecurrenceView: View {
 }
 
 struct IncomeRepartitionView: View {
-    @State var repartition: [BudgetCategory: Int] = Dictionary(
-        uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) })
+    var currency: Currency
+    var transactionAmount: Int
     
-    @State private var isRepartitionComplete: Bool = false
+    let categories: [BudgetCategory] = BudgetCategory.allCases
     
-    private let formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "EUR"
-        return formatter
-    }()
+    @Binding var repartition: [BudgetCategory: Int]
+    @Binding var isRepartitionComplete: Bool
     
     var body: some View {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
             VStack(alignment: .leading, spacing: .large) {
                 Text("In which categories would you like to split this income?")
-                IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 100, categories: BudgetCategory.allCases, formatter: formatter, isRepartitionComplete: $isRepartitionComplete)
+                IncomeRepartitionComponent(
+                    repartition: $repartition,
+                    amountToSplit: transactionAmount,
+                    formatter: currency.roundFormatter,
+                    isRepartitionComplete: $isRepartitionComplete
+                )
             }
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
@@ -57,5 +67,16 @@ struct IncomeRepartitionView: View {
 }
 
 #Preview {
-    RepartitionRecurrenceView(showRecurrence: true, showIncomeRepartition: true)
+    @Previewable @State var repartition = Dictionary(
+        uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) })
+    @Previewable @State var isRepartitionComplete: Bool = false
+    
+    RepartitionRecurrenceView(
+        currency: Currencies.currency(for: "EUR")!,
+        transactionAmount: 1000,
+        repartition: $repartition,
+        isRepartitionComplete: $isRepartitionComplete,
+        showRecurrence: true,
+        showIncomeRepartition: true
+    )
 }

@@ -10,16 +10,17 @@ import SwiftUI
 struct IncomeRepartitionComponent: View {
     @Binding var repartition: [BudgetCategory: Int]
     let amountToSplit: Int
-    let categories: [BudgetCategory]
     let formatter: NumberFormatter
     @Binding var isRepartitionComplete: Bool
 
     @State private var remainingAmount: Int = 0
+    private var categories: [BudgetCategory] {
+        repartition.keys.map { $0 }
+    }
 
-    init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, categories: [BudgetCategory], formatter: NumberFormatter, isRepartitionComplete: Binding<Bool>) {
+    init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, formatter: NumberFormatter, isRepartitionComplete: Binding<Bool>) {
         self._repartition = repartition
         self.amountToSplit = amountToSplit
-        self.categories = categories
         self.formatter = formatter
         self._isRepartitionComplete = isRepartitionComplete
     }
@@ -31,7 +32,7 @@ struct IncomeRepartitionComponent: View {
                 HStack {
                     Text("Amount to distribute")
                     Spacer()
-                    Text(formatter.string(from: NSNumber(value: remainingAmount)) ?? "")
+                    Text(formatter.string(from: NSNumber(value: remainingAmount / 100)) ?? "")
                 }
                 GeometryReader { geo in
                     let proportion = amountToSplit > 0
@@ -223,7 +224,7 @@ struct RepartitionSlider: View {
                     .fill(color)
                     .frame(width: fillWidth)
 
-                let textView = Text(formatter.string(from: NSNumber(value: value)) ?? "")
+                let textView = Text(formatter.string(from: NSNumber(value: Double(value) / 100.0)) ?? "")
                     .font(.title)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -282,8 +283,8 @@ struct RepartitionSlider: View {
 
 #Preview {
     @Previewable @State var repartition: [BudgetCategory: Int] = Dictionary(
-        uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) }
-    )
+            uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) }
+        )
     @Previewable @State var isRepartitionComplete = false
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -297,7 +298,6 @@ struct RepartitionSlider: View {
             IncomeRepartitionComponent(
                 repartition: $repartition,
                 amountToSplit: 100,
-                categories: BudgetCategory.allCases,
                 formatter: formatter,
                 isRepartitionComplete: $isRepartitionComplete
             )

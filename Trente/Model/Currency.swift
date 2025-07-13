@@ -15,6 +15,17 @@ struct Currency: Codable, Hashable {
 }
 
 extension Currency {
+    var roundFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = isoCode
+        formatter.locale = .autoupdatingCurrent
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }
+}
+
+extension Currency {
     var sfSymbolGaugeName: String {
         sfSymbolName.map { "\($0).gauge.chart.lefthalf.righthalf" } ?? ""
     }
