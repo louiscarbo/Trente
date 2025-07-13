@@ -161,6 +161,8 @@ struct RepartitionSlider: View {
     @Binding var value: Int
     let total: Int
     let maxValue: Int
+    
+    @State private var scale: CGFloat = 1.0
 
     var body: some View {
         GeometryReader { geo in
@@ -208,6 +210,7 @@ struct RepartitionSlider: View {
                     )
             }
             .clipShape(RoundedRectangle(cornerRadius: .large))
+            .scaleEffect(x: scale, y: 1.0)
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { drag in
@@ -217,6 +220,16 @@ struct RepartitionSlider: View {
                         value = clampedNewValue
                     }
             )
+            .sensoryFeedback(.selection, trigger: value)
+            .onChange(of: value) { _, _ in
+                withAnimation(.bouncy(duration: 0.2)) {
+                    scale = 1.02
+                } completion: {
+                    withAnimation(.bouncy(duration: 0.2)) {
+                        scale = 1.0
+                    }
+                }
+            }
         }
         .frame(height: 60)
     }
