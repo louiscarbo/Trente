@@ -24,6 +24,9 @@ struct NewTransactionView: View {
     @State private var recurrenceFrequency: RecurrenceFrequency = .monthly
     @State private var recurrenceStartDate: Date = Date()
     @State private var recurrenceEndDate: Date?
+    @State private var repartition: [BudgetCategory: Int] = .init(
+            uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) }
+        )
     
     // Buttons Logic
     private var showPreviousButton: Bool {
@@ -35,8 +38,9 @@ struct NewTransactionView: View {
     @State private var nextButtonDisabled: Bool = true
     
     // View State
-    @State var step: NewTransactionStep = .amountCategory
+    @State private var step: NewTransactionStep = .amountCategory
     @State private var showKeyboardDismissButton: Bool = false
+    @State private var isRepartitionComplete: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -80,6 +84,10 @@ struct NewTransactionView: View {
             .newTransactionPage(tag: .notesImage)
             
             RepartitionRecurrenceView(
+                currency: currency,
+                transactionAmount: amountCents,
+                repartition: $repartition,
+                isRepartitionComplete: $isRepartitionComplete,
                 showRecurrence: isRecurrent,
                 showIncomeRepartition: type == .income
             )
@@ -165,7 +173,6 @@ struct NewTransactionView: View {
                     
                     currencyCode: currency.isoCode
                 )
-                .newTransactionPage(tag: .amountCategory)
             case .title:
                 TitleView(
                     title: $title,
@@ -174,7 +181,6 @@ struct NewTransactionView: View {
                     step: $step,
                     showKeyboardDismissButton: $showKeyboardDismissButton
                 )
-                .newTransactionPage(tag: .title)
             case .notesImage:
                 NotesImageView(
                     image: $image,
@@ -182,13 +188,15 @@ struct NewTransactionView: View {
                     
                     showKeyboardDismissButton: $showKeyboardDismissButton
                 )
-                .newTransactionPage(tag: .notesImage)
             case .repartitionRecurrence:
                 RepartitionRecurrenceView(
+                    currency: currency,
+                    transactionAmount: amountCents,
+                    repartition: $repartition,
+                    isRepartitionComplete: $isRepartitionComplete,
                     showRecurrence: isRecurrent,
                     showIncomeRepartition: type == .income
                 )
-                .newTransactionPage(tag: .repartitionRecurrence)
             }
         }
     }
@@ -254,6 +262,8 @@ extension View {
 #Preview {
     Text("Preview")
         .sheet(isPresented: .constant(true)) {
-            NewTransactionView(currency: Currency(isoCode: "EUR", symbol: "eurosign", localizedName: "Euro"), step: .repartitionRecurrence)
+            NewTransactionView(
+                currency: Currencies.currency(for: "EUR")!
+            )
         }
 }
