@@ -11,16 +11,15 @@ struct IncomeRepartitionComponent: View {
     @Binding var repartition: [BudgetCategory: Int]
     let amountToSplit: Int
     let categories: [BudgetCategory]
-    
+
     @State private var remainingAmount: Int = 0
-    
+
     init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, categories: [BudgetCategory]) {
         self._repartition = repartition
         self.amountToSplit = amountToSplit
         self.categories = categories
-        self.remainingAmount = amountToSplit
     }
-    
+
     var body: some View {
         VStack(spacing: .small) {
             GeometryReader { geo in
@@ -40,19 +39,23 @@ struct IncomeRepartitionComponent: View {
             .frame(height: 20)
             .clipShape(RoundedRectangle(cornerRadius: .large))
 
-            
             ForEach(categories, id: \.self) { category in
                 HStack {
                     HStack {
                         Button {
                             withAnimation(.bouncy) {
-                                repartition[category]! -= 5
-                                remainingAmount += 5
+                                let currentValue = repartition[category] ?? 0
+                                let amountToDecrease = 5
+                                let newValue = max(0, currentValue - amountToDecrease)
+                                let delta = newValue - currentValue // will be negative or zero
+                                repartition[category] = newValue
+                                remainingAmount -= delta
                             }
                         } label: {
                             Image(systemName: "minus")
                         }
-                        
+
+                        let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
                         RepartitionSlider(
                             color: category.color,
@@ -60,18 +63,25 @@ struct IncomeRepartitionComponent: View {
                                 get: { repartition[category] ?? 0 },
                                 set: { newValue in
                                     let oldValue = repartition[category] ?? 0
-                                    let delta = newValue - oldValue
-                                    repartition[category] = newValue
+                                    let clampedNewValue = min(newValue, oldValue + remainingAmount)
+                                    let delta = clampedNewValue - oldValue
+
+                                    repartition[category] = clampedNewValue
                                     remainingAmount -= delta
                                 }
                             ),
-                            total: amountToSplit
+                            total: amountToSplit,
+                            maxValue: maxValueForSlider
                         )
-                        
+
                         Button {
                             withAnimation {
-                                repartition[category]! += 5
-                                remainingAmount -= 5
+                                let currentValue = repartition[category] ?? 0
+                                let amountToIncrease = 5
+                                let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
+                                let delta = newValue - currentValue // will be positive or zero
+                                repartition[category] = newValue
+                                remainingAmount -= delta
                             }
                         } label: {
                             Image(systemName: "plus")
@@ -81,6 +91,10 @@ struct IncomeRepartitionComponent: View {
             }
         }
         .padding()
+        .onAppear {
+            let allocatedAmount = repartition.values.reduce(0, +)
+            remainingAmount = amountToSplit - allocatedAmount
+        }
     }
 }
 
@@ -89,6 +103,7 @@ struct RepartitionSlider: View {
     let color: Color
     @Binding var value: Int
     let total: Int
+    let maxValue: Int
 
     var body: some View {
         GeometryReader { geo in
@@ -117,8 +132,9 @@ struct RepartitionSlider: View {
                             .onChanged { drag in
                                 // Map drag x-position to new value
                                 let pct = min(max(0, drag.location.x / width), 1)
-                                let newValue = Int(round(pct * CGFloat(total)))
-                                value = newValue
+                                let rawNewValue = Int(round(pct * CGFloat(total)))
+                                let clampedNewValue = min(rawNewValue, maxValue)
+                                value = clampedNewValue
                             }
                     )
             }
@@ -127,6 +143,7 @@ struct RepartitionSlider: View {
         .clipShape(RoundedRectangle(cornerRadius: .large))
     }
 }
+
 #Preview {
     @Previewable @State var repartition: [BudgetCategory: Int] = Dictionary(
         uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 600 / BudgetCategory.allCases.count) }
