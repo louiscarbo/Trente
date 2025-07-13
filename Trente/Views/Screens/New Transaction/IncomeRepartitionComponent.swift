@@ -22,30 +22,41 @@ struct IncomeRepartitionComponent: View {
 
     var body: some View {
         VStack(spacing: .small) {
-            GeometryReader { geo in
-                let color = Color.pink
-                let proportion = amountToSplit > 0
-                    ? CGFloat(remainingAmount) / CGFloat(amountToSplit)
-                    : 0
-
-                ZStack(alignment: .leading) {
-                    color.opacity(0.3)
-
-                    Capsule()
-                        .fill(color)
-                        .frame(width: proportion * geo.size.width + 10)
+            VStack {
+                HStack {
+                    Text("Amount to distribute")
+                    Spacer()
+                    Text("\(remainingAmount) €")
                 }
+                GeometryReader { geo in
+                    let color = Color.pink
+                    let proportion = amountToSplit > 0
+                        ? CGFloat(remainingAmount) / CGFloat(amountToSplit)
+                        : 0
+
+                    ZStack(alignment: .leading) {
+                        color.opacity(0.3)
+
+                        Capsule()
+                            .fill(color)
+                            .frame(width: proportion * geo.size.width + 5)
+                    }
+                }
+                .frame(height: 20)
+                .clipShape(RoundedRectangle(cornerRadius: .large))
             }
-            .frame(height: 20)
-            .clipShape(RoundedRectangle(cornerRadius: .large))
 
             ForEach(categories, id: \.self) { category in
-                HStack {
+                VStack {
+                    HStack {
+                        Text(category.name)
+                        Spacer()
+                    }
                     HStack {
                         Button {
                             withAnimation(.bouncy) {
                                 let currentValue = repartition[category] ?? 0
-                                let amountToDecrease = 5
+                                let amountToDecrease = 1
                                 let newValue = max(0, currentValue - amountToDecrease)
                                 let delta = newValue - currentValue // will be negative or zero
                                 repartition[category] = newValue
@@ -77,7 +88,7 @@ struct IncomeRepartitionComponent: View {
                         Button {
                             withAnimation {
                                 let currentValue = repartition[category] ?? 0
-                                let amountToIncrease = 5
+                                let amountToIncrease = 1
                                 let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
                                 let delta = newValue - currentValue // will be positive or zero
                                 repartition[category] = newValue
@@ -108,39 +119,53 @@ struct RepartitionSlider: View {
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
-            // Compute current fill‐portion (0…1)
-            let proportion = total > 0
-                ? CGFloat(value) / CGFloat(total)
-                : 0
+            let proportion = total > 0 ? CGFloat(value) / CGFloat(total) : 0
+            let fillWidth = proportion * width + 5
 
             ZStack(alignment: .leading) {
-                color.opacity(0.3)
+                Rectangle()
+                    .fill(color.opacity(0.3))
 
                 Rectangle()
                     .fill(color)
-                    .frame(width: proportion * width)
+                    .frame(width: fillWidth)
 
-                Capsule()
-                    .fill(color)
-                    .frame(width: 20)
-                    .position(
-                        x: max(0, min(proportion * width, width)),
-                        y: geo.size.height / 2
+                let textView = Text("\(value) €")
+                    .font(.title)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                textView
+                    .foregroundColor(.white)
+                    .mask(
+                        HStack {
+                            Rectangle().frame(width: fillWidth)
+                            Spacer(minLength: 0)
+                        }
                     )
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { drag in
-                                // Map drag x-position to new value
-                                let pct = min(max(0, drag.location.x / width), 1)
-                                let rawNewValue = Int(round(pct * CGFloat(total)))
-                                let clampedNewValue = min(rawNewValue, maxValue)
-                                value = clampedNewValue
-                            }
+
+                textView
+                    .foregroundColor(.black)
+                    .mask(
+                        HStack {
+                            Spacer(minLength: 0)
+                            Rectangle().frame(width: width - fillWidth)
+                        }
                     )
             }
+            .frame(width: width)
+            .clipShape(RoundedRectangle(cornerRadius: .large))
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { drag in
+                        let pct = min(max(0, drag.location.x / width), 1)
+                        let rawNewValue = Int(round(pct * CGFloat(total)))
+                        let clampedNewValue = min(rawNewValue, maxValue)
+                        value = clampedNewValue
+                    }
+            )
         }
         .frame(height: 80)
-        .clipShape(RoundedRectangle(cornerRadius: .large))
     }
 }
 
