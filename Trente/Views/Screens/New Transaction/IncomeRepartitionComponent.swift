@@ -114,6 +114,7 @@ struct BudgetCategorySliderRow: View {
                 }
                 .frame(width: 40, height: 60)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
+                .disabled((repartition[category] ?? 0) == 0)
 
                 let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
@@ -148,6 +149,7 @@ struct BudgetCategorySliderRow: View {
                 }
                 .frame(width: 40, height: 60)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
+                .disabled(remainingAmount == 0)
             }
         }
     }
