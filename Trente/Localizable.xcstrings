@@ -19,6 +19,9 @@
     "%@ Remaining" : {
 
     },
+    "%lld €" : {
+
+    },
     "+" : {
 
     },
@@ -50,6 +53,9 @@
 
     },
     "Amount" : {
+
+    },
+    "Amount to distribute" : {
 
     },
     "An error occured" : {

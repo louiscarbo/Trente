@@ -23,27 +23,34 @@ struct IncomeRepartitionComponent: View {
     var body: some View {
         VStack(spacing: .small) {
             VStack {
+                let color: Color = .pink
                 HStack {
                     Text("Amount to distribute")
                     Spacer()
                     Text("\(remainingAmount) €")
                 }
                 GeometryReader { geo in
-                    let color = Color.pink
                     let proportion = amountToSplit > 0
                         ? CGFloat(remainingAmount) / CGFloat(amountToSplit)
                         : 0
 
                     ZStack(alignment: .leading) {
-                        color.opacity(0.3)
+                        color.darken(brightnessDrop: -0.6, saturationBoost: -0.2)
 
-                        Capsule()
+                        Rectangle()
                             .fill(color)
-                            .frame(width: proportion * geo.size.width + 5)
+                            .frame(width: proportion * geo.size.width + 3)
                     }
                 }
                 .frame(height: 20)
-                .clipShape(RoundedRectangle(cornerRadius: .large))
+                .clipShape(Capsule())
+                .overlay {
+                    RoundedRectangle(cornerRadius: .large)
+                        .strokeBorder(
+                            color.darken(0.1),
+                            lineWidth: 3
+                        )
+                }
             }
 
             ForEach(categories, id: \.self) { category in
@@ -54,7 +61,7 @@ struct IncomeRepartitionComponent: View {
                     }
                     HStack {
                         Button {
-                            withAnimation(.bouncy) {
+                            withAnimation(.spring) {
                                 let currentValue = repartition[category] ?? 0
                                 let amountToDecrease = 1
                                 let newValue = max(0, currentValue - amountToDecrease)
@@ -63,8 +70,17 @@ struct IncomeRepartitionComponent: View {
                                 remainingAmount -= delta
                             }
                         } label: {
-                            Image(systemName: "minus")
+                            ZStack {
+                                RoundedRectangle(cornerRadius: .large)
+                                    .fill(category.color)
+                                Image(systemName: "minus")
+                                    .bold()
+                                RoundedRectangle(cornerRadius: .large)
+                                    .strokeBorder(category.color.darken(0.1), lineWidth: 3)
+                            }
                         }
+                        .frame(width: 40, height: 60)
+                        .tint(category.color.darken(0.8))
 
                         let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
@@ -86,7 +102,7 @@ struct IncomeRepartitionComponent: View {
                         )
 
                         Button {
-                            withAnimation {
+                            withAnimation(.spring) {
                                 let currentValue = repartition[category] ?? 0
                                 let amountToIncrease = 1
                                 let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
@@ -95,13 +111,21 @@ struct IncomeRepartitionComponent: View {
                                 remainingAmount -= delta
                             }
                         } label: {
-                            Image(systemName: "plus")
+                            ZStack {
+                                RoundedRectangle(cornerRadius: .large)
+                                    .fill(category.color)
+                                Image(systemName: "plus")
+                                    .bold()
+                                RoundedRectangle(cornerRadius: .large)
+                                    .strokeBorder(category.color.darken(0.1), lineWidth: 3)
+                            }
                         }
+                        .frame(width: 40, height: 60)
+                        .tint(category.color.darken(0.8))
                     }
                 }
             }
         }
-        .padding()
         .onAppear {
             let allocatedAmount = repartition.values.reduce(0, +)
             remainingAmount = amountToSplit - allocatedAmount
@@ -120,11 +144,11 @@ struct RepartitionSlider: View {
         GeometryReader { geo in
             let width = geo.size.width
             let proportion = total > 0 ? CGFloat(value) / CGFloat(total) : 0
-            let fillWidth = proportion * width + 5
+            let fillWidth = proportion * width + 3
 
             ZStack(alignment: .leading) {
                 Rectangle()
-                    .fill(color.opacity(0.3))
+                    .fill(color.darken(brightnessDrop: -0.10, saturationBoost: -0.2))
 
                 Rectangle()
                     .fill(color)
@@ -136,7 +160,7 @@ struct RepartitionSlider: View {
                     .frame(maxWidth: .infinity, alignment: .center)
 
                 textView
-                    .foregroundColor(.white)
+                    .foregroundColor(color.lighten(0.5))
                     .mask(
                         HStack {
                             Rectangle().frame(width: fillWidth)
@@ -145,7 +169,7 @@ struct RepartitionSlider: View {
                     )
 
                 textView
-                    .foregroundColor(.black)
+                    .foregroundColor(color.darken(0.8))
                     .mask(
                         HStack {
                             Spacer(minLength: 0)
@@ -154,6 +178,13 @@ struct RepartitionSlider: View {
                     )
             }
             .frame(width: width)
+            .overlay {
+                RoundedRectangle(cornerRadius: .large)
+                    .strokeBorder(
+                        color.darken(0.1),
+                        lineWidth: 3
+                    )
+            }
             .clipShape(RoundedRectangle(cornerRadius: .large))
             .gesture(
                 DragGesture(minimumDistance: 0)
@@ -165,13 +196,21 @@ struct RepartitionSlider: View {
                     }
             )
         }
-        .frame(height: 80)
+        .frame(height: 60)
     }
 }
 
 #Preview {
     @Previewable @State var repartition: [BudgetCategory: Int] = Dictionary(
-        uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 600 / BudgetCategory.allCases.count) }
+        uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) }
     )
-    IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 600, categories: BudgetCategory.allCases)
+    VStack {
+        GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
+            IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 100, categories: BudgetCategory.allCases)
+        }
+        .groupBoxStyle(TrenteGroupBoxStyle())
+        Spacer()
+            .frame(height: 300)
+    }
+    .padding()
 }
