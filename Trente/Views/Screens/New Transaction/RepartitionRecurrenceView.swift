@@ -36,14 +36,21 @@ struct IncomeRepartitionView: View {
     @State var repartition: [BudgetCategory: Int] = Dictionary(
         uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) })
     
+    private let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "EUR"
+        return formatter
+    }()
+    
     var body: some View {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
-            VStack(spacing: .small) {
+            VStack(alignment: .leading, spacing: .large) {
                 Text("In which categories would you like to split this income?")
-                IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 100, categories: BudgetCategory.allCases)
+                IncomeRepartitionComponent(repartition: $repartition, amountToSplit: 100, categories: BudgetCategory.allCases, formatter: formatter) {
+                    print("Done!")
+                }
             }
-            .padding()
-            
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
     }
