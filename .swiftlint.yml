@@ -1,5 +1,6 @@
 disabled_rules:
 - trailing_whitespace
+- identifier_name
 
 opt_in_rules:
 - empty_count
@@ -10,6 +11,7 @@ excluded:
 - Carthage
 - Pods
 - SwiftLint/Common/3rdPartyLib
+- Trente/Views/Utils
 
 line_length:
     warning: 170
