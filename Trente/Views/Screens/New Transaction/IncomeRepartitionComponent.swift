@@ -30,10 +30,13 @@ struct IncomeRepartitionComponent: View {
             VStack {
                 let color: Color = .pink
                 HStack {
-                    Text("Amount to distribute")
+                    Label("Amount to distribute",
+                        systemImage: remainingAmount > 0 ? "exclamationmark.triangle.fill" : "checkmark.circle.fill"
+                    )
                     Spacer()
-                    Text(formatter.string(from: NSNumber(value: remainingAmount / 100)) ?? "")
+                    Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
                 }
+                .bold(remainingAmount < 100 && remainingAmount > 0)
                 GeometryReader { geo in
                     let proportion = amountToSplit > 0
                         ? CGFloat(remainingAmount) / CGFloat(amountToSplit)
@@ -105,7 +108,7 @@ struct BudgetCategorySliderRow: View {
     @Binding var remainingAmount: Int
     let amountToSplit: Int
     let formatter: NumberFormatter
-    
+
     @State private var timer: Timer?
     @State private var isLongPressing = false
 
@@ -117,14 +120,14 @@ struct BudgetCategorySliderRow: View {
                 let decreaseAction = {
                     withAnimation(.spring) {
                         let currentValue = repartition[category] ?? 0
-                        let amountToDecrease = 1
+                        let amountToDecrease = min(100, currentValue % 100 == 0 ? 100 : currentValue % 100)
                         let newValue = max(0, currentValue - amountToDecrease)
                         let delta = newValue - currentValue // will be negative or zero
                         repartition[category] = newValue
                         remainingAmount -= delta
                     }
                 }
-                
+
                 Button(action: decreaseAction, label: {
                     Image(systemName: "minus")
                 })
@@ -154,9 +157,12 @@ struct BudgetCategorySliderRow: View {
                         set: { newValue in
                             let oldValue = repartition[category] ?? 0
                             let clampedNewValue = min(newValue, oldValue + remainingAmount)
-                            let delta = clampedNewValue - oldValue
+                            let roundedValue = (clampedNewValue / 100) * 100
+                            let finalValue = min(roundedValue, oldValue + remainingAmount)
+                            
+                            let delta = finalValue - oldValue
 
-                            repartition[category] = clampedNewValue
+                            repartition[category] = finalValue
                             remainingAmount -= delta
                         }
                     ),
@@ -164,11 +170,11 @@ struct BudgetCategorySliderRow: View {
                     maxValue: maxValueForSlider,
                     formatter: formatter
                 )
-                
+
                 let increaseAction = {
                     withAnimation(.spring) {
                         let currentValue = repartition[category] ?? 0
-                        let amountToIncrease = 1
+                        let amountToIncrease = min(100, remainingAmount)
                         let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
                         let delta = newValue - currentValue // will be positive or zero
                         repartition[category] = newValue
@@ -207,7 +213,7 @@ struct RepartitionSlider: View {
     let total: Int
     let maxValue: Int
     let formatter: NumberFormatter
-    
+
     @State private var scale: CGFloat = 1.0
 
     var body: some View {
@@ -262,7 +268,8 @@ struct RepartitionSlider: View {
                     .onChanged { drag in
                         let pct = min(max(0, drag.location.x / width), 1)
                         let rawNewValue = Int(round(pct * CGFloat(total)))
-                        let clampedNewValue = min(rawNewValue, maxValue)
+                        let roundedNewValue = (rawNewValue / 100) * 100
+                        let clampedNewValue = min(roundedNewValue, maxValue)
                         value = clampedNewValue
                     }
             )
@@ -283,7 +290,7 @@ struct RepartitionSlider: View {
 
 #Preview {
     @Previewable @State var repartition: [BudgetCategory: Int] = Dictionary(
-            uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 100 / BudgetCategory.allCases.count) }
+            uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) }
         )
     @Previewable @State var isRepartitionComplete = false
     let formatter: NumberFormatter = {
@@ -292,12 +299,12 @@ struct RepartitionSlider: View {
         formatter.currencyCode = "EUR"
         return formatter
     }()
-    
+
     VStack {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
             IncomeRepartitionComponent(
                 repartition: $repartition,
-                amountToSplit: 100,
+                amountToSplit: 860_30,
                 formatter: formatter,
                 isRepartitionComplete: $isRepartitionComplete
             )
