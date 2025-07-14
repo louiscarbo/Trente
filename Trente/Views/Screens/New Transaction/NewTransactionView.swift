@@ -8,7 +8,6 @@
 import SwiftUI
 
 // TODO: adapt to macOS
-// TODO: Split into different files
 struct NewTransactionView: View {
     // View Arguments
     var currency: Currency
@@ -44,24 +43,17 @@ struct NewTransactionView: View {
     
     private var filteredSteps: [NewTransactionStep] {
         var steps: [NewTransactionStep] = [.amountCategory, .title, .notesImage]
-        
-        if type == .income {
-            steps.append(.repartition)
-        }
-        
-        if isRecurrent {
-            steps.append(.recurrence)
-        }
-        
+        if type == .income { steps.append(.repartition) }
+        if isRecurrent { steps.append(.recurrence) }
         return steps
     }
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                macOSConditionalView
-                navigationButtons
-            }
+            stepsView
+                .safeAreaInset(edge: .bottom) {
+                    navigationButtons
+                }
         }
     }
     
@@ -124,7 +116,7 @@ struct NewTransactionView: View {
         }
     }
     
-    private var macOSConditionalView: some View {
+    private var stepsView: some View {
         Group {
             switch step {
             case .amountCategory:
