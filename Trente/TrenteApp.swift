@@ -48,7 +48,7 @@ struct TrenteApp: App {
             }
         }
         .modelContainer(container)
-        .defaultSize(width: 500, height: 700)
+        .defaultSize(width: 500, height: 550)
         #endif
     }
 }
