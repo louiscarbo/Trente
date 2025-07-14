@@ -142,6 +142,7 @@ struct NewTransactionView: View {
                     image: $image,
                     notes: $notes,
                     
+                    nextButtonDisabled: $nextButtonDisabled,
                     showKeyboardDismissButton: $showKeyboardDismissButton
                 )
             case .repartition:

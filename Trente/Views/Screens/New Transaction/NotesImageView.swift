@@ -15,6 +15,7 @@ struct NotesImageView: View {
     @Binding var notes: String
             
     // View State
+    @Binding var nextButtonDisabled: Bool
     @Binding var showKeyboardDismissButton: Bool
     @State private var userSubscriptionIsActive: Bool = true
     @State private var photosPickerItem: PhotosPickerItem?
@@ -118,7 +119,6 @@ struct NotesImageView: View {
                 }
             }
             
-            // Subscription Invite
             if !userSubscriptionIsActive {
                 GroupBox(label: Label("Add Notes and Images", systemImage: "sparkle")) {
                     Text("With Trente+, you can add images and notes to your transactions. Try it now!")
@@ -138,6 +138,9 @@ struct NotesImageView: View {
                 .groupBoxStyle(TrenteGroupBoxStyle())
                 .padding()
             }
+        }
+        .onAppear {
+            nextButtonDisabled = false
         }
     }
 }
