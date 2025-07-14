@@ -22,8 +22,14 @@ struct AmountCategoryView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Label(transactionType == .income
+                  ? "You will select categories for this income in the next steps."
+                  : selectedCategory?.shortExamples ?? "Select a category for this transaction.", systemImage: "info.circle")
+            .font(.headline)
+            .foregroundStyle(.secondary)
+
             if transactionType == .expense {
-                Picker("Select Category", selection: $selectedCategory) {
+                Picker("Category", selection: $selectedCategory) {
                     ForEach(BudgetCategory.allCases, id: \.self) { category in
                         Text(category.shortName).tag(category)
                     }
@@ -31,35 +37,15 @@ struct AmountCategoryView: View {
                 .pickerStyle(.segmented)
             }
             
-            Label(transactionType == .income
-                  ? "You will select categories for this income in the next steps."
-                  : selectedCategory?.shortExamples ?? "Select a category for this transaction.", systemImage: "info.circle")
-            .font(.headline)
-            .foregroundStyle(.secondary)
-            
             Spacer()
             
+            #if os(iOS)
             HStack(spacing: 0) {
-                Picker("Income/Expense", selection: $transactionType) {
-                    Image(systemName: "minus").tag(TransactionType.expense)
-                    Image(systemName: "plus").tag(TransactionType.income)
-                }
-                .pickerStyle(.inline)
-                .frame(width: 60)
-                
-                TextField(
-                    "",
-                    text: $amountText,
-                    prompt: Text("\(0.formatted(.currency(code: currencyCode)))")
-                )
-                .focused($amountFieldIsFocused)
-                #if os(iOS)
-                .keyboardType(.decimalPad)
-                .textFieldStyle(.plain)
-                .font(.system(size: 80, weight: .bold))
-                .multilineTextAlignment(.center)
-                #endif
+                stackContent
             }
+            #elseif os(macOS)
+            stackContent
+            #endif
             
             Spacer()
             
@@ -70,6 +56,9 @@ struct AmountCategoryView: View {
             .toggleStyle(TrenteToggleStyle())
         }
         .padding([.horizontal, .bottom])
+        #if os(macOS)
+        .padding(.top)
+        #endif
         .onChange(of: amountText) { oldValue, newValue in
             processAmountTextChange(newValue: newValue, oldValue: oldValue)
             updateNextButtonState()
@@ -90,6 +79,37 @@ struct AmountCategoryView: View {
                 amountFieldIsFocused = true
             }
         }
+    }
+    
+    @ViewBuilder
+    private var stackContent: some View {
+        #if os(iOS)
+        Picker("Income/Expense", selection: $transactionType) {
+            Image(systemName: "minus").tag(TransactionType.expense)
+            Image(systemName: "plus").tag(TransactionType.income)
+        }
+        .pickerStyle(.inline)
+        .frame(width: 60)
+        #elseif os(macOS)
+        Picker("Type", selection: $transactionType) {
+            Label("Expense", systemImage: "minus").tag(TransactionType.expense)
+            Label("Income", systemImage: "plus").tag(TransactionType.income)
+        }
+        .pickerStyle(.segmented)
+        #endif
+        
+        TextField(
+            "",
+            text: $amountText,
+            prompt: Text("\(0.formatted(.currency(code: currencyCode)))")
+        )
+        .focused($amountFieldIsFocused)
+        #if os(iOS)
+        .keyboardType(.decimalPad)
+        .textFieldStyle(.plain)
+        .font(.system(size: 80, weight: .bold))
+        .multilineTextAlignment(.center)
+        #endif
     }
     
     // Text validation and amount in cents calculation
