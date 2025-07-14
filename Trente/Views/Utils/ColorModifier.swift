@@ -119,7 +119,7 @@ private extension NSColor {
                      saturationBoost: CGFloat) -> NSColor? {
         guard let conv = usingColorSpace(.deviceRGB) else { return nil }
         var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        guard conv.getHue(&h, saturation: &s, brightness: &b, alpha: &a) else { return nil }
+        conv.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
         return NSColor(
             hue: h,
             saturation: min(s + saturationBoost, 1),

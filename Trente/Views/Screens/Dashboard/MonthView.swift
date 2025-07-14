@@ -206,6 +206,7 @@ private struct AddTransactionButton: View {
     var wide: Bool = false
     
     @State private var isShowingNewTransactionSheet: Bool = false
+    @Environment(\.openWindow) private var openWindow
     
     var body: some View {
         Button {
@@ -221,7 +222,6 @@ private struct AddTransactionButton: View {
         .buttonStyle(TrentePrimaryButtonStyle())
         .padding(.horizontal)
         .padding(.top)
-        .shadow(color: .white, radius: DesignSystem.Radius.large.rawValue)
         .frame(width: wide ? 400 : nil)
         #if os(macOS)
         .padding(.bottom)
@@ -291,7 +291,6 @@ private struct WideMonthView: View {
     var recurringTransactionsCount: Int
     
     // View State
-    @Environment(\.openWindow) private var openWindow
     @Environment(\.colorScheme) private var colorScheme
     private var lightMode: Bool { colorScheme == .light }
     
