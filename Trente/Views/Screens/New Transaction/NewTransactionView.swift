@@ -13,38 +13,7 @@ struct NewTransactionView: View {
     var currency: Currency
     
     // Transaction Data
-    @State private var selectedCategory: BudgetCategory?
-    @State private var amountCents: Int = 0
-    @State private var type: TransactionType = .expense
-    @State private var title: String = ""
-    @State private var isRecurrent: Bool = false
-    @State private var image: Image?
-    @State private var notes: String = ""
-    @State private var recurrenceFrequency: RecurrenceFrequency = .monthly
-    @State private var recurrenceStartDate: Date = Date()
-    @State private var recurrenceEndDate: Date?
-    @State private var repartition: [BudgetCategory: Int] = [:]
-    
-    // Buttons Logic
-    private var showPreviousButton: Bool {
-        step != .amountCategory
-    }
-    private var showNextButton: Bool {
-        step != .recurrence
-    }
-    @State private var nextButtonDisabled: Bool = true
-    
-    // View State
-    @State private var step: NewTransactionStep = .amountCategory
-    @State private var showKeyboardDismissButton: Bool = false
-    @State private var isRepartitionComplete: Bool = false
-    
-    private var filteredSteps: [NewTransactionStep] {
-        var steps: [NewTransactionStep] = [.amountCategory, .title, .notesImage]
-        if type == .income { steps.append(.repartition) }
-        if isRecurrent { steps.append(.recurrence) }
-        return steps
-    }
+    @StateObject private var viewModel: NewTransactionViewModel = .init()
     
     var body: some View {
         NavigationStack {
@@ -58,34 +27,34 @@ struct NewTransactionView: View {
     private var navigationButtons: some View {
         VStack {
             HStack(spacing: 20) {
-                if let currentIndex = filteredSteps.firstIndex(of: step), currentIndex > 0 {
+                if viewModel.showPreviousButton {
                     Button("Previous") {
                         withAnimation(.bouncy) {
-                            step = filteredSteps[currentIndex - 1]
+                            viewModel.previousStep()
                         }
                     }
                     .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
                 }
                 
-                if let currentIndex = filteredSteps.firstIndex(of: step) {
-                    let isLastStep = currentIndex == filteredSteps.count - 1
+                if let currentIndex = viewModel.filteredSteps.firstIndex(of: viewModel.step) {
+                    let isLastStep = currentIndex == viewModel.filteredSteps.count - 1
                     
                     Button(isLastStep ? "Create" : "Next") {
                         withAnimation {
                             if isLastStep {
-                                print("Transaction creation completed")
+                                viewModel.createTransaction()
                             } else {
-                                step = filteredSteps[currentIndex + 1]
+                                viewModel.nextStep()
                             }
                         }
                     }
-                    .disabled(nextButtonDisabled)
+                    .disabled(viewModel.nextButtonDisabled)
                     .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
                 }
             }
             
             #if os(iOS)
-            if showKeyboardDismissButton {
+            if viewModel.showKeyboardDismissButton {
                 Button {
                     UIApplication.shared.sendAction(
                         #selector(UIResponder.resignFirstResponder),
@@ -93,7 +62,7 @@ struct NewTransactionView: View {
                         from: nil,
                         for: nil
                     )
-                    showKeyboardDismissButton = false
+                    viewModel.showKeyboardDismissButton = false
                 } label: {
                     Label("Done", systemImage: "keyboard.chevron.compact.down")
                 }
@@ -115,46 +84,46 @@ struct NewTransactionView: View {
     
     private var stepsView: some View {
         Group {
-            switch step {
+            switch viewModel.step {
             case .amountCategory:
                 AmountCategoryView(
-                    selectedCategory: $selectedCategory,
-                    amountCents: $amountCents,
-                    transactionType: $type,
-                    nextButtonDisabled: $nextButtonDisabled,
-                    isRecurrent: $isRecurrent,
+                    selectedCategory: $viewModel.selectedCategory,
+                    amountCents: $viewModel.amountCents,
+                    transactionType: $viewModel.type,
+                    isRecurrent: $viewModel.isRecurrent,
                     
+                    nextButtonDisabled: $viewModel.nextButtonDisabled,
                     currencyCode: currency.isoCode
                 )
             case .title:
                 TitleView(
-                    title: $title,
+                    title: $viewModel.title,
                     
-                    nextButtonDisabled: $nextButtonDisabled,
-                    step: $step,
-                    showKeyboardDismissButton: $showKeyboardDismissButton
+                    nextButtonDisabled: $viewModel.nextButtonDisabled,
+                    step: $viewModel.step,
+                    showKeyboardDismissButton: $viewModel.showKeyboardDismissButton
                 )
             case .notesImage:
                 NotesImageView(
-                    image: $image,
-                    notes: $notes,
+                    image: $viewModel.image,
+                    notes: $viewModel.notes,
                     
-                    nextButtonDisabled: $nextButtonDisabled,
-                    showKeyboardDismissButton: $showKeyboardDismissButton
+                    nextButtonDisabled: $viewModel.nextButtonDisabled,
+                    showKeyboardDismissButton: $viewModel.showKeyboardDismissButton
                 )
             case .repartition:
                 IncomeRepartitionView(
                     currency: currency,
-                    transactionAmount: amountCents,
-                    repartition: $repartition,
+                    transactionAmount: viewModel.amountCents,
+                    repartition: $viewModel.repartition,
                     
-                    nextButtonDisabled: $nextButtonDisabled
+                    nextButtonDisabled: $viewModel.nextButtonDisabled
                 )
             case .recurrence:
                 RecurrenceView(
-                    recurrenceFrequency: $recurrenceFrequency,
-                    recurrenceStartDate: $recurrenceStartDate,
-                    recurrenceEndDate: $recurrenceEndDate
+                    recurrenceFrequency: $viewModel.recurrenceFrequency,
+                    recurrenceStartDate: $viewModel.recurrenceStartDate,
+                    recurrenceEndDate: $viewModel.recurrenceEndDate
                 )
             }
             
