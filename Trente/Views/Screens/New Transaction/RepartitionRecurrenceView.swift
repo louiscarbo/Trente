@@ -55,7 +55,7 @@ struct IncomeRepartitionView: View {
     var body: some View {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
             VStack(alignment: .leading, spacing: .large) {
-                Text("In which categories would you like to split this income?")
+                Text("How would you like to split this income?")
                 IncomeRepartitionComponent(
                     repartition: $repartition,
                     amountToSplit: transactionAmount,
