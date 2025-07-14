@@ -83,6 +83,7 @@ struct MonthView: View {
 
 #Preview {
     MonthListView()
+        .modelContainer(DataProvider.shared.modelContainer)
 }
 
 // MARK: - Shared Views
@@ -207,6 +208,7 @@ private struct AddTransactionButton: View {
     
     @State private var isShowingNewTransactionSheet: Bool = false
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         Button {
@@ -276,7 +278,21 @@ private struct NarrowMonthView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                AddTransactionButton(currency: month.currency)
+                ZStack(alignment: .bottom) {
+                    #if os(iOS)
+                    LinearGradient(
+                        colors: [
+                            .clear,
+                            lightMode ? .white : .black
+                        ],
+                        startPoint: .top,
+                        endPoint: .center
+                    )
+                    .frame(height: 130)
+                    .offset(y: 50)
+                    #endif
+                    AddTransactionButton(currency: month.currency)
+                }
             }
         }
     }
