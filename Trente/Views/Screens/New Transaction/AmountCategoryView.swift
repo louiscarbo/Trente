@@ -12,10 +12,10 @@ struct AmountCategoryView: View {
     @Binding var selectedCategory: BudgetCategory?
     @Binding var amountCents: Int
     @Binding var transactionType: TransactionType
+    @Binding var isRecurrent: Bool
     
     // View State
     @Binding var nextButtonDisabled: Bool
-    @Binding var isRecurrent: Bool
     var currencyCode: String
     @State private var amountText = ""
     @FocusState private var amountFieldIsFocused: Bool
