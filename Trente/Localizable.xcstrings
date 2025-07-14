@@ -19,6 +19,9 @@
     "%@ Remaining" : {
 
     },
+    "Add an End Date" : {
+
+    },
     "Add Image" : {
 
     },
@@ -109,6 +112,9 @@
     "Enabled" : {
 
     },
+    "End Date" : {
+
+    },
     "Every %@" : {
 
     },
@@ -123,6 +129,9 @@
       }
     },
     "Filter" : {
+
+    },
+    "Frequency" : {
 
     },
     "From" : {
@@ -206,6 +215,9 @@
     "Previous" : {
 
     },
+    "Recurrence Details" : {
+
+    },
     "Recurring transaction" : {
 
     },
@@ -264,6 +276,9 @@
 
     },
     "Start a New Month" : {
+
+    },
+    "Start Date" : {
 
     },
     "Start tracking your budget with Trente by opening the app!" : {
