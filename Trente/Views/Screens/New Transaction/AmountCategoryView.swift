@@ -29,9 +29,6 @@ struct AmountCategoryView: View {
                     }
                 }
                 .pickerStyle(.segmented)
-            } else {
-                Spacer()
-                    .frame(height: 25)
             }
             
             Label(transactionType == .income
