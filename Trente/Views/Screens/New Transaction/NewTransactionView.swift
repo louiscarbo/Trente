@@ -23,9 +23,7 @@ struct NewTransactionView: View {
     @State private var recurrenceFrequency: RecurrenceFrequency = .monthly
     @State private var recurrenceStartDate: Date = Date()
     @State private var recurrenceEndDate: Date?
-    @State private var repartition: [BudgetCategory: Int] = .init(
-            uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) }
-        )
+    @State private var repartition: [BudgetCategory: Int] = [:]
     
     // Buttons Logic
     private var showPreviousButton: Bool {
@@ -153,8 +151,7 @@ struct NewTransactionView: View {
                     isRepartitionComplete: $isRepartitionComplete
                 )
             case .recurrence:
-                EmptyView()
-//                RecurrenceView()
+                RecurrenceView()
             }
             
         }
