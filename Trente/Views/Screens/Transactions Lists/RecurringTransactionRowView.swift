@@ -76,7 +76,7 @@ private struct RecurringTransactionEntryRowView: View {
     var body: some View {
         HStack {
             if isAlone {
-                RecurrenceView(
+                RecurrenceTagView(
                     color: transactionCategoryColor,
                     frequency: .monthly,
                     currency: currency!
@@ -108,7 +108,7 @@ private struct RecurringTransactionEntryRowView: View {
     }
 }
 
-private struct RecurrenceView: View {
+private struct RecurrenceTagView: View {
     var color: Color
     var frequency: RecurrenceFrequency
     var currency: Currency

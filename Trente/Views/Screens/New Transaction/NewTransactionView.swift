@@ -60,7 +60,7 @@ struct NewTransactionView: View {
             HStack(spacing: 20) {
                 if let currentIndex = filteredSteps.firstIndex(of: step), currentIndex > 0 {
                     Button("Previous") {
-                        withAnimation {
+                        withAnimation(.bouncy) {
                             step = filteredSteps[currentIndex - 1]
                         }
                     }
@@ -73,7 +73,6 @@ struct NewTransactionView: View {
                     Button(isLastStep ? "Create" : "Next") {
                         withAnimation {
                             if isLastStep {
-                                // Handle final transaction creation
                                 print("Transaction creation completed")
                             } else {
                                 step = filteredSteps[currentIndex + 1]
@@ -148,10 +147,15 @@ struct NewTransactionView: View {
                     currency: currency,
                     transactionAmount: amountCents,
                     repartition: $repartition,
-                    isRepartitionComplete: $isRepartitionComplete
+                    
+                    nextButtonDisabled: $nextButtonDisabled
                 )
             case .recurrence:
-                RecurrenceView()
+                RecurrenceView(
+                    recurrenceFrequency: $recurrenceFrequency,
+                    recurrenceStartDate: $recurrenceStartDate,
+                    recurrenceEndDate: $recurrenceEndDate
+                )
             }
             
         }
