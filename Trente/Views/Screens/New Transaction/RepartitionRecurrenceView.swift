@@ -17,7 +17,7 @@ struct RepartitionRecurrenceView: View {
     // View State
     var showRecurrence: Bool
     var showIncomeRepartition: Bool
-    
+        
     var body: some View {
         ScrollView {
             VStack(spacing: .large) {
@@ -38,15 +38,17 @@ struct RepartitionRecurrenceView: View {
             }
             .padding()
         }
+        .onAppear {
+            repartition = Dictionary(
+                uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
+        }
     }
 }
 
 struct IncomeRepartitionView: View {
     var currency: Currency
     var transactionAmount: Int
-    
-    let categories: [BudgetCategory] = BudgetCategory.allCases
-    
+        
     @Binding var repartition: [BudgetCategory: Int]
     @Binding var isRepartitionComplete: Bool
     
