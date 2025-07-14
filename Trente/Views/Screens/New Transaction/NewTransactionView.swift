@@ -33,7 +33,7 @@ struct NewTransactionView: View {
         step != .amountCategory
     }
     private var showNextButton: Bool {
-        step != .repartitionRecurrence
+        step != .recurrence
     }
     @State private var nextButtonDisabled: Bool = true
     
@@ -42,93 +42,57 @@ struct NewTransactionView: View {
     @State private var showKeyboardDismissButton: Bool = false
     @State private var isRepartitionComplete: Bool = false
     
+    private var filteredSteps: [NewTransactionStep] {
+        var steps: [NewTransactionStep] = [.amountCategory, .title, .notesImage]
+        
+        if type == .income {
+            steps.append(.repartition)
+        }
+        
+        if isRecurrent {
+            steps.append(.recurrence)
+        }
+        
+        return steps
+    }
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                #if os(iOS)
-                iOSTabView
-                #else
                 macOSConditionalView
-                #endif
                 navigationButtons
             }
         }
     }
     
-    var iOSTabView: some View {
-        TabView(selection: $step) {
-            AmountCategoryView(
-                selectedCategory: $selectedCategory,
-                amountCents: $amountCents,
-                transactionType: $type,
-                nextButtonDisabled: $nextButtonDisabled,
-                isRecurrent: $isRecurrent,
-                
-                currencyCode: currency.isoCode
-            )
-            .newTransactionPage(tag: .amountCategory)
-            
-            TitleView(
-                title: $title,
-                nextButtonDisabled: $nextButtonDisabled,
-                step: $step,
-                showKeyboardDismissButton: $showKeyboardDismissButton
-            )
-            .newTransactionPage(tag: .title)
-            
-            NotesImageView(
-                image: $image,
-                notes: $notes,
-                showKeyboardDismissButton: $showKeyboardDismissButton
-            )
-            .newTransactionPage(tag: .notesImage)
-            
-            RepartitionRecurrenceView(
-                currency: currency,
-                transactionAmount: amountCents,
-                repartition: $repartition,
-                isRepartitionComplete: $isRepartitionComplete,
-                showRecurrence: isRecurrent,
-                showIncomeRepartition: type == .income
-            )
-            .newTransactionPage(tag: .repartitionRecurrence)
-        }
-        #if os(iOS)
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        #elseif os(macOS)
-        .tabViewStyle(.automatic)
-        #endif
-        .navigationTitle("New Transaction")
-        .toolbarTitleDisplayMode(.inline)
-    }
-    
     private var navigationButtons: some View {
         VStack {
             HStack(spacing: 20) {
-                if showPreviousButton {
+                if let currentIndex = filteredSteps.firstIndex(of: step), currentIndex > 0 {
                     Button("Previous") {
                         withAnimation {
-                            if let previousStep = step.previous() {
-                                step = previousStep
-                            } else {
-                                print("Already at the first step")
-                            }
+                            step = filteredSteps[currentIndex - 1]
                         }
                     }
                     .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
                 }
                 
-                Button("Next") {
-                    withAnimation {
-                        if let nextStep = step.next(isRecurrent: isRecurrent, isIncome: type == .income) {
-                            step = nextStep
-                        } else {
-                            print("Transaction creation completed")
+                if let currentIndex = filteredSteps.firstIndex(of: step) {
+                    let isLastStep = currentIndex == filteredSteps.count - 1
+                    
+                    Button(isLastStep ? "Create" : "Next") {
+                        withAnimation {
+                            if isLastStep {
+                                // Handle final transaction creation
+                                print("Transaction creation completed")
+                            } else {
+                                step = filteredSteps[currentIndex + 1]
+                            }
                         }
                     }
+                    .disabled(nextButtonDisabled)
+                    .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
                 }
-                .disabled(nextButtonDisabled)
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
             }
             
             #if os(iOS)
@@ -188,75 +152,30 @@ struct NewTransactionView: View {
                     
                     showKeyboardDismissButton: $showKeyboardDismissButton
                 )
-            case .repartitionRecurrence:
-                RepartitionRecurrenceView(
+            case .repartition:
+                IncomeRepartitionView(
                     currency: currency,
                     transactionAmount: amountCents,
                     repartition: $repartition,
-                    isRepartitionComplete: $isRepartitionComplete,
-                    showRecurrence: isRecurrent,
-                    showIncomeRepartition: type == .income
+                    isRepartitionComplete: $isRepartitionComplete
                 )
+            case .recurrence:
+                EmptyView()
+//                RecurrenceView()
             }
+            
         }
-    }
-    
-    struct NewTransactionViewModifier: ViewModifier {
-        let tag: NewTransactionStep
-        
-        func body(content: Content) -> some View {
-            ZStack {
-                Rectangle().fill(.clear)
-                content
-            }
-            .tag(tag)
-            .contentShape(Rectangle())
-            .gesture(DragGesture())
-        }
+        .navigationTitle("New Transaction")
+        .toolbarTitleDisplayMode(.inline)
     }
 }
 
-enum NewTransactionStep {
+enum NewTransactionStep: CaseIterable {
     case amountCategory
     case title
     case notesImage
-    case repartitionRecurrence
-    
-    func next(isRecurrent: Bool, isIncome: Bool) -> NewTransactionStep? {
-        switch self {
-        case .amountCategory:
-            return .title
-        case .title:
-            return .notesImage
-        case .notesImage:
-            if isRecurrent || isIncome {
-                return .repartitionRecurrence
-            } else {
-                return nil
-            }
-        case .repartitionRecurrence:
-            return nil
-        }
-    }
-    
-    func previous() -> NewTransactionStep? {
-        switch self {
-        case .amountCategory:
-            return nil
-        case .title:
-            return .amountCategory
-        case .notesImage:
-            return .title
-        case .repartitionRecurrence:
-            return .notesImage
-        }
-    }
-}
-
-extension View {
-    func newTransactionPage(tag: NewTransactionStep) -> some View {
-        modifier(NewTransactionView.NewTransactionViewModifier(tag: tag))
-    }
+    case repartition
+    case recurrence
 }
 
 #Preview {
