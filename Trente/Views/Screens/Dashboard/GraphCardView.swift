@@ -11,7 +11,6 @@ struct GraphCardView: View {
     @State var month: Month
     @State var category: BudgetCategory
     var size: CGFloat = 100
-    var scaleHorizontally: Bool = true
     
     var body: some View {
         GroupBox(label:
@@ -24,7 +23,7 @@ struct GraphCardView: View {
             CategoryRemainingGaugeView(month: month, category: category, size: size)
                 .padding(8)
         }
-        .groupBoxStyle(TrenteGroupBoxStyle(scaleHorizontally: scaleHorizontally))
+        .groupBoxStyle(TrenteGroupBoxStyle())
     }
 }
 

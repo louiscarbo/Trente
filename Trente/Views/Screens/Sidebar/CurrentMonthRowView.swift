@@ -11,7 +11,6 @@ struct CurrentMonthRowView: View {
     var currentMonth: Month
     @Binding var selectedMonth: Month?
     @State private var isPressed: Bool = false
-    var scaleVertically: Bool = false
     
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
@@ -75,7 +74,7 @@ struct CurrentMonthRowView: View {
     
     var backgroundView: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 26)
+            RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                 .foregroundStyle(
                     LinearGradient(
                         colors: [currentMonth.overSpent ? .red.opacity(0.6) : .green.opacity(0.6), .red.opacity(0.6)],
@@ -83,7 +82,7 @@ struct CurrentMonthRowView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-            RoundedRectangle(cornerRadius: 26)
+            RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                 .foregroundStyle(
                     RadialGradient(
                         colors: [lightMode ? .white : .black, .clear],
@@ -92,15 +91,15 @@ struct CurrentMonthRowView: View {
                         endRadius: 500
                     )
                 )
-            RoundedRectangle(cornerRadius: 26)
+            RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                 .foregroundStyle(.regularMaterial)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 26)
-                        .stroke(isSelected ? Color.primary :
+                    RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
+                        .stroke(isSelected ? Color.black.opacity(0.5) :
                                     (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
                 )
             if isPressed {
-                RoundedRectangle(cornerRadius: 26)
+                RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                     .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
             }
         }

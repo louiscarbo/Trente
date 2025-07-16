@@ -170,9 +170,6 @@
     "Next" : {
 
     },
-    "Next Recurring Transactions" : {
-
-    },
     "No month yet" : {
 
     },
@@ -195,6 +192,9 @@
 
     },
     "Over Budget" : {
+
+    },
+    "Please open this window from a month dashboard." : {
 
     },
     "Previous" : {
