@@ -19,25 +19,11 @@ struct MonthView: View {
     
     // Computed Properties
     private var transactionGroupsCount: Int {
-        let descriptor = FetchDescriptor<TransactionGroup>()
-        do {
-            return try modelContext.fetchCount(descriptor)
-        } catch {
-            self.error = error
-            errorIsPresented = true
-            return 0
-        }
+        fetchCount(FetchDescriptor<TransactionGroup>())
     }
-    
+
     private var recurringTransactionsCount: Int {
-        do {
-            let descriptor = FetchDescriptor<RecurringTransactionInstance>()
-            return try modelContext.fetchCount(descriptor)
-        } catch {
-            self.error = error
-            errorIsPresented = true
-            return 0
-        }
+        fetchCount(FetchDescriptor<RecurringTransactionInstance>())
     }
     
     private var nextRecurringTransactionsInstances: [RecurringTransactionInstance] {
@@ -86,6 +72,16 @@ struct MonthView: View {
             return true
         case (false, true):
             return false
+        }
+    }
+    
+    private func fetchCount<T: PersistentModel>(_ descriptor: FetchDescriptor<T>) -> Int {
+        do {
+            return try modelContext.fetchCount(descriptor)
+        } catch {
+            self.error = error
+            errorIsPresented = true
+            return 0
         }
     }
 }
