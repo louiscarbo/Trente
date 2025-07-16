@@ -159,17 +159,9 @@ struct AmountCategoryView: View {
     
     private func updateNextButtonState() {
         if transactionType == .income {
-            if amountCents != 0 {
-                nextButtonDisabled = false
-            } else {
-                nextButtonDisabled = true
-            }
+            nextButtonDisabled = amountCents == 0
         } else {
-            if amountCents != 0 && selectedCategory != nil {
-                nextButtonDisabled = false
-            } else {
-                nextButtonDisabled = true
-            }
+            nextButtonDisabled = amountCents == 0 || selectedCategory == nil
         }
     }
 }
