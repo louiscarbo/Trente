@@ -29,8 +29,26 @@ struct TrenteApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MonthListView()
         }
-        .modelContainer(container) // Inject the correct container into the environment
+        .modelContainer(container)
+        .defaultSize(width: 1200, height: 800)
+
+        #if os(macOS)
+        WindowGroup("New Transaction", id: "new-transaction", for: Currency.self) { $currency in
+            if let currency {
+                NewTransactionView(currency: currency)
+            } else {
+                ContentUnavailableView(
+                    "An error occurred",
+                    image: "xmark",
+                    description:
+                        Text("Please open this window from a month dashboard.")
+                )
+            }
+        }
+        .modelContainer(container)
+        .defaultSize(width: 500, height: 700)
+        #endif
     }
 }

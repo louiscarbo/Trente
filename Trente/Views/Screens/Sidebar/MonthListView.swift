@@ -58,7 +58,7 @@ struct MonthListView: View {
                 .padding()
             }
             #if os(macOS)
-            .navigationSplitViewColumnWidth(min: 500, ideal: 500)
+            .navigationSplitViewColumnWidth(min: 200, ideal: 300, max: 350)
             #endif
             .navigationDestination(item: $selection) { month in
                 MonthView(month: month)
@@ -125,7 +125,6 @@ private struct MonthRowView: View {
     private var lightMode: Bool { colorScheme == .light }
     
     var body: some View {
-        
         HStack {
             Text(month.name)
             Spacer()
@@ -139,23 +138,23 @@ private struct MonthRowView: View {
                 if isSelected {
                     if month != archivedMonths.last && month != archivedMonths.first {
                         Rectangle()
-                            .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                            .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
                     } else if month == archivedMonths.first {
                         UnevenRoundedRectangle(
-                            topLeadingRadius: 26,
+                            topLeadingRadius: DesignSystem.Radius.large.rawValue,
                             bottomLeadingRadius: 0,
                             bottomTrailingRadius: 0,
-                            topTrailingRadius: 26
+                            topTrailingRadius: DesignSystem.Radius.large.rawValue
                         )
-                        .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
                     } else {
                         UnevenRoundedRectangle(
                             topLeadingRadius: 0,
-                            bottomLeadingRadius: 26,
-                            bottomTrailingRadius: 26,
+                            bottomLeadingRadius: DesignSystem.Radius.large.rawValue,
+                            bottomTrailingRadius: DesignSystem.Radius.large.rawValue,
                             topTrailingRadius: 0
                         )
-                        .stroke(lightMode ? Color.black : Color.white, lineWidth: 3)
+                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
                     }
                 }
                 if isPressed {
@@ -164,17 +163,17 @@ private struct MonthRowView: View {
                             .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
                     } else if month == archivedMonths.first {
                         UnevenRoundedRectangle(
-                            topLeadingRadius: 26,
+                            topLeadingRadius: DesignSystem.Radius.large.rawValue,
                             bottomLeadingRadius: 0,
                             bottomTrailingRadius: 0,
-                            topTrailingRadius: 26
+                            topTrailingRadius: DesignSystem.Radius.large.rawValue
                         )
                         .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
                     } else {
                         UnevenRoundedRectangle(
                             topLeadingRadius: 0,
-                            bottomLeadingRadius: 26,
-                            bottomTrailingRadius: 26,
+                            bottomLeadingRadius: DesignSystem.Radius.large.rawValue,
+                            bottomTrailingRadius: DesignSystem.Radius.large.rawValue,
                             topTrailingRadius: 0
                         )
                         .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
@@ -224,10 +223,10 @@ struct TrenteListBackgroundView: View {
     private var lightMode: Bool { colorScheme == .light }
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 26)
+        RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
             .foregroundStyle(.regularMaterial)
             .overlay(
-                RoundedRectangle(cornerRadius: 26)
+                RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                     .stroke(
                         lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2), lineWidth: 3)
             )

@@ -51,6 +51,7 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
                 .font(.title2)
                 .padding(.vertical, narrow ? 5 : 16)
         }
+        .frame(maxWidth: .infinity)
         .fixedSize(horizontal: false, vertical: true)
         .environment(\.colorScheme, lightMode ? .dark : .light)
         .glassOrScale(isPressed: configuration.isPressed, isEnabled: isEnabled)

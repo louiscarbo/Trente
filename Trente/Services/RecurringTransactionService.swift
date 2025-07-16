@@ -45,9 +45,4 @@ final class RecurringTransactionService {
         newInstances.forEach { context.insert($0) }
         try context.save()
     }
-    
-    func fetchRecurringTransactionsCount(from model: ModelContext) throws -> Int {
-        let descriptor = FetchDescriptor<RecurringTransactionInstance>()
-        return try model.fetchCount(descriptor)
-    }
 }

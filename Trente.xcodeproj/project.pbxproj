@@ -11,6 +11,8 @@
 		7B3AA9DC2E2237530072E9CB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */; };
 		7B3AA9DD2E2237530072E9CB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */; };
 		7B7F9D7C2E0C8C01007296E5 /* Trente Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */; };
+		7B826FCD2E2840260074907E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7B826FCC2E2840260074907E /* .gitignore */; };
+		7B826FCE2E2840260074907E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7B826FCC2E2840260074907E /* .gitignore */; };
 		7BA442962E204E4300925EF5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
 		7BA442CA2E2052DD00925EF5 /* Trente Dev Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Dev Icon.icon */; };
 		7BBD01D32DB8DFAE007B606C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */; };
@@ -54,6 +56,7 @@
 		7B28474D2DAFE05300EEF97C /* Trente.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trente.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7B7F9D7B2E0C8C01007296E5 /* Trente Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Icon.icon"; sourceTree = "<group>"; };
+		7B826FCC2E2840260074907E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7BA4429C2E204E4300925EF5 /* Trente Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trente Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA442C92E2052DD00925EF5 /* Trente Dev Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Dev Icon.icon"; sourceTree = "<group>"; };
 		7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TrenteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,15 +102,15 @@
 				Model/TransactionGroup.swift,
 				Services/DataProvider.swift,
 				Services/RecurringTransactionService.swift,
-				Views/CurrentMonthRowView.swift,
-				"Views/Custom Styles/StyleCommons.swift",
-				"Views/Custom Styles/TrenteGaugeStyle.swift",
-				"Views/Custom Styles/TrenteGroupBoxStyle.swift",
-				"Views/Custom Styles/TrentePrimaryButtonStyle.swift",
-				"Views/Custom Styles/TrenteSecondaryButtonStyle.swift",
-				"Views/Custom Styles/TrenteToggleStyle.swift",
-				Views/GraphCardView.swift,
-				"Views/Transactions Lists/TransactionGroupRowView.swift",
+				"Views/Design System/Custom Styles/StyleCommons.swift",
+				"Views/Design System/Custom Styles/TrenteGaugeStyle.swift",
+				"Views/Design System/Custom Styles/TrenteGroupBoxStyle.swift",
+				"Views/Design System/Custom Styles/TrentePrimaryButtonStyle.swift",
+				"Views/Design System/Custom Styles/TrenteSecondaryButtonStyle.swift",
+				"Views/Design System/Custom Styles/TrenteToggleStyle.swift",
+				Views/Screens/Dashboard/GraphCardView.swift,
+				Views/Screens/Sidebar/CurrentMonthRowView.swift,
+				"Views/Screens/Transactions Lists/TransactionGroupRowView.swift",
 			);
 			target = 7BBD01CF2DB8DFAD007B606C /* TrenteWidgetExtension */;
 		};
@@ -176,6 +179,7 @@
 		7B2847442DAFE05300EEF97C = {
 			isa = PBXGroup;
 			children = (
+				7B826FCC2E2840260074907E /* .gitignore */,
 				7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */,
 				7B1F06282DBD7910007EFDC5 /* Trente.storekit */,
 				7BBD01E82DB8E135007B606C /* TrenteWidgetExtension.entitlements */,
@@ -358,6 +362,7 @@
 			files = (
 				7B3AA9DD2E2237530072E9CB /* .swiftlint.yml in Resources */,
 				7B7F9D7C2E0C8C01007296E5 /* Trente Icon.icon in Resources */,
+				7B826FCE2E2840260074907E /* .gitignore in Resources */,
 				7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +373,7 @@
 			files = (
 				7B3AA9DC2E2237530072E9CB /* .swiftlint.yml in Resources */,
 				7BA442962E204E4300925EF5 /* Trente.storekit in Resources */,
+				7B826FCD2E2840260074907E /* .gitignore in Resources */,
 				7BA442CA2E2052DD00925EF5 /* Trente Dev Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
