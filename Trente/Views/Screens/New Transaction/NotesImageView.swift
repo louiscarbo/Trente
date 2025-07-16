@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 
+// TODO: Refactor/Simplify/Split into smaller views
 struct NotesImageView: View {
     // Transaction Data
     @Binding var image: Image?
@@ -106,8 +107,13 @@ struct NotesImageView: View {
                     return
                 }
                 Task {
-                    if let data = try? await item.loadTransferable(type: Data.self), let selectedImage = createImage(data) {
-                        image = selectedImage
+                    do {
+                        if let data = try await item.loadTransferable(type: Data.self), let selectedImage = createImage(data) {
+                            image = selectedImage
+                        }
+                    } catch {
+                        // TODO: Handle error, e.g. show an alert to the user
+                        print("Error loading image: \(error.localizedDescription)")
                     }
                 }
             }
