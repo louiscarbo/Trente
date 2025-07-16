@@ -67,10 +67,6 @@ struct TitleView: View {
     }
     
     private func updateNextButtonState() {
-        if title.isEmpty {
-            nextButtonDisabled = true
-        } else {
-            nextButtonDisabled = false
-        }
+        nextButtonDisabled = title.isEmpty
     }
 }
