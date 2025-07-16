@@ -34,7 +34,7 @@ struct FilterSheetView: View {
                     }
                 }
             }
-            .alert("An error occured", isPresented: $errorIsPresented, presenting: error) { _ in
+            .alert("An error occurred", isPresented: $errorIsPresented, presenting: error) { _ in
                 Button("OK", role: .cancel) {
                     dismiss()
                 }

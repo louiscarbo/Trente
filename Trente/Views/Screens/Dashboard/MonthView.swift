@@ -51,7 +51,7 @@ struct MonthView: View {
                 }
             }
             .navigationTitle(month.name)
-            .alert("An error occured", isPresented: $errorIsPresented, presenting: error) { _ in
+            .alert("An error occurred", isPresented: $errorIsPresented, presenting: error) { _ in
             } message: { error in
                 Text("\(error.localizedDescription)")
             }
