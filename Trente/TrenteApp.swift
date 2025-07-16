@@ -40,7 +40,7 @@ struct TrenteApp: App {
                 NewTransactionView(currency: currency)
             } else {
                 ContentUnavailableView(
-                    "An error occured",
+                    "An error occurred",
                     image: "xmark",
                     description:
                         Text("Please open this window from a month dashboard.")
