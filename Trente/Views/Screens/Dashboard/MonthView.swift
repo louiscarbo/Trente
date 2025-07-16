@@ -63,16 +63,11 @@ struct MonthView: View {
         let aIsFuture = a.date >= now
         let bIsFuture = b.date >= now
         
-        switch (aIsFuture, bIsFuture) {
-        case (true, true):
+        if aIsFuture == bIsFuture {
             return a.date < b.date
-        case (false, false):
-            return a.date < b.date
-        case (true, false):
-            return true
-        case (false, true):
-            return false
         }
+        
+        return aIsFuture
     }
     
     private func fetchCount<T: PersistentModel>(_ descriptor: FetchDescriptor<T>) -> Int {
