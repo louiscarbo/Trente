@@ -14,7 +14,7 @@ class NewTransactionViewModel: ObservableObject {
     @Published var type: TransactionType = .expense
     @Published var title: String = ""
     @Published var isRecurrent: Bool = false
-    @Published var image: Image?
+    @Published var imageData: Data?
     @Published var notes: String = ""
     @Published var recurrenceFrequency: RecurrenceFrequency = .monthly
     @Published var recurrenceStartDate: Date = Date()
