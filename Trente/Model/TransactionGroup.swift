@@ -26,11 +26,25 @@ class TransactionGroup: Identifiable {
     var note: String?
     @Attribute(.externalStorage) var imageAttachmentData: Data?
     
+    // TODO: Used for preview, to delete before commit
     init(addedDate: Date, title: String, type: TransactionType, month: Month) {
         self.addedDate = addedDate
         self.title = title
         self.type = type
         self.month = month
+    }
+    
+    init(title: String, type: TransactionType, month: Month, note: String?, imageAttachmentData: Data?) {
+        self.id = UUID()
+        self.addedDate = .now
+        self.modifiedDate = .now
+        self.title = title
+        self.type = type
+        self.month = month
+        self.isDeleted = false
+        self.entries = []
+        self.note = note
+        self.imageAttachmentData = imageAttachmentData
     }
 }
 

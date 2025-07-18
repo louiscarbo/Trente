@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import SwiftData
 
+@MainActor
 class NewTransactionViewModel: ObservableObject {
     // Transaction Data
     @Published var selectedCategory: BudgetCategory?
@@ -53,8 +55,87 @@ class NewTransactionViewModel: ObservableObject {
         }
     }
     
-    func createTransaction() {
-        // TODO: Implement transaction creation
-        print("Transaction creation completed")
+    // TODO: Make it handle the error with an error as a published property
+    // TODO: Try to factorize redundant code
+    // TODO: Move the logic elsewhere in the code, maybe?
+    func createTransaction(for month: Month, in context: ModelContext) throws {
+        // MARK: Recurring Transaction
+        if isRecurrent {
+            let rule: RecurringTransactionRule = .init(
+                title: title,
+                frequency: recurrenceFrequency,
+                startDate: recurrenceStartDate,
+                endDate: recurrenceEndDate,
+                repartition: repartition
+            )
+            context.insert(rule)
+            
+            // TODO: Make this function refresh instances instead of generating them
+            try RecurringTransactionService.shared.refreshInstances(for: month, in: context)
+
+            if Calendar.current.isDateInToday(recurrenceStartDate) {
+                let group: TransactionGroup = .init(
+                    title: title,
+                    type: type,
+                    month: month,
+                    note: notes,
+                    imageAttachmentData: imageData
+                )
+                context.insert(group)
+                
+                if type == .expense, let category = selectedCategory {
+                    let entry: TransactionEntry = .init(
+                        amountCents: amountCents,
+                        category: category,
+                        group: group
+                    )
+                    context.insert(entry)
+                } else if type == .income {
+                    for (category, amount) in repartition {
+                        let entry: TransactionEntry = .init(
+                            amountCents: amount,
+                            category: category,
+                            group: group
+                        )
+                        context.insert(entry)
+                    }
+                }
+            }
+        } else {
+            // MARK: Non-Recurring Transaction
+            let group: TransactionGroup = .init(
+                title: title,
+                type: type,
+                month: month,
+                note: notes,
+                imageAttachmentData: imageData
+            )
+            context.insert(group)
+
+            if type == .expense, let category = selectedCategory {
+                let entry: TransactionEntry = .init(
+                    amountCents: amountCents,
+                    category: category,
+                    group: group
+                )
+                context.insert(entry)
+            } else if type == .income {
+                for (category, amount) in repartition where amount > 0 {
+                    let entry = TransactionEntry(
+                        amountCents: amount,
+                        category: category,
+                        group: group
+                    )
+                    context.insert(entry)
+                }
+            }
+        }
+        
+        do {
+            try context.save()
+            print("Transaction creation completed")
+        } catch {
+            print("Failed to save transaction: \(error)")
+        }
     }
 }
