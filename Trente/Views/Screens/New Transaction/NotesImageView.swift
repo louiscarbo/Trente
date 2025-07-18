@@ -11,7 +11,7 @@ import PhotosUI
 // TODO: Refactor/Simplify/Split into smaller views
 struct NotesImageView: View {
     // Transaction Data
-    @Binding var image: Image?
+    @Binding var imageData: Data?
     @Binding var notes: String
             
     // View State
@@ -22,6 +22,17 @@ struct NotesImageView: View {
     @State private var showImageSubscriptionSheet: Bool = false
     @State private var showFullScreen = false
     @FocusState private var notesFocused: Bool
+    
+    private var image: Image? {
+        guard let data = imageData else { return nil }
+        #if canImport(UIKit)
+        guard let uiImage = UIImage(data: data) else { return nil }
+        return Image(uiImage: uiImage)
+        #elseif canImport(AppKit)
+        guard let nsImage = NSImage(data: data) else { return nil }
+        return Image(nsImage: nsImage)
+        #endif
+    }
     
     var body: some View {
         ZStack {
@@ -103,18 +114,17 @@ struct NotesImageView: View {
             }
             .subscriptionAccessible(subscribed: userSubscriptionIsActive)
             .onChange(of: photosPickerItem) { _, newItem in
-                guard let item = newItem else {
-                    image = nil
-                    return
-                }
                 Task {
+                    guard let item = newItem else {
+                        imageData = nil
+                        return
+                    }
                     do {
-                        if let data = try await item.loadTransferable(type: Data.self), let selectedImage = createImage(data) {
-                            image = selectedImage
-                        }
+                        imageData = try await item.loadTransferable(type: Data.self)
                     } catch {
-                        // TODO: Handle error, e.g. show an alert to the user
-                        print("Error loading image: \(error.localizedDescription)")
+                        // TODO: Handle Error more gracefully/explicitly
+                        print("Error loading image data: \(error.localizedDescription)")
+                        imageData = nil
                     }
                 }
             }

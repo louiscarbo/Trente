@@ -105,7 +105,7 @@ struct NewTransactionView: View {
                 )
             case .notesImage:
                 NotesImageView(
-                    image: $viewModel.image,
+                    imageData: $viewModel.imageData,
                     notes: $viewModel.notes,
                     
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
