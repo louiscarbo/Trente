@@ -7,10 +7,13 @@
 
 import SwiftUI
 
-// TODO: adapt to macOS
 struct NewTransactionView: View {
     // View Arguments
-    var currency: Currency
+    let context: NewTransactionContext
+    private var month: Month? { modelContext.model(for: context.monthID) as? Month }
+    
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     
     // Transaction Data
     @StateObject private var viewModel: NewTransactionViewModel = .init()
@@ -93,7 +96,7 @@ struct NewTransactionView: View {
                     isRecurrent: $viewModel.isRecurrent,
                     
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
-                    currencyCode: currency.isoCode
+                    currencyCode: context.currency.isoCode
                 )
             case .title:
                 TitleView(
@@ -113,7 +116,7 @@ struct NewTransactionView: View {
                 )
             case .repartition:
                 IncomeRepartitionView(
-                    currency: currency,
+                    currency: context.currency,
                     transactionAmount: viewModel.amountCents,
                     repartition: $viewModel.repartition,
                     
@@ -145,7 +148,7 @@ enum NewTransactionStep: CaseIterable {
     Text("Preview")
         .sheet(isPresented: .constant(true)) {
             NewTransactionView(
-                currency: Currencies.currency(for: "EUR")!
+                context: .init(currency: Currencies.currency(for: "EUR")!, monthID: Month.month1.persistentModelID)
             )
         }
 }

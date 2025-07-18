@@ -204,6 +204,7 @@ private struct SecondaryGraphCards: View {
 
 private struct AddTransactionButton: View {
     var currency: Currency
+    var month: Month
     var wide: Bool = false
     
     @State private var isShowingNewTransactionSheet: Bool = false
@@ -215,7 +216,8 @@ private struct AddTransactionButton: View {
             #if os(iOS)
             isShowingNewTransactionSheet = true
             #else
-            openWindow(id: "new-transaction", value: currency)
+            let context: NewTransactionContext = .init(currency: currency, monthID: month.persistentModelID)
+            openWindow(id: "new-transaction", value: context)
             #endif
         } label: {
             Label("Add Transaction", systemImage: "plus")
@@ -229,7 +231,9 @@ private struct AddTransactionButton: View {
         .padding(.bottom)
         #else
         .sheet(isPresented: $isShowingNewTransactionSheet) {
-            NewTransactionView(currency: currency)
+            NewTransactionView(
+                context: .init(currency: currency, monthID: month.persistentModelID)
+            )
         }
         #endif
     }
@@ -291,7 +295,7 @@ private struct NarrowMonthView: View {
                     .frame(height: 130)
                     .offset(y: 50)
                     #endif
-                    AddTransactionButton(currency: month.currency)
+                    AddTransactionButton(currency: month.currency, month: month)
                 }
             }
         }
@@ -336,7 +340,7 @@ private struct WideMonthView: View {
                 .padding(26)
             }
             .safeAreaInset(edge: .bottom) {
-                AddTransactionButton(currency: month.currency, wide: true)
+                AddTransactionButton(currency: month.currency, month: month, wide: true)
             }
         }
     }
