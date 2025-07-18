@@ -41,7 +41,7 @@ class DataProvider {
         }
         
         for month in Month.sampleData {
-            try RecurringTransactionService.shared.generateInstances(for: month, in: context)
+            try RecurringTransactionService.shared.refreshInstances(for: month, in: context)
 
             context.insert(month)
         }

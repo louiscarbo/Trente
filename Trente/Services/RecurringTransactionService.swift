@@ -11,7 +11,34 @@ import SwiftData
 final class RecurringTransactionService {
     static let shared = RecurringTransactionService()
     private init() {}
+    
+    // TODO: Refactor the 2 functions here to share more code/logic (or eventually make the whole logic more robust)
+    // For example, we could imagine an equivalent of this function but that would work on a per-rule basis.
+    // This way, when adding a new rule, we could generate/refresh the instances only for this rule and leave the other
+    // rules as they are. To be thought lol.
+    
+    /// Deletes all previous stored TransactionInstances for this month, then generates them using
+    /// generateInstances.
+    func refreshInstances(for month: Month, in context: ModelContext) throws {
+        let startOfMonth = month.startDate
+        let endOfMonth = month.endDate()
+        
+        let predicate = #Predicate<RecurringTransactionInstance> {
+            $0.date >= startOfMonth && $0.date <= endOfMonth
+        }
+        
+        let fetchDescriptor = FetchDescriptor<RecurringTransactionInstance>(predicate: predicate)
+        let instancesToDelete = try context.fetch(fetchDescriptor)
+        
+        for instance in instancesToDelete {
+            context.delete(instance)
+        }
+        
+        try generateInstances(for: month, in: context)
+    }
+}
 
+private extension RecurringTransactionService {
     /// Fetches all rules whose window overlaps the given month,
     /// asks each rule to build its instances, then persists them all in one save.
     func generateInstances(for month: Month, in context: ModelContext) throws {
@@ -45,4 +72,5 @@ final class RecurringTransactionService {
         newInstances.forEach { context.insert($0) }
         try context.save()
     }
+
 }
