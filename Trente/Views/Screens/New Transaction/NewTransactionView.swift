@@ -45,7 +45,14 @@ struct NewTransactionView: View {
                     Button(isLastStep ? "Create" : "Next") {
                         withAnimation {
                             if isLastStep {
-                                viewModel.createTransaction()
+                                do {
+                                    // TODO: Find a better way of handling the case where month is nil
+                                    guard let month else { return }
+                                    try viewModel.createTransaction(for: month, in: modelContext)
+                                    dismiss()
+                                } catch {
+                                    print("OOPS!! An error occured: \(error)")
+                                }
                             } else {
                                 viewModel.nextStep()
                             }
