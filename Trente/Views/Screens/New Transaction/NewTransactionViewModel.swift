@@ -19,6 +19,7 @@ class NewTransactionViewModel: ObservableObject {
     var nextButtonDisabled: Bool = true
     var showKeyboardDismissButton: Bool = false
     var isRepartitionComplete: Bool = false
+    var showErrorAlert: Bool = false
     
     var filteredSteps: [NewTransactionStep] {
         var steps: [NewTransactionStep] = [.amountCategory, .title, .notesImage]
@@ -46,12 +47,11 @@ class NewTransactionViewModel: ObservableObject {
         }
     }
 
-    // TODO: Make it handle the error with an error as a published property
     func createTransaction(for month: Month, in context: ModelContext) {
         do {
             try TransactionService.shared.create(with: request, for: month, in: context)
         } catch {
-            print("ERROR: Failed to save transaction: \(error)")
+            showErrorAlert = true
         }
     }
 }

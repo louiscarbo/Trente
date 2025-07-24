@@ -64,6 +64,9 @@
     "Budget Category" : {
 
     },
+    "Cancel" : {
+
+    },
     "Categories" : {
 
     },
@@ -236,6 +239,9 @@
     "Rent, groceries, bills..." : {
 
     },
+    "Retry" : {
+
+    },
     "Salary" : {
 
     },
@@ -327,6 +333,9 @@
 
     },
     "Wants" : {
+
+    },
+    "We couldn't create the transaction. Please try again." : {
 
     },
     "Weekly" : {
