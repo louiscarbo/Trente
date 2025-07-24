@@ -25,6 +25,17 @@ struct NewTransactionView: View {
                     navigationButtons
                 }
         }
+        .alert("An error occurred", isPresented: $viewModel.showErrorAlert) {
+            Button("Retry") {
+                guard let month else { return }
+                viewModel.createTransaction(for: month, in: modelContext)
+            }
+            Button("Cancel", role: .cancel) {
+                dismiss()
+            }
+        } message: {
+            Text("We couldn't create the transaction. Please try again.")
+        }
     }
     
     private var navigationButtons: some View {
