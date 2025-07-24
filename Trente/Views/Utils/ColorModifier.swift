@@ -94,7 +94,7 @@ public extension Color {
     /// Passing 0 leaves the color unchanged; passing 1 applies the maximum tweak.
     func lighten(_ amount: CGFloat) -> Color {
         let clamped = max(0, min(amount, 1))
-        return darken(brightnessDrop: -clamped, saturationBoost: -clamped * 1)
+        return darken(brightnessDrop: -clamped, saturationBoost: -clamped)
     }
 }
 
