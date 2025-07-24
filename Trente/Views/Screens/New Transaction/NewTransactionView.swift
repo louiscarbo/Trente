@@ -16,7 +16,7 @@ struct NewTransactionView: View {
     @Environment(\.dismiss) private var dismiss
     
     // Transaction Data
-    @StateObject private var viewModel: NewTransactionViewModel = .init()
+    @Bindable private var viewModel: NewTransactionViewModel = .init()
     
     var body: some View {
         NavigationStack {
@@ -45,7 +45,6 @@ struct NewTransactionView: View {
                     Button(isLastStep ? "Create" : "Next") {
                         withAnimation {
                             if isLastStep {
-                                // TODO: Find a better way of handling nil month case?
                                 guard let month else { return }
                                 viewModel.createTransaction(for: month, in: modelContext)
                                 dismiss()
@@ -93,17 +92,17 @@ struct NewTransactionView: View {
             switch viewModel.step {
             case .amountCategory:
                 AmountCategoryView(
-                    selectedCategory: $viewModel.selectedCategory,
-                    amountCents: $viewModel.amountCents,
-                    transactionType: $viewModel.type,
-                    isRecurrent: $viewModel.isRecurrent,
+                    selectedCategory: $viewModel.request.selectedCategory,
+                    amountCents: $viewModel.request.amountCents,
+                    transactionType: $viewModel.request.type,
+                    isRecurrent: $viewModel.request.isRecurrent,
                     
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
                     currencyCode: context.currency.isoCode
                 )
             case .title:
                 TitleView(
-                    title: $viewModel.title,
+                    title: $viewModel.request.title,
                     
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
                     step: $viewModel.step,
@@ -111,8 +110,8 @@ struct NewTransactionView: View {
                 )
             case .notesImage:
                 NotesImageView(
-                    imageData: $viewModel.imageData,
-                    notes: $viewModel.notes,
+                    imageData: $viewModel.request.imageData,
+                    notes: $viewModel.request.notes,
                     
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
                     showKeyboardDismissButton: $viewModel.showKeyboardDismissButton
@@ -120,16 +119,16 @@ struct NewTransactionView: View {
             case .repartition:
                 IncomeRepartitionView(
                     currency: context.currency,
-                    transactionAmount: viewModel.amountCents,
-                    repartition: $viewModel.repartition,
+                    transactionAmount: viewModel.request.amountCents,
+                    repartition: $viewModel.request.repartition,
                     
                     nextButtonDisabled: $viewModel.nextButtonDisabled
                 )
             case .recurrence:
                 RecurrenceView(
-                    recurrenceFrequency: $viewModel.recurrenceFrequency,
-                    recurrenceStartDate: $viewModel.recurrenceStartDate,
-                    recurrenceEndDate: $viewModel.recurrenceEndDate
+                    recurrenceFrequency: $viewModel.request.recurrenceFrequency,
+                    recurrenceStartDate: $viewModel.request.recurrenceStartDate,
+                    recurrenceEndDate: $viewModel.request.recurrenceEndDate
                 )
             }
             
