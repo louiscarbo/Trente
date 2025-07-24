@@ -217,7 +217,7 @@ private struct AddTransactionButton: View {
             isShowingNewTransactionSheet = true
             #else
             let context: NewTransactionContext = .init(currency: currency, monthID: month.persistentModelID)
-            openWindow(id: "new-transaction", value: context)
+            openWindow(id: WindowIdentifiers.newTransaction, value: context)
             #endif
         } label: {
             Label("Add Transaction", systemImage: "plus")
