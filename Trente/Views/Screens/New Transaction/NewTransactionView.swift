@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NewTransactionView: View {
     // View Arguments
@@ -155,6 +156,11 @@ enum NewTransactionStep: CaseIterable {
     case notesImage
     case repartition
     case recurrence
+}
+
+struct NewTransactionContext: Codable, Hashable {
+    let currency: Currency
+    let monthID: PersistentIdentifier
 }
 
 #Preview {
