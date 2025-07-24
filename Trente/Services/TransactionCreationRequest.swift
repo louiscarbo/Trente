@@ -7,18 +7,19 @@
 
 import Foundation
 
-struct TransactionCreationRequest {
-    let title: String
-    let amountCents: Int
-    let type: TransactionType
-    let selectedCategory: BudgetCategory?
-    let notes: String
-    let imageData: Data?
-    let isRecurrent: Bool
+@Observable
+class TransactionCreationRequest {
+    var title: String = ""
+    var amountCents: Int = 0
+    var type: TransactionType = .expense
+    var selectedCategory: BudgetCategory? = nil
+    var notes: String = ""
+    var imageData: Data? = nil
+    var isRecurrent: Bool = false
     
-    let repartition: [BudgetCategory: Int]
+    var repartition: [BudgetCategory: Int] = [:]
     
-    let recurrenceFrequency: RecurrenceFrequency
-    let recurrenceStartDate: Date
-    let recurrenceEndDate: Date?
+    var recurrenceFrequency: RecurrenceFrequency = .monthly
+    var recurrenceStartDate: Date = .now
+    var recurrenceEndDate: Date? = nil
 }
