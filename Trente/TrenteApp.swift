@@ -35,7 +35,7 @@ struct TrenteApp: App {
         .defaultSize(width: 1200, height: 800)
 
         #if os(macOS)
-        WindowGroup("New Transaction", id: "new-transaction", for: NewTransactionContext.self) { $context in
+        WindowGroup("New Transaction", id: WindowIdentifiers.newTransaction, for: NewTransactionContext.self) { $context in
             if let context {
                 NewTransactionView(context: context)
             } else {
