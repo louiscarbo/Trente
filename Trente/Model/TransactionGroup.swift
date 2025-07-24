@@ -73,6 +73,7 @@ extension TransactionGroup {
     }
 }
 
+// TODO: Investigate if detachedCopy() is really needed
 extension TransactionGroup {
     func detachedCopy() -> TransactionGroup {
         return TransactionGroup(copying: self)
