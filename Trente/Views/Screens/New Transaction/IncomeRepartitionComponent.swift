@@ -14,9 +14,6 @@ struct IncomeRepartitionComponent: View {
     @Binding var isRepartitionComplete: Bool
 
     @State private var remainingAmount: Int = 0
-    private var categories: [BudgetCategory] {
-        repartition.keys.map { $0 }
-    }
 
     init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, formatter: NumberFormatter, isRepartitionComplete: Binding<Bool>) {
         self._repartition = repartition
@@ -61,7 +58,7 @@ struct IncomeRepartitionComponent: View {
                 }
             }
 
-            ForEach(categories, id: \.self) { category in
+            ForEach(BudgetCategory.allCases, id: \.self) { category in
                 BudgetCategorySliderRow(
                     category: category,
                     repartition: $repartition,
