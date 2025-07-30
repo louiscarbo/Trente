@@ -21,6 +21,8 @@ struct NotesImageView: View {
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showImageSubscriptionSheet: Bool = false
     @State private var showFullScreen = false
+    @State private var errorWrapper: ErrorWrapper?
+    @State private var showErrorAlert = false
     @FocusState private var notesFocused: Bool
     
     private var image: Image? {
@@ -82,7 +84,6 @@ struct NotesImageView: View {
                                 }
                                 
                         } else {
-                            // fallback while loading
                             ProgressView()
                                 .frame(height: 400)
                         }
@@ -122,8 +123,8 @@ struct NotesImageView: View {
                     do {
                         imageData = try await item.loadTransferable(type: Data.self)
                     } catch {
-                        // TODO: Handle Error more gracefully/explicitly
-                        print("Error loading image data: \(error.localizedDescription)")
+                        errorWrapper = ErrorWrapper(error: error, guidance: "The image could not be loaded. Please try again.")
+                        showErrorAlert = true
                         imageData = nil
                     }
                 }
@@ -148,6 +149,11 @@ struct NotesImageView: View {
                 .groupBoxStyle(TrenteGroupBoxStyle())
                 .padding()
             }
+        }
+        .alert("Error Loading Image", isPresented: $showErrorAlert, presenting: errorWrapper) { _ in
+            Button("OK") {}
+        } message: { wrapper in
+            Text(wrapper.guidance)
         }
         .onAppear {
             nextButtonDisabled = false
