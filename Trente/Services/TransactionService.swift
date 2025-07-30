@@ -8,6 +8,11 @@
 import Foundation
 import SwiftData
 
+enum TransactionServiceError: Error {
+    case missingCategoryForExpense
+    case invalidRepartition
+}
+
 final class TransactionService {
     static let shared = TransactionService()
     private init() {}
@@ -55,6 +60,18 @@ final class TransactionService {
 
 private extension TransactionService {
     func createTransactionGroupWithEntries(from request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
+        // Transaction validation
+        if request.type == .expense {
+            guard request.selectedCategory != nil else {
+                throw TransactionServiceError.missingCategoryForExpense
+            }
+        }
+        if request.type == .income {
+            guard request.repartition.values.contains(where: { $0 > 0 }) else {
+                throw TransactionServiceError.invalidRepartition
+            }
+        }
+        
         let group = TransactionGroup(
             title: request.title,
             type: request.type,
