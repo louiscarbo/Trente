@@ -200,6 +200,10 @@ struct BudgetCategorySliderRow: View {
                 })
             }
         }
+        .onDisappear {
+            timer?.invalidate()
+            timer = nil
+        }
     }
 }
 
