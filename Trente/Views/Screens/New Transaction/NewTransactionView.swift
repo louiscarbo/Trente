@@ -71,6 +71,7 @@ struct NewTransactionView: View {
             }
             
             #if os(iOS)
+            // TODO: Make the showKeyboardDismissButton more robust
             if viewModel.showKeyboardDismissButton {
                 Button {
                     UIApplication.shared.sendAction(
