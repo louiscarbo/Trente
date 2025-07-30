@@ -1,5 +1,5 @@
 //
-//  RepartitionRecurrenceView.swift
+//  IncomeRepartitionView.swift
 //  Trente
 //
 //  Created by Louis Carbo Estaque on 12/07/2025.
