@@ -27,7 +27,7 @@ struct IncomeRepartitionView: View {
                         formatter: currency.roundFormatter,
                         isRepartitionComplete: Binding<Bool>(
                             get: {
-                                true
+                                !nextButtonDisabled
                             }, set: {
                                 nextButtonDisabled = !$0
                             }
