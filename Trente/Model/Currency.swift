@@ -15,12 +15,24 @@ struct Currency: Codable, Hashable {
 }
 
 extension Currency {
+    private static var formatterCache: [String: NumberFormatter] = [:]
+    private static let cacheLock = NSLock()
+    
     var roundFormatter: NumberFormatter {
+        Currency.cacheLock.lock()
+        defer { Currency.cacheLock.unlock() }
+        
+        if let cachedFormatter = Currency.formatterCache[isoCode] {
+            return cachedFormatter
+        }
+        
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencyCode = isoCode
         formatter.locale = .autoupdatingCurrent
         formatter.maximumFractionDigits = 2
+        
+        Currency.formatterCache[isoCode] = formatter
         return formatter
     }
 }
