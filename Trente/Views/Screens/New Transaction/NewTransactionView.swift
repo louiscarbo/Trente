@@ -6,125 +6,74 @@
 //
 
 import SwiftUI
+import SwiftData
 
-// TODO: adapt to macOS
-// TODO: Split into different files
 struct NewTransactionView: View {
     // View Arguments
-    var currency: Currency
+    let context: NewTransactionContext
+    private var month: Month? { modelContext.model(for: context.monthID) as? Month }
+    
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     
     // Transaction Data
-    @State private var selectedCategory: BudgetCategory?
-    @State private var amountCents: Int = 0
-    @State private var type: TransactionType = .expense
-    @State private var title: String = ""
-    @State private var isRecurrent: Bool = false
-    @State private var image: Image?
-    @State private var notes: String = ""
-    @State private var recurrenceFrequency: RecurrenceFrequency = .monthly
-    @State private var recurrenceStartDate: Date = Date()
-    @State private var recurrenceEndDate: Date?
-    
-    // Buttons Logic
-    private var showPreviousButton: Bool {
-        step != .amountCategory
-    }
-    private var showNextButton: Bool {
-        step != .repartitionRecurrence
-    }
-    @State private var nextButtonDisabled: Bool = true
-    
-    // View State
-    @State var step: NewTransactionStep = .amountCategory
-    @State private var showKeyboardDismissButton: Bool = false
+    @Bindable private var viewModel: NewTransactionViewModel = .init()
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                #if os(iOS)
-                iOSTabView
-                #else
-                macOSConditionalView
-                #endif
-                navigationButtons
+            stepsView
+                .safeAreaInset(edge: .bottom) {
+                    navigationButtons
+                }
+        }
+        .alert("An error occurred", isPresented: $viewModel.showErrorAlert) {
+            Button("Retry") {
+                guard let month else { return }
+                viewModel.createTransaction(for: month, in: modelContext)
             }
+            Button("Cancel", role: .cancel) {
+                dismiss()
+            }
+        } message: {
+            Text("We couldn't create the transaction. Please try again.")
         }
-    }
-    
-    var iOSTabView: some View {
-        TabView(selection: $step) {
-            AmountCategoryView(
-                selectedCategory: $selectedCategory,
-                amountCents: $amountCents,
-                transactionType: $type,
-                nextButtonDisabled: $nextButtonDisabled,
-                isRecurrent: $isRecurrent,
-                
-                currencyCode: currency.isoCode
-            )
-            .newTransactionPage(tag: .amountCategory)
-            
-            TitleView(
-                title: $title,
-                nextButtonDisabled: $nextButtonDisabled,
-                step: $step,
-                showKeyboardDismissButton: $showKeyboardDismissButton
-            )
-            .newTransactionPage(tag: .title)
-            
-            NotesImageView(
-                image: $image,
-                notes: $notes,
-                showKeyboardDismissButton: $showKeyboardDismissButton
-            )
-            .newTransactionPage(tag: .notesImage)
-            
-            RepartitionRecurrenceView(
-                showRecurrence: isRecurrent,
-                showIncomeRepartition: type == .income
-            )
-            .newTransactionPage(tag: .repartitionRecurrence)
-        }
-        #if os(iOS)
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        #elseif os(macOS)
-        .tabViewStyle(.automatic)
-        #endif
-        .navigationTitle("New Transaction")
-        .toolbarTitleDisplayMode(.inline)
     }
     
     private var navigationButtons: some View {
         VStack {
             HStack(spacing: 20) {
-                if showPreviousButton {
+                if viewModel.showPreviousButton {
                     Button("Previous") {
-                        withAnimation {
-                            if let previousStep = step.previous() {
-                                step = previousStep
-                            } else {
-                                print("Already at the first step")
-                            }
+                        withAnimation(.bouncy) {
+                            viewModel.previousStep()
                         }
                     }
                     .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
                 }
                 
-                Button("Next") {
-                    withAnimation {
-                        if let nextStep = step.next(isRecurrent: isRecurrent, isIncome: type == .income) {
-                            step = nextStep
-                        } else {
-                            print("Transaction creation completed")
+                if let currentIndex = viewModel.filteredSteps.firstIndex(of: viewModel.step) {
+                    let isLastStep = currentIndex == viewModel.filteredSteps.count - 1
+                    
+                    Button(isLastStep ? "Create" : "Next") {
+                        withAnimation {
+                            if isLastStep {
+                                guard let month else { return }
+                                if viewModel.createTransaction(for: month, in: modelContext) {
+                                    dismiss()
+                                }
+                            } else {
+                                viewModel.nextStep()
+                            }
                         }
                     }
+                    .disabled(viewModel.nextButtonDisabled)
+                    .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
                 }
-                .disabled(nextButtonDisabled)
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
             }
             
             #if os(iOS)
-            if showKeyboardDismissButton {
+            // TODO: Make the showKeyboardDismissButton more robust
+            if viewModel.showKeyboardDismissButton {
                 Button {
                     UIApplication.shared.sendAction(
                         #selector(UIResponder.resignFirstResponder),
@@ -132,7 +81,7 @@ struct NewTransactionView: View {
                         from: nil,
                         for: nil
                     )
-                    showKeyboardDismissButton = false
+                    viewModel.showKeyboardDismissButton = false
                 } label: {
                     Label("Done", systemImage: "keyboard.chevron.compact.down")
                 }
@@ -152,108 +101,75 @@ struct NewTransactionView: View {
         }
     }
     
-    private var macOSConditionalView: some View {
+    private var stepsView: some View {
         Group {
-            switch step {
+            switch viewModel.step {
             case .amountCategory:
                 AmountCategoryView(
-                    selectedCategory: $selectedCategory,
-                    amountCents: $amountCents,
-                    transactionType: $type,
-                    nextButtonDisabled: $nextButtonDisabled,
-                    isRecurrent: $isRecurrent,
+                    selectedCategory: $viewModel.request.selectedCategory,
+                    amountCents: $viewModel.request.amountCents,
+                    transactionType: $viewModel.request.type,
+                    isRecurrent: $viewModel.request.isRecurrent,
                     
-                    currencyCode: currency.isoCode
+                    nextButtonDisabled: $viewModel.nextButtonDisabled,
+                    currencyCode: context.currency.isoCode
                 )
-                .newTransactionPage(tag: .amountCategory)
             case .title:
                 TitleView(
-                    title: $title,
+                    title: $viewModel.request.title,
                     
-                    nextButtonDisabled: $nextButtonDisabled,
-                    step: $step,
-                    showKeyboardDismissButton: $showKeyboardDismissButton
+                    nextButtonDisabled: $viewModel.nextButtonDisabled,
+                    step: $viewModel.step,
+                    showKeyboardDismissButton: $viewModel.showKeyboardDismissButton
                 )
-                .newTransactionPage(tag: .title)
             case .notesImage:
                 NotesImageView(
-                    image: $image,
-                    notes: $notes,
+                    imageData: $viewModel.request.imageData,
+                    notes: $viewModel.request.notes,
                     
-                    showKeyboardDismissButton: $showKeyboardDismissButton
+                    nextButtonDisabled: $viewModel.nextButtonDisabled,
+                    showKeyboardDismissButton: $viewModel.showKeyboardDismissButton
                 )
-                .newTransactionPage(tag: .notesImage)
-            case .repartitionRecurrence:
-                RepartitionRecurrenceView(
-                    showRecurrence: isRecurrent,
-                    showIncomeRepartition: type == .income
+            case .repartition:
+                IncomeRepartitionView(
+                    currency: context.currency,
+                    transactionAmount: viewModel.request.amountCents,
+                    repartition: $viewModel.request.repartition,
+                    
+                    nextButtonDisabled: $viewModel.nextButtonDisabled
                 )
-                .newTransactionPage(tag: .repartitionRecurrence)
+            case .recurrence:
+                RecurrenceView(
+                    recurrenceFrequency: $viewModel.request.recurrenceFrequency,
+                    recurrenceStartDate: $viewModel.request.recurrenceStartDate,
+                    recurrenceEndDate: $viewModel.request.recurrenceEndDate
+                )
             }
+            
         }
-    }
-    
-    struct NewTransactionViewModifier: ViewModifier {
-        let tag: NewTransactionStep
-        
-        func body(content: Content) -> some View {
-            ZStack {
-                Rectangle().fill(.clear)
-                content
-            }
-            .tag(tag)
-            .contentShape(Rectangle())
-            .gesture(DragGesture())
-        }
+        .navigationTitle("New Transaction")
+        .toolbarTitleDisplayMode(.inline)
     }
 }
 
-enum NewTransactionStep {
+enum NewTransactionStep: CaseIterable {
     case amountCategory
     case title
     case notesImage
-    case repartitionRecurrence
-    
-    func next(isRecurrent: Bool, isIncome: Bool) -> NewTransactionStep? {
-        switch self {
-        case .amountCategory:
-            return .title
-        case .title:
-            return .notesImage
-        case .notesImage:
-            if isRecurrent || isIncome {
-                return .repartitionRecurrence
-            } else {
-                return nil
-            }
-        case .repartitionRecurrence:
-            return nil
-        }
-    }
-    
-    func previous() -> NewTransactionStep? {
-        switch self {
-        case .amountCategory:
-            return nil
-        case .title:
-            return .amountCategory
-        case .notesImage:
-            return .title
-        case .repartitionRecurrence:
-            return .notesImage
-        }
-    }
+    case repartition
+    case recurrence
 }
 
-extension View {
-    func newTransactionPage(tag: NewTransactionStep) -> some View {
-        modifier(NewTransactionView.NewTransactionViewModifier(tag: tag))
-    }
+struct NewTransactionContext: Codable, Hashable {
+    let currency: Currency
+    let monthID: PersistentIdentifier
 }
 
 #Preview {
     Text("Preview")
         .sheet(isPresented: .constant(true)) {
-            NewTransactionView(currency: Currency(isoCode: "EUR", symbol: "eurosign", localizedName: "Euro"), step: .repartitionRecurrence)
+            NewTransactionView(
+                context: .init(currency: Currencies.currency(for: "EUR")!, monthID: Month.month1.persistentModelID)
+            )
         }
 }

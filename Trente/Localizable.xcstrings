@@ -7,6 +7,9 @@
     "    You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
 
     },
+    "-" : {
+
+    },
     "- %@ Remaining" : {
 
     },
@@ -14,6 +17,9 @@
 
     },
     "%@ Remaining" : {
+
+    },
+    "Add an End Date" : {
 
     },
     "Add Image" : {
@@ -46,13 +52,19 @@
     "Amount" : {
 
     },
-    "An error occured" : {
+    "Amount to distribute" : {
+
+    },
+    "An error occurred" : {
 
     },
     "ARCHIVED MONTHS" : {
 
     },
     "Budget Category" : {
+
+    },
+    "Cancel" : {
 
     },
     "Categories" : {
@@ -68,6 +80,9 @@
 
     },
     "Clothes" : {
+
+    },
+    "Create" : {
 
     },
     "CURRENT MONTH" : {
@@ -100,6 +115,12 @@
     "Enabled" : {
 
     },
+    "End Date" : {
+
+    },
+    "Error Loading Image" : {
+
+    },
     "Every %@" : {
 
     },
@@ -113,7 +134,13 @@
         }
       }
     },
+    "Expense" : {
+
+    },
     "Filter" : {
+
+    },
+    "Frequency" : {
 
     },
     "From" : {
@@ -125,10 +152,7 @@
     "Graph Card" : {
 
     },
-    "Hello here" : {
-
-    },
-    "Hello there" : {
+    "How would you like to split this income?" : {
 
     },
     "Income" : {
@@ -200,7 +224,7 @@
     "Previous" : {
 
     },
-    "Recurrence" : {
+    "Recurrence Details" : {
 
     },
     "Recurring transaction" : {
@@ -216,6 +240,9 @@
 
     },
     "Rent, groceries, bills..." : {
+
+    },
+    "Retry" : {
 
     },
     "Salary" : {
@@ -263,6 +290,9 @@
     "Start a New Month" : {
 
     },
+    "Start Date" : {
+
+    },
     "Start tracking your budget with Trente by opening the app!" : {
 
     },
@@ -299,10 +329,16 @@
     "Trente" : {
 
     },
+    "Type" : {
+
+    },
     "Under Budget" : {
 
     },
     "Wants" : {
+
+    },
+    "We couldn't create the transaction. Please try again." : {
 
     },
     "Weekly" : {

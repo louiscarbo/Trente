@@ -35,9 +35,7 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
                             Capsule()
                                 .fill(
                                     LinearGradient(
-                                        colors: lightMode ?
-                                        [.black.opacity(0.05), .black.opacity(0.1)] :
-                                            [.white.opacity(0.05), .white.opacity(0.2)],
+                                        colors: [.black.opacity(0.05), .black.opacity(0.3)],
                                         startPoint: .top,
                                         endPoint: .bottom
                                     )
@@ -47,8 +45,12 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
                 )
             configuration.label
                 .bold()
-                .foregroundStyle(isEnabled ? Color.primary : Color.secondary)
-                .font(.title2)
+                .foregroundStyle(
+                    isEnabled ?
+                        lightMode ? Color.white : Color.black
+                    : Color.secondary
+                )
+                .font(narrow ? .title3 : .title2)
                 .padding(.vertical, narrow ? 5 : 16)
         }
         .frame(maxWidth: .infinity)
