@@ -12,7 +12,6 @@ import SwiftData
 final class Month: Identifiable, Hashable, Equatable {
     var id: UUID = UUID()
     var startDate: Date
-    var availableIncomeCents: Int
     var currency: Currency
     
     var categoryRepartition: [BudgetCategory: Int] // Amount in cents for each category
@@ -25,9 +24,8 @@ final class Month: Identifiable, Hashable, Equatable {
 
     var isDeleted: Bool = false
     
-    init(startDate: Date, availableIncomeCents: Int, currency: Currency, categoryRepartition: [BudgetCategory: Int]) {
+    init(startDate: Date, currency: Currency, categoryRepartition: [BudgetCategory: Int]) {
         self.startDate = startDate
-        self.availableIncomeCents = availableIncomeCents
         self.currency = currency
         self.categoryRepartition = categoryRepartition
     }
@@ -146,7 +144,6 @@ extension Month {
     func detachedCopy() -> Month {
         let copy = Month(
             startDate: startDate,
-            availableIncomeCents: availableIncomeCents,
             currency: currency,
             categoryRepartition: categoryRepartition
         )

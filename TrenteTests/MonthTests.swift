@@ -15,7 +15,6 @@ struct MonthTests {
     func testSpentAmount() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 1000_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
@@ -50,7 +49,6 @@ struct MonthTests {
     func testRemainingAmount() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 1000_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
@@ -96,7 +94,6 @@ struct MonthTests {
     func testOverSpentTrue() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 800_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
@@ -120,7 +117,6 @@ struct MonthTests {
     func testOverSpentFalse() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 800_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
@@ -159,7 +155,6 @@ struct MonthTests {
 
         let month = Month(
             startDate: startDate,
-            availableIncomeCents: 0,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
@@ -180,7 +175,6 @@ struct MonthTests {
 
         let month = Month(
             startDate: startDate,
-            availableIncomeCents: 0,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
@@ -196,7 +190,6 @@ struct MonthTests {
     func testRemainingAmountInCategory() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 1000_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
