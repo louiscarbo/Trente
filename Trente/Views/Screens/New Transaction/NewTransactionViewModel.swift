@@ -47,11 +47,13 @@ class NewTransactionViewModel: ObservableObject {
         }
     }
 
-    func createTransaction(for month: Month, in context: ModelContext) {
+    func createTransaction(for month: Month, in context: ModelContext) -> Bool {
         do {
             try TransactionService.shared.create(with: request, for: month, in: context)
+            return true
         } catch {
             showErrorAlert = true
+            return false
         }
     }
 }

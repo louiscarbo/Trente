@@ -58,8 +58,9 @@ struct NewTransactionView: View {
                         withAnimation {
                             if isLastStep {
                                 guard let month else { return }
-                                viewModel.createTransaction(for: month, in: modelContext)
-                                dismiss()
+                                if viewModel.createTransaction(for: month, in: modelContext) {
+                                    dismiss()
+                                }
                             } else {
                                 viewModel.nextStep()
                             }
