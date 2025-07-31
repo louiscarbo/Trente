@@ -20,12 +20,11 @@ struct RecurringTransactionRuleTests {
         let ruleStart = calendar.date(from: DateComponents(year: 2025, month: 4, day: 2))!
         let rule = RecurringTransactionRule(
             title: "Subscription",
-            amountCents: 1000,
-            category: .wants,
             frequency: .weekly,
-            startDate: ruleStart
+            startDate: ruleStart,
+            autoConfirm: true,
+            repartition: [.wants: 1000]
         )
-        rule.autoConfirm = true
         
         // Month = April 2025
         let monthStart = calendar.date(from: DateComponents(year: 2025, month: 4, day: 1))!
@@ -42,7 +41,7 @@ struct RecurringTransactionRuleTests {
         let days = instances.map { calendar.component(.day, from: $0.date) }
         #expect(days == [2, 9, 16, 23, 30])
         #expect(instances.count == 5)
-        #expect(instances.allSatisfy { $0.confirmed })
+        #expect(instances.allSatisfy { $0.confirmed == rule.autoConfirm })
     }
     
     @Test("Monthly recurrence")
@@ -54,12 +53,11 @@ struct RecurringTransactionRuleTests {
         let ruleStart = calendar.date(from: DateComponents(year: 2025, month: 1, day: 15))!
         let rule = RecurringTransactionRule(
             title: "Pay Rent",
-            amountCents: 50000,
-            category: .needs,
             frequency: .monthly,
-            startDate: ruleStart
+            startDate: ruleStart,
+            autoConfirm: false,
+            repartition: [.needs: 50000]
         )
-        rule.autoConfirm = false
         
         // Month = February 2025
         let monthStart = calendar.date(from: DateComponents(year: 2025, month: 2, day: 1))!
@@ -88,12 +86,11 @@ struct RecurringTransactionRuleTests {
         let ruleStart = calendar.date(from: DateComponents(year: 2020, month: 12, day: 25))!
         let rule = RecurringTransactionRule(
             title: "Holiday",
-            amountCents: 0,
-            category: .savingsAndDebts,
             frequency: .yearly,
-            startDate: ruleStart
+            startDate: ruleStart,
+            autoConfirm: true,
+            repartition: [.savingsAndDebts: 0]
         )
-        rule.autoConfirm = true
         
         // Month = December 2023
         let monthStart = calendar.date(from: DateComponents(year: 2023, month: 12, day: 1))!
@@ -110,7 +107,7 @@ struct RecurringTransactionRuleTests {
         #expect(instances.count == 1)
         let expectedDate = calendar.date(from: DateComponents(year: 2023, month: 12, day: 25))!
         #expect(instances[0].date == expectedDate)
-        #expect(instances[0].confirmed)
+        #expect(instances[0].confirmed == rule.autoConfirm)
     }
     
     @Test("No occurrences if outside window")
@@ -122,10 +119,9 @@ struct RecurringTransactionRuleTests {
         let ruleStart = calendar.date(from: DateComponents(year: 2025, month: 6, day: 1))!
         let rule = RecurringTransactionRule(
             title: "Future Payment",
-            amountCents: 0,
-            category: .wants,
             frequency: .monthly,
-            startDate: ruleStart
+            startDate: ruleStart,
+            repartition: [.wants: 0]
         )
         
         // Month = May 2025
