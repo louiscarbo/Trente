@@ -21,20 +21,22 @@ struct MonthTests {
 
         // Add expense groups with entries
         let groceries = TransactionGroup(
-            addedDate: .now,
             title: "Groceries",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         groceries.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: groceries)
         ]
 
         let rent = TransactionGroup(
-            addedDate: .now,
             title: "Rent",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         rent.entries = [
             TransactionEntry(amountCents: -400_00, category: .needs, group: rent)
@@ -55,10 +57,11 @@ struct MonthTests {
 
         // Income group
         let salary = TransactionGroup(
-            addedDate: .now,
             title: "Salary",
             type: .income,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         salary.entries = [
             TransactionEntry(amountCents: 1000_00, category: .needs, group: salary)
@@ -66,20 +69,22 @@ struct MonthTests {
 
         // Expenses
         let mall = TransactionGroup(
-            addedDate: .now,
             title: "Mall",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         mall.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: mall)
         ]
 
         let rent = TransactionGroup(
-            addedDate: .now,
             title: "Rent",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         rent.entries = [
             TransactionEntry(amountCents: -400_00, category: .needs, group: rent)
@@ -99,10 +104,11 @@ struct MonthTests {
         )
 
         let groceries = TransactionGroup(
-            addedDate: .now,
             title: "Groceries",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         groceries.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: groceries)
@@ -122,20 +128,22 @@ struct MonthTests {
         )
 
         let salary = TransactionGroup(
-            addedDate: .now,
             title: "Salary",
             type: .income,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         salary.entries = [
             TransactionEntry(amountCents: 2000_00, category: .needs, group: salary)
         ]
 
         let groceries = TransactionGroup(
-            addedDate: .now,
             title: "Groceries",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         groceries.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: groceries)
@@ -196,10 +204,11 @@ struct MonthTests {
 
         // Income group
         let salary = TransactionGroup(
-            addedDate: .now,
             title: "Salary",
             type: .income,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         salary.entries = [
             TransactionEntry(amountCents: 1000_00, category: .needs, group: salary)
@@ -207,20 +216,22 @@ struct MonthTests {
 
         // Expenses
         let mall = TransactionGroup(
-            addedDate: .now,
             title: "Mall",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         mall.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: mall)
         ]
 
         let rent = TransactionGroup(
-            addedDate: .now,
             title: "Rent",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         rent.entries = [
             TransactionEntry(amountCents: -400_00, category: .needs, group: rent)
