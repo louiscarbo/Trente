@@ -56,7 +56,6 @@ class DataProvider {
 extension Month {
     static let month1 = Month(
         startDate: Date(),
-        availableIncomeCents: 1600_00,
         currency: Currencies.currency(for: "EUR")!,
         categoryRepartition: [
             .needs: 50,
@@ -67,7 +66,6 @@ extension Month {
     
     static let month2 = Month(
         startDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!,
-        availableIncomeCents: 1600_00,
         currency: Currencies.currency(for: "EUR")!,
         categoryRepartition: [
             .needs: 50,
@@ -78,7 +76,6 @@ extension Month {
     
     static let month3 = Month(
         startDate: Calendar.current.date(byAdding: .month, value: -2, to: Date())!,
-        availableIncomeCents: 1600_00,
         currency: Currencies.currency(for: "EUR")!,
         categoryRepartition: [
             .needs: 50,
@@ -89,7 +86,6 @@ extension Month {
     
     static let month4 = Month(
         startDate: Calendar.current.date(byAdding: .month, value: -3, to: Date())!,
-        availableIncomeCents: 1600_00,
         currency: Currencies.currency(for: "EUR")!,
         categoryRepartition: [
             .needs: 50,
@@ -103,7 +99,6 @@ extension Month {
     static func getSampleMonthWithTransactions() -> Month {
         let month1 = Month(
             startDate: Date(),
-            availableIncomeCents: 1600_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [
                 .needs: 50,

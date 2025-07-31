@@ -31,7 +31,6 @@ struct RecurringTransactionRuleTests {
         let monthStart = calendar.date(from: DateComponents(year: 2025, month: 4, day: 1))!
         let month = Month(
             startDate: monthStart,
-            availableIncomeCents: 0,
             currency: eur,
             categoryRepartition: [:]
         )
@@ -66,7 +65,6 @@ struct RecurringTransactionRuleTests {
         let monthStart = calendar.date(from: DateComponents(year: 2025, month: 2, day: 1))!
         let month = Month(
             startDate: monthStart,
-            availableIncomeCents: 0,
             currency: eur,
             categoryRepartition: [:]
         )
@@ -101,7 +99,6 @@ struct RecurringTransactionRuleTests {
         let monthStart = calendar.date(from: DateComponents(year: 2023, month: 12, day: 1))!
         let month = Month(
             startDate: monthStart,
-            availableIncomeCents: 0,
             currency: eur,
             categoryRepartition: [:]
         )
@@ -135,7 +132,6 @@ struct RecurringTransactionRuleTests {
         let monthStart = calendar.date(from: DateComponents(year: 2025, month: 5, day: 1))!
         let month = Month(
             startDate: monthStart,
-            availableIncomeCents: 0,
             currency: eur,
             categoryRepartition: [:]
         )
