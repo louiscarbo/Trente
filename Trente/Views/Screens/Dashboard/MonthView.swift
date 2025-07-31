@@ -83,6 +83,7 @@ struct MonthView: View {
 
 #Preview {
     MonthListView()
+        .modelContainer(DataProvider.shared.modelContainer)
 }
 
 // MARK: - Shared Views
@@ -203,16 +204,20 @@ private struct SecondaryGraphCards: View {
 
 private struct AddTransactionButton: View {
     var currency: Currency
+    var month: Month
     var wide: Bool = false
     
     @State private var isShowingNewTransactionSheet: Bool = false
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         Button {
             #if os(iOS)
             isShowingNewTransactionSheet = true
             #else
-            openWindow(id: "new-transaction", value: currency)
+            let context: NewTransactionContext = .init(currency: currency, monthID: month.persistentModelID)
+            openWindow(id: WindowIdentifiers.newTransaction, value: context)
             #endif
         } label: {
             Label("Add Transaction", systemImage: "plus")
@@ -221,13 +226,14 @@ private struct AddTransactionButton: View {
         .buttonStyle(TrentePrimaryButtonStyle())
         .padding(.horizontal)
         .padding(.top)
-        .shadow(color: .white, radius: DesignSystem.Radius.large.rawValue)
         .frame(width: wide ? 400 : nil)
         #if os(macOS)
         .padding(.bottom)
         #else
         .sheet(isPresented: $isShowingNewTransactionSheet) {
-            NewTransactionView(currency: currency)
+            NewTransactionView(
+                context: .init(currency: currency, monthID: month.persistentModelID)
+            )
         }
         #endif
     }
@@ -276,7 +282,21 @@ private struct NarrowMonthView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                AddTransactionButton(currency: month.currency)
+                ZStack(alignment: .bottom) {
+                    #if os(iOS)
+                    LinearGradient(
+                        colors: [
+                            .clear,
+                            lightMode ? .white : .black
+                        ],
+                        startPoint: .top,
+                        endPoint: .center
+                    )
+                    .frame(height: 130)
+                    .offset(y: 50)
+                    #endif
+                    AddTransactionButton(currency: month.currency, month: month)
+                }
             }
         }
     }
@@ -291,7 +311,6 @@ private struct WideMonthView: View {
     var recurringTransactionsCount: Int
     
     // View State
-    @Environment(\.openWindow) private var openWindow
     @Environment(\.colorScheme) private var colorScheme
     private var lightMode: Bool { colorScheme == .light }
     
@@ -321,7 +340,7 @@ private struct WideMonthView: View {
                 .padding(26)
             }
             .safeAreaInset(edge: .bottom) {
-                AddTransactionButton(currency: month.currency, wide: true)
+                AddTransactionButton(currency: month.currency, month: month, wide: true)
             }
         }
     }

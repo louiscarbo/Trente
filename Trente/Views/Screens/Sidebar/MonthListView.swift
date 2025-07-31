@@ -138,7 +138,7 @@ private struct MonthRowView: View {
                 if isSelected {
                     if month != archivedMonths.last && month != archivedMonths.first {
                         Rectangle()
-                            .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
+                            .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
                     } else if month == archivedMonths.first {
                         UnevenRoundedRectangle(
                             topLeadingRadius: DesignSystem.Radius.large.rawValue,
@@ -146,7 +146,7 @@ private struct MonthRowView: View {
                             bottomTrailingRadius: 0,
                             topTrailingRadius: DesignSystem.Radius.large.rawValue
                         )
-                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
+                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
                     } else {
                         UnevenRoundedRectangle(
                             topLeadingRadius: 0,
@@ -154,7 +154,7 @@ private struct MonthRowView: View {
                             bottomTrailingRadius: DesignSystem.Radius.large.rawValue,
                             topTrailingRadius: 0
                         )
-                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white, lineWidth: 3)
+                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
                     }
                 }
                 if isPressed {

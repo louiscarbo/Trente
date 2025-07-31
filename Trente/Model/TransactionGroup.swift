@@ -26,11 +26,31 @@ class TransactionGroup: Identifiable {
     var note: String?
     @Attribute(.externalStorage) var imageAttachmentData: Data?
     
-    init(addedDate: Date, title: String, type: TransactionType, month: Month) {
-        self.addedDate = addedDate
+    init(title: String, type: TransactionType, month: Month, note: String?, imageAttachmentData: Data?) {
+        self.id = UUID()
+        self.addedDate = .now
+        self.modifiedDate = .now
         self.title = title
         self.type = type
         self.month = month
+        self.isDeleted = false
+        self.entries = []
+        self.note = note
+        self.imageAttachmentData = imageAttachmentData
+    }
+    
+    private init(copying original: TransactionGroup) {
+        self.id = original.id
+        self.addedDate = original.addedDate
+        self.modifiedDate = original.modifiedDate
+        self.title = original.title
+        self.type = original.type
+        self.month = original.month
+        self.isDeleted = original.isDeleted
+        self.note = original.note
+        self.imageAttachmentData = original.imageAttachmentData
+        // Create detached copies for the entries
+        self.entries = original.entries.map { $0.detachedCopy() }
     }
 }
 
@@ -53,16 +73,9 @@ extension TransactionGroup {
     }
 }
 
+// TODO: Investigate if detachedCopy() is really needed
 extension TransactionGroup {
     func detachedCopy() -> TransactionGroup {
-        let copy = TransactionGroup(
-            addedDate: addedDate,
-            title: title,
-            type: type,
-            month: month
-        )
-        
-        copy.entries = entries.map { $0.detachedCopy() }
-        return copy
+        return TransactionGroup(copying: self)
     }
 }

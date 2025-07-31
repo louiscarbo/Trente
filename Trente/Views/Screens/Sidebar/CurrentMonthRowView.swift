@@ -95,9 +95,11 @@ struct CurrentMonthRowView: View {
                 .foregroundStyle(.regularMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
-                        .stroke(isSelected ? Color.black.opacity(0.5) :
-                                    (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
-                )
+                        .stroke(
+                            isSelected ?
+                                (lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5)) :
+                                (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
+                        )
             if isPressed {
                 RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                     .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))

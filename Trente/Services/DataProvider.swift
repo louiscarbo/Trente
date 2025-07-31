@@ -41,7 +41,7 @@ class DataProvider {
         }
         
         for month in Month.sampleData {
-            try RecurringTransactionService.shared.generateInstances(for: month, in: context)
+            try RecurringTransactionService.shared.refreshInstances(for: month, in: context)
 
             context.insert(month)
         }
@@ -112,29 +112,35 @@ extension Month {
             ]
         )
         let salary = TransactionGroup(
-            addedDate: Date(),
             title: String(localized: "Salary"),
             type: .income,
-            month: month1
+            month: month1,
+            note: "Monthly paycheck from Trente Inc.",
+            imageAttachmentData: nil
         )
         let supermarket = TransactionGroup(
-            addedDate: Date(),
             title: String(localized: "Supermarket"),
             type: .expense,
-            month: month1
+            month: month1,
+            note: "Weekly groceries.",
+            imageAttachmentData: nil
         )
         let shopping = TransactionGroup(
-            addedDate: Date(),
             title: String(localized: "Clothes"),
             type: .expense,
-            month: month1
+            month: month1,
+            note: nil,
+            imageAttachmentData: nil
         )
         let rent = TransactionGroup(
-            addedDate: Date().addingTimeInterval(-3600 * 24 * 10),
             title: String(localized: "Rent"),
             type: .expense,
-            month: month1
+            month: month1,
+            note: "Monthly rent payment.",
+            imageAttachmentData: nil
         )
+        // Set historical date after creation
+        rent.addedDate = Date().addingTimeInterval(-3600 * 24 * 10)
         
         supermarket.entries = [
             TransactionEntry(amountCents: -147_18, category: .needs, group: supermarket)
@@ -209,29 +215,35 @@ private extension TransactionGroup {
     static func sampleData(month1: Month, month2: Month) -> [TransactionGroup] {
         // Expenses
         let supermarket = TransactionGroup(
-            addedDate: Date(),
             title: "Supermarket",
             type: .expense,
-            month: month1
+            month: month1,
+            note: "Groceries for the first week.",
+            imageAttachmentData: nil
         )
         let shopping = TransactionGroup(
-            addedDate: Date(),
             title: "Shopping",
             type: .expense,
-            month: month1
+            month: month1,
+            note: "Summer sale haul.",
+            imageAttachmentData: nil
         )
         let livretA = TransactionGroup(
-            addedDate: Date(),
             title: "Livret A",
             type: .expense,
-            month: month1
+            month: month1,
+            note: "Monthly savings deposit.",
+            imageAttachmentData: nil
         )
         let rent = TransactionGroup(
-            addedDate: Date().addingTimeInterval(-3600 * 24 * 10),
             title: "Rent",
             type: .expense,
-            month: month2
+            month: month2,
+            note: "Rent for the previous month.",
+            imageAttachmentData: nil
         )
+        // Set historical date after creation
+        rent.addedDate = Date().addingTimeInterval(-3600 * 24 * 10)
 
         supermarket.entries = [
             TransactionEntry(amountCents: -150_00, category: .needs, group: supermarket)
@@ -248,10 +260,11 @@ private extension TransactionGroup {
 
         // Income (grouped under one transaction group)
         let salary = TransactionGroup(
-            addedDate: Date(),
             title: "Salary",
             type: .income,
-            month: month1
+            month: month1,
+            note: "July Paycheck.",
+            imageAttachmentData: nil
         )
 
         salary.entries = [
