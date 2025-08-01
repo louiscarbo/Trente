@@ -122,7 +122,7 @@ struct BudgetCategorySliderRow: View {
                         let currentValue = repartition[category] ?? 0
                         let amountToDecrease = min(100, currentValue % 100 == 0 ? 100 : currentValue % 100)
                         let newValue = max(0, currentValue - amountToDecrease)
-                        let delta = newValue - currentValue // will be negative or zero
+                        let delta = newValue - currentValue
                         repartition[category] = newValue
                         remainingAmount -= delta
                     }
@@ -211,6 +211,13 @@ struct BudgetCategorySliderRow: View {
     }
 }
 
+private struct HeightKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
+    }
+}
+
 // MARK: - Custom Slider View
 struct RepartitionSlider: View {
     let categoryName: String
@@ -221,12 +228,13 @@ struct RepartitionSlider: View {
     let formatter: NumberFormatter
 
     @State private var scale: CGFloat = 1.0
+    @State private var measuredHeight: CGFloat = 0
 
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
             let proportion = total > 0 ? CGFloat(value) / CGFloat(total) : 0
-            let fillWidth = proportion * width + 3
+            let fillWidth = min(proportion * (width - 3) + 3, width)
 
             ZStack(alignment: .leading) {
                 Rectangle()
@@ -251,12 +259,22 @@ struct RepartitionSlider: View {
                         textView
                     }
                     .foregroundColor(color.lighten(0.5))
+                    .padding(.vertical, 6)
                     .mask(
                         HStack {
                             Rectangle().frame(width: fillWidth)
                             Spacer(minLength: 0)
                         }
                     )
+                    // Measure the height of the text to force the slider to adapt its height
+                    .background(
+                        GeometryReader { geometry in
+                            Color.clear.preference(key: HeightKey.self, value: geometry.size.height)
+                        }
+                    )
+                    .onPreferenceChange(HeightKey.self) { height in
+                        measuredHeight = height
+                    }
                     
                     VStack {
                         categoryNameView
@@ -295,13 +313,13 @@ struct RepartitionSlider: View {
                 withAnimation(.bouncy(duration: 0.2)) {
                     scale = 1.02
                 } completion: {
-                    withAnimation(.bouncy(duration: 0.2)) {
+                    withAnimation(.bouncy(duration: 0.3)) {
                         scale = 1.0
                     }
                 }
             }
         }
-        .frame(minHeight: 60, maxHeight: 120)
+        .frame(height: measuredHeight)
     }
 }
 
@@ -321,7 +339,7 @@ struct RepartitionSlider: View {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
             IncomeRepartitionComponent(
                 repartition: $repartition,
-                amountToSplit: 860_30,
+                amountToSplit: 60_30,
                 formatter: formatter,
                 isRepartitionComplete: $isRepartitionComplete
             )
