@@ -9,21 +9,41 @@ import SwiftUI
 
 struct SubscriptionAccessible: ViewModifier {
     let subscriptionIsActive: Bool
+    var prompt: String? = nil
     
     func body(content: Content) -> some View {
-        content
-            .disabled(!subscriptionIsActive)
-            .opacity(subscriptionIsActive ? 1 : 0.8)
-            .contentShape(Rectangle())
-            .allowsHitTesting(subscriptionIsActive)
-            .blur(radius: subscriptionIsActive ? 0 : 3)
-            .accessibilityHidden(!subscriptionIsActive)
+        ZStack {
+            content
+                .disabled(!subscriptionIsActive)
+                .opacity(subscriptionIsActive ? 1 : 0.8)
+                .contentShape(Rectangle())
+                .allowsHitTesting(subscriptionIsActive)
+                .blur(radius: subscriptionIsActive ? 0 : 3)
+                .accessibilityHidden(!subscriptionIsActive)
+            
+            if !subscriptionIsActive {
+                Button {
+                    
+                } label: {
+                    HStack {
+                        Image(systemName: "lock.fill")
+                            .font(.title3)
+                            .padding(.trailing, 4)
+                            
+                        Text(prompt ?? "Subscribe to Trente+ to unlock")
+                            .font(.title3)
+                    }
+                }
+                .buttonStyle(TrentePrimaryButtonStyle())
+                .padding(.horizontal, 24)
+            }
+        }
     }
 }
 
 extension View {
-    func subscriptionAccessible(subscribed subscriptionIsActive: Bool) -> some View {
-        modifier(SubscriptionAccessible(subscriptionIsActive: subscriptionIsActive))
+    func subscriptionAccessible(subscribed subscriptionIsActive: Bool, prompt: String? = nil) -> some View {
+        modifier(SubscriptionAccessible(subscriptionIsActive: subscriptionIsActive, prompt: prompt))
     }
 }
 
