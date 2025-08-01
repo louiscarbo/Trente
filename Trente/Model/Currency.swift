@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Currency: Codable, Hashable {
+struct Currency: Codable, Hashable, Identifiable {
+    var id: String { isoCode }
     let isoCode: String
     var symbol: String
     var sfSymbolName: String?
@@ -38,10 +39,12 @@ extension Currency {
 }
 
 extension Currency {
+    /// The name of the SF Symbol corresponding to the currency symbol inside a gauge with two sections.
     var sfSymbolGaugeName: String {
-        sfSymbolName.map { "\($0).gauge.chart.lefthalf.righthalf" } ?? ""
+        sfSymbolName.map { "\($0).gauge.chart.leftthird.topthird.rightthird" } ?? ""
     }
     
+    /// The name of the SF Symbol corresponding to the currency symbol inside a circle arrow to represent recurrence.
     var sfSymbolRecurrenceName: String {
         sfSymbolName.map { "\($0).arrow.trianglehead.counterclockwise.rotate.90" } ?? ""
     }
