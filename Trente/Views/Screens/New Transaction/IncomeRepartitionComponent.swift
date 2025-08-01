@@ -24,39 +24,7 @@ struct IncomeRepartitionComponent: View {
 
     var body: some View {
         VStack(spacing: .medium) {
-            VStack {
-                let color: Color = .pink
-                HStack {
-                    Label("Amount to distribute",
-                        systemImage: remainingAmount > 0 ? "exclamationmark.triangle.fill" : "checkmark.circle.fill"
-                    )
-                    Spacer()
-                    Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
-                }
-                .bold(remainingAmount < 100 && remainingAmount > 0)
-                GeometryReader { geo in
-                    let proportion = amountToSplit > 0
-                        ? CGFloat(remainingAmount) / CGFloat(amountToSplit)
-                        : 0
-
-                    ZStack(alignment: .leading) {
-                        color.lighten(0.25)
-
-                        Rectangle()
-                            .fill(color.gradient)
-                            .frame(width: proportion * geo.size.width + 3)
-                    }
-                }
-                .frame(height: 20)
-                .clipShape(Capsule())
-                .overlay {
-                    RoundedRectangle(cornerRadius: .large)
-                        .strokeBorder(
-                            color.darken(0.1),
-                            lineWidth: 3
-                        )
-                }
-            }
+            remainingAmountSection
 
             ForEach(BudgetCategory.allCases, id: \.self) { category in
                 BudgetCategorySliderRow(
@@ -75,6 +43,43 @@ struct IncomeRepartitionComponent: View {
         }
         .onChange(of: remainingAmount) { _, newValue in
             isRepartitionComplete = newValue == 0
+        }
+    }
+    
+    var remainingAmountSection: some View {
+        VStack {
+            HStack {
+                Label("Amount to distribute",
+                    systemImage: remainingAmount > 0 ? "exclamationmark.triangle.fill" : "checkmark.circle.fill"
+                )
+                Spacer()
+                Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+            }
+            .bold(remainingAmount < 100 && remainingAmount > 0)
+            
+            let color: Color = .pink
+            GeometryReader { geo in
+                let proportion = amountToSplit > 0
+                    ? CGFloat(remainingAmount) / CGFloat(amountToSplit)
+                    : 0
+
+                ZStack(alignment: .leading) {
+                    color.lighten(0.25)
+
+                    Rectangle()
+                        .fill(color.gradient)
+                        .frame(width: proportion * geo.size.width + 3)
+                }
+            }
+            .frame(height: 20)
+            .clipShape(Capsule())
+            .overlay {
+                RoundedRectangle(cornerRadius: .large)
+                    .strokeBorder(
+                        color.darken(0.1),
+                        lineWidth: 3
+                    )
+            }
         }
     }
 }
@@ -111,8 +116,6 @@ struct BudgetCategorySliderRow: View {
 
     var body: some View {
         VStack(spacing: .small) {
-            Text(category.name)
-                .font(.subheadline)
             HStack {
                 let decreaseAction = {
                     withAnimation(.spring) {
@@ -128,7 +131,7 @@ struct BudgetCategorySliderRow: View {
                 Button(action: decreaseAction, label: {
                     Image(systemName: "minus")
                 })
-                .frame(width: 40, height: 60)
+                .frame(width: 40)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
                 .disabled((repartition[category] ?? 0) == 0)
                 .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
@@ -148,6 +151,7 @@ struct BudgetCategorySliderRow: View {
                 let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
                 RepartitionSlider(
+                    categoryName: category.name,
                     color: category.color,
                     value: Binding(
                         get: { repartition[category] ?? 0 },
@@ -182,8 +186,8 @@ struct BudgetCategorySliderRow: View {
                 Button(action: increaseAction, label: {
                     Image(systemName: "plus")
                 })
-                .frame(width: 40, height: 60)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
+                .frame(width: 40)
                 .disabled(remainingAmount == 0)
                 .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
                     isLongPressing = true
@@ -209,6 +213,7 @@ struct BudgetCategorySliderRow: View {
 
 // MARK: - Custom Slider View
 struct RepartitionSlider: View {
+    let categoryName: String
     let color: Color
     @Binding var value: Int
     let total: Int
@@ -235,8 +240,16 @@ struct RepartitionSlider: View {
                     .font(.title)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .center)
+                
+                let categoryNameView = Text(categoryName)
+                    .font(.subheadline.bold())
+                    .frame(maxWidth: .infinity, alignment: .center)
 
-                textView
+                ZStack {
+                    VStack {
+                        categoryNameView
+                        textView
+                    }
                     .foregroundColor(color.lighten(0.5))
                     .mask(
                         HStack {
@@ -244,8 +257,11 @@ struct RepartitionSlider: View {
                             Spacer(minLength: 0)
                         }
                     )
-
-                textView
+                    
+                    VStack {
+                        categoryNameView
+                        textView
+                    }
                     .foregroundColor(color.darken(0.8))
                     .mask(
                         HStack {
@@ -253,8 +269,8 @@ struct RepartitionSlider: View {
                             Rectangle().frame(width: width - fillWidth)
                         }
                     )
+                }
             }
-            .frame(width: width)
             .overlay {
                 RoundedRectangle(cornerRadius: .large)
                     .strokeBorder(
@@ -285,7 +301,7 @@ struct RepartitionSlider: View {
                 }
             }
         }
-        .frame(height: 60)
+        .frame(minHeight: 60, maxHeight: 120)
     }
 }
 
@@ -301,7 +317,7 @@ struct RepartitionSlider: View {
         return formatter
     }()
 
-    VStack {
+    ScrollView {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
             IncomeRepartitionComponent(
                 repartition: $repartition,
@@ -311,9 +327,8 @@ struct RepartitionSlider: View {
             )
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
+
         Text("Is Repartition Complete: \(isRepartitionComplete ? "Yes" : "No")")
-        Spacer()
-            .frame(height: 300)
     }
     .padding()
 }
