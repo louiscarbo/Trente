@@ -8,28 +8,37 @@
 import SwiftUI
 
 struct TrenteToggleStyle: ToggleStyle {
+    @State private var scale: CGFloat = 1.0
+    
     func makeBody(configuration: Configuration) -> some View {
         Button {
-            configuration.isOn.toggle()
+            withAnimation(.bouncy) {
+                configuration.isOn.toggle()
+            }
         } label: {
             HStack {
-                Image(systemName: configuration.isOn
-                      ? "checkmark.circle.fill"
-                      : "circle")
+                Image(systemName: configuration.isOn ? "checkmark.circle.fill" : "circle")
                     .font(.title2)
-                    .foregroundStyle(configuration.isOn
-                                     ? .primary
-                                     : .secondary)
+                    .foregroundStyle(configuration.isOn ? .primary : .secondary)
+                    .onChange(of: configuration.isOn) { _, _ in
+                        withAnimation(.spring(duration: 0.3)) {
+                            scale = 1.05
+                        } completion: {
+                            withAnimation(.spring(duration: 0.3)) {
+                                scale = 1.0
+                            }
+                        }
+                    }
+                    .scaleEffect(scale)
+                
                 configuration.label
+                    .foregroundStyle(configuration.isOn ? .primary : .secondary)
             }
+            .contentTransition(
+                .symbolEffect(.replace)
+            )
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(Text(configuration.isOn
-                                 ? "Enabled"
-                                 : "Disabled"))
-        .accessibilityValue(Text(configuration.isOn
-                                ? "On"
-                                : "Off"))
     }
 }
 
