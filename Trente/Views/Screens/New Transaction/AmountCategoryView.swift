@@ -16,9 +16,8 @@ struct AmountCategoryView: View {
     
     // View State
     @Binding var nextButtonDisabled: Bool
-    var currencyCode: String
-    @State private var amountText = ""
-    @FocusState private var amountFieldIsFocused: Bool
+    @FocusState private var currencyTextFieldFocused: Bool
+    let currency: Currency
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -30,8 +29,8 @@ struct AmountCategoryView: View {
 
             if transactionType == .expense {
                 Picker("Category", selection: $selectedCategory) {
-                    ForEach(BudgetCategory.allCases, id: \.self) { category in
-                        Text(category.shortName).tag(category)
+                    ForEach(BudgetCategory.allCases) { category in
+                        Text(category.shortName).tag(category as BudgetCategory?)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -59,12 +58,8 @@ struct AmountCategoryView: View {
         #if os(macOS)
         .padding(.top)
         #endif
-        .onChange(of: amountText) { oldValue, newValue in
-            processAmountTextChange(newValue: newValue, oldValue: oldValue)
-            updateNextButtonState()
-        }
         .onChange(of: transactionType) { _, newValue in
-            applySign()
+            amountCents = (newValue == .income) ? abs(amountCents) : -abs(amountCents)
             updateNextButtonState()
             if newValue == .income {
                 selectedCategory = nil
@@ -73,10 +68,14 @@ struct AmountCategoryView: View {
         .onChange(of: selectedCategory) {
             updateNextButtonState()
         }
+        .onChange(of: amountCents) {
+            amountCents = (transactionType == .income) ? abs(amountCents) : -abs(amountCents)
+            updateNextButtonState()
+        }
         .onAppear {
             updateNextButtonState()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                amountFieldIsFocused = true
+                currencyTextFieldFocused = true
             }
         }
     }
@@ -98,80 +97,13 @@ struct AmountCategoryView: View {
         .pickerStyle(.segmented)
         #endif
         
-        TextField(
-            "",
-            text: $amountText,
-            prompt: Text("\(0.formatted(.currency(code: currencyCode)))")
-        )
-        .focused($amountFieldIsFocused)
-        #if os(iOS)
-        .keyboardType(.decimalPad)
-        .textFieldStyle(.plain)
-        .font(.system(size: 80, weight: .bold))
-        .multilineTextAlignment(.center)
-        #endif
-    }
-    
-    // Text validation and amount in cents calculation
-    private func processAmountTextChange(newValue: String, oldValue: String) {
-        let decimalSep = Locale.current.decimalSeparator ?? "."
-        
-        // 1) Strip any leading sign for validation
-        let unsigned = newValue.trimmingCharacters(in: CharacterSet(charactersIn: "+-"))
-        
-        // 1a) Prevent more than one decimal separator
-        let sepChar = Character(decimalSep)
-        let sepCount = unsigned.filter { $0 == sepChar }.count
-        if sepCount > 1 {
-            amountText = oldValue
-            return
-        }
-        
-        // 1b) Enforce max two decimal places
-        if let idx = unsigned.firstIndex(of: sepChar) {
-            let frac = unsigned[unsigned.index(after: idx)...]
-            if frac.count > 2 {
-                amountText = oldValue
-                return
-            }
-        }
-        
-        // 1c) If now empty, clear everything
-        guard !unsigned.isEmpty else {
-            amountText = ""
-            amountCents = 0
-            return
-        }
-        
-        // 1d) Parse number respecting locale
-        let fmt = NumberFormatter()
-        fmt.locale = Locale.current
-        fmt.numberStyle = .decimal
-        let dbl = fmt.number(from: unsigned)?.doubleValue ?? 0
-        
-        // 1e) Compute absolute cents
-        let absCents = Int((dbl * 100).rounded())
-        
-        // 1f) Update the text to the unsigned digits
-        amountText = unsigned
-        
-        // 1g) Store signed cents & re-attach sign
-        amountCents = transactionType == .income ? absCents : -absCents
-        applySign()
-    }
-    
-    private func applySign() {
-        // 2a) Normalize amountCents to match isIncome
-        if transactionType == .income {
-            amountCents = abs(amountCents)
-        } else {
-            amountCents = -abs(amountCents)
-        }
-        
-        // 2b) Rebuild amountText with proper prefix
-        let unsigned = amountText.trimmingCharacters(in: CharacterSet(charactersIn: "+-"))
-        let prefix = transactionType == .income ? "" : "-"
-        amountText = prefix + unsigned
+        CurrencyTextField(amountCents: $amountCents, currency: currency)
+            .focused($currencyTextFieldFocused)
+            #if os(iOS)
+            .textFieldStyle(.plain)
+            .font(.system(size: 80, weight: .bold))
+            .multilineTextAlignment(.center)
+            #endif
     }
     
     private func updateNextButtonState() {
@@ -181,4 +113,28 @@ struct AmountCategoryView: View {
             nextButtonDisabled = amountCents == 0 || selectedCategory == nil
         }
     }
+}
+
+#Preview {
+    @Previewable @State var category: BudgetCategory? = .needs
+    @Previewable @State var amount: Int = -2550
+    @Previewable @State var type: TransactionType = .expense
+    @Previewable @State var recurrent: Bool = false
+    @Previewable @State var disabled: Bool = false
+    let euro = Currencies.availableCurrencies.first { $0.isoCode == "EUR" }!
+    
+    AmountCategoryView(
+        selectedCategory: $category,
+        amountCents: $amount,
+        transactionType: $type,
+        isRecurrent: $recurrent,
+        nextButtonDisabled: $disabled,
+        currency: euro
+    )
+    .padding()
+    
+    Button("NEXT") { }
+        .buttonStyle(TrentePrimaryButtonStyle())
+        .disabled(disabled)
+        .padding()
 }

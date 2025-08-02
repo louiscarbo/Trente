@@ -112,7 +112,7 @@ struct NewTransactionView: View {
                     isRecurrent: $viewModel.request.isRecurrent,
                     
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
-                    currencyCode: context.currency.isoCode
+                    currency: context.currency
                 )
             case .title:
                 TitleView(
