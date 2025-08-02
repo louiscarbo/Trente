@@ -52,7 +52,7 @@
     "Amount" : {
 
     },
-    "Amount to distribute" : {
+    "Amount to split" : {
 
     },
     "An error occurred" : {
@@ -85,6 +85,9 @@
     "Create" : {
 
     },
+    "Currency" : {
+
+    },
     "CURRENT MONTH" : {
 
     },
@@ -110,6 +113,9 @@
 
     },
     "Done" : {
+
+    },
+    "Eh" : {
 
     },
     "Enabled" : {
@@ -155,6 +161,12 @@
     "How would you like to split this income?" : {
 
     },
+    "Ideal Amount" : {
+
+    },
+    "Ideal Budget" : {
+
+    },
     "Income" : {
 
     },
@@ -162,6 +174,9 @@
 
     },
     "Income/Expense" : {
+
+    },
+    "January 2025" : {
 
     },
     "Latest Transactions" : {
@@ -174,6 +189,9 @@
 
     },
     "Montant ↓" : {
+
+    },
+    "Month Details" : {
 
     },
     "Month Recap" : {

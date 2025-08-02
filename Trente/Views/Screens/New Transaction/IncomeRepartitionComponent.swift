@@ -12,6 +12,7 @@ struct IncomeRepartitionComponent: View {
     let amountToSplit: Int
     let formatter: NumberFormatter
     @Binding var isRepartitionComplete: Bool
+    @State private var remainingMeasuredHeight: CGFloat = 0
 
     @State private var remainingAmount: Int = 0
 
@@ -47,39 +48,72 @@ struct IncomeRepartitionComponent: View {
     }
     
     var remainingAmountSection: some View {
-        VStack {
-            HStack {
-                Label("Amount to distribute",
-                    systemImage: remainingAmount > 0 ? "exclamationmark.triangle.fill" : "checkmark.circle.fill"
-                )
-                Spacer()
-                Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
-            }
-            .bold(remainingAmount < 100 && remainingAmount > 0)
-            
-            let color: Color = .pink
-            GeometryReader { geo in
-                let proportion = amountToSplit > 0
-                    ? CGFloat(remainingAmount) / CGFloat(amountToSplit)
-                    : 0
+        let color: Color = .pink
 
-                ZStack(alignment: .leading) {
-                    color.lighten(0.25)
+        return GeometryReader { geo in
+            let width = geo.size.width
+            let proportion = amountToSplit > 0
+                ? max(0, min(1, CGFloat(remainingAmount) / CGFloat(amountToSplit)))
+                : 0
+            let fillWidth = min(proportion * (width - 3) + 3, width)
 
-                    Rectangle()
-                        .fill(color.gradient)
-                        .frame(width: proportion * geo.size.width + 3)
+            ZStack(alignment: .leading) {
+                color.lighten(0.25)
+
+                Rectangle()
+                    .fill(color.gradient)
+                    .frame(width: fillWidth)
+
+                let content = HStack {
+                    Label(
+                        "Amount to split",
+                        systemImage: remainingAmount > 0
+                            ? "exclamationmark.triangle.fill"
+                            : "checkmark.circle.fill"
+                    )
+                    Spacer()
+                    Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+                }
+                .font(.subheadline)
+                .bold(remainingAmount < 100 && remainingAmount > 0)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+
+                ZStack {
+                    content
+                        .accessibilityHidden(true)
+                        .foregroundColor(color.lighten(0.5))
+                        .mask(
+                            HStack(spacing: 0) {
+                                Rectangle().frame(width: fillWidth)
+                                Spacer(minLength: 0)
+                            }
+                        )
+                        .background(
+                            GeometryReader { g in
+                                Color.clear.preference(key: HeightKey.self, value: g.size.height)
+                            }
+                        )
+
+                    content
+                        .foregroundColor(color.darken(0.6))
+                        .mask(
+                            HStack(spacing: 0) {
+                                Spacer(minLength: 0)
+                                Rectangle().frame(width: max(0, width - fillWidth))
+                            }
+                        )
                 }
             }
-            .frame(height: 20)
-            .clipShape(Capsule())
-            .overlay {
-                RoundedRectangle(cornerRadius: .large)
-                    .strokeBorder(
-                        color.darken(0.1),
-                        lineWidth: 3
-                    )
-            }
+        }
+        .frame(height: max(20, remainingMeasuredHeight))
+        .clipShape(Capsule())
+        .overlay {
+            RoundedRectangle(cornerRadius: .large)
+                .strokeBorder(.pink.darken(0.1), lineWidth: 3)
+        }
+        .onPreferenceChange(HeightKey.self) { h in
+            remainingMeasuredHeight = h
         }
     }
 }
@@ -266,6 +300,7 @@ struct RepartitionSlider: View {
                             Spacer(minLength: 0)
                         }
                     )
+                    .accessibilityHidden(true)
                     // Measure the height of the text to force the slider to adapt its height
                     .background(
                         GeometryReader { geometry in
