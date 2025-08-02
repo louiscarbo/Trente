@@ -49,6 +49,12 @@ struct TrenteApp: App {
         }
         .modelContainer(container)
         .defaultSize(width: 500, height: 550)
+
+        WindowGroup("New Month", id: WindowIdentifiers.newMonth) {
+            NewMonthView()
+        }
+        .modelContainer(container)
+        .defaultSize(width: 500, height: 600)
         #endif
     }
 }

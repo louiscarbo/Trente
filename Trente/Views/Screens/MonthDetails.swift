@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MonthDetails: View {
-    @State var month: Month
+    @Binding var month: Month
         
     @FocusState private var isAmountFocused: Bool
         
@@ -61,7 +61,7 @@ struct MonthDetails: View {
     }
 
     private var startDatePicker: some View {
-        DatePicker("Start Date", selection: .constant(.now), displayedComponents: .date)
+        DatePicker("Start Date", selection: $month.startDate, displayedComponents: .date)
             .datePickerStyle(.compact)
     }
     
@@ -85,11 +85,11 @@ struct MonthDetails: View {
     @Previewable @State var month: Month = .init(
         startDate: .now,
         currency: Currencies.currency(for: "EUR")!,
-        idealBudgetCents: 0,
+        idealBudgetCents: 100000, // 1000 EUR
         idealRepartition: Dictionary(
             uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) }
         )
     )
     
-    MonthDetails(month: month)
+    return MonthDetails(month: $month)
 }
