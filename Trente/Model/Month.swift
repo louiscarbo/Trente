@@ -14,7 +14,8 @@ final class Month: Identifiable, Hashable, Equatable {
     var startDate: Date
     var currency: Currency
     
-    var categoryRepartition: [BudgetCategory: Int] // Amount in cents for each category
+    var idealBudgetCents: Int
+    var idealRepartition: [BudgetCategory: Int]
 
     @Relationship(deleteRule: .cascade, inverse: \TransactionGroup.month)
     var transactionGroups: [TransactionGroup] = []
@@ -24,10 +25,11 @@ final class Month: Identifiable, Hashable, Equatable {
 
     var isDeleted: Bool = false
     
-    init(startDate: Date, currency: Currency, categoryRepartition: [BudgetCategory: Int]) {
+    init(startDate: Date, currency: Currency, idealBudgetCents: Int, idealRepartition: [BudgetCategory: Int]) {
         self.startDate = startDate
         self.currency = currency
-        self.categoryRepartition = categoryRepartition
+        self.idealBudgetCents = idealBudgetCents
+        self.idealRepartition = idealRepartition
     }
 }
 
@@ -145,7 +147,8 @@ extension Month {
         let copy = Month(
             startDate: startDate,
             currency: currency,
-            categoryRepartition: categoryRepartition
+            idealBudgetCents: idealBudgetCents,
+            idealRepartition: idealRepartition
         )
         
         copy.transactionGroups = transactionGroups.map { $0.detachedCopy() }
