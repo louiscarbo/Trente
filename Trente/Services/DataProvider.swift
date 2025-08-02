@@ -57,7 +57,8 @@ extension Month {
     static let month1 = Month(
         startDate: Date(),
         currency: Currencies.currency(for: "EUR")!,
-        categoryRepartition: [
+        idealBudgetCents: 3000_00,
+        idealRepartition: [
             .needs: 50,
             .wants: 30,
             .savingsAndDebts: 20
@@ -67,7 +68,8 @@ extension Month {
     static let month2 = Month(
         startDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!,
         currency: Currencies.currency(for: "EUR")!,
-        categoryRepartition: [
+        idealBudgetCents: 600_00,
+        idealRepartition: [
             .needs: 50,
             .wants: 30,
             .savingsAndDebts: 20
@@ -77,7 +79,8 @@ extension Month {
     static let month3 = Month(
         startDate: Calendar.current.date(byAdding: .month, value: -2, to: Date())!,
         currency: Currencies.currency(for: "EUR")!,
-        categoryRepartition: [
+        idealBudgetCents: 2_000_00,
+        idealRepartition: [
             .needs: 50,
             .wants: 30,
             .savingsAndDebts: 20
@@ -87,7 +90,8 @@ extension Month {
     static let month4 = Month(
         startDate: Calendar.current.date(byAdding: .month, value: -3, to: Date())!,
         currency: Currencies.currency(for: "EUR")!,
-        categoryRepartition: [
+        idealBudgetCents: 1500_00,
+        idealRepartition: [
             .needs: 50,
             .wants: 30,
             .savingsAndDebts: 20
@@ -100,7 +104,8 @@ extension Month {
         let month1 = Month(
             startDate: Date(),
             currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [
+            idealBudgetCents: 2000_00,
+            idealRepartition: [
                 .needs: 50,
                 .wants: 30,
                 .savingsAndDebts: 20
