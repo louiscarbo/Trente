@@ -33,17 +33,12 @@ struct RecurrenceView: View {
     }
     
     private var frequencyPicker: some View {
-        HStack {
-            Text("Frequency")
-            Spacer()
-            Picker("Frequency", selection: $recurrenceFrequency) {
-                ForEach(RecurrenceFrequency.allCases, id: \.self) { frequency in
-                    Text(frequency.displayName)
-                        .tag(frequency)
-                }
-            }
-            .pickerStyle(.automatic)
-            .tint(.primary)
+        LabeledPicker(
+            title: "Frequency",
+            selection: $recurrenceFrequency,
+            options: RecurrenceFrequency.allCases
+        ) { frequency in
+            Text(frequency.displayName)
         }
     }
     

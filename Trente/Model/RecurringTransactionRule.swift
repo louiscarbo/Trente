@@ -34,7 +34,8 @@ class RecurringTransactionRule {
     }
 }
 
-enum RecurrenceFrequency: String, Codable, CaseIterable {
+enum RecurrenceFrequency: String, Codable, CaseIterable, Identifiable {
+    var id: String { self.rawValue }
     case weekly, monthly, yearly
     
     var displayName: String {
