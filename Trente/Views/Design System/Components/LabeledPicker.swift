@@ -19,6 +19,7 @@ struct LabeledPicker<SelectionValue: Identifiable & Hashable, Content: View>: Vi
     var body: some View {
         let titleText = Text(title)
             .accessibilityHidden(true)
+            .fixedSize(horizontal: true, vertical: false)
         
         let picker = Picker(title, selection: $selection) {
             ForEach(options) { option in
