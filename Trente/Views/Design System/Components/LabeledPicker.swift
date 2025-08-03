@@ -37,9 +37,11 @@ struct LabeledPicker<SelectionValue: Identifiable & Hashable, Content: View>: Vi
             }
         } else {
             HStack {
+                #if os(iOS)
                 titleText
                 Spacer()
                     .frame(minWidth: 0)
+                #endif
                 picker
                     .fixedSize(horizontal: true, vertical: false)
             }
