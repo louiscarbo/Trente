@@ -164,9 +164,6 @@
     "Income/Expense" : {
 
     },
-    "January 2025" : {
-
-    },
     "Latest Transactions" : {
 
     },
@@ -194,6 +191,9 @@
     "Needs" : {
 
     },
+    "New Month" : {
+
+    },
     "New Transaction" : {
 
     },
@@ -219,6 +219,9 @@
 
     },
     "Please open this window from a month dashboard." : {
+
+    },
+    "Preparing New Month..." : {
 
     },
     "Previous" : {
