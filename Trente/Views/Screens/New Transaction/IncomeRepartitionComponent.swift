@@ -71,6 +71,9 @@ struct IncomeRepartitionComponent: View {
                             ? "exclamationmark.triangle.fill"
                             : "checkmark.circle.fill"
                     )
+                    .contentTransition(
+                        .symbolEffect(.replace)
+                    )
                     Spacer()
                     Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
                 }
@@ -138,6 +141,7 @@ struct TrenteSliderButtonStyle: ButtonStyle {
     }
 }
 
+// TODO: Add the percentages
 struct BudgetCategorySliderRow: View {
     let category: BudgetCategory
     @Binding var repartition: [BudgetCategory: Int]

@@ -58,6 +58,7 @@ struct MonthDetails: View {
                 .padding()
             }
             .navigationTitle(month.name)
+            #if os(iOS)
             .safeAreaInset(edge: .bottom) {
                 if isAmountFocused {
                     VStack {
@@ -81,6 +82,7 @@ struct MonthDetails: View {
                     }
                 }
             }
+            #endif
         }
     }
 
