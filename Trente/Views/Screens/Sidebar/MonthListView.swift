@@ -13,7 +13,7 @@ struct MonthListView: View {
         sort: \Month.startDate,
         order: .reverse,
         animation: .default
-    ) var months: [Month]
+    ) private var months: [Month]
         
     @State private var selection: Month?
     @State private var isShowingNewMonth = false
@@ -84,6 +84,11 @@ struct MonthListView: View {
         }
         .onAppear {
             selection = months.first
+        }
+        .onChange(of: months) { _, newMonths in
+            if let firstMonth = newMonths.first {
+                selection = firstMonth
+            }
         }
     }
 }
