@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MonthDetails: View {
     @Binding var month: Month
-        
+    @Binding var isRepartitionComplete: Bool
+
     @FocusState private var isAmountFocused: Bool
         
     var body: some View {
@@ -45,9 +46,9 @@ struct MonthDetails: View {
                                     repartition: $month.idealRepartition,
                                     amountToSplit: month.idealBudgetCents,
                                     formatter: month.currency.roundFormatter,
-                                    isRepartitionComplete: .constant(false)
+                                    isRepartitionComplete: $isRepartitionComplete
                                 )
-                                .id(UUID())
+                                .id(month.idealBudgetCents)
                             }
                         }
                     }
@@ -56,7 +57,30 @@ struct MonthDetails: View {
                 }
                 .padding()
             }
-            .navigationTitle("January 2025")
+            .navigationTitle(month.name)
+            .safeAreaInset(edge: .bottom) {
+                if isAmountFocused {
+                    VStack {
+                        Button {
+                            isAmountFocused = false
+                        } label: {
+                            Label("Done", systemImage: "keyboard.chevron.compact.down")
+                        }
+                        .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
+                    }
+                    .padding()
+                    .background {
+                        UnevenRoundedRectangle(
+                            cornerRadii:
+                                RectangleCornerRadii(topLeading: 26, bottomLeading: 0, bottomTrailing: 0, topTrailing: 26)
+                        )
+                        .offset(y: 1.5)
+                        .fill(.regularMaterial)
+                        .stroke(.secondary.opacity(0.4), lineWidth: 3)
+                        .ignoresSafeArea()
+                    }
+                }
+            }
         }
     }
 
@@ -69,7 +93,7 @@ struct MonthDetails: View {
         LabeledPicker(
             title: "Currency",
             selection: $month.currency,
-            options: Currencies.availableCurrencies
+            options: Currencies.availableCurrencies.sorted(by: { $0.localizedName < $1.localizedName })
         ) { currency in
             Label(currency.localizedName, systemImage: currency.sfSymbolName ?? "xmark")
         }
@@ -90,6 +114,7 @@ struct MonthDetails: View {
             uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) }
         )
     )
+    @Previewable @State var isRepartitionComplete: Bool = false
     
-    return MonthDetails(month: $month)
+    MonthDetails(month: $month, isRepartitionComplete: $isRepartitionComplete)
 }
