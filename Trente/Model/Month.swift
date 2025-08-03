@@ -12,10 +12,10 @@ import SwiftData
 final class Month: Identifiable, Hashable, Equatable {
     var id: UUID = UUID()
     var startDate: Date
-    var availableIncomeCents: Int
     var currency: Currency
     
-    var categoryRepartition: [BudgetCategory: Int] // Amount in cents for each category
+    var idealBudgetCents: Int
+    var idealRepartition: [BudgetCategory: Int]
 
     @Relationship(deleteRule: .cascade, inverse: \TransactionGroup.month)
     var transactionGroups: [TransactionGroup] = []
@@ -25,11 +25,11 @@ final class Month: Identifiable, Hashable, Equatable {
 
     var isDeleted: Bool = false
     
-    init(startDate: Date, availableIncomeCents: Int, currency: Currency, categoryRepartition: [BudgetCategory: Int]) {
+    init(startDate: Date, currency: Currency, idealBudgetCents: Int, idealRepartition: [BudgetCategory: Int]) {
         self.startDate = startDate
-        self.availableIncomeCents = availableIncomeCents
         self.currency = currency
-        self.categoryRepartition = categoryRepartition
+        self.idealBudgetCents = idealBudgetCents
+        self.idealRepartition = idealRepartition
     }
 }
 
@@ -146,9 +146,9 @@ extension Month {
     func detachedCopy() -> Month {
         let copy = Month(
             startDate: startDate,
-            availableIncomeCents: availableIncomeCents,
             currency: currency,
-            categoryRepartition: categoryRepartition
+            idealBudgetCents: idealBudgetCents,
+            idealRepartition: idealRepartition
         )
         
         copy.transactionGroups = transactionGroups.map { $0.detachedCopy() }

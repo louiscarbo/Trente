@@ -52,7 +52,7 @@
     "Amount" : {
 
     },
-    "Amount to distribute" : {
+    "Amount to split" : {
 
     },
     "An error occurred" : {
@@ -85,6 +85,9 @@
     "Create" : {
 
     },
+    "Currency" : {
+
+    },
     "CURRENT MONTH" : {
 
     },
@@ -103,16 +106,10 @@
     "Dining out, entertainment..." : {
 
     },
-    "Disabled" : {
-
-    },
     "Discover Trente+" : {
 
     },
     "Done" : {
-
-    },
-    "Enabled" : {
 
     },
     "End Date" : {
@@ -155,6 +152,9 @@
     "How would you like to split this income?" : {
 
     },
+    "Ideal Budget" : {
+
+    },
     "Income" : {
 
     },
@@ -176,6 +176,9 @@
     "Montant ↓" : {
 
     },
+    "Month Details" : {
+
+    },
     "Month Recap" : {
 
     },
@@ -186,6 +189,9 @@
 
     },
     "Needs" : {
+
+    },
+    "New Month" : {
 
     },
     "New Transaction" : {
@@ -206,19 +212,16 @@
     "Not Implemented Yet." : {
 
     },
-    "Off" : {
-
-    },
     "OK" : {
-
-    },
-    "On" : {
 
     },
     "Over Budget" : {
 
     },
     "Please open this window from a month dashboard." : {
+
+    },
+    "Preparing New Month..." : {
 
     },
     "Previous" : {

@@ -9,4 +9,5 @@ import Foundation
 
 enum WindowIdentifiers {
     static let newTransaction = "new-transaction"
+    static let newMonth = "new-month"
 }

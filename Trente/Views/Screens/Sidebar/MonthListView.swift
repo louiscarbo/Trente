@@ -208,13 +208,23 @@ private struct MonthRowView: View {
 }
 
 private struct NewMonthButtonView: View {
+    @Environment(\.openWindow) private var openWindow
+    @State private var isShowingNewMonthSheet = false
+
     var body: some View {
         Button {
-            
+            #if os(macOS)
+            openWindow(id: WindowIdentifiers.newMonth)
+            #else
+            isShowingNewMonthSheet = true
+            #endif
         } label: {
             Label("Start a New Month", systemImage: "calendar.badge.plus")
         }
         .buttonStyle(TrenteSecondaryButtonStyle())
+        .sheet(isPresented: $isShowingNewMonthSheet) {
+            NewMonthView()
+        }
     }
 }
 

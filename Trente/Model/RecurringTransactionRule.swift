@@ -34,7 +34,8 @@ class RecurringTransactionRule {
     }
 }
 
-enum RecurrenceFrequency: String, Codable, CaseIterable {
+enum RecurrenceFrequency: String, Codable, CaseIterable, Identifiable {
+    var id: String { self.rawValue }
     case weekly, monthly, yearly
     
     var displayName: String {
@@ -131,7 +132,7 @@ extension RecurringTransactionRule {
             // 1) normalize windowStart to midnight for date‐only compare
             let dayWindowStart = calendar.startOfDay(for: windowStart)
             let day = calendar.component(.day, from: self.startDate)
-
+            
             // 2) We’ll test two calendar‐months: the one containing month.startDate, and the next one
             for offset in 0...1 {
                 // anchor to month.startDate + offset months
@@ -140,14 +141,14 @@ extension RecurringTransactionRule {
                     value: offset,
                     to: month.startDate
                 ) else { continue }
-
+                
                 // build year/month from that anchor
                 var comps = calendar.dateComponents([.year, .month], from: monthAnchor)
                 comps.day = day
-
+                
                 // try to form the candidate
                 guard let candidate = calendar.date(from: comps) else { continue }
-
+                
                 // 3) only accept if it lands in our valid window
                 if candidate >= dayWindowStart && candidate <= windowEnd {
                     instances.append(
@@ -179,9 +180,6 @@ extension RecurringTransactionRule {
             if let candidate = calendar.date(from: comps),
                candidate >= windowStart,
                candidate <= windowEnd {
-                
-                print("Adding yearly instance: \(title), \(candidate)")
-
                 instances.append(
                     RecurringTransactionInstance(
                         date: candidate,
