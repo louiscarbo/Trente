@@ -141,7 +141,7 @@ struct TrenteSliderButtonStyle: ButtonStyle {
     }
 }
 
-// TODO: Add the percentages
+// TODO: Add the percentages, maybe with ticks along the sliders?
 struct BudgetCategorySliderRow: View {
     let category: BudgetCategory
     @Binding var repartition: [BudgetCategory: Int]
