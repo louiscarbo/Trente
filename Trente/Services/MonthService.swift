@@ -14,7 +14,7 @@ final class MonthService {
 
     func create(month: Month, in context: ModelContext) throws {
         context.insert(month)
-        try context.save()
         try RecurringTransactionService.shared.refreshInstances(for: month, in: context)
+        try context.save()
     }
 }
