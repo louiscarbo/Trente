@@ -16,13 +16,14 @@ struct NewMonthView: View {
     private var months: [Month]
 
     @State private var newMonth: Month?
-
-    init() {}
+    @State private var isRepartitionComplete: Bool = false
+    @State private var showErrorAlert: Bool = false
+    @State private var errorMessage: String = ""
 
     var body: some View {
         NavigationStack {
-            if let $newMonth {
-                MonthDetails(month: $newMonth)
+            if let newMonth = Binding($newMonth) {
+                MonthDetails(month: newMonth, isRepartitionComplete: $isRepartitionComplete)
                     .navigationTitle("New Month")
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
@@ -44,22 +45,27 @@ struct NewMonthView: View {
         .task {
             initializeMonth()
         }
+        .alert("An error occurred", isPresented: $showErrorAlert) {
+            Button("Retry") {
+                saveMonth()
+            }
+            Button("Cancel", role: .cancel) {
+                dismiss()
+            }
+        } message: {
+            Text(errorMessage.isEmpty ? "We couldn't create the month. Please try again." : errorMessage)
+        }
     }
 
     private var isCreateButtonDisabled: Bool {
         guard let newMonth else { return true }
-
-        let repartitionSum = newMonth.idealRepartition.values.reduce(0, +)
-        let isRepartitionComplete = repartitionSum == newMonth.idealBudgetCents
-
         return newMonth.idealBudgetCents <= 0 || !isRepartitionComplete
     }
 
     private func initializeMonth() {
         if let latestMonth = months.first {
-            // Pre-fill data from the most recent month
             let calendar = Calendar.current
-            let nextStartDate = calendar.date(byAdding: .day, value: 1, to: latestMonth.endDate()) ?? Date()
+            let nextStartDate = calendar.date(byAdding: .day, value: 1, to: latestMonth.endDate()) ?? .now
 
             self.newMonth = Month(
                 startDate: nextStartDate,
@@ -68,10 +74,9 @@ struct NewMonthView: View {
                 idealRepartition: latestMonth.idealRepartition
             )
         } else {
-            // Provide default values if no months exist
             self.newMonth = Month(
                 startDate: .now,
-                currency: Currencies.currency(for: "USD")!,
+                currency: Currencies.currency(for: "EUR")!,
                 idealBudgetCents: 0,
                 idealRepartition: Dictionary(uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
             )
@@ -84,7 +89,8 @@ struct NewMonthView: View {
             try MonthService.shared.create(month: newMonth, in: modelContext)
             dismiss()
         } catch {
-            print("Failed to save the new month: \(error.localizedDescription)")
+            errorMessage = error.localizedDescription
+            showErrorAlert = true
         }
     }
 }
