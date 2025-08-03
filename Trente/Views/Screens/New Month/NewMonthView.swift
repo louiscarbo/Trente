@@ -74,9 +74,14 @@ struct NewMonthView: View {
                 idealRepartition: latestMonth.idealRepartition
             )
         } else {
+            guard let defaultCurrency = Currencies.currency(for: "EUR") else {
+                errorMessage = "No currencies available to create a new month."
+                showErrorAlert = true
+                return
+            }
             self.newMonth = Month(
                 startDate: .now,
-                currency: Currencies.currency(for: "EUR")!,
+                currency: defaultCurrency,
                 idealBudgetCents: 0,
                 idealRepartition: Dictionary(uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
             )
