@@ -66,8 +66,15 @@ struct CurrencyTextField: View {
         let formatter = NumberFormatter()
         formatter.locale = .current
         formatter.numberStyle = .decimal
-        let number = formatter.number(from: unsignedText)?.doubleValue ?? 0
-        return Int((number * 100).rounded())
+        guard let number = formatter.number(from: unsignedText) else { return 0 }
+
+        let decimalAmount = number.decimalValue
+        var cents = decimalAmount * 100
+        
+        var roundedCents = Decimal()
+        NSDecimalRound(&roundedCents, &cents, 0, .plain)
+        
+        return NSDecimalNumber(decimal: roundedCents).intValue
     }
     
     /// Validates user input and updates the `amountCents` binding.
