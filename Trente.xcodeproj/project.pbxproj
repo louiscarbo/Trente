@@ -109,6 +109,7 @@
 				"Views/Design System/Custom Styles/TrentePrimaryButtonStyle.swift",
 				"Views/Design System/Custom Styles/TrenteSecondaryButtonStyle.swift",
 				"Views/Design System/Custom Styles/TrenteToggleStyle.swift",
+				"Views/Design System/DesignSystem.swift",
 				Views/Screens/Dashboard/GraphCardView.swift,
 				Views/Screens/Sidebar/CurrentMonthRowView.swift,
 				"Views/Screens/Transactions Lists/TransactionGroupRowView.swift",

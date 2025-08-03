@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-enum BudgetCategory: String, Codable, CaseIterable {
+enum BudgetCategory: String, Codable, CaseIterable, Identifiable {
+    var id: String { self.rawValue }
     case needs
     case wants
     case savingsAndDebts

@@ -29,7 +29,7 @@ struct NewTransactionView: View {
         .alert("An error occurred", isPresented: $viewModel.showErrorAlert) {
             Button("Retry") {
                 guard let month else { return }
-                viewModel.createTransaction(for: month, in: modelContext)
+                _ = viewModel.createTransaction(for: month, in: modelContext)
             }
             Button("Cancel", role: .cancel) {
                 dismiss()
@@ -39,6 +39,7 @@ struct NewTransactionView: View {
         }
     }
     
+    // TODO: Factorize this into a reusable component?
     private var navigationButtons: some View {
         VStack {
             HStack(spacing: 20) {
@@ -95,6 +96,7 @@ struct NewTransactionView: View {
                 cornerRadii:
                     RectangleCornerRadii(topLeading: 26, bottomLeading: 0, bottomTrailing: 0, topTrailing: 26)
             )
+            .offset(y: 1.5)
             .fill(.regularMaterial)
             .stroke(.secondary.opacity(0.4), lineWidth: 3)
             .ignoresSafeArea()
@@ -112,7 +114,7 @@ struct NewTransactionView: View {
                     isRecurrent: $viewModel.request.isRecurrent,
                     
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
-                    currencyCode: context.currency.isoCode
+                    currency: context.currency
                 )
             case .title:
                 TitleView(

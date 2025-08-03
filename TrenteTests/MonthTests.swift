@@ -15,27 +15,28 @@ struct MonthTests {
     func testSpentAmount() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 1000_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         // Add expense groups with entries
         let groceries = TransactionGroup(
-            addedDate: .now,
             title: "Groceries",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         groceries.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: groceries)
         ]
 
         let rent = TransactionGroup(
-            addedDate: .now,
             title: "Rent",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         rent.entries = [
             TransactionEntry(amountCents: -400_00, category: .needs, group: rent)
@@ -50,17 +51,17 @@ struct MonthTests {
     func testRemainingAmount() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 1000_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         // Income group
         let salary = TransactionGroup(
-            addedDate: .now,
             title: "Salary",
             type: .income,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         salary.entries = [
             TransactionEntry(amountCents: 1000_00, category: .needs, group: salary)
@@ -68,20 +69,22 @@ struct MonthTests {
 
         // Expenses
         let mall = TransactionGroup(
-            addedDate: .now,
             title: "Mall",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         mall.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: mall)
         ]
 
         let rent = TransactionGroup(
-            addedDate: .now,
             title: "Rent",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         rent.entries = [
             TransactionEntry(amountCents: -400_00, category: .needs, group: rent)
@@ -96,16 +99,16 @@ struct MonthTests {
     func testOverSpentTrue() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 800_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         let groceries = TransactionGroup(
-            addedDate: .now,
             title: "Groceries",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         groceries.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: groceries)
@@ -120,26 +123,27 @@ struct MonthTests {
     func testOverSpentFalse() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 800_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         let salary = TransactionGroup(
-            addedDate: .now,
             title: "Salary",
             type: .income,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         salary.entries = [
             TransactionEntry(amountCents: 2000_00, category: .needs, group: salary)
         ]
 
         let groceries = TransactionGroup(
-            addedDate: .now,
             title: "Groceries",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         groceries.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: groceries)
@@ -159,7 +163,6 @@ struct MonthTests {
 
         let month = Month(
             startDate: startDate,
-            availableIncomeCents: 0,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
@@ -180,7 +183,6 @@ struct MonthTests {
 
         let month = Month(
             startDate: startDate,
-            availableIncomeCents: 0,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
@@ -196,17 +198,17 @@ struct MonthTests {
     func testRemainingAmountInCategory() {
         let month = Month(
             startDate: .now,
-            availableIncomeCents: 1000_00,
             currency: Currencies.currency(for: "EUR")!,
             categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         // Income group
         let salary = TransactionGroup(
-            addedDate: .now,
             title: "Salary",
             type: .income,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         salary.entries = [
             TransactionEntry(amountCents: 1000_00, category: .needs, group: salary)
@@ -214,20 +216,22 @@ struct MonthTests {
 
         // Expenses
         let mall = TransactionGroup(
-            addedDate: .now,
             title: "Mall",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         mall.entries = [
             TransactionEntry(amountCents: -100_00, category: .needs, group: mall)
         ]
 
         let rent = TransactionGroup(
-            addedDate: .now,
             title: "Rent",
             type: .expense,
-            month: month
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
         )
         rent.entries = [
             TransactionEntry(amountCents: -400_00, category: .needs, group: rent)

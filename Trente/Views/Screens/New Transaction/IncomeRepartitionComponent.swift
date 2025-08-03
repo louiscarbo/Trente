@@ -12,6 +12,7 @@ struct IncomeRepartitionComponent: View {
     let amountToSplit: Int
     let formatter: NumberFormatter
     @Binding var isRepartitionComplete: Bool
+    @State private var remainingMeasuredHeight: CGFloat = 0
 
     @State private var remainingAmount: Int = 0
 
@@ -24,39 +25,7 @@ struct IncomeRepartitionComponent: View {
 
     var body: some View {
         VStack(spacing: .medium) {
-            VStack {
-                let color: Color = .pink
-                HStack {
-                    Label("Amount to distribute",
-                        systemImage: remainingAmount > 0 ? "exclamationmark.triangle.fill" : "checkmark.circle.fill"
-                    )
-                    Spacer()
-                    Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
-                }
-                .bold(remainingAmount < 100 && remainingAmount > 0)
-                GeometryReader { geo in
-                    let proportion = amountToSplit > 0
-                        ? CGFloat(remainingAmount) / CGFloat(amountToSplit)
-                        : 0
-
-                    ZStack(alignment: .leading) {
-                        color.lighten(0.25)
-
-                        Rectangle()
-                            .fill(color.gradient)
-                            .frame(width: proportion * geo.size.width + 3)
-                    }
-                }
-                .frame(height: 20)
-                .clipShape(Capsule())
-                .overlay {
-                    RoundedRectangle(cornerRadius: .large)
-                        .strokeBorder(
-                            color.darken(0.1),
-                            lineWidth: 3
-                        )
-                }
-            }
+            remainingAmountSection
 
             ForEach(BudgetCategory.allCases, id: \.self) { category in
                 BudgetCategorySliderRow(
@@ -75,6 +44,76 @@ struct IncomeRepartitionComponent: View {
         }
         .onChange(of: remainingAmount) { _, newValue in
             isRepartitionComplete = newValue == 0
+        }
+    }
+    
+    var remainingAmountSection: some View {
+        let color: Color = .pink
+
+        return GeometryReader { geo in
+            let width = geo.size.width
+            let proportion = amountToSplit > 0
+                ? max(0, min(1, CGFloat(remainingAmount) / CGFloat(amountToSplit)))
+                : 0
+            let fillWidth = min(proportion * (width - 3) + 3, width)
+
+            ZStack(alignment: .leading) {
+                color.lighten(0.25)
+
+                Rectangle()
+                    .fill(color.gradient)
+                    .frame(width: fillWidth)
+
+                let content = HStack {
+                    Label(
+                        "Amount to split",
+                        systemImage: remainingAmount > 0
+                            ? "exclamationmark.triangle.fill"
+                            : "checkmark.circle.fill"
+                    )
+                    Spacer()
+                    Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+                }
+                .font(.subheadline)
+                .bold(remainingAmount < 100 && remainingAmount > 0)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+
+                ZStack {
+                    content
+                        .accessibilityHidden(true)
+                        .foregroundColor(color.lighten(0.5))
+                        .mask(
+                            HStack(spacing: 0) {
+                                Rectangle().frame(width: fillWidth)
+                                Spacer(minLength: 0)
+                            }
+                        )
+                        .background(
+                            GeometryReader { g in
+                                Color.clear.preference(key: HeightKey.self, value: g.size.height)
+                            }
+                        )
+
+                    content
+                        .foregroundColor(color.darken(0.6))
+                        .mask(
+                            HStack(spacing: 0) {
+                                Spacer(minLength: 0)
+                                Rectangle().frame(width: max(0, width - fillWidth))
+                            }
+                        )
+                }
+            }
+        }
+        .frame(height: max(20, remainingMeasuredHeight))
+        .clipShape(Capsule())
+        .overlay {
+            RoundedRectangle(cornerRadius: .large)
+                .strokeBorder(.pink.darken(0.1), lineWidth: 3)
+        }
+        .onPreferenceChange(HeightKey.self) { h in
+            remainingMeasuredHeight = h
         }
     }
 }
@@ -111,15 +150,13 @@ struct BudgetCategorySliderRow: View {
 
     var body: some View {
         VStack(spacing: .small) {
-            Text(category.name)
-                .font(.subheadline)
             HStack {
                 let decreaseAction = {
                     withAnimation(.spring) {
                         let currentValue = repartition[category] ?? 0
                         let amountToDecrease = min(100, currentValue % 100 == 0 ? 100 : currentValue % 100)
                         let newValue = max(0, currentValue - amountToDecrease)
-                        let delta = newValue - currentValue // will be negative or zero
+                        let delta = newValue - currentValue
                         repartition[category] = newValue
                         remainingAmount -= delta
                     }
@@ -128,7 +165,7 @@ struct BudgetCategorySliderRow: View {
                 Button(action: decreaseAction, label: {
                     Image(systemName: "minus")
                 })
-                .frame(width: 40, height: 60)
+                .frame(width: 40)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
                 .disabled((repartition[category] ?? 0) == 0)
                 .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
@@ -148,6 +185,7 @@ struct BudgetCategorySliderRow: View {
                 let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
                 RepartitionSlider(
+                    categoryName: category.name,
                     color: category.color,
                     value: Binding(
                         get: { repartition[category] ?? 0 },
@@ -182,8 +220,8 @@ struct BudgetCategorySliderRow: View {
                 Button(action: increaseAction, label: {
                     Image(systemName: "plus")
                 })
-                .frame(width: 40, height: 60)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
+                .frame(width: 40)
                 .disabled(remainingAmount == 0)
                 .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
                     isLongPressing = true
@@ -207,8 +245,16 @@ struct BudgetCategorySliderRow: View {
     }
 }
 
+private struct HeightKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
+    }
+}
+
 // MARK: - Custom Slider View
 struct RepartitionSlider: View {
+    let categoryName: String
     let color: Color
     @Binding var value: Int
     let total: Int
@@ -216,12 +262,13 @@ struct RepartitionSlider: View {
     let formatter: NumberFormatter
 
     @State private var scale: CGFloat = 1.0
+    @State private var measuredHeight: CGFloat = 0
 
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
             let proportion = total > 0 ? CGFloat(value) / CGFloat(total) : 0
-            let fillWidth = proportion * width + 3
+            let fillWidth = min(proportion * (width - 3) + 3, width)
 
             ZStack(alignment: .leading) {
                 Rectangle()
@@ -235,17 +282,39 @@ struct RepartitionSlider: View {
                     .font(.title)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .center)
+                
+                let categoryNameView = Text(categoryName)
+                    .font(.subheadline.bold())
+                    .frame(maxWidth: .infinity, alignment: .center)
 
-                textView
+                ZStack {
+                    VStack {
+                        categoryNameView
+                        textView
+                    }
                     .foregroundColor(color.lighten(0.5))
+                    .padding(.vertical, 6)
                     .mask(
                         HStack {
                             Rectangle().frame(width: fillWidth)
                             Spacer(minLength: 0)
                         }
                     )
-
-                textView
+                    .accessibilityHidden(true)
+                    // Measure the height of the text to force the slider to adapt its height
+                    .background(
+                        GeometryReader { geometry in
+                            Color.clear.preference(key: HeightKey.self, value: geometry.size.height)
+                        }
+                    )
+                    .onPreferenceChange(HeightKey.self) { height in
+                        measuredHeight = height
+                    }
+                    
+                    VStack {
+                        categoryNameView
+                        textView
+                    }
                     .foregroundColor(color.darken(0.8))
                     .mask(
                         HStack {
@@ -253,8 +322,8 @@ struct RepartitionSlider: View {
                             Rectangle().frame(width: width - fillWidth)
                         }
                     )
+                }
             }
-            .frame(width: width)
             .overlay {
                 RoundedRectangle(cornerRadius: .large)
                     .strokeBorder(
@@ -279,13 +348,13 @@ struct RepartitionSlider: View {
                 withAnimation(.bouncy(duration: 0.2)) {
                     scale = 1.02
                 } completion: {
-                    withAnimation(.bouncy(duration: 0.2)) {
+                    withAnimation(.bouncy(duration: 0.3)) {
                         scale = 1.0
                     }
                 }
             }
         }
-        .frame(height: 60)
+        .frame(height: measuredHeight)
     }
 }
 
@@ -301,19 +370,18 @@ struct RepartitionSlider: View {
         return formatter
     }()
 
-    VStack {
+    ScrollView {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
             IncomeRepartitionComponent(
                 repartition: $repartition,
-                amountToSplit: 860_30,
+                amountToSplit: 60_30,
                 formatter: formatter,
                 isRepartitionComplete: $isRepartitionComplete
             )
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
+
         Text("Is Repartition Complete: \(isRepartitionComplete ? "Yes" : "No")")
-        Spacer()
-            .frame(height: 300)
     }
     .padding()
 }
