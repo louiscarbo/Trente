@@ -64,12 +64,13 @@ struct MonthRecapWidgetView: View {
 
 struct HomescreenMonthRecapWidgetView: View {
     var entry: Provider.Entry
+    private var spacing: CGFloat { family == .systemMedium ? 6 : 12 }
     
     @Environment(\.widgetFamily) var family
 
     var body: some View {
         if let currentMonth = entry.month {
-            VStack(spacing: family == .systemMedium ? 6 : 12) {
+            VStack(spacing: spacing) {
                 HStack {
                     Text(currentMonth.name)
                         .font(.headline)
@@ -108,15 +109,13 @@ struct HomescreenMonthRecapWidgetView: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(entry.date.formatted(.dateTime.day().month(.wide).year()))
-                            .font(.subheadline)
+                        Text(entry.date.formatted(.dateTime.day().month(.abbreviated)))
+                            .font(.footnote)
                             .foregroundStyle(.secondary)
                         Text(entry.date.formatted(.dateTime.hour().minute()))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
-                    
-                    Spacer()
                     
                     if family != .systemSmall {
                         Link(destination: URL(string: "trente://newtransaction/" + currentMonth.id.uuidString)!) {
@@ -127,20 +126,34 @@ struct HomescreenMonthRecapWidgetView: View {
                                     .padding(.horizontal)
                             }
                             .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                            .scaledToFit()
                             .padding(.leading)
                             .padding(.trailing, -3)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                         }
-                    } else {
-                        Spacer()
                     }
                 }
                 
                 if family == .systemLarge {
                     Divider()
-                    ForEach(currentMonth.latestTransactions.prefix(3)) { transactionGroup in
-                        TransactionGroupRowView(transactionGroup: transactionGroup)
-                            .privacySensitive()
+                    ViewThatFits(in: .vertical) {
+                        VStack(spacing: spacing) {
+                            ForEach(currentMonth.latestTransactions.prefix(3)) { transactionGroup in
+                                TransactionGroupRowView(transactionGroup: transactionGroup)
+                                    .privacySensitive()
+                            }
+                        }
+                        VStack(spacing: spacing) {
+                            ForEach(currentMonth.latestTransactions.prefix(2)) { transactionGroup in
+                                TransactionGroupRowView(transactionGroup: transactionGroup)
+                                    .privacySensitive()
+                            }
+                        }
+                        VStack(spacing: spacing) {
+                            ForEach(currentMonth.latestTransactions.prefix(1)) { transactionGroup in
+                                TransactionGroupRowView(transactionGroup: transactionGroup)
+                                    .privacySensitive()
+                            }
+                        }
                     }
                     
                     if currentMonth.latestTransactions.isEmpty {
