@@ -52,12 +52,13 @@ struct NotesImageView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .clipShape(
-                                    RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
+                                    RoundedRectangle(cornerRadius: .large)
                                 )
                                 .overlay(
-                                    RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
-                                        .stroke(Color.white, lineWidth: 10)
+                                    RoundedRectangle(cornerRadius: .large)
+                                        .strokeBorder(Color.white, lineWidth: 10)
                                 )
+                                .glassEffectIfAvailable(isEnabled: true, in: RoundedRectangle(cornerRadius: .large))
                                 .frame(height: 200)
                                 .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
                                 .padding(.bottom, 30)
@@ -69,6 +70,7 @@ struct NotesImageView: View {
                                     }
                                     .buttonStyle(TrenteSecondaryButtonStyle())
                                     .fixedSize()
+                                    .padding(.top, 30)
                                 }
                                 .onTapGesture {
                                     showFullScreen = true
@@ -82,10 +84,9 @@ struct NotesImageView: View {
                                         view
                                     #endif
                                 }
-                                
                         } else {
                             ProgressView()
-                                .frame(height: 400)
+                                .frame(height: 200)
                         }
                     }
                     
