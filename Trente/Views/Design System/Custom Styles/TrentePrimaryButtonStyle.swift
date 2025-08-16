@@ -45,36 +45,56 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
                 )
             configuration.label
                 .bold()
-                .foregroundStyle(
-                    isEnabled ?
-                        lightMode ? Color.white : Color.black
-                    : Color.secondary
-                )
+                .foregroundStyle(lightMode ? Color.white : Color.black)
+                .opacity(isEnabled ? 1 : 0.5)
                 .font(narrow ? .title3 : .title2)
                 .padding(.vertical, narrow ? 5 : 16)
         }
         .frame(maxWidth: .infinity)
         .fixedSize(horizontal: false, vertical: true)
         .environment(\.colorScheme, lightMode ? .dark : .light)
-        .glassOrScale(isPressed: configuration.isPressed, isEnabled: isEnabled)
+        .glassOrScale(isPressed: configuration.isPressed, isEnabled: isEnabled, in: .capsule)
     }
 }
 
 #Preview {
     VStack {
-        Button("Test Button") {
-            print("Button pressed")
+        VStack {
+            Button("Test Button") {
+                print("Button pressed")
+            }
+            .buttonStyle(TrentePrimaryButtonStyle())
+            .padding()
+            .disabled(true)
+            
+            Button {
+                print("Button pressed")
+            } label: {
+                Label("Test Button", systemImage: "plus")
+            }
+            .buttonStyle(TrentePrimaryButtonStyle())
+            .padding()
         }
-        .buttonStyle(TrentePrimaryButtonStyle())
-        .padding()
-        .disabled(true)
+        .background(.white)
+        .environment(\.colorScheme, .light)
         
-        Button {
-            print("Button pressed")
-        } label: {
-            Label("Test Button", systemImage: "plus")
+        VStack {
+            Button("Test Button") {
+                print("Button pressed")
+            }
+            .buttonStyle(TrentePrimaryButtonStyle())
+            .padding()
+            .disabled(true)
+            
+            Button {
+                print("Button pressed")
+            } label: {
+                Label("Test Button", systemImage: "plus")
+            }
+            .buttonStyle(TrentePrimaryButtonStyle())
+            .padding()
         }
-        .buttonStyle(TrentePrimaryButtonStyle())
-        .padding()
+        .background(.black)
+        .environment(\.colorScheme, .dark)
     }
 }
