@@ -51,9 +51,17 @@ struct MonthView: View {
                 }
             }
             .navigationTitle(month.name)
-            .alert("An error occurred", isPresented: $errorIsPresented, presenting: error) { _ in
-            } message: { error in
+            .alert("An error occurred", isPresented: $errorIsPresented, presenting: error) { _ in } message: { error in
                 Text("\(error.localizedDescription)")
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    NavigationLink {
+                        MonthDetailsView(month: month)
+                    } label: {
+                        Label("Edit Month", systemImage: "pencil")
+                    }
+                }
             }
         }
     }
