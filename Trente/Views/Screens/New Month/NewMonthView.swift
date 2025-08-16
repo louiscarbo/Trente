@@ -15,51 +15,41 @@ struct NewMonthView: View {
     @Query(sort: \Month.startDate, order: .reverse)
     private var months: [Month]
 
-    @State private var newMonth: Month?
+    @State private var draft: MonthDraft?
     @State private var isRepartitionComplete: Bool = false
     @State private var showErrorAlert: Bool = false
     @State private var errorMessage: String = ""
 
+    private var isCreateButtonDisabled: Bool {
+        guard let draft else { return true }
+        return draft.idealBudgetCents <= 0 || !isRepartitionComplete
+    }
+
     var body: some View {
         NavigationStack {
-            if let newMonth = Binding($newMonth) {
-                MonthDetails(month: newMonth, isRepartitionComplete: $isRepartitionComplete)
+            if let draftBinding = Binding($draft) {
+                MonthDetailsComponent(month: draftBinding, isRepartitionComplete: $isRepartitionComplete)
                     .navigationTitle("New Month")
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Cancel") {
-                                dismiss()
-                            }
+                            Button("Cancel") { dismiss() }
                         }
                         ToolbarItem(placement: .confirmationAction) {
-                            Button("Create") {
-                                saveMonth()
-                            }
-                            .disabled(isCreateButtonDisabled)
+                            Button("Create", action: saveMonth)
+                                .disabled(isCreateButtonDisabled)
                         }
                     }
             } else {
                 ProgressView("Preparing New Month...")
             }
         }
-        .task {
-            initializeMonth()
-        }
+        .task { initializeMonth() }
         .alert("An error occurred", isPresented: $showErrorAlert) {
-            Button("Retry") {
-                saveMonth()
-            }
-            Button("Cancel", role: .cancel) {
-                dismiss()
-            }
+            Button("Retry") { saveMonth() }
+            Button("Cancel", role: .cancel) { dismiss() }
         } message: {
             Text(errorMessage.isEmpty ? "We couldn't create the month. Please try again." : errorMessage)
         }
-    }
-
-    private var isCreateButtonDisabled: Bool {
-        guard let newMonth else { return true }
-        return newMonth.idealBudgetCents <= 0 || !isRepartitionComplete
     }
 
     private func initializeMonth() {
@@ -67,7 +57,7 @@ struct NewMonthView: View {
             let calendar = Calendar.current
             let nextStartDate = calendar.date(byAdding: .day, value: 1, to: latestMonth.endDate()) ?? .now
 
-            self.newMonth = Month(
+            self.draft = MonthDraft(
                 startDate: nextStartDate,
                 currency: latestMonth.currency,
                 idealBudgetCents: latestMonth.idealBudgetCents,
@@ -79,7 +69,7 @@ struct NewMonthView: View {
                 showErrorAlert = true
                 return
             }
-            self.newMonth = Month(
+            self.draft = MonthDraft(
                 startDate: .now,
                 currency: defaultCurrency,
                 idealBudgetCents: 0,
@@ -89,9 +79,10 @@ struct NewMonthView: View {
     }
 
     private func saveMonth() {
-        guard let newMonth else { return }
+        guard let draft else { return }
         do {
-            try MonthService.shared.create(month: newMonth, in: modelContext)
+            let month = draft.makeMonth()
+            try MonthService.shared.create(month: month, in: modelContext)
             dismiss()
         } catch {
             errorMessage = error.localizedDescription
