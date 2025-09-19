@@ -14,47 +14,44 @@ struct MonthDetailsComponent: View {
     @FocusState private var isAmountFocused: Bool
         
     var body: some View {
-        ScrollView {
-            VStack(spacing: .medium) {
-                GroupBox(label: Label("Month Details", systemImage: "calendar")) {
-                    VStack(spacing: .medium) {
-                        startDatePicker
-                        currencyPicker
-                    }
+        VStack(spacing: .medium) {
+            GroupBox(label: Label("Month Details", systemImage: "calendar")) {
+                VStack(spacing: .medium) {
+                    startDatePicker
+                    currencyPicker
                 }
-                .groupBoxStyle(TrenteGroupBoxStyle())
-                
-                GroupBox(label: Label("Ideal Budget", systemImage: month.currency.sfSymbolGaugeName)) {
-                    VStack(spacing: .medium) {
-                        CurrencyTextField(
-                            amountCents: $month.idealBudgetCents,
-                            currency: month.currency
-                        )
-                        .focused($isAmountFocused)
-                        .font(.title)
-                        .bold()
-                        .multilineTextAlignment(.center)
-                        .onChange(of: month.idealBudgetCents) { oldValue, newValue in
-                            if newValue < oldValue {
-                                resetRepartition()
-                            }
-                        }
-                        
-                        if month.idealBudgetCents > 0 {
-                            IncomeRepartitionComponent(
-                                repartition: $month.idealRepartition,
-                                amountToSplit: month.idealBudgetCents,
-                                formatter: month.currency.roundFormatter,
-                                isRepartitionComplete: $isRepartitionComplete
-                            )
-                            .id(month.idealBudgetCents)
-                        }
-                    }
-                }
-                .groupBoxStyle(TrenteGroupBoxStyle())
-                .animation(.bouncy, value: month.idealBudgetCents > 0)
             }
-            .padding()
+            .groupBoxStyle(TrenteGroupBoxStyle())
+            
+            GroupBox(label: Label("Ideal Budget", systemImage: month.currency.sfSymbolGaugeName)) {
+                VStack(spacing: .medium) {
+                    CurrencyTextField(
+                        amountCents: $month.idealBudgetCents,
+                        currency: month.currency
+                    )
+                    .focused($isAmountFocused)
+                    .font(.title)
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .onChange(of: month.idealBudgetCents) { oldValue, newValue in
+                        if newValue < oldValue {
+                            resetRepartition()
+                        }
+                    }
+                    
+                    if month.idealBudgetCents > 0 {
+                        IncomeRepartitionComponent(
+                            repartition: $month.idealRepartition,
+                            amountToSplit: month.idealBudgetCents,
+                            formatter: month.currency.roundFormatter,
+                            isRepartitionComplete: $isRepartitionComplete
+                        )
+                        .id(month.idealBudgetCents)
+                    }
+                }
+            }
+            .groupBoxStyle(TrenteGroupBoxStyle())
+            .animation(.bouncy, value: month.idealBudgetCents > 0)
         }
         #if os(iOS)
         .safeAreaInset(edge: .bottom) {

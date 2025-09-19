@@ -28,17 +28,20 @@ struct NewMonthView: View {
     var body: some View {
         NavigationStack {
             if let draftBinding = Binding($draft) {
-                MonthDetailsComponent(month: draftBinding, isRepartitionComplete: $isRepartitionComplete)
-                    .navigationTitle("New Month")
-                    .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Cancel") { dismiss() }
+                ScrollView {
+                    MonthDetailsComponent(month: draftBinding, isRepartitionComplete: $isRepartitionComplete)
+                        .navigationTitle("New Month")
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Cancel") { dismiss() }
+                            }
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button("Create", action: saveMonth)
+                                    .disabled(isCreateButtonDisabled)
+                            }
                         }
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button("Create", action: saveMonth)
-                                .disabled(isCreateButtonDisabled)
-                        }
-                    }
+                }
+                .padding()
             } else {
                 ProgressView("Preparing New Month...")
             }
