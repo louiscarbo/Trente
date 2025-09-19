@@ -71,6 +71,9 @@
     "ARCHIVED MONTHS" : {
 
     },
+    "Are you sure?" : {
+
+    },
     "Budget Category" : {
 
     },
@@ -114,6 +117,15 @@
 
     },
     "Dates" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete month" : {
+
+    },
+    "Delete Month" : {
 
     },
     "Dining out, entertainment..." : {
@@ -325,6 +337,9 @@
 
     },
     "Supermarket" : {
+
+    },
+    "This action cannot be undone. All transactions associated with this month will also be deleted." : {
 
     },
     "Title" : {
