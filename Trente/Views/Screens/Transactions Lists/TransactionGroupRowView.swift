@@ -68,9 +68,14 @@ private struct TransactionEntryRowView: View {
                     Text(title)
                         .font(.headline)
                 }
-                Text(transactionEntry.category.name)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                ViewThatFits(in: .horizontal) {
+                    Text(transactionEntry.category.name)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    Text(transactionEntry.category.shortName)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
             }
             Spacer()
             Text(transactionEntry.displayAmount)

@@ -16,6 +16,16 @@
     "%@" : {
 
     },
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
     "%@ Remaining" : {
 
     },
@@ -61,6 +71,9 @@
     "ARCHIVED MONTHS" : {
 
     },
+    "Are you sure?" : {
+
+    },
     "Budget Category" : {
 
     },
@@ -77,6 +90,9 @@
 
     },
     "Change Image" : {
+
+    },
+    "Close" : {
 
     },
     "Clothes" : {
@@ -103,6 +119,15 @@
     "Dates" : {
 
     },
+    "Delete" : {
+
+    },
+    "Delete month" : {
+
+    },
+    "Delete Month" : {
+
+    },
     "Dining out, entertainment..." : {
 
     },
@@ -110,6 +135,9 @@
 
     },
     "Done" : {
+
+    },
+    "Edit Month" : {
 
     },
     "End Date" : {
@@ -251,6 +279,9 @@
     "Salary" : {
 
     },
+    "Save" : {
+
+    },
     "Savings" : {
 
     },
@@ -306,6 +337,9 @@
 
     },
     "Supermarket" : {
+
+    },
+    "This action cannot be undone. All transactions associated with this month will also be deleted." : {
 
     },
     "Title" : {
