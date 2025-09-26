@@ -125,7 +125,7 @@ private struct DeleteSection: View {
 
     var body: some View {
         let deleteWarningMessage = String(localized: "This action cannot be undone. All transactions associated with this month will also be deleted.")
-        GroupBox(label: Label("Delete month", systemImage: "trash.fill")) {
+        GroupBox(label: Label("Delete Month", systemImage: "trash.fill")) {
             VStack(spacing: .medium) {
                 Text(deleteWarningMessage)
                     .foregroundStyle(.secondary)
