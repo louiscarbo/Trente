@@ -115,6 +115,7 @@ struct IncomeRepartitionComponent: View {
             RoundedRectangle(cornerRadius: .large)
                 .strokeBorder(.pink.darken(0.1), lineWidth: 3)
         }
+        .glassEffectIfAvailable(isEnabled: false, in: .capsule)
         .onPreferenceChange(HeightKey.self) { h in
             remainingMeasuredHeight = h
         }
@@ -126,6 +127,14 @@ struct TrenteSliderButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled: Bool
 
     func makeBody(configuration: Configuration) -> some View {
+        var scale: CGFloat {
+            if isEnabled, #unavailable(iOS 26.0) {
+                return configuration.isPressed ? 0.9 : 1.0
+            } else {
+                return 1.0
+            }
+        }
+        
         ZStack {
             RoundedRectangle(cornerRadius: .large)
                 .fill(color)
@@ -135,9 +144,13 @@ struct TrenteSliderButtonStyle: ButtonStyle {
             RoundedRectangle(cornerRadius: .large)
                 .strokeBorder(color.darken(0.1), lineWidth: 3)
         }
-        .scaleEffect(isEnabled ? (configuration.isPressed ? 0.95 : 1.0) : 1)
+        .scaleEffect(scale)
         .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 1)
         .tint(color.darken(0.8))
+        .glassEffectIfAvailable(
+            isEnabled: isEnabled,
+            in: .capsule
+        )
     }
 }
 
@@ -168,6 +181,7 @@ struct BudgetCategorySliderRow: View {
 
                 Button(action: decreaseAction, label: {
                     Image(systemName: "minus")
+                        .foregroundStyle(category.color.darken(0.8))
                 })
                 .frame(width: 40)
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
@@ -189,7 +203,7 @@ struct BudgetCategorySliderRow: View {
                 let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
                 RepartitionSlider(
-                    categoryName: category.name,
+                    categoryName: category.shortName,
                     color: category.color,
                     value: Binding(
                         get: { repartition[category] ?? 0 },
@@ -223,6 +237,7 @@ struct BudgetCategorySliderRow: View {
 
                 Button(action: increaseAction, label: {
                     Image(systemName: "plus")
+                        .foregroundStyle(category.color.darken(0.8))
                 })
                 .buttonStyle(TrenteSliderButtonStyle(color: category.color))
                 .frame(width: 40)
@@ -287,7 +302,7 @@ struct RepartitionSlider: View {
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .center)
                 
-                let categoryNameView = Text(categoryName)
+                let categoryNameView = Text("\(categoryName) - \(String(format: "%.0f%%", proportion * 100))")
                     .font(.subheadline.bold())
                     .frame(maxWidth: .infinity, alignment: .center)
 
@@ -336,6 +351,7 @@ struct RepartitionSlider: View {
                     )
             }
             .clipShape(RoundedRectangle(cornerRadius: .large))
+            .glassEffectIfAvailable(isEnabled: true, in: RoundedRectangle(cornerRadius: .large))
             .scaleEffect(x: scale, y: 1.0)
             .gesture(
                 DragGesture(minimumDistance: 0)
@@ -350,7 +366,9 @@ struct RepartitionSlider: View {
             .sensoryFeedback(.selection, trigger: value)
             .onChange(of: value) { _, _ in
                 withAnimation(.bouncy(duration: 0.2)) {
-                    scale = 1.02
+                    if #unavailable(iOS 26.0) {
+                        scale = 1.02
+                    }
                 } completion: {
                     withAnimation(.bouncy(duration: 0.3)) {
                         scale = 1.0

@@ -47,12 +47,13 @@ struct TrenteSecondaryButtonStyle: ButtonStyle {
                 )
             configuration.label
                 .bold()
-                .foregroundStyle(isEnabled ? Color.primary : Color.secondary)
+                .foregroundStyle(lightMode ? Color.black : Color.white)
+                .opacity(isEnabled ? 1 : 0.5)
                 .font(.title3)
                 .padding(.vertical, narrow ? 5 : 16)
         }
         .fixedSize(horizontal: false, vertical: true)
-        .glassOrScale(isPressed: configuration.isPressed, isEnabled: isEnabled)
+        .glassOrScale(isPressed: configuration.isPressed, isEnabled: isEnabled, in: .capsule)
     }
 }
 
