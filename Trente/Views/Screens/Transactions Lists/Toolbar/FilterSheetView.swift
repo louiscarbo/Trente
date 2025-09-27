@@ -29,8 +29,10 @@ struct FilterSheetView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("OK") {
+                    Button {
                         dismiss()
+                    } label: {
+                        Label("OK", systemImage: "checkmark")
                     }
                 }
             }
