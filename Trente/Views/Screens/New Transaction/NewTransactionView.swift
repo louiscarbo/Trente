@@ -116,6 +116,15 @@ struct NewTransactionView: View {
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
                     currency: context.currency
                 )
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Label("Close", systemImage: "chevron.down")
+                        }
+                    }
+                }
             case .title:
                 TitleView(
                     title: $viewModel.request.title,
