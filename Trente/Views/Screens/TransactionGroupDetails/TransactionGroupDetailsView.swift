@@ -66,14 +66,12 @@ struct TransactionGroupDetailsView: View {
                             .disabled(!isEditing)
                     }
                     
-                    if isEditing {
-                        GroupBox {
-                            Text("Add delete transaction section")
-                        } label: {
-                            Label("Delete Transaction", systemImage: "trash")
-                        }
-                        .groupBoxStyle(TrenteGroupBoxStyle())
+                    GroupBox {
+                        Text("Add delete transaction section")
+                    } label: {
+                        Label("Delete Transaction", systemImage: "trash")
                     }
+                    .groupBoxStyle(TrenteGroupBoxStyle())
                 }
                 .padding()
             }
@@ -432,7 +430,6 @@ struct TransactionGroupDetailsView: View {
             withAnimation {
                 isEditing = false
             }
-            dismiss()
         } catch {
             validationErrors = ["Failed to save changes: \(error.localizedDescription)"]
         }
