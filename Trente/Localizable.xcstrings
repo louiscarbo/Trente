@@ -29,7 +29,13 @@
     "%@ Remaining" : {
 
     },
+    "Abercrombie & Fitch Lyon Part-Dieu" : {
+
+    },
     "Add an End Date" : {
+
+    },
+    "Add delete transaction section" : {
 
     },
     "Add Image" : {
@@ -80,6 +86,9 @@
     "Cancel" : {
 
     },
+    "Cannot Save" : {
+
+    },
     "Categories" : {
 
     },
@@ -122,10 +131,13 @@
     "Delete" : {
 
     },
-    "Delete month" : {
+    "Delete Image" : {
 
     },
     "Delete Month" : {
+
+    },
+    "Delete Transaction" : {
 
     },
     "Dining out, entertainment..." : {
@@ -135,6 +147,9 @@
 
     },
     "Done" : {
+
+    },
+    "Edit" : {
 
     },
     "Edit Month" : {
@@ -339,6 +354,9 @@
     "Supermarket" : {
 
     },
+    "This action cannot be undone." : {
+
+    },
     "This action cannot be undone. All transactions associated with this month will also be deleted." : {
 
     },
@@ -358,6 +376,9 @@
 
     },
     "Transaction Notes" : {
+
+    },
+    "Transaction title" : {
 
     },
     "Transactions" : {
