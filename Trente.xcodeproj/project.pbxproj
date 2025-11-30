@@ -111,6 +111,8 @@
 				"Views/Design System/DesignSystem.swift",
 				Views/Screens/Dashboard/GraphCardView.swift,
 				Views/Screens/Sidebar/CurrentMonthRowView.swift,
+				Views/Screens/TransactionGroupDetails/TransactionGroupDetailsView.swift,
+				Views/Screens/TransactionGroupDetails/TransactionGroupDraft.swift,
 				"Views/Screens/Transactions Lists/TransactionGroupRowView.swift",
 			);
 			target = 7BBD01CF2DB8DFAD007B606C /* TrenteWidgetExtension */;
