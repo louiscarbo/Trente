@@ -23,6 +23,8 @@ struct TransactionGroupDetailsView: View {
     @State private var validationErrors: [String] = []
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showDeleteConfirmation = false
+    @State private var showGroupDeleteConfirmation = false
+    @State private var deleteError: String? = nil
 
     private enum EditField { case title, notes, amount }
     @FocusState private var focusedField: EditField?
@@ -67,12 +69,9 @@ struct TransactionGroupDetailsView: View {
                             .disabled(!isEditing)
                     }
                     
-                    GroupBox {
-                        Text("Add delete transaction section")
-                    } label: {
-                        Label("Delete Transaction", systemImage: "trash")
+                    if isEditing {
+                        deleteSection()
                     }
-                    .groupBoxStyle(TrenteGroupBoxStyle())
                 }
                 .padding()
             }
@@ -87,6 +86,11 @@ struct TransactionGroupDetailsView: View {
                 Button("OK") { validationErrors = [] }
             } message: {
                 Text(validationErrors.joined(separator: "\n"))
+            }
+            .alert("Delete Failed", isPresented: Binding(get: { deleteError != nil }, set: { if !$0 { deleteError = nil } })) {
+                Button("OK", role: .cancel) { deleteError = nil }
+            } message: {
+                Text(deleteError ?? "")
             }
         }
     }
@@ -378,8 +382,47 @@ struct TransactionGroupDetailsView: View {
         .groupBoxStyle(TrenteGroupBoxStyle())
     }
 
+    // MARK: - Delete
+
+    @ViewBuilder
+    private func deleteSection() -> some View {
+        let warningMessage = String(localized: "This action cannot be undone.")
+        GroupBox(label: Label("Delete Transaction", systemImage: "trash.fill")) {
+            VStack(spacing: .medium) {
+                Text(warningMessage)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(.secondary)
+                Button(role: .destructive) {
+                    showGroupDeleteConfirmation = true
+                } label: {
+                    Label("Delete Transaction", systemImage: "trash.fill")
+                        .font(.headline)
+                }
+                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
+                .confirmationDialog(String(localized: "Are you sure?"), isPresented: $showGroupDeleteConfirmation, titleVisibility: .visible) {
+                    Button(String(localized: "Delete"), role: .destructive, action: deleteTransactionGroup)
+                    Button(String(localized: "Cancel"), role: .cancel) {}
+                } message: {
+                    Text(warningMessage)
+                }
+            }
+        }
+        .groupBoxStyle(TrenteGroupBoxStyle())
+    }
+
+    private func deleteTransactionGroup() {
+        TransactionService.shared.delete(group: transactionGroup, in: modelContext)
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            deleteError = error.localizedDescription
+        }
+    }
+
     // MARK: - Toolbar
-    
+
     @ToolbarContentBuilder
     private func toolbarContent() -> some ToolbarContent {
         if isEditing {
