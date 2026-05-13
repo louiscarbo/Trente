@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 // Draft mirrors what the screen edits, not necessarily the entire model.
 // Keep it value-typed for easy discard.
@@ -13,6 +14,7 @@ struct TransactionGroupDraft: Equatable {
     // Always editable
     var title: String
     var note: String?
+    
     var imageAttachmentData: Data?
 
     // Expense-only fields
@@ -54,7 +56,7 @@ struct TransactionGroupDraft: Equatable {
     }
 
     // MARK: Apply back into model (mutates group and entries)
-    func apply(to group: TransactionGroup) {
+    func apply(to group: TransactionGroup, context: ModelContext) {
         group.title = title
         group.note = note
         // imageAttachmentData stays read-only for now in UI, but carry over any pre-existing value.
@@ -62,37 +64,33 @@ struct TransactionGroupDraft: Equatable {
 
         switch type {
         case .expense:
-            // Ensure exactly one entry with the chosen category + amount
             let cat = expenseCategory
             let amt = expenseAmountCents
-            // Create or update first entry; drop extras to keep invariant
             if group.entries.isEmpty {
                 let entry = TransactionEntry(
                     amountCents: amt ?? 0,
-                    category: cat ?? .needs, // sensible fallback
+                    category: cat ?? .needs,
                     group: group
                 )
+                context.insert(entry)
                 group.entries = [entry]
             } else {
-                // Update first
                 group.entries[0].category = cat ?? group.entries[0].category
                 group.entries[0].amountCents = amt ?? group.entries[0].amountCents
-                // Remove extra entries if any
+                // Delete extra entries before removing from the array
                 if group.entries.count > 1 {
-                    group.entries.removeSubrange(1..<group.entries.count)
+                    for entry in group.entries[1...] { context.delete(entry) }
+                    group.entries.removeSubrange(1...)
                 }
             }
 
         case .income:
-            // Translate repartition to entries (overwrite entries)
-            // Keep only non-zero buckets
             let filtered = incomeRepartition.filter { $0.value != 0 }
+            for entry in group.entries { context.delete(entry) }
             group.entries = filtered.map { (cat, cents) in
-                TransactionEntry(
-                    amountCents: cents,
-                    category: cat,
-                    group: group
-                )
+                let entry = TransactionEntry(amountCents: cents, category: cat, group: group)
+                context.insert(entry)
+                return entry
             }
         }
 
