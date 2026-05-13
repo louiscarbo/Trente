@@ -53,31 +53,7 @@ struct MonthDetailsComponent: View {
             .groupBoxStyle(TrenteGroupBoxStyle())
             .animation(.bouncy, value: month.idealBudgetCents > 0)
         }
-        #if os(iOS)
-        .safeAreaInset(edge: .bottom) {
-            if isAmountFocused {
-                VStack {
-                    Button {
-                        isAmountFocused = false
-                    } label: {
-                        Label("Done", systemImage: "keyboard.chevron.compact.down")
-                    }
-                    .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
-                }
-                .padding()
-                .background {
-                    UnevenRoundedRectangle(
-                        cornerRadii:
-                            RectangleCornerRadii(topLeading: 26, bottomLeading: 0, bottomTrailing: 0, topTrailing: 26)
-                    )
-                    .offset(y: 1.5)
-                    .fill(.regularMaterial)
-                    .stroke(.secondary.opacity(0.4), lineWidth: 3)
-                    .ignoresSafeArea()
-                }
-            }
-        }
-        #endif
+        .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
     }
 
     private var startDatePicker: some View {
