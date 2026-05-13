@@ -35,9 +35,6 @@
     "Add an End Date" : {
 
     },
-    "Add delete transaction section" : {
-
-    },
     "Add Image" : {
 
     },
@@ -129,6 +126,9 @@
 
     },
     "Delete" : {
+
+    },
+    "Delete Failed" : {
 
     },
     "Delete Image" : {
