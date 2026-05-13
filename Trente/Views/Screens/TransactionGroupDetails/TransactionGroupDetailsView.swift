@@ -424,7 +424,7 @@ struct TransactionGroupDetailsView: View {
             validationErrors = issues
             return
         }
-        draft.apply(to: transactionGroup)
+        draft.apply(to: transactionGroup, context: modelContext)
         do {
             try modelContext.save()
             withAnimation {
