@@ -17,7 +17,6 @@ class NewTransactionViewModel: ObservableObject {
     // View State
     var step: NewTransactionStep = .amountCategory
     var nextButtonDisabled: Bool = true
-    var showKeyboardDismissButton: Bool = false
     var isRepartitionComplete: Bool = false
     var showErrorAlert: Bool = false
     

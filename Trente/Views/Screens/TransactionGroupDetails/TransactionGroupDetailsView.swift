@@ -24,9 +24,10 @@ struct TransactionGroupDetailsView: View {
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showDeleteConfirmation = false
 
+    private enum EditField { case title, notes, amount }
+    @FocusState private var focusedField: EditField?
+
     private var isTrentePlusUser: Bool { true } // TODO: plug real entitlement
-    
-    // TODO: Add dismiss keyboard button
     
     var body: some View {
         NavigationStack {
@@ -77,6 +78,8 @@ struct TransactionGroupDetailsView: View {
             }
             .scrollDismissesKeyboard(.interactively)
             .interactiveDismissDisabled(isEditing)
+            .keyboardDismissButton(isVisible: focusedField != nil && isEditing) { focusedField = nil }
+            .onChange(of: isEditing) { _, editing in if !editing { focusedField = nil } }
             .navigationTitle(isEditing ? "Editing" : transactionGroup.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent() }
@@ -198,6 +201,7 @@ struct TransactionGroupDetailsView: View {
             ),
             axis: .vertical
         )
+        .focused($focusedField, equals: .title)
         .disabled(!isEditing)
         .frame(maxWidth: .infinity, alignment: .leading)
         .font(.title)
@@ -301,6 +305,7 @@ struct TransactionGroupDetailsView: View {
             ),
             currency: transactionGroup.month.currency
         )
+        .focused($focusedField, equals: .amount)
         .matchedGeometryEffect(id: "amount", in: editingAnimation, anchor: .leading)
         .padding(8)
         .background {
@@ -328,6 +333,7 @@ struct TransactionGroupDetailsView: View {
             prompt: Text("Add your notes here."),
             axis: .vertical
         )
+        .focused($focusedField, equals: .notes)
         .lineLimit(5)
         .padding(isEditing ? 8 : 0)
         .background {
