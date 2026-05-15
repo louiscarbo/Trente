@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct RecurringTransactionRowView: View {
+    @Environment(\.modelContext) private var modelContext
     @State var instance: RecurringTransactionInstance
     @State var isInList = false
     @State private var showDetails = false
+    @State private var ruleSaved = false
 
     var body: some View {
         Group {
@@ -33,22 +35,15 @@ struct RecurringTransactionRowView: View {
                     .padding(.leading)
 
                 } label: {
-                    HStack {
-                        RecurringTransactionEntryRowView(
-                            transactionCategoryColor: .red,
-                            transactionCategoryName: "Income",
-                            currency: instance.month.currency,
-                            displayAmount: instance.displayAmount,
-                            title: instance.rule.title
-                        )
-                        Button {
-                            showDetails = true
-                        } label: {
-                            Image(systemName: "info.circle")
-                                .foregroundStyle(.secondary)
-                        }
-                        .buttonStyle(.plain)
-                    }
+                    RecurringTransactionEntryRowView(
+                        transactionCategoryColor: .red,
+                        transactionCategoryName: "Income",
+                        currency: instance.month.currency,
+                        displayAmount: instance.displayAmount,
+                        title: instance.rule.title
+                    )
+                    .contentShape(Rectangle())
+                    .onTapGesture { showDetails = true }
                 }
             } else if instance.rule.repartition.keys.count == 1 {
                 let category = instance.rule.repartition.keys.first!
@@ -70,8 +65,16 @@ struct RecurringTransactionRowView: View {
                     }
             }
         }
-        .sheet(isPresented: $showDetails) {
-            RecurringTransactionRuleDetailsView(rule: instance.rule, currency: instance.month.currency)
+        .sheet(isPresented: $showDetails, onDismiss: {
+            guard ruleSaved else { return }
+            ruleSaved = false
+            try? RecurringTransactionService.shared.refreshInstances(for: instance.rule, in: modelContext)
+        }) {
+            RecurringTransactionRuleDetailsView(
+                rule: instance.rule,
+                currency: instance.month.currency,
+                onSave: { ruleSaved = true }
+            )
         }
     }
     
