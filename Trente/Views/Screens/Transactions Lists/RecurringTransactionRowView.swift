@@ -10,49 +10,68 @@ import SwiftUI
 struct RecurringTransactionRowView: View {
     @State var instance: RecurringTransactionInstance
     @State var isInList = false
-    
+    @State private var showDetails = false
+
     var body: some View {
-        if instance.rule.repartition.keys.count > 1 {
-            DisclosureGroup {
-                VStack {
-                    if !isInList {
-                        Divider()
+        Group {
+            if instance.rule.repartition.keys.count > 1 {
+                DisclosureGroup {
+                    VStack {
+                        if !isInList {
+                            Divider()
+                        }
+                        ForEach(Array(instance.rule.repartition.keys), id: \.self) { category in
+                            let amount = instance.rule.repartition[category] ?? 0
+
+                            RecurringTransactionEntryRowView(
+                                transactionCategoryColor: category.color,
+                                transactionCategoryName: category.shortName,
+                                displayAmount: formatAmount(amount)
+                            )
+                        }
                     }
-                    ForEach(Array(instance.rule.repartition.keys), id: \.self) { category in
-                        let amount = instance.rule.repartition[category] ?? 0
-                        
+                    .padding(.leading)
+
+                } label: {
+                    HStack {
                         RecurringTransactionEntryRowView(
-                            transactionCategoryColor: category.color,
-                            transactionCategoryName: category.shortName,
-                            displayAmount: formatAmount(amount)
+                            transactionCategoryColor: .red,
+                            transactionCategoryName: "Income",
+                            currency: instance.month.currency,
+                            displayAmount: instance.displayAmount,
+                            title: instance.rule.title
                         )
+                        Button {
+                            showDetails = true
+                        } label: {
+                            Image(systemName: "info.circle")
+                                .foregroundStyle(.secondary)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
-                .padding(.leading)
-                
-            } label: {
-                RecurringTransactionEntryRowView(
-                    transactionCategoryColor: .red,
-                    transactionCategoryName: "Income",
-                    currency: instance.month.currency,
-                    displayAmount: instance.displayAmount,
-                    title: instance.rule.title
-                )
-            }
-        } else if instance.rule.repartition.keys.count == 1 {
-            let category = instance.rule.repartition.keys.first!
-            RecurringTransactionEntryRowView(
-                transactionCategoryColor: category.color,
-                transactionCategoryName: category.shortName,
-                currency: instance.month.currency,
-                displayAmount: instance.displayAmount,
-                title: instance.rule.title
-            )
-        } else {
-            EmptyView()
-                .onAppear {
-                    print("WARNING: RecurringTransactionRowView: instance.rule.repartition is empty")
+            } else if instance.rule.repartition.keys.count == 1 {
+                let category = instance.rule.repartition.keys.first!
+                Button { showDetails = true } label: {
+                    RecurringTransactionEntryRowView(
+                        transactionCategoryColor: category.color,
+                        transactionCategoryName: category.shortName,
+                        currency: instance.month.currency,
+                        displayAmount: instance.displayAmount,
+                        title: instance.rule.title
+                    )
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
+            } else {
+                EmptyView()
+                    .onAppear {
+                        print("WARNING: RecurringTransactionRowView: instance.rule.repartition is empty")
+                    }
+            }
+        }
+        .sheet(isPresented: $showDetails) {
+            RecurringTransactionRuleDetailsView(rule: instance.rule, currency: instance.month.currency)
         }
     }
     
