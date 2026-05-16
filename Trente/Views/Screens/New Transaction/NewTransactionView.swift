@@ -18,10 +18,20 @@ struct NewTransactionView: View {
     
     // Transaction Data
     @Bindable private var viewModel: NewTransactionViewModel = .init()
-    
+    @State private var showKeyboardDismissButton: Bool = false
+
     var body: some View {
         NavigationStack {
             stepsView
+                .keyboardDismissButton(isVisible: showKeyboardDismissButton) {
+                    #if os(iOS)
+                    UIApplication.shared.sendAction(
+                        #selector(UIResponder.resignFirstResponder),
+                        to: nil, from: nil, for: nil
+                    )
+                    #endif
+                    showKeyboardDismissButton = false
+                }
                 .safeAreaInset(edge: .bottom) {
                     navigationButtons
                 }
@@ -54,7 +64,7 @@ struct NewTransactionView: View {
                 
                 if let currentIndex = viewModel.filteredSteps.firstIndex(of: viewModel.step) {
                     let isLastStep = currentIndex == viewModel.filteredSteps.count - 1
-                    
+
                     Button(isLastStep ? "Create" : "Next") {
                         withAnimation {
                             if isLastStep {
@@ -71,24 +81,6 @@ struct NewTransactionView: View {
                     .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
                 }
             }
-            
-            #if os(iOS)
-            // TODO: Make the showKeyboardDismissButton more robust
-            if viewModel.showKeyboardDismissButton {
-                Button {
-                    UIApplication.shared.sendAction(
-                        #selector(UIResponder.resignFirstResponder),
-                        to: nil,
-                        from: nil,
-                        for: nil
-                    )
-                    viewModel.showKeyboardDismissButton = false
-                } label: {
-                    Label("Done", systemImage: "keyboard.chevron.compact.down")
-                }
-                .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
-            }
-            #endif
         }
         .padding()
         .background {
@@ -116,21 +108,30 @@ struct NewTransactionView: View {
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
                     currency: context.currency
                 )
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Label("Close", systemImage: "chevron.down")
+                        }
+                    }
+                }
             case .title:
                 TitleView(
                     title: $viewModel.request.title,
-                    
+
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
                     step: $viewModel.step,
-                    showKeyboardDismissButton: $viewModel.showKeyboardDismissButton
+                    showKeyboardDismissButton: $showKeyboardDismissButton
                 )
             case .notesImage:
                 NotesImageView(
                     imageData: $viewModel.request.imageData,
                     notes: $viewModel.request.notes,
-                    
+
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
-                    showKeyboardDismissButton: $viewModel.showKeyboardDismissButton
+                    showKeyboardDismissButton: $showKeyboardDismissButton
                 )
             case .repartition:
                 IncomeRepartitionView(

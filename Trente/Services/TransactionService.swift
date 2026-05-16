@@ -33,6 +33,15 @@ final class TransactionService {
         return earliest...latest
     }
     
+    func delete(group: TransactionGroup, in context: ModelContext) {
+        // If this group confirmed a recurring instance, delete that instance too so
+        // the occurrence disappears from the month rather than resurfacing as pending.
+        if let linkedInstance = group.month.recurringTransactionInstances.first(where: { $0.transactionGroup?.id == group.id }) {
+            context.delete(linkedInstance)
+        }
+        context.delete(group)
+    }
+
     func create(with request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
         if request.isRecurrent {
             let rule = RecurringTransactionRule(

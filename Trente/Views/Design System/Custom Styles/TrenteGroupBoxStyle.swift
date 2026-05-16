@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TrenteGroupBoxStyle: GroupBoxStyle {
+    var withPadding: Bool = true
     @Environment(\.colorScheme) var colorScheme
     
     func makeBody(configuration: Configuration) -> some View {
@@ -19,7 +20,7 @@ struct TrenteGroupBoxStyle: GroupBoxStyle {
             configuration.content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding()
+        .padding(withPadding ? 16 : 0)
         .background(
             RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                 .fill(.regularMaterial)

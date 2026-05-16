@@ -13,8 +13,10 @@ struct IncomeRepartitionComponent: View {
     let formatter: NumberFormatter
     @Binding var isRepartitionComplete: Bool
     @State private var remainingMeasuredHeight: CGFloat = 0
-
+    
     @State private var remainingAmount: Int = 0
+    
+    @Environment(\.isEnabled) private var isEnabled: Bool
 
     init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, formatter: NumberFormatter, isRepartitionComplete: Binding<Bool>) {
         self._repartition = repartition
@@ -25,7 +27,9 @@ struct IncomeRepartitionComponent: View {
 
     var body: some View {
         VStack(spacing: .medium) {
-            remainingAmountSection
+            if isEnabled {
+                remainingAmountSection
+            }
 
             ForEach(BudgetCategory.allCases, id: \.self) { category in
                 BudgetCategorySliderRow(
@@ -164,6 +168,8 @@ struct BudgetCategorySliderRow: View {
 
     @State private var timer: Timer?
     @State private var isLongPressing = false
+    
+    @Environment(\.isEnabled) private var isEnabled: Bool
 
     var body: some View {
         VStack(spacing: .small) {
@@ -179,26 +185,28 @@ struct BudgetCategorySliderRow: View {
                     }
                 }
 
-                Button(action: decreaseAction, label: {
-                    Image(systemName: "minus")
-                        .foregroundStyle(category.color.darken(0.8))
-                })
-                .frame(width: 40)
-                .buttonStyle(TrenteSliderButtonStyle(color: category.color))
-                .disabled((repartition[category] ?? 0) == 0)
-                .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
-                    isLongPressing = true
-                    timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                        decreaseAction()
-                    }
-                })
-                .simultaneousGesture(DragGesture(minimumDistance: 0).onEnded { _ in
-                    if isLongPressing {
-                        timer?.invalidate()
-                        timer = nil
-                        isLongPressing = false
-                    }
-                })
+                if isEnabled {
+                    Button(action: decreaseAction, label: {
+                        Image(systemName: "minus")
+                            .foregroundStyle(category.color.darken(0.8))
+                    })
+                    .frame(width: 40)
+                    .buttonStyle(TrenteSliderButtonStyle(color: category.color))
+                    .disabled((repartition[category] ?? 0) == 0)
+                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
+                        isLongPressing = true
+                        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                            decreaseAction()
+                        }
+                    })
+                    .simultaneousGesture(DragGesture(minimumDistance: 0).onEnded { _ in
+                        if isLongPressing {
+                            timer?.invalidate()
+                            timer = nil
+                            isLongPressing = false
+                        }
+                    })
+                }
 
                 let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
 
@@ -235,26 +243,28 @@ struct BudgetCategorySliderRow: View {
                     }
                 }
 
-                Button(action: increaseAction, label: {
-                    Image(systemName: "plus")
-                        .foregroundStyle(category.color.darken(0.8))
-                })
-                .buttonStyle(TrenteSliderButtonStyle(color: category.color))
-                .frame(width: 40)
-                .disabled(remainingAmount == 0)
-                .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
-                    isLongPressing = true
-                    timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                        increaseAction()
-                    }
-                })
-                .simultaneousGesture(DragGesture(minimumDistance: 0).onEnded { _ in
-                    if isLongPressing {
-                        timer?.invalidate()
-                        timer = nil
-                        isLongPressing = false
-                    }
-                })
+                if isEnabled {
+                    Button(action: increaseAction, label: {
+                        Image(systemName: "plus")
+                            .foregroundStyle(category.color.darken(0.8))
+                    })
+                    .buttonStyle(TrenteSliderButtonStyle(color: category.color))
+                    .frame(width: 40)
+                    .disabled(remainingAmount == 0)
+                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
+                        isLongPressing = true
+                        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                            increaseAction()
+                        }
+                    })
+                    .simultaneousGesture(DragGesture(minimumDistance: 0).onEnded { _ in
+                        if isLongPressing {
+                            timer?.invalidate()
+                            timer = nil
+                            isLongPressing = false
+                        }
+                    })
+                }
             }
         }
         .onDisappear {

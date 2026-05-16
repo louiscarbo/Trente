@@ -12,13 +12,32 @@ final class RecurringTransactionService {
     static let shared = RecurringTransactionService()
     private init() {}
     
-    // TODO: Refactor the 2 functions here to share more code/logic (or eventually make the whole logic more robust)
-    /* For example, we could imagine an equivalent of this function but that would work on a per-rule basis.
-    refreshInstances(for rule: RecurringTransactionRule, in month: Month)
-    This way, when adding a new rule, we could generate/refresh the instances only for this rule and leave the other
-    rules as they are. To be thought lol (or could remain like so, but this could get heavy when having a lot of
-    recurrence rules. */
-    
+    func delete(rule: RecurringTransactionRule, in context: ModelContext) {
+        // The cascade delete rule on instances removes all pending instances automatically.
+        // Confirmed instances' linked TransactionGroups are kept as standalone transactions.
+        context.delete(rule)
+    }
+
+    /// Refreshes instances for a single rule across all months it spans.
+    /// Only unconfirmed instances are replaced; confirmed ones (linked to a TransactionGroup) are preserved.
+    func refreshInstances(for rule: RecurringTransactionRule, in context: ModelContext) throws {
+        let unconfirmed = rule.instances.filter { !$0.confirmed }
+        unconfirmed.forEach { context.delete($0) }
+
+        let ruleEnd = rule.endDate ?? Date.distantFuture
+        let predicate = #Predicate<Month> { $0.startDate <= ruleEnd }
+        let allMonths = try context.fetch(FetchDescriptor<Month>(predicate: predicate))
+        let affected = allMonths.filter { $0.endDate() >= rule.startDate }
+
+        let confirmedDates = Set(rule.instances.filter { $0.confirmed }.map { $0.date })
+        for month in affected {
+            rule.createRecurringInstances(for: month)
+                .filter { !confirmedDates.contains($0.date) }
+                .forEach { context.insert($0) }
+        }
+        try context.save()
+    }
+
     /// Deletes all previous stored TransactionInstances for this month, then generates them using
     /// generateInstances.
     func refreshInstances(for month: Month, in context: ModelContext) throws {
