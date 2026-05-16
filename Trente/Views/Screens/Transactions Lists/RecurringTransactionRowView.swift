@@ -25,11 +25,15 @@ struct RecurringTransactionRowView: View {
                         ForEach(Array(instance.rule.repartition.keys), id: \.self) { category in
                             let amount = instance.rule.repartition[category] ?? 0
 
-                            RecurringTransactionEntryRowView(
-                                transactionCategoryColor: category.color,
-                                transactionCategoryName: category.shortName,
-                                displayAmount: formatAmount(amount)
-                            )
+                            Button { showDetails = true } label: {
+                                RecurringTransactionEntryRowView(
+                                    transactionCategoryColor: category.color,
+                                    transactionCategoryName: category.shortName,
+                                    displayAmount: formatAmount(amount)
+                                )
+                                .contentShape(Rectangle())
+                            }
+                            .buttonStyle(.plain)
                         }
                     }
                     .padding(.leading)
@@ -42,8 +46,6 @@ struct RecurringTransactionRowView: View {
                         displayAmount: instance.displayAmount,
                         title: instance.rule.title
                     )
-                    .contentShape(Rectangle())
-                    .onTapGesture { showDetails = true }
                 }
             } else if instance.rule.repartition.keys.count == 1 {
                 let category = instance.rule.repartition.keys.first!
