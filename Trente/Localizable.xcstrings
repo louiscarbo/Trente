@@ -173,7 +173,7 @@
     "End Date" : {
 
     },
-    "End date must be after start date." : {
+    "End date must be at least 7 days after start date." : {
 
     },
     "Error Loading Image" : {
