@@ -77,6 +77,15 @@
     "Are you sure?" : {
 
     },
+    "At least one category must have an amount greater than 0." : {
+
+    },
+    "Auto-Confirm" : {
+
+    },
+    "Auto-confirm new instances" : {
+
+    },
     "Budget Category" : {
 
     },
@@ -137,6 +146,9 @@
     "Delete Month" : {
 
     },
+    "Delete Recurring Transaction" : {
+
+    },
     "Delete Transaction" : {
 
     },
@@ -155,7 +167,13 @@
     "Edit Month" : {
 
     },
+    "Editing" : {
+
+    },
     "End Date" : {
+
+    },
+    "End date must be after start date." : {
 
     },
     "Error Loading Image" : {
@@ -175,6 +193,9 @@
       }
     },
     "Expense" : {
+
+    },
+    "Failed to save changes: %@" : {
 
     },
     "Filter" : {
@@ -276,6 +297,9 @@
     "Recurring transaction" : {
 
     },
+    "Recurring transaction title" : {
+
+    },
     "Recurring Transactions" : {
 
     },
@@ -286,6 +310,12 @@
 
     },
     "Rent, groceries, bills..." : {
+
+    },
+    "Repartition" : {
+
+    },
+    "Repartition total does not match the amount to split." : {
 
     },
     "Retry" : {
@@ -361,6 +391,9 @@
 
     },
     "Title" : {
+
+    },
+    "Title cannot be empty." : {
 
     },
     "Titre A→Z" : {
