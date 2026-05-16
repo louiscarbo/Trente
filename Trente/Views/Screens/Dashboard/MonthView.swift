@@ -255,11 +255,15 @@ private struct NarrowMonthView: View {
                 LazyVStack(spacing: 20) {
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
-                            DonutOverviewCard(month: month)
+                            BudgetRingsCard(month: month)
                                 .containerRelativeFrame(.horizontal)
-                            CategoryProgressCard(month: month)
+                            PlanVsActualCard(month: month)
                                 .containerRelativeFrame(.horizontal)
-                            MonthAtAGlanceCard(month: month)
+                            BudgetMeterCard(month: month)
+                                .containerRelativeFrame(.horizontal)
+                            SpendingColumnsCard(month: month)
+                                .containerRelativeFrame(.horizontal)
+                            DailySpendingCard(month: month)
                                 .containerRelativeFrame(.horizontal)
                             SecondaryGraphCards(month: month)
                                 .containerRelativeFrame(.horizontal)
@@ -325,11 +329,15 @@ private struct WideMonthView: View {
                     GridRow {
                         ScrollView(.horizontal) {
                             HStack(spacing: 20) {
-                                DonutOverviewCard(month: month)
+                                BudgetRingsCard(month: month)
                                     .containerRelativeFrame(.horizontal)
-                                CategoryProgressCard(month: month)
+                                PlanVsActualCard(month: month)
                                     .containerRelativeFrame(.horizontal)
-                                MonthAtAGlanceCard(month: month)
+                                BudgetMeterCard(month: month)
+                                    .containerRelativeFrame(.horizontal)
+                                SpendingColumnsCard(month: month)
+                                    .containerRelativeFrame(.horizontal)
+                                DailySpendingCard(month: month)
                                     .containerRelativeFrame(.horizontal)
                             }
                             .scrollTargetLayout()
