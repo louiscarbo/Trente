@@ -29,6 +29,9 @@
     "%@ Remaining" : {
 
     },
+    "Abercrombie & Fitch Lyon Part-Dieu" : {
+
+    },
     "Add an End Date" : {
 
     },
@@ -74,10 +77,22 @@
     "Are you sure?" : {
 
     },
+    "At least one category must have an amount greater than 0." : {
+
+    },
+    "Auto-Confirm" : {
+
+    },
+    "Auto-confirm new instances" : {
+
+    },
     "Budget Category" : {
 
     },
     "Cancel" : {
+
+    },
+    "Cannot Save" : {
 
     },
     "Categories" : {
@@ -122,10 +137,19 @@
     "Delete" : {
 
     },
-    "Delete month" : {
+    "Delete Failed" : {
+
+    },
+    "Delete Image" : {
 
     },
     "Delete Month" : {
+
+    },
+    "Delete Recurring Transaction" : {
+
+    },
+    "Delete Transaction" : {
 
     },
     "Dining out, entertainment..." : {
@@ -137,10 +161,19 @@
     "Done" : {
 
     },
+    "Edit" : {
+
+    },
     "Edit Month" : {
 
     },
+    "Editing" : {
+
+    },
     "End Date" : {
+
+    },
+    "End date must be at least 7 days after start date." : {
 
     },
     "Error Loading Image" : {
@@ -160,6 +193,9 @@
       }
     },
     "Expense" : {
+
+    },
+    "Failed to save changes: %@" : {
 
     },
     "Filter" : {
@@ -261,6 +297,9 @@
     "Recurring transaction" : {
 
     },
+    "Recurring transaction title" : {
+
+    },
     "Recurring Transactions" : {
 
     },
@@ -271,6 +310,12 @@
 
     },
     "Rent, groceries, bills..." : {
+
+    },
+    "Repartition" : {
+
+    },
+    "Repartition total does not match the amount to split." : {
 
     },
     "Retry" : {
@@ -339,10 +384,16 @@
     "Supermarket" : {
 
     },
+    "This action cannot be undone." : {
+
+    },
     "This action cannot be undone. All transactions associated with this month will also be deleted." : {
 
     },
     "Title" : {
+
+    },
+    "Title cannot be empty." : {
 
     },
     "Titre A→Z" : {
@@ -358,6 +409,9 @@
 
     },
     "Transaction Notes" : {
+
+    },
+    "Transaction title" : {
 
     },
     "Transactions" : {

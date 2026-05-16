@@ -13,74 +13,95 @@ struct TransactionGroupRowView: View {
     
     var body: some View {
         if transactionGroup.entries.count > 1 {
-            DisclosureGroup {
-                VStack {
-                    if !isInList {
-                        Divider()
-                    }
-                    ForEach(transactionGroup.entries) { entry in
-                        TransactionEntryRowView(transactionEntry: entry)
-                    }
-                }
-                .padding(.leading)
-            } label: {
-                HStack {
-                    Circle()
-                        .fill(.red)
-                        .frame(width: 10, height: 10)
-                    Group {
-                        VStack(alignment: .leading) {
-                            Text(transactionGroup.title)
-                                .font(.headline)
-                            Text("Income")
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }
-                        Spacer()
-                        Text(transactionGroup.displayAmount)
-                            .font(.title)
-                    }
-                    .tint(.primary)
-                }
-            }
+            groupDisclosure
         } else if transactionGroup.entries.count == 1 {
-            TransactionEntryRowView(transactionEntry: transactionGroup.entries[0], title: transactionGroup.title)
+            TransactionEntryRowView(
+                transactionGroup: transactionGroup,
+                transactionEntry: transactionGroup.entries[0],
+                title: transactionGroup.title
+            )
         } else {
             EmptyView()
-                .onAppear {
-                    print("WARNING: TransactionGroupRowView has no entries")
+        }
+    }
+    
+    private var groupDisclosure: some View {
+        DisclosureGroup {
+            VStack {
+                if !isInList {
+                    Divider()
                 }
+                ForEach(transactionGroup.entries) { entry in
+                    TransactionEntryRowView(
+                        transactionGroup: transactionGroup,
+                        transactionEntry: entry
+                    )
+                }
+            }
+            .padding(.leading)
+        } label: {
+            HStack {
+                Circle()
+                    .fill(.red)
+                    .frame(width: 10, height: 10)
+                Group {
+                    VStack(alignment: .leading) {
+                        Text(transactionGroup.title)
+                            .font(.headline)
+                        Text("Income")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    Text(transactionGroup.displayAmount)
+                        .font(.title)
+                }
+                .tint(.primary)
+            }
         }
     }
 }
 
 private struct TransactionEntryRowView: View {
+    @State var transactionGroup: TransactionGroup
     @State var transactionEntry: TransactionEntry
     @State var title: String?
     
+    @State private var showTransactionGroupDetails: Bool = false
+    
     var body: some View {
-        HStack {
-            Circle()
-                .fill(transactionEntry.category.color)
-                .frame(width: 10, height: 10)
-            VStack(alignment: .leading) {
-                if let title = title {
-                    Text(title)
-                        .font(.headline)
+        Button {
+            showTransactionGroupDetails = true
+        } label: {
+            HStack {
+                Circle()
+                    .fill(transactionEntry.category.color)
+                    .frame(width: 10, height: 10)
+                VStack(alignment: .leading) {
+                    if let title = title {
+                        Text(title)
+                            .multilineTextAlignment(.leading)
+                            .font(.headline)
+                    }
+                    ViewThatFits(in: .horizontal) {
+                        Text(transactionEntry.category.name)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Text(transactionEntry.category.shortName)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
                 }
-                ViewThatFits(in: .horizontal) {
-                    Text(transactionEntry.category.name)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                    Text(transactionEntry.category.shortName)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
+                Spacer()
+                Text(transactionEntry.displayAmount)
+                    .font(title == nil ? .subheadline : .title)
+                    .foregroundStyle(title == nil ? .secondary : .primary)
             }
-            Spacer()
-            Text(transactionEntry.displayAmount)
-                .font(title == nil ? .subheadline : .title)
-                .foregroundStyle(title == nil ? .secondary : .primary)
+        }
+        .contentShape(.rect)
+        .buttonStyle(.plain)
+        .sheet(isPresented: $showTransactionGroupDetails) {
+            TransactionGroupDetailsView(transactionGroup: transactionGroup)
         }
     }
 }
