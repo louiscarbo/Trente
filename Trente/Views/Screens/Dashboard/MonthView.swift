@@ -176,17 +176,6 @@ private struct RecurringTransactionsView: View {
     }
 }
 
-private struct MainGraphCard: View {
-    var body: some View {
-        GroupBox(label: Label("Monthly Overview", systemImage: "chart.pie.fill")) {
-            Text("Graph Card")
-                .font(.title)
-                .frame(width: 300, height: 280)
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle())
-    }
-}
-
 private struct SecondaryGraphCards: View {
     var month: Month
     var size: CGFloat = 80
@@ -266,11 +255,18 @@ private struct NarrowMonthView: View {
                 LazyVStack(spacing: 20) {
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
-                            MainGraphCard()
+                            DonutOverviewCard(month: month)
+                                .containerRelativeFrame(.horizontal)
+                            CategoryProgressCard(month: month)
+                                .containerRelativeFrame(.horizontal)
+                            MonthAtAGlanceCard(month: month)
+                                .containerRelativeFrame(.horizontal)
                             SecondaryGraphCards(month: month)
+                                .containerRelativeFrame(.horizontal)
                         }
+                        .scrollTargetLayout()
                     }
-                    .scrollTargetBehavior(.paging)
+                    .scrollTargetBehavior(.viewAligned)
                     .scrollIndicators(.hidden)
                     .safeAreaPadding(.horizontal)
                     .safeAreaPadding(.vertical, 3)
@@ -327,7 +323,19 @@ private struct WideMonthView: View {
             ScrollView {
                 Grid(horizontalSpacing: 20, verticalSpacing: 20) {
                     GridRow {
-                        MainGraphCard()
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 20) {
+                                DonutOverviewCard(month: month)
+                                    .containerRelativeFrame(.horizontal)
+                                CategoryProgressCard(month: month)
+                                    .containerRelativeFrame(.horizontal)
+                                MonthAtAGlanceCard(month: month)
+                                    .containerRelativeFrame(.horizontal)
+                            }
+                            .scrollTargetLayout()
+                        }
+                        .scrollTargetBehavior(.viewAligned)
+                        .scrollIndicators(.hidden)
                         LatestTransactionsView(
                             month: month,
                             transactionGroupsCount: transactionGroupsCount,
