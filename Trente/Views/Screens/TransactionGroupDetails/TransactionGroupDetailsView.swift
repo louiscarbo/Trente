@@ -82,7 +82,10 @@ struct TransactionGroupDetailsView: View {
             .navigationTitle(isEditing ? "Editing" : transactionGroup.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent() }
-            .alert("Cannot Save", isPresented: .constant(!validationErrors.isEmpty && isEditing == true)) {
+            .alert("Cannot Save", isPresented: Binding(
+                get: { !validationErrors.isEmpty && isEditing },
+                set: { if !$0 { validationErrors = [] } }
+            )) {
                 Button("OK") { validationErrors = [] }
             } message: {
                 Text(validationErrors.joined(separator: "\n"))
@@ -136,17 +139,15 @@ struct TransactionGroupDetailsView: View {
                 }
             }
         }
-        .onChange(of: photosPickerItem) { _, newItem in
-            Task {
-                guard let item = newItem else {
-                    draft?.imageAttachmentData = nil
-                    return
-                }
-                do {
-                    draft?.imageAttachmentData = try await item.loadTransferable(type: Data.self)
-                } catch {
-                    draft?.imageAttachmentData = nil
-                }
+        .task(id: photosPickerItem) {
+            guard let item = photosPickerItem else {
+                draft?.imageAttachmentData = nil
+                return
+            }
+            do {
+                draft?.imageAttachmentData = try await item.loadTransferable(type: Data.self)
+            } catch {
+                draft?.imageAttachmentData = nil
             }
         }
     }
@@ -498,10 +499,10 @@ struct TransactionGroupDetailsView: View {
         // Load placeholder image from assets and convert to data
         let imageData = UIImage(named: "placeholder")?.pngData()
         let shopping = TransactionGroup(
-            title: String(localized: "Abercrombie & Fitch Lyon Part-Dieu"),
+            title: "Abercrombie & Fitch Lyon Part-Dieu",
             type: .expense,
             month: month1,
-            note: "This is a note about the transactionn and it is extremely interesting.",
+            note: "This is a note about the transaction and it is extremely interesting.",
             imageAttachmentData: imageData /*nil*/
         )
         shopping.entries = [

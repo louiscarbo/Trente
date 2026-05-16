@@ -24,9 +24,10 @@ final class RecurringTransactionService {
         let unconfirmed = rule.instances.filter { !$0.confirmed }
         unconfirmed.forEach { context.delete($0) }
 
-        let allMonths = try context.fetch(FetchDescriptor<Month>())
         let ruleEnd = rule.endDate ?? Date.distantFuture
-        let affected = allMonths.filter { $0.startDate <= ruleEnd && $0.endDate() >= rule.startDate }
+        let predicate = #Predicate<Month> { $0.startDate <= ruleEnd }
+        let allMonths = try context.fetch(FetchDescriptor<Month>(predicate: predicate))
+        let affected = allMonths.filter { $0.endDate() >= rule.startDate }
 
         let confirmedDates = Set(rule.instances.filter { $0.confirmed }.map { $0.date })
         for month in affected {
