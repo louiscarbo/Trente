@@ -49,7 +49,10 @@ struct RecurringTransactionRuleDetailsView: View {
             .navigationTitle(isEditing ? String(localized: "Editing") : rule.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent() }
-            .alert(String(localized: "Cannot Save"), isPresented: .constant(!validationErrors.isEmpty && isEditing)) {
+            .alert(String(localized: "Cannot Save"), isPresented: Binding(
+                get: { !validationErrors.isEmpty && isEditing },
+                set: { if !$0 { validationErrors = [] } }
+            )) {
                 Button("OK") { validationErrors = [] }
             } message: {
                 Text(validationErrors.joined(separator: "\n"))

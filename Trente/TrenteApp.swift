@@ -14,13 +14,13 @@ struct TrenteApp: App {
 
     init() {
         do {
-//            #if DEBUG
-//            container = DataProvider.shared.modelContainer
-//            #else
+            #if DEBUG
+            container = DataProvider.shared.modelContainer
+            #else
             let schema = Schema([Month.self])
             let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
             container = try ModelContainer(for: schema, configurations: [config])
-//            #endif
+            #endif
         } catch {
             // TODO: Maybe fail more gracefully?
             fatalError("Failed to initialize ModelContainer: \(error)")

@@ -46,7 +46,7 @@ struct RecurringTransactionRuleDraft {
             issues.append(String(localized: "Repartition total does not match the amount to split."))
         }
         if let endDate, endDate <= startDate {
-            issues.append(String(localized: "End date must be after start date."))
+            issues.append(String(localized: "End date must be at least 7 days after start date."))
         }
         return issues
     }
