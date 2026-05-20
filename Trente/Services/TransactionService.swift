@@ -32,7 +32,7 @@ final class TransactionService {
 
         return earliest...latest
     }
-    
+
     func delete(group: TransactionGroup, in context: ModelContext) {
         // If this group confirmed a recurring instance, delete that instance too so
         // the occurrence disappears from the month rather than resurfacing as pending.
@@ -52,17 +52,35 @@ final class TransactionService {
                 repartition: request.repartition
             )
             context.insert(rule)
-            
-            if Calendar.current.isDateInToday(request.recurrenceStartDate) {
-                try createTransactionGroupWithEntries(from: request, for: month, in: context)
-            }
-            
+
             try RecurringTransactionService.shared.refreshInstances(for: month, in: context)
-            
+
+            if Calendar.current.isDateInToday(request.recurrenceStartDate) {
+                let todayStart = Calendar.current.startOfDay(for: .now)
+                let todayEnd = todayStart.addingTimeInterval(86_399)
+                let descriptor = FetchDescriptor<RecurringTransactionInstance>(
+                    predicate: #Predicate { $0.date >= todayStart && $0.date <= todayEnd }
+                )
+                let todayInstances = try context.fetch(descriptor)
+                if let instance = todayInstances.first(where: {
+                    $0.rule.persistentModelID == rule.persistentModelID
+                }) {
+                    let overrides = RecurringInstanceOverrides(
+                        notes: request.notes.isEmpty ? nil : request.notes,
+                        imageData: request.imageData,
+                        type: request.type
+                    )
+                    try RecurringTransactionService.shared.materialize(instance: instance, overrides: overrides, in: context)
+                }
+            }
+
+            if rule.autoConfirm {
+                try RecurringTransactionService.shared.autoConfirmDueInstances(asOf: .now, in: context)
+            }
         } else {
             try createTransactionGroupWithEntries(from: request, for: month, in: context)
         }
-        
+
         try context.save()
     }
 }
@@ -80,7 +98,7 @@ private extension TransactionService {
                 throw TransactionServiceError.invalidRepartition
             }
         }
-        
+
         let group = TransactionGroup(
             title: request.title,
             type: request.type,
@@ -89,7 +107,7 @@ private extension TransactionService {
             imageAttachmentData: request.imageData
         )
         context.insert(group)
-        
+
         if request.type == .expense, let category = request.selectedCategory {
             let entry = TransactionEntry(
                 amountCents: request.amountCents,

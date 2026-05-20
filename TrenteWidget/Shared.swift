@@ -16,8 +16,8 @@ func getCurrentMonth(inPreview: Bool = false) throws -> Month? {
         let month = try modelContainer.mainContext.fetch(descriptor)[3]
         return month.detachedCopy()
     }
-    
-    let modelContainer = try ModelContainer(for: Month.self)
+
+    let modelContainer = try AppGroup.makeContainer()
     let descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .forward)])
     if let month = try modelContainer.mainContext.fetch(descriptor).last {
         return month.detachedCopy()

@@ -8,6 +8,12 @@
 import Foundation
 import SwiftUI
 
+enum ValidationState {
+    case confirmed
+    case pendingUpcoming
+    case pendingDue
+}
+
 struct DisplayableTransaction: Identifiable, Equatable {
     static func == (lhs: DisplayableTransaction, rhs: DisplayableTransaction) -> Bool {
         lhs.id == rhs.id

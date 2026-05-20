@@ -67,15 +67,12 @@ struct MonthView: View {
     }
     
     private func sortRecurringTransactions(_ a: RecurringTransactionInstance, _ b: RecurringTransactionInstance) -> Bool {
-        let now = Date()
-        let aIsFuture = a.date >= now
-        let bIsFuture = b.date >= now
-        
-        if aIsFuture == bIsFuture {
-            return a.date < b.date
-        }
-        
-        return aIsFuture
+        let endOfToday = Calendar.current.startOfDay(for: .now).addingTimeInterval(86_399)
+        let aDue = !a.confirmed && a.date <= endOfToday
+        let bDue = !b.confirmed && b.date <= endOfToday
+
+        if aDue != bDue { return aDue }
+        return a.date < b.date
     }
     
     private func fetchCount<T: PersistentModel>(_ descriptor: FetchDescriptor<T>) -> Int {
@@ -139,13 +136,25 @@ private struct RecurringTransactionsView: View {
     var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
     var recurringTransactionsCount: Int
     var transactionCount: Int = 3
-    
+
+    private var endOfToday: Date {
+        Calendar.current.startOfDay(for: .now).addingTimeInterval(86_399)
+    }
+
+    private var displayedInstances: [RecurringTransactionInstance] {
+        let pastDueCount = nextRecurringTransactionsInstances.filter {
+            !$0.confirmed && $0.date <= endOfToday
+        }.count
+        let cap = max(transactionCount, pastDueCount)
+        return Array(nextRecurringTransactionsInstances.prefix(cap))
+    }
+
     var body: some View {
         GroupBox(label: Label("Recurring Transactions", systemImage: "clock.arrow.circlepath")) {
-            ForEach(nextRecurringTransactionsInstances.prefix(transactionCount)) { recurringTransactionInstance in
+            ForEach(displayedInstances) { recurringTransactionInstance in
                 RecurringTransactionRowView(instance: recurringTransactionInstance)
-                
-                if recurringTransactionInstance != nextRecurringTransactionsInstances.prefix(transactionCount).last {
+
+                if recurringTransactionInstance != displayedInstances.last {
                     Divider()
                 }
             }

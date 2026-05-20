@@ -7,29 +7,31 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 @main
 struct TrenteApp: App {
     let container: ModelContainer
 
     init() {
+        #if os(iOS)
+        BackgroundRefreshScheduler.registerHandler()
+        #endif
+
         do {
             #if DEBUG
             container = DataProvider.shared.modelContainer
             #else
-            let schema = Schema([Month.self])
-            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-            container = try ModelContainer(for: schema, configurations: [config])
+            container = try AppGroup.makeContainer()
             #endif
         } catch {
-            // TODO: Maybe fail more gracefully?
             fatalError("Failed to initialize ModelContainer: \(error)")
         }
     }
 
     var body: some Scene {
         WindowGroup {
-            MonthListView()
+            RootView()
         }
         .modelContainer(container)
         .defaultSize(width: 1200, height: 800)
@@ -56,5 +58,40 @@ struct TrenteApp: App {
         .modelContainer(container)
         .defaultSize(width: 500, height: 600)
         #endif
+    }
+}
+
+private struct RootView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
+
+    var body: some View {
+        MonthListView()
+            .task {
+                await runAutoConfirm()
+            }
+            .onChange(of: scenePhase) { _, newPhase in
+                switch newPhase {
+                case .active:
+                    Task { await runAutoConfirm() }
+                case .background:
+                    #if os(iOS)
+                    BackgroundRefreshScheduler.schedule()
+                    #endif
+                default:
+                    break
+                }
+            }
+    }
+
+    private func runAutoConfirm() async {
+        do {
+            let count = try RecurringTransactionService.shared.autoConfirmDueInstances(asOf: .now, in: modelContext)
+            if count > 0 {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+        } catch {
+            // Best-effort: silent failure, retried on next activation.
+        }
     }
 }
