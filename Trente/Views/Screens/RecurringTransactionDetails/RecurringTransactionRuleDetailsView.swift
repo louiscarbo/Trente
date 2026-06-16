@@ -17,52 +17,53 @@ struct RecurringTransactionRuleDetailsView: View {
     @State private var isEditing = false
     @State private var draft: RecurringTransactionRuleDraft?
     @State private var validationErrors: [String] = []
-    @State private var showDeleteConfirmation = false
     @State private var deleteError: String?
     @State private var isRepartitionComplete = false
 
-    private enum EditField { case title, amount }
-    @FocusState private var focusedField: EditField?
+    @FocusState private var titleFocused: Bool
+    @FocusState private var amountFocused: Bool
 
     private var totalAmount: Int {
         rule.repartition.values.reduce(0, +)
     }
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: .medium) {
-                    headerBox()
-                    recurrenceDetailsBox()
-                    autoConfirmBox()
-                    repartitionBox()
-                    if isEditing {
-                        deleteSection()
-                    }
+        DetailEditScaffold(
+            title: rule.title,
+            isEditing: $isEditing,
+            validationErrors: $validationErrors,
+            deleteError: $deleteError,
+            deleteSectionTitle: String(localized: "Delete Recurring Transaction"),
+            keyboardDismissVisible: (titleFocused || amountFocused) && isEditing,
+            onDismissKeyboard: clearFocus,
+            onBeginEdit: {
+                withAnimation {
+                    draft = RecurringTransactionRuleDraft(from: rule)
+                    isEditing = true
                 }
-                .padding()
-            }
-            .scrollDismissesKeyboard(.interactively)
-            .interactiveDismissDisabled(isEditing)
-            .keyboardDismissButton(isVisible: focusedField != nil && isEditing) { focusedField = nil }
-            .onChange(of: isEditing) { _, editing in if !editing { focusedField = nil } }
-            .navigationTitle(isEditing ? String(localized: "Editing") : rule.title)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar { toolbarContent() }
-            .alert(String(localized: "Cannot Save"), isPresented: Binding(
-                get: { !validationErrors.isEmpty && isEditing },
-                set: { if !$0 { validationErrors = [] } }
-            )) {
-                Button("OK") { validationErrors = [] }
-            } message: {
-                Text(validationErrors.joined(separator: "\n"))
-            }
-            .alert(String(localized: "Delete Failed"), isPresented: Binding(get: { deleteError != nil }, set: { if !$0 { deleteError = nil } })) {
-                Button("OK", role: .cancel) { deleteError = nil }
-            } message: {
-                Text(deleteError ?? "")
+            },
+            onCancel: {
+                withAnimation {
+                    draft = nil
+                    isEditing = false
+                }
+            },
+            onDone: onTapDone,
+            onDelete: deleteRule
+        ) {
+            headerBox()
+            recurrenceDetailsBox()
+            autoConfirmBox()
+            if !isExpense {
+                repartitionBox()
             }
         }
+        .onChange(of: isEditing) { _, editing in if !editing { clearFocus() } }
+    }
+
+    private func clearFocus() {
+        titleFocused = false
+        amountFocused = false
     }
 
     // MARK: - Header
@@ -71,42 +72,39 @@ struct RecurringTransactionRuleDetailsView: View {
     private func headerBox() -> some View {
         GroupBox {
             VStack(alignment: .leading, spacing: .small) {
-                titleField()
-                    .padding(.top, 12)
+                EditableTitleField(
+                    text: titleBinding,
+                    isEditing: isEditing,
+                    placeholder: String(localized: "Recurring transaction title"),
+                    focus: $titleFocused
+                )
+                .padding(.top, 12)
                 frequencyTag()
+                if isExpense {
+                    EditableExpenseRow(
+                        isEditing: isEditing,
+                        category: categoryBinding,
+                        amountCents: expenseAmountBinding,
+                        currency: currency,
+                        focus: $amountFocused
+                    )
+                }
             }
             .padding([.bottom, .horizontal])
         }
         .groupBoxStyle(TrenteGroupBoxStyle(withPadding: false))
     }
 
-    @ViewBuilder
-    private func titleField() -> some View {
-        TextField(
-            "Recurring transaction title",
-            text: Binding(
-                get: { isEditing ? (draft?.title ?? rule.title) : rule.title },
-                set: { draft?.title = $0 }
-            ),
-            axis: .vertical
+    private var titleBinding: Binding<String> {
+        Binding(
+            get: { isEditing ? (draft?.title ?? rule.title) : rule.title },
+            set: { draft?.title = $0 }
         )
-        .focused($focusedField, equals: .title)
-        .disabled(!isEditing)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .font(.title)
-        .padding(isEditing ? 8 : 0)
-        .background {
-            if isEditing {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(.gray.opacity(0.2))
-            }
-        }
     }
 
     @ViewBuilder
     private func frequencyTag() -> some View {
-        let description = rule.frequencyDescription
-        Text(description)
+        Text(rule.frequencyDescription)
             .font(.subheadline)
             .foregroundStyle(.secondary)
             .padding(.vertical, 4)
@@ -210,7 +208,39 @@ struct RecurringTransactionRuleDetailsView: View {
         .disabled(!isEditing)
     }
 
-    // MARK: - Repartition
+    // MARK: - Category & Amount (Expense)
+
+    private var isExpense: Bool { totalAmount < 0 }
+
+    private var expenseCategory: BudgetCategory? {
+        isEditing ? draft?.repartition.keys.first : rule.repartition.keys.first
+    }
+
+    private var categoryBinding: Binding<BudgetCategory?> {
+        Binding(
+            get: { expenseCategory },
+            set: { newCategory in
+                guard let newCategory else { return }
+                let amount = draft?.repartitionTotalCents ?? totalAmount
+                draft?.repartition = [newCategory: amount]
+            }
+        )
+    }
+
+    private var expenseAmountBinding: Binding<Int> {
+        Binding(
+            get: { isEditing ? (draft?.repartitionTotalCents ?? totalAmount) : totalAmount },
+            set: { newValue in
+                let signedAmount = -abs(newValue)
+                draft?.repartitionTotalCents = signedAmount
+                if let category = expenseCategory {
+                    draft?.repartition = [category: signedAmount]
+                }
+            }
+        )
+    }
+
+    // MARK: - Repartition (Income)
 
     @ViewBuilder
     private func repartitionBox() -> some View {
@@ -224,7 +254,7 @@ struct RecurringTransactionRuleDetailsView: View {
                         ),
                         currency: currency
                     )
-                    .focused($focusedField, equals: .amount)
+                    .focused($amountFocused)
                     .padding(8)
                     .background {
                         RoundedRectangle(cornerRadius: 10)
@@ -248,76 +278,6 @@ struct RecurringTransactionRuleDetailsView: View {
         .groupBoxStyle(TrenteGroupBoxStyle())
     }
 
-    // MARK: - Delete
-
-    @ViewBuilder
-    private func deleteSection() -> some View {
-        let warningMessage = String(localized: "This action cannot be undone.")
-        GroupBox(label: Label("Delete Recurring Transaction", systemImage: "trash.fill")) {
-            VStack(spacing: .medium) {
-                Text(warningMessage)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                Button(role: .destructive) {
-                    showDeleteConfirmation = true
-                } label: {
-                    Label("Delete Recurring Transaction", systemImage: "trash.fill")
-                        .font(.headline)
-                }
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                .confirmationDialog(String(localized: "Are you sure?"), isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
-                    Button(String(localized: "Delete"), role: .destructive, action: deleteRule)
-                    Button(String(localized: "Cancel"), role: .cancel) {}
-                } message: {
-                    Text(warningMessage)
-                }
-            }
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle())
-    }
-
-    private func deleteRule() {
-        RecurringTransactionService.shared.delete(rule: rule, in: modelContext)
-        do {
-            try modelContext.save()
-            dismiss()
-        } catch {
-            deleteError = error.localizedDescription
-        }
-    }
-
-    // MARK: - Toolbar
-
-    @ToolbarContentBuilder
-    private func toolbarContent() -> some ToolbarContent {
-        if isEditing {
-            ToolbarItem(placement: .cancellationAction) {
-                Button(role: .cancel) {
-                    withAnimation {
-                        draft = nil
-                        isEditing = false
-                    }
-                } label: { Label("Cancel", systemImage: "arrow.uturn.backward") }
-            }
-            ToolbarItem(placement: .confirmationAction) {
-                Button { onTapDone() } label: { Label("Done", systemImage: "checkmark") }
-            }
-        } else {
-            ToolbarItem(placement: .primaryAction) {
-                Button {
-                    withAnimation {
-                        draft = RecurringTransactionRuleDraft(from: rule)
-                        isEditing = true
-                    }
-                } label: { Label("Edit", systemImage: "pencil") }
-            }
-            ToolbarItem(placement: .topBarLeading) {
-                Button { dismiss() } label: { Label("Close", systemImage: "chevron.down") }
-            }
-        }
-    }
-
     // MARK: - Actions
 
     private func onTapDone() {
@@ -334,6 +294,16 @@ struct RecurringTransactionRuleDetailsView: View {
             withAnimation { isEditing = false }
         } catch {
             validationErrors = [String(localized: "Failed to save changes: \(error.localizedDescription)")]
+        }
+    }
+
+    private func deleteRule() {
+        RecurringTransactionService.shared.delete(rule: rule, in: modelContext)
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            deleteError = error.localizedDescription
         }
     }
 }
