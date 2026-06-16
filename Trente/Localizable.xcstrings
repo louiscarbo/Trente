@@ -29,6 +29,12 @@
     "%@ Remaining" : {
 
     },
+    "%lld" : {
+
+    },
+    "%lld%%" : {
+
+    },
     "Abercrombie & Fitch Lyon Part-Dieu" : {
 
     },
@@ -89,6 +95,12 @@
     "Budget Category" : {
 
     },
+    "Budget Meter" : {
+
+    },
+    "Budget Rings" : {
+
+    },
     "Cancel" : {
 
     },
@@ -99,6 +111,9 @@
 
     },
     "Category" : {
+
+    },
+    "Category Columns" : {
 
     },
     "Category Recap" : {
@@ -122,6 +137,9 @@
     "CURRENT MONTH" : {
 
     },
+    "Daily Spending" : {
+
+    },
     "Date" : {
 
     },
@@ -132,6 +150,9 @@
 
     },
     "Dates" : {
+
+    },
+    "Day" : {
 
     },
     "Delete" : {
@@ -210,9 +231,6 @@
     "Give a title to your transaction" : {
 
     },
-    "Graph Card" : {
-
-    },
     "How would you like to split this income?" : {
 
     },
@@ -229,6 +247,9 @@
 
     },
     "Latest Transactions" : {
+
+    },
+    "left" : {
 
     },
     "Marketing Content Goes Here" : {
@@ -249,9 +270,6 @@
     "Monthly" : {
 
     },
-    "Monthly Overview" : {
-
-    },
     "Needs" : {
 
     },
@@ -270,16 +288,31 @@
     "No months available" : {
 
     },
+    "No spending recorded yet." : {
+
+    },
     "No upcoming recurring transactions for this month." : {
 
     },
     "Not Implemented Yet." : {
 
     },
+    "of budget used" : {
+
+    },
     "OK" : {
 
     },
+    "Over\nbudget" : {
+
+    },
     "Over Budget" : {
+
+    },
+    "OVER BUDGET" : {
+
+    },
+    "Plan vs. Actual" : {
 
     },
     "Please open this window from a month dashboard." : {
@@ -403,6 +436,9 @@
 
     },
     "To" : {
+
+    },
+    "Today" : {
 
     },
     "Total" : {
