@@ -25,6 +25,8 @@ A `RecurringTransactionRule` defines a transaction that repeats over time. It st
 *   The start and end dates for the recurrence.
 *   The template for the `TransactionGroup` to be created, including title, amount, and category information.
 
+`repartition: [BudgetCategory: Int]` stores this amount, signed exactly like `TransactionEntry.amountCents` (negative = expense, positive = income). Since an expense always produces a single `TransactionEntry` (see above), an expense rule's `repartition` must contain exactly one category — only income rules are split across multiple categories. UI editing a rule's repartition must branch on this sign rather than reusing the multi-category income split UI for expenses.
+
 ### `RecurringTransactionInstance`
 
 A `RecurringTransactionInstance` represents a specific, scheduled occurrence of a `RecurringTransactionRule`. For example, a monthly bill will have a `RecurringTransactionInstance` for each upcoming month. These instances are what get converted into actual `TransactionGroup`s when they are actually added/validated by the user (ie, when they are actually taken into account in the budget, ie when they are paid).
