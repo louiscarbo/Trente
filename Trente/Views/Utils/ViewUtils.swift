@@ -124,6 +124,49 @@ func createImage(_ value: Data) -> Image? {
     #endif
 }
 
+#if canImport(AppKit)
+extension NSImage {
+    func pngData() -> Data? {
+        guard let tiffData = tiffRepresentation,
+              let bitmap = NSBitmapImageRep(data: tiffData) else { return nil }
+        return bitmap.representation(using: .png, properties: [:])
+    }
+}
+#endif
+
+func imageData(named name: String) -> Data? {
+    #if canImport(UIKit)
+    return UIImage(named: name)?.pngData()
+    #elseif canImport(AppKit)
+    return NSImage(named: name)?.pngData()
+    #else
+    return nil
+    #endif
+}
+
+extension ToolbarItemPlacement {
+    /// Leading "close sheet" button placement: `.topBarLeading` on iOS, `.cancellationAction` on macOS.
+    static var closeButtonPlacement: ToolbarItemPlacement {
+        #if os(iOS)
+        .topBarLeading
+        #else
+        .cancellationAction
+        #endif
+    }
+}
+
+extension View {
+    /// Applies `.navigationBarTitleDisplayMode(.inline)` on iOS; no-op on macOS, which has no equivalent.
+    @ViewBuilder
+    func inlineNavigationBarTitleDisplayMode() -> some View {
+        #if os(iOS)
+        self.navigationBarTitleDisplayMode(.inline)
+        #else
+        self
+        #endif
+    }
+}
+
 // MARK: View Extensions
 extension View {
     @ViewBuilder
