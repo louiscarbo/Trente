@@ -246,33 +246,33 @@ private struct NarrowMonthView: View {
     
     // View State
     @State private var isShowingNewTransactionSheet = false
+    @State private var carouselPage: CarouselPage?
     @Environment(\.colorScheme) private var colorScheme
     private var lightMode: Bool { colorScheme == .light }
-    
+
+    private enum CarouselPage: Int, CaseIterable {
+        case budgetRings, planVsActual, budgetMeter, dailySpending, secondaryGraphs
+    }
+
+    @ViewBuilder
+    private func card(for page: CarouselPage) -> some View {
+        switch page {
+        case .budgetRings: BudgetRingsCard(month: month)
+        case .planVsActual: PlanVsActualCard(month: month)
+        case .budgetMeter: BudgetMeterCard(month: month)
+        case .dailySpending: DailySpendingCard(month: month)
+        case .secondaryGraphs: SecondaryGraphCards(month: month)
+        }
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 20) {
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 20) {
-                            BudgetRingsCard(month: month)
-                                .containerRelativeFrame(.horizontal)
-                            PlanVsActualCard(month: month)
-                                .containerRelativeFrame(.horizontal)
-                            BudgetMeterCard(month: month)
-                                .containerRelativeFrame(.horizontal)
-                            DailySpendingCard(month: month)
-                                .containerRelativeFrame(.horizontal)
-                            SecondaryGraphCards(month: month)
-                                .containerRelativeFrame(.horizontal)
-                        }
-                        .scrollTargetLayout()
+                    CardCarousel(selection: $carouselPage, safeAreaPadding: true) { page in
+                        card(for: page)
                     }
-                    .scrollTargetBehavior(.viewAligned)
-                    .scrollIndicators(.hidden)
-                    .safeAreaPadding(.horizontal)
-                    .safeAreaPadding(.vertical, 3)
-                    
+
                     LatestTransactionsView(
                         month: month,
                         transactionGroupsCount: transactionGroupsCount
@@ -317,29 +317,32 @@ private struct WideMonthView: View {
     var recurringTransactionsCount: Int
     
     // View State
+    @State private var carouselPage: CarouselPage?
     @Environment(\.colorScheme) private var colorScheme
     private var lightMode: Bool { colorScheme == .light }
-    
+
+    private enum CarouselPage: Int, CaseIterable {
+        case budgetRings, planVsActual, budgetMeter, dailySpending
+    }
+
+    @ViewBuilder
+    private func card(for page: CarouselPage) -> some View {
+        switch page {
+        case .budgetRings: BudgetRingsCard(month: month)
+        case .planVsActual: PlanVsActualCard(month: month)
+        case .budgetMeter: BudgetMeterCard(month: month)
+        case .dailySpending: DailySpendingCard(month: month)
+        }
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 Grid(horizontalSpacing: 20, verticalSpacing: 20) {
                     GridRow {
-                        ScrollView(.horizontal) {
-                            HStack(spacing: 20) {
-                                BudgetRingsCard(month: month)
-                                    .containerRelativeFrame(.horizontal)
-                                PlanVsActualCard(month: month)
-                                    .containerRelativeFrame(.horizontal)
-                                BudgetMeterCard(month: month)
-                                    .containerRelativeFrame(.horizontal)
-                                DailySpendingCard(month: month)
-                                    .containerRelativeFrame(.horizontal)
-                            }
-                            .scrollTargetLayout()
+                        CardCarousel(selection: $carouselPage) { page in
+                            card(for: page)
                         }
-                        .scrollTargetBehavior(.viewAligned)
-                        .scrollIndicators(.hidden)
                         LatestTransactionsView(
                             month: month,
                             transactionGroupsCount: transactionGroupsCount,
