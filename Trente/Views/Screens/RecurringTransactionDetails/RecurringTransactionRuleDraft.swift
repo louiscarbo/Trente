@@ -30,7 +30,7 @@ struct RecurringTransactionRuleDraft {
         rule.startDate = startDate
         rule.endDate = endDate
         rule.autoConfirm = autoConfirm
-        rule.repartition = repartition
+        rule.setRepartition(repartition)
     }
 
     func validate() -> [String] {
@@ -39,10 +39,10 @@ struct RecurringTransactionRuleDraft {
             issues.append(String(localized: "Title cannot be empty."))
         }
         let total = repartition.values.reduce(0, +)
-        if total <= 0 {
-            issues.append(String(localized: "At least one category must have an amount greater than 0."))
+        if total == 0 {
+            issues.append(String(localized: "At least one category must have a non-zero amount."))
         }
-        if total != repartitionTotalCents && repartitionTotalCents > 0 {
+        if total != repartitionTotalCents && repartitionTotalCents != 0 {
             issues.append(String(localized: "Repartition total does not match the amount to split."))
         }
         if let endDate, endDate <= startDate {
