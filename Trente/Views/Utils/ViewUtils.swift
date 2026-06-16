@@ -170,7 +170,7 @@ extension View {
 // MARK: View Extensions
 extension View {
     @ViewBuilder
-    func modify<T: View>(_ transform: (Self) -> T) -> some View {
+    func modify<T: View>(@ViewBuilder _ transform: (Self) -> T) -> some View {
         transform(self)
     }
 }
