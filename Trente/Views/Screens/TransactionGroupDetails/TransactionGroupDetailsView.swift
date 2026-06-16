@@ -80,7 +80,7 @@ struct TransactionGroupDetailsView: View {
             .keyboardDismissButton(isVisible: focusedField != nil && isEditing) { focusedField = nil }
             .onChange(of: isEditing) { _, editing in if !editing { focusedField = nil } }
             .navigationTitle(isEditing ? "Editing" : transactionGroup.title)
-            .navigationBarTitleDisplayMode(.inline)
+            .inlineNavigationBarTitleDisplayMode()
             .toolbar { toolbarContent() }
             .alert("Cannot Save", isPresented: Binding(
                 get: { !validationErrors.isEmpty && isEditing },
@@ -154,9 +154,7 @@ struct TransactionGroupDetailsView: View {
     
     @ViewBuilder
     private func tappableImage(from imageData: Data) -> some View {
-        if let uiImage = UIImage(data: imageData) {
-            let image: Image = .init(uiImage: uiImage)
-            
+        if let image = createImage(imageData) {
             Button {
                 showFullScreen = true
             } label: {
@@ -439,7 +437,7 @@ struct TransactionGroupDetailsView: View {
                     }
                 } label: { Label("Edit", systemImage: "pencil") }
             }
-            ToolbarItem(placement: .topBarLeading) {
+            ToolbarItem(placement: .closeButtonPlacement) {
                 Button {
                     dismiss()
                 } label: {
@@ -486,8 +484,7 @@ struct TransactionGroupDetailsView: View {
                 .savingsAndDebts: 20
             ]
         )
-        // Load placeholder image from assets and convert to data
-        let imageData = UIImage(named: "placeholder")?.pngData()
+        let imageData = imageData(named: "placeholder")
         let shopping = TransactionGroup(
             title: "Abercrombie & Fitch Lyon Part-Dieu",
             type: .expense,

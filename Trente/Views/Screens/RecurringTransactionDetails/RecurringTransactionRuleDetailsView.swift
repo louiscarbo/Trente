@@ -47,7 +47,7 @@ struct RecurringTransactionRuleDetailsView: View {
             .keyboardDismissButton(isVisible: focusedField != nil && isEditing) { focusedField = nil }
             .onChange(of: isEditing) { _, editing in if !editing { focusedField = nil } }
             .navigationTitle(isEditing ? String(localized: "Editing") : rule.title)
-            .navigationBarTitleDisplayMode(.inline)
+            .inlineNavigationBarTitleDisplayMode()
             .toolbar { toolbarContent() }
             .alert(String(localized: "Cannot Save"), isPresented: Binding(
                 get: { !validationErrors.isEmpty && isEditing },
@@ -312,7 +312,7 @@ struct RecurringTransactionRuleDetailsView: View {
                     }
                 } label: { Label("Edit", systemImage: "pencil") }
             }
-            ToolbarItem(placement: .topBarLeading) {
+            ToolbarItem(placement: .closeButtonPlacement) {
                 Button { dismiss() } label: { Label("Close", systemImage: "chevron.down") }
             }
         }
