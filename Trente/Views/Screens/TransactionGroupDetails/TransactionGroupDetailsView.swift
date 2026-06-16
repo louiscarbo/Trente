@@ -114,7 +114,7 @@ struct TransactionGroupDetailsView: View {
                         Label("Delete Image", systemImage: "trash")
                     }
                     .padding([.bottom, .trailing])
-                    .modifier(GlassOrBordered())
+                    .buttonStyle(.glassProminent)
                     .tint(.red)
                     .alert("Are you sure?", isPresented: $showDeleteConfirmation) {
                         Button("Delete", role: .destructive) {
@@ -180,16 +180,6 @@ struct TransactionGroupDetailsView: View {
 #else
                 view
 #endif
-            }
-        }
-    }
-
-    private struct GlassOrBordered: ViewModifier {
-        func body(content: Content) -> some View {
-            if #available(iOS 26.0, *) {
-                content.buttonStyle(.glassProminent)
-            } else {
-                content.buttonStyle(.borderedProminent)
             }
         }
     }

@@ -58,7 +58,7 @@ struct NotesImageView: View {
                                     RoundedRectangle(cornerRadius: .large)
                                         .strokeBorder(Color.white, lineWidth: 10)
                                 )
-                                .glassEffectIfAvailable(isEnabled: true, in: RoundedRectangle(cornerRadius: .large))
+                                .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
                                 .frame(height: 200)
                                 .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
                                 .padding(.bottom, 30)
