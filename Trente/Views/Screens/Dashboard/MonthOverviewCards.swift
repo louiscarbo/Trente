@@ -366,6 +366,57 @@ struct BudgetMeterCard: View {
 // Three vertical thermometer columns, widths proportional to ideal allocation.
 // Fill rises from the bottom; red overflow shown above the 100% line when overspent.
 
+private struct SpendingColumn: View {
+    let idealWidth: CGFloat
+    let columnHeight: CGFloat
+    let fraction: Double
+    let isOver: Bool
+    let color: Color
+
+    private var capped: Double { min(fraction, 1.0) }
+    private var overflowFraction: Double { isOver ? (fraction - 1.0) : 0.0 }
+    private var overflowHeight: CGFloat { CGFloat(min(overflowFraction, 0.5)) * columnHeight }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            // Overflow (above the budget line, red)
+            if isOver {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Color.red.gradient)
+                    .frame(width: idealWidth, height: overflowHeight)
+            }
+
+            // Budget line marker
+            if isOver {
+                Rectangle()
+                    .fill(Color.red.opacity(0.6))
+                    .frame(width: idealWidth, height: 2)
+            }
+
+            ZStack(alignment: .bottom) {
+                // Track
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(color.opacity(0.12))
+                    .frame(width: idealWidth, height: columnHeight)
+
+                // Fill
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(isOver ? AnyShapeStyle(Color.red.opacity(0.4)) : AnyShapeStyle(color.gradient))
+                    .frame(width: idealWidth, height: columnHeight * CGFloat(capped))
+
+                // % label inside column
+                if capped > 0.15 {
+                    Text("\(Int(capped * 100))%")
+                        .font(.caption2)
+                        .fontWeight(.bold)
+                        .foregroundStyle(isOver ? .red : color.darken(0.3))
+                        .padding(.bottom, 6)
+                }
+            }
+        }
+    }
+}
+
 struct SpendingColumnsCard: View {
     @State var month: Month
 
@@ -393,49 +444,13 @@ struct SpendingColumnsCard: View {
 
                     HStack(alignment: .bottom, spacing: gap) {
                         ForEach(BudgetCategory.allCases) { category in
-                            let idealW = idealWidth(for: category, in: totalWidth - gap * 2)
-                            let fraction = spentFraction(for: category)
-                            let capped = min(fraction, 1.0)
-                            let isOver = month.overSpending(in: category)
-                            let overflowFraction = isOver ? (fraction - 1.0) : 0.0
-                            let overflowH = CGFloat(min(overflowFraction, 0.5)) * columnHeight
-
-                            VStack(spacing: 0) {
-                                // Overflow (above the budget line, red)
-                                if isOver {
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .fill(Color.red.gradient)
-                                        .frame(width: idealW, height: overflowH)
-                                }
-
-                                // Budget line marker
-                                if isOver {
-                                    Rectangle()
-                                        .fill(Color.red.opacity(0.6))
-                                        .frame(width: idealW, height: 2)
-                                }
-
-                                ZStack(alignment: .bottom) {
-                                    // Track
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(category.color.opacity(0.12))
-                                        .frame(width: idealW, height: columnHeight)
-
-                                    // Fill
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(isOver ? Color.red.opacity(0.4) : category.color.gradient)
-                                        .frame(width: idealW, height: columnHeight * CGFloat(capped))
-
-                                    // % label inside column
-                                    if capped > 0.15 {
-                                        Text("\(Int(capped * 100))%")
-                                            .font(.caption2)
-                                            .fontWeight(.bold)
-                                            .foregroundStyle(isOver ? .red : category.color.darken(0.3))
-                                            .padding(.bottom, 6)
-                                    }
-                                }
-                            }
+                            SpendingColumn(
+                                idealWidth: idealWidth(for: category, in: totalWidth - gap * 2),
+                                columnHeight: columnHeight,
+                                fraction: spentFraction(for: category),
+                                isOver: month.overSpending(in: category),
+                                color: category.color
+                            )
                         }
                     }
                     .frame(height: columnHeight + 40) // room for overflow
