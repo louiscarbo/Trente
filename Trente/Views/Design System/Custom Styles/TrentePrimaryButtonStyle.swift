@@ -53,7 +53,7 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
         .frame(maxWidth: .infinity)
         .fixedSize(horizontal: false, vertical: true)
         .environment(\.colorScheme, lightMode ? .dark : .light)
-        .glassOrScale(isPressed: configuration.isPressed, isEnabled: isEnabled, in: .capsule)
+        .glassEffect(.regular.interactive(isEnabled), in: .capsule)
     }
 }
 

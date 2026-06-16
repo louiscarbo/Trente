@@ -53,7 +53,7 @@ struct TrenteSecondaryButtonStyle: ButtonStyle {
                 .padding(.vertical, narrow ? 5 : 16)
         }
         .fixedSize(horizontal: false, vertical: true)
-        .glassOrScale(isPressed: configuration.isPressed, isEnabled: isEnabled, in: .capsule)
+        .glassEffect(.regular.interactive(isEnabled), in: .capsule)
     }
 }
 

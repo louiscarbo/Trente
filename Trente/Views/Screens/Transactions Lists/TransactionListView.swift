@@ -107,9 +107,7 @@ struct TransactionListView: View {
             .searchable(text: $searchText, prompt: "Search by title, amount, date, category…")
             .toolbar {
                 #if os(iOS)
-                if #available(iOS 26.0, *) {
-                    DefaultToolbarItem(kind: .search, placement: .bottomBar)
-                }
+                DefaultToolbarItem(kind: .search, placement: .bottomBar)
                 #endif
                 ToolbarItemGroup(placement: .primaryAction) {
                     SortPickerView(sortOption: $sortOption)

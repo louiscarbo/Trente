@@ -35,23 +35,15 @@ enum TrentePlus: Hashable {
 
 struct SubscriptionView: View {
     var body: some View {
-        
-        // iOS 18 Store
-        if #available(iOS 18.0, *) {
-            SubscriptionStoreView(groupID: TrentePlus.groupID) {
-                VStack {
-                    Image("Trente Pig Sticker")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    Text("Marketing Content Goes Here")
-                }
+        SubscriptionStoreView(groupID: TrentePlus.groupID) {
+            VStack {
+                Image("Trente Pig Sticker")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Text("Marketing Content Goes Here")
             }
-                .subscriptionStoreControlStyle(.compactPicker)
-            
-        // iOS 17
-        } else {
-            SubscriptionStoreView(groupID: TrentePlus.groupID)
         }
+        .subscriptionStoreControlStyle(.compactPicker)
     }
 }
 

@@ -30,30 +30,12 @@ struct ZoomableImageView: View {
                 Image(systemName: "xmark")
                     .font(.title2)
                     .padding(4)
-                    .background {
-                        if #unavailable(iOS 26.0) {
-                            Circle()
-                                .fill(.ultraThinMaterial)
-                                .frame(width: 40, height: 40)
-                        }
-                    }
             }
             .padding(.top, 12)
             .padding(.trailing, 12)
             .accessibilityLabel(Text("Close"))
             .buttonBorderShape(.circle)
-            .adaptiveCloseButtonStyle()
-        }
-    }
-}
-
-private extension View {
-    @ViewBuilder
-    func adaptiveCloseButtonStyle() -> some View {
-        if #available(iOS 26.0, *) {
-            self.buttonStyle(.glass)
-        } else {
-            self.buttonStyle(.borderless)
+            .buttonStyle(.glass)
         }
     }
 }

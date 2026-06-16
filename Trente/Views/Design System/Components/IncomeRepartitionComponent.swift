@@ -119,7 +119,7 @@ struct IncomeRepartitionComponent: View {
             RoundedRectangle(cornerRadius: .large)
                 .strokeBorder(.pink.darken(0.1), lineWidth: 3)
         }
-        .glassEffectIfAvailable(isEnabled: false, in: .capsule)
+        .glassEffect(.regular.interactive(false), in: .capsule)
         .onPreferenceChange(HeightKey.self) { h in
             remainingMeasuredHeight = h
         }
@@ -131,14 +131,6 @@ struct TrenteSliderButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled: Bool
 
     func makeBody(configuration: Configuration) -> some View {
-        var scale: CGFloat {
-            if isEnabled, #unavailable(iOS 26.0) {
-                return configuration.isPressed ? 0.9 : 1.0
-            } else {
-                return 1.0
-            }
-        }
-        
         ZStack {
             RoundedRectangle(cornerRadius: .large)
                 .fill(color)
@@ -148,13 +140,9 @@ struct TrenteSliderButtonStyle: ButtonStyle {
             RoundedRectangle(cornerRadius: .large)
                 .strokeBorder(color.darken(0.1), lineWidth: 3)
         }
-        .scaleEffect(scale)
         .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 1)
         .tint(color.darken(0.8))
-        .glassEffectIfAvailable(
-            isEnabled: isEnabled,
-            in: .capsule
-        )
+        .glassEffect(.regular.interactive(isEnabled), in: .capsule)
     }
 }
 
@@ -290,7 +278,6 @@ struct RepartitionSlider: View {
     let maxValue: Int
     let formatter: NumberFormatter
 
-    @State private var scale: CGFloat = 1.0
     @State private var measuredHeight: CGFloat = 0
 
     var body: some View {
@@ -361,8 +348,7 @@ struct RepartitionSlider: View {
                     )
             }
             .clipShape(RoundedRectangle(cornerRadius: .large))
-            .glassEffectIfAvailable(isEnabled: true, in: RoundedRectangle(cornerRadius: .large))
-            .scaleEffect(x: scale, y: 1.0)
+            .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { drag in
@@ -374,17 +360,6 @@ struct RepartitionSlider: View {
                     }
             )
             .sensoryFeedback(.selection, trigger: value)
-            .onChange(of: value) { _, _ in
-                withAnimation(.bouncy(duration: 0.2)) {
-                    if #unavailable(iOS 26.0) {
-                        scale = 1.02
-                    }
-                } completion: {
-                    withAnimation(.bouncy(duration: 0.3)) {
-                        scale = 1.0
-                    }
-                }
-            }
         }
         .frame(height: measuredHeight)
     }
