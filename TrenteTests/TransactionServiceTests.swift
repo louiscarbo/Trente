@@ -53,6 +53,61 @@ struct TransactionServiceTests {
         #expect(entries.isEmpty)
     }
 
+    @Test("Confirming a recurring instance creates a linked group in the month")
+    func confirmRecurringInstance_createsLinkedGroup() throws {
+        let context = try makeContext()
+        let month = makeMonth(in: context)
+
+        let rule = RecurringTransactionRule(
+            title: "Salary",
+            frequency: .monthly,
+            startDate: month.startDate,
+            repartition: [.needs: 1500_00, .wants: 500_00]
+        )
+        context.insert(rule)
+
+        let instance = RecurringTransactionInstance(date: month.startDate, rule: rule, month: month, confirmed: false)
+        context.insert(instance)
+        month.recurringTransactionInstances = [instance]
+        rule.instances = [instance]
+        try context.save()
+
+        try RecurringTransactionService.shared.confirm(instance: instance, in: context)
+
+        #expect(instance.confirmed)
+        #expect(month.transactionGroups.count == 1, "Confirmed group must appear in the month")
+        let group = try #require(month.transactionGroups.first)
+        #expect(group.type == .income)
+        #expect(group.entries.count == 2)
+        #expect(group.totalAmountCents == 2000_00)
+        #expect(instance.transactionGroup?.id == group.id)
+    }
+
+    @Test("Confirming an already-confirmed instance is a no-op")
+    func confirmTwice_doesNotDuplicate() throws {
+        let context = try makeContext()
+        let month = makeMonth(in: context)
+
+        let rule = RecurringTransactionRule(
+            title: "Salary",
+            frequency: .monthly,
+            startDate: month.startDate,
+            repartition: [.needs: 1000_00]
+        )
+        context.insert(rule)
+
+        let instance = RecurringTransactionInstance(date: month.startDate, rule: rule, month: month, confirmed: false)
+        context.insert(instance)
+        month.recurringTransactionInstances = [instance]
+        rule.instances = [instance]
+        try context.save()
+
+        try RecurringTransactionService.shared.confirm(instance: instance, in: context)
+        try RecurringTransactionService.shared.confirm(instance: instance, in: context)
+
+        #expect(month.transactionGroups.count == 1, "Second confirm must not create another group")
+    }
+
     @Test("Deleting a confirmed recurring group also removes the linked instance")
     func deleteConfirmedRecurringGroup_deletesLinkedInstance() throws {
         let context = try makeContext()

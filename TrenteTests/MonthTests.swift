@@ -16,7 +16,8 @@ struct MonthTests {
         let month = Month(
             startDate: .now,
             currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         // Add expense groups with entries
@@ -52,7 +53,8 @@ struct MonthTests {
         let month = Month(
             startDate: .now,
             currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         // Income group
@@ -100,7 +102,8 @@ struct MonthTests {
         let month = Month(
             startDate: .now,
             currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         let groceries = TransactionGroup(
@@ -124,7 +127,8 @@ struct MonthTests {
         let month = Month(
             startDate: .now,
             currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         let salary = TransactionGroup(
@@ -164,7 +168,8 @@ struct MonthTests {
         let month = Month(
             startDate: startDate,
             currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         // When
@@ -184,7 +189,8 @@ struct MonthTests {
         let month = Month(
             startDate: startDate,
             currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         // When
@@ -199,7 +205,8 @@ struct MonthTests {
         let month = Month(
             startDate: .now,
             currency: Currencies.currency(for: "EUR")!,
-            categoryRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
         )
 
         // Income group
