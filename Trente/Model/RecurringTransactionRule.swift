@@ -31,6 +31,21 @@ class RecurringTransactionRule {
         self.repartition = repartition
         self.instances = []
         self.isDeleted = false
+        Self.validateRepartitionInvariant(repartition)
+    }
+}
+
+extension RecurringTransactionRule {
+    func setRepartition(_ newRepartition: [BudgetCategory: Int]) {
+        Self.validateRepartitionInvariant(newRepartition)
+        repartition = newRepartition
+    }
+
+    fileprivate static func validateRepartitionInvariant(_ repartition: [BudgetCategory: Int]) {
+        let total = repartition.values.reduce(0, +)
+        if total < 0 && repartition.count > 1 {
+            assertionFailure("Expense rule repartition must contain exactly one category, got \(repartition.count).")
+        }
     }
 }
 
