@@ -16,6 +16,7 @@ struct TransactionGroupDetailsView: View {
     @Namespace private var editingAnimation
 
     @State var transactionGroup: TransactionGroup
+    var startInEditMode: Bool = false
 
     @State private var isEditing = false
     @State private var showFullScreen = false
@@ -94,6 +95,9 @@ struct TransactionGroupDetailsView: View {
                 Button("OK", role: .cancel) { deleteError = nil }
             } message: {
                 Text(deleteError ?? "")
+            }
+            .onAppear {
+                if startInEditMode { enterEditMode() }
             }
         }
     }
@@ -430,12 +434,7 @@ struct TransactionGroupDetailsView: View {
             }
         } else {
             ToolbarItem(placement: .primaryAction) {
-                Button {
-                    withAnimation {
-                        draft = TransactionGroupDraft(from: transactionGroup)
-                        isEditing = true
-                    }
-                } label: { Label("Edit", systemImage: "pencil") }
+                Button { enterEditMode() } label: { Label("Edit", systemImage: "pencil") }
             }
             ToolbarItem(placement: .closeButtonPlacement) {
                 Button {
@@ -448,6 +447,14 @@ struct TransactionGroupDetailsView: View {
     }
 
     // MARK: - Actions
+
+    private func enterEditMode() {
+        guard !isEditing, draft == nil else { return }
+        withAnimation {
+            draft = TransactionGroupDraft(from: transactionGroup)
+            isEditing = true
+        }
+    }
 
     private func onTapDone() {
         guard var draft = draft else { return }

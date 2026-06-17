@@ -13,6 +13,9 @@ struct RecurringTransactionRowView: View {
     @State var isInList = false
     @State private var showDetails = false
     @State private var ruleSaved = false
+    @State private var editFromSwipe = false
+    @State private var showDeleteConfirmation = false
+    @State private var showValidateConfirmation = false
 
     var body: some View {
         Group {
@@ -67,7 +70,48 @@ struct RecurringTransactionRowView: View {
                     }
             }
         }
+        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            Button(role: .destructive) {
+                showDeleteConfirmation = true
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+            Button {
+                editFromSwipe = true
+                showDetails = true
+            } label: {
+                Label("Edit", systemImage: "pencil")
+            }
+            .tint(.orange)
+        }
+        .swipeActions(edge: .leading) {
+            if !instance.confirmed {
+                Button {
+                    showValidateConfirmation = true
+                } label: {
+                    Label("Validate", systemImage: "checkmark.circle")
+                }
+                .tint(.green)
+            }
+        }
+        .deleteConfirmation(isPresented: $showDeleteConfirmation) {
+            RecurringTransactionService.shared.delete(rule: instance.rule, in: modelContext)
+            try? modelContext.save()
+        }
+        .confirmationDialog(
+            String(localized: "Confirm this transaction?"),
+            isPresented: $showValidateConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button(String(localized: "Confirm")) {
+                try? RecurringTransactionService.shared.confirm(instance: instance, in: modelContext)
+            }
+            Button(String(localized: "Cancel"), role: .cancel) {}
+        } message: {
+            Text("This adds it as a transaction for this month.")
+        }
         .sheet(isPresented: $showDetails, onDismiss: {
+            editFromSwipe = false
             guard ruleSaved else { return }
             ruleSaved = false
             try? RecurringTransactionService.shared.refreshInstances(for: instance.rule, in: modelContext)
@@ -75,9 +119,11 @@ struct RecurringTransactionRowView: View {
             RecurringTransactionRuleDetailsView(
                 rule: instance.rule,
                 currency: instance.month.currency,
+                startInEditMode: editFromSwipe,
                 onSave: { ruleSaved = true }
             )
         }
+        .clipShape(Rectangle().inset(by: -3))
     }
     
     private func formatAmount(_ amount: Int) -> String {

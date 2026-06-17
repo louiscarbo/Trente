@@ -20,7 +20,9 @@ struct TransactionListView: View {
     
     private var allItems: [DisplayableTransaction] {
         if showRecurring {
-            return recurringTransactionInstances.map { .init(kind: .recurring($0)) }
+            return recurringTransactionInstances
+                .filter { !$0.confirmed }
+                .map { .init(kind: .recurring($0)) }
         } else {
             return transactionGroups.map { .init(kind: .group($0)) }
         }

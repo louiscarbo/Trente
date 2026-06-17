@@ -125,6 +125,12 @@
     "Clothes" : {
 
     },
+    "Confirm" : {
+
+    },
+    "Confirm this transaction?" : {
+
+    },
     "Create" : {
 
     },
@@ -420,6 +426,9 @@
     "This action cannot be undone. All transactions associated with this month will also be deleted." : {
 
     },
+    "This adds it as a transaction for this month." : {
+
+    },
     "Title" : {
 
     },
@@ -457,6 +466,9 @@
 
     },
     "Under Budget" : {
+
+    },
+    "Validate" : {
 
     },
     "Wants" : {
