@@ -31,7 +31,8 @@ struct RecurringTransactionRuleTests {
         let month = Month(
             startDate: monthStart,
             currency: eur,
-            categoryRepartition: [:]
+            idealBudgetCents: 0,
+            idealRepartition: [:]
         )
         
         // When
@@ -41,7 +42,8 @@ struct RecurringTransactionRuleTests {
         let days = instances.map { calendar.component(.day, from: $0.date) }
         #expect(days == [2, 9, 16, 23, 30])
         #expect(instances.count == 5)
-        #expect(instances.allSatisfy { $0.confirmed == rule.autoConfirm })
+        // Generated instances are always pending; autoConfirm does not create a linked group.
+        #expect(instances.allSatisfy { !$0.confirmed })
     }
     
     @Test("Monthly recurrence")
@@ -64,7 +66,8 @@ struct RecurringTransactionRuleTests {
         let month = Month(
             startDate: monthStart,
             currency: eur,
-            categoryRepartition: [:]
+            idealBudgetCents: 0,
+            idealRepartition: [:]
         )
         
         // When
@@ -97,7 +100,8 @@ struct RecurringTransactionRuleTests {
         let month = Month(
             startDate: monthStart,
             currency: eur,
-            categoryRepartition: [:]
+            idealBudgetCents: 0,
+            idealRepartition: [:]
         )
         
         // When
@@ -107,7 +111,7 @@ struct RecurringTransactionRuleTests {
         #expect(instances.count == 1)
         let expectedDate = calendar.date(from: DateComponents(year: 2023, month: 12, day: 25))!
         #expect(instances[0].date == expectedDate)
-        #expect(instances[0].confirmed == rule.autoConfirm)
+        #expect(!instances[0].confirmed)
     }
     
     @Test("No occurrences if outside window")
@@ -129,7 +133,8 @@ struct RecurringTransactionRuleTests {
         let month = Month(
             startDate: monthStart,
             currency: eur,
-            categoryRepartition: [:]
+            idealBudgetCents: 0,
+            idealRepartition: [:]
         )
         
         // When
