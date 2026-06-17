@@ -173,4 +173,21 @@ extension View {
     func modify<T: View>(@ViewBuilder _ transform: (Self) -> T) -> some View {
         transform(self)
     }
+
+    /// Standard destructive-delete confirmation dialog with a "cannot be undone" warning.
+    func deleteConfirmation(
+        isPresented: Binding<Bool>,
+        onDelete: @escaping () -> Void
+    ) -> some View {
+        confirmationDialog(
+            String(localized: "Are you sure?"),
+            isPresented: isPresented,
+            titleVisibility: .visible
+        ) {
+            Button(String(localized: "Delete"), role: .destructive, action: onDelete)
+            Button(String(localized: "Cancel"), role: .cancel) {}
+        } message: {
+            Text("This action cannot be undone.")
+        }
+    }
 }

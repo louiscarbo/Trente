@@ -12,6 +12,7 @@ struct RecurringTransactionRuleDetailsView: View {
 
     @State var rule: RecurringTransactionRule
     let currency: Currency
+    var startInEditMode: Bool = false
     var onSave: () -> Void = {}
 
     @State private var isEditing = false
@@ -61,6 +62,9 @@ struct RecurringTransactionRuleDetailsView: View {
                 Button("OK", role: .cancel) { deleteError = nil }
             } message: {
                 Text(deleteError ?? "")
+            }
+            .onAppear {
+                if startInEditMode { enterEditMode() }
             }
         }
     }
@@ -305,12 +309,7 @@ struct RecurringTransactionRuleDetailsView: View {
             }
         } else {
             ToolbarItem(placement: .primaryAction) {
-                Button {
-                    withAnimation {
-                        draft = RecurringTransactionRuleDraft(from: rule)
-                        isEditing = true
-                    }
-                } label: { Label("Edit", systemImage: "pencil") }
+                Button { enterEditMode() } label: { Label("Edit", systemImage: "pencil") }
             }
             ToolbarItem(placement: .closeButtonPlacement) {
                 Button { dismiss() } label: { Label("Close", systemImage: "chevron.down") }
@@ -319,6 +318,14 @@ struct RecurringTransactionRuleDetailsView: View {
     }
 
     // MARK: - Actions
+
+    private func enterEditMode() {
+        guard !isEditing, draft == nil else { return }
+        withAnimation {
+            draft = RecurringTransactionRuleDraft(from: rule)
+            isEditing = true
+        }
+    }
 
     private func onTapDone() {
         guard let currentDraft = draft else { return }

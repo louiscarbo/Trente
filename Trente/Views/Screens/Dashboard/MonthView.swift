@@ -28,6 +28,7 @@ struct MonthView: View {
     
     private var nextRecurringTransactionsInstances: [RecurringTransactionInstance] {
         return month.recurringTransactionInstances
+            .filter { !$0.confirmed }
             .sorted { sortRecurringTransactions($0, $1) }
     }
     
