@@ -138,19 +138,19 @@ struct HomescreenMonthRecapWidgetView: View {
                     ViewThatFits(in: .vertical) {
                         VStack(spacing: spacing) {
                             ForEach(currentMonth.latestTransactions.prefix(3)) { transactionGroup in
-                                TransactionGroupRowView(transactionGroup: transactionGroup)
+                                TransactionGroupRowContent(transactionGroup: transactionGroup)
                                     .privacySensitive()
                             }
                         }
                         VStack(spacing: spacing) {
                             ForEach(currentMonth.latestTransactions.prefix(2)) { transactionGroup in
-                                TransactionGroupRowView(transactionGroup: transactionGroup)
+                                TransactionGroupRowContent(transactionGroup: transactionGroup)
                                     .privacySensitive()
                             }
                         }
                         VStack(spacing: spacing) {
                             ForEach(currentMonth.latestTransactions.prefix(1)) { transactionGroup in
-                                TransactionGroupRowView(transactionGroup: transactionGroup)
+                                TransactionGroupRowContent(transactionGroup: transactionGroup)
                                     .privacySensitive()
                             }
                         }
