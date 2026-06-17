@@ -83,7 +83,7 @@
     "Are you sure?" : {
 
     },
-    "At least one category must have an amount greater than 0." : {
+    "At least one category must have a non-zero amount." : {
 
     },
     "Auto-Confirm" : {

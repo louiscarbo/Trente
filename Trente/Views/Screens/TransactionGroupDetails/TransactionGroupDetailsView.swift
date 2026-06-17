@@ -12,8 +12,6 @@ import PhotosUI
 struct TransactionGroupDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    
-    @Namespace private var editingAnimation
 
     @State var transactionGroup: TransactionGroup
     var startInEditMode: Bool = false
@@ -24,86 +22,116 @@ struct TransactionGroupDetailsView: View {
     @State private var validationErrors: [String] = []
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showDeleteConfirmation = false
-    @State private var showGroupDeleteConfirmation = false
     @State private var deleteError: String? = nil
 
-    private enum EditField { case title, notes, amount }
-    @FocusState private var focusedField: EditField?
+    @FocusState private var titleFocused: Bool
+    @FocusState private var notesFocused: Bool
+    @FocusState private var amountFocused: Bool
 
     private var isTrentePlusUser: Bool { true } // TODO: plug real entitlement
-    
-    var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: .medium) {
-                    GroupBox {
-                        VStack(spacing: 0) {
-                            headerImageSection()
-                            VStack(alignment: .leading, spacing: .small) {
-                                titleField()
-                                    .padding(.top, 12)
-                                if transactionGroup.type == .expense {
-                                    ViewThatFits(in: .horizontal) {
-                                        HStack {
-                                            categoryRow()
-                                                .layoutPriority(1)
-                                            amountRow()
-                                                .layoutPriority(0)
-                                        }
-                                        VStack(alignment: .leading, spacing: .small) {
-                                            categoryRow()
-                                            amountRow()
-                                        }
-                                    }
-                                }
-                                if isTrentePlusUser {
-                                    noteEditor()
-                                }
-                            }
-                            .padding([.bottom, .horizontal])
-                        }
-                    }
-                    .groupBoxStyle(TrenteGroupBoxStyle(withPadding: false))
 
-                    if transactionGroup.type == .income {
-                        incomeRepartitionBox()
-                            .disabled(!isEditing)
-                    }
-                    
-                    if isEditing {
-                        deleteSection()
-                    }
+    var body: some View {
+        DetailEditScaffold(
+            title: transactionGroup.title,
+            isEditing: $isEditing,
+            validationErrors: $validationErrors,
+            deleteError: $deleteError,
+            deleteSectionTitle: String(localized: "Delete Transaction"),
+            keyboardDismissVisible: (titleFocused || notesFocused || amountFocused) && isEditing,
+            onDismissKeyboard: clearFocus,
+            onBeginEdit: enterEditMode,
+            onCancel: {
+                withAnimation {
+                    draft = nil
+                    isEditing = false
                 }
-                .padding()
-            }
-            .scrollDismissesKeyboard(.interactively)
-            .interactiveDismissDisabled(isEditing)
-            .keyboardDismissButton(isVisible: focusedField != nil && isEditing) { focusedField = nil }
-            .onChange(of: isEditing) { _, editing in if !editing { focusedField = nil } }
-            .navigationTitle(isEditing ? "Editing" : transactionGroup.title)
-            .inlineNavigationBarTitleDisplayMode()
-            .toolbar { toolbarContent() }
-            .alert("Cannot Save", isPresented: Binding(
-                get: { !validationErrors.isEmpty && isEditing },
-                set: { if !$0 { validationErrors = [] } }
-            )) {
-                Button("OK") { validationErrors = [] }
-            } message: {
-                Text(validationErrors.joined(separator: "\n"))
-            }
-            .alert("Delete Failed", isPresented: Binding(get: { deleteError != nil }, set: { if !$0 { deleteError = nil } })) {
-                Button("OK", role: .cancel) { deleteError = nil }
-            } message: {
-                Text(deleteError ?? "")
-            }
-            .onAppear {
-                if startInEditMode { enterEditMode() }
+            },
+            onDone: onTapDone,
+            onDelete: deleteTransactionGroup
+        ) {
+            headerBox()
+            if transactionGroup.type == .income {
+                incomeRepartitionBox()
+                    .disabled(!isEditing)
             }
         }
+        .onAppear {
+            if startInEditMode { enterEditMode() }
+        }
+        .onChange(of: isEditing) { _, editing in if !editing { clearFocus() } }
+    }
+
+    private func clearFocus() {
+        titleFocused = false
+        notesFocused = false
+        amountFocused = false
+    }
+
+    // MARK: - Header
+
+    @ViewBuilder
+    private func headerBox() -> some View {
+        GroupBox {
+            VStack(spacing: 0) {
+                headerImageSection()
+                VStack(alignment: .leading, spacing: .small) {
+                    EditableTitleField(
+                        text: titleBinding,
+                        isEditing: isEditing,
+                        placeholder: String(localized: "Transaction title"),
+                        focus: $titleFocused
+                    )
+                    .padding(.top, 12)
+                    if transactionGroup.type == .expense {
+                        EditableExpenseRow(
+                            isEditing: isEditing,
+                            category: categoryBinding,
+                            amountCents: expenseAmountBinding,
+                            currency: transactionGroup.month.currency,
+                            focus: $amountFocused
+                        )
+                    }
+                    if isTrentePlusUser {
+                        noteEditor()
+                    }
+                }
+                .padding([.bottom, .horizontal])
+            }
+        }
+        .groupBoxStyle(TrenteGroupBoxStyle(withPadding: false))
+    }
+
+    private var titleBinding: Binding<String> {
+        Binding(
+            get: { isEditing ? (draft?.title ?? transactionGroup.title) : transactionGroup.title },
+            set: { draft?.title = $0 }
+        )
+    }
+
+    // MARK: - Category & Amount (Expense)
+
+    private var categoryBinding: Binding<BudgetCategory?> {
+        Binding(
+            get: { isEditing ? draft?.expenseCategory : transactionGroup.entries.first?.category },
+            set: { draft?.expenseCategory = $0 }
+        )
+    }
+
+    private var expenseAmountBinding: Binding<Int> {
+        Binding(
+            get: {
+                if isEditing {
+                    -abs(draft?.expenseAmountCents ?? transactionGroup.entries.first?.amountCents ?? 0)
+                } else {
+                    transactionGroup.entries.first?.amountCents ?? 0
+                }
+            },
+            set: { draft?.expenseAmountCents = -abs($0) }
+        )
     }
 
     // MARK: - Image
-    
+
     @ViewBuilder
     private func headerImageSection() -> some View {
         ZStack(alignment: .bottomTrailing) {
@@ -155,7 +183,7 @@ struct TransactionGroupDetailsView: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private func tappableImage(from imageData: Data) -> some View {
         if let image = createImage(imageData) {
@@ -186,133 +214,8 @@ struct TransactionGroupDetailsView: View {
         }
     }
 
-    // MARK: - Title
-    
-    @ViewBuilder
-    private func titleField() -> some View {
-        TextField(
-            "Transaction title",
-            text: Binding(
-                get: { isEditing ? (draft?.title ?? transactionGroup.title) : transactionGroup.title },
-                set: { draft?.title = $0 }
-            ),
-            axis: .vertical
-        )
-        .focused($focusedField, equals: .title)
-        .disabled(!isEditing)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .font(.title)
-        .padding(isEditing ? 8 : 0)
-        .background {
-            if isEditing {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(.gray.opacity(0.2))
-            }
-        }
-    }
-
-    // MARK: - Category
-    
-    @ViewBuilder
-    private func categoryRow() -> some View {
-        if isEditing {
-            categoryPicker()
-                .matchedGeometryEffect(id: "category", in: editingAnimation, properties: .position)
-        } else {
-            categoryTag()
-                .matchedGeometryEffect(id: "category", in: editingAnimation, properties: .position)
-        }
-    }
-    
-    @ViewBuilder
-    private func categoryPicker() -> some View {
-        Picker("Category",
-               selection: Binding(
-                get: { draft?.expenseCategory },
-                set: { draft?.expenseCategory = $0 }
-               )
-        ) {
-            ForEach(BudgetCategory.allCases) { category in
-                Text(category.name)
-                    .tag(category as BudgetCategory?)
-            }
-        }
-        .frame(maxHeight: .infinity)
-        .pickerStyle(.menu)
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(.gray.opacity(0.2))
-        }
-    }
-    
-    @ViewBuilder
-    private func categoryTag() -> some View {
-        if let transactionCategory = transactionGroup.entries.first?.category {
-            HStack {
-                Circle()
-                    .fill(transactionCategory.color)
-                    .frame(width: 10, height: 10)
-                Text(transactionCategory.name)
-                    .multilineTextAlignment(.leading)
-                    .font(.subheadline)
-                    .foregroundStyle(transactionCategory.color.darken(0.6))
-            }
-            .padding(.vertical, 4)
-            .padding(.horizontal, 8)
-            .background {
-                Capsule()
-                    .fill(transactionCategory.color.lighten(0.45))
-                    .stroke(transactionCategory.color.darken(0.3).opacity(0.2))
-            }
-            .offset(x: -2)
-        }
-    }
-
-    // MARK: - Amount
-    
-    @ViewBuilder
-    private func amountRow() -> some View {
-        if isEditing {
-            amountTextField()
-        } else if let displayAmount = transactionGroup.entries.first?.displayAmount {
-                Text(displayAmount)
-                .font(.subheadline)
-                .padding(.vertical, 4)
-                .padding(.horizontal, 8)
-                .background {
-                    Capsule()
-                        .fill(.gray.opacity(0.2))
-                        .stroke(.primary.opacity(0.2))
-                }
-                .matchedGeometryEffect(id: "amount", in: editingAnimation, anchor: .leading)
-        }
-    }
-    
-    @ViewBuilder
-    private func amountTextField() -> some View {
-        CurrencyTextField(
-            amountCents: Binding(
-                get: {
-                    let current = draft?.expenseAmountCents ?? transactionGroup.entries.first?.amountCents ?? 0
-                    return -abs(current)
-                },
-                set: { newValue in
-                    draft?.expenseAmountCents = -abs(newValue)
-                }
-            ),
-            currency: transactionGroup.month.currency
-        )
-        .focused($focusedField, equals: .amount)
-        .matchedGeometryEffect(id: "amount", in: editingAnimation, anchor: .leading)
-        .padding(8)
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(.gray.opacity(0.2))
-        }
-    }
-
     // MARK: - Notes
-    
+
     @ViewBuilder
     private func noteEditor() -> some View {
         TextField(
@@ -330,7 +233,7 @@ struct TransactionGroupDetailsView: View {
             prompt: Text("Add your notes here."),
             axis: .vertical
         )
-        .focused($focusedField, equals: .notes)
+        .focused($notesFocused)
         .lineLimit(5)
         .padding(isEditing ? 8 : 0)
         .background {
@@ -343,11 +246,10 @@ struct TransactionGroupDetailsView: View {
     }
 
     // MARK: - Income Repartition
-    
+
     @ViewBuilder
     private func incomeRepartitionBox() -> some View {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
-            // Bind to draft when editing, otherwise show computed values
             let formatter = transactionGroup.month.currency.roundFormatter
             IncomeRepartitionComponent(
                 repartition: Binding(
@@ -355,7 +257,6 @@ struct TransactionGroupDetailsView: View {
                         if isEditing {
                             draft?.incomeRepartition ?? [:]
                         } else {
-                            // derive a read-only dictionary from current entries
                             Dictionary(grouping: transactionGroup.entries, by: \.category)
                                 .mapValues { $0.map(\.amountCents).reduce(0, +) }
                         }
@@ -368,82 +269,11 @@ struct TransactionGroupDetailsView: View {
                     ? (draft?.incomeAmountToSplitCents ?? transactionGroup.totalAmountCents)
                     : transactionGroup.totalAmountCents,
                 formatter: formatter,
-                isRepartitionComplete: Binding.constant(true) // let component compute if you expose it
+                isRepartitionComplete: Binding.constant(true)
             )
             .disabled(!isEditing)
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
-    }
-
-    // MARK: - Delete
-
-    @ViewBuilder
-    private func deleteSection() -> some View {
-        let warningMessage = String(localized: "This action cannot be undone.")
-        GroupBox(label: Label("Delete Transaction", systemImage: "trash.fill")) {
-            VStack(spacing: .medium) {
-                Text(warningMessage)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                Button(role: .destructive) {
-                    showGroupDeleteConfirmation = true
-                } label: {
-                    Label("Delete Transaction", systemImage: "trash.fill")
-                        .font(.headline)
-                }
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                .confirmationDialog(String(localized: "Are you sure?"), isPresented: $showGroupDeleteConfirmation, titleVisibility: .visible) {
-                    Button(String(localized: "Delete"), role: .destructive, action: deleteTransactionGroup)
-                    Button(String(localized: "Cancel"), role: .cancel) {}
-                } message: {
-                    Text(warningMessage)
-                }
-            }
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle())
-    }
-
-    private func deleteTransactionGroup() {
-        TransactionService.shared.delete(group: transactionGroup, in: modelContext)
-        do {
-            try modelContext.save()
-            dismiss()
-        } catch {
-            deleteError = error.localizedDescription
-        }
-    }
-
-    // MARK: - Toolbar
-
-    @ToolbarContentBuilder
-    private func toolbarContent() -> some ToolbarContent {
-        if isEditing {
-            ToolbarItem(placement: .cancellationAction) {
-                Button(role: .cancel) {
-                    withAnimation {
-                        draft = nil
-                        isEditing = false
-                    }
-                } label: { Label("Cancel", systemImage: "arrow.uturn.backward") }
-            }
-            ToolbarItem(placement: .confirmationAction) {
-                Button {
-                    onTapDone()
-                } label: { Label("Done", systemImage: "checkmark") }
-            }
-        } else {
-            ToolbarItem(placement: .primaryAction) {
-                Button { enterEditMode() } label: { Label("Edit", systemImage: "pencil") }
-            }
-            ToolbarItem(placement: .closeButtonPlacement) {
-                Button {
-                    dismiss()
-                } label: {
-                    Label("Close", systemImage: "chevron.down")
-                }
-            }
-        }
     }
 
     // MARK: - Actions
@@ -458,7 +288,6 @@ struct TransactionGroupDetailsView: View {
 
     private func onTapDone() {
         guard var draft = draft else { return }
-        // If income and amountToSplit isn't set explicitly, default to sum
         if transactionGroup.type == .income,
            draft.incomeAmountToSplitCents == 0 {
             draft.incomeAmountToSplitCents = draft.incomeRepartition.values.reduce(0, +)
@@ -480,6 +309,16 @@ struct TransactionGroupDetailsView: View {
         }
     }
 
+    private func deleteTransactionGroup() {
+        TransactionService.shared.delete(group: transactionGroup, in: modelContext)
+        do {
+            try modelContext.save()
+            dismiss()
+        } catch {
+            deleteError = error.localizedDescription
+        }
+    }
+
     static func previewGroup() -> TransactionGroup {
         let month1 = Month(
             startDate: Date(),
@@ -497,7 +336,7 @@ struct TransactionGroupDetailsView: View {
             type: .expense,
             month: month1,
             note: "This is a note about the transaction and it is extremely interesting.",
-            imageAttachmentData: imageData /*nil*/
+            imageAttachmentData: imageData
         )
         shopping.entries = [
             TransactionEntry(amountCents: -119_99, category: .wants, group: shopping)
@@ -512,4 +351,3 @@ struct TransactionGroupDetailsView: View {
             TransactionGroupDetailsView(transactionGroup: TransactionGroupDetailsView.previewGroup())
         }
 }
-
