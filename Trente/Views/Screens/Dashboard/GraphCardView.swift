@@ -118,6 +118,9 @@ struct BudgetGaugeView: View {
     var showRemaining = false
     
     var gaugeColor: Color {
+        if showRemaining {
+            return month.overSpending(in: scope) ? .red : scope.color
+        }
         if month.spentAmount(in: scope) == 0 {
             return .gray
         }
@@ -135,7 +138,9 @@ struct BudgetGaugeView: View {
     }
     
     var gaugeValue: Double {
-        if month.overSpending(in: scope) {
+        if showRemaining && month.overSpending(in: scope) {
+            1
+        } else if month.overSpending(in: scope) {
             -1 * month.remainingAmount(in: scope).truncatingRemainder(dividingBy: month.incomeAmount(in: scope))
         } else {
             month.spentAmount(in: scope)
@@ -156,7 +161,13 @@ struct BudgetGaugeView: View {
                 Text("\(month.incomeAmount(in: scope), format: .currency(code: month.currency.isoCode).precision(.fractionLength(0)))")
                     .foregroundStyle(textColor)
             }
-            .gaugeStyle(TrenteGaugeStyle(color: gaugeColor, diameter: size))
+            .gaugeStyle(
+                TrenteGaugeStyle(
+                    color: gaugeColor,
+                    diameter: size,
+                    highlightsRemaining: showRemaining
+                )
+            )
         }
     }
 }
