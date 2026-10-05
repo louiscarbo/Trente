@@ -249,4 +249,55 @@ struct MonthTests {
         #expect(month.remainingAmount(for: .needs) == 500.0)
     }
 
+    @Test("Scoped amounts: total matches sum of categories, savings included")
+    func testScopedAmounts() {
+        let month = Month(
+            startDate: .now,
+            currency: Currencies.currency(for: "EUR")!,
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+        )
+
+        let salary = TransactionGroup(
+            title: "Salary",
+            type: .income,
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
+        )
+        salary.entries = [
+            TransactionEntry(amountCents: 1000_00, category: .needs, group: salary),
+            TransactionEntry(amountCents: 600_00, category: .wants, group: salary),
+            TransactionEntry(amountCents: 400_00, category: .savingsAndDebts, group: salary)
+        ]
+
+        let spending = TransactionGroup(
+            title: "Spending",
+            type: .expense,
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
+        )
+        spending.entries = [
+            TransactionEntry(amountCents: -300_00, category: .needs, group: spending),
+            TransactionEntry(amountCents: -700_00, category: .wants, group: spending),
+            TransactionEntry(amountCents: -100_00, category: .savingsAndDebts, group: spending)
+        ]
+
+        month.transactionGroups = [salary, spending]
+
+        #expect(month.spentAmount(in: .all) == 1100.0)
+        #expect(month.incomeAmount(in: .all) == 2000.0)
+        #expect(month.remainingAmount(in: .all) == 900.0)
+        #expect(month.overSpending(in: .all) == false)
+
+        #expect(month.spentAmount(in: .category(.savingsAndDebts)) == 100.0)
+        #expect(month.remainingAmount(in: .category(.wants)) == -100.0)
+        #expect(month.overSpending(in: .category(.wants)))
+        #expect(month.overSpending(in: .category(.needs)) == false)
+
+        let summedSpent = BudgetCategory.allCases.reduce(0.0) { $0 + month.spentAmount(in: .category($1)) }
+        #expect(summedSpent == month.spentAmount(in: .all))
+    }
+
 }
