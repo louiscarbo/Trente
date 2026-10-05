@@ -186,16 +186,27 @@ private struct SecondaryGraphCards: View {
             HStack(spacing: 20) {
                 GraphCardView(
                     month: month,
+                    scope: .all,
+                    size: size
+                )
+                GraphCardView(
+                    month: month,
                     category: BudgetCategory.needs,
                     size: size
                 )
+            }
+            HStack(spacing: 20) {
                 GraphCardView(
                     month: month,
                     category: BudgetCategory.wants,
                     size: size
                 )
+                GraphCardView(
+                    month: month,
+                    category: BudgetCategory.savingsAndDebts,
+                    size: size
+                )
             }
-            GraphCardView(month: month, category: BudgetCategory.savingsAndDebts, size: size)
         }
     }
 }

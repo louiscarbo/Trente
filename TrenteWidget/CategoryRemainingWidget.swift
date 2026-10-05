@@ -64,7 +64,7 @@ struct SmallMediumCategoryRemainingWidgetView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            CategoryRemainingGaugeView(
+            BudgetGaugeView(
                 month: entry.month ?? Month.getSampleMonthWithTransactions(),
                 category: entry.category.budgetCategory
             )
@@ -103,7 +103,7 @@ struct MediumCategoryRemainingWidgetView: View {
         
         var body: some View {
             ZStack(alignment: .bottom) {
-                CategoryRemainingGaugeView(
+                BudgetGaugeView(
                     month: month ?? Month.getSampleMonthWithTransactions(),
                     category: category,
                     size: 80

@@ -33,6 +33,11 @@ final class Month: Identifiable, Hashable, Equatable {
     }
 }
 
+enum BudgetScope: Hashable {
+    case all
+    case category(BudgetCategory)
+}
+
 // MARK: - Computed Properties
 extension Month {
     var name: String {
@@ -127,7 +132,36 @@ extension Month {
     func overSpending(in category: BudgetCategory) -> Bool {
         remainingAmount(for: category) < 0
     }
-    
+
+    func spentAmount(in scope: BudgetScope) -> Double {
+        switch scope {
+        case .all: abs(negativeSpentAmount)
+        case .category(let category): spentAmount(for: category)
+        }
+    }
+
+    func spentAmountDisplay(in scope: BudgetScope) -> String {
+        spentAmount(in: scope).formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
+    }
+
+    func incomeAmount(in scope: BudgetScope) -> Double {
+        switch scope {
+        case .all: incomeAmount
+        case .category(let category): incomeAmount(for: category)
+        }
+    }
+
+    func remainingAmount(in scope: BudgetScope) -> Double {
+        switch scope {
+        case .all: remainingAmount
+        case .category(let category): remainingAmount(for: category)
+        }
+    }
+
+    func overSpending(in scope: BudgetScope) -> Bool {
+        remainingAmount(in: scope) < 0
+    }
+
     /// Returns the end date of the month. Adding 1 month to startDate and subtracting 1 day.
     func endDate() -> Date {
         let calendar = Calendar.current

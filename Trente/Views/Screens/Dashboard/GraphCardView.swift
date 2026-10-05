@@ -8,68 +8,96 @@
 import SwiftUI
 
 struct GraphCardView: View {
-    @State var month: Month
-    @State var category: BudgetCategory
+    var month: Month
+    var scope: BudgetScope
     var size: CGFloat = 100
     
     var body: some View {
         GroupBox(label:
             Label(
-                category.shortName,
-                systemImage: month.overSpending(in: category) ? "exclamationmark.triangle.fill" : month.currency.sfSymbolGaugeName
+                scope.shortName,
+                systemImage: month.overSpending(in: scope) ? "exclamationmark.triangle.fill" : month.currency.sfSymbolGaugeName
             )
-            .foregroundColor(month.overSpending(in: category) ? .red : category.color)
+            .foregroundColor(month.overSpending(in: scope) ? .red : scope.color)
         ) {
-            CategoryRemainingGaugeView(month: month, category: category, size: size)
+            BudgetGaugeView(month: month, scope: scope, size: size)
                 .padding(8)
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
     }
 }
 
-// MARK: CategoryRemainingGaugeView
-struct CategoryRemainingGaugeView: View {
-    @State var month: Month
-    @State var category: BudgetCategory
+extension GraphCardView {
+    init(month: Month, category: BudgetCategory, size: CGFloat = 100) {
+        self.init(month: month, scope: .category(category), size: size)
+    }
+}
+
+extension BudgetScope {
+    var name: String {
+        switch self {
+        case .all: String(localized: "Total")
+        case .category(let category): category.name
+        }
+    }
     
+    var shortName: String {
+        switch self {
+        case .all: String(localized: "Total")
+        case .category(let category): category.shortName
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .all: .purple
+        case .category(let category): category.color
+        }
+    }
+}
+
+// MARK: BudgetGaugeView
+struct BudgetGaugeView: View {
+    var month: Month
+    var scope: BudgetScope
     var size: CGFloat = 100
     
     var gaugeColor: Color {
-        if month.spentAmount(for: category) == 0 {
+        if month.spentAmount(in: scope) == 0 {
             return .gray
         }
-        if month.overSpending(in: category) {
+        if month.overSpending(in: scope) {
             return .red
         }
-        return category.color
+        return scope.color
     }
     
     var textColor: Color {
-        if month.overSpending(in: category) {
+        if month.overSpending(in: scope) {
             return .red
         }
         return .primary
     }
     
     var gaugeValue: Double {
-        if month.overSpending(in: category) {
-            -1 * month.remainingAmount(for: category).truncatingRemainder(dividingBy: month.incomeAmount(for: category))
+        if month.overSpending(in: scope) {
+            -1 * month.remainingAmount(in: scope).truncatingRemainder(dividingBy: month.incomeAmount(in: scope))
         } else {
-            month.spentAmount(for: category)
+            month.spentAmount(in: scope)
         }
     }
     
     var body: some View {
         VStack {
-            Gauge(value: gaugeValue, in: 0...month.incomeAmount(for: category)) {
-                Text(category.name)
+            Gauge(value: gaugeValue, in: 0...month.incomeAmount(in: scope)) {
+                Text(scope.name)
             } currentValueLabel: {
-                Text(month.spentAmountDisplay(for: category))
-                    .foregroundStyle(month.spentAmount(for: category) > month.incomeAmount(for: category) ? .red : .primary)
+                Text(month.spentAmountDisplay(in: scope))
+                    .foregroundStyle(month.spentAmount(in: scope) > month.incomeAmount(in: scope) ? .red : .primary)
             } minimumValueLabel: {
                 Text("")
             } maximumValueLabel: {
-                Text("\(month.incomeAmount(for: category), format: .currency(code: month.currency.isoCode).precision(.fractionLength(0)))")
+                Text("\(month.incomeAmount(in: scope), format: .currency(code: month.currency.isoCode).precision(.fractionLength(0)))")
                     .foregroundStyle(textColor)
             }
             .gaugeStyle(TrenteGaugeStyle(color: gaugeColor, diameter: size))
@@ -77,17 +105,25 @@ struct CategoryRemainingGaugeView: View {
     }
 }
 
+extension BudgetGaugeView {
+    init(month: Month, category: BudgetCategory, size: CGFloat = 100) {
+        self.init(month: month, scope: .category(category), size: size)
+    }
+}
+
 #Preview {
     let month = Month.month1
     
     VStack {
-        Color.red.frame(width: 400, height: 200)
-            .gridCellColumns(2)
         HStack {
-            GraphCardView(month: month, category: .needs)
+            GraphCardView(month: month, scope: .all)
             
-            GraphCardView(month: month, category: .wants)
+            GraphCardView(month: month, category: .needs)
         }
-        GraphCardView(month: month, category: .savingsAndDebts)
+        HStack {
+            GraphCardView(month: month, category: .wants)
+            
+            GraphCardView(month: month, category: .savingsAndDebts)
+        }
     }
 }
