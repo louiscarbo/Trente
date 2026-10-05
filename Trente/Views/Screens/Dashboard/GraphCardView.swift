@@ -12,6 +12,8 @@ struct GraphCardView: View {
     var scope: BudgetScope
     var size: CGFloat = 100
     
+    @State private var showRemaining = false
+    
     var body: some View {
         GroupBox(label:
             Label(
@@ -20,10 +22,26 @@ struct GraphCardView: View {
             )
             .foregroundColor(month.overSpending(in: scope) ? .red : scope.color)
         ) {
-            BudgetGaugeView(month: month, scope: scope, size: size)
+            VStack(spacing: 0) {
+                BudgetGaugeView(
+                    month: month,
+                    scope: scope,
+                    size: size,
+                    showRemaining: showRemaining
+                )
                 .padding(8)
+                
+                Text(showRemaining ? "Left" : "Spent")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation(.spring(duration: 0.3)) { showRemaining.toggle() }
+        }
+        .accessibilityAddTraits(.isButton)
     }
 }
 
@@ -61,6 +79,7 @@ struct BudgetGaugeView: View {
     var month: Month
     var scope: BudgetScope
     var size: CGFloat = 100
+    var showRemaining = false
     
     var gaugeColor: Color {
         if month.spentAmount(in: scope) == 0 {
@@ -92,8 +111,8 @@ struct BudgetGaugeView: View {
             Gauge(value: gaugeValue, in: 0...month.incomeAmount(in: scope)) {
                 Text(scope.name)
             } currentValueLabel: {
-                Text(month.spentAmountDisplay(in: scope))
-                    .foregroundStyle(month.spentAmount(in: scope) > month.incomeAmount(in: scope) ? .red : .primary)
+                Text(showRemaining ? month.remainingAmountDisplay(in: scope) : month.spentAmountDisplay(in: scope))
+                    .foregroundStyle(month.overSpending(in: scope) ? .red : .primary)
             } minimumValueLabel: {
                 Text("")
             } maximumValueLabel: {
@@ -107,7 +126,7 @@ struct BudgetGaugeView: View {
 
 extension BudgetGaugeView {
     init(month: Month, category: BudgetCategory, size: CGFloat = 100) {
-        self.init(month: month, scope: .category(category), size: size)
+        self.init(month: month, scope: .category(category), size: size, showRemaining: false)
     }
 }
 
