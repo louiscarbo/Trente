@@ -346,9 +346,7 @@ private struct WideMonthView: View {
             ScrollView {
                 Grid(horizontalSpacing: 20, verticalSpacing: 20) {
                     GridRow {
-                        CardCarousel(selection: $carouselPage) { page in
-                            card(for: page)
-                        }
+                        SecondaryGraphCards(month: month)
                         LatestTransactionsView(
                             month: month,
                             transactionGroupsCount: transactionGroupsCount,
@@ -357,7 +355,9 @@ private struct WideMonthView: View {
                         .frame(idealWidth: 400)
                     }
                     GridRow {
-                        SecondaryGraphCards(month: month)
+                        CardCarousel(selection: $carouselPage) { page in
+                            card(for: page)
+                        }
                         RecurringTransactionsView(
                             month: month,
                             nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
