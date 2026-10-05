@@ -11,32 +11,47 @@ import SwiftUI
 struct TrenteGaugeStyle: GaugeStyle {
     var color: Color
     var diameter: CGFloat = 100
+    var highlightsRemaining = false
 
     var gradient: Gradient {
         Gradient(colors: [adjustHue(of: color, by: -20), color])
     }
 
     func makeBody(configuration: Configuration) -> some View {
-        var strokeWidth: CGFloat {
-            diameter / 6
-        }
+        let strokeWidth = diameter / 6
+        let splitPoint = 0.75 * configuration.value
+        let roundStroke = StrokeStyle(lineWidth: strokeWidth, lineCap: .round)
         
         ZStack {
                 Circle()
-                    .trim(from: 0, to: 0.75 * configuration.value)
-                    .stroke(
-                        gradient,
-                        style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round)
-                    )
+                    .trim(from: 0, to: 0.75)
+                    .stroke(gradient.opacity(0.3), style: roundStroke)
                     .rotationEffect(.degrees(135))
                 
                 Circle()
-                    .trim(from: 0, to: 0.75)
-                    .stroke(
-                        gradient.opacity(0.3),
-                        style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round)
-                    )
+                    .trim(from: 0, to: splitPoint)
+                    .stroke(gradient, style: roundStroke)
                     .rotationEffect(.degrees(135))
+                    .opacity(highlightsRemaining ? 0 : 1)
+                
+                Circle()
+                    .trim(from: 0, to: 0.75)
+                    .stroke(gradient, style: roundStroke)
+                    .rotationEffect(.degrees(135))
+                    .mask {
+                        Rectangle()
+                            .padding(-strokeWidth)
+                            .overlay {
+                                Circle()
+                                    .trim(from: 0, to: splitPoint)
+                                    .stroke(.black, style: roundStroke)
+                                    .rotationEffect(.degrees(135))
+                                    .frame(width: diameter, height: diameter)
+                                    .blendMode(.destinationOut)
+                            }
+                            .compositingGroup()
+                    }
+                    .opacity(highlightsRemaining ? 1 : 0)
                 
                 Circle()
                     .fill(Color.white)
