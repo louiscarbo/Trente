@@ -15,33 +15,69 @@ struct GraphCardView: View {
     @State private var showRemaining = false
     
     var body: some View {
-        GroupBox(label:
-            Label(
-                scope.shortName,
-                systemImage: month.overSpending(in: scope) ? "exclamationmark.triangle.fill" : month.currency.sfSymbolGaugeName
-            )
-            .foregroundColor(month.overSpending(in: scope) ? .red : scope.color)
-        ) {
-            VStack(spacing: 0) {
-                BudgetGaugeView(
-                    month: month,
-                    scope: scope,
-                    size: size,
-                    showRemaining: showRemaining
+        Button {
+            withAnimation(.spring(duration: 0.35, bounce: 0.15)) { showRemaining.toggle() }
+        } label: {
+            GroupBox(label:
+                Label(
+                    scope.shortName,
+                    systemImage: month.overSpending(in: scope) ? "exclamationmark.triangle.fill" : month.currency.sfSymbolGaugeName
                 )
-                .padding(8)
-                
-                Text(showRemaining ? "Left" : "Spent")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
+                .foregroundColor(month.overSpending(in: scope) ? .red : scope.color)
+            ) {
+                VStack(spacing: 0) {
+                    BudgetGaugeView(
+                        month: month,
+                        scope: scope,
+                        size: size,
+                        showRemaining: showRemaining
+                    )
+                    .padding(8)
+                    
+                    Text(showRemaining ? "Left" : "Spent")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .contentTransition(.opacity)
+                }
             }
+            .groupBoxStyle(TrenteGroupBoxStyle())
         }
-        .groupBoxStyle(TrenteGroupBoxStyle())
-        .contentShape(Rectangle())
-        .onTapGesture {
-            withAnimation(.spring(duration: 0.3)) { showRemaining.toggle() }
+        .buttonStyle(PressableCardButtonStyle())
+        .sensoryFeedback(.selection, trigger: showRemaining)
+    }
+}
+
+private struct PressableCardButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        PressedScale(isPressed: configuration.isPressed) {
+            configuration.label
         }
-        .accessibilityAddTraits(.isButton)
+    }
+}
+
+private struct PressedScale<Content: View>: View {
+    var isPressed: Bool
+    @ViewBuilder var content: Content
+    
+    @State private var isScaledDown = false
+    @State private var releaseTask: Task<Void, Never>?
+    
+    var body: some View {
+        content
+            .scaleEffect(isScaledDown ? 0.97 : 1)
+            .animation(.spring(duration: 0.25), value: isScaledDown)
+            .onChange(of: isPressed) { _, pressed in
+                releaseTask?.cancel()
+                if pressed {
+                    isScaledDown = true
+                } else {
+                    releaseTask = Task {
+                        try? await Task.sleep(for: .milliseconds(100))
+                        guard !Task.isCancelled else { return }
+                        isScaledDown = false
+                    }
+                }
+            }
     }
 }
 
@@ -113,6 +149,7 @@ struct BudgetGaugeView: View {
             } currentValueLabel: {
                 Text(showRemaining ? month.remainingAmountDisplay(in: scope) : month.spentAmountDisplay(in: scope))
                     .foregroundStyle(month.overSpending(in: scope) ? .red : .primary)
+                    .contentTransition(.numericText(value: showRemaining ? month.remainingAmount(in: scope) : month.spentAmount(in: scope)))
             } minimumValueLabel: {
                 Text("")
             } maximumValueLabel: {
