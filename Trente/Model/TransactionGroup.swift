@@ -26,10 +26,17 @@ class TransactionGroup: Identifiable {
     var note: String?
     @Attribute(.externalStorage) var imageAttachmentData: Data?
     
-    init(title: String, type: TransactionType, month: Month, note: String?, imageAttachmentData: Data?) {
+    init(
+        title: String,
+        type: TransactionType,
+        month: Month,
+        note: String?,
+        imageAttachmentData: Data?,
+        addedDate: Date = .now
+    ) {
         self.id = UUID()
-        self.addedDate = .now
-        self.modifiedDate = .now
+        self.addedDate = addedDate
+        self.modifiedDate = addedDate
         self.title = title
         self.type = type
         self.month = month
