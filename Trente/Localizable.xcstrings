@@ -32,6 +32,12 @@
     "%lld" : {
 
     },
+    "%lld%% Left" : {
+
+    },
+    "%lld%% Spent" : {
+
+    },
     "Abercrombie & Fitch Lyon Part-Dieu" : {
 
     },
@@ -241,9 +247,6 @@
 
     },
     "Latest Transactions" : {
-
-    },
-    "Left" : {
 
     },
     "Marketing Content Goes Here" : {
