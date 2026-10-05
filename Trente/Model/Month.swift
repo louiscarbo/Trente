@@ -144,6 +144,10 @@ extension Month {
         spentAmount(in: scope).formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
     }
 
+    func remainingAmountDisplay(in scope: BudgetScope) -> String {
+        remainingAmount(in: scope).formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
+    }
+    
     func incomeAmount(in scope: BudgetScope) -> Double {
         switch scope {
         case .all: incomeAmount
