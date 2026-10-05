@@ -1,3 +1,4 @@
 *.xcuserdatad
 *.xcbkptlist
 .claude
+.DS_Store
