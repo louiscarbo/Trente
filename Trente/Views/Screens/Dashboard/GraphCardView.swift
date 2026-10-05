@@ -14,6 +14,18 @@ struct GraphCardView: View {
     
     @State private var showRemaining = false
     
+    private var percentage: Double {
+        let allocated = month.incomeAmount(in: scope)
+        guard allocated > 0 else { return 0 }
+        let amount = showRemaining ? month.remainingAmount(in: scope) : month.spentAmount(in: scope)
+        return amount / allocated
+    }
+    
+    private var caption: Text {
+        let roundedPercentage = Int((percentage * 100).rounded())
+        return showRemaining ? Text("\(roundedPercentage)% Left") : Text("\(roundedPercentage)% Spent")
+    }
+    
     var body: some View {
         Button {
             withAnimation(.spring(duration: 0.35, bounce: 0.15)) { showRemaining.toggle() }
@@ -34,7 +46,7 @@ struct GraphCardView: View {
                     )
                     .padding(8)
                     
-                    Text(showRemaining ? "Left" : "Spent")
+                    caption
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                         .contentTransition(.opacity)
