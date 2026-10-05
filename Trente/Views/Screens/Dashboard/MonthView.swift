@@ -252,7 +252,7 @@ private struct NarrowMonthView: View {
     private var lightMode: Bool { colorScheme == .light }
 
     private enum CarouselPage: Int, CaseIterable {
-        case budgetRings, planVsActual, budgetMeter, dailySpending, secondaryGraphs
+        case budgetRings, planVsActual, dailySpending, secondaryGraphs
     }
 
     @ViewBuilder
@@ -260,7 +260,6 @@ private struct NarrowMonthView: View {
         switch page {
         case .budgetRings: BudgetRingsCard(month: month)
         case .planVsActual: PlanVsActualCard(month: month)
-        case .budgetMeter: BudgetMeterCard(month: month)
         case .dailySpending: DailySpendingCard(month: month)
         case .secondaryGraphs: SecondaryGraphCards(month: month)
         }
@@ -323,7 +322,7 @@ private struct WideMonthView: View {
     private var lightMode: Bool { colorScheme == .light }
 
     private enum CarouselPage: Int, CaseIterable {
-        case budgetRings, planVsActual, budgetMeter, dailySpending
+        case budgetRings, planVsActual, dailySpending
     }
 
     @ViewBuilder
@@ -331,7 +330,6 @@ private struct WideMonthView: View {
         switch page {
         case .budgetRings: BudgetRingsCard(month: month)
         case .planVsActual: PlanVsActualCard(month: month)
-        case .budgetMeter: BudgetMeterCard(month: month)
         case .dailySpending: DailySpendingCard(month: month)
         }
     }

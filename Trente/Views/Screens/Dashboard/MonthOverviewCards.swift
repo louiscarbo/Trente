@@ -176,7 +176,7 @@ struct PlanVsActualCard: View {
                             angle: .value(slice.label, slice.value),
                             innerRadius: .ratio(0.76),
                             outerRadius: .ratio(0.98),
-                            angularInset: 2
+                            angularInset: 3
                         )
                         .cornerRadius(4)
                         .foregroundStyle(
@@ -194,8 +194,8 @@ struct PlanVsActualCard: View {
                         SectorMark(
                             angle: .value(slice.label, slice.value),
                             innerRadius: .ratio(0.46),
-                            outerRadius: .ratio(0.73),
-                            angularInset: 2
+                            outerRadius: .ratio(0.69),
+                            angularInset: 3
                         )
                         .cornerRadius(4)
                         .foregroundStyle(
@@ -246,117 +246,6 @@ struct PlanVsActualCard: View {
                 }
             }
             .padding(.top, 4)
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle())
-    }
-}
-
-// MARK: - 3. Budget Meter Card
-// A large 270° arc speedometer showing overall budget consumption.
-// Arc color shifts green → yellow → orange → red as spending grows.
-// Overspending is shown in full red with a bold label.
-
-struct BudgetMeterCard: View {
-    @State var month: Month
-
-    private var totalSpent: Double { abs(month.negativeSpentAmount) }
-    private var totalIncome: Double { month.incomeAmount }
-
-    private var fraction: Double {
-        guard totalIncome > 0 else { return 0 }
-        return min(totalSpent / totalIncome, 1.5)
-    }
-
-    private var arcColor: Color {
-        switch fraction {
-        case ..<0.5:  return .green
-        case ..<0.75: return .yellow
-        case ..<1.0:  return .orange
-        default:      return .red
-        }
-    }
-
-    private var percentText: String {
-        guard totalIncome > 0 else { return "–" }
-        return "\(Int(min(fraction, 1.5) * 100))%"
-    }
-
-    var body: some View {
-        GroupBox(label: Label("Budget Meter", systemImage: "speedometer")) {
-            VStack(spacing: DesignSystem.Spacing.large.rawValue) {
-                ZStack {
-                    // Track
-                    Circle()
-                        .trim(from: 0, to: 0.75)
-                        .stroke(
-                            Color.gray.opacity(0.15),
-                            style: StrokeStyle(lineWidth: 28, lineCap: .round)
-                        )
-                        .rotationEffect(.degrees(135))
-
-                    // Fill
-                    Circle()
-                        .trim(from: 0, to: 0.75 * min(fraction, 1.0))
-                        .stroke(
-                            arcColor.gradient,
-                            style: StrokeStyle(lineWidth: 28, lineCap: .round)
-                        )
-                        .rotationEffect(.degrees(135))
-
-                    // Needle dot at tip
-                    if totalIncome > 0 {
-                        Circle()
-                            .fill(.white)
-                            .shadow(color: arcColor.opacity(0.5), radius: 4)
-                            .frame(width: 14, height: 14)
-                            .offset(y: -86)
-                            .rotationEffect(.degrees(135 + 270 * min(fraction, 1.0)))
-                    }
-
-                    // Center content
-                    VStack(spacing: 2) {
-                        Text(percentText)
-                            .font(.largeTitle)
-                            .fontWeight(.heavy)
-                            .foregroundStyle(arcColor)
-                        Text("of budget used")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        if month.overSpent {
-                            Text("OVER BUDGET")
-                                .font(.caption2)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 3)
-                                .background(Capsule().fill(.red))
-                        }
-                    }
-                    .offset(y: 20)
-                }
-                .frame(height: 170)
-
-                // Category status strip
-                HStack(spacing: DesignSystem.Spacing.small.rawValue) {
-                    ForEach(BudgetCategory.allCases) { category in
-                        let isOver = month.overSpending(in: category)
-                        VStack(spacing: 3) {
-                            Image(systemName: isOver ? "exclamationmark.triangle.fill" : "checkmark.circle.fill")
-                                .foregroundStyle(isOver ? .red : category.color)
-                                .font(.caption)
-                            Text(category.shortName)
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(isOver ? Color.red.opacity(0.1) : category.color.opacity(0.08))
-                        )
-                    }
-                }
-            }
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
     }
