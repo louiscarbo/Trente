@@ -21,6 +21,8 @@ struct DailySpendingCard: View {
 
     @State private var mode: SpendingWindowMode = .month
     @State private var scrollPosition: Date
+    @State private var settledScrollPosition: Date
+    @State private var settleTask: Task<Void, Never>?
     @State private var selectedDate: Date?
 
     private let calendar = Calendar.current
@@ -33,6 +35,7 @@ struct DailySpendingCard: View {
         let anchor = isCurrentMonth ? calendar.startOfDay(for: Date()) : calendar.startOfDay(for: month.endDate())
         let candidate = calendar.date(byAdding: .day, value: -6, to: anchor) ?? monthStartDay
         self._scrollPosition = State(initialValue: max(candidate, monthStartDay))
+        self._settledScrollPosition = State(initialValue: max(candidate, monthStartDay))
     }
 
     private enum SpendingWindowMode: Hashable {
@@ -79,8 +82,9 @@ struct DailySpendingCard: View {
         }.sorted { $0.date < $1.date }
     }
 
-    private var maxDailyTotal: Double {
-        max(dailyData.map(\.total).max() ?? 0, 1)
+    private var yAxisMax: Double {
+        let settledDays = mode == .week ? days(inWindowAt: settledScrollPosition) : dailyData
+        return max(settledDays.map(\.total).max() ?? 0, 1) * 1.2
     }
 
     private var hasData: Bool { !dailyData.isEmpty }
@@ -96,9 +100,18 @@ struct DailySpendingCard: View {
     }
 
     private var weekWindow: (start: Date, end: Date) {
-        let start = calendar.startOfDay(for: scrollPosition)
+        weekWindow(at: scrollPosition)
+    }
+
+    private func weekWindow(at position: Date) -> (start: Date, end: Date) {
+        let start = calendar.startOfDay(for: position)
         let end = calendar.date(byAdding: .day, value: 6, to: start) ?? start
         return (start, end)
+    }
+
+    private func days(inWindowAt position: Date) -> [DailySpend] {
+        let window = weekWindow(at: position)
+        return dailyData.filter { (window.start...window.end).contains($0.date) }
     }
 
     private var visibleDays: [DailySpend] {
@@ -106,8 +119,7 @@ struct DailySpendingCard: View {
         case .month:
             return dailyData
         case .week:
-            let window = weekWindow
-            return dailyData.filter { (window.start...window.end).contains($0.date) }
+            return days(inWindowAt: scrollPosition)
         }
     }
 
@@ -126,6 +138,7 @@ struct DailySpendingCard: View {
             withAnimation(.spring(duration: 0.4, bounce: 0.2)) {
                 mode = mode == .month ? .week : .month
                 if mode == .week { scrollPosition = defaultWeekStart() }
+                settledScrollPosition = scrollPosition
             }
         } label: {
             GroupBox(label:
@@ -195,7 +208,7 @@ struct DailySpendingCard: View {
                 RectangleMark(
                     x: .value("Date", todayDate, unit: .day),
                     yStart: .value("Min", 0),
-                    yEnd: .value("Max", maxDailyTotal * 1.2)
+                    yEnd: .value("Max", yAxisMax)
                 )
                 .foregroundStyle(Color.primary.opacity(0.06))
                 .cornerRadius(6)
@@ -215,7 +228,7 @@ struct DailySpendingCard: View {
                 }
             }
         }
-        .chartYScale(domain: 0...(maxDailyTotal * 1.2))
+        .chartYScale(domain: 0...yAxisMax)
         .chartXAxis {
             AxisMarks(values: .stride(by: .day, count: mode == .week ? 1 : 5)) { value in
                 AxisGridLine()
@@ -242,7 +255,18 @@ struct DailySpendingCard: View {
         )
         .chartScrollPosition(x: $scrollPosition)
         .chartXSelection(value: $selectedDate)
+        .onChange(of: scrollPosition) { scheduleSettle() }
         .animation(.spring(duration: 0.4, bounce: 0.15), value: mode)
+        .animation(.easeInOut(duration: 0.3), value: yAxisMax)
+    }
+
+    private func scheduleSettle() {
+        settleTask?.cancel()
+        settleTask = Task {
+            try? await Task.sleep(for: .milliseconds(150))
+            guard !Task.isCancelled else { return }
+            settledScrollPosition = scrollPosition
+        }
     }
 
     private func barOpacity(for date: Date) -> Double {
