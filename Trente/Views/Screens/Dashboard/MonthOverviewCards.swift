@@ -95,25 +95,24 @@ struct DailySpendingCard: View {
         return max(candidate, monthStartDay)
     }
 
+    private var weekWindow: (start: Date, end: Date) {
+        let start = calendar.startOfDay(for: scrollPosition)
+        let end = calendar.date(byAdding: .day, value: 6, to: start) ?? start
+        return (start, end)
+    }
+
     private var visibleDays: [DailySpend] {
         switch mode {
         case .month:
             return dailyData
         case .week:
-            let start = calendar.startOfDay(for: scrollPosition)
-            let end = calendar.date(byAdding: .day, value: 6, to: start) ?? start
-            return dailyData.filter { (start...end).contains($0.date) }
+            let window = weekWindow
+            return dailyData.filter { (window.start...window.end).contains($0.date) }
         }
     }
 
     private func formattedAmount(_ value: Double) -> String {
         value.formatted(.currency(code: month.currency.isoCode).precision(.fractionLength(0)))
-    }
-
-    private func totalAndAverage(for days: [DailySpend]) -> (total: Double, average: Double) {
-        let total = days.reduce(0) { $0 + $1.total }
-        let activeDays = days.filter { $0.total > 0 }.count
-        return (total, activeDays > 0 ? total / Double(activeDays) : 0)
     }
 
     private func categoryTotals(for days: [DailySpend]) -> [(category: BudgetCategory, amount: Double)] {
@@ -131,16 +130,15 @@ struct DailySpendingCard: View {
         } label: {
             GroupBox(label:
                 HStack {
-                    Label("Daily Spending", systemImage: "calendar.badge.clock")
+                    cardTitle
                     Spacer()
-                    if hasData { modeBadge }
+                    if hasData { switchHint }
                 }
             ) {
                 if hasData {
                     VStack(spacing: DesignSystem.Spacing.medium.rawValue) {
-                        statsHeader
                         chart
-                            .frame(height: 170)
+                            .frame(height: 210)
                         dock
                             .id(selectedDate)
                             .transition(.opacity)
@@ -156,27 +154,36 @@ struct DailySpendingCard: View {
         .sensoryFeedback(.selection, trigger: mode)
     }
 
-    private var modeBadge: some View {
-        Text(mode == .month ? "Month" : "Last 7 Days")
-            .font(.caption)
-            .foregroundStyle(.secondary)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 3)
-            .background(Capsule().fill(.secondary.opacity(0.12)))
-            .contentTransition(.opacity)
+    private var periodTitle: String {
+        switch mode {
+        case .month:
+            if isCurrentMonth { return String(localized: "This Month") }
+            let isCurrentYear = calendar.isDate(Date(), equalTo: month.startDate, toGranularity: .year)
+            return isCurrentYear
+                ? month.startDate.formatted(.dateTime.month(.wide))
+                : month.startDate.formatted(.dateTime.month(.wide).year())
+        case .week:
+            let window = weekWindow
+            if let todayDate, calendar.isDate(window.end, inSameDayAs: todayDate) {
+                return String(localized: "Last 7 Days")
+            }
+            return (window.start..<window.end).formatted(.interval.month(.abbreviated).day())
+        }
     }
 
-    private var statsHeader: some View {
-        let stats = totalAndAverage(for: visibleDays)
-        return HStack(alignment: .firstTextBaseline) {
-            Text(formattedAmount(stats.total))
-                .font(.title2.bold())
-                .contentTransition(.numericText(value: stats.total))
-            Spacer()
-            Text("\(formattedAmount(stats.average))/day avg")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
+    private var cardTitle: some View {
+        Label(
+            hasData ? periodTitle : String(localized: "Daily Spending"),
+            systemImage: "calendar.badge.clock"
+        )
+        .contentTransition(.opacity)
+        .animation(.easeInOut(duration: 0.2), value: periodTitle)
+    }
+
+    private var switchHint: some View {
+        Image(systemName: "chevron.up.chevron.down")
+            .font(.caption.bold())
+            .foregroundStyle(.secondary)
     }
 
     private var chart: some View {
@@ -248,10 +255,7 @@ struct DailySpendingCard: View {
         if let selectedDate, let day = day(on: selectedDate) {
             dockContent(title: dayTitle(day.date), days: [day])
         } else {
-            dockContent(
-                title: mode == .month ? String(localized: "This Month") : String(localized: "This Week"),
-                days: visibleDays
-            )
+            dockContent(title: String(localized: "Total"), days: visibleDays)
         }
     }
 
@@ -295,18 +299,22 @@ struct DailySpendingCard: View {
     private func proportionLegend(for days: [DailySpend]) -> some View {
         let totals = categoryTotals(for: days)
         let grandTotal = max(totals.reduce(0) { $0 + $1.amount }, 1)
-        HStack(spacing: DesignSystem.Spacing.medium.rawValue) {
+        HStack(alignment: .top, spacing: DesignSystem.Spacing.medium.rawValue) {
             ForEach(totals, id: \.category) { entry in
                 if entry.amount > 0 {
-                    HStack(spacing: 4) {
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
                         Circle().fill(entry.category.color).frame(width: 6, height: 6)
-                        Text("\(entry.category.shortName) \(Int((entry.amount / grandTotal) * 100))%")
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(entry.category.shortName)
+                                .font(.caption2.bold())
+                            Text("\(formattedAmount(entry.amount)) · \(Int((entry.amount / grandTotal) * 100))%")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
-            Spacer()
         }
     }
 
