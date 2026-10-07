@@ -1,11 +1,11 @@
 import FoundationModels
 
 protocol TransactionSuggesting: Sendable {
-    func suggestCategory(for transaction: WalletTransaction) async throws -> BudgetCategory?
+    func suggestCategory(for transaction: String) async throws -> BudgetCategory?
 }
 
 struct TransactionSuggester: TransactionSuggesting {
-    func suggestCategory(for transaction: WalletTransaction) async throws -> BudgetCategory? {
+    func suggestCategory(for transaction: String) async throws -> BudgetCategory? {
         guard case .available = SystemLanguageModel.default.availability else { return nil }
 
         let session = LanguageModelSession(instructions: WalletSuggestionPrompt.instructions)

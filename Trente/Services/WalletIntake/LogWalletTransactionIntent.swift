@@ -14,26 +14,18 @@ struct LogWalletTransactionIntent: AppIntent {
     )
     static let openAppWhenRun = false
 
-    @Parameter(title: "Merchant")
-    var merchant: String
+    @Parameter(title: "Transaction")
+    var transaction: String
 
     @Parameter(title: "Amount")
     var amount: String
-
-    @Parameter(title: "Name")
-    var name: String?
-
-    @Parameter(title: "Card")
-    var card: String?
 
     @MainActor
     func perform() async throws -> some IntentResult {
         do {
             try await WalletIntakeService().handle(
-                merchant: merchant,
-                name: name ?? "",
+                transaction: transaction,
                 amount: amount,
-                card: card ?? "",
                 in: TrenteContainer.shared.mainContext
             )
         } catch {
