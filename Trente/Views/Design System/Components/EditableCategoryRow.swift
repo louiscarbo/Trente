@@ -21,7 +21,33 @@ struct EditableCategoryRow: View {
         }
     }
 
+    @ViewBuilder
     private var picker: some View {
+        if category == nil {
+            addCategoryMenu
+        } else {
+            categoryPicker
+        }
+    }
+
+    private var addCategoryMenu: some View {
+        Menu {
+            ForEach(BudgetCategory.allCases) { option in
+                Button(option.name) { category = option }
+            }
+        } label: {
+            Label("Add category", systemImage: "plus")
+                .padding(.vertical, 6)
+                .padding(.horizontal, 12)
+                .frame(maxHeight: .infinity)
+        }
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(.gray.opacity(0.2))
+        }
+    }
+
+    private var categoryPicker: some View {
         Picker("Category", selection: $category) {
             ForEach(BudgetCategory.allCases) { category in
                 Text(category.name)

@@ -19,13 +19,10 @@ class DataProvider {
     }
     
     private init() {
-        let schema = Schema([
-            Month.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-        
+        let modelConfiguration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: true)
+
         do {
-            modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            modelContainer = try ModelContainer(for: .trente, configurations: [modelConfiguration])
             
             try insertSampleData()
             

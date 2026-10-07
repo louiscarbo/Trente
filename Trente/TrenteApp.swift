@@ -10,21 +10,10 @@ import SwiftData
 
 @main
 struct TrenteApp: App {
-    let container: ModelContainer
+    let container = TrenteContainer.shared
 
     init() {
-        do {
-            #if DEBUG
-            container = DataProvider.shared.modelContainer
-            #else
-            let schema = Schema([Month.self])
-            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-            container = try ModelContainer(for: schema, configurations: [config])
-            #endif
-        } catch {
-            // TODO: Maybe fail more gracefully?
-            fatalError("Failed to initialize ModelContainer: \(error)")
-        }
+        WalletNotificationService.shared.start()
     }
 
     var body: some Scene {

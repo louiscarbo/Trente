@@ -9,18 +9,21 @@ struct DetailEditScaffold<Content: View>: View {
     @Environment(\.dismiss) private var dismiss
 
     var title: String
+    var editingTitle: String = String(localized: "Editing")
+    var cancelSystemImage: String = "arrow.uturn.backward"
     @Binding var isEditing: Bool
     @Binding var validationErrors: [String]
     @Binding var deleteError: String?
 
-    var deleteSectionTitle: String
+    var deleteSectionTitle: String? = nil
+    var isDoneDisabled: Bool = false
     var keyboardDismissVisible: Bool
     var onDismissKeyboard: () -> Void
 
     var onBeginEdit: () -> Void
     var onCancel: () -> Void
     var onDone: () -> Void
-    var onDelete: () -> Void
+    var onDelete: (() -> Void)? = nil
 
     @ViewBuilder var content: () -> Content
 
@@ -29,7 +32,7 @@ struct DetailEditScaffold<Content: View>: View {
             ScrollView {
                 VStack(spacing: .medium) {
                     content()
-                    if isEditing {
+                    if isEditing, let deleteSectionTitle, let onDelete {
                         DeleteSectionBox(title: deleteSectionTitle, onDelete: onDelete)
                     }
                 }
@@ -38,7 +41,7 @@ struct DetailEditScaffold<Content: View>: View {
             .scrollDismissesKeyboard(.interactively)
             .interactiveDismissDisabled(isEditing)
             .keyboardDismissButton(isVisible: keyboardDismissVisible, action: onDismissKeyboard)
-            .navigationTitle(isEditing ? String(localized: "Editing") : title)
+            .navigationTitle(isEditing ? editingTitle : title)
             .inlineNavigationBarTitleDisplayMode()
             .toolbar { toolbarContent }
             .alert(String(localized: "Cannot Save"), isPresented: Binding(
@@ -65,13 +68,14 @@ struct DetailEditScaffold<Content: View>: View {
         if isEditing {
             ToolbarItem(placement: .cancellationAction) {
                 Button(role: .cancel, action: onCancel) {
-                    Label("Cancel", systemImage: "arrow.uturn.backward")
+                    Label("Cancel", systemImage: cancelSystemImage)
                 }
             }
             ToolbarItem(placement: .confirmationAction) {
                 Button(action: onDone) {
                     Label("Done", systemImage: "checkmark")
                 }
+                .disabled(isDoneDisabled)
             }
         } else {
             ToolbarItem(placement: .primaryAction) {
