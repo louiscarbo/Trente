@@ -26,7 +26,20 @@
         }
       }
     },
+    "%@ %lld%%" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$lld%%"
+          }
+        }
+      }
+    },
     "%@ Remaining" : {
+
+    },
+    "%@/day avg" : {
 
     },
     "%lld" : {
@@ -152,9 +165,6 @@
     "Dates" : {
 
     },
-    "Day" : {
-
-    },
     "Delete" : {
 
     },
@@ -246,16 +256,28 @@
     "Income/Expense" : {
 
     },
+    "Last 7 Days" : {
+
+    },
     "Latest Transactions" : {
 
     },
     "Marketing Content Goes Here" : {
 
     },
+    "Max" : {
+
+    },
+    "Min" : {
+
+    },
     "Montant ↑" : {
 
     },
     "Montant ↓" : {
+
+    },
+    "Month" : {
 
     },
     "Month Details" : {
@@ -411,6 +433,12 @@
     "This adds it as a transaction for this month." : {
 
     },
+    "This Month" : {
+
+    },
+    "This Week" : {
+
+    },
     "Title" : {
 
     },
@@ -424,9 +452,6 @@
 
     },
     "To" : {
-
-    },
-    "Today" : {
 
     },
     "Total" : {
