@@ -103,6 +103,7 @@
 				Services/RecurringTransactionService.swift,
 				Services/SampleData.swift,
 				Services/TransactionCreationRequest.swift,
+				"Views/Design System/Custom Styles/PressableCardButtonStyle.swift",
 				"Views/Design System/Custom Styles/TrenteGaugeStyle.swift",
 				"Views/Design System/Custom Styles/TrenteGroupBoxStyle.swift",
 				"Views/Design System/Custom Styles/TrentePrimaryButtonStyle.swift",
