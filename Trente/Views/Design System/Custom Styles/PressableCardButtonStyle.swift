@@ -5,8 +5,6 @@
 
 import SwiftUI
 
-/// A button style for whole-card tap targets (gauge cards, daily spending card): scales
-/// down slightly while pressed, with a short hold on release so quick taps still read clearly.
 struct PressableCardButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         PressedCardScale(isPressed: configuration.isPressed) {
