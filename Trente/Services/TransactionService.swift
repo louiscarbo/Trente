@@ -86,7 +86,8 @@ private extension TransactionService {
             type: request.type,
             month: month,
             note: request.notes,
-            imageAttachmentData: request.imageData
+            imageAttachmentData: request.imageData,
+            addedDate: request.date
         )
         context.insert(group)
         

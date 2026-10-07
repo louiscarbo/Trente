@@ -17,7 +17,11 @@ struct MonthListView: View {
         
     @State private var selection: Month?
     @State private var isShowingNewMonth = false
-    
+    @State private var pendingTransactionRouter = PendingTransactionRouter.shared
+    #if DEBUG
+    @State private var isShowingPendingDebug = false
+    #endif
+
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
 
@@ -64,6 +68,18 @@ struct MonthListView: View {
                 MonthView(month: month)
                     .id(month)
             }
+            #if DEBUG
+            .toolbar {
+                ToolbarItem {
+                    Button("Pending", systemImage: "ladybug") {
+                        isShowingPendingDebug = true
+                    }
+                }
+            }
+            .sheet(isPresented: $isShowingPendingDebug) {
+                PendingTransactionsDebugView()
+            }
+            #endif
         } detail: {
             if months.isEmpty {
                 ContentUnavailableView {
@@ -90,6 +106,18 @@ struct MonthListView: View {
                 selection = firstMonth
             }
         }
+        .sheet(isPresented: isShowingPendingTransaction) {
+            if let id = pendingTransactionRouter.presentedPendingTransactionID {
+                PendingTransactionReviewLoader(id: id)
+            }
+        }
+    }
+
+    private var isShowingPendingTransaction: Binding<Bool> {
+        Binding(
+            get: { pendingTransactionRouter.presentedPendingTransactionID != nil },
+            set: { if !$0 { pendingTransactionRouter.presentedPendingTransactionID = nil } }
+        )
     }
 }
 

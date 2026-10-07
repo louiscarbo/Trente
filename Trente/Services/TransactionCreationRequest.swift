@@ -16,7 +16,8 @@ class TransactionCreationRequest {
     var notes: String = ""
     var imageData: Data? = nil
     var isRecurrent: Bool = false
-    
+    var date: Date = .now
+
     var repartition: [BudgetCategory: Int] = [:]
     
     var recurrenceFrequency: RecurrenceFrequency = .monthly

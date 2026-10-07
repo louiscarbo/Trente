@@ -55,6 +55,13 @@ struct TransactionGroupDraft: Equatable {
         }
     }
 
+    init(from pending: PendingTransaction) {
+        self.title = pending.title
+        self.type = .expense
+        self.expenseCategory = pending.category
+        self.expenseAmountCents = pending.amountCents
+    }
+
     // MARK: Apply back into model (mutates group and entries)
     func apply(to group: TransactionGroup, context: ModelContext) {
         group.title = title

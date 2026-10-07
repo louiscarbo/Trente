@@ -17,11 +17,8 @@ struct TransactionGroupDetailsView: View {
     var startInEditMode: Bool = false
 
     @State private var isEditing = false
-    @State private var showFullScreen = false
     @State private var draft: TransactionGroupDraft?
     @State private var validationErrors: [String] = []
-    @State private var photosPickerItem: PhotosPickerItem?
-    @State private var showDeleteConfirmation = false
     @State private var deleteError: String? = nil
 
     @FocusState private var titleFocused: Bool
@@ -69,36 +66,21 @@ struct TransactionGroupDetailsView: View {
 
     // MARK: - Header
 
-    @ViewBuilder
     private func headerBox() -> some View {
-        GroupBox {
-            VStack(spacing: 0) {
-                headerImageSection()
-                VStack(alignment: .leading, spacing: .small) {
-                    EditableTitleField(
-                        text: titleBinding,
-                        isEditing: isEditing,
-                        placeholder: String(localized: "Transaction title"),
-                        focus: $titleFocused
-                    )
-                    .padding(.top, 12)
-                    if transactionGroup.type == .expense {
-                        EditableExpenseRow(
-                            isEditing: isEditing,
-                            category: categoryBinding,
-                            amountCents: expenseAmountBinding,
-                            currency: transactionGroup.month.currency,
-                            focus: $amountFocused
-                        )
-                    }
-                    if isTrentePlusUser {
-                        noteEditor()
-                    }
-                }
-                .padding([.bottom, .horizontal])
-            }
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle(withPadding: false))
+        TransactionHeaderBox(
+            isEditing: isEditing,
+            currency: transactionGroup.month.currency,
+            showsExpenseRow: transactionGroup.type == .expense,
+            showsNotes: isTrentePlusUser,
+            title: titleBinding,
+            category: categoryBinding,
+            amountCents: expenseAmountBinding,
+            note: noteBinding,
+            imageData: imageDataBinding,
+            titleFocus: $titleFocused,
+            notesFocus: $notesFocused,
+            amountFocus: $amountFocused
+        )
     }
 
     private var titleBinding: Binding<String> {
@@ -130,119 +112,26 @@ struct TransactionGroupDetailsView: View {
         )
     }
 
-    // MARK: - Image
+    // MARK: - Notes & Image
 
-    @ViewBuilder
-    private func headerImageSection() -> some View {
-        ZStack(alignment: .bottomTrailing) {
-            if isEditing {
-                if let imageData = draft?.imageAttachmentData {
-                    tappableImage(from: imageData)
-                }
-                if draft?.imageAttachmentData != nil {
-                    Button(role: .destructive) {
-                        showDeleteConfirmation = true
-                    } label: {
-                        Label("Delete Image", systemImage: "trash")
-                    }
-                    .padding([.bottom, .trailing])
-                    .buttonStyle(.glassProminent)
-                    .tint(.red)
-                    .alert("Are you sure?", isPresented: $showDeleteConfirmation) {
-                        Button("Delete", role: .destructive) {
-                            withAnimation {
-                                draft?.imageAttachmentData = nil
-                            }
-                        }
-                        Button("Cancel", role: .cancel) { }
-                    } message: {
-                        Text("This action cannot be undone.")
-                    }
+    private var noteBinding: Binding<String> {
+        Binding(
+            get: {
+                if isEditing {
+                    draft?.note ?? transactionGroup.note ?? ""
                 } else {
-                    PhotosPicker(selection: $photosPickerItem) {
-                        Label("Add Image", systemImage: "photo.badge.plus")
-                    }
-                    .buttonStyle(TrenteSecondaryButtonStyle())
-                    .padding()
+                    transactionGroup.note ?? ""
                 }
-            } else {
-                if let imageData = transactionGroup.imageAttachmentData {
-                    tappableImage(from: imageData)
-                }
-            }
-        }
-        .task(id: photosPickerItem) {
-            guard let item = photosPickerItem else {
-                draft?.imageAttachmentData = nil
-                return
-            }
-            do {
-                draft?.imageAttachmentData = try await item.loadTransferable(type: Data.self)
-            } catch {
-                draft?.imageAttachmentData = nil
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func tappableImage(from imageData: Data) -> some View {
-        if let image = createImage(imageData) {
-            Button {
-                showFullScreen = true
-            } label: {
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipShape(
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: DesignSystem.Radius.large.rawValue,
-                            topTrailingRadius: DesignSystem.Radius.large.rawValue
-                        )
-                    )
-            }
-            .buttonStyle(.plain)
-            .modify { view in
-#if os(iOS)
-                view.fullScreenCover(isPresented: $showFullScreen) {
-                    ZoomableImageView(image: image)
-                }
-#else
-                view
-#endif
-            }
-        }
-    }
-
-    // MARK: - Notes
-
-    @ViewBuilder
-    private func noteEditor() -> some View {
-        TextField(
-            "",
-            text: Binding(
-                get: {
-                    if isEditing {
-                        draft?.note ?? transactionGroup.note ?? ""
-                    } else {
-                        transactionGroup.note ?? ""
-                    }
-                },
-                set: { draft?.note = $0 }
-            ),
-            prompt: Text("Add your notes here."),
-            axis: .vertical
+            },
+            set: { draft?.note = $0 }
         )
-        .focused($notesFocused)
-        .lineLimit(5)
-        .padding(isEditing ? 8 : 0)
-        .background {
-            if isEditing {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(.gray.opacity(0.2))
-            }
-        }
-        .disabled(!isEditing)
+    }
+
+    private var imageDataBinding: Binding<Data?> {
+        Binding(
+            get: { isEditing ? draft?.imageAttachmentData : transactionGroup.imageAttachmentData },
+            set: { draft?.imageAttachmentData = $0 }
+        )
     }
 
     // MARK: - Income Repartition
