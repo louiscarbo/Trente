@@ -9,12 +9,6 @@ import SwiftUI
 import Charts
 
 // MARK: - Daily Spending Card
-// Bar chart of expenses grouped by day, stacked by category (needs/wants/savings split
-// per day instead of a single "dominant category" color).
-// Tap the whole card to flip between Month (every day, no scroll) and Week (7 days,
-// scrollable to any week via chartScrollableAxes). Today is highlighted. Tap/drag a bar
-// to see that day's breakdown in the dock below the chart; with nothing selected, the
-// dock falls back to the totals for whatever window is currently visible.
 
 struct DailySpendingCard: View {
     @State var month: Month
@@ -25,138 +19,67 @@ struct DailySpendingCard: View {
     @State private var settleTask: Task<Void, Never>?
     @State private var selectedDate: Date?
 
-    private let calendar = Calendar.current
-
     init(month: Month) {
         self._month = State(initialValue: month)
-        let calendar = Calendar.current
-        let isCurrentMonth = calendar.isDate(Date(), equalTo: month.startDate, toGranularity: .month)
-        let monthStartDay = calendar.startOfDay(for: month.startDate)
-        let anchor = isCurrentMonth ? calendar.startOfDay(for: Date()) : calendar.startOfDay(for: month.endDate())
-        let candidate = calendar.date(byAdding: .day, value: -6, to: anchor) ?? monthStartDay
-        self._scrollPosition = State(initialValue: max(candidate, monthStartDay))
-        self._settledScrollPosition = State(initialValue: max(candidate, monthStartDay))
+        let defaultWeekStart = DailySpending(month: month).defaultWeekStart
+        self._scrollPosition = State(initialValue: defaultWeekStart)
+        self._settledScrollPosition = State(initialValue: defaultWeekStart)
     }
 
     private enum SpendingWindowMode: Hashable {
         case month, week
     }
 
-    private struct DailySpend: Identifiable {
-        let date: Date
-        let amounts: [BudgetCategory: Double]
-        var id: Date { date }
-        var total: Double { amounts.values.reduce(0, +) }
+    private func yAxisMax(for spending: DailySpending) -> Double {
+        let windowPosition = mode == .week ? settledScrollPosition : nil
+        return max(spending.maxTotal(inWindowAt: windowPosition), 1) * 1.2
     }
 
-    private var monthStartDay: Date { calendar.startOfDay(for: month.startDate) }
-    private var monthEndDay: Date { calendar.startOfDay(for: month.endDate()) }
-
-    private var daysInMonth: Int {
-        calendar.range(of: .day, in: .month, for: month.startDate)?.count ?? 30
-    }
-
-    private var isCurrentMonth: Bool {
-        calendar.isDate(Date(), equalTo: month.startDate, toGranularity: .month)
-    }
-
-    private var todayDate: Date? {
-        guard isCurrentMonth else { return nil }
-        return calendar.startOfDay(for: Date())
-    }
-
-    private var dailyData: [DailySpend] {
-        var byDay: [Date: [BudgetCategory: Int]] = [:]
-
-        for group in month.transactionGroups where group.type == .expense {
-            let day = calendar.startOfDay(for: group.addedDate)
-            var entry = byDay[day] ?? [:]
-            for txEntry in group.entries where txEntry.amountCents < 0 {
-                entry[txEntry.category, default: 0] += abs(txEntry.amountCents)
-            }
-            byDay[day] = entry
-        }
-
-        return byDay.map { day, amounts in
-            DailySpend(date: day, amounts: amounts.mapValues { Double($0) / 100 })
-        }.sorted { $0.date < $1.date }
-    }
-
-    private var yAxisMax: Double {
-        let settledDays = mode == .week ? days(inWindowAt: settledScrollPosition) : dailyData
-        return max(settledDays.map(\.total).max() ?? 0, 1) * 1.2
-    }
-
-    private var hasData: Bool { !dailyData.isEmpty }
-
-    private func day(on date: Date) -> DailySpend? {
-        dailyData.first { calendar.isDate($0.date, inSameDayAs: date) }
-    }
-
-    private func defaultWeekStart() -> Date {
-        let anchor = todayDate ?? monthEndDay
-        let candidate = calendar.date(byAdding: .day, value: -6, to: anchor) ?? monthStartDay
-        return max(candidate, monthStartDay)
-    }
-
-    private var weekWindow: (start: Date, end: Date) {
-        weekWindow(at: scrollPosition)
-    }
-
-    private func weekWindow(at position: Date) -> (start: Date, end: Date) {
-        let start = calendar.startOfDay(for: position)
-        let end = calendar.date(byAdding: .day, value: 6, to: start) ?? start
-        return (start, end)
-    }
-
-    private func days(inWindowAt position: Date) -> [DailySpend] {
-        let window = weekWindow(at: position)
-        return dailyData.filter { (window.start...window.end).contains($0.date) }
-    }
-
-    private var visibleDays: [DailySpend] {
+    private func visibleDays(in spending: DailySpending) -> [DailySpend] {
         switch mode {
         case .month:
-            return dailyData
+            return spending.days
         case .week:
-            return days(inWindowAt: scrollPosition)
+            return spending.days(inWindowAt: scrollPosition)
         }
+    }
+
+    private func selectedDay(in spending: DailySpending) -> DailySpend? {
+        selectedDate.flatMap(spending.day(on:))
     }
 
     private func formattedAmount(_ value: Double) -> String {
         value.formatted(.currency(code: month.currency.isoCode).precision(.fractionLength(0)))
     }
 
-    private func categoryTotals(for days: [DailySpend]) -> [(category: BudgetCategory, amount: Double)] {
-        BudgetCategory.allCases.map { category in
-            (category, days.reduce(0) { $0 + ($1.amounts[category] ?? 0) })
-        }
-    }
-
     var body: some View {
+        let spending = DailySpending(month: month)
+        let hasData = !spending.days.isEmpty
+        let selectedDay = selectedDay(in: spending)
+
         Button {
             withAnimation(.spring(duration: 0.4, bounce: 0.2)) {
                 mode = mode == .month ? .week : .month
-                if mode == .week { scrollPosition = defaultWeekStart() }
+                if mode == .week { scrollPosition = spending.defaultWeekStart }
                 settledScrollPosition = scrollPosition
             }
         } label: {
             GroupBox(label:
                 HStack {
-                    cardTitle
+                    cardTitle(spending, hasData: hasData)
                     Spacer()
                     if hasData { switchHint }
                 }
             ) {
                 if hasData {
                     VStack(spacing: DesignSystem.Spacing.medium.rawValue) {
-                        chart
+                        chart(spending, selectedDay: selectedDay)
                             .frame(height: 210)
-                        dock
-                            .id(selectedDate)
+                        dock(spending, selectedDay: selectedDay)
+                            .id(selectedDay?.date)
                             .transition(.opacity)
                     }
-                    .animation(.easeInOut(duration: 0.25), value: selectedDate)
+                    .animation(.easeInOut(duration: 0.25), value: selectedDay?.date)
                 } else {
                     emptyState
                 }
@@ -165,32 +88,34 @@ struct DailySpendingCard: View {
         }
         .buttonStyle(PressableCardButtonStyle())
         .sensoryFeedback(.selection, trigger: mode)
+        .sensoryFeedback(trigger: selectedDay?.date) { _, newDate in
+            newDate == nil ? nil : .selection
+        }
     }
 
-    private var periodTitle: String {
+    private func periodTitle(_ spending: DailySpending) -> String {
+        let calendar = Calendar.current
         switch mode {
         case .month:
-            if isCurrentMonth { return String(localized: "This Month") }
+            if spending.today != nil { return String(localized: "This Month") }
             let isCurrentYear = calendar.isDate(Date(), equalTo: month.startDate, toGranularity: .year)
             return isCurrentYear
                 ? month.startDate.formatted(.dateTime.month(.wide))
                 : month.startDate.formatted(.dateTime.month(.wide).year())
         case .week:
-            let window = weekWindow
-            if let todayDate, calendar.isDate(window.end, inSameDayAs: todayDate) {
+            let window = spending.weekWindow(at: scrollPosition)
+            if let today = spending.today, calendar.isDate(window.upperBound, inSameDayAs: today) {
                 return String(localized: "Last 7 Days")
             }
-            return (window.start..<window.end).formatted(.interval.month(.abbreviated).day())
+            return (window.lowerBound..<window.upperBound).formatted(.interval.month(.abbreviated).day())
         }
     }
 
-    private var cardTitle: some View {
-        Label(
-            hasData ? periodTitle : String(localized: "Daily Spending"),
-            systemImage: "calendar.badge.clock"
-        )
-        .contentTransition(.opacity)
-        .animation(.easeInOut(duration: 0.2), value: periodTitle)
+    private func cardTitle(_ spending: DailySpending, hasData: Bool) -> some View {
+        let title = hasData ? periodTitle(spending) : String(localized: "Daily Spending")
+        return Label(title, systemImage: "calendar.badge.clock")
+            .contentTransition(.opacity)
+            .animation(.easeInOut(duration: 0.2), value: title)
     }
 
     private var switchHint: some View {
@@ -199,14 +124,16 @@ struct DailySpendingCard: View {
             .foregroundStyle(.secondary)
     }
 
-    private var chart: some View {
-        Chart {
-            RuleMark(x: .value("Date", monthStartDay, unit: .day)).opacity(0)
-            RuleMark(x: .value("Date", monthEndDay, unit: .day)).opacity(0)
+    private func chart(_ spending: DailySpending, selectedDay: DailySpend?) -> some View {
+        let yAxisMax = yAxisMax(for: spending)
+        let visibleDaysCount = mode == .week ? DailySpending.weekLengthInDays : spending.daysInMonth
+        return Chart {
+            RuleMark(x: .value("Date", spending.monthStartDay, unit: .day)).opacity(0)
+            RuleMark(x: .value("Date", spending.monthEndDay, unit: .day)).opacity(0)
 
-            if let todayDate {
+            if let today = spending.today {
                 RectangleMark(
-                    x: .value("Date", todayDate, unit: .day),
+                    x: .value("Date", today, unit: .day),
                     yStart: .value("Min", 0),
                     yEnd: .value("Max", yAxisMax)
                 )
@@ -214,7 +141,7 @@ struct DailySpendingCard: View {
                 .cornerRadius(6)
             }
 
-            ForEach(dailyData) { item in
+            ForEach(spending.days) { item in
                 ForEach(BudgetCategory.allCases) { category in
                     if let amount = item.amounts[category] {
                         BarMark(
@@ -223,7 +150,7 @@ struct DailySpendingCard: View {
                         )
                         .foregroundStyle(category.color.gradient)
                         .cornerRadius(3)
-                        .opacity(barOpacity(for: item.date))
+                        .opacity(barOpacity(for: item.date, selectedDay: selectedDay))
                     }
                 }
             }
@@ -250,9 +177,8 @@ struct DailySpendingCard: View {
             AxisMarks(position: .leading) { _ in AxisGridLine() }
         }
         .chartScrollableAxes(mode == .week ? .horizontal : [])
-        .chartXVisibleDomain(
-            length: mode == .week ? 60 * 60 * 24 * 7 : 60 * 60 * 24 * Double(daysInMonth)
-        )
+        .chartScrollTargetBehavior(.valueAligned(matching: DateComponents(hour: 0)))
+        .chartXVisibleDomain(length: 60 * 60 * 24 * Double(visibleDaysCount))
         .chartScrollPosition(x: $scrollPosition)
         .chartXSelection(value: $selectedDate)
         .onChange(of: scrollPosition) { scheduleSettle() }
@@ -269,17 +195,17 @@ struct DailySpendingCard: View {
         }
     }
 
-    private func barOpacity(for date: Date) -> Double {
-        guard let selectedDate else { return 1 }
-        return calendar.isDate(selectedDate, inSameDayAs: date) ? 1 : 0.3
+    private func barOpacity(for date: Date, selectedDay: DailySpend?) -> Double {
+        guard let selectedDay else { return 1 }
+        return selectedDay.date == date ? 1 : 0.3
     }
 
     @ViewBuilder
-    private var dock: some View {
-        if let selectedDate, let day = day(on: selectedDate) {
-            dockContent(title: dayTitle(day.date), days: [day])
+    private func dock(_ spending: DailySpending, selectedDay: DailySpend?) -> some View {
+        if let selectedDay {
+            dockContent(title: dayTitle(selectedDay.date), days: [selectedDay])
         } else {
-            dockContent(title: String(localized: "Total"), days: visibleDays)
+            dockContent(title: String(localized: "Total"), days: visibleDays(in: spending))
         }
     }
 
@@ -289,55 +215,45 @@ struct DailySpendingCard: View {
 
     @ViewBuilder
     private func dockContent(title: String, days: [DailySpend]) -> some View {
-        let total = days.reduce(0) { $0 + $1.total }
+        let slices = CategorySlice.slices(for: days)
         VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Text(title).font(.caption.bold())
                 Spacer()
-                Text(formattedAmount(total)).font(.caption.bold())
+                Text(formattedAmount(days.reduce(0) { $0 + $1.total })).font(.caption.bold())
             }
-            proportionCapsule(for: days)
-            proportionLegend(for: days)
+            proportionCapsule(for: slices)
+            proportionLegend(for: slices)
         }
     }
 
-    @ViewBuilder
-    private func proportionCapsule(for days: [DailySpend]) -> some View {
-        let totals = categoryTotals(for: days)
-        let grandTotal = max(totals.reduce(0) { $0 + $1.amount }, 1)
+    private func proportionCapsule(for slices: [CategorySlice]) -> some View {
         GeometryReader { geo in
             HStack(spacing: 3) {
-                ForEach(totals, id: \.category) { entry in
-                    if entry.amount > 0 {
-                        RoundedRectangle(cornerRadius: 3)
-                            .fill(entry.category.color.gradient)
-                            .frame(width: max(geo.size.width * (entry.amount / grandTotal) - 3, 3))
-                    }
+                ForEach(slices, id: \.category) { slice in
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(slice.category.color.gradient)
+                        .frame(width: max(geo.size.width * slice.share - 3, 3))
                 }
             }
         }
         .frame(height: 10)
     }
 
-    @ViewBuilder
-    private func proportionLegend(for days: [DailySpend]) -> some View {
-        let totals = categoryTotals(for: days)
-        let grandTotal = max(totals.reduce(0) { $0 + $1.amount }, 1)
+    private func proportionLegend(for slices: [CategorySlice]) -> some View {
         HStack(alignment: .top, spacing: DesignSystem.Spacing.medium.rawValue) {
-            ForEach(totals, id: \.category) { entry in
-                if entry.amount > 0 {
-                    HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Circle().fill(entry.category.color).frame(width: 6, height: 6)
-                        VStack(alignment: .leading, spacing: 1) {
-                            Text(entry.category.shortName)
-                                .font(.caption2.bold())
-                            Text("\(formattedAmount(entry.amount)) · \(Int((entry.amount / grandTotal) * 100))%")
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                        }
+            ForEach(slices, id: \.category) { slice in
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Circle().fill(slice.category.color).frame(width: 6, height: 6)
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(slice.category.shortName)
+                            .font(.caption2.bold())
+                        Text("\(formattedAmount(slice.amount)) · \(slice.percent)%")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
