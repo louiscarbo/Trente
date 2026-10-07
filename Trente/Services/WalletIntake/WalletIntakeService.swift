@@ -16,20 +16,14 @@ enum WalletIntakeError: Error {
 
 @MainActor
 struct WalletIntakeService {
-    var suggester: any TransactionSuggesting = TransactionSuggester()
-    var suggestionTimeout: Duration = .seconds(5)
-
     func intake(
         transaction: String,
         amount: String,
         in context: ModelContext,
         now: Date = .now
-    ) async throws -> PendingTransaction {
+    ) throws -> PendingTransaction {
         guard let cents = WalletAmountParser.cents(from: amount) else {
             throw WalletIntakeError.unreadableAmount
-        }
-        guard try MonthService.shared.latestMonth(in: context) != nil else {
-            throw WalletIntakeError.noMonth
         }
         let title = transaction.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !title.isEmpty else {
@@ -39,8 +33,7 @@ struct WalletIntakeService {
         let pending = PendingTransaction(
             date: now,
             amountCents: -cents,
-            title: title,
-            category: await suggestedCategory(for: title)
+            title: title
         )
         context.insert(pending)
         try context.save()
@@ -52,31 +45,14 @@ struct WalletIntakeService {
         amount: String,
         in context: ModelContext
     ) async throws {
-        let pending = try await intake(
+        guard let month = try MonthService.shared.latestMonth(in: context) else {
+            throw WalletIntakeError.noMonth
+        }
+        let pending = try intake(
             transaction: transaction,
             amount: amount,
             in: context
         )
-        guard let currency = try MonthService.shared.latestMonth(in: context)?.currency else {
-            throw WalletIntakeError.noMonth
-        }
-        try await WalletNotificationService.shared.post(for: pending, currency: currency)
-    }
-
-    private func suggestedCategory(for transaction: String) async -> BudgetCategory? {
-        let suggester = suggester
-        let timeout = suggestionTimeout
-        return await withTaskGroup(of: BudgetCategory?.self) { group in
-            group.addTask {
-                try? await suggester.suggestCategory(for: transaction)
-            }
-            group.addTask {
-                try? await Task.sleep(for: timeout)
-                return nil
-            }
-            let first = await group.next() ?? nil
-            group.cancelAll()
-            return first
-        }
+        try await WalletNotificationService.shared.post(for: pending, currency: month.currency)
     }
 }

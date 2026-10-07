@@ -88,12 +88,7 @@ struct PendingTransactionsDebugView: View {
 
     private func row(for pending: PendingTransaction) -> some View {
         HStack {
-            VStack(alignment: .leading) {
-                Text(pending.title)
-                Text(pending.category?.name ?? "No category")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+            Text(pending.title)
             Spacer()
             Text(Double(pending.amountCents) / 100.0, format: .currency(code: currencyCode))
         }

@@ -58,7 +58,6 @@ struct TransactionGroupDraft: Equatable {
     init(from pending: PendingTransaction) {
         self.title = pending.title
         self.type = .expense
-        self.expenseCategory = pending.category
         self.expenseAmountCents = pending.amountCents
     }
 

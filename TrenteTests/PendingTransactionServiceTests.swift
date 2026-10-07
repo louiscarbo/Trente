@@ -33,15 +33,13 @@ struct PendingTransactionServiceTests {
     }
 
     private func insertPending(
-        category: BudgetCategory? = .needs,
         date: Date = Date(timeIntervalSince1970: 1_800_000_000),
         in context: ModelContext
     ) -> PendingTransaction {
         let pending = PendingTransaction(
             date: date,
             amountCents: -53_74,
-            title: "Dia",
-            category: category
+            title: "Dia"
         )
         context.insert(pending)
         return pending
@@ -105,16 +103,15 @@ struct PendingTransactionServiceTests {
     @Test("A draft from a pending item mirrors it and requires a category")
     func draftFromPending() throws {
         let context = try makeContext()
-        let categorized = insertPending(category: .needs, in: context)
-        let uncategorized = insertPending(category: nil, in: context)
+        let pending = insertPending(in: context)
 
-        let draft = TransactionGroupDraft(from: categorized)
+        var draft = TransactionGroupDraft(from: pending)
         #expect(draft.type == .expense)
         #expect(draft.title == "Dia")
         #expect(draft.expenseAmountCents == -53_74)
-        #expect(draft.validate().isEmpty)
+        #expect(draft.validate() == ["Select a category for the expense."])
 
-        let missingCategory = TransactionGroupDraft(from: uncategorized)
-        #expect(missingCategory.validate() == ["Select a category for the expense."])
+        draft.expenseCategory = .needs
+        #expect(draft.validate().isEmpty)
     }
 }

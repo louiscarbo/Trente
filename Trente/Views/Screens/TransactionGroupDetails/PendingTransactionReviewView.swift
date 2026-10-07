@@ -140,8 +140,7 @@ struct PendingTransactionReviewView: View {
                 pending: PendingTransaction(
                     date: .now,
                     amountCents: -53_74,
-                    title: "Dia",
-                    category: .needs
+                    title: "Dia"
                 )
             )
         }
