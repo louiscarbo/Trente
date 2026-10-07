@@ -26,20 +26,17 @@
         }
       }
     },
-    "%@ %lld%%" : {
+    "%@ · %lld%%" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ %2$lld%%"
+            "value" : "%1$@ · %2$lld%%"
           }
         }
       }
     },
     "%@ Remaining" : {
-
-    },
-    "%@/day avg" : {
 
     },
     "%lld" : {
@@ -277,9 +274,6 @@
     "Montant ↓" : {
 
     },
-    "Month" : {
-
-    },
     "Month Details" : {
 
     },
@@ -434,9 +428,6 @@
 
     },
     "This Month" : {
-
-    },
-    "This Week" : {
 
     },
     "Title" : {
