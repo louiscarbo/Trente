@@ -19,7 +19,7 @@ struct WalletIntakeServiceTests {
         var error: Error?
         var delay: Duration = .zero
 
-        func suggestCategory(for transaction: WalletTransaction) async throws -> BudgetCategory? {
+        func suggestCategory(for transaction: String) async throws -> BudgetCategory? {
             try await Task.sleep(for: delay)
             if let error { throw error }
             return category
@@ -53,47 +53,33 @@ struct WalletIntakeServiceTests {
 
     private func intake(
         _ service: WalletIntakeService,
-        merchant: String = "Dia",
-        name: String = "Dia",
+        transaction: String = "Dia",
         amount: String = "53,74 €",
         in context: ModelContext,
         now: Date = .now
     ) async throws -> PendingTransaction {
         try await service.intake(
-            merchant: merchant,
-            name: name,
+            transaction: transaction,
             amount: amount,
-            card: "Visa",
             in: context,
             now: now
         )
     }
 
-    @Test("Stores the merchant as title, the suggested category and a negative amount")
+    @Test("Stores the transaction as title, the suggested category and a negative amount")
     func storesSuggestion() async throws {
         let context = try makeContext()
         insertMonth(year: 2026, month: 10, in: context)
         let service = makeService(suggester: StubSuggester(category: .needs))
         let now = Date(timeIntervalSince1970: 1_800_000_000)
 
-        let pending = try await intake(service, merchant: "  Dia ", in: context, now: now)
+        let pending = try await intake(service, transaction: "  Dia ", in: context, now: now)
 
         #expect(pending.title == "Dia")
         #expect(pending.category == .needs)
         #expect(pending.amountCents == -53_74)
         #expect(pending.date == now)
         #expect(try context.fetch(FetchDescriptor<PendingTransaction>()).count == 1)
-    }
-
-    @Test("Falls back to the transaction name when the merchant is empty")
-    func fallsBackToName() async throws {
-        let context = try makeContext()
-        insertMonth(year: 2026, month: 10, in: context)
-        let service = makeService(suggester: StubSuggester(category: .wants))
-
-        let pending = try await intake(service, merchant: " ", name: "Teika M Vending", in: context)
-
-        #expect(pending.title == "Teika M Vending")
     }
 
     @Test("Leaves the category empty when the suggester fails")
@@ -143,14 +129,14 @@ struct WalletIntakeServiceTests {
         }
     }
 
-    @Test("Throws when there is no title to use")
+    @Test("Throws when the transaction is blank")
     func missingTitle() async throws {
         let context = try makeContext()
         insertMonth(year: 2026, month: 10, in: context)
         let service = makeService(suggester: StubSuggester(category: .needs))
 
         await #expect(throws: WalletIntakeError.missingTitle) {
-            try await intake(service, merchant: "", name: " ", in: context)
+            try await intake(service, transaction: " ", in: context)
         }
     }
 

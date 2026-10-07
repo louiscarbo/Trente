@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftData
 
 struct PendingTransactionsDebugView: View {
-    private static let samples: [(merchant: String, amount: String)] = [
+    private static let samples: [(transaction: String, amount: String)] = [
         ("Dia", "53,74 €"),
         ("Teika M Vending", "0,50 €"),
         ("Carrefour Express", "12,30 €"),
@@ -104,10 +104,8 @@ struct PendingTransactionsDebugView: View {
         Task {
             do {
                 try await WalletIntakeService().handle(
-                    merchant: sample.merchant,
-                    name: sample.merchant,
+                    transaction: sample.transaction,
                     amount: sample.amount,
-                    card: "Debug Card",
                     in: modelContext
                 )
             } catch {

@@ -17,6 +17,6 @@ enum SuggestedCategory: CaseIterable {
 
 @Generable
 struct TransactionSuggestion {
-    @Guide(description: "Budget category, or nil when the merchant is unclear or could fit several")
+    @Guide(description: "Budget category, or nil when the transaction is unclear or could fit several")
     var category: SuggestedCategory?
 }

@@ -20,10 +20,8 @@ struct WalletIntakeService {
     var suggestionTimeout: Duration = .seconds(5)
 
     func intake(
-        merchant: String,
-        name: String,
+        transaction: String,
         amount: String,
-        card: String,
         in context: ModelContext,
         now: Date = .now
     ) async throws -> PendingTransaction {
@@ -33,19 +31,16 @@ struct WalletIntakeService {
         guard try MonthService.shared.latestMonth(in: context) != nil else {
             throw WalletIntakeError.noMonth
         }
-        guard let title = [merchant, name]
-            .map({ $0.trimmingCharacters(in: .whitespacesAndNewlines) })
-            .first(where: { !$0.isEmpty })
-        else {
+        let title = transaction.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !title.isEmpty else {
             throw WalletIntakeError.missingTitle
         }
 
-        let transaction = WalletTransaction(merchant: merchant, name: name, amount: amount, card: card)
         let pending = PendingTransaction(
             date: now,
             amountCents: -cents,
             title: title,
-            category: await suggestedCategory(for: transaction)
+            category: await suggestedCategory(for: title)
         )
         context.insert(pending)
         try context.save()
@@ -53,17 +48,13 @@ struct WalletIntakeService {
     }
 
     func handle(
-        merchant: String,
-        name: String,
+        transaction: String,
         amount: String,
-        card: String,
         in context: ModelContext
     ) async throws {
         let pending = try await intake(
-            merchant: merchant,
-            name: name,
+            transaction: transaction,
             amount: amount,
-            card: card,
             in: context
         )
         guard let currency = try MonthService.shared.latestMonth(in: context)?.currency else {
@@ -72,7 +63,7 @@ struct WalletIntakeService {
         try await WalletNotificationService.shared.post(for: pending, currency: currency)
     }
 
-    private func suggestedCategory(for transaction: WalletTransaction) async -> BudgetCategory? {
+    private func suggestedCategory(for transaction: String) async -> BudgetCategory? {
         let suggester = suggester
         let timeout = suggestionTimeout
         return await withTaskGroup(of: BudgetCategory?.self) { group in
