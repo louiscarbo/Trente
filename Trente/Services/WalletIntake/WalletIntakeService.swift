@@ -53,6 +53,11 @@ struct WalletIntakeService {
             amount: amount,
             in: context
         )
-        try await WalletNotificationService.shared.post(for: pending, currency: month.currency)
+        do {
+            try await WalletNotificationService.shared.post(for: pending, currency: month.currency)
+        } catch {
+            try? PendingTransactionService.shared.discard(pending, in: context)
+            throw error
+        }
     }
 }
