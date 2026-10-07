@@ -14,18 +14,15 @@ class PendingTransaction: Identifiable {
     var date: Date
     var amountCents: Int
     var title: String
-    var category: BudgetCategory?
 
     init(
         date: Date,
         amountCents: Int,
-        title: String,
-        category: BudgetCategory?
+        title: String
     ) {
         self.id = UUID()
         self.date = date
         self.amountCents = amountCents
         self.title = title
-        self.category = category
     }
 }

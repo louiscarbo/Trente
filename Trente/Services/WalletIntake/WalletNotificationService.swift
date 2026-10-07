@@ -32,9 +32,7 @@ final class WalletNotificationService {
             .formatted(.currency(code: currency.isoCode))
 
         let content = UNMutableNotificationContent()
-        content.title = [amount, pending.title, pending.category?.shortName]
-            .compactMap { $0 }
-            .joined(separator: " - ")
+        content.title = "\(amount) - \(pending.title)"
         content.body = String(localized: "Tap here to log it in Trente")
         content.sound = .default
         content.userInfo = [Self.pendingTransactionIDKey: pending.id.uuidString]
