@@ -14,25 +14,6 @@ import Foundation
 @Suite(.serialized)
 struct WalletIntakeServiceTests {
 
-    private func makeContext() throws -> ModelContext {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: .trente, configurations: config)
-        return ModelContext(container)
-    }
-
-    @discardableResult
-    private func insertMonth(year: Int, month: Int, in context: ModelContext) -> Month {
-        let eur = Currencies.currency(for: "EUR")!
-        let month = Month(
-            startDate: Calendar.current.date(from: DateComponents(year: year, month: month, day: 1))!,
-            currency: eur,
-            idealBudgetCents: 2000_00,
-            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
-        )
-        context.insert(month)
-        return month
-    }
-
     private func intake(
         transaction: String = "Dia",
         amount: String = "53,74 €",
@@ -77,17 +58,5 @@ struct WalletIntakeServiceTests {
         #expect(throws: WalletIntakeError.missingTitle) {
             try intake(transaction: " ", in: context)
         }
-    }
-
-    @Test("The latest month by start date is the current one")
-    func latestMonth() throws {
-        let context = try makeContext()
-        insertMonth(year: 2026, month: 8, in: context)
-        let latest = insertMonth(year: 2026, month: 10, in: context)
-        insertMonth(year: 2026, month: 9, in: context)
-
-        let found = try MonthService.shared.latestMonth(in: context)
-
-        #expect(found?.id == latest.id)
     }
 }

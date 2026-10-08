@@ -13,12 +13,6 @@ import Foundation
 @Suite(.serialized)
 struct TransactionServiceTests {
 
-    private func makeContext() throws -> ModelContext {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Month.self, configurations: config)
-        return ModelContext(container)
-    }
-
     private func makeMonth(in context: ModelContext) -> Month {
         let eur = Currencies.currency(for: "EUR")!
         let month = Month(
