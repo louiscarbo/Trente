@@ -13,25 +13,6 @@ import Foundation
 @Suite(.serialized)
 struct PendingTransactionServiceTests {
 
-    private func makeContext() throws -> ModelContext {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: .trente, configurations: config)
-        return ModelContext(container)
-    }
-
-    @discardableResult
-    private func insertMonth(year: Int, month: Int, in context: ModelContext) -> Month {
-        let eur = Currencies.currency(for: "EUR")!
-        let month = Month(
-            startDate: Calendar.current.date(from: DateComponents(year: year, month: month, day: 1))!,
-            currency: eur,
-            idealBudgetCents: 2000_00,
-            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
-        )
-        context.insert(month)
-        return month
-    }
-
     private func insertPending(
         date: Date = Date(timeIntervalSince1970: 1_800_000_000),
         in context: ModelContext
