@@ -67,7 +67,7 @@ struct TransactionGroupDetailsView: View {
     // MARK: - Header
 
     private func headerBox() -> some View {
-        TransactionHeaderBox(
+        EditableTransactionHeader(
             isEditing: isEditing,
             currency: transactionGroup.month.currency,
             showsExpenseRow: transactionGroup.type == .expense,
