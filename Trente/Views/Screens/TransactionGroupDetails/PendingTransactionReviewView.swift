@@ -64,7 +64,7 @@ struct PendingTransactionReviewView: View {
                 onCancel: discard,
                 onDone: validate
             ) {
-                TransactionHeaderBox(
+                EditableTransactionHeader(
                     isEditing: true,
                     currency: currency,
                     showsExpenseRow: true,

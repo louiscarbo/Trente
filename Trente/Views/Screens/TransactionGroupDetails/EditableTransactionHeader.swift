@@ -1,5 +1,5 @@
 //
-//  TransactionHeaderBox.swift
+//  EditableTransactionHeader.swift
 //  Trente
 //
 //  Created by Louis Carbo Estaque on 07/10/2026.
@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct TransactionHeaderBox: View {
+struct EditableTransactionHeader: View {
     var isEditing: Bool
     var currency: Currency
     var showsExpenseRow: Bool
