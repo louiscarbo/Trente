@@ -109,6 +109,7 @@ struct MonthListView: View {
         .sheet(isPresented: isShowingPendingTransaction) {
             if let id = pendingTransactionRouter.presentedPendingTransactionID {
                 PendingTransactionReviewLoader(id: id)
+                    .id(id)
             }
         }
     }
