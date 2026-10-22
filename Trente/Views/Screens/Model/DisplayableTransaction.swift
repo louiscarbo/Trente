@@ -81,7 +81,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
     func rowView(isInList: Bool = false) -> some View {
         switch kind {
         case .group(let g):      TransactionGroupRowView(transactionGroup: g, isInList: isInList)
-        case .recurring(let r):  RecurringTransactionRowView(occurrence: r, isInList: isInList)
+        case .recurring(let r):  RecurringTransactionRowView(occurrence: r)
         }
     }
 }

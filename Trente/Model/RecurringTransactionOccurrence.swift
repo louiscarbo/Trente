@@ -26,6 +26,21 @@ struct RecurringTransactionOccurrence: Identifiable, Hashable {
         rule.repartition.values.reduce(0, +)
     }
 
+    var isIncome: Bool {
+        amountCents > 0
+    }
+
+    var isOverdue: Bool {
+        date < Calendar.current.startOfDay(for: .now)
+    }
+
+    var categoryName: String {
+        if amountCents < 0, let category = rule.repartition.keys.first {
+            return category.shortName
+        }
+        return String(localized: "Income")
+    }
+
     var displayAmount: String {
         (Double(amountCents) / 100.0).formatted(.currency(code: month.currency.isoCode))
     }
