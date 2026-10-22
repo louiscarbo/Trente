@@ -7,7 +7,6 @@
 
 import WidgetKit
 import SwiftUI
-import SwiftData
 
 struct MonthRecapWidget: Widget {
     let kind: String = "MonthRecapWidget"
@@ -87,9 +86,9 @@ struct HomescreenMonthRecapWidgetView: View {
                     VStack(alignment: .leading) {
                         Text("Remaining")
                             .font(.subheadline)
-                        Text(currentMonth.remainingAmountDisplay)
+                        Text(currentMonth.display(currentMonth.overall.remaining))
                             .font(.title)
-                            .foregroundStyle(currentMonth.overSpent ? .red : .green)
+                            .foregroundStyle(currentMonth.overall.isOverspent ? .red : .green)
                             .privacySensitive()
                     }
                     
@@ -99,7 +98,7 @@ struct HomescreenMonthRecapWidgetView: View {
                         VStack(alignment: .trailing) {
                             Text("Spent")
                                 .font(.subheadline)
-                            Text(currentMonth.spentAmountDisplay)
+                            Text(currentMonth.display(currentMonth.overall.spent))
                                 .font(.title)
                                 .foregroundStyle(.red)
                                 .privacySensitive()
@@ -137,34 +136,34 @@ struct HomescreenMonthRecapWidgetView: View {
                     Divider()
                     ViewThatFits(in: .vertical) {
                         VStack(spacing: spacing) {
-                            ForEach(currentMonth.latestTransactions.prefix(3)) { transactionGroup in
+                            ForEach(currentMonth.latestTransactions.prefix(3)) { transaction in
                                 TransactionGroupRowContent(
-                                    title: transactionGroup.title,
-                                    categories: transactionGroup.entries.map(\.category),
-                                    amount: transactionGroup.totalAmount,
-                                    currencyCode: currentMonth.currency.isoCode
+                                    title: transaction.title,
+                                    categories: transaction.categories,
+                                    amount: transaction.amount,
+                                    currencyCode: currentMonth.currencyCode
                                 )
                                     .privacySensitive()
                             }
                         }
                         VStack(spacing: spacing) {
-                            ForEach(currentMonth.latestTransactions.prefix(2)) { transactionGroup in
+                            ForEach(currentMonth.latestTransactions.prefix(2)) { transaction in
                                 TransactionGroupRowContent(
-                                    title: transactionGroup.title,
-                                    categories: transactionGroup.entries.map(\.category),
-                                    amount: transactionGroup.totalAmount,
-                                    currencyCode: currentMonth.currency.isoCode
+                                    title: transaction.title,
+                                    categories: transaction.categories,
+                                    amount: transaction.amount,
+                                    currencyCode: currentMonth.currencyCode
                                 )
                                     .privacySensitive()
                             }
                         }
                         VStack(spacing: spacing) {
-                            ForEach(currentMonth.latestTransactions.prefix(1)) { transactionGroup in
+                            ForEach(currentMonth.latestTransactions.prefix(1)) { transaction in
                                 TransactionGroupRowContent(
-                                    title: transactionGroup.title,
-                                    categories: transactionGroup.entries.map(\.category),
-                                    amount: transactionGroup.totalAmount,
-                                    currencyCode: currentMonth.currency.isoCode
+                                    title: transaction.title,
+                                    categories: transaction.categories,
+                                    amount: transaction.amount,
+                                    currencyCode: currentMonth.currencyCode
                                 )
                                     .privacySensitive()
                             }
@@ -205,8 +204,8 @@ struct AccessoryCircularMonthRecapWidgetView: View {
     
     var body: some View {
         if let currentMonth = entry.month {
-            Gauge(value: currentMonth.remainingAmount, in: 0...currentMonth.incomeAmount) {
-                Text(currentMonth.remainingAmountDisplay)
+            Gauge(value: currentMonth.overall.remaining, in: 0...currentMonth.overall.income) {
+                Text(currentMonth.display(currentMonth.overall.remaining))
                     .privacySensitive()
             }
             .gaugeStyle(AccessoryCircularGaugeStyle())
@@ -221,10 +220,10 @@ struct AccessoryInlineMonthRecapWidgetView: View {
     
     var body: some View {
         if let currentMonth = entry.month {
-            Text("- \(currentMonth.remainingAmountDisplay) Remaining")
+            Text("- \(currentMonth.display(currentMonth.overall.remaining)) Remaining")
                 .privacySensitive()
                 .font(.headline)
-                .foregroundStyle(currentMonth.overSpent ? .red : .green)
+                .foregroundStyle(currentMonth.overall.isOverspent ? .red : .green)
         } else {
             Image(systemName: "xmark")
         }
@@ -237,9 +236,9 @@ struct AccessoryRectangularMonthRecapWidgetView: View {
     var body: some View {
         if let currentMonth = entry.month {
             VStack {
-                Text("\(currentMonth.remainingAmountDisplay) Remaining")
+                Text("\(currentMonth.display(currentMonth.overall.remaining)) Remaining")
                     .privacySensitive()
-                Gauge(value: currentMonth.remainingAmount, in: 0...currentMonth.incomeAmount) {
+                Gauge(value: currentMonth.overall.remaining, in: 0...currentMonth.overall.income) {
                 }
                 .gaugeStyle(AccessoryLinearGaugeStyle())
             }
@@ -249,43 +248,34 @@ struct AccessoryRectangularMonthRecapWidgetView: View {
     }
 }
 
-struct Provider: @preconcurrency TimelineProvider {
-    @MainActor
+struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> MonthRecapEntry {
-        MonthRecapEntry(date: Date(), month: Month.getSampleMonthWithTransactions())
+        MonthRecapEntry(date: Date(), month: .sample)
     }
 
-    @MainActor
     func getSnapshot(in context: Context, completion: @escaping (MonthRecapEntry) -> Void) {
-        let entry = MonthRecapEntry(date: Date(), month: Month.getSampleMonthWithTransactions())
-        completion(entry)
+        completion(MonthRecapEntry(date: Date(), month: .sample))
     }
 
-    @MainActor
     func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> Void) {
-        var entries: [MonthRecapEntry] = []
-        // TODO: Change this in the release version
         do {
-            let entry = try MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
-            entries.append(entry)
+            let entry = try MonthRecapEntry(date: Date(), month: getCurrentMonth())
+            completion(Timeline(entries: [entry], policy: .atEnd))
         } catch {
-            return
+            completion(Timeline(entries: [], policy: .atEnd))
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
 struct MonthRecapEntry: TimelineEntry {
     let date: Date
-    let month: Month?
+    let month: WidgetMonth?
 }
 
 #if os(iOS)
 #Preview(as: .accessoryRectangular) {
     MonthRecapWidget()
 } timeline: {
-    MonthRecapEntry(date: Date(), month: try? getCurrentMonth(inPreview: true))
+    MonthRecapEntry(date: Date(), month: .sample)
 }
 #endif
