@@ -153,13 +153,14 @@ struct AccessoryCircularCategoryRemainingWidgetView: View {
 struct CategoryTimeline: AppIntentTimelineProvider {
     func timeline(for configuration: SelectCategoryIntent, in context: Context) async -> Timeline<CategoryEntry> {
         do {
-            let month = try getCurrentMonth()
-            let entry = CategoryEntry(
-                date: Date(),
-                month: month,
-                category: configuration.category ?? .needs
-            )
-            return Timeline(entries: [entry], policy: .never)
+            let entries = try currentMonthTimeline().map { snapshot in
+                CategoryEntry(
+                    date: snapshot.date,
+                    month: snapshot.month,
+                    category: configuration.category ?? .needs
+                )
+            }
+            return Timeline(entries: entries, policy: .never)
         } catch {
             // If fetching the current month fails, return an empty timeline
             return Timeline(entries: [], policy: .never)

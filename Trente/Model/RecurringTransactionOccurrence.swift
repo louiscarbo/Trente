@@ -26,6 +26,13 @@ struct RecurringTransactionOccurrence: Identifiable, Hashable {
         rule.repartition.values.reduce(0, +)
     }
 
+    func amountCents(in scope: BudgetScope) -> Int {
+        switch scope {
+        case .all: amountCents
+        case .category(let category): rule.repartition[category] ?? 0
+        }
+    }
+
     var isIncome: Bool {
         amountCents > 0
     }

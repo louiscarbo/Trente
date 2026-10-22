@@ -19,16 +19,19 @@ struct RecurringTransactionsTests {
         calendar.date(from: DateComponents(year: year, month: month, day: day))!
     }
 
+    @discardableResult
     private func insertRule(
         _ title: String,
         startingOn startDate: Date,
         repartition: [BudgetCategory: Int],
+        automatic: Bool = false,
         in context: ModelContext
     ) -> RecurringTransactionRule {
         let rule = RecurringTransactionRule(
             title: title,
             frequency: .monthly,
             startDate: startDate,
+            autoConfirm: automatic,
             repartition: repartition,
             createdAt: startDate
         )
@@ -223,5 +226,83 @@ struct RecurringTransactionsTests {
         #expect(rule.hasEnded)
         #expect(service.pendingOccurrences(of: [rule], in: thisMonth).map(\.date) == [today])
         #expect(service.pendingOccurrences(of: [rule], in: nextMonth).isEmpty)
+    }
+
+    @Test("Confirming by hand dates the transaction now")
+    func manualConfirmIsDatedNow() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+
+        try service.confirm(occurrence, in: context)
+
+        let group = try #require(april.transactionGroups.first)
+        #expect(abs(group.addedDate.timeIntervalSinceNow) < 60)
+    }
+
+    @Test("Catching up confirms due automatic transactions on their due date")
+    func catchUpConfirmsOnDueDate() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], automatic: true, in: context)
+        try context.save()
+
+        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+
+        #expect(confirmedCount == 1)
+        let group = try #require(april.transactionGroups.first)
+        #expect(group.addedDate == day(2025, 4, 2))
+        #expect(group.recurringOccurrenceDate == day(2025, 4, 2))
+    }
+
+    @Test("Catching up leaves manual, future and skipped transactions alone")
+    func catchUpSkipsManualFutureAndSkipped() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let netflix = insertRule("Netflix", startingOn: day(2025, 4, 5), repartition: [.wants: -13_99], in: context)
+        let gym = insertRule("Gym", startingOn: day(2025, 4, 28), repartition: [.wants: -29_00], automatic: true, in: context)
+        let rent = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], automatic: true, in: context)
+        try context.save()
+        try service.skip(try #require(rent.pendingOccurrences(in: april).first), in: context)
+
+        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+
+        #expect(confirmedCount == 0)
+        #expect(april.transactionGroups.isEmpty)
+        #expect(service.pendingOccurrences(of: [netflix, gym, rent], in: april).map(\.rule.title) == ["Netflix", "Gym"])
+    }
+
+    @Test("Catching up twice confirms once")
+    func catchUpTwiceConfirmsOnce() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], automatic: true, in: context)
+        try context.save()
+
+        try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+        let secondCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 11))
+
+        #expect(secondCount == 0)
+        #expect(april.transactionGroups.count == 1)
+    }
+
+    @Test("A month's figures can include automatic transactions not recorded yet")
+    func figuresIncludeAutomaticOccurrences() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let salary = insertRule("Salary", startingOn: day(2025, 4, 1), repartition: [.needs: 1000_00, .wants: 500_00], in: context)
+        let rent = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrences = service.pendingOccurrences(of: [salary, rent], in: april)
+
+        let overall = april.figures(in: .all, including: occurrences)
+        let needs = april.figures(in: .category(.needs), including: occurrences)
+        let wants = april.figures(in: .category(.wants), including: occurrences)
+
+        #expect(overall == BudgetFigures(spent: 800, income: 1500, remaining: 700))
+        #expect(needs == BudgetFigures(spent: 800, income: 1000, remaining: 200))
+        #expect(wants == BudgetFigures(spent: 0, income: 500, remaining: 500))
     }
 }

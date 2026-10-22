@@ -18,7 +18,11 @@ final class RecurringTransactionService {
             .sorted { $0.date < $1.date }
     }
 
-    func confirm(_ occurrence: RecurringTransactionOccurrence, in context: ModelContext) throws {
+    func confirm(
+        _ occurrence: RecurringTransactionOccurrence,
+        in context: ModelContext,
+        addedDate: Date = .now
+    ) throws {
         let rule = occurrence.rule
         guard !rule.isSettled(on: occurrence.date) else { return }
 
@@ -27,7 +31,8 @@ final class RecurringTransactionService {
             type: occurrence.amountCents < 0 ? .expense : .income,
             month: occurrence.month,
             note: nil,
-            imageAttachmentData: nil
+            imageAttachmentData: nil,
+            addedDate: addedDate
         )
         context.insert(group)
         group.recurringRule = rule
@@ -42,6 +47,23 @@ final class RecurringTransactionService {
 
         occurrence.month.transactionGroups.append(group)
         try context.save()
+    }
+
+    @discardableResult
+    func confirmDueOccurrences(in context: ModelContext, now: Date = .now) throws -> Int {
+        let rules = try context.fetch(
+            FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true })
+        )
+        guard !rules.isEmpty else { return 0 }
+
+        let months = try context.fetch(FetchDescriptor<Month>())
+        let dueOccurrences = months.flatMap { month in
+            rules.flatMap { $0.dueAutomaticOccurrences(in: month, by: now) }
+        }
+        for occurrence in dueOccurrences {
+            try confirm(occurrence, in: context, addedDate: occurrence.date)
+        }
+        return dueOccurrences.count
     }
 
     func skip(_ occurrence: RecurringTransactionOccurrence, in context: ModelContext) throws {
