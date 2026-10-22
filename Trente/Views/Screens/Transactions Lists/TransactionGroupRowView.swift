@@ -70,7 +70,11 @@ struct TransactionGroupRowView: View {
             }
             .padding(.leading)
         } label: {
-            TransactionGroupSummaryRow(transactionGroup: transactionGroup)
+            TransactionGroupSummaryRow(
+                title: transactionGroup.title,
+                amount: transactionGroup.totalAmount,
+                currencyCode: transactionGroup.month.currency.isoCode
+            )
         }
     }
 }
@@ -86,7 +90,12 @@ private struct TransactionEntryRowView: View {
         Button {
             showTransactionGroupDetails = true
         } label: {
-            TransactionEntryRowContent(transactionEntry: transactionEntry, title: title)
+            TransactionEntryRowContent(
+                category: transactionEntry.category,
+                amount: transactionEntry.amount,
+                currencyCode: transactionGroup.month.currency.isoCode,
+                title: title
+            )
         }
         .contentShape(.rect)
         .buttonStyle(.plain)

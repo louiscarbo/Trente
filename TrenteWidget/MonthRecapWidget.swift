@@ -138,19 +138,34 @@ struct HomescreenMonthRecapWidgetView: View {
                     ViewThatFits(in: .vertical) {
                         VStack(spacing: spacing) {
                             ForEach(currentMonth.latestTransactions.prefix(3)) { transactionGroup in
-                                TransactionGroupRowContent(transactionGroup: transactionGroup)
+                                TransactionGroupRowContent(
+                                    title: transactionGroup.title,
+                                    categories: transactionGroup.entries.map(\.category),
+                                    amount: transactionGroup.totalAmount,
+                                    currencyCode: currentMonth.currency.isoCode
+                                )
                                     .privacySensitive()
                             }
                         }
                         VStack(spacing: spacing) {
                             ForEach(currentMonth.latestTransactions.prefix(2)) { transactionGroup in
-                                TransactionGroupRowContent(transactionGroup: transactionGroup)
+                                TransactionGroupRowContent(
+                                    title: transactionGroup.title,
+                                    categories: transactionGroup.entries.map(\.category),
+                                    amount: transactionGroup.totalAmount,
+                                    currencyCode: currentMonth.currency.isoCode
+                                )
                                     .privacySensitive()
                             }
                         }
                         VStack(spacing: spacing) {
                             ForEach(currentMonth.latestTransactions.prefix(1)) { transactionGroup in
-                                TransactionGroupRowContent(transactionGroup: transactionGroup)
+                                TransactionGroupRowContent(
+                                    title: transactionGroup.title,
+                                    categories: transactionGroup.entries.map(\.category),
+                                    amount: transactionGroup.totalAmount,
+                                    currencyCode: currentMonth.currency.isoCode
+                                )
                                     .privacySensitive()
                             }
                         }

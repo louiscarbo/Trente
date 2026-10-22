@@ -14,7 +14,9 @@ import SwiftUI
 
 /// Summary row for a multi-entry income group: title and total amount.
 struct TransactionGroupSummaryRow: View {
-    let transactionGroup: TransactionGroup
+    let title: String
+    let amount: Double
+    let currencyCode: String
 
     var body: some View {
         HStack {
@@ -22,14 +24,14 @@ struct TransactionGroupSummaryRow: View {
                 .fill(.red)
                 .frame(width: 10, height: 10)
             VStack(alignment: .leading) {
-                Text(transactionGroup.title)
+                Text(title)
                     .font(.headline)
                 Text("Income")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Text(transactionGroup.displayAmount)
+            Text(amount, format: .currency(code: currencyCode))
                 .font(.title)
         }
         .tint(.primary)
@@ -38,13 +40,15 @@ struct TransactionGroupSummaryRow: View {
 
 /// A single entry row: category dot, optional group title, category name and amount.
 struct TransactionEntryRowContent: View {
-    let transactionEntry: TransactionEntry
+    let category: BudgetCategory
+    let amount: Double
+    let currencyCode: String
     var title: String?
 
     var body: some View {
         HStack {
             Circle()
-                .fill(transactionEntry.category.color)
+                .fill(category.color)
                 .frame(width: 10, height: 10)
             VStack(alignment: .leading) {
                 if let title {
@@ -53,16 +57,16 @@ struct TransactionEntryRowContent: View {
                         .font(.headline)
                 }
                 ViewThatFits(in: .horizontal) {
-                    Text(transactionEntry.category.name)
+                    Text(category.name)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
-                    Text(transactionEntry.category.shortName)
+                    Text(category.shortName)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
             }
             Spacer()
-            Text(transactionEntry.displayAmount)
+            Text(amount, format: .currency(code: currencyCode))
                 .font(title == nil ? .subheadline : .title)
                 .foregroundStyle(title == nil ? .secondary : .primary)
         }
@@ -72,15 +76,20 @@ struct TransactionEntryRowContent: View {
 /// Read-only rendering of a whole group, branching on entry count.
 /// Used by the widget; the app uses an interactive disclosure instead.
 struct TransactionGroupRowContent: View {
-    let transactionGroup: TransactionGroup
+    let title: String
+    let categories: [BudgetCategory]
+    let amount: Double
+    let currencyCode: String
 
     var body: some View {
-        if transactionGroup.entries.count > 1 {
-            TransactionGroupSummaryRow(transactionGroup: transactionGroup)
-        } else if transactionGroup.entries.count == 1 {
+        if categories.count > 1 {
+            TransactionGroupSummaryRow(title: title, amount: amount, currencyCode: currencyCode)
+        } else if let category = categories.first {
             TransactionEntryRowContent(
-                transactionEntry: transactionGroup.entries[0],
-                title: transactionGroup.title
+                category: category,
+                amount: amount,
+                currencyCode: currencyCode,
+                title: title
             )
         } else {
             EmptyView()
