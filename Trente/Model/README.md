@@ -39,3 +39,11 @@ A `RecurringTransactionInstance` represents a specific, scheduled occurrence of 
 4.  For a **non-recurring transaction**, a `TransactionGroup` and its associated `TransactionEntry` objects are created and saved directly.
 
 This structure allows for a flexible and powerful way to manage both one-time and recurring transactions, while keeping the data normalized and easy to manage.
+
+## Schema Versioning
+
+All `@Model` classes are nested in `SchemaV1` (see `TrenteSchema.swift`) and exposed through top-level typealiases, so the rest of the app refers to `Month`, `TransactionGroup`, etc. `TrenteMigrationPlan` is passed to every `ModelContainer`.
+
+- **Before the first App Store release:** edit the models in `SchemaV1` directly. No new versions, no migration stages. Breaking the store on test devices is acceptable (reinstall).
+- **After release:** never modify a shipped `SchemaVn`. Copy the models into `SchemaVn+1`, apply the change there, point the typealiases at the new version, append it to `TrenteMigrationPlan.schemas` and add a `.lightweight` or `.custom` stage. Test upgrading an on-disk store created by the previous version.
+- **When freezing a `SchemaVn`:** strip its class bodies down to stored properties and plain inits. Behavior lives in extensions on the typealiases, which follow the current version, so a frozen class must not depend on them.

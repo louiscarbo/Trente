@@ -9,17 +9,19 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-@Model
-class RecurringTransactionInstance {
-    var date: Date
-    var rule: RecurringTransactionRule
-    var month: Month
-    var transactionGroup: TransactionGroup?
-    
-    init(date: Date, rule: RecurringTransactionRule, month: Month, confirmed: Bool) {
-        self.date = date
-        self.rule = rule
-        self.month = month
+extension SchemaV1 {
+    @Model
+    class RecurringTransactionInstance {
+        var date: Date
+        var rule: RecurringTransactionRule
+        var month: Month
+        var transactionGroup: TransactionGroup?
+
+        init(date: Date, rule: RecurringTransactionRule, month: Month, confirmed: Bool) {
+            self.date = date
+            self.rule = rule
+            self.month = month
+        }
     }
 }
 
@@ -28,12 +30,12 @@ extension RecurringTransactionInstance {
     var displayDate: String {
         return date.formatted(.dateTime.weekday().day().month(.wide).year())
     }
-    
+
     var displayAmount: String {
         let amount = rule.repartition.values.reduce(0, +)
         return (Double(amount)/100.0).formatted(.currency(code: month.currency.isoCode))
     }
-    
+
     var confirmed: Bool {
         transactionGroup != nil
     }

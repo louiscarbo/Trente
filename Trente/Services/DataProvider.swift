@@ -22,7 +22,7 @@ class DataProvider {
         let modelConfiguration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: true)
 
         do {
-            modelContainer = try ModelContainer(for: .trente, configurations: [modelConfiguration])
+            modelContainer = try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [modelConfiguration])
             
             try insertSampleData()
             
