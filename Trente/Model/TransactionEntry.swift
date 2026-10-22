@@ -8,17 +8,19 @@
 import Foundation
 import SwiftData
 
-@Model
-class TransactionEntry {
-    var amountCents: Int
-    var category: BudgetCategory
+extension SchemaV1 {
+    @Model
+    class TransactionEntry {
+        var amountCents: Int
+        var category: BudgetCategory
 
-    @Relationship var group: TransactionGroup
+        @Relationship var group: TransactionGroup
 
-    init(amountCents: Int, category: BudgetCategory, group: TransactionGroup) {
-        self.amountCents = amountCents
-        self.category = category
-        self.group = group
+        init(amountCents: Int, category: BudgetCategory, group: TransactionGroup) {
+            self.amountCents = amountCents
+            self.category = category
+            self.group = group
+        }
     }
 }
 

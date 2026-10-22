@@ -11,7 +11,7 @@ import Foundation
 
 func makeContext() throws -> ModelContext {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try ModelContainer(for: .trente, configurations: config)
+    let container = try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: config)
     return ModelContext(container)
 }
 

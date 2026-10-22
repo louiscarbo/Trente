@@ -15,7 +15,7 @@ enum TrenteContainer {
         #else
         let configuration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: false)
         do {
-            return try ModelContainer(for: .trente, configurations: [configuration])
+            return try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [configuration])
         } catch {
             // TODO: Maybe fail more gracefully?
             fatalError("Failed to initialize ModelContainer: \(error)")
