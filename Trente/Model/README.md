@@ -26,6 +26,7 @@ A `RecurringTransactionRule` defines a transaction that repeats over time. It is
 *   The frequency of the recurrence (weekly, monthly, yearly).
 *   The start date (its day is the anchor of the schedule) and optional end date, both inclusive and compared by day.
 *   `createdAt`: nothing is ever scheduled before the rule's creation day, so a new rule never touches past budgets.
+*   `skippedOccurrenceDates`: occurrences the user chose to skip.
 *   The template for the `TransactionGroup` to be created, including title, amount, and category information.
 
 `repartition: [BudgetCategory: Int]` stores this amount, signed exactly like `TransactionEntry.amountCents` (negative = expense, positive = income). Since an expense always produces a single `TransactionEntry` (see above), an expense rule's `repartition` must contain exactly one category — only income rules are split across multiple categories. UI editing a rule's repartition must branch on this sign rather than reusing the multi-category income split UI for expenses.
@@ -40,7 +41,7 @@ A `RecurringTransactionOccurrence` is one expected payment of a rule on one day,
 
 1.  When a user creates a **recurring transaction**, only a `RecurringTransactionRule` is saved.
 2.  When a month is shown, each rule's schedule produces the occurrences that fall inside the month.
-3.  An occurrence is **settled** when one of the rule's transactions has a `recurringOccurrenceDate` in the same period (same week, month or year, depending on the frequency). Settled occurrences are hidden. Matching by period means moving the payment day doesn't bring back an occurrence already confirmed that period.
+3.  An occurrence is **settled** when one of the rule's transactions has a `recurringOccurrenceDate` in the same period (same week, month or year, depending on the frequency). Settled occurrences are hidden, and so are skipped ones (a skipped date in the same period). Matching by period means moving the payment day doesn't bring back an occurrence already confirmed or skipped that period.
 4.  Confirming an occurrence creates the `TransactionGroup` (dated now) and its entries, linked to the rule and the occurrence date. Deleting that group makes the occurrence pending again.
 5.  For a **non-recurring transaction**, a `TransactionGroup` and its associated `TransactionEntry` objects are created and saved directly.
 

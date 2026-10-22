@@ -18,6 +18,7 @@ extension SchemaV1 {
         var autoConfirm: Bool = false
         var repartition: [BudgetCategory: Int]
         var createdAt: Date = Date.now
+        var skippedOccurrenceDates: [Date] = []
 
         @Relationship(deleteRule: .nullify, inverse: \TransactionGroup.recurringRule)
         var transactions: [TransactionGroup] = []
@@ -117,14 +118,28 @@ extension RecurringTransactionRule {
         }
     }
 
+    var hasEnded: Bool {
+        guard let endDate else { return false }
+        let calendar = Calendar.current
+        return calendar.startOfDay(for: endDate) <= calendar.startOfDay(for: .now)
+    }
+
     func pendingOccurrences(in month: Month) -> [RecurringTransactionOccurrence] {
-        occurrences(in: month).filter { !isSettled(on: $0.date) }
+        occurrences(in: month).filter { !isSettled(on: $0.date) && !isSkipped(on: $0.date) }
     }
 
     func isSettled(on date: Date, calendar: Calendar = .current) -> Bool {
         transactions.contains { transaction in
             guard let settledDate = transaction.recurringOccurrenceDate else { return false }
-            return calendar.isDate(settledDate, equalTo: date, toGranularity: frequency.calendarComponent)
+            return isSamePeriod(settledDate, date, calendar: calendar)
         }
+    }
+
+    func isSkipped(on date: Date, calendar: Calendar = .current) -> Bool {
+        skippedOccurrenceDates.contains { isSamePeriod($0, date, calendar: calendar) }
+    }
+
+    private func isSamePeriod(_ lhs: Date, _ rhs: Date, calendar: Calendar) -> Bool {
+        calendar.isDate(lhs, equalTo: rhs, toGranularity: frequency.calendarComponent)
     }
 }
