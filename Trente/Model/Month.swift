@@ -21,9 +21,6 @@ extension SchemaV1 {
         @Relationship(deleteRule: .cascade, inverse: \TransactionGroup.month)
         var transactionGroups: [TransactionGroup] = []
 
-        @Relationship(deleteRule: .cascade, inverse: \RecurringTransactionInstance.month)
-        var recurringTransactionInstances: [RecurringTransactionInstance] = []
-
         var isDeleted: Bool = false
 
         init(startDate: Date, currency: Currency, idealBudgetCents: Int, idealRepartition: [BudgetCategory: Int]) {

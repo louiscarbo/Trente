@@ -6,145 +6,172 @@
 //
 
 import Testing
+import SwiftData
 @testable import Trente
 import Foundation
 
-struct RecurringTransactionRuleTests {
-    
-    @Test("Weekly recurrence")
-    func weeklyRecurrence() {
-        // Given
-        let calendar = Calendar(identifier: .gregorian)
-        let eur = Currencies.currency(for: "EUR")!
-        // Rule starts on Wednesday April 2, 2025 and recurs weekly
-        let ruleStart = calendar.date(from: DateComponents(year: 2025, month: 4, day: 2))!
-        let rule = RecurringTransactionRule(
-            title: "Subscription",
-            frequency: .weekly,
-            startDate: ruleStart,
-            autoConfirm: true,
-            repartition: [.wants: 1000],
-            createdAt: ruleStart
-        )
-        
-        // Month = April 2025
-        let monthStart = calendar.date(from: DateComponents(year: 2025, month: 4, day: 1))!
-        let month = Month(
-            startDate: monthStart,
-            currency: eur,
-            idealBudgetCents: 0,
-            idealRepartition: [:]
-        )
-        
-        // When
-        let instances = rule.createRecurringInstances(for: month)
-        
-        // Then: expect Wednesdays 2, 9, 16, 23, 30
-        let days = instances.map { calendar.component(.day, from: $0.date) }
-        #expect(days == [2, 9, 16, 23, 30])
-        #expect(instances.count == 5)
-        // Generated instances are always pending; autoConfirm does not create a linked group.
-        #expect(instances.allSatisfy { !$0.confirmed })
+@Suite(.serialized)
+struct RecurringTransactionsTests {
+    private let calendar = Calendar.current
+    private let service = RecurringTransactionService.shared
+
+    private func day(_ year: Int, _ month: Int, _ day: Int) -> Date {
+        calendar.date(from: DateComponents(year: year, month: month, day: day))!
     }
-    
-    @Test("Monthly recurrence")
-    func monthlyRecurrence() {
-        // Given
-        let calendar = Calendar(identifier: .gregorian)
-        let eur = Currencies.currency(for: "EUR")!
-        // Rule on the 15th of each month
-        let ruleStart = calendar.date(from: DateComponents(year: 2025, month: 1, day: 15))!
+
+    private func insertRule(
+        _ title: String,
+        startingOn startDate: Date,
+        repartition: [BudgetCategory: Int],
+        in context: ModelContext
+    ) -> RecurringTransactionRule {
         let rule = RecurringTransactionRule(
-            title: "Pay Rent",
+            title: title,
             frequency: .monthly,
-            startDate: ruleStart,
-            autoConfirm: false,
-            repartition: [.needs: 50000],
-            createdAt: ruleStart
+            startDate: startDate,
+            repartition: repartition,
+            createdAt: startDate
         )
-        
-        // Month = February 2025
-        let monthStart = calendar.date(from: DateComponents(year: 2025, month: 2, day: 1))!
-        let month = Month(
-            startDate: monthStart,
-            currency: eur,
-            idealBudgetCents: 0,
-            idealRepartition: [:]
-        )
-        
-        // When
-        let instances = rule.createRecurringInstances(for: month)
-        
-        // Then: exactly one on Feb 15, 2025
-        #expect(instances.count == 1)
-        let expectedDate = calendar.date(from: DateComponents(year: 2025, month: 2, day: 15))!
-        #expect(instances.first?.date == expectedDate)
-        #expect(instances.first?.confirmed == false)
+        context.insert(rule)
+        return rule
     }
-    
-    @Test("Yearly recurrence")
-    func yearlyRecurrence() {
-        // Given
-        let calendar = Calendar(identifier: .gregorian)
-        let eur = Currencies.currency(for: "EUR")!
-        // Rule on December 25 each year since 2020
-        let ruleStart = calendar.date(from: DateComponents(year: 2020, month: 12, day: 25))!
-        let rule = RecurringTransactionRule(
-            title: "Holiday",
-            frequency: .yearly,
-            startDate: ruleStart,
-            autoConfirm: true,
-            repartition: [.savingsAndDebts: 0],
-            createdAt: ruleStart
-        )
-        
-        // Month = December 2023
-        let monthStart = calendar.date(from: DateComponents(year: 2023, month: 12, day: 1))!
-        let month = Month(
-            startDate: monthStart,
-            currency: eur,
-            idealBudgetCents: 0,
-            idealRepartition: [:]
-        )
-        
-        // When
-        let instances = rule.createRecurringInstances(for: month)
-        
-        // Then: one on Dec 25, 2023
-        #expect(instances.count == 1)
-        let expectedDate = calendar.date(from: DateComponents(year: 2023, month: 12, day: 25))!
-        #expect(instances[0].date == expectedDate)
-        #expect(!instances[0].confirmed)
+
+    @Test("A month's pending occurrences come from the rule's schedule")
+    func pendingOccurrencesFollowSchedule() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 1, 15), repartition: [.needs: -800_00], in: context)
+        try context.save()
+
+        let occurrences = service.pendingOccurrences(of: [rule], in: april)
+
+        #expect(occurrences.map(\.date) == [day(2025, 4, 15)])
+        #expect(occurrences.first?.amountCents == -800_00)
     }
-    
-    @Test("No occurrences if outside window")
-    func noOccurrences() {
-        // Given
-        let calendar = Calendar(identifier: .gregorian)
-        let eur = Currencies.currency(for: "EUR")!
-        // Rule starts June 1, 2025
-        let ruleStart = calendar.date(from: DateComponents(year: 2025, month: 6, day: 1))!
-        let rule = RecurringTransactionRule(
-            title: "Future Payment",
-            frequency: .monthly,
-            startDate: ruleStart,
-            repartition: [.wants: 0],
-            createdAt: ruleStart
-        )
-        
-        // Month = May 2025
-        let monthStart = calendar.date(from: DateComponents(year: 2025, month: 5, day: 1))!
-        let month = Month(
-            startDate: monthStart,
-            currency: eur,
-            idealBudgetCents: 0,
-            idealRepartition: [:]
-        )
-        
-        // When
-        let instances = rule.createRecurringInstances(for: month)
-        
-        // Then: no instances
-        #expect(instances.isEmpty)
+
+    @Test("Confirming an income occurrence creates a linked income transaction")
+    func confirmIncome() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Salary", startingOn: day(2025, 4, 1), repartition: [.needs: 1500_00, .wants: 500_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+
+        try service.confirm(occurrence, in: context)
+
+        let group = try #require(april.transactionGroups.first)
+        #expect(april.transactionGroups.count == 1)
+        #expect(group.type == .income)
+        #expect(group.entries.count == 2)
+        #expect(group.totalAmountCents == 2000_00)
+        #expect(group.recurringRule?.persistentModelID == rule.persistentModelID)
+        #expect(group.recurringOccurrenceDate == day(2025, 4, 1))
+        #expect(service.pendingOccurrences(of: [rule], in: april).isEmpty)
+    }
+
+    @Test("Confirming an expense occurrence creates an expense transaction")
+    func confirmExpense() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+
+        try service.confirm(occurrence, in: context)
+
+        let group = try #require(april.transactionGroups.first)
+        #expect(group.type == .expense)
+        #expect(group.entries.map(\.amountCents) == [-800_00])
+        #expect(group.entries.first?.category == .needs)
+    }
+
+    @Test("Confirming the same occurrence twice creates a single transaction")
+    func confirmTwice() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Salary", startingOn: day(2025, 4, 1), repartition: [.needs: 1000_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+
+        try service.confirm(occurrence, in: context)
+        try service.confirm(occurrence, in: context)
+
+        #expect(april.transactionGroups.count == 1)
+    }
+
+    @Test("Deleting a confirmed transaction makes its occurrence pending again")
+    func deletingConfirmedTransactionRestoresOccurrence() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+        try service.confirm(occurrence, in: context)
+        let group = try #require(april.transactionGroups.first)
+
+        TransactionService.shared.delete(group: group, in: context)
+        try context.save()
+
+        #expect(service.pendingOccurrences(of: [rule], in: april).map(\.date) == [day(2025, 4, 2)])
+    }
+
+    @Test("Deleting a rule keeps the transactions it created")
+    func deletingRuleKeepsTransactions() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+        try service.confirm(occurrence, in: context)
+
+        service.delete(rule: rule, in: context)
+        try context.save()
+
+        let groups = try context.fetch(FetchDescriptor<TransactionGroup>())
+        #expect(groups.count == 1)
+        #expect(groups.first?.recurringRule == nil)
+        #expect(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).isEmpty)
+    }
+
+    @Test("Moving the payment day doesn't bring back an occurrence already confirmed that month")
+    func movingPaymentDayKeepsMonthSettled() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+        try service.confirm(occurrence, in: context)
+
+        rule.startDate = day(2025, 4, 20)
+        try context.save()
+
+        #expect(service.pendingOccurrences(of: [rule], in: april).isEmpty)
+    }
+
+    @Test("Confirming one month leaves the next month's occurrence pending")
+    func confirmingOneMonthLeavesOthersPending() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let may = insertMonth(year: 2025, month: 5, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+
+        try service.confirm(occurrence, in: context)
+
+        #expect(service.pendingOccurrences(of: [rule], in: may).map(\.date) == [day(2025, 5, 2)])
+    }
+
+    @Test("Pending occurrences of several rules are sorted by date")
+    func pendingOccurrencesAreSorted() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let netflix = insertRule("Netflix", startingOn: day(2025, 1, 22), repartition: [.wants: -13_99], in: context)
+        let rent = insertRule("Rent", startingOn: day(2025, 1, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+
+        let titles = service.pendingOccurrences(of: [netflix, rent], in: april).map(\.rule.title)
+
+        #expect(titles == ["Rent", "Netflix"])
     }
 }

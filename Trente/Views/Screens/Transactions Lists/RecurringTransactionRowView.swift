@@ -9,24 +9,23 @@ import SwiftUI
 
 struct RecurringTransactionRowView: View {
     @Environment(\.modelContext) private var modelContext
-    @State var instance: RecurringTransactionInstance
+    let occurrence: RecurringTransactionOccurrence
     @State var isInList = false
     @State private var showDetails = false
-    @State private var ruleSaved = false
     @State private var editFromSwipe = false
     @State private var showDeleteConfirmation = false
     @State private var showValidateConfirmation = false
 
     var body: some View {
         Group {
-            if instance.rule.repartition.keys.count > 1 {
+            if occurrence.rule.repartition.keys.count > 1 {
                 DisclosureGroup {
                     VStack {
                         if !isInList {
                             Divider()
                         }
-                        ForEach(Array(instance.rule.repartition.keys), id: \.self) { category in
-                            let amount = instance.rule.repartition[category] ?? 0
+                        ForEach(Array(occurrence.rule.repartition.keys), id: \.self) { category in
+                            let amount = occurrence.rule.repartition[category] ?? 0
 
                             Button { showDetails = true } label: {
                                 RecurringTransactionEntryRowView(
@@ -45,20 +44,20 @@ struct RecurringTransactionRowView: View {
                     RecurringTransactionEntryRowView(
                         transactionCategoryColor: .red,
                         transactionCategoryName: "Income",
-                        currency: instance.month.currency,
-                        displayAmount: instance.displayAmount,
-                        title: instance.rule.title
+                        currency: occurrence.month.currency,
+                        displayAmount: occurrence.displayAmount,
+                        title: occurrence.rule.title
                     )
                 }
-            } else if instance.rule.repartition.keys.count == 1 {
-                let category = instance.rule.repartition.keys.first!
+            } else if occurrence.rule.repartition.keys.count == 1 {
+                let category = occurrence.rule.repartition.keys.first!
                 Button { showDetails = true } label: {
                     RecurringTransactionEntryRowView(
                         transactionCategoryColor: category.color,
                         transactionCategoryName: category.shortName,
-                        currency: instance.month.currency,
-                        displayAmount: instance.displayAmount,
-                        title: instance.rule.title
+                        currency: occurrence.month.currency,
+                        displayAmount: occurrence.displayAmount,
+                        title: occurrence.rule.title
                     )
                     .contentShape(Rectangle())
                 }
@@ -66,7 +65,7 @@ struct RecurringTransactionRowView: View {
             } else {
                 EmptyView()
                     .onAppear {
-                        print("WARNING: RecurringTransactionRowView: instance.rule.repartition is empty")
+                        print("WARNING: RecurringTransactionRowView: occurrence.rule.repartition is empty")
                     }
             }
         }
@@ -85,17 +84,15 @@ struct RecurringTransactionRowView: View {
             .tint(.orange)
         }
         .swipeActions(edge: .leading) {
-            if !instance.confirmed {
-                Button {
-                    showValidateConfirmation = true
-                } label: {
-                    Label("Validate", systemImage: "checkmark.circle")
-                }
-                .tint(.green)
+            Button {
+                showValidateConfirmation = true
+            } label: {
+                Label("Validate", systemImage: "checkmark.circle")
             }
+            .tint(.green)
         }
         .deleteConfirmation(isPresented: $showDeleteConfirmation) {
-            RecurringTransactionService.shared.delete(rule: instance.rule, in: modelContext)
+            RecurringTransactionService.shared.delete(rule: occurrence.rule, in: modelContext)
             try? modelContext.save()
         }
         .confirmationDialog(
@@ -104,31 +101,28 @@ struct RecurringTransactionRowView: View {
             titleVisibility: .visible
         ) {
             Button(String(localized: "Confirm")) {
-                try? RecurringTransactionService.shared.confirm(instance: instance, in: modelContext)
+                try? RecurringTransactionService.shared.confirm(occurrence, in: modelContext)
             }
             Button(String(localized: "Cancel"), role: .cancel) {}
         } message: {
             Text("This adds it as a transaction for this month.")
         }
-        .sheet(isPresented: $showDetails, onDismiss: {
-            editFromSwipe = false
-            guard ruleSaved else { return }
-            ruleSaved = false
-            try? RecurringTransactionService.shared.refreshInstances(for: instance.rule, in: modelContext)
-        }) {
+        .sheet(isPresented: $showDetails) {
             RecurringTransactionRuleDetailsView(
-                rule: instance.rule,
-                currency: instance.month.currency,
-                startInEditMode: editFromSwipe,
-                onSave: { ruleSaved = true }
+                rule: occurrence.rule,
+                currency: occurrence.month.currency,
+                startInEditMode: editFromSwipe
             )
+        }
+        .onChange(of: showDetails) { _, isShowing in
+            if !isShowing { editFromSwipe = false }
         }
         .clipShape(Rectangle().inset(by: -3))
     }
     
     private func formatAmount(_ amount: Int) -> String {
         let amount = Double(amount) / 100.0
-        return amount.formatted(.currency(code: instance.month.currency.isoCode))
+        return amount.formatted(.currency(code: occurrence.month.currency.isoCode))
     }
 }
 
@@ -201,9 +195,10 @@ private struct RecurrenceTagView: View {
     
     ScrollView {
         LazyVStack {
-            ForEach(Month.month1.recurringTransactionInstances) { recurringTransactionInstance in
-                
-                RecurringTransactionRowView(instance: recurringTransactionInstance)
+            ForEach(
+                RecurringTransactionService.shared.pendingOccurrences(of: RecurringTransactionRule.sampleData, in: Month.month1)
+            ) { occurrence in
+                RecurringTransactionRowView(occurrence: occurrence)
             }
         }
         .padding()

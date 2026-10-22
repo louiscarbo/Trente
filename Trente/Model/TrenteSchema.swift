@@ -16,7 +16,6 @@ enum SchemaV1: VersionedSchema {
             TransactionGroup.self,
             TransactionEntry.self,
             RecurringTransactionRule.self,
-            RecurringTransactionInstance.self,
             PendingTransaction.self
         ]
     }
@@ -26,7 +25,6 @@ typealias Month = SchemaV1.Month
 typealias TransactionGroup = SchemaV1.TransactionGroup
 typealias TransactionEntry = SchemaV1.TransactionEntry
 typealias RecurringTransactionRule = SchemaV1.RecurringTransactionRule
-typealias RecurringTransactionInstance = SchemaV1.RecurringTransactionInstance
 typealias PendingTransaction = SchemaV1.PendingTransaction
 
 enum TrenteMigrationPlan: SchemaMigrationPlan {

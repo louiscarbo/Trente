@@ -19,6 +19,8 @@ extension SchemaV1 {
         var type: TransactionType
         var month: Month
         var isDeleted: Bool = false
+        var recurringRule: RecurringTransactionRule?
+        var recurringOccurrenceDate: Date?
 
         @Relationship(deleteRule: .cascade, inverse: \TransactionEntry.group)
         var entries: [TransactionEntry] = []
