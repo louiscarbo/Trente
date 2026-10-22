@@ -75,9 +75,13 @@ extension TransactionGroup {
         entries.reduce(0) { $0 + $1.amountCents }
     }
 
+    var totalAmount: Double {
+        Double(totalAmountCents) / 100.0
+    }
+
     /// Returns a localized string that displays the amount correctly, not in cents.
     var displayAmount: String {
-        (Double(totalAmountCents) / 100.0)
+        totalAmount
             .formatted(.currency(code: month.currency.isoCode))
     }
 }
