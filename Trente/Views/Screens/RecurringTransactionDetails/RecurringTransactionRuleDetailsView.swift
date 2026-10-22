@@ -311,7 +311,10 @@ struct RecurringTransactionRuleDetailsView: View {
         currentDraft.apply(to: rule)
         do {
             try modelContext.save()
-            withAnimation { isEditing = false }
+            withAnimation {
+                draft = nil
+                isEditing = false
+            }
         } catch {
             validationErrors = [String(localized: "Failed to save changes: \(error.localizedDescription)")]
         }
