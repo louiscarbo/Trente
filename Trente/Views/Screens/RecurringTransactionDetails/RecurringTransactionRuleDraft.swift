@@ -13,6 +13,7 @@ struct RecurringTransactionRuleDraft {
     var autoConfirm: Bool
     var repartition: [BudgetCategory: Int]
     var repartitionTotalCents: Int
+    private let originalStartDate: Date
 
     init(from rule: RecurringTransactionRule) {
         title = rule.title
@@ -22,6 +23,7 @@ struct RecurringTransactionRuleDraft {
         autoConfirm = rule.autoConfirm
         repartition = rule.repartition
         repartitionTotalCents = rule.repartition.values.reduce(0, +)
+        originalStartDate = rule.startDate
     }
 
     func apply(to rule: RecurringTransactionRule) {
@@ -44,6 +46,9 @@ struct RecurringTransactionRuleDraft {
         }
         if total != repartitionTotalCents && repartitionTotalCents != 0 {
             issues.append(String(localized: "Repartition total does not match the amount to split."))
+        }
+        if startDate != originalStartDate && startDate < Calendar.current.startOfDay(for: .now) {
+            issues.append(String(localized: "Start date cannot be in the past."))
         }
         if let endDate, endDate <= startDate {
             issues.append(String(localized: "End date must be at least 7 days after start date."))

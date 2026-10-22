@@ -11,6 +11,7 @@ import SwiftData
 enum TransactionServiceError: Error {
     case missingCategoryForExpense
     case invalidRepartition
+    case recurrenceStartsInPast
 }
 
 final class TransactionService {
@@ -39,19 +40,23 @@ final class TransactionService {
 
     func create(with request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
         if request.isRecurrent {
+            let calendar = Calendar.current
+            guard request.recurrenceStartDate >= calendar.startOfDay(for: .now) else {
+                throw TransactionServiceError.recurrenceStartsInPast
+            }
             let rule = RecurringTransactionRule(
                 title: request.title,
                 frequency: request.recurrenceFrequency,
                 startDate: request.recurrenceStartDate,
                 endDate: request.recurrenceEndDate,
-                repartition: request.repartition
+                repartition: try recurringRepartition(from: request)
             )
             context.insert(rule)
-            
-            if Calendar.current.isDateInToday(request.recurrenceStartDate) {
+
+            if calendar.isDateInToday(request.recurrenceStartDate) && request.isFirstOccurrenceAlreadyPaid {
                 let group = try createTransactionGroupWithEntries(from: request, for: month, in: context)
                 group.recurringRule = rule
-                group.recurringOccurrenceDate = Calendar.current.startOfDay(for: request.recurrenceStartDate)
+                group.recurringOccurrenceDate = calendar.startOfDay(for: request.recurrenceStartDate)
             }
         } else {
             try createTransactionGroupWithEntries(from: request, for: month, in: context)
@@ -62,6 +67,22 @@ final class TransactionService {
 }
 
 private extension TransactionService {
+    func recurringRepartition(from request: TransactionCreationRequest) throws -> [BudgetCategory: Int] {
+        switch request.type {
+        case .expense:
+            guard let category = request.selectedCategory else {
+                throw TransactionServiceError.missingCategoryForExpense
+            }
+            return [category: request.amountCents]
+        case .income:
+            let repartition = request.repartition.filter { $0.value > 0 }
+            guard !repartition.isEmpty else {
+                throw TransactionServiceError.invalidRepartition
+            }
+            return repartition
+        }
+    }
+
     @discardableResult
     func createTransactionGroupWithEntries(from request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws -> TransactionGroup {
         // Transaction validation

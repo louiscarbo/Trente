@@ -137,6 +137,7 @@ struct RecurringTransactionRuleDetailsView: View {
                         get: { isEditing ? (draft?.startDate ?? rule.startDate) : rule.startDate },
                         set: { draft?.startDate = $0 }
                     ),
+                    in: earliestSelectableStartDate...,
                     displayedComponents: .date
                 )
                 .datePickerStyle(.compact)
@@ -146,6 +147,10 @@ struct RecurringTransactionRuleDetailsView: View {
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
         .disabled(!isEditing)
+    }
+
+    private var earliestSelectableStartDate: Date {
+        min(rule.startDate, Calendar.current.startOfDay(for: .now))
     }
 
     @ViewBuilder
