@@ -64,9 +64,12 @@ struct SmallMediumCategoryRemainingWidgetView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
+            let month = entry.month ?? Month.getSampleMonthWithTransactions()
+            let category = entry.category.budgetCategory
             BudgetGaugeView(
-                month: entry.month ?? Month.getSampleMonthWithTransactions(),
-                category: entry.category.budgetCategory
+                figures: month.figures(in: .category(category)),
+                category: category,
+                currencyCode: month.currency.isoCode
             )
             
             Text(entry.category.budgetCategory.shortName)
@@ -103,9 +106,11 @@ struct MediumCategoryRemainingWidgetView: View {
         
         var body: some View {
             ZStack(alignment: .bottom) {
+                let month = month ?? Month.getSampleMonthWithTransactions()
                 BudgetGaugeView(
-                    month: month ?? Month.getSampleMonthWithTransactions(),
+                    figures: month.figures(in: .category(category)),
                     category: category,
+                    currencyCode: month.currency.isoCode,
                     size: 80
                 )
                 

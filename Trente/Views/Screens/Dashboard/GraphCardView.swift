@@ -13,12 +13,15 @@ struct GraphCardView: View {
     var size: CGFloat = 100
     
     @State private var showRemaining = false
-    
+
+    private var figures: BudgetFigures {
+        month.figures(in: scope)
+    }
+
     private var percentage: Double {
-        let allocated = month.incomeAmount(in: scope)
-        guard allocated > 0 else { return 0 }
-        let amount = showRemaining ? month.remainingAmount(in: scope) : month.spentAmount(in: scope)
-        return amount / allocated
+        guard figures.income > 0 else { return 0 }
+        let amount = showRemaining ? figures.remaining : figures.spent
+        return amount / figures.income
     }
     
     private var caption: Text {
@@ -33,14 +36,15 @@ struct GraphCardView: View {
             GroupBox(label:
                 Label(
                     scope.shortName,
-                    systemImage: month.overSpending(in: scope) ? "exclamationmark.triangle.fill" : month.currency.sfSymbolGaugeName
+                    systemImage: figures.isOverspent ? "exclamationmark.triangle.fill" : month.currency.sfSymbolGaugeName
                 )
-                .foregroundColor(month.overSpending(in: scope) ? .red : scope.color)
+                .foregroundColor(figures.isOverspent ? .red : scope.color)
             ) {
                 VStack(spacing: 0) {
                     BudgetGaugeView(
-                        month: month,
+                        figures: figures,
                         scope: scope,
+                        currencyCode: month.currency.isoCode,
                         size: size,
                         showRemaining: showRemaining
                     )
@@ -90,53 +94,58 @@ extension BudgetScope {
 
 // MARK: BudgetGaugeView
 struct BudgetGaugeView: View {
-    var month: Month
+    var figures: BudgetFigures
     var scope: BudgetScope
+    var currencyCode: String
     var size: CGFloat = 100
     var showRemaining = false
-    
+
+    private var currencyFormat: FloatingPointFormatStyle<Double>.Currency {
+        .currency(code: currencyCode).precision(.fractionLength(0))
+    }
+
     var gaugeColor: Color {
         if showRemaining {
-            return month.overSpending(in: scope) ? .red : scope.color
+            return figures.isOverspent ? .red : scope.color
         }
-        if month.spentAmount(in: scope) == 0 {
+        if figures.spent == 0 {
             return .gray
         }
-        if month.overSpending(in: scope) {
+        if figures.isOverspent {
             return .red
         }
         return scope.color
     }
-    
+
     var textColor: Color {
-        if month.overSpending(in: scope) {
+        if figures.isOverspent {
             return .red
         }
         return .primary
     }
-    
+
     var gaugeValue: Double {
-        if showRemaining && month.overSpending(in: scope) {
+        if showRemaining && figures.isOverspent {
             1
-        } else if month.overSpending(in: scope) {
-            -1 * month.remainingAmount(in: scope).truncatingRemainder(dividingBy: month.incomeAmount(in: scope))
+        } else if figures.isOverspent {
+            -1 * figures.remaining.truncatingRemainder(dividingBy: figures.income)
         } else {
-            month.spentAmount(in: scope)
+            figures.spent
         }
     }
-    
+
     var body: some View {
         VStack {
-            Gauge(value: gaugeValue, in: 0...month.incomeAmount(in: scope)) {
+            Gauge(value: gaugeValue, in: 0...figures.income) {
                 Text(scope.name)
             } currentValueLabel: {
-                Text(showRemaining ? month.remainingAmountDisplay(in: scope) : month.spentAmountDisplay(in: scope))
-                    .foregroundStyle(month.overSpending(in: scope) ? .red : .primary)
-                    .contentTransition(.numericText(value: showRemaining ? month.remainingAmount(in: scope) : month.spentAmount(in: scope)))
+                Text(showRemaining ? figures.remaining : figures.spent, format: currencyFormat)
+                    .foregroundStyle(figures.isOverspent ? .red : .primary)
+                    .contentTransition(.numericText(value: showRemaining ? figures.remaining : figures.spent))
             } minimumValueLabel: {
                 Text("")
             } maximumValueLabel: {
-                Text("\(month.incomeAmount(in: scope), format: .currency(code: month.currency.isoCode).precision(.fractionLength(0)))")
+                Text(figures.income, format: currencyFormat)
                     .foregroundStyle(textColor)
             }
             .gaugeStyle(
@@ -151,8 +160,8 @@ struct BudgetGaugeView: View {
 }
 
 extension BudgetGaugeView {
-    init(month: Month, category: BudgetCategory, size: CGFloat = 100) {
-        self.init(month: month, scope: .category(category), size: size, showRemaining: false)
+    init(figures: BudgetFigures, category: BudgetCategory, currencyCode: String, size: CGFloat = 100) {
+        self.init(figures: figures, scope: .category(category), currencyCode: currencyCode, size: size, showRemaining: false)
     }
 }
 
