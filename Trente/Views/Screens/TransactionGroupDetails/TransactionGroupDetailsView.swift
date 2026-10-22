@@ -191,6 +191,7 @@ struct TransactionGroupDetailsView: View {
         do {
             try modelContext.save()
             withAnimation {
+                self.draft = nil
                 isEditing = false
             }
         } catch {
