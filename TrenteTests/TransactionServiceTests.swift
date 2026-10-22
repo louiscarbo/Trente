@@ -47,25 +47,93 @@ struct TransactionServiceTests {
         #expect(entries.isEmpty)
     }
 
+    private func insertCurrentMonth(in context: ModelContext) -> Month {
+        let today = Calendar.current.dateComponents([.year, .month], from: .now)
+        return insertMonth(year: today.year!, month: today.month!, in: context)
+    }
+
+    private func recurringRequest(_ type: TransactionType, startingOn startDate: Date = .now) -> TransactionCreationRequest {
+        let request = TransactionCreationRequest()
+        request.isRecurrent = true
+        request.recurrenceStartDate = startDate
+        request.type = type
+        switch type {
+        case .income:
+            request.title = "Salary"
+            request.amountCents = 2000_00
+            request.repartition = [.needs: 2000_00]
+        case .expense:
+            request.title = "Rent"
+            request.amountCents = -800_00
+            request.selectedCategory = .needs
+        }
+        return request
+    }
+
     @Test("A recurring income starting today is recorded once")
     func recurringIncomeStartingTodayIsRecordedOnce() throws {
         let context = try makeContext()
-        let today = Calendar.current.dateComponents([.year, .month], from: .now)
-        let month = insertMonth(year: today.year!, month: today.month!, in: context)
-        let request = TransactionCreationRequest()
-        request.title = "Salary"
-        request.type = .income
-        request.amountCents = 2000_00
-        request.repartition = [.needs: 2000_00]
-        request.isRecurrent = true
-        request.recurrenceStartDate = .now
+        let month = insertCurrentMonth(in: context)
 
-        try TransactionService.shared.create(with: request, for: month, in: context)
+        try TransactionService.shared.create(with: recurringRequest(.income), for: month, in: context)
 
         let rule = try #require(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).first)
         let groups = try context.fetch(FetchDescriptor<TransactionGroup>())
         #expect(groups.count == 1)
         #expect(groups.first?.recurringRule?.persistentModelID == rule.persistentModelID)
         #expect(RecurringTransactionService.shared.pendingOccurrences(of: [rule], in: month).isEmpty)
+    }
+
+    @Test("A recurring expense keeps its category and signed amount")
+    func recurringExpenseKeepsCategoryAndAmount() throws {
+        let context = try makeContext()
+        let month = insertCurrentMonth(in: context)
+
+        try TransactionService.shared.create(with: recurringRequest(.expense), for: month, in: context)
+
+        let rule = try #require(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).first)
+        #expect(rule.repartition == [.needs: -800_00])
+        let group = try #require(try context.fetch(FetchDescriptor<TransactionGroup>()).first)
+        #expect(group.type == .expense)
+        #expect(group.totalAmountCents == -800_00)
+    }
+
+    @Test("A recurring transaction starting today and not paid yet stays pending")
+    func recurringTransactionNotPaidYetStaysPending() throws {
+        let context = try makeContext()
+        let month = insertCurrentMonth(in: context)
+        let request = recurringRequest(.expense)
+        request.isFirstOccurrenceAlreadyPaid = false
+
+        try TransactionService.shared.create(with: request, for: month, in: context)
+
+        let rule = try #require(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).first)
+        #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
+        let pending = RecurringTransactionService.shared.pendingOccurrences(of: [rule], in: month)
+        #expect(pending.map(\.date) == [Calendar.current.startOfDay(for: .now)])
+    }
+
+    @Test("A recurring transaction starting in the future records nothing yet")
+    func recurringTransactionStartingLaterRecordsNothing() throws {
+        let context = try makeContext()
+        let month = insertCurrentMonth(in: context)
+        let nextWeek = Calendar.current.date(byAdding: .day, value: 7, to: .now)!
+
+        try TransactionService.shared.create(with: recurringRequest(.expense, startingOn: nextWeek), for: month, in: context)
+
+        #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
+        #expect(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).count == 1)
+    }
+
+    @Test("A recurring transaction cannot start in the past")
+    func recurringTransactionCannotStartInPast() throws {
+        let context = try makeContext()
+        let month = insertCurrentMonth(in: context)
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: .now)!
+
+        #expect(throws: TransactionServiceError.recurrenceStartsInPast) {
+            try TransactionService.shared.create(with: recurringRequest(.expense, startingOn: yesterday), for: month, in: context)
+        }
+        #expect(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).isEmpty)
     }
 }

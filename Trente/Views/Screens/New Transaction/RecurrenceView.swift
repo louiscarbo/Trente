@@ -12,6 +12,8 @@ struct RecurrenceView: View {
     @Binding var recurrenceFrequency: RecurrenceFrequency
     @Binding var recurrenceStartDate: Date
     @Binding var recurrenceEndDate: Date?
+    @Binding var isFirstOccurrenceAlreadyPaid: Bool
+    var transactionType: TransactionType
     
     // View State
     private var minimumEndDate: Date {
@@ -24,6 +26,9 @@ struct RecurrenceView: View {
                 VStack(spacing: .medium) {
                     frequencyPicker
                     startDatePicker
+                    if Calendar.current.isDateInToday(recurrenceStartDate) {
+                        alreadyPaidToggle
+                    }
                     endDatePicker
                 }
             }
@@ -43,8 +48,21 @@ struct RecurrenceView: View {
     }
     
     private var startDatePicker: some View {
-        DatePicker("Start Date", selection: $recurrenceStartDate, displayedComponents: .date)
-            .datePickerStyle(.compact)
+        DatePicker(
+            "Start Date",
+            selection: $recurrenceStartDate,
+            in: Calendar.current.startOfDay(for: .now)...,
+            displayedComponents: .date
+        )
+        .datePickerStyle(.compact)
+    }
+
+    private var alreadyPaidToggle: some View {
+        Toggle(isOn: $isFirstOccurrenceAlreadyPaid) {
+            Text(transactionType == .income ? "Already received today" : "Already paid today")
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .toggleStyle(TrenteToggleStyle())
     }
     
     @ViewBuilder
@@ -85,6 +103,7 @@ struct RecurrenceView: View {
     @Previewable @State var recurrenceFrequency: RecurrenceFrequency = .monthly
     @Previewable @State var recurrenceStartDate: Date = Date()
     @Previewable @State var recurrenceEndDate: Date?
+    @Previewable @State var isFirstOccurrenceAlreadyPaid = true
     
     Text("Hello")
         .sheet(isPresented: .constant(true)) {
@@ -92,7 +111,9 @@ struct RecurrenceView: View {
                 RecurrenceView(
                     recurrenceFrequency: $recurrenceFrequency,
                     recurrenceStartDate: $recurrenceStartDate,
-                    recurrenceEndDate: $recurrenceEndDate
+                    recurrenceEndDate: $recurrenceEndDate,
+                    isFirstOccurrenceAlreadyPaid: $isFirstOccurrenceAlreadyPaid,
+                    transactionType: .expense
                 )
                 .navigationTitle("New Transaction")
                 #if os(iOS)

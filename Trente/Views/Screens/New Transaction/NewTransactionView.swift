@@ -145,7 +145,9 @@ struct NewTransactionView: View {
                 RecurrenceView(
                     recurrenceFrequency: $viewModel.request.recurrenceFrequency,
                     recurrenceStartDate: $viewModel.request.recurrenceStartDate,
-                    recurrenceEndDate: $viewModel.request.recurrenceEndDate
+                    recurrenceEndDate: $viewModel.request.recurrenceEndDate,
+                    isFirstOccurrenceAlreadyPaid: $viewModel.request.isFirstOccurrenceAlreadyPaid,
+                    transactionType: viewModel.request.type
                 )
             }
             
