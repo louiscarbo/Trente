@@ -127,6 +127,11 @@ extension RecurringTransactionRule {
         occurrences(in: month).filter { !isSettled(on: $0.date) && !isSkipped(on: $0.date) }
     }
 
+    func dueAutomaticOccurrences(in month: Month, by date: Date) -> [RecurringTransactionOccurrence] {
+        guard autoConfirm else { return [] }
+        return pendingOccurrences(in: month).filter { $0.date <= date }
+    }
+
     func isSettled(on date: Date, calendar: Calendar = .current) -> Bool {
         transactions.contains { transaction in
             guard let settledDate = transaction.recurringOccurrenceDate else { return false }

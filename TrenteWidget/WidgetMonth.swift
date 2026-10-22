@@ -32,15 +32,22 @@ struct WidgetTransaction: Identifiable, Sendable {
 }
 
 extension WidgetMonth {
-    init(month: Month) {
+    init(month: Month, automaticOccurrences: [RecurringTransactionOccurrence] = []) {
         id = month.id
         name = month.name
         currencyCode = month.currency.isoCode
-        overall = month.figures(in: .all)
+        overall = month.figures(in: .all, including: automaticOccurrences)
         byCategory = Dictionary(
-            uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, month.figures(in: .category($0))) }
+            uniqueKeysWithValues: BudgetCategory.allCases.map { category in
+                (category, month.figures(in: .category(category), including: automaticOccurrences))
+            }
         )
-        latestTransactions = month.latestTransactions.prefix(3).map(WidgetTransaction.init(group:))
+        let recorded = month.transactionGroups.map { (date: $0.addedDate, transaction: WidgetTransaction(group: $0)) }
+        let automatic = automaticOccurrences.map { (date: $0.date, transaction: WidgetTransaction(occurrence: $0)) }
+        latestTransactions = (recorded + automatic)
+            .sorted { $0.date > $1.date }
+            .prefix(3)
+            .map(\.transaction)
     }
 
     static var sample: WidgetMonth {
@@ -54,5 +61,12 @@ extension WidgetTransaction {
         title = group.title
         categories = group.entries.map(\.category)
         amount = group.totalAmount
+    }
+
+    init(occurrence: RecurringTransactionOccurrence) {
+        id = UUID()
+        title = occurrence.rule.title
+        categories = BudgetCategory.allCases.filter { occurrence.amountCents(in: .category($0)) != 0 }
+        amount = Double(occurrence.amountCents) / 100
     }
 }

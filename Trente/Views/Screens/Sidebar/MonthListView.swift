@@ -7,8 +7,12 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct MonthListView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
+
     @Query(
         sort: \Month.startDate,
         order: .reverse,
@@ -105,12 +109,28 @@ struct MonthListView: View {
             if let firstMonth = newMonths.first {
                 selection = firstMonth
             }
+            confirmDueTransactions()
+        }
+        .onChange(of: scenePhase, initial: true) { _, phase in
+            if phase == .active { confirmDueTransactions() }
+        }
+        .task {
+            for await _ in NotificationCenter.default.notifications(named: .NSCalendarDayChanged) {
+                confirmDueTransactions()
+            }
         }
         .sheet(isPresented: isShowingPendingTransaction) {
             if let id = pendingTransactionRouter.presentedPendingTransactionID {
                 PendingTransactionReviewLoader(id: id)
                     .id(id)
             }
+        }
+    }
+
+    private func confirmDueTransactions() {
+        let confirmedCount = (try? RecurringTransactionService.shared.confirmDueOccurrences(in: modelContext)) ?? 0
+        if confirmedCount > 0 {
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
 

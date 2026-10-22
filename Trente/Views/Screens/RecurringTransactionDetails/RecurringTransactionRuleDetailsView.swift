@@ -199,18 +199,23 @@ struct RecurringTransactionRuleDetailsView: View {
         }
     }
 
-    // MARK: - Auto-Confirm
+    // MARK: - Automatic
 
     @ViewBuilder
     private func autoConfirmBox() -> some View {
-        GroupBox(label: Label("Auto-Confirm", systemImage: "checkmark.circle.fill")) {
-            Toggle(
-                "Auto-confirm new instances",
-                isOn: Binding(
-                    get: { isEditing ? (draft?.autoConfirm ?? rule.autoConfirm) : rule.autoConfirm },
-                    set: { draft?.autoConfirm = $0 }
+        GroupBox(label: Label("Automatic", systemImage: "checkmark.circle.fill")) {
+            VStack(alignment: .leading, spacing: .small) {
+                Toggle(
+                    isExpense ? String(localized: "Mark as paid automatically") : String(localized: "Mark as received automatically"),
+                    isOn: Binding(
+                        get: { isEditing ? (draft?.autoConfirm ?? rule.autoConfirm) : rule.autoConfirm },
+                        set: { draft?.autoConfirm = $0 }
+                    )
                 )
-            )
+                Text("On the due date, \(rule.title) is added to that month's transactions.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
         .disabled(!isEditing)

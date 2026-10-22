@@ -183,6 +183,17 @@ extension Month {
         )
     }
 
+    func figures(in scope: BudgetScope, including occurrences: [RecurringTransactionOccurrence]) -> BudgetFigures {
+        occurrences.reduce(figures(in: scope)) { figures, occurrence in
+            let amount = Double(occurrence.amountCents(in: scope)) / 100
+            return BudgetFigures(
+                spent: figures.spent + max(0, -amount),
+                income: figures.income + max(0, amount),
+                remaining: figures.remaining + amount
+            )
+        }
+    }
+
     /// Returns the end date of the month. Adding 1 month to startDate and subtracting 1 day.
     func endDate() -> Date {
         let calendar = Calendar.current
