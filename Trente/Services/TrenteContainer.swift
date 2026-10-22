@@ -9,16 +9,13 @@ import SwiftData
 
 @MainActor
 enum TrenteContainer {
-    static let shared: ModelContainer = {
+    static let shared: Result<ModelContainer, any Error> = {
         #if DEBUG
-        return DataProvider.shared.modelContainer
+        return .success(DataProvider.shared.modelContainer)
         #else
         let configuration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: false)
-        do {
-            return try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [configuration])
-        } catch {
-            // TODO: Maybe fail more gracefully?
-            fatalError("Failed to initialize ModelContainer: \(error)")
+        return Result {
+            try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [configuration])
         }
         #endif
     }()

@@ -26,7 +26,7 @@ struct LogWalletTransactionIntent: AppIntent {
             try await WalletIntakeService().handle(
                 transaction: transaction,
                 amount: amount,
-                in: TrenteContainer.shared.mainContext
+                in: TrenteContainer.shared.get().mainContext
             )
         } catch {
             #if DEBUG
