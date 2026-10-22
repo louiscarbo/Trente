@@ -199,19 +199,3 @@ extension Month {
         transactionGroups.sorted(by: { $0.addedDate > $1.addedDate })
     }
 }
-
-extension Month {
-    func detachedCopy() -> Month {
-        let copy = Month(
-            startDate: startDate,
-            currency: currency,
-            idealBudgetCents: idealBudgetCents,
-            idealRepartition: idealRepartition
-        )
-
-        copy.transactionGroups = transactionGroups.map { $0.detachedCopy() }
-        copy.recurringTransactionInstances = recurringTransactionInstances.map { $0.detachedCopy() }
-
-        return copy
-    }
-}

@@ -36,14 +36,3 @@ extension TransactionEntry {
         amount.formatted(.currency(code: group.month.currency.isoCode))
     }
 }
-
-extension TransactionEntry {
-    func detachedCopy() -> TransactionEntry {
-        let copy = TransactionEntry(
-            amountCents: amountCents,
-            category: category,
-            group: group
-        )
-        return copy
-    }
-}

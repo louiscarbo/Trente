@@ -46,20 +46,6 @@ extension SchemaV1 {
             self.note = note
             self.imageAttachmentData = imageAttachmentData
         }
-
-        private init(copying original: TransactionGroup) {
-            self.id = original.id
-            self.addedDate = original.addedDate
-            self.modifiedDate = original.modifiedDate
-            self.title = original.title
-            self.type = original.type
-            self.month = original.month
-            self.isDeleted = original.isDeleted
-            self.note = original.note
-            self.imageAttachmentData = original.imageAttachmentData
-            // Create detached copies for the entries
-            self.entries = original.entries.map { $0.detachedCopy() }
-        }
     }
 }
 
@@ -83,12 +69,5 @@ extension TransactionGroup {
     var displayAmount: String {
         totalAmount
             .formatted(.currency(code: month.currency.isoCode))
-    }
-}
-
-// TODO: Investigate if detachedCopy() is really needed
-extension TransactionGroup {
-    func detachedCopy() -> TransactionGroup {
-        return TransactionGroup(copying: self)
     }
 }
