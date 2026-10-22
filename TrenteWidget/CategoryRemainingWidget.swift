@@ -7,7 +7,6 @@
 
 import WidgetKit
 import SwiftUI
-import SwiftData
 
 struct CategoryRemainingWidget: Widget {
     let kind: String = "CategoryRemainingWidget"
@@ -64,12 +63,12 @@ struct SmallMediumCategoryRemainingWidgetView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            let month = entry.month ?? Month.getSampleMonthWithTransactions()
+            let month = entry.month ?? .sample
             let category = entry.category.budgetCategory
             BudgetGaugeView(
-                figures: month.figures(in: .category(category)),
+                figures: month.figures(for: category),
                 category: category,
-                currencyCode: month.currency.isoCode
+                currencyCode: month.currencyCode
             )
             
             Text(entry.category.budgetCategory.shortName)
@@ -101,16 +100,16 @@ struct MediumCategoryRemainingWidgetView: View {
     }
     
     private struct OneGaugeView: View {
-        var month: Month?
+        var month: WidgetMonth?
         var category: BudgetCategory
         
         var body: some View {
             ZStack(alignment: .bottom) {
-                let month = month ?? Month.getSampleMonthWithTransactions()
+                let month = month ?? .sample
                 BudgetGaugeView(
-                    figures: month.figures(in: .category(category)),
+                    figures: month.figures(for: category),
                     category: category,
-                    currencyCode: month.currency.isoCode,
+                    currencyCode: month.currencyCode,
                     size: 80
                 )
                 
@@ -139,14 +138,9 @@ struct AccessoryCircularCategoryRemainingWidgetView: View {
         let category = entry.category.budgetCategory
         
         if let currentMonth = entry.month {
-            Gauge(
-                value: currentMonth.remainingAmount(for: category),
-                in:
-                    0
-                        ...
-                    currentMonth.incomeAmount(for: category)
-            ) {
-                Text(currentMonth.remainingAmountDisplay(for: category))
+            let figures = currentMonth.figures(for: category)
+            Gauge(value: figures.remaining, in: 0...figures.income) {
+                Text(currentMonth.display(figures.remaining))
                     .privacySensitive()
             }
             .gaugeStyle(AccessoryCircularGaugeStyle())
@@ -157,7 +151,6 @@ struct AccessoryCircularCategoryRemainingWidgetView: View {
 }
 
 struct CategoryTimeline: AppIntentTimelineProvider {
-    @MainActor
     func timeline(for configuration: SelectCategoryIntent, in context: Context) async -> Timeline<CategoryEntry> {
         do {
             let month = try getCurrentMonth()
@@ -176,7 +169,7 @@ struct CategoryTimeline: AppIntentTimelineProvider {
     func snapshot(for configuration: SelectCategoryIntent, in context: Context) async -> CategoryEntry {
         CategoryEntry(
             date: Date(),
-            month: Month.getSampleMonthWithTransactions(),
+            month: .sample,
             category: WidgetBudgetCategory.needs
         )
     }
@@ -184,7 +177,7 @@ struct CategoryTimeline: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> CategoryEntry {
         CategoryEntry(
             date: Date(),
-            month: Month.getSampleMonthWithTransactions(),
+            month: .sample,
             category: WidgetBudgetCategory.needs
         )
     }
@@ -192,12 +185,12 @@ struct CategoryTimeline: AppIntentTimelineProvider {
 
 struct CategoryEntry: TimelineEntry {
     let date: Date
-    let month: Month?
+    let month: WidgetMonth?
     let category: WidgetBudgetCategory
 }
 
 #Preview(as: .systemSmall) {
     CategoryRemainingWidget()
 } timeline: {
-    CategoryEntry(date: Date(), month: Month.getSampleMonthWithTransactions(), category: .needs)
+    CategoryEntry(date: Date(), month: .sample, category: .needs)
 }

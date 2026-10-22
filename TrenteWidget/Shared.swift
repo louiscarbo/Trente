@@ -8,19 +8,9 @@
 import Foundation
 import SwiftData
 
-@MainActor
-func getCurrentMonth(inPreview: Bool = false) throws -> Month? {
-    if inPreview {
-        let modelContainer = DataProvider.shared.modelContainer
-        let descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .forward)])
-        let month = try modelContainer.mainContext.fetch(descriptor)[3]
-        return month.detachedCopy()
-    }
-    
+func getCurrentMonth() throws -> WidgetMonth? {
     let modelContainer = try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self)
-    let descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .forward)])
-    if let month = try modelContainer.mainContext.fetch(descriptor).last {
-        return month.detachedCopy()
-    }
-    return nil
+    var descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .reverse)])
+    descriptor.fetchLimit = 1
+    return try ModelContext(modelContainer).fetch(descriptor).first.map(WidgetMonth.init(month:))
 }
