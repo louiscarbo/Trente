@@ -45,7 +45,8 @@ enum SampleData {
         .expense("Rent", day: 2, .needs, 700_00),
         .expense("Livret A", day: 3, .savingsAndDebts, 400_00),
         .expense("Phone plan", day: 5, .needs, 19_99),
-        .expense("Netflix", day: 15, .wants, 13_49)
+        .expense("Netflix", day: 15, .wants, 13_49),
+        .expense("Gym", day: 28, .wants, 29_00)
     ]
 
     static let oneOffsByMonthsAgo: [[SampleTransaction]] = [

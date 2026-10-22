@@ -29,7 +29,6 @@ struct MonthView: View {
     
     private var upcomingOccurrences: [RecurringTransactionOccurrence] {
         RecurringTransactionService.shared.pendingOccurrences(of: recurringRules, in: month)
-            .sorted { sortRecurringTransactions($0, $1) }
     }
     
     var body: some View {
@@ -65,18 +64,6 @@ struct MonthView: View {
                 }
             }
         }
-    }
-    
-    private func sortRecurringTransactions(_ a: RecurringTransactionOccurrence, _ b: RecurringTransactionOccurrence) -> Bool {
-        let now = Date()
-        let aIsFuture = a.date >= now
-        let bIsFuture = b.date >= now
-        
-        if aIsFuture == bIsFuture {
-            return a.date < b.date
-        }
-        
-        return aIsFuture
     }
     
     private func fetchCount<T: PersistentModel>(_ descriptor: FetchDescriptor<T>) -> Int {
@@ -142,7 +129,7 @@ private struct RecurringTransactionsView: View {
     var transactionCount: Int = 3
     
     var body: some View {
-        GroupBox(label: Label("Recurring Transactions", systemImage: "clock.arrow.circlepath")) {
+        GroupBox(label: Label("Expected This Month", systemImage: "calendar.badge.clock")) {
             ForEach(upcomingOccurrences.prefix(transactionCount)) { occurrence in
                 RecurringTransactionRowView(occurrence: occurrence)
                 
@@ -156,7 +143,7 @@ private struct RecurringTransactionsView: View {
                     Text("Add your first Recurring Transaction by tapping 'Add Transaction'.")
                         .foregroundStyle(.secondary)
                 } else if upcomingOccurrences.isEmpty {
-                    Text("No upcoming recurring transactions for this month.")
+                    Text("Nothing else expected this month.")
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
@@ -166,7 +153,7 @@ private struct RecurringTransactionsView: View {
                 NavigationLink {
                     TransactionListView(month: month, showRecurring: true)
                 } label: {
-                    Text("See all recurring transactions")
+                    Text("See all expected")
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                 }
