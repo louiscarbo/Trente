@@ -4,7 +4,7 @@ This document explains the relationships between the different data models used 
 
 ## Core Transaction Models
 
-The transaction system is composed of four main models: `TransactionGroup`, `TransactionEntry`, `RecurringTransactionRule`, and `RecurringTransactionInstance`.
+The transaction system is composed of three stored models, `TransactionGroup`, `TransactionEntry` and `RecurringTransactionRule`, plus one computed value type, `RecurringTransactionOccurrence`.
 
 ### `TransactionEntry`
 
@@ -17,28 +17,34 @@ A `TransactionGroup` bundles together one or more `TransactionEntry` objects tha
 *   **Expense:** An expense transaction will have a single `TransactionGroup` containing a single `TransactionEntry`.
 *   **Income:** An income transaction will have a single `TransactionGroup` containing multiple `TransactionEntry` objects, one for each `BudgetCategory` the income is distributed to.
 
+A group created from a recurring transaction keeps `recurringRule` and `recurringOccurrenceDate`: the rule it came from and the scheduled date it settles. Deleting the rule nullifies the link and keeps the group.
+
 ### `RecurringTransactionRule`
 
-A `RecurringTransactionRule` defines a transaction that repeats over time. It stores all the information needed to generate future instances of the transaction, such as:
+A `RecurringTransactionRule` defines a transaction that repeats over time. It is the single source of truth for the schedule and the template:
 
-*   The frequency of the recurrence (e.g., monthly, weekly).
-*   The start and end dates for the recurrence.
+*   The frequency of the recurrence (weekly, monthly, yearly).
+*   The start date (its day is the anchor of the schedule) and optional end date, both inclusive and compared by day.
+*   `createdAt`: nothing is ever scheduled before the rule's creation day, so a new rule never touches past budgets.
 *   The template for the `TransactionGroup` to be created, including title, amount, and category information.
 
 `repartition: [BudgetCategory: Int]` stores this amount, signed exactly like `TransactionEntry.amountCents` (negative = expense, positive = income). Since an expense always produces a single `TransactionEntry` (see above), an expense rule's `repartition` must contain exactly one category — only income rules are split across multiple categories. UI editing a rule's repartition must branch on this sign rather than reusing the multi-category income split UI for expenses.
 
-### `RecurringTransactionInstance`
+### `RecurringTransactionOccurrence`
 
-A `RecurringTransactionInstance` represents a specific, scheduled occurrence of a `RecurringTransactionRule`. For example, a monthly bill will have a `RecurringTransactionInstance` for each upcoming month. These instances are what get converted into actual `TransactionGroup`s when they are actually added/validated by the user (ie, when they are actually taken into account in the budget, ie when they are paid).
+A `RecurringTransactionOccurrence` is one expected payment of a rule on one day, inside one `Month`. It is a plain struct, built from the rule each time a month is displayed, and is never stored.
+
+`RecurrenceSchedule` computes the dates: it anchors on the start day, clamps the 31st to the last day of shorter months (and February 29 to the 28th), and ignores the time of day.
 
 ## How They Work Together
 
-1.  When a user creates a **recurring transaction**, a `RecurringTransactionRule` is saved to the database.
-2.  The application then generates `RecurringTransactionInstance`s for the upcoming dates based on this rule.
-3.  When a `RecurringTransactionInstance`'s date is reached, the user can "validate" it, which transforms it into a `TransactionGroup` with its corresponding `TransactionEntry` objects.
-4.  For a **non-recurring transaction**, a `TransactionGroup` and its associated `TransactionEntry` objects are created and saved directly.
+1.  When a user creates a **recurring transaction**, only a `RecurringTransactionRule` is saved.
+2.  When a month is shown, each rule's schedule produces the occurrences that fall inside the month.
+3.  An occurrence is **settled** when one of the rule's transactions has a `recurringOccurrenceDate` in the same period (same week, month or year, depending on the frequency). Settled occurrences are hidden. Matching by period means moving the payment day doesn't bring back an occurrence already confirmed that period.
+4.  Confirming an occurrence creates the `TransactionGroup` (dated now) and its entries, linked to the rule and the occurrence date. Deleting that group makes the occurrence pending again.
+5.  For a **non-recurring transaction**, a `TransactionGroup` and its associated `TransactionEntry` objects are created and saved directly.
 
-This structure allows for a flexible and powerful way to manage both one-time and recurring transactions, while keeping the data normalized and easy to manage.
+Nothing is generated ahead of time, so there is nothing to keep in sync when a rule or a month changes.
 
 ## Schema Versioning
 

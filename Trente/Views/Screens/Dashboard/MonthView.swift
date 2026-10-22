@@ -12,6 +12,7 @@ struct MonthView: View {
     // Data
     @State var month: Month
     @Environment(\.modelContext) private var modelContext
+    @Query private var recurringRules: [RecurringTransactionRule]
     
     // View State
     @State private var error: Error?
@@ -23,12 +24,11 @@ struct MonthView: View {
     }
 
     private var recurringTransactionsCount: Int {
-        fetchCount(FetchDescriptor<RecurringTransactionInstance>())
+        recurringRules.count
     }
     
-    private var nextRecurringTransactionsInstances: [RecurringTransactionInstance] {
-        return month.recurringTransactionInstances
-            .filter { !$0.confirmed }
+    private var upcomingOccurrences: [RecurringTransactionOccurrence] {
+        RecurringTransactionService.shared.pendingOccurrences(of: recurringRules, in: month)
             .sorted { sortRecurringTransactions($0, $1) }
     }
     
@@ -38,14 +38,14 @@ struct MonthView: View {
                 if proxy.isCompact {
                     NarrowMonthView(
                         month: month,
-                        nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
+                        upcomingOccurrences: upcomingOccurrences,
                         transactionGroupsCount: transactionGroupsCount,
                         recurringTransactionsCount: recurringTransactionsCount
                     )
                 } else {
                     WideMonthView(
                         month: month,
-                        nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
+                        upcomingOccurrences: upcomingOccurrences,
                         transactionGroupsCount: transactionGroupsCount,
                         recurringTransactionsCount: recurringTransactionsCount
                     )
@@ -67,7 +67,7 @@ struct MonthView: View {
         }
     }
     
-    private func sortRecurringTransactions(_ a: RecurringTransactionInstance, _ b: RecurringTransactionInstance) -> Bool {
+    private func sortRecurringTransactions(_ a: RecurringTransactionOccurrence, _ b: RecurringTransactionOccurrence) -> Bool {
         let now = Date()
         let aIsFuture = a.date >= now
         let bIsFuture = b.date >= now
@@ -137,16 +137,16 @@ private struct LatestTransactionsView: View {
 
 private struct RecurringTransactionsView: View {
     var month: Month
-    var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
+    var upcomingOccurrences: [RecurringTransactionOccurrence]
     var recurringTransactionsCount: Int
     var transactionCount: Int = 3
     
     var body: some View {
         GroupBox(label: Label("Recurring Transactions", systemImage: "clock.arrow.circlepath")) {
-            ForEach(nextRecurringTransactionsInstances.prefix(transactionCount)) { recurringTransactionInstance in
-                RecurringTransactionRowView(instance: recurringTransactionInstance)
+            ForEach(upcomingOccurrences.prefix(transactionCount)) { occurrence in
+                RecurringTransactionRowView(occurrence: occurrence)
                 
-                if recurringTransactionInstance != nextRecurringTransactionsInstances.prefix(transactionCount).last {
+                if occurrence != upcomingOccurrences.prefix(transactionCount).last {
                     Divider()
                 }
             }
@@ -155,7 +155,7 @@ private struct RecurringTransactionsView: View {
                 if recurringTransactionsCount == 0 {
                     Text("Add your first Recurring Transaction by tapping 'Add Transaction'.")
                         .foregroundStyle(.secondary)
-                } else if nextRecurringTransactionsInstances.isEmpty {
+                } else if upcomingOccurrences.isEmpty {
                     Text("No upcoming recurring transactions for this month.")
                         .foregroundStyle(.secondary)
                 }
@@ -252,7 +252,7 @@ private struct AddTransactionButton: View {
 private struct NarrowMonthView: View {
     // Data
     @State var month: Month
-    var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
+    var upcomingOccurrences: [RecurringTransactionOccurrence]
     var transactionGroupsCount: Int
     var recurringTransactionsCount: Int
     
@@ -290,7 +290,7 @@ private struct NarrowMonthView: View {
                     
                     RecurringTransactionsView(
                         month: month,
-                        nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
+                        upcomingOccurrences: upcomingOccurrences,
                         recurringTransactionsCount: recurringTransactionsCount
                     )
                     .padding(.horizontal)
@@ -321,7 +321,7 @@ private struct NarrowMonthView: View {
 private struct WideMonthView: View {
     // Data
     @State var month: Month
-    var nextRecurringTransactionsInstances: [RecurringTransactionInstance]
+    var upcomingOccurrences: [RecurringTransactionOccurrence]
     var transactionGroupsCount: Int
     var recurringTransactionsCount: Int
     
@@ -360,7 +360,7 @@ private struct WideMonthView: View {
                         }
                         RecurringTransactionsView(
                             month: month,
-                            nextRecurringTransactionsInstances: nextRecurringTransactionsInstances,
+                            upcomingOccurrences: upcomingOccurrences,
                             recurringTransactionsCount: recurringTransactionsCount,
                             transactionCount: 5
                         )

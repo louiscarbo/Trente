@@ -97,7 +97,7 @@
 				Model/Month.swift,
 				Model/PendingTransaction.swift,
 				Model/RecurrenceSchedule.swift,
-				Model/RecurringTransactionInstance.swift,
+				Model/RecurringTransactionOccurrence.swift,
 				Model/RecurringTransactionRule.swift,
 				Model/TransactionEntry.swift,
 				Model/TransactionGroup.swift,

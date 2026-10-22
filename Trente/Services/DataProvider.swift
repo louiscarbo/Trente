@@ -33,20 +33,22 @@ class DataProvider {
     }
     
     private func insertSampleData() throws {
-        for rule in RecurringTransactionRule.sampleData {
+        let rules = RecurringTransactionRule.sampleData
+        for rule in rules {
             context.insert(rule)
         }
 
         for month in Month.sampleData {
             context.insert(month)
-            try RecurringTransactionService.shared.refreshInstances(for: month, in: context)
-            linkRecurringInstancesToTransactions(of: month)
+            linkRecurringTransactions(of: month, to: rules)
         }
     }
 
-    private func linkRecurringInstancesToTransactions(of month: Month) {
-        for instance in month.recurringTransactionInstances {
-            instance.transactionGroup = month.transactionGroups.first { $0.title == instance.rule.title }
+    private func linkRecurringTransactions(of month: Month, to rules: [RecurringTransactionRule]) {
+        for group in month.transactionGroups {
+            guard let rule = rules.first(where: { $0.title == group.title }) else { continue }
+            group.recurringRule = rule
+            group.recurringOccurrenceDate = group.addedDate
         }
     }
 }

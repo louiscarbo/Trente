@@ -19,8 +19,8 @@ extension SchemaV1 {
         var repartition: [BudgetCategory: Int]
         var createdAt: Date = Date.now
 
-        @Relationship(deleteRule: .cascade, inverse: \RecurringTransactionInstance.rule)
-        var instances: [RecurringTransactionInstance] = []
+        @Relationship(deleteRule: .nullify, inverse: \TransactionGroup.recurringRule)
+        var transactions: [TransactionGroup] = []
 
         var isDeleted: Bool = false
 
@@ -40,7 +40,7 @@ extension SchemaV1 {
             self.autoConfirm = autoConfirm
             self.repartition = repartition
             self.createdAt = createdAt
-            self.instances = []
+            self.transactions = []
             self.isDeleted = false
             Self.validateRepartitionInvariant(repartition)
         }
@@ -111,14 +111,20 @@ extension RecurringTransactionRule {
         )
     }
 
-    func createRecurringInstances(for month: Month) -> [RecurringTransactionInstance] {
+    func occurrences(in month: Month) -> [RecurringTransactionOccurrence] {
         schedule.dates(in: month.dateInterval).map { date in
-            RecurringTransactionInstance(
-                date: date,
-                rule: self,
-                month: month,
-                confirmed: false
-            )
+            RecurringTransactionOccurrence(rule: self, date: date, month: month)
+        }
+    }
+
+    func pendingOccurrences(in month: Month) -> [RecurringTransactionOccurrence] {
+        occurrences(in: month).filter { !isSettled(on: $0.date) }
+    }
+
+    func isSettled(on date: Date, calendar: Calendar = .current) -> Bool {
+        transactions.contains { transaction in
+            guard let settledDate = transaction.recurringOccurrenceDate else { return false }
+            return calendar.isDate(settledDate, equalTo: date, toGranularity: frequency.calendarComponent)
         }
     }
 }

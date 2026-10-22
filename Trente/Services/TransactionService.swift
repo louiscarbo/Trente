@@ -34,11 +34,6 @@ final class TransactionService {
     }
     
     func delete(group: TransactionGroup, in context: ModelContext) {
-        // If this group confirmed a recurring instance, delete that instance too so
-        // the occurrence disappears from the month rather than resurfacing as pending.
-        if let linkedInstance = group.month.recurringTransactionInstances.first(where: { $0.transactionGroup?.id == group.id }) {
-            context.delete(linkedInstance)
-        }
         context.delete(group)
     }
 
@@ -54,11 +49,10 @@ final class TransactionService {
             context.insert(rule)
             
             if Calendar.current.isDateInToday(request.recurrenceStartDate) {
-                try createTransactionGroupWithEntries(from: request, for: month, in: context)
+                let group = try createTransactionGroupWithEntries(from: request, for: month, in: context)
+                group.recurringRule = rule
+                group.recurringOccurrenceDate = Calendar.current.startOfDay(for: request.recurrenceStartDate)
             }
-            
-            try RecurringTransactionService.shared.refreshInstances(for: month, in: context)
-            
         } else {
             try createTransactionGroupWithEntries(from: request, for: month, in: context)
         }
@@ -68,7 +62,8 @@ final class TransactionService {
 }
 
 private extension TransactionService {
-    func createTransactionGroupWithEntries(from request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
+    @discardableResult
+    func createTransactionGroupWithEntries(from request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws -> TransactionGroup {
         // Transaction validation
         if request.type == .expense {
             guard request.selectedCategory != nil else {
@@ -108,5 +103,6 @@ private extension TransactionService {
                 context.insert(entry)
             }
         }
+        return group
     }
 }

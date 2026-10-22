@@ -15,13 +15,11 @@ struct TransactionListView: View {
     @Query(sort: \TransactionGroup.addedDate)
     private var transactionGroups: [TransactionGroup]
     
-    @Query(sort: \RecurringTransactionInstance.date)
-    private var recurringTransactionInstances: [RecurringTransactionInstance]
+    @Query private var recurringRules: [RecurringTransactionRule]
     
     private var allItems: [DisplayableTransaction] {
         if showRecurring {
-            return recurringTransactionInstances
-                .filter { !$0.confirmed }
+            return RecurringTransactionService.shared.pendingOccurrences(of: recurringRules, in: month)
                 .map { .init(kind: .recurring($0)) }
         } else {
             return transactionGroups.map { .init(kind: .group($0)) }

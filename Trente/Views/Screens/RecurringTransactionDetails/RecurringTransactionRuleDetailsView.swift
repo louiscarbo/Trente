@@ -13,7 +13,6 @@ struct RecurringTransactionRuleDetailsView: View {
     @State var rule: RecurringTransactionRule
     let currency: Currency
     var startInEditMode: Bool = false
-    var onSave: () -> Void = {}
 
     @State private var isEditing = false
     @State private var draft: RecurringTransactionRuleDraft?
@@ -297,7 +296,6 @@ struct RecurringTransactionRuleDetailsView: View {
         currentDraft.apply(to: rule)
         do {
             try modelContext.save()
-            onSave()
             withAnimation { isEditing = false }
         } catch {
             validationErrors = [String(localized: "Failed to save changes: \(error.localizedDescription)")]
