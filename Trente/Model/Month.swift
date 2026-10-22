@@ -195,6 +195,13 @@ extension Month {
         return calendar.date(from: components)!
     }
 
+    var dateInterval: DateInterval {
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: startDate)
+        let end = calendar.date(byAdding: .month, value: 1, to: start)!
+        return DateInterval(start: start, end: end)
+    }
+
     var latestTransactions: [TransactionGroup] {
         transactionGroups.sorted(by: { $0.addedDate > $1.addedDate })
     }

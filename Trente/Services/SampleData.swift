@@ -170,14 +170,16 @@ extension Month {
 
 extension RecurringTransactionRule {
     static let sampleData: [RecurringTransactionRule] = SampleData.recurring.map { transaction in
+        let startDate = SampleData.date(
+            day: transaction.day,
+            inMonthStartingAt: SampleData.startDate(monthsAgo: SampleData.monthCount - 1)
+        )
         let rule = RecurringTransactionRule(
             title: transaction.title,
             frequency: .monthly,
-            startDate: SampleData.date(
-                day: transaction.day,
-                inMonthStartingAt: SampleData.startDate(monthsAgo: SampleData.monthCount - 1)
-            ),
-            repartition: transaction.entries
+            startDate: startDate,
+            repartition: transaction.entries,
+            createdAt: startDate
         )
         rule.autoConfirm = true
         return rule

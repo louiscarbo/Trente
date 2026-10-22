@@ -23,7 +23,8 @@ struct RecurringTransactionRuleTests {
             frequency: .weekly,
             startDate: ruleStart,
             autoConfirm: true,
-            repartition: [.wants: 1000]
+            repartition: [.wants: 1000],
+            createdAt: ruleStart
         )
         
         // Month = April 2025
@@ -58,7 +59,8 @@ struct RecurringTransactionRuleTests {
             frequency: .monthly,
             startDate: ruleStart,
             autoConfirm: false,
-            repartition: [.needs: 50000]
+            repartition: [.needs: 50000],
+            createdAt: ruleStart
         )
         
         // Month = February 2025
@@ -92,7 +94,8 @@ struct RecurringTransactionRuleTests {
             frequency: .yearly,
             startDate: ruleStart,
             autoConfirm: true,
-            repartition: [.savingsAndDebts: 0]
+            repartition: [.savingsAndDebts: 0],
+            createdAt: ruleStart
         )
         
         // Month = December 2023
@@ -125,7 +128,8 @@ struct RecurringTransactionRuleTests {
             title: "Future Payment",
             frequency: .monthly,
             startDate: ruleStart,
-            repartition: [.wants: 0]
+            repartition: [.wants: 0],
+            createdAt: ruleStart
         )
         
         // Month = May 2025
