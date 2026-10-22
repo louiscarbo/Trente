@@ -18,8 +18,9 @@ struct MonthListView: View {
         order: .reverse,
         animation: .default
     ) private var months: [Month]
-        
-    @State private var selection: Month?
+    @Query private var recurringRules: [RecurringTransactionRule]
+
+    @State private var selection: SidebarSelection?
     @State private var isShowingNewMonth = false
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
     #if DEBUG
@@ -39,19 +40,33 @@ struct MonthListView: View {
                             .foregroundStyle(.secondary)
                             .padding(.horizontal)
                         
-                        CurrentMonthRowView(currentMonth: currentMonth, selectedMonth: $selection)
+                        CurrentMonthRowView(currentMonth: currentMonth, selectedMonth: selectedMonth)
                     }
-                    
+
                     // New Month Button
                     NewMonthButtonView()
                         .padding(.vertical)
-                    
+
+                    if !months.isEmpty {
+                        Text("RECURRING")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal)
+                        RecurringTransactionsRowView(
+                            activeCount: recurringRules.filter { !$0.hasEnded }.count,
+                            isSelected: selection == .recurring
+                        ) {
+                            selection = .recurring
+                        }
+                        .padding(.bottom)
+                    }
+
                     if months.count > 1 {
                         Text("ARCHIVED MONTHS")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .padding(.horizontal)
-                        ArchivedMonthsList(selectedMonth: $selection, archivedMonths: months.dropFirst())
+                        ArchivedMonthsList(selectedMonth: selectedMonth, archivedMonths: months.dropFirst())
                     }
                     
                     Spacer()
@@ -68,9 +83,8 @@ struct MonthListView: View {
             #if os(macOS)
             .navigationSplitViewColumnWidth(min: 200, ideal: 300, max: 350)
             #endif
-            .navigationDestination(item: $selection) { month in
-                MonthView(month: month)
-                    .id(month)
+            .navigationDestination(item: $selection) { destination in
+                destinationView(for: destination)
             }
             #if DEBUG
             .toolbar {
@@ -92,9 +106,8 @@ struct MonthListView: View {
                         .foregroundStyle(.secondary)
                 }
             } else {
-                if let selected = selection {
-                    MonthView(month: selected)
-                        .id(selected)
+                if let selection {
+                    destinationView(for: selection)
                 } else {
                     Text("Select a month")
                         .font(.headline)
@@ -103,11 +116,11 @@ struct MonthListView: View {
             }
         }
         .onAppear {
-            selection = months.first
+            selection = months.first.map(SidebarSelection.month)
         }
         .onChange(of: months) { _, newMonths in
             if let firstMonth = newMonths.first {
-                selection = firstMonth
+                selection = .month(firstMonth)
             }
             confirmDueTransactions()
         }
@@ -127,6 +140,29 @@ struct MonthListView: View {
         }
     }
 
+    private var selectedMonth: Binding<Month?> {
+        Binding(
+            get: {
+                guard case .month(let month) = selection else { return nil }
+                return month
+            },
+            set: { selection = $0.map(SidebarSelection.month) }
+        )
+    }
+
+    @ViewBuilder
+    private func destinationView(for destination: SidebarSelection) -> some View {
+        switch destination {
+        case .month(let month):
+            MonthView(month: month)
+                .id(month)
+        case .recurring:
+            if let currency = months.first?.currency {
+                RecurringTransactionsListView(currency: currency)
+            }
+        }
+    }
+
     private func confirmDueTransactions() {
         let confirmedCount = (try? RecurringTransactionService.shared.confirmDueOccurrences(in: modelContext)) ?? 0
         if confirmedCount > 0 {
@@ -140,6 +176,11 @@ struct MonthListView: View {
             set: { if !$0 { pendingTransactionRouter.presentedPendingTransactionID = nil } }
         )
     }
+}
+
+private enum SidebarSelection: Hashable {
+    case month(Month)
+    case recurring
 }
 
 #Preview {
