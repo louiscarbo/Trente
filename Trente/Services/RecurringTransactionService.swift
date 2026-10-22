@@ -44,6 +44,18 @@ final class RecurringTransactionService {
         try context.save()
     }
 
+    func skip(_ occurrence: RecurringTransactionOccurrence, in context: ModelContext) throws {
+        let rule = occurrence.rule
+        guard !rule.isSkipped(on: occurrence.date) else { return }
+        rule.skippedOccurrenceDates.append(occurrence.date)
+        try context.save()
+    }
+
+    func stop(_ rule: RecurringTransactionRule, in context: ModelContext) throws {
+        rule.endDate = Calendar.current.startOfDay(for: .now)
+        try context.save()
+    }
+
     func delete(rule: RecurringTransactionRule, in context: ModelContext) {
         context.delete(rule)
     }

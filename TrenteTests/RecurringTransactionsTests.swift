@@ -174,4 +174,54 @@ struct RecurringTransactionsTests {
 
         #expect(titles == ["Rent", "Netflix"])
     }
+
+    @Test("Skipping an occurrence hides it in its month only")
+    func skippingHidesOnlyThatMonth() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let may = insertMonth(year: 2025, month: 5, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+
+        try service.skip(occurrence, in: context)
+
+        #expect(service.pendingOccurrences(of: [rule], in: april).isEmpty)
+        #expect(service.pendingOccurrences(of: [rule], in: may).map(\.date) == [day(2025, 5, 2)])
+        #expect(april.transactionGroups.isEmpty)
+    }
+
+    @Test("Skipping the same occurrence twice stores it once")
+    func skippingTwiceStoresOnce() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], in: context)
+        try context.save()
+        let occurrence = try #require(service.pendingOccurrences(of: [rule], in: april).first)
+
+        try service.skip(occurrence, in: context)
+        try service.skip(occurrence, in: context)
+
+        #expect(rule.skippedOccurrenceDates.count == 1)
+    }
+
+    @Test("Stopping a rule keeps today's payment and drops the following ones")
+    func stoppingKeepsTodayAndDropsFuture() throws {
+        let context = try makeContext()
+        let today = calendar.startOfDay(for: .now)
+        let thisMonthComponents = calendar.dateComponents([.year, .month], from: today)
+        let thisMonth = insertMonth(year: thisMonthComponents.year!, month: thisMonthComponents.month!, in: context)
+        let nextMonthStart = calendar.date(byAdding: .month, value: 1, to: thisMonth.startDate)!
+        let nextMonthComponents = calendar.dateComponents([.year, .month], from: nextMonthStart)
+        let nextMonth = insertMonth(year: nextMonthComponents.year!, month: nextMonthComponents.month!, in: context)
+        let rule = insertRule("Gym", startingOn: today, repartition: [.wants: -29_00], in: context)
+        try context.save()
+        #expect(!rule.hasEnded)
+
+        try service.stop(rule, in: context)
+
+        #expect(rule.hasEnded)
+        #expect(service.pendingOccurrences(of: [rule], in: thisMonth).map(\.date) == [today])
+        #expect(service.pendingOccurrences(of: [rule], in: nextMonth).isEmpty)
+    }
 }

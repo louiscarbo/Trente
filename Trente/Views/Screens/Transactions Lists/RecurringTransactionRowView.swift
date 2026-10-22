@@ -13,7 +13,7 @@ struct RecurringTransactionRowView: View {
     @State var isInList = false
     @State private var showDetails = false
     @State private var editFromSwipe = false
-    @State private var showDeleteConfirmation = false
+    @State private var showSkipConfirmation = false
     @State private var showValidateConfirmation = false
 
     var body: some View {
@@ -70,11 +70,12 @@ struct RecurringTransactionRowView: View {
             }
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-            Button(role: .destructive) {
-                showDeleteConfirmation = true
+            Button {
+                showSkipConfirmation = true
             } label: {
-                Label("Delete", systemImage: "trash")
+                Label("Skip", systemImage: "forward.end")
             }
+            .tint(.gray)
             Button {
                 editFromSwipe = true
                 showDetails = true
@@ -91,9 +92,17 @@ struct RecurringTransactionRowView: View {
             }
             .tint(.green)
         }
-        .deleteConfirmation(isPresented: $showDeleteConfirmation) {
-            RecurringTransactionService.shared.delete(rule: occurrence.rule, in: modelContext)
-            try? modelContext.save()
+        .confirmationDialog(
+            skipConfirmationTitle,
+            isPresented: $showSkipConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button(String(localized: "Skip")) {
+                try? RecurringTransactionService.shared.skip(occurrence, in: modelContext)
+            }
+            Button(String(localized: "Cancel"), role: .cancel) {}
+        } message: {
+            Text("Only this one is skipped. The next ones stay planned.")
         }
         .confirmationDialog(
             String(localized: "Confirm this transaction?"),
@@ -119,7 +128,19 @@ struct RecurringTransactionRowView: View {
         }
         .clipShape(Rectangle().inset(by: -3))
     }
-    
+
+    private var skipConfirmationTitle: String {
+        let title = occurrence.rule.title
+        switch occurrence.rule.frequency {
+        case .weekly:
+            return String(localized: "Skip \(title) this week?")
+        case .monthly:
+            return String(localized: "Skip \(title) this month?")
+        case .yearly:
+            return String(localized: "Skip \(title) this year?")
+        }
+    }
+
     private func formatAmount(_ amount: Int) -> String {
         let amount = Double(amount) / 100.0
         return amount.formatted(.currency(code: occurrence.month.currency.isoCode))

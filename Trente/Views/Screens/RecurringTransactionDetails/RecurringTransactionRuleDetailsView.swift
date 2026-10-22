@@ -52,6 +52,11 @@ struct RecurringTransactionRuleDetailsView: View {
             if !isExpense {
                 repartitionBox()
             }
+            if !isEditing && !rule.hasEnded {
+                StopRecurringBox(title: rule.title) {
+                    try? RecurringTransactionService.shared.stop(rule, in: modelContext)
+                }
+            }
         }
         .onAppear {
             if startInEditMode { enterEditMode() }
@@ -315,5 +320,42 @@ struct RecurringTransactionRuleDetailsView: View {
         } catch {
             deleteError = error.localizedDescription
         }
+    }
+}
+
+private struct StopRecurringBox: View {
+    let title: String
+    var onStop: () -> Void
+
+    @State private var showConfirmation = false
+
+    var body: some View {
+        let explanation = String(localized: "\(title) won't appear after today. Transactions already recorded stay.")
+        GroupBox(label: Label("Stop Future Transactions", systemImage: "stop.circle.fill")) {
+            VStack(spacing: .medium) {
+                Text(explanation)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(.secondary)
+                Button {
+                    showConfirmation = true
+                } label: {
+                    Label("Stop Future Transactions", systemImage: "stop.circle.fill")
+                        .font(.headline)
+                }
+                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
+                .confirmationDialog(
+                    String(localized: "Stop future \(title) transactions?"),
+                    isPresented: $showConfirmation,
+                    titleVisibility: .visible
+                ) {
+                    Button(String(localized: "Stop Future Transactions"), role: .destructive, action: onStop)
+                    Button(String(localized: "Cancel"), role: .cancel) {}
+                } message: {
+                    Text(explanation)
+                }
+            }
+        }
+        .groupBoxStyle(TrenteGroupBoxStyle())
     }
 }
