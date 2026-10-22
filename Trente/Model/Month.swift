@@ -40,6 +40,16 @@ enum BudgetScope: Hashable {
     case category(BudgetCategory)
 }
 
+struct BudgetFigures: Hashable, Sendable {
+    let spent: Double
+    let income: Double
+    let remaining: Double
+
+    var isOverspent: Bool {
+        remaining < 0
+    }
+}
+
 // MARK: - Computed Properties
 extension Month {
     var name: String {
@@ -166,6 +176,14 @@ extension Month {
 
     func overSpending(in scope: BudgetScope) -> Bool {
         remainingAmount(in: scope) < 0
+    }
+
+    func figures(in scope: BudgetScope) -> BudgetFigures {
+        BudgetFigures(
+            spent: spentAmount(in: scope),
+            income: incomeAmount(in: scope),
+            remaining: remainingAmount(in: scope)
+        )
     }
 
     /// Returns the end date of the month. Adding 1 month to startDate and subtracting 1 day.

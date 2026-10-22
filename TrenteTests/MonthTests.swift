@@ -158,6 +158,48 @@ struct MonthTests {
         #expect(month.overSpent == false)
     }
     
+    @Test("Figures for overall and category scopes")
+    func figuresInScope() {
+        let month = Month(
+            startDate: .now,
+            currency: Currencies.currency(for: "EUR")!,
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+        )
+
+        let salary = TransactionGroup(
+            title: "Salary",
+            type: .income,
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
+        )
+        salary.entries = [
+            TransactionEntry(amountCents: 600_00, category: .needs, group: salary),
+            TransactionEntry(amountCents: 400_00, category: .wants, group: salary)
+        ]
+
+        let groceries = TransactionGroup(
+            title: "Groceries",
+            type: .expense,
+            month: month,
+            note: nil,
+            imageAttachmentData: nil
+        )
+        groceries.entries = [
+            TransactionEntry(amountCents: -100_00, category: .needs, group: groceries),
+            TransactionEntry(amountCents: -500_00, category: .wants, group: groceries)
+        ]
+
+        month.transactionGroups = [salary, groceries]
+
+        #expect(month.figures(in: .all) == BudgetFigures(spent: 600, income: 1000, remaining: 400))
+        #expect(month.figures(in: .category(.needs)) == BudgetFigures(spent: 100, income: 600, remaining: 500))
+        #expect(month.figures(in: .category(.wants)) == BudgetFigures(spent: 500, income: 400, remaining: -100))
+        #expect(month.figures(in: .category(.wants)).isOverspent)
+        #expect(month.figures(in: .category(.savingsAndDebts)) == BudgetFigures(spent: 0, income: 0, remaining: 0))
+    }
+
     @Test("End date of month 1")
     func endDate1() async throws {
         // Given
