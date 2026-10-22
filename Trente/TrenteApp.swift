@@ -19,7 +19,7 @@ struct TrenteApp: App {
     var body: some Scene {
         WindowGroup {
             ModelContainerGate(container: container) {
-                MonthListView()
+                RootView()
             }
         }
         .defaultSize(width: 1200, height: 800)
