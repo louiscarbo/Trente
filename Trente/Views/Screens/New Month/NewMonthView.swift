@@ -57,11 +57,8 @@ struct NewMonthView: View {
 
     private func initializeMonth() {
         if let latestMonth = months.first {
-            let calendar = Calendar.current
-            let nextStartDate = calendar.date(byAdding: .day, value: 1, to: latestMonth.endDate()) ?? .now
-
             self.draft = MonthDraft(
-                startDate: nextStartDate,
+                startDate: latestMonth.dateInterval.end,
                 currency: latestMonth.currency,
                 idealBudgetCents: latestMonth.idealBudgetCents,
                 idealRepartition: latestMonth.idealRepartition
