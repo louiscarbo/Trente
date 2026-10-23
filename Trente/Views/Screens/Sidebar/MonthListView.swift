@@ -85,14 +85,22 @@ struct MonthListView: View {
             .navigationDestination(item: $selection) { destination in
                 destinationView(for: destination)
             }
-            #if DEBUG
             .toolbar {
+                ToolbarItem {
+                    ExportMenu(
+                        rows: TransactionExportRow.rows(from: months),
+                        fileName: TransactionsCSVFile.allMonthsFileName
+                    )
+                }
+                #if DEBUG
                 ToolbarItem {
                     Button("Debug", systemImage: "ladybug") {
                         isShowingDebugMenu = true
                     }
                 }
+                #endif
             }
+            #if DEBUG
             .sheet(isPresented: $isShowingDebugMenu) {
                 DebugMenuView()
             }
