@@ -17,7 +17,8 @@ final class PendingTransactionService {
     private init() {}
 
     func validate(_ pending: PendingTransaction, with draft: TransactionGroupDraft, in context: ModelContext) throws {
-        guard let month = try MonthService.shared.latestMonth(in: context) else {
+        let purchaseMonth = try MonthService.shared.month(containing: pending.date, in: context)
+        guard let month = try purchaseMonth ?? MonthService.shared.latestMonth(in: context) else {
             throw PendingTransactionError.noMonth
         }
 
