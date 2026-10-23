@@ -7,6 +7,16 @@
     "    You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
 
     },
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
     "-" : {
 
     },
@@ -64,6 +74,9 @@
     "%lld%% Spent" : {
 
     },
+    "A Shortcuts automation sends each Apple Pay payment to Trente. You review it, Trente files it." : {
+
+    },
     "Abercrombie & Fitch Lyon Part-Dieu" : {
 
     },
@@ -80,6 +93,9 @@
 
     },
     "Add Notes and Images" : {
+
+    },
+    "Add the Run Shortcut action, pick Log Wallet Transaction and pass it the Shortcut Input." : {
 
     },
     "Add Transaction" : {
@@ -124,6 +140,9 @@
     "Automatic" : {
 
     },
+    "Back" : {
+
+    },
     "Budget Category" : {
 
     },
@@ -148,10 +167,16 @@
     "Change or stop this schedule" : {
 
     },
+    "Choose Wallet, pick your cards, then choose Run Immediately." : {
+
+    },
     "Close" : {
 
     },
     "Clothes" : {
+
+    },
+    "Continue" : {
 
     },
     "Create" : {
@@ -214,6 +239,9 @@
     "Due today" : {
 
     },
+    "Due tomorrow" : {
+
+    },
     "Edit" : {
 
     },
@@ -272,7 +300,22 @@
     "From" : {
 
     },
+    "Get a heads-up before rent, subscriptions and other recurring transactions are due." : {
+
+    },
+    "Get more out of every month." : {
+
+    },
+    "Get Started" : {
+
+    },
+    "Get the Shortcut" : {
+
+    },
     "Give a title to your transaction" : {
+
+    },
+    "How much do you expect to earn this month? Trente splits it for you on the next step." : {
 
     },
     "How would you like to split this income?" : {
@@ -281,10 +324,16 @@
     "Ideal Budget" : {
 
     },
+    "In the Shortcuts app, open Automation and tap +." : {
+
+    },
     "Income" : {
 
     },
     "Income Repartition" : {
+
+    },
+    "Income varies? Enter a careful estimate. You can change it for each new month." : {
 
     },
     "Income/Expense" : {
@@ -297,6 +346,12 @@
 
     },
     "Latest Transactions" : {
+
+    },
+    "Log Apple Pay in a tap" : {
+
+    },
+    "Log Apple Pay payments" : {
 
     },
     "Log Wallet Transaction" : {
@@ -320,9 +375,6 @@
     "Mark as received automatically" : {
 
     },
-    "Marketing Content Goes Here" : {
-
-    },
     "Max" : {
 
     },
@@ -342,6 +394,9 @@
 
     },
     "Monthly" : {
+
+    },
+    "More features on the way" : {
 
     },
     "Needs" : {
@@ -377,7 +432,19 @@
     "Not Implemented Yet." : {
 
     },
+    "Not Now" : {
+
+    },
+    "Notes and photos on your transactions" : {
+
+    },
     "Nothing else expected this month." : {
+
+    },
+    "Notifications keep your budget up to date without opening the app." : {
+
+    },
+    "now" : {
 
     },
     "OK" : {
@@ -387,6 +454,9 @@
 
     },
     "Only this one is skipped. The next ones stay planned." : {
+
+    },
+    "Open Settings" : {
 
     },
     "Over Budget" : {
@@ -491,6 +561,9 @@
     "Select Category" : {
 
     },
+    "Set up the automation" : {
+
+    },
     "Share error details" : {
 
     },
@@ -521,6 +594,12 @@
     "Spent" : {
 
     },
+    "Split every month into needs, wants and savings with the 50/30/20 rule, and always know what's left." : {
+
+    },
+    "Split your budget" : {
+
+    },
     "Start a New Month" : {
 
     },
@@ -530,11 +609,30 @@
     "Start date cannot be in the past." : {
 
     },
+    "Start Tracking" : {
+
+    },
     "Start tracking your budget with Trente by opening the app!" : {
 
     },
     "Start tracking your budget." : {
 
+    },
+    "Stay ahead of recurring transactions" : {
+
+    },
+    "Stay in the loop" : {
+
+    },
+    "Step %lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Step %1$lld of %2$lld"
+          }
+        }
+      }
     },
     "Stop Failed" : {
 
@@ -549,6 +647,12 @@
 
     },
     "Supermarket" : {
+
+    },
+    "Support an independent app" : {
+
+    },
+    "Tap Get the Shortcut and add Log Wallet Transaction to your shortcuts." : {
 
     },
     "Tap here to log it in Trente" : {
@@ -596,7 +700,16 @@
     "Trente" : {
 
     },
+    "Trente taps you after each payment, so logging it takes a second." : {
+
+    },
+    "Trente+" : {
+
+    },
     "Turn on \"Recurring transaction\" when you add a transaction." : {
+
+    },
+    "Turn On Notifications" : {
 
     },
     "Type" : {
@@ -611,7 +724,16 @@
     "We couldn't create the transaction. Please try again." : {
 
     },
+    "We couldn't save your month" : {
+
+    },
+    "We started you at 50/30/20. Move the sliders until there's nothing left to split." : {
+
+    },
     "Weekly" : {
+
+    },
+    "Welcome to Trente" : {
 
     },
     "With Trente+, you can add images and notes to your transactions. Try it now!" : {
@@ -620,10 +742,22 @@
     "Yearly" : {
 
     },
+    "You can set this up later from the Shortcuts app." : {
+
+    },
+    "You're all set" : {
+
+    },
     "Your budget couldn't be opened" : {
 
     },
     "Your data has not been deleted. Try updating Trente, and share the error details if the problem persists." : {
+
+    },
+    "Your first month is ready. Add income and expenses as they come, and Trente keeps the split for you." : {
+
+    },
+    "Your monthly budget" : {
 
     }
   },
