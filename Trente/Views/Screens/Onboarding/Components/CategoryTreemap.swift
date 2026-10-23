@@ -71,3 +71,8 @@ struct CategoryTreemap: View {
     CategoryTreemap(percentages: [.needs: 50, .wants: 30, .savingsAndDebts: 20], isWide: true)
         .padding()
 }
+
+#Preview("Regular Narrow", traits: .fixedLayout(width: 440, height: 560)) {
+    CategoryTreemap(percentages: [.needs: 50, .wants: 30, .savingsAndDebts: 20], isWide: true)
+        .padding()
+}
