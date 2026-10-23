@@ -18,6 +18,7 @@ struct OnboardingView: View {
     @State private var model = OnboardingModel(steps: OnboardingStep.availableSteps)
     @State private var saveErrorMessage: String?
     @State private var notificationStatus: NotificationPermissionStatus = .notDetermined
+    @State private var isShowingPaywall = false
 
     private let notificationPermission = NotificationPermissionService()
 
@@ -35,6 +36,9 @@ struct OnboardingView: View {
         .onChange(of: scenePhase) { _, phase in
             guard phase == .active else { return }
             Task { await refreshNotificationStatus() }
+        }
+        .sheet(isPresented: $isShowingPaywall, onDismiss: onFinish) {
+            SubscriptionView()
         }
         .alert(
             "We couldn't save your month",
@@ -114,7 +118,7 @@ struct OnboardingView: View {
                 onContinue: goForward
             )
         case .allSet:
-            AllSetStepView(month: model.savedMonth, onStartTracking: goForward)
+            AllSetStepView(month: model.savedMonth) { isShowingPaywall = true }
         }
     }
 
