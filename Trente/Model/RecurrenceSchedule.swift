@@ -58,3 +58,11 @@ extension RecurrenceFrequency {
         }
     }
 }
+
+extension Calendar {
+    func timelineDates(from now: Date, dueDates: [Date]) -> [Date] {
+        let nextMidnight = startOfDay(for: date(byAdding: .day, value: 1, to: now)!)
+        let dueBeforeMidnight = dueDates.filter { (now...nextMidnight).contains($0) }
+        return Set([now, nextMidnight] + dueBeforeMidnight).sorted()
+    }
+}
