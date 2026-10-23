@@ -7,6 +7,7 @@
 
 import Testing
 import Foundation
+import SwiftData
 @testable import Trente
 
 @MainActor
@@ -54,6 +55,73 @@ struct OnboardingModelTests {
         model.goBack()
         #expect(model.currentStep == .budget)
         #expect(model.direction == .backward)
+    }
+
+    @Test(
+        "The 50/30/20 pre-fill rounds needs and wants down to whole units and gives savings the rest",
+        arguments: [
+            (2000_00, 1000_00, 600_00, 400_00),
+            (1234_00, 617_00, 370_00, 247_00),
+            (1234_56, 617_00, 370_00, 247_56),
+            (0, 0, 0, 0)
+        ]
+    )
+    func suggestedRepartition(budgetCents: Int, needs: Int, wants: Int, savings: Int) {
+        let repartition = OnboardingModel.suggestedRepartition(for: budgetCents)
+
+        #expect(repartition[.needs] == needs)
+        #expect(repartition[.wants] == wants)
+        #expect(repartition[.savingsAndDebts] == savings)
+        #expect(repartition.values.reduce(0, +) == budgetCents)
+    }
+
+    @Test("Changing the budget re-applies 50/30/20 while the split is untouched")
+    func budgetChangeKeepsSuggestedSplit() {
+        let model = OnboardingModel(steps: OnboardingStep.allCases)
+
+        model.budgetCents = 2000_00
+        model.budgetCents = 1500_00
+
+        #expect(model.draft.idealRepartition == OnboardingModel.suggestedRepartition(for: 1500_00))
+    }
+
+    @Test("A raised budget keeps a split the user adjusted")
+    func raisedBudgetKeepsAdjustedSplit() {
+        let model = OnboardingModel(steps: OnboardingStep.allCases)
+        model.budgetCents = 2000_00
+        let adjusted: [BudgetCategory: Int] = [.needs: 1200_00, .wants: 400_00, .savingsAndDebts: 400_00]
+        model.draft.idealRepartition = adjusted
+
+        model.budgetCents = 2500_00
+
+        #expect(model.draft.idealRepartition == adjusted)
+    }
+
+    @Test("A lowered budget replaces an adjusted split that no longer fits")
+    func loweredBudgetResetsAdjustedSplit() {
+        let model = OnboardingModel(steps: OnboardingStep.allCases)
+        model.budgetCents = 2000_00
+        model.draft.idealRepartition = [.needs: 1200_00, .wants: 400_00, .savingsAndDebts: 400_00]
+
+        model.budgetCents = 1000_00
+
+        #expect(model.draft.idealRepartition == OnboardingModel.suggestedRepartition(for: 1000_00))
+    }
+
+    @Test("Saving twice creates one month and updates it the second time")
+    func savingTwiceUpdatesTheSameMonth() throws {
+        let context = try makeContext()
+        let model = OnboardingModel(steps: OnboardingStep.allCases)
+        model.budgetCents = 2000_00
+
+        try model.saveMonth(in: context)
+        model.budgetCents = 2500_00
+        try model.saveMonth(in: context)
+
+        let months = try context.fetch(FetchDescriptor<Month>())
+        #expect(months.count == 1)
+        #expect(months.first?.idealBudgetCents == 2500_00)
+        #expect(months.first?.idealRepartition == OnboardingModel.suggestedRepartition(for: 2500_00))
     }
 
     @Test(
