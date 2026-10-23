@@ -196,11 +196,7 @@ extension Month {
 
     /// Returns the end date of the month. Adding 1 month to startDate and subtracting 1 day.
     func endDate() -> Date {
-        let calendar = Calendar.current
-        var components = calendar.dateComponents([.year, .month, .day], from: startDate)
-        components.month! += 1
-        components.day! -= 1
-        return calendar.date(from: components)!
+        Calendar.current.date(byAdding: .day, value: -1, to: dateInterval.end)!
     }
 
     var dateInterval: DateInterval {

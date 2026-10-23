@@ -242,6 +242,23 @@ struct MonthTests {
         #expect(endDate == expectedEndDate)
     }
     
+    @Test("End date of a month starting on the 31st stays before the next month")
+    func endDateOnThirtyFirst() async throws {
+        let calendar = Calendar(identifier: .gregorian)
+        let startDate = calendar.date(from: DateComponents(year: 2025, month: 1, day: 31))!
+        let expectedEndDate = calendar.date(from: DateComponents(year: 2025, month: 2, day: 27))!
+
+        let month = Month(
+            startDate: startDate,
+            currency: Currencies.currency(for: "EUR")!,
+            idealBudgetCents: 2000_00,
+            idealRepartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20]
+        )
+
+        #expect(month.endDate() == expectedEndDate)
+        #expect(month.dateInterval.end == calendar.date(byAdding: .day, value: 1, to: expectedEndDate))
+    }
+
     @Test("Remaining amount in category")
     func testRemainingAmountInCategory() {
         let month = Month(
