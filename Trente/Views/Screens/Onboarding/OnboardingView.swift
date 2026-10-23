@@ -13,8 +13,13 @@ struct OnboardingView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.openURL) private var openURL
     @State private var model = OnboardingModel(steps: OnboardingStep.availableSteps)
     @State private var saveErrorMessage: String?
+    @State private var notificationStatus: NotificationPermissionStatus = .notDetermined
+
+    private let notificationPermission = NotificationPermissionService()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -24,6 +29,13 @@ struct OnboardingView: View {
                 .transition(stepTransition)
         }
         .clipped()
+        .task(id: model.currentStep) {
+            await refreshNotificationStatus()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            guard phase == .active else { return }
+            Task { await refreshNotificationStatus() }
+        }
         .alert(
             "We couldn't save your month",
             isPresented: isShowingSaveError,
@@ -87,17 +99,22 @@ struct OnboardingView: View {
                 currency: model.draft.currency,
                 onContinue: saveMonthAndContinue
             )
-        case .notifications, .applePay, .allSet:
-            OnboardingStepLayout {
-                Text(verbatim: "\(model.currentStep)")
-                    .font(.largeTitle)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            } secondary: {
-                Color.clear
-            } actions: {
-                OnboardingContinueButton(title: "Continue", action: goForward)
-            }
+        case .notifications:
+            NotificationsStepView(
+                reasons: notificationReasons,
+                currency: model.draft.currency,
+                status: notificationStatus,
+                onEnable: requestNotifications,
+                onOpenSettings: openNotificationSettings,
+                onContinue: goForward
+            )
+        case .applePay:
+            ApplePayStepView(
+                onGetShortcut: { openURL(ExternalLinks.logWalletTransactionShortcut) },
+                onContinue: goForward
+            )
+        case .allSet:
+            AllSetStepView(month: model.savedMonth, onStartTracking: goForward)
         }
     }
 
@@ -114,6 +131,27 @@ struct OnboardingView: View {
     private var stepAccessibilityLabel: Text {
         let position = (model.steps.firstIndex(of: model.currentStep) ?? 0) + 1
         return Text("Step \(position) of \(model.steps.count)")
+    }
+
+    private var notificationReasons: [NotificationReason] {
+        model.steps.contains(.applePay) ? [.applePay, .recurring] : [.recurring]
+    }
+
+    private func refreshNotificationStatus() async {
+        guard model.currentStep == .notifications else { return }
+        notificationStatus = await notificationPermission.status()
+    }
+
+    private func requestNotifications() {
+        Task {
+            notificationStatus = await notificationPermission.requestIfNeeded()
+            goForward()
+        }
+    }
+
+    private func openNotificationSettings() {
+        guard let url = ExternalLinks.notificationSettings else { return }
+        openURL(url)
     }
 
     private var isShowingSaveError: Binding<Bool> {
