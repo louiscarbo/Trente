@@ -13,6 +13,7 @@ import UIKit
 enum WindowIdentifiers {
     static let newTransaction = "new-transaction"
     static let newMonth = "new-month"
+    static let help = "help"
 }
 
 enum ExternalLinks {
