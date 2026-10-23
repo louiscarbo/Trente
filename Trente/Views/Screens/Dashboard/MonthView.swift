@@ -56,6 +56,12 @@ struct MonthView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
+                    ExportMenu(
+                        rows: TransactionExportRow.rows(from: [month]),
+                        fileName: TransactionsCSVFile.fileName(for: month)
+                    )
+                }
+                ToolbarItem(placement: .primaryAction) {
                     NavigationLink {
                         MonthDetailsView(month: month)
                     } label: {
