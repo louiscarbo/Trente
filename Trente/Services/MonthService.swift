@@ -24,4 +24,20 @@ final class MonthService {
         descriptor.fetchLimit = 1
         return try context.fetch(descriptor).first
     }
+
+    func startDatesOfMissingMonths(
+        after latestStartDate: Date?,
+        today: Date,
+        calendar: Calendar = .current
+    ) -> [Date] {
+        guard let latestStartDate else { return [] }
+        var missingStartDates: [Date] = []
+        var previousStartDate = calendar.startOfDay(for: latestStartDate)
+        while let nextStartDate = calendar.date(byAdding: .month, value: 1, to: previousStartDate),
+              nextStartDate <= today {
+            missingStartDates.append(nextStartDate)
+            previousStartDate = nextStartDate
+        }
+        return missingStartDates
+    }
 }
