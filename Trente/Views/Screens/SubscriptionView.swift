@@ -53,32 +53,50 @@ struct SubscriptionView: View {
 private struct TrentePlusMarketingHeader: View {
     var body: some View {
         VStack(spacing: .large) {
-            StickerView(imageName: "Trente Pig Sticker")
-                .frame(width: 120, height: 120)
+            StickerView(imageName: "Trente Pig Sticker", rotation: .zero)
+                .frame(width: 170)
 
-            VStack(spacing: .small) {
+            VStack(spacing: 6) {
                 Text("Trente+")
                     .font(.largeTitle)
                     .bold()
-                Text("Get more out of every month.")
-                    .font(.title3)
+                Text("Keep the full story of your spending, right next to the numbers.")
                     .foregroundStyle(.secondary)
             }
             .multilineTextAlignment(.center)
 
-            VStack(alignment: .leading, spacing: .medium) {
-                feature("Notes and photos on your transactions", systemImage: "photo.on.rectangle")
-                feature("Support an independent app", systemImage: "heart")
-                feature("More features on the way", systemImage: "sparkles")
+            GroupBox(label: Label("What's included", systemImage: "sparkles")) {
+                VStack(alignment: .leading, spacing: .medium) {
+                    feature(
+                        "Notes and images",
+                        detail: "Attach receipts, photos and notes to any transaction."
+                    )
+                    feature(
+                        "Support an indie developer",
+                        detail: "Trente is built and maintained by one person."
+                    )
+                }
             }
+            .groupBoxStyle(TrenteGroupBoxStyle())
         }
         .padding()
     }
 
-    private func feature(_ title: LocalizedStringKey, systemImage: String) -> some View {
-        Label(title, systemImage: systemImage)
-            .font(.headline)
-            .frame(maxWidth: .infinity, alignment: .leading)
+    private func feature(_ title: LocalizedStringKey, detail: LocalizedStringKey) -> some View {
+        Label {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.headline)
+                Text(detail)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+        } icon: {
+            Image(systemName: "checkmark.circle.fill")
+                .foregroundStyle(.primary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -87,4 +105,9 @@ private struct TrentePlusMarketingHeader: View {
         .sheet(isPresented: .constant(true)) {
             SubscriptionView()
         }
+}
+
+#Preview("Marketing Header", traits: .sizeThatFitsLayout) {
+    TrentePlusMarketingHeader()
+        .frame(width: 402)
 }
