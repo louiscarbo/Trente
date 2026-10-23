@@ -16,9 +16,7 @@ final class WalletNotificationService {
 
     @MainActor
     func start() {
-        #if os(iOS)
         UNUserNotificationCenter.current().delegate = WalletNotificationDelegate.shared
-        #endif
     }
 
     @MainActor
