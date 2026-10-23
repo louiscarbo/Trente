@@ -1,0 +1,64 @@
+//
+//  RecurringTransactionRuleDraftTests.swift
+//  TrenteTests
+//
+//  Created by Louis Carbo Estaque on 23/10/2026.
+//
+
+import Testing
+@testable import Trente
+import Foundation
+
+struct RecurringTransactionRuleDraftTests {
+    private let calendar = Calendar.current
+
+    private func daysFromToday(_ days: Int) -> Date {
+        calendar.date(byAdding: .day, value: days, to: calendar.startOfDay(for: .now))!
+    }
+
+    private func makeRule(
+        frequency: RecurrenceFrequency,
+        startDate: Date,
+        endDate: Date? = nil
+    ) -> RecurringTransactionRule {
+        RecurringTransactionRule(
+            title: "Rent",
+            frequency: frequency,
+            startDate: startDate,
+            endDate: endDate,
+            repartition: [.needs: -800_00],
+            createdAt: startDate
+        )
+    }
+
+    @Test("Changing the frequency of a running rule restarts it on its next date")
+    func frequencyChangeRestartsOnNextDate() {
+        let rule = makeRule(frequency: .weekly, startDate: daysFromToday(-13))
+        var draft = RecurringTransactionRuleDraft(from: rule)
+
+        draft.setFrequency(.monthly)
+
+        #expect(draft.startDate == daysFromToday(1))
+        #expect(draft.validate().isEmpty)
+    }
+
+    @Test("Changing the frequency of a rule not started yet keeps its start date")
+    func frequencyChangeKeepsFutureStart() {
+        let startDate = daysFromToday(10)
+        var draft = RecurringTransactionRuleDraft(from: makeRule(frequency: .monthly, startDate: startDate))
+
+        draft.setFrequency(.weekly)
+
+        #expect(draft.startDate == startDate)
+    }
+
+    @Test("A rule stopped before it started can still be edited")
+    func stoppedBeforeStartCanBeEdited() {
+        let rule = makeRule(frequency: .monthly, startDate: daysFromToday(10), endDate: daysFromToday(0))
+        var draft = RecurringTransactionRuleDraft(from: rule)
+
+        draft.title = "Flat rent"
+
+        #expect(draft.validate().isEmpty)
+    }
+}

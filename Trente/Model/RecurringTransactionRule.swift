@@ -19,6 +19,7 @@ extension SchemaV1 {
         var repartition: [BudgetCategory: Int]
         var createdAt: Date = Date.now
         var skippedOccurrenceDates: [Date] = []
+        var lastAutoConfirmedDate: Date?
 
         @Relationship(deleteRule: .nullify, inverse: \TransactionGroup.recurringRule)
         var transactions: [TransactionGroup] = []
@@ -129,7 +130,9 @@ extension RecurringTransactionRule {
 
     func dueAutomaticOccurrences(in month: Month, by date: Date) -> [RecurringTransactionOccurrence] {
         guard autoConfirm else { return [] }
-        return pendingOccurrences(in: month).filter { $0.date <= date }
+        return pendingOccurrences(in: month).filter { occurrence in
+            occurrence.date <= date && occurrence.date > (lastAutoConfirmedDate ?? .distantPast)
+        }
     }
 
     func isSettled(on date: Date, calendar: Calendar = .current) -> Bool {

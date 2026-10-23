@@ -7,13 +7,15 @@ import Foundation
 
 struct RecurringTransactionRuleDraft {
     var title: String
-    var frequency: RecurrenceFrequency
+    private(set) var frequency: RecurrenceFrequency
     var startDate: Date
     var endDate: Date?
     var autoConfirm: Bool
     var repartition: [BudgetCategory: Int]
     var repartitionTotalCents: Int
     private let originalStartDate: Date
+    private let originalEndDate: Date?
+    private let nextScheduledDate: Date
 
     init(from rule: RecurringTransactionRule) {
         title = rule.title
@@ -24,6 +26,16 @@ struct RecurringTransactionRuleDraft {
         repartition = rule.repartition
         repartitionTotalCents = rule.repartition.values.reduce(0, +)
         originalStartDate = rule.startDate
+        originalEndDate = rule.endDate
+        let today = Calendar.current.startOfDay(for: .now)
+        nextScheduledDate = rule.schedule.firstDate(onOrAfter: today) ?? today
+    }
+
+    mutating func setFrequency(_ newFrequency: RecurrenceFrequency) {
+        frequency = newFrequency
+        if startDate < Calendar.current.startOfDay(for: .now) {
+            startDate = nextScheduledDate
+        }
     }
 
     func apply(to rule: RecurringTransactionRule) {
@@ -50,7 +62,8 @@ struct RecurringTransactionRuleDraft {
         if startDate != originalStartDate && startDate < Calendar.current.startOfDay(for: .now) {
             issues.append(String(localized: "Start date cannot be in the past."))
         }
-        if let endDate, endDate <= startDate {
+        let datesChanged = startDate != originalStartDate || endDate != originalEndDate
+        if let endDate, datesChanged, endDate <= startDate {
             issues.append(String(localized: "End date must be at least 7 days after start date."))
         }
         return issues

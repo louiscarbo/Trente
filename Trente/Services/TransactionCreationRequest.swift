@@ -23,5 +23,4 @@ class TransactionCreationRequest {
     var recurrenceFrequency: RecurrenceFrequency = .monthly
     var recurrenceStartDate: Date = .now
     var recurrenceEndDate: Date? = nil
-    var isFirstOccurrenceAlreadyPaid: Bool = true
 }

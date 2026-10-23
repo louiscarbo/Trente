@@ -36,6 +36,12 @@ struct RecurrenceSchedule {
         return dates
     }
 
+    func firstDate(onOrAfter date: Date, calendar: Calendar = .current) -> Date? {
+        let start = calendar.startOfDay(for: date)
+        guard let end = calendar.date(byAdding: frequency.calendarComponent, value: 1, to: start) else { return nil }
+        return dates(in: DateInterval(start: start, end: end), calendar: calendar).first
+    }
+
     private func exclusiveUpperBound(of interval: DateInterval, calendar: Calendar) -> Date {
         guard let endDate else { return interval.end }
         let dayAfterEnd = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: endDate))!

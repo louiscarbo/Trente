@@ -70,18 +70,17 @@ struct TransactionServiceTests {
         return request
     }
 
-    @Test("A recurring income starting today is recorded once")
-    func recurringIncomeStartingTodayIsRecordedOnce() throws {
+    @Test("A recurring transaction starting today stays pending until confirmed")
+    func recurringTransactionStartingTodayStaysPending() throws {
         let context = try makeContext()
         let month = insertCurrentMonth(in: context)
 
         try TransactionService.shared.create(with: recurringRequest(.income), for: month, in: context)
 
         let rule = try #require(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).first)
-        let groups = try context.fetch(FetchDescriptor<TransactionGroup>())
-        #expect(groups.count == 1)
-        #expect(groups.first?.recurringRule?.persistentModelID == rule.persistentModelID)
-        #expect(RecurringTransactionService.shared.pendingOccurrences(of: [rule], in: month).isEmpty)
+        #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
+        let pending = RecurringTransactionService.shared.pendingOccurrences(of: [rule], in: month)
+        #expect(pending.map(\.date) == [Calendar.current.startOfDay(for: .now)])
     }
 
     @Test("A recurring expense keeps its category and signed amount")
@@ -93,24 +92,6 @@ struct TransactionServiceTests {
 
         let rule = try #require(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).first)
         #expect(rule.repartition == [.needs: -800_00])
-        let group = try #require(try context.fetch(FetchDescriptor<TransactionGroup>()).first)
-        #expect(group.type == .expense)
-        #expect(group.totalAmountCents == -800_00)
-    }
-
-    @Test("A recurring transaction starting today and not paid yet stays pending")
-    func recurringTransactionNotPaidYetStaysPending() throws {
-        let context = try makeContext()
-        let month = insertCurrentMonth(in: context)
-        let request = recurringRequest(.expense)
-        request.isFirstOccurrenceAlreadyPaid = false
-
-        try TransactionService.shared.create(with: request, for: month, in: context)
-
-        let rule = try #require(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).first)
-        #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
-        let pending = RecurringTransactionService.shared.pendingOccurrences(of: [rule], in: month)
-        #expect(pending.map(\.date) == [Calendar.current.startOfDay(for: .now)])
     }
 
     @Test("A recurring transaction starting in the future records nothing yet")
