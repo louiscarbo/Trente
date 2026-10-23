@@ -15,7 +15,7 @@ struct CategoryTreemap: View {
         Group {
             if isWide {
                 ProportionalStack(axis: .horizontal) {
-                    slab(for: .needs)
+                    needsSlab
                         .layoutWeight(1)
                     ProportionalStack {
                         slab(for: .wants)
@@ -27,10 +27,12 @@ struct CategoryTreemap: View {
                 }
             } else {
                 ProportionalStack {
-                    ForEach(BudgetCategory.allCases) { category in
-                        slab(for: category)
-                            .layoutWeight(weight(for: category))
-                    }
+                    needsSlab
+                        .layoutWeight(weight(for: .needs))
+                    slab(for: .wants)
+                        .layoutWeight(weight(for: .wants))
+                    slab(for: .savingsAndDebts)
+                        .layoutWeight(weight(for: .savingsAndDebts))
                 }
             }
         }
@@ -40,9 +42,19 @@ struct CategoryTreemap: View {
         CGFloat(max(percentages[category] ?? 0, 1))
     }
 
+    private var needsSlab: some View {
+        slab(for: .needs)
+            .overlay(alignment: .topTrailing) {
+                StickerView(imageName: "Trente Pig Sticker", rotation: .zero)
+                    .frame(width: 150)
+                    .offset(x: isWide ? -6 : 10, y: isWide ? 10 : -14)
+            }
+            .zIndex(1)
+    }
+
     private func slab(for category: BudgetCategory) -> some View {
         CategorySlab(
-            name: category.name,
+            name: category.shortName,
             examples: category.shortExamples,
             percentage: percentages[category] ?? 0,
             color: category.color
