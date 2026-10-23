@@ -13,14 +13,11 @@ struct WelcomeStepView: View {
 
     var body: some View {
         OnboardingStepLayout {
-            VStack(alignment: .leading, spacing: .medium) {
-                StickerView(imageName: "Trente Pig Sticker")
-                    .frame(width: 88, height: 88)
-                OnboardingHeader(
-                    title: "Welcome to Trente",
-                    subtitle: "Split every month into needs, wants and savings with the 50/30/20 rule, and always know what's left."
-                )
-            }
+            OnboardingHeader(
+                title: "Take control of your budget.",
+                subtitle: "Trente splits your budget into Needs, Wants and Savings, so you always know what's left this month.",
+                isHero: true
+            )
         } secondary: {
             AdaptiveCategoryTreemap(percentages: percentages)
                 .frame(minHeight: 280)
