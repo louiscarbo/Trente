@@ -13,7 +13,6 @@ import SwiftUI
  
  Several elements are used to decide if a view is compressed:
  - Width
- - Dynamic Type size
  - Horizontal size class (on iOS)
  */
 struct WidthThresholdReader<Content: View>: View {
@@ -23,7 +22,6 @@ struct WidthThresholdReader<Content: View>: View {
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var sizeClass
     #endif
-    @Environment(\.dynamicTypeSize) private var dynamicType
     
     var body: some View {
         GeometryReader { geometryProxy in
@@ -76,16 +74,6 @@ struct WidthThresholdReader_Previews: PreviewProvider {
             .frame(width: 200)
             .border(.quaternary)
             
-            WidthThresholdReader { proxy in
-                Label {
-                    Text("X Large Type")
-                } icon: {
-                    compactIndicator(proxy: proxy)
-                }
-            }
-            .dynamicTypeSize(.xxxLarge)
-            .border(.quaternary)
-        
             #if os(iOS)
             WidthThresholdReader { proxy in
                 Label {
@@ -95,7 +83,7 @@ struct WidthThresholdReader_Previews: PreviewProvider {
                 }
             }
             .border(.quaternary)
-            .environment(\.horizontalSizeClass, .regular)
+            .environment(\.horizontalSizeClass, .compact)
             #endif
         }
     }
