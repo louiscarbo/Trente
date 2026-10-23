@@ -14,36 +14,37 @@ struct ApplePayStepView: View {
     var body: some View {
         OnboardingStepLayout {
             OnboardingHeader(
-                title: "Log Apple Pay in a tap",
-                subtitle: "A Shortcuts automation sends each Apple Pay payment to Trente. You review it, Trente files it."
+                title: "Log Apple Pay purchases automatically",
+                subtitle: "Add the Trente shortcut, then create one automation. Every card payment then shows up in Trente, ready to review."
             )
         } secondary: {
             OnboardingScrollPane {
                 ShortcutsSetupCard(
-                    title: "Set up the automation",
-                    systemImage: "wallet.pass",
+                    title: "In the Shortcuts app",
+                    systemImage: "creditcard",
                     steps: [
-                        "Tap Get the Shortcut and add Log Wallet Transaction to your shortcuts.",
-                        "In the Shortcuts app, open Automation and tap +.",
-                        "Choose Wallet, pick your cards, then choose Run Immediately.",
-                        "Add the Run Shortcut action, pick Log Wallet Transaction and pass it the Shortcut Input."
+                        "Tap **Get the Shortcut** below and add **Log Wallet Transaction** to your shortcuts.",
+                        "In the **Automation** tab, create a new automation with the **Wallet** trigger, choose your cards and select **Run Immediately**.",
+                        "Add **Run Shortcut**, pick **Log Wallet Transaction** and pass it the **Shortcut Input**."
                     ]
                 )
+
                 Label(
-                    "You can set this up later from the Shortcuts app.",
-                    systemImage: "info.circle"
+                    "Trente only receives the merchant name and the amount. Never your card details.",
+                    systemImage: "lock.fill"
                 )
-                .font(.subheadline)
+                .font(.footnote)
                 .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         } actions: {
             OnboardingContinueButton(title: "Get the Shortcut", action: onGetShortcut)
             Button(action: onContinue) {
-                Text("Continue")
+                Text("Set Up Later")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
+            .buttonStyle(TrenteSecondaryButtonStyle())
         }
     }
 }
