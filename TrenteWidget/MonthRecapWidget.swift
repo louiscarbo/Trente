@@ -264,7 +264,7 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> Void) {
-        completion(currentMonthTimeline(policy: .after(.now), makeEntry: MonthRecapEntry.init))
+        completion(currentMonthTimeline(makeEntry: MonthRecapEntry.init))
     }
 }
 

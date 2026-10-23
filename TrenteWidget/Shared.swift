@@ -15,12 +15,11 @@ private let retryDelay: TimeInterval = 15 * 60
 
 func currentMonthTimeline<Entry: TimelineEntry>(
     from now: Date = .now,
-    policy: TimelineReloadPolicy,
     makeEntry: (Date, WidgetMonth?) -> Entry
 ) -> Timeline<Entry> {
     do {
         let entries = try currentMonthSnapshots(from: now).map { makeEntry($0.date, $0.month) }
-        return Timeline(entries: entries, policy: policy)
+        return Timeline(entries: entries, policy: .atEnd)
     } catch {
         logger.error("Could not load the current month: \(error, privacy: .public)")
         return Timeline(
@@ -34,18 +33,17 @@ private func currentMonthSnapshots(from now: Date) throws -> [(date: Date, month
     let context = ModelContext(try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self))
     var descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .reverse)])
     descriptor.fetchLimit = 1
-    guard let month = try context.fetch(descriptor).first else { return [(now, nil)] }
+    guard let month = try context.fetch(descriptor).first else {
+        return Calendar.current.timelineDates(from: now, dueDates: []).map { ($0, nil) }
+    }
 
     let automaticRules = try context.fetch(
         FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true })
     )
-    let upcomingDueDates = Set(
-        automaticRules
-            .flatMap { $0.dueAutomaticOccurrences(in: month, by: month.dateInterval.end) }
-            .map(\.date)
-            .filter { $0 > now }
-    )
-    return ([now] + upcomingDueDates.sorted()).map { date in
+    let dueDates = automaticRules
+        .flatMap { $0.dueAutomaticOccurrences(in: month, by: month.dateInterval.end) }
+        .map(\.date)
+    return Calendar.current.timelineDates(from: now, dueDates: dueDates).map { date in
         let dueOccurrences = automaticRules.flatMap { $0.dueAutomaticOccurrences(in: month, by: date) }
         return (date, WidgetMonth(month: month, automaticOccurrences: dueOccurrences))
     }

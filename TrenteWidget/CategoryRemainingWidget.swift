@@ -170,7 +170,7 @@ struct AccessoryCircularCategoryRemainingWidgetView: View {
 
 struct CategoryTimeline: AppIntentTimelineProvider {
     func timeline(for configuration: SelectCategoryIntent, in context: Context) async -> Timeline<CategoryEntry> {
-        currentMonthTimeline(policy: .never) { date, month in
+        currentMonthTimeline { date, month in
             CategoryEntry(
                 date: date,
                 month: month,
