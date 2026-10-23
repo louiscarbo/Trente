@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct OnboardingView: View {
     let onFinish: () -> Void
 
-    @State private var model = OnboardingModel(steps: OnboardingStep.availableSteps)
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var model = OnboardingModel(steps: OnboardingStep.availableSteps)
+    @State private var saveErrorMessage: String?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,6 +24,16 @@ struct OnboardingView: View {
                 .transition(stepTransition)
         }
         .clipped()
+        .alert(
+            "We couldn't save your month",
+            isPresented: isShowingSaveError,
+            presenting: saveErrorMessage
+        ) { _ in
+            Button("Retry", action: saveMonthAndContinue)
+            Button("Cancel", role: .cancel) {}
+        } message: { message in
+            Text(message)
+        }
     }
 
     private var topBar: some View {
@@ -40,6 +53,7 @@ struct OnboardingView: View {
                         .buttonStyle(.glass)
                         .buttonBorderShape(.circle)
                         .controlSize(.large)
+                        .keyboardShortcut(.cancelAction)
                         .transition(.opacity)
                 }
                 Spacer()
@@ -52,16 +66,38 @@ struct OnboardingView: View {
 
     @ViewBuilder
     private var stepContent: some View {
-        OnboardingStepLayout {
-            Text(verbatim: "\(model.currentStep)")
-                .font(.largeTitle)
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-        } secondary: {
-            Color.clear
-        } actions: {
-            Button("Continue", action: goForward)
-                .buttonStyle(TrentePrimaryButtonStyle())
+        @Bindable var model = model
+
+        switch model.currentStep {
+        case .welcome:
+            WelcomeStepView(percentages: OnboardingModel.suggestedPercentages, onGetStarted: goForward)
+        case .budget:
+            BudgetStepView(
+                startDate: $model.draft.startDate,
+                currency: $model.draft.currency,
+                budgetCents: $model.budgetCents,
+                canContinue: model.canContinue,
+                onContinue: goForward
+            )
+        case .split:
+            SplitStepView(
+                repartition: $model.draft.idealRepartition,
+                isRepartitionComplete: $model.isRepartitionComplete,
+                budgetCents: model.draft.idealBudgetCents,
+                currency: model.draft.currency,
+                onContinue: saveMonthAndContinue
+            )
+        case .notifications, .applePay, .allSet:
+            OnboardingStepLayout {
+                Text(verbatim: "\(model.currentStep)")
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            } secondary: {
+                Color.clear
+            } actions: {
+                OnboardingContinueButton(title: "Continue", action: goForward)
+            }
         }
     }
 
@@ -78,6 +114,22 @@ struct OnboardingView: View {
     private var stepAccessibilityLabel: Text {
         let position = (model.steps.firstIndex(of: model.currentStep) ?? 0) + 1
         return Text("Step \(position) of \(model.steps.count)")
+    }
+
+    private var isShowingSaveError: Binding<Bool> {
+        Binding(
+            get: { saveErrorMessage != nil },
+            set: { if !$0 { saveErrorMessage = nil } }
+        )
+    }
+
+    private func saveMonthAndContinue() {
+        do {
+            try model.saveMonth(in: modelContext)
+            goForward()
+        } catch {
+            saveErrorMessage = error.localizedDescription
+        }
     }
 
     private func goForward() {
@@ -99,4 +151,5 @@ struct OnboardingView: View {
 
 #Preview {
     OnboardingView {}
+        .modelContainer(DataProvider.shared.modelContainer)
 }

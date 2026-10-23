@@ -37,6 +37,7 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
                 compactLayout
             }
         }
+        .environment(\.isOnboardingLayoutRegular, isRegular)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onGeometryChange(for: CGSize.self) { proxy in
             proxy.size
@@ -78,6 +79,10 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
         }
         .padding(48)
     }
+}
+
+extension EnvironmentValues {
+    @Entry var isOnboardingLayoutRegular = false
 }
 
 #Preview {
