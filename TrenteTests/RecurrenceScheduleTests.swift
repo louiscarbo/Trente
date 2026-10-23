@@ -115,4 +115,20 @@ struct RecurrenceScheduleTests {
         #expect(schedule(.monthly, start: day(2025, 1, 10)).dates(in: budgetMonth, calendar: calendar) == [day(2025, 2, 10)])
         #expect(schedule(.monthly, start: day(2025, 1, 28)).dates(in: budgetMonth, calendar: calendar) == [day(2025, 1, 28)])
     }
+
+    @Test("The first date on or after a day is the next one in the schedule")
+    func firstDateOnOrAfter() {
+        let weekly = schedule(.weekly, start: day(2025, 1, 1))
+        let monthly = schedule(.monthly, start: day(2025, 1, 15))
+
+        #expect(weekly.firstDate(onOrAfter: day(2025, 1, 10), calendar: calendar) == day(2025, 1, 15))
+        #expect(monthly.firstDate(onOrAfter: day(2025, 2, 15, hour: 9), calendar: calendar) == day(2025, 2, 15))
+    }
+
+    @Test("An ended schedule has no first date after its end")
+    func firstDateAfterEnd() {
+        let ended = schedule(.monthly, start: day(2025, 1, 15), end: day(2025, 3, 15))
+
+        #expect(ended.firstDate(onOrAfter: day(2025, 3, 16), calendar: calendar) == nil)
+    }
 }

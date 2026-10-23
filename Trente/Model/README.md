@@ -27,6 +27,7 @@ A `RecurringTransactionRule` defines a transaction that repeats over time. It is
 *   The start date (its day is the anchor of the schedule) and optional end date, both inclusive and compared by day.
 *   `createdAt`: nothing is ever scheduled before the rule's creation day, so a new rule never touches past budgets.
 *   `skippedOccurrenceDates`: occurrences the user chose to skip.
+*   `lastAutoConfirmedDate`: the latest occurrence an automatic rule recorded by itself. Automatic recording only looks after this date, so a deleted automatic transaction comes back as pending instead of being recorded again.
 *   The template for the `TransactionGroup` to be created, including title, amount, and category information.
 
 `repartition: [BudgetCategory: Int]` stores this amount, signed exactly like `TransactionEntry.amountCents` (negative = expense, positive = income). Since an expense always produces a single `TransactionEntry` (see above), an expense rule's `repartition` must contain exactly one category — only income rules are split across multiple categories. UI editing a rule's repartition must branch on this sign rather than reusing the multi-category income split UI for expenses.

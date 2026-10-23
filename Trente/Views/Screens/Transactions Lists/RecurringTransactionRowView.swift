@@ -19,8 +19,16 @@ struct RecurringTransactionRowView: View {
         Button {
             showPaymentSheet = true
         } label: {
-            RecurringOccurrenceRowContent(occurrence: occurrence)
-                .contentShape(.rect)
+            RecurringOccurrenceRowContent(
+                title: occurrence.rule.title,
+                date: occurrence.date,
+                categoryName: occurrence.categoryName,
+                frequency: occurrence.rule.frequency,
+                amount: Double(occurrence.amountCents) / 100,
+                currencyCode: occurrence.month.currency.isoCode,
+                isOverdue: occurrence.isOverdue
+            )
+            .contentShape(.rect)
         }
         .buttonStyle(.plain)
         .swipeActions(edge: .leading) {
@@ -93,13 +101,19 @@ struct RecurringTransactionRowView: View {
 }
 
 private struct RecurringOccurrenceRowContent: View {
-    let occurrence: RecurringTransactionOccurrence
+    let title: String
+    let date: Date
+    let categoryName: String
+    let frequency: RecurrenceFrequency
+    let amount: Double
+    let currencyCode: String
+    let isOverdue: Bool
 
     var body: some View {
         HStack(spacing: 12) {
-            OccurrenceDateBadge(date: occurrence.date, isOverdue: occurrence.isOverdue)
+            OccurrenceDateBadge(date: date, isOverdue: isOverdue)
             VStack(alignment: .leading) {
-                Text(occurrence.rule.title)
+                Text(title)
                     .multilineTextAlignment(.leading)
                     .font(.headline)
                 subtitle
@@ -107,16 +121,16 @@ private struct RecurringOccurrenceRowContent: View {
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Text(occurrence.displayAmount)
+            Text(amount, format: .currency(code: currencyCode))
                 .font(.title2)
         }
     }
 
     private var subtitle: Text {
-        guard occurrence.isOverdue else {
-            return Text("\(occurrence.categoryName) · \(occurrence.rule.frequency.displayName)")
+        guard isOverdue else {
+            return Text("\(categoryName) · \(frequency.displayName)")
         }
-        return Text("\(Text("Overdue").foregroundStyle(.orange)) · \(occurrence.categoryName)")
+        return Text("\(Text("Overdue").foregroundStyle(.orange)) · \(categoryName)")
     }
 }
 

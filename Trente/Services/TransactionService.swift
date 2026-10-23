@@ -40,8 +40,7 @@ final class TransactionService {
 
     func create(with request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
         if request.isRecurrent {
-            let calendar = Calendar.current
-            guard request.recurrenceStartDate >= calendar.startOfDay(for: .now) else {
+            guard request.recurrenceStartDate >= Calendar.current.startOfDay(for: .now) else {
                 throw TransactionServiceError.recurrenceStartsInPast
             }
             let rule = RecurringTransactionRule(
@@ -52,12 +51,6 @@ final class TransactionService {
                 repartition: try recurringRepartition(from: request)
             )
             context.insert(rule)
-
-            if calendar.isDateInToday(request.recurrenceStartDate) && request.isFirstOccurrenceAlreadyPaid {
-                let group = try createTransactionGroupWithEntries(from: request, for: month, in: context)
-                group.recurringRule = rule
-                group.recurringOccurrenceDate = calendar.startOfDay(for: request.recurrenceStartDate)
-            }
         } else {
             try createTransactionGroupWithEntries(from: request, for: month, in: context)
         }

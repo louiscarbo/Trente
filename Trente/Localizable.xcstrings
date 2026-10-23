@@ -26,6 +26,16 @@
         }
       }
     },
+    "%@ · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
     "%@ · %lld%%" : {
       "localizations" : {
         "en" : {
@@ -39,7 +49,13 @@
     "%@ Remaining" : {
 
     },
+    "%@ won't appear after today. Transactions already recorded stay." : {
+
+    },
     "%lld" : {
+
+    },
+    "%lld active" : {
 
     },
     "%lld%% Left" : {
@@ -49,6 +65,9 @@
 
     },
     "Abercrombie & Fitch Lyon Part-Dieu" : {
+
+    },
+    "Active" : {
 
     },
     "Add an End Date" : {
@@ -102,10 +121,7 @@
     "At least one category must have a non-zero amount." : {
 
     },
-    "Auto-Confirm" : {
-
-    },
-    "Auto-confirm new instances" : {
+    "Automatic" : {
 
     },
     "Budget Category" : {
@@ -129,16 +145,13 @@
     "Change Image" : {
 
     },
+    "Change or stop this schedule" : {
+
+    },
     "Close" : {
 
     },
     "Clothes" : {
-
-    },
-    "Confirm" : {
-
-    },
-    "Confirm this transaction?" : {
 
     },
     "Create" : {
@@ -195,6 +208,12 @@
     "Done" : {
 
     },
+    "Due %@" : {
+
+    },
+    "Due today" : {
+
+    },
     "Edit" : {
 
     },
@@ -208,6 +227,12 @@
 
     },
     "End date must be at least 7 days after start date." : {
+
+    },
+    "Ended" : {
+
+    },
+    "Ended on %@" : {
 
     },
     "Error Loading Image" : {
@@ -225,6 +250,12 @@
           }
         }
       }
+    },
+    "Every month on the %@" : {
+
+    },
+    "Expected This Month" : {
+
     },
     "Expense" : {
 
@@ -259,6 +290,9 @@
     "Income/Expense" : {
 
     },
+    "It's added to this month's transactions." : {
+
+    },
     "Last 7 Days" : {
 
     },
@@ -266,6 +300,24 @@
 
     },
     "Log Wallet Transaction" : {
+
+    },
+    "Mark %@ as paid?" : {
+
+    },
+    "Mark %@ as received?" : {
+
+    },
+    "Mark as Paid" : {
+
+    },
+    "Mark as paid automatically" : {
+
+    },
+    "Mark as Received" : {
+
+    },
+    "Mark as received automatically" : {
 
     },
     "Marketing Content Goes Here" : {
@@ -316,19 +368,37 @@
     "No months available" : {
 
     },
-    "No spending recorded yet." : {
+    "No Recurring Transactions" : {
 
     },
-    "No upcoming recurring transactions for this month." : {
+    "No spending recorded yet." : {
 
     },
     "Not Implemented Yet." : {
 
     },
+    "Nothing else expected this month." : {
+
+    },
     "OK" : {
 
     },
+    "On the due date, %@ is added to that month's transactions." : {
+
+    },
+    "Only this one is skipped. The next ones stay planned." : {
+
+    },
     "Over Budget" : {
+
+    },
+    "Overdue" : {
+
+    },
+    "Overdue since %@" : {
+
+    },
+    "Paid" : {
 
     },
     "Please open this window from a month dashboard." : {
@@ -343,7 +413,13 @@
     "Previous" : {
 
     },
+    "Received" : {
+
+    },
     "Recurrence Details" : {
+
+    },
+    "RECURRING" : {
 
     },
     "Recurring transaction" : {
@@ -388,10 +464,13 @@
     "Savings, debt, retirement..." : {
 
     },
+    "Schedule" : {
+
+    },
     "Search by title, amount, date, category…" : {
 
     },
-    "See all recurring transactions" : {
+    "See all expected" : {
 
     },
     "See all transactions" : {
@@ -412,6 +491,27 @@
     "Select Category" : {
 
     },
+    "Skip" : {
+
+    },
+    "Skip %@ this month?" : {
+
+    },
+    "Skip %@ this week?" : {
+
+    },
+    "Skip %@ this year?" : {
+
+    },
+    "Skip This Month" : {
+
+    },
+    "Skip This Week" : {
+
+    },
+    "Skip This Year" : {
+
+    },
     "Sort by" : {
 
     },
@@ -424,10 +524,22 @@
     "Start Date" : {
 
     },
+    "Start date cannot be in the past." : {
+
+    },
     "Start tracking your budget with Trente by opening the app!" : {
 
     },
     "Start tracking your budget." : {
+
+    },
+    "Stop Failed" : {
+
+    },
+    "Stop future %@ transactions?" : {
+
+    },
+    "Stop Future Transactions" : {
 
     },
     "Sum of displayed transactions" : {
@@ -443,9 +555,6 @@
 
     },
     "This action cannot be undone. All transactions associated with this month will also be deleted." : {
-
-    },
-    "This adds it as a transaction for this month." : {
 
     },
     "This Month" : {
@@ -484,13 +593,13 @@
     "Trente" : {
 
     },
+    "Turn on \"Recurring transaction\" when you add a transaction." : {
+
+    },
     "Type" : {
 
     },
     "Under Budget" : {
-
-    },
-    "Validate" : {
 
     },
     "Wants" : {

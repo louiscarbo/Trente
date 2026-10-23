@@ -61,6 +61,8 @@ final class RecurringTransactionService {
             rules.flatMap { $0.dueAutomaticOccurrences(in: month, by: now) }
         }
         for occurrence in dueOccurrences {
+            let rule = occurrence.rule
+            rule.lastAutoConfirmedDate = max(rule.lastAutoConfirmedDate ?? .distantPast, occurrence.date)
             try confirm(occurrence, in: context, addedDate: occurrence.date)
         }
         return dueOccurrences.count

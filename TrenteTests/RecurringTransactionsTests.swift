@@ -288,6 +288,24 @@ struct RecurringTransactionsTests {
         #expect(april.transactionGroups.count == 1)
     }
 
+    @Test("A deleted automatic transaction comes back as pending instead of being recorded again")
+    func deletedAutomaticTransactionStaysPending() throws {
+        let context = try makeContext()
+        let april = insertMonth(year: 2025, month: 4, in: context)
+        let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], automatic: true, in: context)
+        try context.save()
+        try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+        let group = try #require(april.transactionGroups.first)
+
+        TransactionService.shared.delete(group: group, in: context)
+        try context.save()
+        let secondCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 11))
+
+        #expect(secondCount == 0)
+        #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
+        #expect(service.pendingOccurrences(of: [rule], in: april).map(\.date) == [day(2025, 4, 2)])
+    }
+
     @Test("A month's figures can include automatic transactions not recorded yet")
     func figuresIncludeAutomaticOccurrences() throws {
         let context = try makeContext()

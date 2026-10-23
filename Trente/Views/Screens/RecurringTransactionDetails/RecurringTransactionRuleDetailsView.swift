@@ -18,6 +18,7 @@ struct RecurringTransactionRuleDetailsView: View {
     @State private var draft: RecurringTransactionRuleDraft?
     @State private var validationErrors: [String] = []
     @State private var deleteError: String?
+    @State private var stopError: String?
     @State private var isRepartitionComplete = false
 
     @FocusState private var titleFocused: Bool
@@ -53,15 +54,21 @@ struct RecurringTransactionRuleDetailsView: View {
                 repartitionBox()
             }
             if !isEditing && !rule.hasEnded {
-                StopRecurringBox(title: rule.title) {
-                    try? RecurringTransactionService.shared.stop(rule, in: modelContext)
-                }
+                StopRecurringBox(title: rule.title, onStop: stopRule)
             }
         }
         .onAppear {
             if startInEditMode { enterEditMode() }
         }
         .onChange(of: isEditing) { _, editing in if !editing { clearFocus() } }
+        .alert(String(localized: "Stop Failed"), isPresented: Binding(
+            get: { stopError != nil },
+            set: { if !$0 { stopError = nil } }
+        )) {
+            Button("OK", role: .cancel) { stopError = nil }
+        } message: {
+            Text(stopError ?? "")
+        }
     }
 
     private func clearFocus() {
@@ -129,7 +136,7 @@ struct RecurringTransactionRuleDetailsView: View {
                     title: "Frequency",
                     selection: Binding(
                         get: { isEditing ? (draft?.frequency ?? rule.frequency) : rule.frequency },
-                        set: { draft?.frequency = $0 }
+                        set: { draft?.setFrequency($0) }
                     ),
                     options: RecurrenceFrequency.allCases
                 ) { frequency in
@@ -142,7 +149,7 @@ struct RecurringTransactionRuleDetailsView: View {
                         get: { isEditing ? (draft?.startDate ?? rule.startDate) : rule.startDate },
                         set: { draft?.startDate = $0 }
                     ),
-                    in: earliestSelectableStartDate...,
+                    in: (isEditing ? Calendar.current.startOfDay(for: .now) : .distantPast)...,
                     displayedComponents: .date
                 )
                 .datePickerStyle(.compact)
@@ -152,10 +159,6 @@ struct RecurringTransactionRuleDetailsView: View {
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
         .disabled(!isEditing)
-    }
-
-    private var earliestSelectableStartDate: Date {
-        min(rule.startDate, Calendar.current.startOfDay(for: .now))
     }
 
     @ViewBuilder
@@ -317,6 +320,14 @@ struct RecurringTransactionRuleDetailsView: View {
             }
         } catch {
             validationErrors = [String(localized: "Failed to save changes: \(error.localizedDescription)")]
+        }
+    }
+
+    private func stopRule() {
+        do {
+            try RecurringTransactionService.shared.stop(rule, in: modelContext)
+        } catch {
+            stopError = error.localizedDescription
         }
     }
 
