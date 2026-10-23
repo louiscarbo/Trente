@@ -16,6 +16,9 @@ struct TrenteApp: App {
         WalletNotificationService.shared.start()
         WidgetRefresher.shared.start()
         CatchUpService.shared.start()
+        if case .success(let modelContainer) = container {
+            RecurringNotificationScheduler.shared.start(container: modelContainer)
+        }
     }
 
     var body: some Scene {
