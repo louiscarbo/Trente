@@ -19,6 +19,7 @@ struct OnboardingView: View {
     @State private var saveErrorMessage: String?
     @State private var notificationStatus: NotificationPermissionStatus = .notDetermined
     @State private var isShowingPaywall = false
+    @State private var hasOpenedShortcut = false
 
     private let notificationPermission = NotificationPermissionService()
 
@@ -113,7 +114,8 @@ struct OnboardingView: View {
             )
         case .applePay:
             ApplePayStepView(
-                onGetShortcut: { openURL(ExternalLinks.logWalletTransactionShortcut) },
+                hasOpenedShortcut: hasOpenedShortcut,
+                onGetShortcut: openShortcut,
                 onContinue: goForward
             )
         case .allSet:
@@ -145,6 +147,13 @@ struct OnboardingView: View {
         Task {
             notificationStatus = await notificationPermission.requestIfNeeded()
             goForward()
+        }
+    }
+
+    private func openShortcut() {
+        openURL(ExternalLinks.logWalletTransactionShortcut) { accepted in
+            guard accepted else { return }
+            hasOpenedShortcut = true
         }
     }
 
