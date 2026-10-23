@@ -25,6 +25,16 @@ final class MonthService {
         return try context.fetch(descriptor).first
     }
 
+    func month(containing date: Date, in context: ModelContext) throws -> Month? {
+        let months = try context.fetch(
+            FetchDescriptor<Month>(sortBy: [SortDescriptor(\.startDate, order: .reverse)])
+        )
+        return months.first { month in
+            let interval = month.dateInterval
+            return interval.start <= date && date < interval.end
+        }
+    }
+
     @discardableResult
     func createMissingMonths(
         in context: ModelContext,

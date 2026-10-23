@@ -32,6 +32,17 @@ struct MonthServiceTests {
         #expect(try MonthService.shared.latestMonth(in: context) == nil)
     }
 
+    @Test("The month containing a date is the newer one at midnight on the boundary")
+    func monthContainingBoundary() throws {
+        let context = try makeContext()
+        insertMonth(year: 2026, month: 10, in: context)
+        let november = insertMonth(year: 2026, month: 11, in: context)
+        let midnight = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 1))!
+
+        #expect(try MonthService.shared.month(containing: midnight, in: context)?.id == november.id)
+        #expect(try MonthService.shared.month(containing: .distantPast, in: context) == nil)
+    }
+
     @Test("Missing months chain from the latest one up to today", arguments: MissingMonthsCase.all)
     func startDatesOfMissingMonths(missingMonthsCase: MissingMonthsCase) {
         let startDates = MonthService.shared.startDatesOfMissingMonths(
