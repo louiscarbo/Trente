@@ -10,18 +10,21 @@ import SwiftUI
 struct OnboardingHeader: View {
     let title: LocalizedStringKey
     let subtitle: LocalizedStringKey
+    var alignment: HorizontalAlignment = .leading
+    var isHero = false
+
+    @ScaledMetric(relativeTo: .largeTitle) private var heroTitleSize = 46
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .small) {
+        VStack(alignment: alignment, spacing: .small) {
             Text(title)
-                .font(.largeTitle)
-                .bold()
+                .font(isHero ? .system(size: heroTitleSize, weight: .heavy) : .largeTitle.bold())
                 .accessibilityAddTraits(.isHeader)
             Text(subtitle)
-                .font(.title3)
                 .foregroundStyle(.secondary)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .multilineTextAlignment(alignment == .center ? .center : .leading)
+        .frame(maxWidth: .infinity, alignment: Alignment(horizontal: alignment, vertical: .center))
         .fixedSize(horizontal: false, vertical: true)
     }
 }
@@ -44,8 +47,18 @@ struct OnboardingContinueButton: View {
 #Preview {
     VStack(spacing: .large) {
         OnboardingHeader(
+            title: "Take control of your budget.",
+            subtitle: "Trente splits your budget into Needs, Wants and Savings, so you always know what's left this month.",
+            isHero: true
+        )
+        OnboardingHeader(
             title: "Your monthly budget",
-            subtitle: "How much do you expect to earn this month?"
+            subtitle: "Think of it as the money you're free to spend each month, once taxes are taken care of."
+        )
+        OnboardingHeader(
+            title: "Never miss an expense",
+            subtitle: "When you pay with Apple Pay, Trente sends you a notification.",
+            alignment: .center
         )
         OnboardingContinueButton(title: "Continue") {}
         OnboardingContinueButton(title: "Continue", isEnabled: false) {}
