@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import WidgetKit
 
 struct MonthListView: View {
     @Environment(\.modelContext) private var modelContext
@@ -164,10 +163,7 @@ struct MonthListView: View {
     }
 
     private func confirmDueTransactions() {
-        let confirmedCount = (try? RecurringTransactionService.shared.confirmDueOccurrences(in: modelContext)) ?? 0
-        if confirmedCount > 0 {
-            WidgetCenter.shared.reloadAllTimelines()
-        }
+        _ = try? RecurringTransactionService.shared.confirmDueOccurrences(in: modelContext)
     }
 
     private var isShowingPendingTransaction: Binding<Bool> {
