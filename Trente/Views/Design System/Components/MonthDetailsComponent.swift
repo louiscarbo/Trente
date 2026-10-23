@@ -17,22 +17,19 @@ struct MonthDetailsComponent: View {
         VStack(spacing: .medium) {
             GroupBox(label: Label("Month Details", systemImage: "calendar")) {
                 VStack(spacing: .medium) {
-                    startDatePicker
-                    currencyPicker
+                    MonthStartDatePicker(startDate: $month.startDate)
+                    MonthCurrencyPicker(currency: $month.currency)
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
             
             GroupBox(label: Label("Ideal Budget", systemImage: month.currency.sfSymbolGaugeName)) {
                 VStack(spacing: .medium) {
-                    CurrencyTextField(
+                    IdealBudgetField(
                         amountCents: $month.idealBudgetCents,
-                        currency: month.currency
+                        currency: month.currency,
+                        isFocused: $isAmountFocused
                     )
-                    .focused($isAmountFocused)
-                    .font(.title)
-                    .bold()
-                    .multilineTextAlignment(.center)
                     .onChange(of: month.idealBudgetCents) { oldValue, newValue in
                         if newValue < oldValue {
                             resetRepartition()
@@ -56,21 +53,6 @@ struct MonthDetailsComponent: View {
         .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
     }
 
-    private var startDatePicker: some View {
-        DatePicker("Start Date", selection: $month.startDate, displayedComponents: .date)
-            .datePickerStyle(.compact)
-    }
-    
-    private var currencyPicker: some View {
-        LabeledPicker(
-            title: "Currency",
-            selection: $month.currency,
-            options: Currencies.availableCurrencies.sorted(by: { $0.localizedName < $1.localizedName })
-        ) { currency in
-            Label(currency.localizedName, systemImage: currency.sfSymbolName ?? "xmark")
-        }
-    }
-    
     private func resetRepartition() {
         month.idealRepartition = Dictionary(
             uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
