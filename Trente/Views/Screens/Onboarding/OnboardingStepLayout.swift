@@ -23,6 +23,7 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
     @State private var containerSize: CGSize = .zero
+    @State private var compactViewportHeight: CGFloat = 0
 
     private static var regularMinimumWidth: CGFloat { 1000 }
     private static var primaryColumnWidth: ClosedRange<CGFloat> { 340...420 }
@@ -54,13 +55,16 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
     }
 
     private var compactLayout: some View {
-        ViewThatFits(in: .vertical) {
+        ScrollView {
             compactContent
-            ScrollView {
-                compactContent
-            }
+                .frame(minHeight: compactViewportHeight)
         }
-        .frame(maxHeight: .infinity)
+        .scrollBounceBehavior(.basedOnSize)
+        .onScrollGeometryChange(for: CGFloat.self) { geometry in
+            geometry.containerSize.height
+        } action: { _, height in
+            compactViewportHeight = height
+        }
         .safeAreaInset(edge: .bottom) {
             VStack(spacing: .small) {
                 actions()
