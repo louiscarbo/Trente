@@ -13,6 +13,12 @@ enum TrentePlus: Hashable {
     case annual
     
     static let groupID = "21676268"
+
+    static func isActive(_ states: [Product.SubscriptionInfo.RenewalState]) -> Bool {
+        states.contains { state in
+            state == .subscribed || state == .inGracePeriod
+        }
+    }
     
     init?(_ product: Product) {
         switch product.id {

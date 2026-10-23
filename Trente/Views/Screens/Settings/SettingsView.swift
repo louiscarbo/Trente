@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SettingsView: View {
     @Environment(\.openURL) private var openURL
+    @State private var isSubscribed = false
+    @State private var isShowingPaywall = false
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
     @State private var notificationStatus: NotificationPermissionStatus?
+    @State private var isShowingManageSubscriptions = false
 
     private let notificationPermission = NotificationPermissionService()
     #endif
@@ -35,6 +39,11 @@ struct SettingsView: View {
                     )
                 }
                 #endif
+                TrentePlusSection(
+                    isSubscribed: isSubscribed,
+                    onDiscover: { isShowingPaywall = true },
+                    onManage: manageSubscription
+                )
                 HelpAboutSection(
                     faqItems: FAQItem.items(isPhone: isPhone),
                     contactURL: SupportMail.feedbackURL(appInfo: appInfo),
@@ -55,7 +64,17 @@ struct SettingsView: View {
             }
             #endif
         }
+        .subscriptionStatusTask(for: TrentePlus.groupID) { state in
+            isSubscribed = TrentePlus.isActive((state.value ?? []).map(\.state))
+        }
+        .sheet(isPresented: $isShowingPaywall) {
+            SubscriptionView()
+        }
         #if os(iOS)
+        .manageSubscriptionsSheet(
+            isPresented: $isShowingManageSubscriptions,
+            subscriptionGroupID: TrentePlus.groupID
+        )
         .task {
             await refreshNotificationStatus()
         }
@@ -73,6 +92,14 @@ struct SettingsView: View {
         UIDevice.current.userInterfaceIdiom == .phone
         #else
         false
+        #endif
+    }
+
+    private func manageSubscription() {
+        #if os(iOS)
+        isShowingManageSubscriptions = true
+        #else
+        openURL(ExternalLinks.manageSubscriptions)
         #endif
     }
 

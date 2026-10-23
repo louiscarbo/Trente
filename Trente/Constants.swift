@@ -27,5 +27,6 @@ enum ExternalLinks {
         #endif
     }
 
+    static let manageSubscriptions = URL(string: "https://apps.apple.com/account/subscriptions")!
     static let ccBy3License = URL(string: "https://creativecommons.org/licenses/by/3.0/")!
 }
