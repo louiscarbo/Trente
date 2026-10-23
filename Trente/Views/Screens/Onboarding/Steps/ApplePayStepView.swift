@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ApplePayStepView: View {
+    let hasOpenedShortcut: Bool
     let onGetShortcut: () -> Void
     let onContinue: () -> Void
 
@@ -39,20 +40,33 @@ struct ApplePayStepView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         } actions: {
-            OnboardingContinueButton(title: "Get the Shortcut", action: onGetShortcut)
-            Button(action: onContinue) {
-                Text("Set Up Later")
-                    .frame(maxWidth: .infinity)
+            if hasOpenedShortcut {
+                OnboardingContinueButton(title: "Continue", action: onContinue)
+                secondaryButton(title: "Open Shortcut Again", action: onGetShortcut)
+            } else {
+                OnboardingContinueButton(title: "Get the Shortcut", action: onGetShortcut)
+                secondaryButton(title: "Set Up Later", action: onContinue)
             }
-            .buttonStyle(TrenteSecondaryButtonStyle())
         }
+    }
+
+    private func secondaryButton(title: LocalizedStringKey, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(TrenteSecondaryButtonStyle())
     }
 }
 
 #Preview("Compact", traits: .fixedLayout(width: 390, height: 844)) {
-    ApplePayStepView(onGetShortcut: {}, onContinue: {})
+    ApplePayStepView(hasOpenedShortcut: false, onGetShortcut: {}, onContinue: {})
+}
+
+#Preview("Compact, Shortcut Opened", traits: .fixedLayout(width: 390, height: 844)) {
+    ApplePayStepView(hasOpenedShortcut: true, onGetShortcut: {}, onContinue: {})
 }
 
 #Preview("Regular", traits: .fixedLayout(width: 1200, height: 800)) {
-    ApplePayStepView(onGetShortcut: {}, onContinue: {})
+    ApplePayStepView(hasOpenedShortcut: false, onGetShortcut: {}, onContinue: {})
 }
