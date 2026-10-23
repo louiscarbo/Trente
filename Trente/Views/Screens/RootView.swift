@@ -25,6 +25,9 @@ struct RootView: View {
             }
         }
         .onAppear(perform: decideOnboarding)
+        #if DEBUG
+        .environment(\.replayOnboarding, ReplayOnboardingAction(replay: replayOnboarding))
+        #endif
     }
 
     private func decideOnboarding() {
@@ -42,4 +45,28 @@ struct RootView: View {
             isShowingOnboarding = false
         }
     }
+
+    #if DEBUG
+    private func replayOnboarding() {
+        withAnimation {
+            isShowingOnboarding = true
+        }
+    }
+    #endif
 }
+
+#if DEBUG
+struct ReplayOnboardingAction: Equatable {
+    let replay: () -> Void
+
+    func callAsFunction() {
+        replay()
+    }
+
+    static func == (lhs: Self, rhs: Self) -> Bool { true }
+}
+
+extension EnvironmentValues {
+    @Entry var replayOnboarding = ReplayOnboardingAction {}
+}
+#endif
