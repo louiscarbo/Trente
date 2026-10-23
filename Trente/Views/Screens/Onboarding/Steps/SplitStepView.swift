@@ -16,24 +16,34 @@ struct SplitStepView: View {
 
     var body: some View {
         OnboardingStepLayout {
-            OnboardingHeader(
-                title: "Split your budget",
-                subtitle: "We started you at 50/30/20. Move the sliders until there's nothing left to split."
-            )
+            VStack(spacing: .large) {
+                OnboardingHeader(
+                    title: "Split your budget",
+                    subtitle: "We start you on the 50/30/20 rule. Adjust it until it fits your life, you can change it every month."
+                )
+                AdaptiveCategoryLegend(isInPrimaryColumn: true)
+            }
         } secondary: {
             OnboardingScrollPane {
-                GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
-                    IncomeRepartitionComponent(
-                        repartition: $repartition,
-                        amountToSplit: budgetCents,
-                        formatter: currency.roundFormatter,
-                        isRepartitionComplete: $isRepartitionComplete
-                    )
-                    .id(budgetCents)
+                GroupBox(label: Label("Ideal Budget", systemImage: currency.sfSymbolName ?? currency.sfSymbolGaugeName)) {
+                    VStack(spacing: .medium) {
+                        Text(Decimal(budgetCents) / 100, format: .currency(code: currency.isoCode).precision(.fractionLength(0...2)))
+                            .font(.title)
+                            .bold()
+                            .frame(maxWidth: .infinity)
+
+                        IncomeRepartitionComponent(
+                            repartition: $repartition,
+                            amountToSplit: budgetCents,
+                            formatter: currency.roundFormatter,
+                            isRepartitionComplete: $isRepartitionComplete
+                        )
+                        .id(budgetCents)
+                    }
                 }
                 .groupBoxStyle(TrenteGroupBoxStyle())
 
-                CategoryLegend()
+                AdaptiveCategoryLegend(isInPrimaryColumn: false)
             }
         } actions: {
             OnboardingContinueButton(title: "Continue", isEnabled: isRepartitionComplete, action: onContinue)
@@ -41,24 +51,38 @@ struct SplitStepView: View {
     }
 }
 
+private struct AdaptiveCategoryLegend: View {
+    let isInPrimaryColumn: Bool
+
+    @Environment(\.isOnboardingLayoutRegular) private var isRegular
+
+    var body: some View {
+        if isRegular == isInPrimaryColumn {
+            CategoryLegend()
+        }
+    }
+}
+
 struct CategoryLegend: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: .small) {
+        VStack(alignment: .leading, spacing: 6) {
             ForEach(BudgetCategory.allCases) { category in
-                HStack(alignment: .firstTextBaseline, spacing: DesignSystem.Spacing.small.rawValue) {
+                HStack(spacing: DesignSystem.Spacing.small.rawValue) {
                     Circle()
                         .fill(category.color)
                         .frame(width: 10, height: 10)
                         .accessibilityHidden(true)
                     Text(category.name)
-                        .bold()
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
                     Text(category.shortExamples)
+                        .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
-                .font(.subheadline)
                 .accessibilityElement(children: .combine)
             }
         }
+        .padding(.horizontal, 4)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
