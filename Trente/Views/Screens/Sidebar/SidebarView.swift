@@ -19,6 +19,9 @@ struct SidebarView: View {
 
     @Query private var recurringRules: [RecurringTransactionRule]
 
+    #if os(iOS)
+    @State private var isShowingSettings = false
+    #endif
     #if DEBUG
     @State private var isShowingDebugMenu = false
     #endif
@@ -73,14 +76,30 @@ struct SidebarView: View {
         #if os(macOS)
         .navigationSplitViewColumnWidth(min: 200, ideal: 300, max: 350)
         #endif
-        #if DEBUG
+        #if os(iOS) || DEBUG
         .toolbar {
+            #if os(iOS)
+            ToolbarItem {
+                Button("Settings", systemImage: "gearshape") {
+                    isShowingSettings = true
+                }
+            }
+            #endif
+            #if DEBUG
             ToolbarItem {
                 Button("Debug", systemImage: "ladybug") {
                     isShowingDebugMenu = true
                 }
             }
+            #endif
         }
+        #endif
+        #if os(iOS)
+        .sheet(isPresented: $isShowingSettings) {
+            SettingsView()
+        }
+        #endif
+        #if DEBUG
         .sheet(isPresented: $isShowingDebugMenu) {
             DebugMenuView()
         }
