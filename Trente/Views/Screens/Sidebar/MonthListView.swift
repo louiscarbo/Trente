@@ -22,6 +22,9 @@ struct MonthListView: View {
     @State private var selection: SidebarSelection?
     @State private var isShowingNewMonth = false
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
+    #if os(iOS)
+    @State private var isShowingSettings = false
+    #endif
     #if DEBUG
     @State private var isShowingDebugMenu = false
     #endif
@@ -85,14 +88,28 @@ struct MonthListView: View {
             .navigationDestination(item: $selection) { destination in
                 destinationView(for: destination)
             }
-            #if DEBUG
             .toolbar {
+                #if os(iOS)
+                ToolbarItem {
+                    Button("Settings", systemImage: "gearshape") {
+                        isShowingSettings = true
+                    }
+                }
+                #endif
+                #if DEBUG
                 ToolbarItem {
                     Button("Debug", systemImage: "ladybug") {
                         isShowingDebugMenu = true
                     }
                 }
+                #endif
             }
+            #if os(iOS)
+            .sheet(isPresented: $isShowingSettings) {
+                SettingsView()
+            }
+            #endif
+            #if DEBUG
             .sheet(isPresented: $isShowingDebugMenu) {
                 DebugMenuView()
             }

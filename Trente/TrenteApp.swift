@@ -48,6 +48,10 @@ struct TrenteApp: App {
             }
         }
         .defaultSize(width: 500, height: 600)
+
+        Settings {
+            SettingsView()
+        }
         #endif
     }
 }
