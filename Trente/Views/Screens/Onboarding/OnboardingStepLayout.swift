@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View {
+    var compactSecondaryEdge: VerticalEdge = .bottom
     @ViewBuilder let primary: () -> Primary
     @ViewBuilder let secondary: () -> Secondary
     @ViewBuilder let actions: () -> Actions
@@ -53,6 +54,7 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
                 compactContent
             }
         }
+        .frame(maxHeight: .infinity)
         .safeAreaInset(edge: .bottom) {
             VStack(spacing: .small) {
                 actions()
@@ -63,9 +65,15 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
 
     private var compactContent: some View {
         VStack(spacing: .large) {
-            primary()
-            secondary()
-                .frame(maxHeight: .infinity)
+            switch compactSecondaryEdge {
+            case .top:
+                secondary()
+                primary()
+            case .bottom:
+                primary()
+                secondary()
+                    .frame(maxHeight: .infinity)
+            }
         }
         .padding(.horizontal)
     }
