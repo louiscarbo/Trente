@@ -25,4 +25,6 @@ enum ExternalLinks {
         URL(string: "x-apple.systempreferences:com.apple.Notifications-Settings.extension")
         #endif
     }
+
+    static let ccBy3License = URL(string: "https://creativecommons.org/licenses/by/3.0/")!
 }
