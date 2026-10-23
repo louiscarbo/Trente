@@ -137,6 +137,18 @@ struct MonthListView: View {
                     .id(id)
             }
         }
+        .reviewPrompt(
+            monthCount: months.count,
+            isPresentingSheet: pendingTransactionRouter.presentedPendingTransactionID != nil || isPresentingDebugMenu
+        )
+    }
+
+    private var isPresentingDebugMenu: Bool {
+        #if DEBUG
+        isShowingDebugMenu
+        #else
+        false
+        #endif
     }
 
     private var selectedMonth: Binding<Month?> {
