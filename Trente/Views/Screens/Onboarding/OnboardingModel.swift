@@ -79,7 +79,10 @@ final class OnboardingModel {
         currentStep = steps[currentIndex - 1]
     }
 
-    func saveMonth(in context: ModelContext) throws {
+    func saveMonth(in context: ModelContext, reusingExistingMonth: Bool = false) throws {
+        if savedMonth == nil, reusingExistingMonth {
+            savedMonth = try MonthService.shared.latestMonth(in: context)
+        }
         if let savedMonth {
             draft.apply(to: savedMonth)
             try context.save()

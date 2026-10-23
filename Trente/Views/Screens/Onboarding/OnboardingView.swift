@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct OnboardingView: View {
+    let isFirstLaunch: Bool
     let onFinish: () -> Void
 
     @Environment(\.modelContext) private var modelContext
@@ -172,7 +173,7 @@ struct OnboardingView: View {
 
     private func saveMonthAndContinue() {
         do {
-            try model.saveMonth(in: modelContext)
+            try model.saveMonth(in: modelContext, reusingExistingMonth: isFirstLaunch)
             goForward()
         } catch {
             saveErrorMessage = error.localizedDescription
@@ -197,6 +198,6 @@ struct OnboardingView: View {
 }
 
 #Preview {
-    OnboardingView {}
+    OnboardingView(isFirstLaunch: true) {}
         .modelContainer(DataProvider.shared.modelContainer)
 }

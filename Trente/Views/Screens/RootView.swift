@@ -12,6 +12,7 @@ struct RootView: View {
     @Environment(\.modelContext) private var modelContext
     @AppStorage(OnboardingGate.completedKey) private var hasCompletedOnboarding = false
     @State private var isShowingOnboarding: Bool?
+    @State private var isFirstLaunch = false
 
     var body: some View {
         Group {
@@ -19,12 +20,18 @@ struct RootView: View {
             case .none:
                 Color.clear
             case .some(true):
-                OnboardingView(onFinish: finishOnboarding)
+                OnboardingView(isFirstLaunch: isFirstLaunch, onFinish: finishOnboarding)
             case .some(false):
                 MonthListView()
             }
         }
         .onAppear(perform: decideOnboarding)
+        .onChange(of: hasCompletedOnboarding) { _, isCompleted in
+            guard isCompleted else { return }
+            withAnimation {
+                isShowingOnboarding = false
+            }
+        }
         #if DEBUG
         .environment(\.replayOnboarding, ReplayOnboardingAction(replay: replayOnboarding))
         #endif
@@ -32,11 +39,12 @@ struct RootView: View {
 
     private func decideOnboarding() {
         guard isShowingOnboarding == nil else { return }
-        isShowingOnboarding = OnboardingGate.shouldShow(
+        isFirstLaunch = OnboardingGate.shouldShow(
             hasCompletedOnboarding: hasCompletedOnboarding,
             monthCount: (try? modelContext.fetchCount(FetchDescriptor<Month>())) ?? 0,
-            isForced: OnboardingGate.isForced
+            isForced: false
         )
+        isShowingOnboarding = isFirstLaunch || OnboardingGate.isForced
     }
 
     private func finishOnboarding() {
@@ -48,6 +56,7 @@ struct RootView: View {
 
     #if DEBUG
     private func replayOnboarding() {
+        isFirstLaunch = false
         withAnimation {
             isShowingOnboarding = true
         }
