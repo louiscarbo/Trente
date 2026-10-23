@@ -20,19 +20,10 @@ struct BudgetStepView: View {
         OnboardingStepLayout {
             OnboardingHeader(
                 title: "Your monthly budget",
-                subtitle: "How much do you expect to earn this month? Trente splits it for you on the next step."
+                subtitle: "Think of it as the money you're free to spend each month, once taxes are taken care of."
             )
         } secondary: {
             OnboardingScrollPane {
-                GroupBox(label: Label("Ideal Budget", systemImage: currency.sfSymbolGaugeName)) {
-                    IdealBudgetField(
-                        amountCents: $budgetCents,
-                        currency: currency,
-                        isFocused: $isAmountFocused
-                    )
-                }
-                .groupBoxStyle(TrenteGroupBoxStyle())
-
                 GroupBox(label: Label("Month Details", systemImage: "calendar")) {
                     VStack(spacing: .medium) {
                         MonthStartDatePicker(startDate: $startDate)
@@ -41,18 +32,37 @@ struct BudgetStepView: View {
                 }
                 .groupBoxStyle(TrenteGroupBoxStyle())
 
-                Label(
-                    "Income varies? Enter a careful estimate. You can change it for each new month.",
-                    systemImage: "lightbulb"
-                )
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                GroupBox(label: Label("Ideal Budget", systemImage: currency.sfSymbolName ?? currency.sfSymbolGaugeName)) {
+                    IdealBudgetField(
+                        amountCents: $budgetCents,
+                        currency: currency,
+                        isFocused: $isAmountFocused
+                    )
+                }
+                .groupBoxStyle(TrenteGroupBoxStyle())
+
+                incomeVariesTip
             }
         } actions: {
             OnboardingContinueButton(title: "Continue", isEnabled: canContinue, action: onContinue)
         }
         .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
+    }
+
+    private var incomeVariesTip: some View {
+        Label {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Income varies?")
+                Text("Use your best estimate. Log extra income as it comes in, and adjust next month's budget.")
+                    .font(.footnote)
+            }
+        } icon: {
+            Image(systemName: "sparkles")
+        }
+        .foregroundStyle(.secondary)
+        .padding(.horizontal, 4)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
     }
 }
 
