@@ -491,6 +491,9 @@
     "Select Category" : {
 
     },
+    "Share error details" : {
+
+    },
     "Skip" : {
 
     },
@@ -615,6 +618,12 @@
 
     },
     "Yearly" : {
+
+    },
+    "Your budget couldn't be opened" : {
+
+    },
+    "Your data has not been deleted. Try updating Trente, and share the error details if the problem persists." : {
 
     }
   },
