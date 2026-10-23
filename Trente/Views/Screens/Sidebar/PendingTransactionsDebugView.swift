@@ -18,57 +18,47 @@ struct PendingTransactionsDebugView: View {
         ("Renfe", "34,10 €")
     ]
 
-    @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \PendingTransaction.date, order: .reverse) private var pendingTransactions: [PendingTransaction]
     @Query(sort: \Month.startDate, order: .reverse) private var months: [Month]
 
-    @State private var pendingTransactionRouter = PendingTransactionRouter.shared
     @State private var reviewedID: UUID?
     @State private var errorMessage: String?
 
     private var currencyCode: String { months.first?.currency.isoCode ?? "EUR" }
 
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(pendingTransactions) { pending in
-                    Button {
-                        reviewedID = pending.id
-                    } label: {
-                        row(for: pending)
-                    }
-                    .buttonStyle(.plain)
+        List {
+            ForEach(pendingTransactions) { pending in
+                Button {
+                    reviewedID = pending.id
+                } label: {
+                    row(for: pending)
                 }
-                .onDelete(perform: delete)
+                .buttonStyle(.plain)
             }
-            .overlay {
-                if pendingTransactions.isEmpty {
-                    ContentUnavailableView("No pending transactions", systemImage: "tray")
-                }
+            .onDelete(perform: delete)
+        }
+        .overlay {
+            if pendingTransactions.isEmpty {
+                ContentUnavailableView("No pending transactions", systemImage: "tray")
             }
-            .navigationTitle("Pending (debug)")
-            .onChange(of: pendingTransactionRouter.presentedPendingTransactionID) { _, id in
-                if id != nil { dismiss() }
+        }
+        .navigationTitle("Pending Transactions")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("Add sample", systemImage: "plus", action: addSample)
             }
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Close") { dismiss() }
-                }
-                ToolbarItem(placement: .primaryAction) {
-                    Button("Add sample", systemImage: "plus", action: addSample)
-                }
+        }
+        .sheet(isPresented: isShowingReview) {
+            if let reviewedID {
+                PendingTransactionReviewLoader(id: reviewedID)
             }
-            .sheet(isPresented: isShowingReview) {
-                if let reviewedID {
-                    PendingTransactionReviewLoader(id: reviewedID)
-                }
-            }
-            .alert("Wallet intake failed", isPresented: isShowingError) {
-                Button("OK") { errorMessage = nil }
-            } message: {
-                Text(errorMessage ?? "")
-            }
+        }
+        .alert("Wallet intake failed", isPresented: isShowingError) {
+            Button("OK") { errorMessage = nil }
+        } message: {
+            Text(errorMessage ?? "")
         }
     }
 
