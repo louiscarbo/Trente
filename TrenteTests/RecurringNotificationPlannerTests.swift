@@ -250,4 +250,27 @@ struct RecurringNotificationPlannerTests {
 
         #expect(requests.map(\.occurrenceDate) == [day(2025, 4, 15), day(2025, 5, 15)])
     }
+
+    @Test("A saved rule's occurrence has a stable identifier ending with its day")
+    func savedRuleHasStableIdentifier() throws {
+        let context = try makeContext()
+        let rule = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
+        try context.save()
+        let request = try #require(planner.requests(for: [rule], currency: euro, now: now).first)
+
+        let identifier = try #require(RecurringNotificationScheduler.identifier(for: request, calendar: calendar))
+
+        #expect(identifier.hasPrefix(RecurringNotificationScheduler.identifierPrefix))
+        #expect(identifier.hasSuffix(".2025-04-15"))
+        #expect(RecurringNotificationScheduler.identifier(for: request, calendar: calendar) == identifier)
+    }
+
+    @Test("An unsaved rule's occurrence has no identifier")
+    func unsavedRuleHasNoIdentifier() throws {
+        let context = try makeContext()
+        let rule = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
+        let request = try #require(planner.requests(for: [rule], currency: euro, now: now).first)
+
+        #expect(RecurringNotificationScheduler.identifier(for: request, calendar: calendar) == nil)
+    }
 }
