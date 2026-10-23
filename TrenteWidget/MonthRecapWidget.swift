@@ -181,6 +181,7 @@ struct HomescreenMonthRecapWidgetView: View {
                     }
                 }
             }
+            .widgetURL(URL(string: "trente://month/" + currentMonth.id.uuidString))
         } else {
             if family == .systemLarge {
                 ContentUnavailableView(
