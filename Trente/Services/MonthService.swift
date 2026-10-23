@@ -25,6 +25,33 @@ final class MonthService {
         return try context.fetch(descriptor).first
     }
 
+    @discardableResult
+    func createMissingMonths(
+        in context: ModelContext,
+        now: Date = .now,
+        calendar: Calendar = .current
+    ) throws -> [Month] {
+        guard let latestMonth = try latestMonth(in: context) else { return [] }
+        let missingStartDates = startDatesOfMissingMonths(
+            after: latestMonth.startDate,
+            today: now,
+            calendar: calendar
+        )
+        guard !missingStartDates.isEmpty else { return [] }
+
+        let createdMonths = missingStartDates.map { startDate in
+            Month(
+                startDate: startDate,
+                currency: latestMonth.currency,
+                idealBudgetCents: latestMonth.idealBudgetCents,
+                idealRepartition: latestMonth.idealRepartition
+            )
+        }
+        createdMonths.forEach { context.insert($0) }
+        try context.save()
+        return createdMonths
+    }
+
     func startDatesOfMissingMonths(
         after latestStartDate: Date?,
         today: Date,

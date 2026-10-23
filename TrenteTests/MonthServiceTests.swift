@@ -42,6 +42,53 @@ struct MonthServiceTests {
 
         #expect(startDates == missingMonthsCase.expectedStartDates)
     }
+
+    @Test("Missing months copy the latest month's currency, budget and split")
+    func createMissingMonthsCopiesLatest() throws {
+        let context = try makeContext()
+        let latest = insertMonth(year: 2026, month: 8, in: context)
+        latest.currency = Currencies.currency(for: "USD")!
+        latest.idealBudgetCents = 3100_00
+        latest.idealRepartition = [.needs: 60, .wants: 20, .savingsAndDebts: 20]
+        let today = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 23))!
+
+        let created = try MonthService.shared.createMissingMonths(in: context, now: today)
+
+        #expect(created.map(\.startDate) == [
+            Calendar.current.date(from: DateComponents(year: 2026, month: 9, day: 1))!,
+            Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 1))!
+        ])
+        for month in created {
+            #expect(month.currency == latest.currency)
+            #expect(month.idealBudgetCents == 3100_00)
+            #expect(month.idealRepartition == latest.idealRepartition)
+        }
+        #expect(try context.fetch(FetchDescriptor<Month>()).count == 3)
+        #expect(!context.hasChanges)
+    }
+
+    @Test("Creating missing months twice adds them only once")
+    func createMissingMonthsTwice() throws {
+        let context = try makeContext()
+        insertMonth(year: 2026, month: 8, in: context)
+        let today = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 23))!
+
+        try MonthService.shared.createMissingMonths(in: context, now: today)
+        let createdAgain = try MonthService.shared.createMissingMonths(in: context, now: today)
+
+        #expect(createdAgain.isEmpty)
+        #expect(try context.fetch(FetchDescriptor<Month>()).count == 3)
+    }
+
+    @Test("No month is created when there are none yet")
+    func createMissingMonthsWithoutMonths() throws {
+        let context = try makeContext()
+
+        let created = try MonthService.shared.createMissingMonths(in: context)
+
+        #expect(created.isEmpty)
+        #expect(try context.fetch(FetchDescriptor<Month>()).isEmpty)
+    }
 }
 
 struct MissingMonthsCase: CustomTestStringConvertible, Sendable {
