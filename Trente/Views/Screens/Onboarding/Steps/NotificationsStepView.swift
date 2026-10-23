@@ -15,7 +15,7 @@ struct NotificationsStepView: View {
     let onContinue: () -> Void
 
     var body: some View {
-        OnboardingStepLayout(compactSecondaryEdge: .top) {
+        OnboardingStepLayout(compactArrangement: .secondaryAbove) {
             OnboardingHeader(
                 title: "Never miss an expense",
                 subtitle: "When you pay with Apple Pay, Trente sends you a notification. Tap it to review the expense and log it in one go.",
