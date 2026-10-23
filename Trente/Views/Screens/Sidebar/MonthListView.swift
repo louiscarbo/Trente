@@ -23,7 +23,7 @@ struct MonthListView: View {
     @State private var isShowingNewMonth = false
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
     #if DEBUG
-    @State private var isShowingPendingDebug = false
+    @State private var isShowingDebugMenu = false
     #endif
 
     @Environment(\.colorScheme) var colorScheme
@@ -88,13 +88,13 @@ struct MonthListView: View {
             #if DEBUG
             .toolbar {
                 ToolbarItem {
-                    Button("Pending", systemImage: "ladybug") {
-                        isShowingPendingDebug = true
+                    Button("Debug", systemImage: "ladybug") {
+                        isShowingDebugMenu = true
                     }
                 }
             }
-            .sheet(isPresented: $isShowingPendingDebug) {
-                PendingTransactionsDebugView()
+            .sheet(isPresented: $isShowingDebugMenu) {
+                DebugMenuView()
             }
             #endif
         } detail: {

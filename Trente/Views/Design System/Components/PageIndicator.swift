@@ -5,17 +5,18 @@
 
 import SwiftUI
 
-struct PageIndicator<Page: CaseIterable & Hashable>: View where Page.AllCases: RandomAccessCollection {
+struct PageIndicator<Page: Hashable>: View {
+    let pages: [Page]
     @Binding var currentPage: Page?
 
     var body: some View {
         HStack(spacing: 6) {
-            ForEach(Page.allCases, id: \.self) { page in
+            ForEach(pages, id: \.self) { page in
                 Button {
                     withAnimation { currentPage = page }
                 } label: {
                     Circle()
-                        .fill(page == (currentPage ?? Page.allCases.first) ? Color.primary : Color.secondary.opacity(0.3))
+                        .fill(page == (currentPage ?? pages.first) ? Color.primary : Color.secondary.opacity(0.3))
                         .frame(width: 6, height: 6)
                 }
                 .buttonStyle(.plain)
@@ -25,9 +26,18 @@ struct PageIndicator<Page: CaseIterable & Hashable>: View where Page.AllCases: R
     }
 }
 
+extension PageIndicator where Page: CaseIterable {
+    init(currentPage: Binding<Page?>) {
+        self.init(pages: Array(Page.allCases), currentPage: currentPage)
+    }
+}
+
 private enum PreviewPage: Int, CaseIterable { case a, b, c, d, e }
 
 #Preview {
-    PageIndicator(currentPage: .constant(PreviewPage.c))
-        .padding()
+    VStack(spacing: .large) {
+        PageIndicator(currentPage: .constant(PreviewPage.c))
+        PageIndicator(pages: [PreviewPage.a, .c, .e], currentPage: .constant(.c))
+    }
+    .padding()
 }

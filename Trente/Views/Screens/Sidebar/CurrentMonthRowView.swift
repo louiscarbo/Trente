@@ -107,3 +107,9 @@ struct CurrentMonthRowView: View {
         }
     }
 }
+
+extension CurrentMonthRowView {
+    init(currentMonth: Month) {
+        self.init(currentMonth: currentMonth, selectedMonth: .constant(nil))
+    }
+}
