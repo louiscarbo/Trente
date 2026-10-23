@@ -16,8 +16,8 @@ struct SelectCategoryIntent: WidgetConfigurationIntent {
 }
 
 struct WidgetBudgetCategory: AppEntity {
-    var id: UUID = UUID()
     var budgetCategory: BudgetCategory
+    var id: String { budgetCategory.rawValue }
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "Budget Category"
     static var defaultQuery = WidgetBudgetCategoryQuery()
@@ -38,7 +38,7 @@ struct WidgetBudgetCategory: AppEntity {
 
 struct WidgetBudgetCategoryQuery: EntityQuery {
     func entities(for identifiers: [WidgetBudgetCategory.ID]) async throws -> [WidgetBudgetCategory] {
-        return WidgetBudgetCategory.allCategories
+        WidgetBudgetCategory.allCategories.filter { identifiers.contains($0.id) }
     }
     
     func defaultResult() async -> DefaultValue? {
