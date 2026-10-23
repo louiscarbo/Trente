@@ -146,6 +146,7 @@ struct OnboardingView: View {
     private func requestNotifications() {
         Task {
             notificationStatus = await notificationPermission.requestIfNeeded()
+            guard model.currentStep == .notifications else { return }
             goForward()
         }
     }
