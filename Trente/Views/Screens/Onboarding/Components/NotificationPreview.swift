@@ -11,47 +11,67 @@ struct NotificationPreview: View {
     let title: String
     let message: String
 
+    private let cardShape = RoundedRectangle(cornerRadius: 24)
+
     var body: some View {
-        HStack(alignment: .center, spacing: DesignSystem.Spacing.medium.rawValue) {
+        card
+            .background {
+                cardBackground
+                    .padding(.horizontal, 15)
+                    .offset(y: 12)
+                    .opacity(0.7)
+            }
+            .padding(.bottom, 12)
+            .accessibilityElement(children: .combine)
+    }
+
+    private var card: some View {
+        HStack(spacing: 10) {
             Image("Trente Pig Sticker")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .padding(4)
+                .padding(3)
                 .frame(width: 38, height: 38)
-                .background(.background, in: RoundedRectangle(cornerRadius: 9))
+                .background(.white, in: RoundedRectangle(cornerRadius: 9))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 9)
+                        .strokeBorder(.black.opacity(0.1))
+                }
                 .accessibilityHidden(true)
 
-            VStack(alignment: .leading, spacing: 2) {
-                HStack {
-                    Text(verbatim: "Trente")
+            VStack(alignment: .leading, spacing: 1) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text(title)
                         .font(.subheadline)
-                        .bold()
+                        .fontWeight(.semibold)
+                        .lineLimit(1)
                     Spacer()
                     Text("now")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
-                Text(title)
-                    .font(.subheadline)
-                    .bold()
-                    .lineLimit(1)
                 Text(message)
                     .font(.subheadline)
                     .lineLimit(2)
             }
         }
-        .padding(14)
-        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: .large))
-        .accessibilityElement(children: .combine)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .background { cardBackground }
+    }
+
+    private var cardBackground: some View {
+        cardShape
+            .fill(.background.secondary)
+            .overlay {
+                cardShape.strokeBorder(.primary.opacity(0.06))
+            }
+            .shadow(color: .black.opacity(0.12), radius: 12, y: 8)
     }
 }
 
 #Preview {
-    VStack {
-        NotificationPreview(title: "€4.20 - Café Kitsuné", message: "Tap here to log it in Trente")
-        NotificationPreview(title: "€850 - Rent", message: "Due tomorrow")
-    }
-    .padding()
-    .frame(maxWidth: 420)
-    .background(.blue.gradient)
+    NotificationPreview(title: "€4.50 - Boulangerie", message: "Tap here to log it in Trente")
+        .padding()
+        .frame(maxWidth: 420)
 }
