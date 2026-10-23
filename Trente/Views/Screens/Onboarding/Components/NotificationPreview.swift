@@ -27,16 +27,11 @@ struct NotificationPreview: View {
 
     private var card: some View {
         HStack(spacing: 10) {
-            Image("Trente Pig Sticker")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(3)
+            AppIconImage()
                 .frame(width: 38, height: 38)
-                .background(.white, in: RoundedRectangle(cornerRadius: 9))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 9)
-                        .strokeBorder(.black.opacity(0.1))
-                }
+                #if os(iOS)
+                .clipShape(RoundedRectangle(cornerRadius: 9))
+                #endif
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 1) {
