@@ -18,22 +18,14 @@ final class WalletNotificationService {
     func start() {
         #if os(iOS)
         UNUserNotificationCenter.current().delegate = WalletNotificationDelegate.shared
-        // TODO: Move the permission request to onboarding.
-        Task {
-            _ = try? await UNUserNotificationCenter.current()
-                .requestAuthorization(options: [.alert, .sound])
-        }
         #endif
     }
 
     @MainActor
     func post(for pending: PendingTransaction, currency: Currency) async throws {
-        let amount = (Double(abs(pending.amountCents)) / 100.0)
-            .formatted(.currency(code: currency.isoCode))
-
         let content = UNMutableNotificationContent()
-        content.title = "\(amount) - \(pending.title)"
-        content.body = String(localized: "Tap here to log it in Trente")
+        content.title = Self.title(amountCents: pending.amountCents, currency: currency, title: pending.title)
+        content.body = Self.body
         content.sound = .default
         content.userInfo = [Self.pendingTransactionIDKey: pending.id.uuidString]
 
@@ -43,6 +35,16 @@ final class WalletNotificationService {
             trigger: nil
         )
         try await UNUserNotificationCenter.current().add(request)
+    }
+
+    static var body: String {
+        String(localized: "Tap here to log it in Trente")
+    }
+
+    static func title(amountCents: Int, currency: Currency, title: String) -> String {
+        let amount = (Double(abs(amountCents)) / 100.0)
+            .formatted(.currency(code: currency.isoCode))
+        return "\(amount) - \(title)"
     }
 
     func postDebugFailure(_ message: String) async {
