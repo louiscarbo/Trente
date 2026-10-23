@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+enum OnboardingCompactArrangement {
+    case secondaryFills
+    case secondaryAbove
+    case secondaryBelow
+}
+
 struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View {
-    var compactSecondaryEdge: VerticalEdge = .bottom
+    var compactArrangement: OnboardingCompactArrangement = .secondaryFills
     @ViewBuilder let primary: () -> Primary
     @ViewBuilder let secondary: () -> Secondary
     @ViewBuilder let actions: () -> Actions
@@ -65,14 +71,17 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
 
     private var compactContent: some View {
         VStack(spacing: .large) {
-            switch compactSecondaryEdge {
-            case .top:
-                secondary()
-                primary()
-            case .bottom:
+            switch compactArrangement {
+            case .secondaryFills:
                 primary()
                 secondary()
                     .frame(maxHeight: .infinity)
+            case .secondaryAbove:
+                secondary()
+                primary()
+            case .secondaryBelow:
+                primary()
+                secondary()
             }
         }
         .padding(.horizontal)
