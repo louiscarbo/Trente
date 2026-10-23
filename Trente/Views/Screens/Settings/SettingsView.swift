@@ -64,8 +64,8 @@ struct SettingsView: View {
             }
             #endif
         }
-        .subscriptionStatusTask(for: TrentePlus.groupID) { state in
-            isSubscribed = TrentePlus.isActive((state.value ?? []).map(\.state))
+        .subscriptionStatusTask(for: TrentePlus.groupID) { taskState in
+            isSubscribed = TrentePlus.isActive((taskState.value ?? []).map(\.state))
         }
         .sheet(isPresented: $isShowingPaywall) {
             SubscriptionView()
