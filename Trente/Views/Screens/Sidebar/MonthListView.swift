@@ -88,6 +88,7 @@ struct MonthListView: View {
             .navigationDestination(item: $selection) { destination in
                 destinationView(for: destination)
             }
+            #if os(iOS) || DEBUG
             .toolbar {
                 #if os(iOS)
                 ToolbarItem {
@@ -104,6 +105,7 @@ struct MonthListView: View {
                 }
                 #endif
             }
+            #endif
             #if os(iOS)
             .sheet(isPresented: $isShowingSettings) {
                 SettingsView()
