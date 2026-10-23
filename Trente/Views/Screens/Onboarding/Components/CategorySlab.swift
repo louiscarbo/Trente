@@ -18,24 +18,19 @@ struct CategorySlab: View {
     }
 
     var body: some View {
-        HStack(alignment: .bottom, spacing: DesignSystem.Spacing.medium.rawValue) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(name)
-                    .font(.title2)
-                    .bold()
-                Text(examples)
-                    .font(.footnote)
-                    .opacity(0.75)
+        ViewThatFits(in: .horizontal) {
+            HStack(alignment: .bottom, spacing: DesignSystem.Spacing.medium.rawValue) {
+                label
+                    .padding(.bottom, 10)
+                    .frame(idealWidth: 120, maxWidth: .infinity, alignment: .leading)
+                percentageText
+                    .layoutPriority(1)
             }
-            .padding(.bottom, 10)
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            Text(fraction, format: .percent)
-                .font(.system(size: 72, weight: .heavy))
-                .tracking(-2.16)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
-                .layoutPriority(1)
+            VStack(alignment: .leading, spacing: 0) {
+                label
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                percentageText
+            }
         }
         .foregroundStyle(color.darken(0.8))
         .padding(.top, 12)
@@ -49,6 +44,25 @@ struct CategorySlab: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("\(name), \(fraction.formatted(.percent))"))
+    }
+
+    private var label: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(name)
+                .font(.title2)
+                .bold()
+            Text(examples)
+                .font(.footnote)
+                .opacity(0.75)
+        }
+    }
+
+    private var percentageText: some View {
+        Text(fraction, format: .percent)
+            .font(.system(size: 72, weight: .heavy))
+            .tracking(-2.16)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
     }
 }
 
