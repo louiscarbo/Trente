@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RootView: View {
+    @Environment(\.modelContext) private var modelContext
     @AppStorage(OnboardingGate.completedKey) private var hasCompletedOnboarding = false
     @State private var isShowingOnboarding: Bool?
 
@@ -27,7 +29,11 @@ struct RootView: View {
 
     private func decideOnboarding() {
         guard isShowingOnboarding == nil else { return }
-        isShowingOnboarding = OnboardingGate.isForced
+        isShowingOnboarding = OnboardingGate.shouldShow(
+            hasCompletedOnboarding: hasCompletedOnboarding,
+            monthCount: (try? modelContext.fetchCount(FetchDescriptor<Month>())) ?? 0,
+            isForced: OnboardingGate.isForced
+        )
     }
 
     private func finishOnboarding() {
