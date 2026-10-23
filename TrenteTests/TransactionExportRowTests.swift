@@ -65,16 +65,27 @@ struct TransactionExportRowTests {
     }
 
     @Test("A transaction from a recurring one stays recurring after the rule is gone")
-    func recurringFlagUsesOccurrenceDate() throws {
+    func recurringFlagSurvivesRuleDeletion() throws {
         let context = try makeContext()
         let month = insertMonth(year: 2026, month: 10, in: context)
+        let rule = RecurringTransactionRule(
+            title: "Rent",
+            frequency: .monthly,
+            startDate: month.startDate,
+            repartition: [.needs: -800_00],
+            createdAt: month.startDate
+        )
+        context.insert(rule)
         let rent = insertGroup(title: "Rent", type: .expense, amounts: [.needs: -800_00], in: month, context: context)
+        rent.recurringRule = rule
         rent.recurringOccurrenceDate = month.startDate
         try context.save()
 
-        let rows = TransactionExportRow.rows(from: [month])
+        RecurringTransactionService.shared.delete(rule: rule, in: context)
+        try context.save()
 
-        #expect(rows.map(\.isRecurring) == [true])
+        #expect(rent.recurringRule == nil)
+        #expect(TransactionExportRow.rows(from: [month]).map(\.isRecurring) == [true])
     }
 
     @Test("A month without transactions gives no rows")
