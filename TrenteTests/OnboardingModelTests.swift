@@ -124,6 +124,37 @@ struct OnboardingModelTests {
         #expect(months.first?.idealRepartition == OnboardingModel.suggestedRepartition(for: 2500_00))
     }
 
+    @Test("On first launch, a second window updates the month the first window saved")
+    func firstLaunchReusesMonthSavedByAnotherWindow() throws {
+        let context = try makeContext()
+        let firstWindow = OnboardingModel(steps: OnboardingStep.allCases)
+        let secondWindow = OnboardingModel(steps: OnboardingStep.allCases)
+        firstWindow.budgetCents = 2000_00
+        secondWindow.budgetCents = 3000_00
+
+        try firstWindow.saveMonth(in: context, reusingExistingMonth: true)
+        try secondWindow.saveMonth(in: context, reusingExistingMonth: true)
+
+        let months = try context.fetch(FetchDescriptor<Month>())
+        #expect(months.count == 1)
+        #expect(months.first?.idealBudgetCents == 3000_00)
+    }
+
+    @Test("A replayed onboarding creates its own month instead of changing an existing one")
+    func replayKeepsExistingMonth() throws {
+        let context = try makeContext()
+        let firstLaunch = OnboardingModel(steps: OnboardingStep.allCases)
+        firstLaunch.budgetCents = 2000_00
+        try firstLaunch.saveMonth(in: context, reusingExistingMonth: true)
+
+        let replay = OnboardingModel(steps: OnboardingStep.allCases)
+        replay.budgetCents = 3000_00
+        try replay.saveMonth(in: context)
+
+        let budgets = try context.fetch(FetchDescriptor<Month>()).map(\.idealBudgetCents)
+        #expect(budgets.sorted() == [2000_00, 3000_00])
+    }
+
     @Test(
         "The gate shows onboarding only without a completed flag and without months, unless forced",
         arguments: [
