@@ -17,6 +17,7 @@ enum WindowIdentifiers {
 
 enum ExternalLinks {
     static let logWalletTransactionShortcut = URL(string: "https://www.icloud.com/shortcuts/0c1436e878984b95a2e759409e587276")!
+    static let writeReview = URL(string: "https://apps.apple.com/app/id6745130463?action=write-review")!
 
     static var notificationSettings: URL? {
         #if os(iOS)
