@@ -105,7 +105,6 @@ struct OnboardingView: View {
             )
         case .notifications:
             NotificationsStepView(
-                reasons: notificationReasons,
                 currency: model.draft.currency,
                 status: notificationStatus,
                 onEnable: requestNotifications,
@@ -135,10 +134,6 @@ struct OnboardingView: View {
     private var stepAccessibilityLabel: Text {
         let position = (model.steps.firstIndex(of: model.currentStep) ?? 0) + 1
         return Text("Step \(position) of \(model.steps.count)")
-    }
-
-    private var notificationReasons: [NotificationReason] {
-        model.steps.contains(.applePay) ? [.applePay, .recurring] : [.recurring]
     }
 
     private func refreshNotificationStatus() async {
