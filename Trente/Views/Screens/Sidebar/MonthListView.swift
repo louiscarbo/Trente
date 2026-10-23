@@ -121,14 +121,14 @@ struct MonthListView: View {
             if let firstMonth = newMonths.first {
                 selection = .month(firstMonth)
             }
-            confirmDueTransactions()
+            catchUp()
         }
         .onChange(of: scenePhase, initial: true) { _, phase in
-            if phase == .active { confirmDueTransactions() }
+            if phase == .active { catchUp() }
         }
         .task {
             for await _ in NotificationCenter.default.notifications(named: .NSCalendarDayChanged) {
-                confirmDueTransactions()
+                catchUp()
             }
         }
         .sheet(isPresented: isShowingPendingTransaction) {
@@ -162,7 +162,8 @@ struct MonthListView: View {
         }
     }
 
-    private func confirmDueTransactions() {
+    private func catchUp() {
+        _ = try? MonthService.shared.createMissingMonths(in: modelContext)
         _ = try? RecurringTransactionService.shared.confirmDueOccurrences(in: modelContext)
     }
 
