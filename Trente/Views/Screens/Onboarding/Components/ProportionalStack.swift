@@ -12,7 +12,7 @@ struct ProportionalStack: Layout {
     var spacing: CGFloat = DesignSystem.Spacing.small.rawValue
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        proposal.replacingUnspecifiedDimensions()
+        CGSize(width: finiteLength(proposal.width), height: finiteLength(proposal.height))
     }
 
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
@@ -35,6 +35,11 @@ struct ProportionalStack: Layout {
             subview.place(at: origin, anchor: .topLeading, proposal: ProposedViewSize(size))
             offset += length + spacing
         }
+    }
+
+    private func finiteLength(_ length: CGFloat?) -> CGFloat {
+        guard let length, length.isFinite else { return 0 }
+        return length
     }
 }
 

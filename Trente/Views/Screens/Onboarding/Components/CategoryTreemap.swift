@@ -9,8 +9,7 @@ import SwiftUI
 
 struct CategoryTreemap: View {
     let percentages: [BudgetCategory: Int]
-
-    @State private var isWide = false
+    let isWide: Bool
 
     var body: some View {
         Group {
@@ -35,11 +34,6 @@ struct CategoryTreemap: View {
                 }
             }
         }
-        .onGeometryChange(for: Bool.self) { proxy in
-            proxy.size.width > proxy.size.height
-        } action: { newValue in
-            isWide = newValue
-        }
     }
 
     private func weight(for category: BudgetCategory) -> CGFloat {
@@ -57,11 +51,11 @@ struct CategoryTreemap: View {
 }
 
 #Preview("Compact", traits: .fixedLayout(width: 390, height: 560)) {
-    CategoryTreemap(percentages: [.needs: 50, .wants: 30, .savingsAndDebts: 20])
+    CategoryTreemap(percentages: [.needs: 50, .wants: 30, .savingsAndDebts: 20], isWide: false)
         .padding()
 }
 
 #Preview("Regular", traits: .fixedLayout(width: 700, height: 480)) {
-    CategoryTreemap(percentages: [.needs: 50, .wants: 30, .savingsAndDebts: 20])
+    CategoryTreemap(percentages: [.needs: 50, .wants: 30, .savingsAndDebts: 20], isWide: true)
         .padding()
 }
