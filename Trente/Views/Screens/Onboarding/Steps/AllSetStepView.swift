@@ -12,13 +12,14 @@ struct AllSetStepView: View {
     let onStartTracking: () -> Void
 
     var body: some View {
-        OnboardingStepLayout {
-            VStack(alignment: .leading, spacing: .medium) {
-                StickerView(imageName: "Trente Rocket Sticker", rotation: .degrees(8))
-                    .frame(width: 88, height: 88)
+        OnboardingStepLayout(compactArrangement: .secondaryBelow) {
+            VStack(spacing: .large) {
+                StickerView(imageName: "Trente Rocket Sticker", rotation: .zero)
+                    .frame(width: 170)
                 OnboardingHeader(
-                    title: "You're all set",
-                    subtitle: "Your first month is ready. Add income and expenses as they come, and Trente keeps the split for you."
+                    title: "You're all set!",
+                    subtitle: "Your first month starts today. Log expenses as you go and Trente shows you what's left.",
+                    alignment: .center
                 )
             }
         } secondary: {
@@ -26,7 +27,7 @@ struct AllSetStepView: View {
                 CurrentMonthRowView(currentMonth: month)
                     .allowsHitTesting(false)
                     .frame(maxWidth: 420)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity)
             }
         } actions: {
             OnboardingContinueButton(title: "Start Tracking", action: onStartTracking)
