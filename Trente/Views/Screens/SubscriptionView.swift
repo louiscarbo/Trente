@@ -34,16 +34,51 @@ enum TrentePlus: Hashable {
 }
 
 struct SubscriptionView: View {
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         SubscriptionStoreView(groupID: TrentePlus.groupID) {
-            VStack {
-                Image("Trente Pig Sticker")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                Text("Marketing Content Goes Here")
-            }
+            TrentePlusMarketingHeader()
         }
         .subscriptionStoreControlStyle(.compactPicker)
+        .storeButton(.visible, for: .cancellation, .restorePurchases)
+        .onInAppPurchaseCompletion { _, result in
+            if case .success(.success) = result {
+                dismiss()
+            }
+        }
+    }
+}
+
+private struct TrentePlusMarketingHeader: View {
+    var body: some View {
+        VStack(spacing: .large) {
+            StickerView(imageName: "Trente Pig Sticker")
+                .frame(width: 120, height: 120)
+
+            VStack(spacing: .small) {
+                Text("Trente+")
+                    .font(.largeTitle)
+                    .bold()
+                Text("Get more out of every month.")
+                    .font(.title3)
+                    .foregroundStyle(.secondary)
+            }
+            .multilineTextAlignment(.center)
+
+            VStack(alignment: .leading, spacing: .medium) {
+                feature("Notes and photos on your transactions", systemImage: "photo.on.rectangle")
+                feature("Support an independent app", systemImage: "heart")
+                feature("More features on the way", systemImage: "sparkles")
+            }
+        }
+        .padding()
+    }
+
+    private func feature(_ title: LocalizedStringKey, systemImage: String) -> some View {
+        Label(title, systemImage: systemImage)
+            .font(.headline)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
