@@ -42,6 +42,14 @@ struct TransactionGroupRowView: View {
             }
             .tint(.orange)
         }
+        .contextMenu {
+            Button("Edit", systemImage: "pencil") {
+                showDetailsInEdit = true
+            }
+            Button("Delete", systemImage: "trash", role: .destructive) {
+                showDeleteConfirmation = true
+            }
+        }
         .deleteConfirmation(isPresented: $showDeleteConfirmation) {
             TransactionService.shared.delete(group: transactionGroup, in: modelContext)
             try? modelContext.save()

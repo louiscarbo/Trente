@@ -50,6 +50,21 @@ struct RecurringTransactionRowView: View {
             }
             .tint(.gray)
         }
+        .contextMenu {
+            Button {
+                showConfirmConfirmation = true
+            } label: {
+                Label(
+                    occurrence.isIncome ? String(localized: "Received") : String(localized: "Paid"),
+                    systemImage: "checkmark.circle"
+                )
+            }
+            Button {
+                showSkipConfirmation = true
+            } label: {
+                Label("Skip", systemImage: "forward.end")
+            }
+        }
         .confirmationDialog(
             confirmConfirmationTitle,
             isPresented: $showConfirmConfirmation,
