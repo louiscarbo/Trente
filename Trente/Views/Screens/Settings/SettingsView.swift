@@ -13,12 +13,19 @@ struct SettingsView: View {
     #endif
 
     var body: some View {
+        let appInfo = AppInfo.current
+
         NavigationStack {
             Form {
-                Section {
-                } footer: {
-                    AppVersionFooter(versionDescription: AppInfo.current.versionDescription)
-                }
+                HelpAboutSection(
+                    faqItems: FAQItem.items(isPhone: isPhone),
+                    contactURL: SupportMail.feedbackURL(appInfo: appInfo),
+                    contactAddress: SupportMail.address,
+                    reviewURL: ExternalLinks.writeReview,
+                    profile: .louis,
+                    credits: CreditSection.all,
+                    versionDescription: appInfo.versionDescription
+                )
             }
             .formStyle(.grouped)
             .navigationTitle("Settings")
@@ -32,6 +39,14 @@ struct SettingsView: View {
         }
         #if os(macOS)
         .frame(minWidth: 460, idealWidth: 500, minHeight: 520)
+        #endif
+    }
+
+    private var isPhone: Bool {
+        #if os(iOS)
+        UIDevice.current.userInterfaceIdiom == .phone
+        #else
+        false
         #endif
     }
 }
