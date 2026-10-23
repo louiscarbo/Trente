@@ -47,18 +47,27 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
     }
 
     private var compactLayout: some View {
-        VStack(spacing: .large) {
-            primary()
-            secondary()
-                .frame(maxHeight: .infinity)
+        ViewThatFits(in: .vertical) {
+            compactContent
+            ScrollView {
+                compactContent
+            }
         }
-        .padding(.horizontal)
         .safeAreaInset(edge: .bottom) {
             VStack(spacing: .small) {
                 actions()
             }
             .padding([.horizontal, .bottom])
         }
+    }
+
+    private var compactContent: some View {
+        VStack(spacing: .large) {
+            primary()
+            secondary()
+                .frame(maxHeight: .infinity)
+        }
+        .padding(.horizontal)
     }
 
     private var regularLayout: some View {
