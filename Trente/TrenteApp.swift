@@ -24,6 +24,11 @@ struct TrenteApp: App {
             }
         }
         .defaultSize(width: 1200, height: 800)
+        #if os(macOS)
+        .commands {
+            TrenteHelpCommands()
+        }
+        #endif
 
         #if os(macOS)
         WindowGroup("New Transaction", id: WindowIdentifiers.newTransaction, for: NewTransactionContext.self) { $context in
@@ -48,6 +53,17 @@ struct TrenteApp: App {
             }
         }
         .defaultSize(width: 500, height: 600)
+
+        Settings {
+            SettingsView()
+        }
+
+        Window("Trente Help", id: WindowIdentifiers.help) {
+            NavigationStack {
+                FAQView(items: FAQItem.items(isPhone: false))
+            }
+        }
+        .defaultSize(width: 520, height: 600)
         #endif
     }
 }

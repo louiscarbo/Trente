@@ -29,6 +29,7 @@ struct MonthListView: View {
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
     #if os(iOS)
     @State private var deepLinkedTransaction: NewTransactionContext?
+    @State private var isShowingSettings = false
     #endif
     #if DEBUG
     @State private var isShowingDebugMenu = false
@@ -100,6 +101,13 @@ struct MonthListView: View {
                         fileName: TransactionsCSVFile.allMonthsFileName
                     )
                 }
+                #if os(iOS)
+                ToolbarItem {
+                    Button("Settings", systemImage: "gearshape") {
+                        isShowingSettings = true
+                    }
+                }
+                #endif
                 #if DEBUG
                 ToolbarItem {
                     Button("Debug", systemImage: "ladybug") {
@@ -108,6 +116,11 @@ struct MonthListView: View {
                 }
                 #endif
             }
+            #if os(iOS)
+            .sheet(isPresented: $isShowingSettings) {
+                SettingsView()
+            }
+            #endif
             #if DEBUG
             .sheet(isPresented: $isShowingDebugMenu) {
                 DebugMenuView()
@@ -167,12 +180,21 @@ struct MonthListView: View {
             isPresentingSheet: pendingTransactionRouter.presentedPendingTransactionID != nil
                 || isPresentingDebugMenu
                 || isPresentingDeepLinkedTransaction
+                || isPresentingSettings
         )
     }
 
     private var isPresentingDebugMenu: Bool {
         #if DEBUG
         isShowingDebugMenu
+        #else
+        false
+        #endif
+    }
+
+    private var isPresentingSettings: Bool {
+        #if os(iOS)
+        isShowingSettings
         #else
         false
         #endif

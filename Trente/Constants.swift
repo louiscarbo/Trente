@@ -13,6 +13,7 @@ import UIKit
 enum WindowIdentifiers {
     static let newTransaction = "new-transaction"
     static let newMonth = "new-month"
+    static let help = "help"
 }
 
 enum ExternalLinks {
@@ -26,4 +27,7 @@ enum ExternalLinks {
         URL(string: "x-apple.systempreferences:com.apple.Notifications-Settings.extension")
         #endif
     }
+
+    static let manageSubscriptions = URL(string: "https://apps.apple.com/account/subscriptions")!
+    static let ccBy3License = URL(string: "https://creativecommons.org/licenses/by/3.0/")!
 }
