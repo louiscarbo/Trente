@@ -12,6 +12,12 @@ struct ShortcutsSetupCard: View {
     let systemImage: String
     let steps: [LocalizedStringKey]
 
+    static let applePaySetupSteps: [LocalizedStringKey] = [
+        "Tap **Get the Shortcut** below and add **Log Wallet Transaction** to your shortcuts.",
+        "In the **Automation** tab, create a new automation with the **Wallet** trigger, choose your cards and select **Run Immediately**.",
+        "Add **Run Shortcut**, pick **Log Wallet Transaction** and pass it the **Shortcut Input**."
+    ]
+
     var body: some View {
         GroupBox(label: Label(title, systemImage: systemImage)) {
             VStack(alignment: .leading, spacing: DesignSystem.Spacing.medium.rawValue) {
@@ -39,11 +45,7 @@ struct ShortcutsSetupCard: View {
     ShortcutsSetupCard(
         title: "In the Shortcuts app",
         systemImage: "creditcard",
-        steps: [
-            "Tap **Get the Shortcut** below and add **Log Wallet Transaction** to your shortcuts.",
-            "In the **Automation** tab, create a new automation with the **Wallet** trigger, choose your cards and select **Run Immediately**.",
-            "Add **Run Shortcut**, pick **Log Wallet Transaction** and pass it the **Shortcut Input**."
-        ]
+        steps: ShortcutsSetupCard.applePaySetupSteps
     )
     .padding()
 }

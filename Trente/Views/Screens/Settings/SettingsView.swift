@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.openURL) private var openURL
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var notificationStatus: NotificationPermissionStatus?
+
+    private let notificationPermission = NotificationPermissionService()
     #endif
 
     var body: some View {
@@ -17,6 +22,19 @@ struct SettingsView: View {
 
         NavigationStack {
             Form {
+                #if os(iOS)
+                NotificationsSection(
+                    status: notificationStatus,
+                    onTurnOn: turnOnNotifications,
+                    onOpenSettings: openNotificationSettings
+                )
+                if isPhone {
+                    ApplePaySection(
+                        setupSteps: ShortcutsSetupCard.applePaySetupSteps,
+                        onGetShortcut: openShortcut
+                    )
+                }
+                #endif
                 HelpAboutSection(
                     faqItems: FAQItem.items(isPhone: isPhone),
                     contactURL: SupportMail.feedbackURL(appInfo: appInfo),
@@ -37,7 +55,15 @@ struct SettingsView: View {
             }
             #endif
         }
-        #if os(macOS)
+        #if os(iOS)
+        .task {
+            await refreshNotificationStatus()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            guard phase == .active else { return }
+            Task { await refreshNotificationStatus() }
+        }
+        #elseif os(macOS)
         .frame(minWidth: 460, idealWidth: 500, minHeight: 520)
         #endif
     }
@@ -49,6 +75,27 @@ struct SettingsView: View {
         false
         #endif
     }
+
+    #if os(iOS)
+    private func refreshNotificationStatus() async {
+        notificationStatus = await notificationPermission.status()
+    }
+
+    private func turnOnNotifications() {
+        Task {
+            notificationStatus = await notificationPermission.requestIfNeeded()
+        }
+    }
+
+    private func openNotificationSettings() {
+        guard let url = ExternalLinks.notificationSettings else { return }
+        openURL(url)
+    }
+
+    private func openShortcut() {
+        openURL(ExternalLinks.logWalletTransactionShortcut)
+    }
+    #endif
 }
 
 #Preview {

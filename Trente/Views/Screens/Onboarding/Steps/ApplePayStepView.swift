@@ -23,11 +23,7 @@ struct ApplePayStepView: View {
                 ShortcutsSetupCard(
                     title: "In the Shortcuts app",
                     systemImage: "creditcard",
-                    steps: [
-                        "Tap **Get the Shortcut** below and add **Log Wallet Transaction** to your shortcuts.",
-                        "In the **Automation** tab, create a new automation with the **Wallet** trigger, choose your cards and select **Run Immediately**.",
-                        "Add **Run Shortcut**, pick **Log Wallet Transaction** and pass it the **Shortcut Input**."
-                    ]
+                    steps: ShortcutsSetupCard.applePaySetupSteps
                 )
 
                 Label(
