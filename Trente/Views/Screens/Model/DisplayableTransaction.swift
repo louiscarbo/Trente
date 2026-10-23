@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 import SwiftUI
 
 struct DisplayableTransaction: Identifiable, Equatable {
@@ -17,8 +18,20 @@ struct DisplayableTransaction: Identifiable, Equatable {
         case group(TransactionGroup)
         case recurring(RecurringTransactionOccurrence)
     }
-    let id = UUID()
+
+    enum ID: Hashable {
+        case group(PersistentIdentifier)
+        case recurring(RecurringTransactionOccurrence.Key)
+    }
+
     let kind: Kind
+
+    var id: ID {
+        switch kind {
+        case .group(let group):         .group(group.persistentModelID)
+        case .recurring(let occurrence): .recurring(occurrence.id)
+        }
+    }
     
     var date: Date {
         switch kind {
