@@ -254,7 +254,12 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (MonthRecapEntry) -> Void) {
-        completion(MonthRecapEntry(date: Date(), month: .sample))
+        if context.isPreview {
+            completion(MonthRecapEntry(date: Date(), month: .sample))
+        } else {
+            let current = (try? currentMonthTimeline())?.first
+            completion(MonthRecapEntry(date: Date(), month: current?.month))
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> Void) {

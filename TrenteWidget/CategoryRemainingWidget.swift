@@ -168,10 +168,18 @@ struct CategoryTimeline: AppIntentTimelineProvider {
     }
     
     func snapshot(for configuration: SelectCategoryIntent, in context: Context) async -> CategoryEntry {
-        CategoryEntry(
+        if context.isPreview {
+            return CategoryEntry(
+                date: Date(),
+                month: .sample,
+                category: WidgetBudgetCategory.needs
+            )
+        }
+        let current = (try? currentMonthTimeline())?.first
+        return CategoryEntry(
             date: Date(),
-            month: .sample,
-            category: WidgetBudgetCategory.needs
+            month: current?.month,
+            category: configuration.category ?? .needs
         )
     }
     
