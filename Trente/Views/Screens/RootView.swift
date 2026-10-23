@@ -13,6 +13,7 @@ struct RootView: View {
     @AppStorage(OnboardingGate.completedKey) private var hasCompletedOnboarding = false
     @State private var isShowingOnboarding: Bool?
     @State private var isFirstLaunch = false
+    @State private var pendingDeepLink: DeepLink?
 
     var body: some View {
         Group {
@@ -22,9 +23,11 @@ struct RootView: View {
             case .some(true):
                 OnboardingView(isFirstLaunch: isFirstLaunch, onFinish: finishOnboarding)
             case .some(false):
-                MonthListView()
+                MonthListView(pendingDeepLink: $pendingDeepLink)
             }
         }
+        .onOpenURL(perform: handleOpenURL)
+        .handlesExternalEvents(preferring: ["*"], allowing: ["*"])
         .onAppear(perform: decideOnboarding)
         .onChange(of: hasCompletedOnboarding) { _, isCompleted in
             guard isCompleted else { return }
@@ -45,6 +48,14 @@ struct RootView: View {
             isForced: false
         )
         isShowingOnboarding = isFirstLaunch || OnboardingGate.isForced
+        if isShowingOnboarding == true {
+            pendingDeepLink = nil
+        }
+    }
+
+    private func handleOpenURL(_ url: URL) {
+        guard isShowingOnboarding != true, let link = DeepLink(url: url) else { return }
+        pendingDeepLink = link
     }
 
     private func finishOnboarding() {
@@ -57,6 +68,7 @@ struct RootView: View {
     #if DEBUG
     private func replayOnboarding() {
         isFirstLaunch = false
+        pendingDeepLink = nil
         withAnimation {
             isShowingOnboarding = true
         }

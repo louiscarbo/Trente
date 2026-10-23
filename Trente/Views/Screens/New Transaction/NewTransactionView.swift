@@ -168,6 +168,10 @@ struct NewTransactionContext: Codable, Hashable {
     let monthID: PersistentIdentifier
 }
 
+extension NewTransactionContext: Identifiable {
+    var id: PersistentIdentifier { monthID }
+}
+
 #Preview {
     Text("Preview")
         .sheet(isPresented: .constant(true)) {
