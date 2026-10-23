@@ -7,10 +7,12 @@
 
 #if DEBUG
 import SwiftUI
+import StoreKit
 
 struct DebugMenuView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.replayOnboarding) private var replayOnboarding
+    @Environment(\.requestReview) private var requestReview
 
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
 
@@ -27,6 +29,16 @@ struct DebugMenuView: View {
                     replayOnboarding()
                 } label: {
                     Label("Onboarding", systemImage: "sparkles")
+                }
+                Button {
+                    requestReview()
+                } label: {
+                    Label("Request Review Now", systemImage: "star")
+                }
+                Button {
+                    ReviewRequestPolicy.reset()
+                } label: {
+                    Label("Reset Review Prompt", systemImage: "arrow.counterclockwise")
                 }
             }
             .navigationTitle("Debug")
