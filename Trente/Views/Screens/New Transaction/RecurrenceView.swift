@@ -100,9 +100,7 @@ struct RecurrenceView: View {
                     recurrenceEndDate: $recurrenceEndDate
                 )
                 .navigationTitle("New Transaction")
-                #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-                #endif
+                .inlineNavigationBarTitleDisplayMode()
             }
         }
 }
