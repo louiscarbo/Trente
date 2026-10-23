@@ -20,6 +20,9 @@ struct FAQView: View {
         }
         .formStyle(.grouped)
         .navigationTitle("Frequently Asked Questions")
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 
