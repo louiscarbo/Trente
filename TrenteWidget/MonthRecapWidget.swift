@@ -257,18 +257,14 @@ struct Provider: TimelineProvider {
         if context.isPreview {
             completion(MonthRecapEntry(date: Date(), month: .sample))
         } else {
-            let current = (try? currentMonthTimeline())?.first
-            completion(MonthRecapEntry(date: Date(), month: current?.month))
+            getTimeline(in: context) { timeline in
+                completion(timeline.entries.first ?? MonthRecapEntry(date: Date(), month: nil))
+            }
         }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> Void) {
-        do {
-            let entries = try currentMonthTimeline().map { MonthRecapEntry(date: $0.date, month: $0.month) }
-            completion(Timeline(entries: entries, policy: .after(.now)))
-        } catch {
-            completion(Timeline(entries: [], policy: .atEnd))
-        }
+        completion(currentMonthTimeline(policy: .after(.now), makeEntry: MonthRecapEntry.init))
     }
 }
 

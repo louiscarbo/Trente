@@ -6,9 +6,31 @@
 //
 
 import Foundation
+import OSLog
 import SwiftData
+import WidgetKit
 
-func currentMonthTimeline(from now: Date = .now) throws -> [(date: Date, month: WidgetMonth?)] {
+private let logger = Logger(subsystem: "louiscarboestaque.Trente.TrenteWidget", category: "Timeline")
+private let retryDelay: TimeInterval = 15 * 60
+
+func currentMonthTimeline<Entry: TimelineEntry>(
+    from now: Date = .now,
+    policy: TimelineReloadPolicy,
+    makeEntry: (Date, WidgetMonth?) -> Entry
+) -> Timeline<Entry> {
+    do {
+        let entries = try currentMonthSnapshots(from: now).map { makeEntry($0.date, $0.month) }
+        return Timeline(entries: entries, policy: policy)
+    } catch {
+        logger.error("Could not load the current month: \(error, privacy: .public)")
+        return Timeline(
+            entries: [makeEntry(now, nil)],
+            policy: .after(now.addingTimeInterval(retryDelay))
+        )
+    }
+}
+
+private func currentMonthSnapshots(from now: Date) throws -> [(date: Date, month: WidgetMonth?)] {
     let context = ModelContext(try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self))
     var descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .reverse)])
     descriptor.fetchLimit = 1
