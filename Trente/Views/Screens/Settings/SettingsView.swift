@@ -41,7 +41,7 @@ struct SettingsView: View {
                     ApplePaySection(onGetShortcut: openShortcut)
                 }
                 #endif
-                DataSection()
+                DataSection(syncStatus: CloudSyncMonitor.shared.status)
                 HelpAboutSection(
                     faqItems: FAQItem.items(isPhone: DeviceIdiom.isPhone),
                     contactURL: SupportMail.feedbackURL(appInfo: appInfo),

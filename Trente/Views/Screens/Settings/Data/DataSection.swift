@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct DataSection: View {
+    let syncStatus: CloudSyncStatus
+
     var body: some View {
         Section {
+            LabeledContent("iCloud Sync") {
+                syncStatusText
+            }
             NavigationLink {
                 TransactionExportView()
             } label: {
@@ -18,7 +23,35 @@ struct DataSection: View {
         } header: {
             Text("Your Data")
         } footer: {
-            Text("Trente has no account and no server: your data is yours. You can export it as a spreadsheet anytime.")
+            Text(footer)
+        }
+    }
+
+    @ViewBuilder
+    private var syncStatusText: some View {
+        switch syncStatus {
+        case .signedOut:
+            Text("Off")
+        case .waiting:
+            Text("On")
+        case .synced(let date):
+            Text("Synced \(date, format: .relative(presentation: .named))")
+        case .failed:
+            Text("Not Synced")
+        }
+    }
+
+    private var footer: LocalizedStringKey {
+        switch syncStatus {
+        case .signedOut:
+            "Sign in to iCloud in the Settings app to keep your months and transactions on all your devices. You can export them as a spreadsheet anytime."
+        case .failed(let description):
+            "iCloud couldn't sync: \(description). You can export your data as a spreadsheet anytime."
+        case .waiting, .synced:
+            """
+            Your months and transactions sync through your iCloud account on all your devices. \
+            Trente has no account and no server. You can export them as a spreadsheet anytime.
+            """
         }
     }
 }
@@ -26,7 +59,8 @@ struct DataSection: View {
 #Preview {
     NavigationStack {
         Form {
-            DataSection()
+            DataSection(syncStatus: .synced(.now.addingTimeInterval(-120)))
+            DataSection(syncStatus: .signedOut)
         }
         .formStyle(.grouped)
     }
