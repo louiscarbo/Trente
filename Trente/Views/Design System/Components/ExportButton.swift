@@ -34,7 +34,7 @@ struct ExportButton: View {
         .fileExporter(
             isPresented: $isShowingFileExporter,
             item: file,
-            contentTypes: [.commaSeparatedText],
+            contentTypes: [file.contentType],
             defaultFilename: file.fileName
         ) { result in
             if case .failure(let error) = result {

@@ -25,6 +25,8 @@ struct MonthDetailsView: View {
 
     @AppStorage(TransactionCSVFormat.styleKey) private var exportStyle = TransactionCSVFormat.Style.standard
     @AppStorage(TransactionCSVFormat.includesNotesKey) private var exportIncludesNotes = true
+    @AppStorage(TransactionCSVFormat.includesImagesKey) private var exportIncludesImages = true
+    @Query(TransactionExportRow.groupsWithImagesDescriptor) private var groupsWithImages: [TransactionGroup]
 
     init(month: Month) {
         self.original = month
@@ -72,9 +74,16 @@ struct MonthDetailsView: View {
 
     private var exportFile: TransactionsCSVFile {
         TransactionsCSVFile(
-            rows: TransactionExportRow.rows(from: [original]),
+            rows: TransactionExportRow.rows(
+                from: [original],
+                groupsWithImages: Set(groupsWithImages.map(\.persistentModelID))
+            ),
             fileName: TransactionsCSVFile.fileName(for: original),
-            format: TransactionCSVFormat(style: exportStyle, includesNotes: exportIncludesNotes)
+            format: TransactionCSVFormat(
+                style: exportStyle,
+                includesNotes: exportIncludesNotes,
+                includesImages: exportIncludesImages
+            )
         )
     }
 
@@ -155,6 +164,8 @@ private struct ExportMonthSection: View {
     private var description: LocalizedStringKey {
         if file.rows.isEmpty {
             "This month has no transactions to export yet."
+        } else if file.includesImages {
+            "Save this month's transactions and their images in a .zip file, with a spreadsheet (.csv) that opens in Numbers, Excel or Google Sheets."
         } else {
             "Save this month's transactions as a spreadsheet file (.csv) that opens in Numbers, Excel or Google Sheets."
         }
