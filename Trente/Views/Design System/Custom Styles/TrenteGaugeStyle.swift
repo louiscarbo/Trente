@@ -21,58 +21,49 @@ struct TrenteGaugeStyle: GaugeStyle {
         let strokeWidth = diameter / 6
         let splitPoint = 0.75 * configuration.value
         let roundStroke = StrokeStyle(lineWidth: strokeWidth, lineCap: .round)
-        
+
         ZStack {
-                Circle()
-                    .trim(from: 0, to: 0.75)
-                    .stroke(gradient.opacity(0.3), style: roundStroke)
-                    .rotationEffect(.degrees(135))
-                
-                Circle()
-                    .trim(from: 0, to: splitPoint)
-                    .stroke(gradient, style: roundStroke)
-                    .rotationEffect(.degrees(135))
-                    .opacity(highlightsRemaining ? 0 : 1)
-                
-                Circle()
-                    .trim(from: 0, to: 0.75)
-                    .stroke(gradient, style: roundStroke)
-                    .rotationEffect(.degrees(135))
-                    .mask {
-                        Rectangle()
-                            .padding(-strokeWidth)
-                            .overlay {
-                                Circle()
-                                    .trim(from: 0, to: splitPoint)
-                                    .stroke(.black, style: roundStroke)
-                                    .rotationEffect(.degrees(135))
-                                    .frame(width: diameter, height: diameter)
-                                    .blendMode(.destinationOut)
-                            }
-                            .compositingGroup()
-                    }
-                    .opacity(highlightsRemaining ? 1 : 0)
-                
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 0.6*strokeWidth.rounded(), height: 0.6*strokeWidth.rounded())
-                    .offset(y: -1 * diameter / 2)
-                    .rotationEffect(.degrees(225 + 270 * configuration.value))
-                
-            VStack(spacing: 0) {
-                configuration.currentValueLabel
-                    .font(.headline)
-                Divider()
-                    .frame(width: diameter / 2, height: 1)
-                    .padding(2)
-                configuration.maximumValueLabel
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
+            Circle()
+                .trim(from: 0, to: 0.75)
+                .stroke(gradient.opacity(0.3), style: roundStroke)
+                .rotationEffect(.degrees(135))
+
+            Circle()
+                .trim(from: 0, to: splitPoint)
+                .stroke(gradient, style: roundStroke)
+                .rotationEffect(.degrees(135))
+                .opacity(highlightsRemaining ? 0 : 1)
+
+            Circle()
+                .trim(from: 0, to: 0.75)
+                .stroke(gradient, style: roundStroke)
+                .rotationEffect(.degrees(135))
+                .mask {
+                    Rectangle()
+                        .padding(-strokeWidth)
+                        .overlay {
+                            Circle()
+                                .trim(from: 0, to: splitPoint)
+                                .stroke(.black, style: roundStroke)
+                                .rotationEffect(.degrees(135))
+                                .frame(width: diameter, height: diameter)
+                                .blendMode(.destinationOut)
+                        }
+                        .compositingGroup()
+                }
+                .opacity(highlightsRemaining ? 1 : 0)
+
+            Circle()
+                .fill(Color.white)
+                .frame(width: 0.6*strokeWidth.rounded(), height: 0.6*strokeWidth.rounded())
+                .offset(y: -1 * diameter / 2)
+                .rotationEffect(.degrees(225 + 270 * configuration.value))
+
+            configuration.currentValueLabel
         }
         .frame(width: diameter, height: diameter)
     }
-    
+
     func adjustHue(of color: Color, by degrees: Double) -> Color {
         #if os(iOS)
         let uiColor = UIColor(color)

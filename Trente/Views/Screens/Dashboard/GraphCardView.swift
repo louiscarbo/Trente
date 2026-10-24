@@ -18,18 +18,9 @@ struct GraphCardView: View {
         month.figures(in: scope)
     }
 
-    private var percentage: Double {
-        guard figures.income > 0 else { return 0 }
-        let amount = showRemaining ? figures.remaining : figures.spent
-        return amount / figures.income
-    }
-    
-    private var caption: Text {
-        let roundedPercentage = Int((percentage * 100).rounded())
-        return showRemaining ? Text("\(roundedPercentage)% Left") : Text("\(roundedPercentage)% Spent")
-    }
-    
     var body: some View {
+        let exactAmount = figures.amount(showingRemaining: showRemaining)
+
         Button {
             withAnimation(.spring(duration: 0.35, bounce: 0.15)) { showRemaining.toggle() }
         } label: {
@@ -46,14 +37,33 @@ struct GraphCardView: View {
                         scope: scope,
                         currencyCode: month.currency.isoCode,
                         size: size,
-                        showRemaining: showRemaining
+                        showRemaining: showRemaining,
+                        showsPercentage: true
                     )
                     .padding(8)
-                    
-                    caption
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                        .contentTransition(.opacity)
+
+                    VStack(spacing: 2) {
+                        HStack(spacing: 3) {
+                            Text(exactAmount, format: .currency(code: month.currency.isoCode))
+                                .foregroundStyle(figures.isOverspent ? .red : .primary)
+                                .contentTransition(.numericText(value: exactAmount))
+                            Text(verbatim: "/")
+                                .foregroundStyle(.secondary)
+                            Text(
+                                figures.income,
+                                format: .currency(code: month.currency.isoCode).precision(.fractionLength(0...2))
+                            )
+                            .foregroundStyle(.secondary)
+                        }
+                        .font(.caption.monospacedDigit())
+
+                        (showRemaining ? Text("Left") : Text("Spent"))
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .contentTransition(.opacity)
+                    }
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
@@ -92,6 +102,12 @@ extension BudgetScope {
     }
 }
 
+private extension BudgetFigures {
+    func amount(showingRemaining: Bool) -> Double {
+        showingRemaining ? remaining : spent
+    }
+}
+
 // MARK: BudgetGaugeView
 struct BudgetGaugeView: View {
     var figures: BudgetFigures
@@ -99,9 +115,19 @@ struct BudgetGaugeView: View {
     var currencyCode: String
     var size: CGFloat = 100
     var showRemaining = false
+    var showsPercentage = false
 
     private var currencyFormat: FloatingPointFormatStyle<Double>.Currency {
         .currency(code: currencyCode).precision(.fractionLength(0))
+    }
+
+    private var displayedAmount: Double {
+        figures.amount(showingRemaining: showRemaining)
+    }
+
+    private var percentage: Double {
+        guard figures.income > 0 else { return 0 }
+        return displayedAmount / figures.income
     }
 
     var gaugeColor: Color {
@@ -135,26 +161,38 @@ struct BudgetGaugeView: View {
     }
 
     var body: some View {
-        VStack {
-            Gauge(value: gaugeValue, in: 0...figures.income) {
-                Text(scope.name)
-            } currentValueLabel: {
-                Text(showRemaining ? figures.remaining : figures.spent, format: currencyFormat)
-                    .foregroundStyle(figures.isOverspent ? .red : .primary)
-                    .contentTransition(.numericText(value: showRemaining ? figures.remaining : figures.spent))
-            } minimumValueLabel: {
-                Text("")
-            } maximumValueLabel: {
-                Text(figures.income, format: currencyFormat)
-                    .foregroundStyle(textColor)
-            }
-            .gaugeStyle(
-                TrenteGaugeStyle(
-                    color: gaugeColor,
-                    diameter: size,
-                    highlightsRemaining: showRemaining
-                )
+        Gauge(value: gaugeValue, in: 0...figures.income) {
+            Text(scope.name)
+        } currentValueLabel: {
+            centerLabel
+                .foregroundStyle(textColor)
+        }
+        .gaugeStyle(
+            TrenteGaugeStyle(
+                color: gaugeColor,
+                diameter: size,
+                highlightsRemaining: showRemaining
             )
+        )
+    }
+
+    @ViewBuilder
+    private var centerLabel: some View {
+        if showsPercentage {
+            Text(percentage, format: .percent.precision(.fractionLength(0)))
+                .font(.headline)
+                .contentTransition(.numericText(value: percentage))
+        } else {
+            VStack(spacing: 0) {
+                Text(displayedAmount, format: currencyFormat)
+                    .font(.headline)
+                    .contentTransition(.numericText(value: displayedAmount))
+                Divider()
+                    .frame(width: size / 2, height: 1)
+                    .padding(2)
+                Text(figures.income, format: currencyFormat)
+                    .font(.subheadline)
+            }
         }
     }
 }
