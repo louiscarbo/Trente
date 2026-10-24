@@ -44,9 +44,7 @@ struct FilterSheetView: View {
                 Text("\(error.localizedDescription)")
             }
             .navigationTitle("Filter")
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
+            .inlineNavigationBarTitleDisplayMode()
         }
     }
     
