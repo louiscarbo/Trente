@@ -47,23 +47,3 @@ struct NotificationPermissionServiceTests {
         #expect(await center.requestCount == 0)
     }
 }
-
-private actor FakeNotificationCenter: NotificationAuthorizing {
-    let status: UNAuthorizationStatus
-    let grants: Bool
-    private(set) var requestCount = 0
-
-    init(status: UNAuthorizationStatus, grants: Bool) {
-        self.status = status
-        self.grants = grants
-    }
-
-    func currentAuthorizationStatus() async -> UNAuthorizationStatus {
-        status
-    }
-
-    func requestAuthorization(options: UNAuthorizationOptions) async throws -> Bool {
-        requestCount += 1
-        return grants
-    }
-}
