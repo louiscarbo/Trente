@@ -40,14 +40,20 @@ struct WalletIntakeService {
         return pending
     }
 
+    func currentMonth(in context: ModelContext, now: Date = .now) throws -> Month {
+        try CatchUpService.shared.catchUp(in: context, now: now)
+        guard let month = try MonthService.shared.latestMonth(in: context) else {
+            throw WalletIntakeError.noMonth
+        }
+        return month
+    }
+
     func handle(
         transaction: String,
         amount: String,
         in context: ModelContext
     ) async throws {
-        guard let month = try MonthService.shared.latestMonth(in: context) else {
-            throw WalletIntakeError.noMonth
-        }
+        let month = try currentMonth(in: context)
         let pending = try intake(
             transaction: transaction,
             amount: amount,

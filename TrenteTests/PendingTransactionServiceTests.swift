@@ -57,6 +57,24 @@ struct PendingTransactionServiceTests {
         #expect(try context.fetch(FetchDescriptor<PendingTransaction>()).isEmpty)
     }
 
+    @Test("Validating files the expense in the month of its purchase date")
+    func validateIntoPurchaseMonth() throws {
+        let context = try makeContext()
+        let october = insertMonth(year: 2026, month: 10, in: context)
+        insertMonth(year: 2026, month: 11, in: context)
+        let purchaseDate = Calendar.current.date(
+            from: DateComponents(year: 2026, month: 10, day: 31, hour: 23, minute: 50)
+        )!
+        let pending = insertPending(date: purchaseDate, in: context)
+        var draft = TransactionGroupDraft(from: pending)
+        draft.expenseCategory = .needs
+
+        try PendingTransactionService.shared.validate(pending, with: draft, in: context)
+
+        let group = try #require(try context.fetch(FetchDescriptor<TransactionGroup>()).first)
+        #expect(group.month.id == october.id)
+    }
+
     @Test("Validating without any month throws and keeps the pending item")
     func validateWithoutMonth() throws {
         let context = try makeContext()

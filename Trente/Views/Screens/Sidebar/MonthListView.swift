@@ -9,9 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct MonthListView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Environment(\.scenePhase) private var scenePhase
-
     @Query(
         sort: \Month.startDate,
         order: .reverse,
@@ -117,18 +114,15 @@ struct MonthListView: View {
         .onAppear {
             selection = months.first.map(SidebarSelection.month)
         }
-        .onChange(of: months) { _, newMonths in
-            if let firstMonth = newMonths.first {
-                selection = .month(firstMonth)
-            }
-            confirmDueTransactions()
-        }
-        .onChange(of: scenePhase, initial: true) { _, phase in
-            if phase == .active { confirmDueTransactions() }
-        }
-        .task {
-            for await _ in NotificationCenter.default.notifications(named: .NSCalendarDayChanged) {
-                confirmDueTransactions()
+        .onChange(of: months) { oldMonths, newMonths in
+            guard let latestMonth = newMonths.first else { return }
+            switch selection {
+            case .recurring:
+                return
+            case .month(let month) where month != oldMonths.first && newMonths.contains(month):
+                return
+            default:
+                selection = .month(latestMonth)
             }
         }
         .sheet(isPresented: isShowingPendingTransaction) {
@@ -160,10 +154,6 @@ struct MonthListView: View {
                 RecurringTransactionsListView(currency: currency)
             }
         }
-    }
-
-    private func confirmDueTransactions() {
-        _ = try? RecurringTransactionService.shared.confirmDueOccurrences(in: modelContext)
     }
 
     private var isShowingPendingTransaction: Binding<Bool> {
