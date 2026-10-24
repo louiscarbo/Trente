@@ -12,9 +12,9 @@ extension SchemaV1 {
     @Model
     class PendingTransaction: Identifiable {
         var id: UUID = UUID()
-        var date: Date
-        var amountCents: Int
-        var title: String
+        var date: Date = Date.now
+        var amountCents: Int = 0
+        var title: String = ""
 
         init(
             date: Date,

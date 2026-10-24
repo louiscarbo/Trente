@@ -13,17 +13,16 @@ extension SchemaV1 {
     @Model
     class TransactionGroup: Identifiable {
         var id: UUID = UUID()
-        var addedDate: Date
+        var addedDate: Date = Date.now
         var modifiedDate: Date?
-        var title: String
-        var type: TransactionType
-        var month: Month
-        var isDeleted: Bool = false
+        var title: String = ""
+        var type: TransactionType = TransactionType.expense
+        var month: Month?
         var recurringRule: RecurringTransactionRule?
         var recurringOccurrenceDate: Date?
 
         @Relationship(deleteRule: .cascade, inverse: \TransactionEntry.group)
-        var entries: [TransactionEntry] = []
+        var storedEntries: [TransactionEntry]? = []
 
         // Trente+
         var note: String?
@@ -43,8 +42,7 @@ extension SchemaV1 {
             self.title = title
             self.type = type
             self.month = month
-            self.isDeleted = false
-            self.entries = []
+            self.storedEntries = []
             self.note = note
             self.imageAttachmentData = imageAttachmentData
         }
@@ -58,6 +56,15 @@ enum TransactionType: String, Codable {
 
 // MARK: - Computed Properties
 extension TransactionGroup {
+    var entries: [TransactionEntry] {
+        get { storedEntries ?? [] }
+        set { storedEntries = newValue }
+    }
+
+    var currency: Currency {
+        month?.currency ?? Currency.fallback
+    }
+
     /// The total amount of all entries in cents. Can be negative or positive.
     var totalAmountCents: Int {
         entries.reduce(0) { $0 + $1.amountCents }
@@ -70,6 +77,6 @@ extension TransactionGroup {
     /// Returns a localized string that displays the amount correctly, not in cents.
     var displayAmount: String {
         totalAmount
-            .formatted(.currency(code: month.currency.isoCode))
+            .formatted(.currency(code: currency.isoCode))
     }
 }

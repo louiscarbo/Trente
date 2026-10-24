@@ -80,7 +80,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
     var displayAmount: String {
         let code: String
         switch kind {
-        case .group(let g):      code = g.month.currency.isoCode
+        case .group(let g):      code = g.currency.isoCode
         case .recurring(let r):  code = r.month.currency.isoCode
         }
         return (Double(amountCents)/100).formatted(.currency(code: code))

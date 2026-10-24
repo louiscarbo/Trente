@@ -81,7 +81,7 @@ struct TransactionGroupRowView: View {
             TransactionGroupSummaryRow(
                 title: transactionGroup.title,
                 amount: transactionGroup.totalAmount,
-                currencyCode: transactionGroup.month.currency.isoCode
+                currencyCode: transactionGroup.currency.isoCode
             )
         }
     }
@@ -101,7 +101,7 @@ private struct TransactionEntryRowView: View {
             TransactionEntryRowContent(
                 category: transactionEntry.category,
                 amount: transactionEntry.amount,
-                currencyCode: transactionGroup.month.currency.isoCode,
+                currencyCode: transactionGroup.currency.isoCode,
                 title: title
             )
         }
