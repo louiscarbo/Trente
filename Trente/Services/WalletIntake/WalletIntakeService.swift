@@ -41,7 +41,7 @@ struct WalletIntakeService {
     }
 
     func currentMonth(in context: ModelContext, now: Date = .now) throws -> Month {
-        try MonthService.shared.createMissingMonths(in: context, now: now)
+        try CatchUpService.shared.catchUp(in: context, now: now)
         guard let month = try MonthService.shared.latestMonth(in: context) else {
             throw WalletIntakeError.noMonth
         }

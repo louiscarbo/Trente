@@ -15,6 +15,7 @@ struct TrenteApp: App {
     init() {
         WalletNotificationService.shared.start()
         WidgetRefresher.shared.start()
+        CatchUpService.shared.start()
     }
 
     var body: some Scene {
