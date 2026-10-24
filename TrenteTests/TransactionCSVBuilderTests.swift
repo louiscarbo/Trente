@@ -167,6 +167,21 @@ struct TransactionCSVBuilderTests {
         #expect(lines.map { $0.components(separatedBy: ",")[5] } == ["1000.00", "600.00", "400.00"])
     }
 
+    @Test("Every row of an income split repeats the image path")
+    func incomeSplitRepeatsImagePath() {
+        let salaryID = UUID()
+        let rows = [
+            row(title: "Salary", type: .income, category: .needs, amountCents: 1000_00, transactionID: salaryID),
+            row(title: "Salary", type: .income, category: .wants, amountCents: 600_00, transactionID: salaryID),
+            row(title: "Taxi", date: date(2026, 10, 6), transactionID: UUID())
+        ]
+        let path = "Images/2026-10-05 Salary \(salaryID.uuidString.prefix(8)).jpg"
+
+        let lines = dataLines(of: TransactionCSVBuilder.csv(from: rows, imagePaths: [salaryID: path], timeZone: paris))
+
+        #expect(lines.map { $0.components(separatedBy: ",")[9] } == [path, path, ""])
+    }
+
     @Test("Rows are sorted by date, then by title")
     func sortsByDateThenTitle() {
         let rows = [

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 struct TransactionExportRow: Hashable, Sendable {
     let date: Date
@@ -18,4 +19,5 @@ struct TransactionExportRow: Hashable, Sendable {
     let isRecurring: Bool
     let note: String?
     let transactionID: UUID
+    var imageSourceID: PersistentIdentifier? = nil
 }

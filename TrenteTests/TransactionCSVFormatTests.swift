@@ -63,6 +63,37 @@ struct TransactionCSVFormatTests {
         ])
     }
 
+    @Test("Image paths add an Image column after the note")
+    func imageColumn() {
+        let imagePaths = [row().transactionID: "Images/2026-10-05 Groceries 00000000.jpg"]
+
+        let csv = TransactionCSVBuilder.csv(from: [row()], imagePaths: imagePaths, timeZone: paris)
+
+        #expect(lines(csv) == [
+            "Date,Month,Title,Type,Category,Amount,Currency,Recurring,Note,Image,Transaction ID",
+            "2026-10-05,2026-10,Groceries,expense,Needs,-12.50,EUR,,Market,Images/2026-10-05 Groceries 00000000.jpg,00000000-0000-0000-0000-000000000001"
+        ])
+    }
+
+    @Test("The Image column also works in the European style and without notes")
+    func europeanImageColumnWithoutNotes() {
+        let format = TransactionCSVFormat(style: .european, includesNotes: false)
+
+        let csv = TransactionCSVBuilder.csv(from: [row()], format: format, imagePaths: [:], timeZone: paris)
+
+        #expect(lines(csv) == [
+            "Date;Month;Title;Type;Category;Amount;Currency;Recurring;Image;Transaction ID",
+            "2026-10-05;2026-10;Groceries;expense;Needs;-12,50;EUR;;;00000000-0000-0000-0000-000000000001"
+        ])
+    }
+
+    @Test("Without image paths there is no Image column")
+    func noImageColumn() {
+        let csv = TransactionCSVBuilder.csv(from: [row()], timeZone: paris)
+
+        #expect(!(lines(csv).first ?? "").contains("Image"))
+    }
+
     @Test("The file uses the chosen format")
     func fileUsesFormat() {
         let file = TransactionsCSVFile(rows: [row()], fileName: "Trente 2026-10", format: european)
