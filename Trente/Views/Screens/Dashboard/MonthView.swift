@@ -78,7 +78,7 @@ struct MonthView: View {
 }
 
 #Preview {
-    MonthListView(pendingDeepLink: .constant(nil))
+    AppNavigationView(pendingDeepLink: .constant(nil))
         .modelContainer(DataProvider.shared.modelContainer)
 }
 
