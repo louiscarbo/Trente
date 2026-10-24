@@ -7,6 +7,7 @@
 
 import SwiftData
 import Foundation
+import UserNotifications
 @testable import Trente
 
 func makeContext() throws -> ModelContext {
@@ -26,4 +27,24 @@ func insertMonth(year: Int, month: Int, in context: ModelContext) -> Month {
     )
     context.insert(month)
     return month
+}
+
+actor FakeNotificationCenter: NotificationAuthorizing {
+    let status: UNAuthorizationStatus
+    let grants: Bool
+    private(set) var requestCount = 0
+
+    init(status: UNAuthorizationStatus, grants: Bool) {
+        self.status = status
+        self.grants = grants
+    }
+
+    func currentAuthorizationStatus() async -> UNAuthorizationStatus {
+        status
+    }
+
+    func requestAuthorization(options: UNAuthorizationOptions) async throws -> Bool {
+        requestCount += 1
+        return grants
+    }
 }
