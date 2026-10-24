@@ -108,6 +108,7 @@ struct OnboardingView: View {
         case .notifications:
             NotificationsStepView(
                 currency: model.draft.currency,
+                showsApplePay: model.steps.contains(.applePay),
                 status: notificationStatus,
                 onEnable: requestNotifications,
                 onOpenSettings: openNotificationSettings,
