@@ -33,10 +33,14 @@ final class NotificationScheduler {
         guard let container else { return }
         guard await NotificationPermissionService().status() == .authorized else { return }
         let context = ModelContext(container)
-        let recurringPlanner = RecurringNotificationPlanner(reminderTime: .stored())
-        guard let recurring = try? recurringNotifications(in: context, planner: recurringPlanner) else { return }
+        let reminderTime = ReminderTime.stored()
+        let recurringPlanner = RecurringNotificationPlanner(reminderTime: reminderTime)
+        let newMonthPlanner = NewMonthNotificationPlanner(reminderTime: reminderTime)
+        guard let recurring = try? recurringNotifications(in: context, planner: recurringPlanner),
+              let newMonths = try? newMonthNotifications(in: context, planner: newMonthPlanner)
+        else { return }
 
-        let notifications = Self.soonest(recurring, limit: Self.systemLimit)
+        let notifications = Self.soonest(recurring + newMonths, limit: Self.systemLimit)
         let identifiers = Set(notifications.map(\.identifier))
         let center = UNUserNotificationCenter.current()
         let staleIdentifiers = await center.pendingNotificationRequests()
@@ -67,6 +71,15 @@ final class NotificationScheduler {
         guard let currency = try MonthService.shared.latestMonth(in: context)?.currency else { return [] }
         let rules = try context.fetch(FetchDescriptor<RecurringTransactionRule>())
         return planner.requests(for: rules, currency: currency, now: .now)
+            .map(\.scheduledNotification)
+    }
+
+    private func newMonthNotifications(
+        in context: ModelContext,
+        planner: NewMonthNotificationPlanner
+    ) throws -> [ScheduledNotification] {
+        guard let latestMonth = try MonthService.shared.latestMonth(in: context) else { return [] }
+        return planner.requests(afterMonthStartingOn: latestMonth.startDate, now: .now)
             .map(\.scheduledNotification)
     }
 
