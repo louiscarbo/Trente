@@ -39,7 +39,7 @@ struct NewTransactionView: View {
         .alert("An error occurred", isPresented: $viewModel.showErrorAlert) {
             Button("Retry") {
                 guard let month else { return }
-                _ = viewModel.createTransaction(for: month, in: modelContext)
+                _ = createTransaction(for: month)
             }
             Button("Cancel", role: .cancel) {
                 dismiss()
@@ -49,6 +49,16 @@ struct NewTransactionView: View {
         }
     }
     
+    private func createTransaction(for month: Month) -> Bool {
+        guard viewModel.createTransaction(for: month, in: modelContext) else { return false }
+        if viewModel.request.isRecurrent {
+            Task {
+                _ = await NotificationPermissionService().requestIfNeeded()
+            }
+        }
+        return true
+    }
+
     // TODO: Factorize this into a reusable component?
     private var navigationButtons: some View {
         VStack {
@@ -69,7 +79,7 @@ struct NewTransactionView: View {
                         withAnimation {
                             if isLastStep {
                                 guard let month else { return }
-                                if viewModel.createTransaction(for: month, in: modelContext) {
+                                if createTransaction(for: month) {
                                     dismiss()
                                 }
                             } else {
