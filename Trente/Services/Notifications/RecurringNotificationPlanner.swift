@@ -14,10 +14,12 @@ struct RecurringNotificationRequest: Equatable {
         case addedAutomatically
     }
 
-    let ruleID: PersistentIdentifier
+    let ruleID: UUID
     let occurrenceDate: Date
     let fireDate: Date
     let kind: Kind
+    let isIncome: Bool
+    let canBeConfirmed: Bool
     let title: String
     let body: String
 }
@@ -31,7 +33,8 @@ struct RecurringNotificationPlanner {
     func requests(
         for rules: [RecurringTransactionRule],
         currency: Currency,
-        now: Date
+        now: Date,
+        monthIntervals: [DateInterval] = []
     ) -> [RecurringNotificationRequest] {
         let start = calendar.startOfDay(for: now)
         guard let end = calendar.date(byAdding: .day, value: horizonDays, to: start) else { return [] }
@@ -42,7 +45,8 @@ struct RecurringNotificationPlanner {
                 for: rule,
                 in: window,
                 currency: currency,
-                now: now
+                now: now,
+                monthIntervals: monthIntervals
             )
         }
         let sorted = planned.sorted { lhs, rhs in
@@ -58,7 +62,8 @@ struct RecurringNotificationPlanner {
         for rule: RecurringTransactionRule,
         in window: DateInterval,
         currency: Currency,
-        now: Date
+        now: Date,
+        monthIntervals: [DateInterval]
     ) -> [RecurringNotificationRequest] {
         let amountCents = rule.repartition.values.reduce(0, +)
         let kind: RecurringNotificationRequest.Kind = rule.autoConfirm ? .addedAutomatically : .due
@@ -67,7 +72,8 @@ struct RecurringNotificationPlanner {
             currency: currency,
             title: rule.title
         )
-        let body = Self.body(for: kind, isIncome: amountCents > 0)
+        let isIncome = amountCents > 0
+        let body = Self.body(for: kind, isIncome: isIncome)
 
         return rule.schedule.dates(in: window, calendar: calendar).compactMap { date -> RecurringNotificationRequest? in
             guard
@@ -77,11 +83,16 @@ struct RecurringNotificationPlanner {
                 fireDate > now
             else { return nil }
 
+            let hasMonth = monthIntervals.contains { interval in
+                interval.start <= date && date < interval.end
+            }
             return RecurringNotificationRequest(
-                ruleID: rule.persistentModelID,
+                ruleID: rule.id,
                 occurrenceDate: date,
                 fireDate: fireDate,
                 kind: kind,
+                isIncome: isIncome,
+                canBeConfirmed: kind == .due && hasMonth,
                 title: title,
                 body: body
             )

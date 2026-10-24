@@ -82,7 +82,7 @@ struct RecurringNotificationPlannerTests {
         #expect(request.fireDate == day(2025, 4, 15, hour: 9))
         #expect(request.kind == .due)
         #expect(request.body == String(localized: "Due today. Open Trente to mark it as paid."))
-        #expect(request.ruleID == rule.persistentModelID)
+        #expect(request.ruleID == rule.id)
     }
 
     @Test("Today's occurrence is left out once nine has passed")
@@ -236,7 +236,7 @@ struct RecurringNotificationPlannerTests {
         let requests = planner.requests(for: [gym, lunch], currency: euro, now: now)
 
         #expect(requests.map(\.occurrenceDate) == [day(2025, 4, 10), day(2025, 4, 15), day(2025, 4, 17)])
-        #expect(requests.map(\.ruleID) == [lunch.persistentModelID, gym.persistentModelID, lunch.persistentModelID])
+        #expect(requests.map(\.ruleID) == [lunch.id, gym.id, lunch.id])
     }
 
     @Test("Dates beyond the horizon are not planned")
@@ -264,26 +264,38 @@ struct RecurringNotificationPlannerTests {
         #expect(requests.map(\.occurrenceDate) == [day(2025, 4, 15), day(2025, 5, 15)])
     }
 
-    @Test("A saved rule's occurrence has a stable identifier ending with its day")
-    func savedRuleHasStableIdentifier() throws {
+    @Test("The identifier is made of the rule's permanent id and the occurrence's day")
+    func identifierUsesRuleIDAndDay() throws {
         let context = try makeContext()
         let rule = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
-        try context.save()
         let request = try #require(planner.requests(for: [rule], currency: euro, now: now).first)
 
-        let identifier = try #require(RecurringNotificationScheduler.identifier(for: request, calendar: calendar))
+        let identifier = RecurringNotificationScheduler.identifier(for: request, calendar: calendar)
 
-        #expect(identifier.hasPrefix(RecurringNotificationScheduler.identifierPrefix))
-        #expect(identifier.hasSuffix(".2025-04-15"))
-        #expect(RecurringNotificationScheduler.identifier(for: request, calendar: calendar) == identifier)
+        #expect(identifier == "recurring.\(rule.id.uuidString).2025-04-15")
     }
 
-    @Test("An unsaved rule's occurrence has no identifier")
-    func unsavedRuleHasNoIdentifier() throws {
+    @Test("Buttons are offered only for a manual occurrence inside an existing month")
+    func buttonsNeedAManualOccurrenceInAMonth() throws {
         let context = try makeContext()
-        let rule = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
+        let planner = RecurringNotificationPlanner(horizonDays: 40, calendar: calendar)
+        let rent = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
+        let salary = insertRule("Salary", startingOn: day(2025, 1, 12), repartition: [.needs: 1000_00], automatic: true, in: context)
+        let april = DateInterval(start: day(2025, 4, 1), end: day(2025, 5, 1))
+
+        let requests = planner.requests(for: [rent, salary], currency: euro, now: now, monthIntervals: [april])
+
+        let confirmable = requests.map { request in "\(request.ruleID == rent.id ? "rent" : "salary") \(request.canBeConfirmed)" }
+        #expect(confirmable == ["salary false", "rent true", "salary false", "rent false"])
+    }
+
+    @Test("An income occurrence is flagged as income")
+    func incomeIsFlagged() throws {
+        let context = try makeContext()
+        let rule = insertRule("Salary", startingOn: day(2025, 1, 15), repartition: [.needs: 1000_00], in: context)
+
         let request = try #require(planner.requests(for: [rule], currency: euro, now: now).first)
 
-        #expect(RecurringNotificationScheduler.identifier(for: request, calendar: calendar) == nil)
+        #expect(request.isIncome)
     }
 }

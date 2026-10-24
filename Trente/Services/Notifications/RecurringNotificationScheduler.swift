@@ -19,7 +19,6 @@ final class RecurringNotificationScheduler {
     static let shared = RecurringNotificationScheduler()
     nonisolated static let identifierPrefix = "recurring."
     nonisolated static let threadIdentifier = "recurring"
-    nonisolated static let occurrenceDateKey = "occurrenceDate"
 
     private let debounceDelay: Duration = .seconds(1)
     private var container: ModelContainer?
@@ -31,6 +30,8 @@ final class RecurringNotificationScheduler {
     func start(container: ModelContainer) {
         guard self.container == nil else { return }
         self.container = container
+        // Replaces every registered category: add Wallet's here if it ever gets actions.
+        UNUserNotificationCenter.current().setNotificationCategories(RecurringNotificationAction.categories)
         observers = Self.rescheduleTriggers.map { name in
             NotificationCenter.default.addObserver(
                 forName: name,
@@ -53,8 +54,7 @@ final class RecurringNotificationScheduler {
 
         var requestsByIdentifier: [String: RecurringNotificationRequest] = [:]
         for request in planned {
-            guard let identifier = Self.identifier(for: request, calendar: planner.calendar) else { continue }
-            requestsByIdentifier[identifier] = request
+            requestsByIdentifier[Self.identifier(for: request, calendar: planner.calendar)] = request
         }
 
         let center = UNUserNotificationCenter.current()
@@ -78,16 +78,15 @@ final class RecurringNotificationScheduler {
     nonisolated static func identifier(
         for request: RecurringNotificationRequest,
         calendar: Calendar = .current
-    ) -> String? {
-        guard !request.ruleID.isTemporary else { return nil }
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .sortedKeys
-        guard let ruleData = try? encoder.encode(request.ruleID) else { return nil }
-
+    ) -> String {
         let components = calendar.dateComponents([.year, .month, .day], from: request.occurrenceDate)
-        guard let year = components.year, let month = components.month, let day = components.day else { return nil }
-        let dayString = String(format: "%04ld-%02ld-%02ld", year, month, day)
-        return "\(identifierPrefix)\(ruleData.base64EncodedString()).\(dayString)"
+        let dayString = String(
+            format: "%04ld-%02ld-%02ld",
+            components.year ?? 0,
+            components.month ?? 0,
+            components.day ?? 0
+        )
+        return "\(identifierPrefix)\(request.ruleID.uuidString).\(dayString)"
     }
 
     private static var rescheduleTriggers: [Notification.Name] {
@@ -119,10 +118,12 @@ final class RecurringNotificationScheduler {
         do {
             guard let currency = try MonthService.shared.latestMonth(in: context)?.currency else { return [] }
             let rules = try context.fetch(FetchDescriptor<RecurringTransactionRule>())
+            let monthIntervals = try context.fetch(FetchDescriptor<Month>()).map(\.dateInterval)
             return planner.requests(
                 for: rules,
                 currency: currency,
-                now: .now
+                now: .now,
+                monthIntervals: monthIntervals
             )
         } catch {
             return nil
@@ -138,7 +139,15 @@ final class RecurringNotificationScheduler {
         content.title = request.title
         content.body = request.body
         content.threadIdentifier = Self.threadIdentifier
-        content.userInfo = [Self.occurrenceDateKey: request.occurrenceDate.timeIntervalSinceReferenceDate]
+        content.userInfo = RecurringNotificationPayload(
+            ruleID: request.ruleID,
+            occurrenceDate: request.occurrenceDate
+        ).userInfo
+        if request.canBeConfirmed {
+            content.categoryIdentifier = request.isIncome
+                ? RecurringNotificationAction.incomeCategory
+                : RecurringNotificationAction.expenseCategory
+        }
         switch request.kind {
         case .due:
             content.sound = .default
