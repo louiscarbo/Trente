@@ -73,6 +73,35 @@ final class RecurringNotificationScheduler {
             )
             try? await center.add(systemRequest)
         }
+
+        await clearSettledDeliveredNotifications(in: container, center: center)
+    }
+
+    static func identifiersToClear(
+        delivered: [(identifier: String, payload: RecurringNotificationPayload)],
+        rules: [RecurringTransactionRule]
+    ) -> [String] {
+        delivered.compactMap { notification in
+            guard let rule = rules.first(where: { rule in rule.id == notification.payload.ruleID }) else {
+                return notification.identifier
+            }
+            let date = notification.payload.occurrenceDate
+            return rule.isSettled(on: date) || rule.isSkipped(on: date) ? notification.identifier : nil
+        }
+    }
+
+    private func clearSettledDeliveredNotifications(in container: ModelContainer, center: UNUserNotificationCenter) async {
+        let delivered = await center.deliveredNotifications().compactMap { notification -> (identifier: String, payload: RecurringNotificationPayload)? in
+            let request = notification.request
+            guard request.identifier.hasPrefix(Self.identifierPrefix),
+                  let payload = RecurringNotificationPayload(userInfo: request.content.userInfo)
+            else { return nil }
+            return (request.identifier, payload)
+        }
+        guard !delivered.isEmpty,
+              let rules = try? ModelContext(container).fetch(FetchDescriptor<RecurringTransactionRule>())
+        else { return }
+        center.removeDeliveredNotifications(withIdentifiers: Self.identifiersToClear(delivered: delivered, rules: rules))
     }
 
     nonisolated static func identifier(

@@ -115,3 +115,47 @@ struct RecurringNotificationResponderTests {
         #expect(!handled)
     }
 }
+
+@MainActor
+@Suite(.serialized)
+struct DeliveredRecurringNotificationTests {
+    private func day(_ year: Int, _ month: Int, _ day: Int) -> Date {
+        Calendar.current.date(from: DateComponents(year: year, month: month, day: day))!
+    }
+
+    private func makeRule(_ title: String, startingOn startDate: Date, amountCents: Int) -> RecurringTransactionRule {
+        RecurringTransactionRule(
+            title: title,
+            frequency: .monthly,
+            startDate: startDate,
+            repartition: [.needs: amountCents],
+            createdAt: day(2026, 1, 1)
+        )
+    }
+
+    @Test("Delivered reminders are cleared once paid, skipped or deleted, and kept while pending")
+    func clearsOnlySettledReminders() throws {
+        let context = try makeContext()
+        let october = insertMonth(year: 2026, month: 10, in: context)
+        let rent = makeRule("Rent", startingOn: day(2026, 1, 15), amountCents: -800_00)
+        let gym = makeRule("Gym", startingOn: day(2026, 1, 20), amountCents: -30_00)
+        let phone = makeRule("Phone", startingOn: day(2026, 1, 5), amountCents: -20_00)
+        [rent, gym, phone].forEach { rule in context.insert(rule) }
+        try context.save()
+        try RecurringTransactionService.shared.confirm(
+            RecurringTransactionOccurrence(rule: rent, date: day(2026, 10, 15), month: october),
+            in: context
+        )
+        try RecurringTransactionService.shared.skip(gym, on: day(2026, 10, 20), in: context)
+        let delivered = [
+            (identifier: "rent", payload: RecurringNotificationPayload(ruleID: rent.id, occurrenceDate: day(2026, 10, 15))),
+            (identifier: "gym", payload: RecurringNotificationPayload(ruleID: gym.id, occurrenceDate: day(2026, 10, 20))),
+            (identifier: "phone", payload: RecurringNotificationPayload(ruleID: phone.id, occurrenceDate: day(2026, 10, 5))),
+            (identifier: "deleted", payload: RecurringNotificationPayload(ruleID: UUID(), occurrenceDate: day(2026, 10, 5)))
+        ]
+
+        let cleared = RecurringNotificationScheduler.identifiersToClear(delivered: delivered, rules: [rent, gym, phone])
+
+        #expect(cleared == ["rent", "gym", "deleted"])
+    }
+}
