@@ -172,7 +172,7 @@ struct DeliveredRecurringNotificationTests {
             (identifier: "deleted", payload: RecurringNotificationPayload(ruleID: UUID(), occurrenceDate: day(2026, 10, 5)))
         ]
 
-        let cleared = RecurringNotificationScheduler.identifiersToClear(delivered: delivered, rules: [rent, gym, phone])
+        let cleared = RecurringNotificationPlanner().identifiersToClear(delivered: delivered, rules: [rent, gym, phone])
 
         #expect(cleared == ["rent", "gym", "deleted"])
     }

@@ -12,7 +12,6 @@ import UserNotifications
 @MainActor
 final class RecurringNotificationScheduler {
     static let shared = RecurringNotificationScheduler()
-    nonisolated static let identifierPrefix = "recurring."
     nonisolated static let threadIdentifier = "recurring"
 
     private var container: ModelContainer?
@@ -38,14 +37,14 @@ final class RecurringNotificationScheduler {
 
         var requestsByIdentifier: [String: RecurringNotificationRequest] = [:]
         for request in planned {
-            requestsByIdentifier[Self.identifier(for: request, calendar: planner.calendar)] = request
+            requestsByIdentifier[request.identifier] = request
         }
 
         let center = UNUserNotificationCenter.current()
         let staleIdentifiers = await center.pendingNotificationRequests()
             .map(\.identifier)
             .filter { identifier in
-                identifier.hasPrefix(Self.identifierPrefix) && requestsByIdentifier[identifier] == nil
+                identifier.hasPrefix(RecurringNotificationPlanner.identifierPrefix) && requestsByIdentifier[identifier] == nil
             }
         center.removePendingNotificationRequests(withIdentifiers: staleIdentifiers)
 
@@ -58,25 +57,17 @@ final class RecurringNotificationScheduler {
             try? await center.add(systemRequest)
         }
 
-        await clearSettledDeliveredNotifications(in: container, center: center)
+        await clearSettledDeliveredNotifications(in: container, planner: planner, center: center)
     }
 
-    static func identifiersToClear(
-        delivered: [(identifier: String, payload: RecurringNotificationPayload)],
-        rules: [RecurringTransactionRule]
-    ) -> [String] {
-        delivered.compactMap { notification in
-            guard let rule = rules.first(where: { rule in rule.id == notification.payload.ruleID }) else {
-                return notification.identifier
-            }
-            return rule.isPending(on: notification.payload.occurrenceDate) ? nil : notification.identifier
-        }
-    }
-
-    private func clearSettledDeliveredNotifications(in container: ModelContainer, center: UNUserNotificationCenter) async {
+    private func clearSettledDeliveredNotifications(
+        in container: ModelContainer,
+        planner: RecurringNotificationPlanner,
+        center: UNUserNotificationCenter
+    ) async {
         let delivered = await center.deliveredNotifications().compactMap { notification -> (identifier: String, payload: RecurringNotificationPayload)? in
             let request = notification.request
-            guard request.identifier.hasPrefix(Self.identifierPrefix),
+            guard request.identifier.hasPrefix(RecurringNotificationPlanner.identifierPrefix),
                   let payload = RecurringNotificationPayload(userInfo: request.content.userInfo)
             else { return nil }
             return (request.identifier, payload)
@@ -84,21 +75,7 @@ final class RecurringNotificationScheduler {
         guard !delivered.isEmpty,
               let rules = try? ModelContext(container).fetch(FetchDescriptor<RecurringTransactionRule>())
         else { return }
-        center.removeDeliveredNotifications(withIdentifiers: Self.identifiersToClear(delivered: delivered, rules: rules))
-    }
-
-    nonisolated static func identifier(
-        for request: RecurringNotificationRequest,
-        calendar: Calendar = .current
-    ) -> String {
-        let components = calendar.dateComponents([.year, .month, .day], from: request.occurrenceDate)
-        let dayString = String(
-            format: "%04ld-%02ld-%02ld",
-            components.year ?? 0,
-            components.month ?? 0,
-            components.day ?? 0
-        )
-        return "\(identifierPrefix)\(request.ruleID.uuidString).\(dayString)"
+        center.removeDeliveredNotifications(withIdentifiers: planner.identifiersToClear(delivered: delivered, rules: rules))
     }
 
     private func plannedRequests(
