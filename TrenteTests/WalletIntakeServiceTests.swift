@@ -59,4 +59,25 @@ struct WalletIntakeServiceTests {
             try intake(transaction: " ", in: context)
         }
     }
+
+    @Test("Starts the months missing up to today before picking the current one")
+    func currentMonthStartsMissingMonths() throws {
+        let context = try makeContext()
+        insertMonth(year: 2026, month: 9, in: context)
+        let today = Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 2))!
+
+        let month = try WalletIntakeService().currentMonth(in: context, now: today)
+
+        #expect(month.startDate == Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 1)))
+        #expect(try context.fetch(FetchDescriptor<Month>()).count == 3)
+    }
+
+    @Test("Throws when there is no month yet")
+    func currentMonthWithoutMonths() throws {
+        let context = try makeContext()
+
+        #expect(throws: WalletIntakeError.noMonth) {
+            try WalletIntakeService().currentMonth(in: context)
+        }
+    }
 }
