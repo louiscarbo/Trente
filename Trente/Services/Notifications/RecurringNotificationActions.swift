@@ -92,7 +92,9 @@ enum RecurringNotificationResponder {
             try RecurringTransactionService.shared.skip(rule, on: payload.occurrenceDate, in: context)
             return true
         case .markAsPaid:
-            guard let month = try month(containing: payload.occurrenceDate, in: context) else { return false }
+            guard let month = try MonthService.shared.month(containing: payload.occurrenceDate, in: context) else {
+                return false
+            }
             let occurrence = RecurringTransactionOccurrence(
                 rule: rule,
                 date: payload.occurrenceDate,
@@ -100,14 +102,6 @@ enum RecurringNotificationResponder {
             )
             try RecurringTransactionService.shared.confirm(occurrence, in: context)
             return true
-        }
-    }
-
-    private static func month(containing date: Date, in context: ModelContext) throws -> Month? {
-        let months = try context.fetch(FetchDescriptor<Month>(sortBy: [SortDescriptor(\.startDate, order: .reverse)]))
-        return months.first { month in
-            let interval = month.dateInterval
-            return interval.start <= date && date < interval.end
         }
     }
 }
