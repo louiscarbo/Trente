@@ -7,28 +7,77 @@
 
 import Foundation
 
+enum FAQTopic: CaseIterable {
+    case budgetBasics
+    case recurring
+    case featuresAndData
+
+    var title: LocalizedStringResource {
+        switch self {
+        case .budgetBasics:
+            "Budget Basics"
+        case .recurring:
+            "Recurring Transactions"
+        case .featuresAndData:
+            "Features and Data"
+        }
+    }
+}
+
+struct FAQSection: Identifiable, Equatable {
+    let topic: FAQTopic
+    let items: [FAQItem]
+
+    var id: FAQTopic { topic }
+
+    static func sections(for items: [FAQItem]) -> [FAQSection] {
+        FAQTopic.allCases.compactMap { topic in
+            let topicItems = items.filter { item in item.topic == topic }
+            return topicItems.isEmpty ? nil : FAQSection(topic: topic, items: topicItems)
+        }
+    }
+}
+
 struct FAQItem: Identifiable, Equatable {
     let id: String
+    let topic: FAQTopic
     let question: LocalizedStringResource
     let answer: LocalizedStringResource
     var isPhoneOnly = false
+
+    static func == (lhs: FAQItem, rhs: FAQItem) -> Bool {
+        lhs.id == rhs.id
+    }
 
     static func items(isPhone: Bool) -> [FAQItem] {
         isPhone ? all : all.filter { item in !item.isPhoneOnly }
     }
 
+    static func matching(_ query: String, in items: [FAQItem]) -> [FAQItem] {
+        let words = query.split(whereSeparator: \.isWhitespace).map(String.init)
+        guard !words.isEmpty else { return items }
+        return items.filter { item in
+            let text = String(localized: item.question) + " " + String(localized: item.answer)
+            return words.allSatisfy { word in text.localizedStandardContains(word) }
+        }
+    }
+
+    static let featured = FAQItem(
+        id: "fiftyThirtyTwenty",
+        topic: .budgetBasics,
+        question: "What is the 50/30/20 rule?",
+        answer: """
+            A simple way to split your take-home income: about 50% for Needs (rent, groceries, bills), \
+            30% for Wants (dining out, entertainment) and 20% for Savings and Debts. \
+            Trente sorts every transaction into these three categories. You can choose your own split for each month.
+            """
+    )
+
     static let all: [FAQItem] = [
-        FAQItem(
-            id: "fiftyThirtyTwenty",
-            question: "What is the 50/30/20 rule?",
-            answer: """
-                A simple way to split your take-home income: about 50% for Needs (rent, groceries, bills), \
-                30% for Wants (dining out, entertainment) and 20% for Savings and Debts. \
-                Trente sorts every transaction into these three categories. You can choose your own split for each month.
-                """
-        ),
+        featured,
         FAQItem(
             id: "months",
+            topic: .budgetBasics,
             question: "How do months work in Trente?",
             answer: """
                 A month starts on the date you choose and lasts one month, for example October 25 to November 24, \
@@ -37,6 +86,7 @@ struct FAQItem: Identifiable, Equatable {
         ),
         FAQItem(
             id: "remaining",
+            topic: .budgetBasics,
             question: "Why does my month show nothing remaining?",
             answer: """
                 “Remaining” is the income you logged this month minus what you spent. Your ideal budget is only a target. \
@@ -45,6 +95,7 @@ struct FAQItem: Identifiable, Equatable {
         ),
         FAQItem(
             id: "splitIncome",
+            topic: .budgetBasics,
             question: "How do I split an income between categories?",
             answer: """
                 When you add an income, choose how much goes to Needs, Wants and Savings and Debts. \
@@ -53,6 +104,7 @@ struct FAQItem: Identifiable, Equatable {
         ),
         FAQItem(
             id: "recurring",
+            topic: .recurring,
             question: "What are recurring transactions?",
             answer: """
                 Transactions that come back every week, month or year, like rent or a salary. \
@@ -62,6 +114,7 @@ struct FAQItem: Identifiable, Equatable {
         ),
         FAQItem(
             id: "automatic",
+            topic: .recurring,
             question: "What does “automatic” do?",
             answer: """
                 Trente adds it for you on its due date, the next time you open the app. Your widgets count it right away.
@@ -69,6 +122,7 @@ struct FAQItem: Identifiable, Equatable {
         ),
         FAQItem(
             id: "applePay",
+            topic: .featuresAndData,
             question: "Can Trente log my Apple Pay purchases?",
             answer: """
                 Yes. Get the Trente shortcut from Settings. Then, in Shortcuts › Automation, create an automation \
@@ -80,14 +134,17 @@ struct FAQItem: Identifiable, Equatable {
         ),
         FAQItem(
             id: "data",
+            topic: .featuresAndData,
             question: "Where is my data stored?",
             answer: """
-                Only on this device. Trente has no account and never connects to your bank. \
-                Deleting the app deletes your data.
+                On your device, and in your iCloud backups if you have them turned on. \
+                Trente has no account and no server, and never connects to your bank. \
+                Deleting the app deletes the data on this device.
                 """
         ),
         FAQItem(
             id: "trentePlus",
+            topic: .featuresAndData,
             question: "What is Trente+?",
             answer: """
                 An optional monthly or yearly subscription that lets you attach notes and images to your transactions, \
@@ -96,6 +153,7 @@ struct FAQItem: Identifiable, Equatable {
         ),
         FAQItem(
             id: "widgets",
+            topic: .featuresAndData,
             question: "Which widgets are available?",
             answer: """
                 Month Recap (remaining budget and spending) and Category Recap (what's left in one category; \
