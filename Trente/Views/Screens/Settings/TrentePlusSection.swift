@@ -14,20 +14,41 @@ struct TrentePlusSection: View {
 
     var body: some View {
         Section {
-            if isSubscribed {
-                Button("Manage Subscription", systemImage: "creditcard", action: onManage)
-            } else {
-                Button("Discover Trente+", systemImage: "sparkles", action: onDiscover)
+            VStack(spacing: .medium) {
+                HStack(spacing: DesignSystem.Spacing.large.rawValue) {
+                    StickerView(imageName: "Trente Pig Sticker")
+                        .frame(width: 64)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Trente+")
+                            .font(.headline)
+                            .bold()
+                        if isSubscribed {
+                            Text("You're a Trente+ member. Thank you!")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            benefit("Notes and images on any transaction")
+                            benefit("Support an indie developer")
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                if isSubscribed {
+                    Button("Manage Subscription", action: onManage)
+                        .buttonStyle(TrenteSecondaryButtonStyle())
+                } else {
+                    Button("See Plans", action: onDiscover)
+                        .buttonStyle(TrentePrimaryButtonStyle())
+                }
             }
-        } header: {
-            Text("Trente+")
-        } footer: {
-            if isSubscribed {
-                Text("Thank you for supporting Trente!")
-            } else {
-                Text("Attach notes and images to your transactions, and support an independent developer.")
-            }
+            .padding(.vertical, DesignSystem.Spacing.small.rawValue)
         }
+    }
+
+    private func benefit(_ title: LocalizedStringKey) -> some View {
+        Label(title, systemImage: "checkmark.circle.fill")
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
     }
 }
 

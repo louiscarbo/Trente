@@ -26,6 +26,11 @@ struct SettingsView: View {
 
         NavigationStack {
             Form {
+                TrentePlusSection(
+                    isSubscribed: isSubscribed,
+                    onDiscover: { isShowingPaywall = true },
+                    onManage: manageSubscription
+                )
                 #if os(iOS)
                 NotificationsSection(
                     status: notificationStatus,
@@ -39,11 +44,6 @@ struct SettingsView: View {
                     )
                 }
                 #endif
-                TrentePlusSection(
-                    isSubscribed: isSubscribed,
-                    onDiscover: { isShowingPaywall = true },
-                    onManage: manageSubscription
-                )
                 HelpAboutSection(
                     faqItems: FAQItem.items(isPhone: isPhone),
                     contactURL: SupportMail.feedbackURL(appInfo: appInfo),
