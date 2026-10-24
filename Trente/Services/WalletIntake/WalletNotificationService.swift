@@ -72,8 +72,12 @@ final class WalletNotificationDelegate: NSObject, UNUserNotificationCenterDelega
     ) {
         let userInfo = response.notification.request.content.userInfo
         let idString = userInfo[WalletNotificationService.pendingTransactionIDKey] as? String
+        let recurringAction = RecurringNotificationAction(rawValue: response.actionIdentifier)
+        let recurringPayload = RecurringNotificationPayload(userInfo: userInfo)
         Task { @MainActor in
-            if let idString, let id = UUID(uuidString: idString) {
+            if let recurringAction, let recurringPayload {
+                RecurringNotificationResponder.respond(to: recurringAction, payload: recurringPayload)
+            } else if let idString, let id = UUID(uuidString: idString) {
                 PendingTransactionRouter.shared.presentedPendingTransactionID = id
             }
             completionHandler()

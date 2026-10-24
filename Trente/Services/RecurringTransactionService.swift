@@ -69,9 +69,12 @@ final class RecurringTransactionService {
     }
 
     func skip(_ occurrence: RecurringTransactionOccurrence, in context: ModelContext) throws {
-        let rule = occurrence.rule
-        guard !rule.isSkipped(on: occurrence.date) else { return }
-        rule.skippedOccurrenceDates.append(occurrence.date)
+        try skip(occurrence.rule, on: occurrence.date, in: context)
+    }
+
+    func skip(_ rule: RecurringTransactionRule, on date: Date, in context: ModelContext) throws {
+        guard !rule.isSkipped(on: date) else { return }
+        rule.skippedOccurrenceDates.append(date)
         try context.save()
     }
 
