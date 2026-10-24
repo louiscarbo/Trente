@@ -14,8 +14,8 @@ struct TrenteApp: App {
 
     init() {
         WidgetRefresher.shared.start()
-        CatchUpService.shared.start()
         if case .success(let modelContainer) = container {
+            CatchUpService.shared.start(container: modelContainer)
             NotificationDelegate.shared.start(container: modelContainer)
             RecurringNotificationScheduler.shared.start(container: modelContainer)
         }

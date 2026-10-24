@@ -17,13 +17,15 @@ import AppKit
 final class CatchUpService {
     static let shared = CatchUpService()
 
+    private var container: ModelContainer?
     private var observers: [any NSObjectProtocol] = []
     private var catchUpTask: Task<Void, Never>?
 
     private init() {}
 
-    func start() {
+    func start(container: ModelContainer) {
         guard observers.isEmpty else { return }
+        self.container = container
         let triggers = [Self.didBecomeActive, .NSCalendarDayChanged, ModelContext.didSave]
         observers = triggers.map { trigger in
             NotificationCenter.default.addObserver(forName: trigger, object: nil, queue: .main) { _ in
@@ -42,8 +44,8 @@ final class CatchUpService {
     private func scheduleCatchUp() {
         catchUpTask?.cancel()
         catchUpTask = Task {
-            guard !Task.isCancelled, let context = try? TrenteContainer.shared.get().mainContext else { return }
-            try? catchUp(in: context)
+            guard !Task.isCancelled, let container else { return }
+            try? catchUp(in: container.mainContext)
         }
     }
 
