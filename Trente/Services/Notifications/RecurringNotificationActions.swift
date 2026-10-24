@@ -85,23 +85,27 @@ enum RecurringNotificationResponder {
     ) throws -> Bool {
         let ruleID = payload.ruleID
         let descriptor = FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { rule in rule.id == ruleID })
-        guard let rule = try context.fetch(descriptor).first else { return false }
+        guard let rule = try context.fetch(descriptor).first,
+              let occurrence = try pendingOccurrence(of: rule, on: payload.occurrenceDate, in: context)
+        else { return false }
 
         switch action {
         case .skip:
-            try RecurringTransactionService.shared.skip(rule, on: payload.occurrenceDate, in: context)
-            return true
+            try RecurringTransactionService.shared.skip(occurrence, in: context)
         case .markAsPaid:
-            guard let month = try MonthService.shared.month(containing: payload.occurrenceDate, in: context) else {
-                return false
-            }
-            let occurrence = RecurringTransactionOccurrence(
-                rule: rule,
-                date: payload.occurrenceDate,
-                month: month
-            )
             try RecurringTransactionService.shared.confirm(occurrence, in: context)
-            return true
+        }
+        return true
+    }
+
+    private static func pendingOccurrence(
+        of rule: RecurringTransactionRule,
+        on date: Date,
+        in context: ModelContext
+    ) throws -> RecurringTransactionOccurrence? {
+        guard let month = try MonthService.shared.month(containing: date, in: context) else { return nil }
+        return rule.pendingOccurrences(in: month).first { occurrence in
+            Calendar.current.isDate(occurrence.date, inSameDayAs: date)
         }
     }
 }
