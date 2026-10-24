@@ -80,6 +80,7 @@ struct RecurringNotificationResponderTests {
     @Test("Skip marks the occurrence as skipped without a transaction")
     func skipMarksOccurrence() throws {
         let context = try makeContext()
+        insertMonth(year: 2026, month: 10, in: context)
         let rule = insertRule("Rent", in: context)
         try context.save()
         let payload = RecurringNotificationPayload(ruleID: rule.id, occurrenceDate: day(2026, 10, 15))
@@ -97,6 +98,20 @@ struct RecurringNotificationResponderTests {
         let rule = insertRule("Rent", in: context)
         try context.save()
         let payload = RecurringNotificationPayload(ruleID: rule.id, occurrenceDate: day(2026, 10, 15))
+
+        let handled = try RecurringNotificationResponder.handle(.markAsPaid, payload: payload, in: context)
+
+        #expect(!handled)
+        #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
+    }
+
+    @Test("A date that isn't one of the rule's occurrences is ignored")
+    func dateOutsideScheduleIsIgnored() throws {
+        let context = try makeContext()
+        insertMonth(year: 2026, month: 10, in: context)
+        let rule = insertRule("Rent", in: context)
+        try context.save()
+        let payload = RecurringNotificationPayload(ruleID: rule.id, occurrenceDate: day(2026, 10, 16))
 
         let handled = try RecurringNotificationResponder.handle(.markAsPaid, payload: payload, in: context)
 
@@ -146,7 +161,10 @@ struct DeliveredRecurringNotificationTests {
             RecurringTransactionOccurrence(rule: rent, date: day(2026, 10, 15), month: october),
             in: context
         )
-        try RecurringTransactionService.shared.skip(gym, on: day(2026, 10, 20), in: context)
+        try RecurringTransactionService.shared.skip(
+            RecurringTransactionOccurrence(rule: gym, date: day(2026, 10, 20), month: october),
+            in: context
+        )
         let delivered = [
             (identifier: "rent", payload: RecurringNotificationPayload(ruleID: rent.id, occurrenceDate: day(2026, 10, 15))),
             (identifier: "gym", payload: RecurringNotificationPayload(ruleID: gym.id, occurrenceDate: day(2026, 10, 20))),
