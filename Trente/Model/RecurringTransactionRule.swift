@@ -11,6 +11,7 @@ import SwiftData
 extension SchemaV1 {
     @Model
     class RecurringTransactionRule {
+        var id: UUID = UUID()
         var title: String
         var frequency: RecurrenceFrequency
         var startDate: Date
