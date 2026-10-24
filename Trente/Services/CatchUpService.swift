@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import CoreData
 
 @MainActor
 final class CatchUpService {
@@ -18,12 +19,14 @@ final class CatchUpService {
 
     func start(container: ModelContainer) {
         guard trigger == nil else { return }
-        trigger = AppEventTrigger(events: [.appDidBecomeActive, .NSCalendarDayChanged, ModelContext.didSave]) {
+        let events: [Notification.Name] = [.appDidBecomeActive, .NSCalendarDayChanged, ModelContext.didSave, .NSPersistentStoreRemoteChange]
+        trigger = AppEventTrigger(events: events) {
             try? CatchUpService.shared.catchUp(in: container.mainContext)
         }
     }
 
     func catchUp(in context: ModelContext, now: Date = .now) throws {
+        try SyncDuplicateCleaner.mergeDuplicates(in: context)
         try MonthService.shared.createMissingMonths(in: context, now: now)
         try RecurringTransactionService.shared.confirmDueOccurrences(in: context, now: now)
     }
