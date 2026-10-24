@@ -13,10 +13,10 @@ struct TrenteApp: App {
     let container = TrenteContainer.shared
 
     init() {
-        WalletNotificationService.shared.start()
         WidgetRefresher.shared.start()
         CatchUpService.shared.start()
         if case .success(let modelContainer) = container {
+            NotificationDelegate.shared.start(container: modelContainer)
             RecurringNotificationScheduler.shared.start(container: modelContainer)
         }
     }

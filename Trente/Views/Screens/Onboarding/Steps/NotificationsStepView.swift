@@ -25,12 +25,12 @@ struct NotificationsStepView: View {
         } secondary: {
             VStack(spacing: .large) {
                 NotificationPreview(
-                    title: WalletNotificationService.title(amountCents: -800_00, currency: currency, title: String(localized: "Rent")),
+                    title: NotificationText.amountTitle(amountCents: -800_00, currency: currency, title: String(localized: "Rent")),
                     message: RecurringNotificationPlanner.body(for: .due, isIncome: false)
                 )
                 if showsApplePay {
                     NotificationPreview(
-                        title: WalletNotificationService.title(amountCents: -4_50, currency: currency, title: "Boulangerie"),
+                        title: NotificationText.amountTitle(amountCents: -4_50, currency: currency, title: "Boulangerie"),
                         message: WalletNotificationService.body
                     )
                 }

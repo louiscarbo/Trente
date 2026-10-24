@@ -67,7 +67,7 @@ struct RecurringNotificationPlanner {
     ) -> [RecurringNotificationRequest] {
         let amountCents = rule.repartition.values.reduce(0, +)
         let kind: RecurringNotificationRequest.Kind = rule.autoConfirm ? .addedAutomatically : .due
-        let title = WalletNotificationService.title(
+        let title = NotificationText.amountTitle(
             amountCents: amountCents,
             currency: currency,
             title: rule.title

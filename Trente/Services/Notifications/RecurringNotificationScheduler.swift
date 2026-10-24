@@ -30,8 +30,6 @@ final class RecurringNotificationScheduler {
     func start(container: ModelContainer) {
         guard self.container == nil else { return }
         self.container = container
-        // Replaces every registered category: add Wallet's here if it ever gets actions.
-        UNUserNotificationCenter.current().setNotificationCategories(RecurringNotificationAction.categories)
         observers = Self.rescheduleTriggers.map { name in
             NotificationCenter.default.addObserver(
                 forName: name,
