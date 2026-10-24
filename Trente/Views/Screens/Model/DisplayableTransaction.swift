@@ -74,7 +74,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
     var amountCents: Int {
         switch kind {
         case .group(let g):      return g.totalAmountCents
-        case .recurring(let r):  return r.rule.repartition.values.reduce(0, +)
+        case .recurring(let r):  return r.rule.amountCents
         }
     }
     var displayAmount: String {
