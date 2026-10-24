@@ -8,11 +8,6 @@
 import Foundation
 import SwiftData
 import UserNotifications
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
-import AppKit
-#endif
 
 @MainActor
 final class RecurringNotificationScheduler {
@@ -20,28 +15,19 @@ final class RecurringNotificationScheduler {
     nonisolated static let identifierPrefix = "recurring."
     nonisolated static let threadIdentifier = "recurring"
 
-    private let debounceDelay: Duration = .seconds(1)
     private var container: ModelContainer?
-    private var observers: [any NSObjectProtocol] = []
-    private var rescheduleTask: Task<Void, Never>?
+    private var trigger: AppEventTrigger?
 
     private init() {}
 
     func start(container: ModelContainer) {
         guard self.container == nil else { return }
         self.container = container
-        observers = Self.rescheduleTriggers.map { name in
-            NotificationCenter.default.addObserver(
-                forName: name,
-                object: nil,
-                queue: .main
-            ) { _ in
-                MainActor.assumeIsolated {
-                    RecurringNotificationScheduler.shared.scheduleReschedule()
-                }
-            }
+        let events = [ModelContext.didSave, .NSCalendarDayChanged, UserDefaults.didChangeNotification, .appDidBecomeActive]
+        trigger = AppEventTrigger(events: events, delay: .seconds(1)) {
+            await RecurringNotificationScheduler.shared.reschedule()
         }
-        scheduleReschedule()
+        trigger?.fire()
     }
 
     func reschedule() async {
@@ -113,27 +99,6 @@ final class RecurringNotificationScheduler {
             components.day ?? 0
         )
         return "\(identifierPrefix)\(request.ruleID.uuidString).\(dayString)"
-    }
-
-    private static var rescheduleTriggers: [Notification.Name] {
-        var names: [Notification.Name] = [ModelContext.didSave, .NSCalendarDayChanged, UserDefaults.didChangeNotification]
-        #if os(iOS)
-        names.append(UIApplication.didBecomeActiveNotification)
-        #elseif os(macOS)
-        names.append(NSApplication.didBecomeActiveNotification)
-        #endif
-        return names
-    }
-
-    private func scheduleReschedule() {
-        let previousTask = rescheduleTask
-        previousTask?.cancel()
-        rescheduleTask = Task { [debounceDelay] in
-            try? await Task.sleep(for: debounceDelay)
-            await previousTask?.value
-            guard !Task.isCancelled else { return }
-            await RecurringNotificationScheduler.shared.reschedule()
-        }
     }
 
     private func plannedRequests(
