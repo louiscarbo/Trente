@@ -23,7 +23,7 @@ struct RootView: View {
             case .some(true):
                 OnboardingView(isFirstLaunch: isFirstLaunch, onFinish: finishOnboarding)
             case .some(false):
-                MonthListView(pendingDeepLink: $pendingDeepLink)
+                AppNavigationView(pendingDeepLink: $pendingDeepLink)
             }
         }
         .onOpenURL(perform: handleOpenURL)
