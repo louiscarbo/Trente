@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NotificationsSection: View {
     let status: NotificationPermissionStatus?
+    @Binding var reminderTime: Date
+    let mentionsApplePay: Bool
     let onTurnOn: () -> Void
     let onOpenSettings: () -> Void
 
@@ -31,20 +33,39 @@ struct NotificationsSection: View {
                 }
                 Button("Notification Settings", systemImage: "gear", action: onOpenSettings)
             }
+            DatePicker(
+                "Reminder Time",
+                selection: $reminderTime,
+                displayedComponents: .hourAndMinute
+            )
         } header: {
             Text("Notifications")
         } footer: {
-            Text("Trente sends a notification after each Apple Pay purchase so you can log it.")
+            if mentionsApplePay {
+                Text("Trente reminds you at this time when a new month starts and when a recurring transaction is due. Apple Pay notifications arrive right after each purchase.")
+            } else {
+                Text("Trente reminds you at this time when a new month starts and when a recurring transaction is due.")
+            }
         }
     }
 }
 
 #Preview {
     Form {
-        NotificationsSection(status: nil, onTurnOn: {}, onOpenSettings: {})
-        NotificationsSection(status: .notDetermined, onTurnOn: {}, onOpenSettings: {})
-        NotificationsSection(status: .denied, onTurnOn: {}, onOpenSettings: {})
-        NotificationsSection(status: .authorized, onTurnOn: {}, onOpenSettings: {})
+        NotificationsSection(
+            status: .notDetermined,
+            reminderTime: .constant(.now),
+            mentionsApplePay: true,
+            onTurnOn: {},
+            onOpenSettings: {}
+        )
+        NotificationsSection(
+            status: .authorized,
+            reminderTime: .constant(.now),
+            mentionsApplePay: false,
+            onTurnOn: {},
+            onOpenSettings: {}
+        )
     }
     .formStyle(.grouped)
 }

@@ -10,16 +10,18 @@ import StoreKit
 
 struct SettingsView: View {
     @Environment(\.openURL) private var openURL
+    @Environment(\.scenePhase) private var scenePhase
     @State private var isSubscribed = false
     @State private var isShowingPaywall = false
+    @State private var notificationStatus: NotificationPermissionStatus?
+    @AppStorage(ReminderTime.hourKey) private var reminderHour = ReminderTime.standard.hour
+    @AppStorage(ReminderTime.minuteKey) private var reminderMinute = ReminderTime.standard.minute
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.scenePhase) private var scenePhase
-    @State private var notificationStatus: NotificationPermissionStatus?
     @State private var isShowingManageSubscriptions = false
+    #endif
 
     private let notificationPermission = NotificationPermissionService()
-    #endif
 
     var body: some View {
         let appInfo = AppInfo.current
@@ -31,12 +33,14 @@ struct SettingsView: View {
                     onDiscover: { isShowingPaywall = true },
                     onManage: manageSubscription
                 )
-                #if os(iOS)
                 NotificationsSection(
                     status: notificationStatus,
+                    reminderTime: reminderTime,
+                    mentionsApplePay: isPhone,
                     onTurnOn: turnOnNotifications,
                     onOpenSettings: openNotificationSettings
                 )
+                #if os(iOS)
                 if isPhone {
                     ApplePaySection(
                         setupSteps: ShortcutsSetupCard.applePaySetupSteps,
@@ -70,11 +74,6 @@ struct SettingsView: View {
         .sheet(isPresented: $isShowingPaywall) {
             SubscriptionView()
         }
-        #if os(iOS)
-        .manageSubscriptionsSheet(
-            isPresented: $isShowingManageSubscriptions,
-            subscriptionGroupID: TrentePlus.groupID
-        )
         .task {
             await refreshNotificationStatus()
         }
@@ -82,6 +81,11 @@ struct SettingsView: View {
             guard phase == .active else { return }
             Task { await refreshNotificationStatus() }
         }
+        #if os(iOS)
+        .manageSubscriptionsSheet(
+            isPresented: $isShowingManageSubscriptions,
+            subscriptionGroupID: TrentePlus.groupID
+        )
         #elseif os(macOS)
         .frame(minWidth: 460, idealWidth: 500, minHeight: 520)
         #endif
@@ -103,7 +107,19 @@ struct SettingsView: View {
         #endif
     }
 
-    #if os(iOS)
+    private var reminderTime: Binding<Date> {
+        Binding(
+            get: {
+                ReminderTime(hour: reminderHour, minute: reminderMinute).date(on: .now) ?? .now
+            },
+            set: { date in
+                let time = ReminderTime(date: date)
+                reminderHour = time.hour
+                reminderMinute = time.minute
+            }
+        )
+    }
+
     private func refreshNotificationStatus() async {
         notificationStatus = await notificationPermission.status()
     }
@@ -119,6 +135,7 @@ struct SettingsView: View {
         openURL(url)
     }
 
+    #if os(iOS)
     private func openShortcut() {
         openURL(ExternalLinks.logWalletTransactionShortcut)
     }
