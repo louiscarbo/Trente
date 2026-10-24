@@ -19,7 +19,7 @@ class DataProvider {
     }
     
     private init() {
-        let modelConfiguration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: true)
+        let modelConfiguration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
 
         do {
             modelContainer = try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [modelConfiguration])

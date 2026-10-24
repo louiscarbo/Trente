@@ -12,20 +12,18 @@ extension SchemaV1 {
     @Model
     class RecurringTransactionRule {
         var id: UUID = UUID()
-        var title: String
-        var frequency: RecurrenceFrequency
-        var startDate: Date
+        var title: String = ""
+        var frequency: RecurrenceFrequency = RecurrenceFrequency.monthly
+        var startDate: Date = Date.now
         var endDate: Date?
         var autoConfirm: Bool = false
-        var repartition: [BudgetCategory: Int]
+        var repartition: [BudgetCategory: Int] = [:]
         var createdAt: Date = Date.now
         var skippedOccurrenceDates: [Date] = []
         var lastAutoConfirmedDate: Date?
 
         @Relationship(deleteRule: .nullify, inverse: \TransactionGroup.recurringRule)
-        var transactions: [TransactionGroup] = []
-
-        var isDeleted: Bool = false
+        var storedTransactions: [TransactionGroup]? = []
 
         init(
             title: String,
@@ -43,8 +41,7 @@ extension SchemaV1 {
             self.autoConfirm = autoConfirm
             self.repartition = repartition
             self.createdAt = createdAt
-            self.transactions = []
-            self.isDeleted = false
+            self.storedTransactions = []
             Self.validateRepartitionInvariant(repartition)
         }
     }
@@ -53,6 +50,11 @@ extension SchemaV1 {
 extension RecurringTransactionRule {
     var amountCents: Int {
         repartition.values.reduce(0, +)
+    }
+
+    var transactions: [TransactionGroup] {
+        get { storedTransactions ?? [] }
+        set { storedTransactions = newValue }
     }
 
     func setRepartition(_ newRepartition: [BudgetCategory: Int]) {

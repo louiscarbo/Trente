@@ -9,16 +9,15 @@ import Foundation
 import SwiftData
 
 extension TransactionExportRow {
-    init(entry: TransactionEntry, hasImage: Bool = false) {
-        let group = entry.group
+    init(entry: TransactionEntry, group: TransactionGroup, month: Month, hasImage: Bool = false) {
         self.init(
             date: group.addedDate,
-            monthStartDate: group.month.startDate,
+            monthStartDate: month.startDate,
             title: group.title,
             type: group.type,
             category: entry.category,
             amountCents: entry.amountCents,
-            currencyCode: group.month.currency.isoCode,
+            currencyCode: month.currency.isoCode,
             isRecurring: group.recurringOccurrenceDate != nil,
             note: group.note,
             transactionID: group.id,
@@ -30,12 +29,14 @@ extension TransactionExportRow {
         from months: [Month],
         groupsWithImages: Set<PersistentIdentifier> = []
     ) -> [TransactionExportRow] {
-        months
-            .flatMap(\.transactionGroups)
-            .flatMap(\.entries)
-            .map { entry in
-                TransactionExportRow(entry: entry, hasImage: groupsWithImages.contains(entry.group.persistentModelID))
+        months.flatMap { month in
+            month.transactionGroups.flatMap { group in
+                let hasImage = groupsWithImages.contains(group.persistentModelID)
+                return group.entries.map { entry in
+                    TransactionExportRow(entry: entry, group: group, month: month, hasImage: hasImage)
+                }
             }
+        }
     }
 
     static var groupsWithImagesDescriptor: FetchDescriptor<TransactionGroup> {
@@ -47,7 +48,7 @@ extension TransactionExportRow {
 
     static func groupsWithImagesDescriptor(inMonth monthID: UUID) -> FetchDescriptor<TransactionGroup> {
         var descriptor = FetchDescriptor<TransactionGroup>(
-            predicate: #Predicate { group in group.month.id == monthID && group.imageAttachmentData != nil }
+            predicate: #Predicate { group in group.month?.id == monthID && group.imageAttachmentData != nil }
         )
         descriptor.propertiesToFetch = [\.id]
         descriptor.fetchLimit = 1

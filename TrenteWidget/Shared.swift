@@ -30,7 +30,8 @@ func currentMonthTimeline<Entry: TimelineEntry>(
 }
 
 private func currentMonthSnapshots(from now: Date) throws -> [(date: Date, month: WidgetMonth?)] {
-    let context = ModelContext(try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self))
+    let configuration = ModelConfiguration(schema: .trente, cloudKitDatabase: .none)
+    let context = ModelContext(try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [configuration]))
     var descriptor = FetchDescriptor<Month>(sortBy: [SortDescriptor(\Month.startDate, order: .reverse)])
     descriptor.fetchLimit = 1
     guard let month = try context.fetch(descriptor).first else {
