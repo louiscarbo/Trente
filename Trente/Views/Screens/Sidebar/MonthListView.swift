@@ -9,6 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct MonthListView: View {
+    #if os(macOS)
+    @Environment(\.openWindow) private var openWindow
+    #endif
+
+    @Binding var pendingDeepLink: DeepLink?
+
     @Query(
         sort: \Month.startDate,
         order: .reverse,
@@ -19,6 +25,9 @@ struct MonthListView: View {
     @State private var selection: SidebarSelection?
     @State private var isShowingNewMonth = false
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
+    #if os(iOS)
+    @State private var deepLinkedTransaction: NewTransactionContext?
+    #endif
     #if DEBUG
     @State private var isShowingDebugMenu = false
     #endif
@@ -112,7 +121,11 @@ struct MonthListView: View {
             }
         }
         .onAppear {
+            guard selection == nil else { return }
             selection = months.first.map(SidebarSelection.month)
+        }
+        .onChange(of: pendingDeepLink, initial: true) { _, link in
+            openDeepLink(link)
         }
         .onChange(of: months) { oldMonths, newMonths in
             guard let latestMonth = newMonths.first else { return }
@@ -131,6 +144,30 @@ struct MonthListView: View {
                     .id(id)
             }
         }
+        #if os(iOS)
+        .sheet(item: $deepLinkedTransaction) { context in
+            NewTransactionView(context: context)
+        }
+        #endif
+    }
+
+    private func openDeepLink(_ link: DeepLink?) {
+        guard let link else { return }
+        pendingDeepLink = nil
+        guard let destination = link.destination(in: months) else { return }
+        selection = .month(destination.month)
+        if destination.opensNewTransaction {
+            presentNewTransaction(for: destination.month)
+        }
+    }
+
+    private func presentNewTransaction(for month: Month) {
+        let context = NewTransactionContext(currency: month.currency, monthID: month.persistentModelID)
+        #if os(macOS)
+        openWindow(id: WindowIdentifiers.newTransaction, value: context)
+        #else
+        deepLinkedTransaction = context
+        #endif
     }
 
     private var selectedMonth: Binding<Month?> {
@@ -170,7 +207,7 @@ private enum SidebarSelection: Hashable {
 }
 
 #Preview {
-    MonthListView()
+    MonthListView(pendingDeepLink: .constant(nil))
 }
 
 struct ArchivedMonthsList: View {
