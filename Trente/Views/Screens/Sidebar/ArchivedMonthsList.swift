@@ -38,7 +38,19 @@ private struct MonthRowView: View {
     
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
-    
+
+    private var rowShape: UnevenRoundedRectangle {
+        let radius = DesignSystem.Radius.large.rawValue
+        let isFirst = month == archivedMonths.first
+        let isLast = month == archivedMonths.last
+        return UnevenRoundedRectangle(
+            topLeadingRadius: isFirst ? radius : 0,
+            bottomLeadingRadius: isLast ? radius : 0,
+            bottomTrailingRadius: isLast ? radius : 0,
+            topTrailingRadius: isFirst ? radius : 0
+        )
+    }
+
     var body: some View {
         HStack {
             Text(month.name)
@@ -51,48 +63,12 @@ private struct MonthRowView: View {
         .overlay {
             ZStack {
                 if isSelected {
-                    if month != archivedMonths.last && month != archivedMonths.first {
-                        Rectangle()
-                            .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
-                    } else if month == archivedMonths.first {
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: DesignSystem.Radius.large.rawValue,
-                            bottomLeadingRadius: 0,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: DesignSystem.Radius.large.rawValue
-                        )
+                    rowShape
                         .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
-                    } else {
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: 0,
-                            bottomLeadingRadius: DesignSystem.Radius.large.rawValue,
-                            bottomTrailingRadius: DesignSystem.Radius.large.rawValue,
-                            topTrailingRadius: 0
-                        )
-                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
-                    }
                 }
                 if isPressed {
-                    if month != archivedMonths.last && month != archivedMonths.first {
-                        Rectangle()
-                            .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
-                    } else if month == archivedMonths.first {
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: DesignSystem.Radius.large.rawValue,
-                            bottomLeadingRadius: 0,
-                            bottomTrailingRadius: 0,
-                            topTrailingRadius: DesignSystem.Radius.large.rawValue
-                        )
+                    rowShape
                         .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
-                    } else {
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: 0,
-                            bottomLeadingRadius: DesignSystem.Radius.large.rawValue,
-                            bottomTrailingRadius: DesignSystem.Radius.large.rawValue,
-                            topTrailingRadius: 0
-                        )
-                        .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
-                    }
                 }
             }
         }
