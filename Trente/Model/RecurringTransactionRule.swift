@@ -130,7 +130,11 @@ extension RecurringTransactionRule {
     }
 
     func pendingOccurrences(in month: Month) -> [RecurringTransactionOccurrence] {
-        occurrences(in: month).filter { !isSettled(on: $0.date) && !isSkipped(on: $0.date) }
+        occurrences(in: month).filter { isPending(on: $0.date) }
+    }
+
+    func isPending(on date: Date, calendar: Calendar = .current) -> Bool {
+        !isSettled(on: date, calendar: calendar) && !isSkipped(on: date, calendar: calendar)
     }
 
     func dueAutomaticOccurrences(in month: Month, by date: Date) -> [RecurringTransactionOccurrence] {

@@ -85,8 +85,7 @@ final class RecurringNotificationScheduler {
             guard let rule = rules.first(where: { rule in rule.id == notification.payload.ruleID }) else {
                 return notification.identifier
             }
-            let date = notification.payload.occurrenceDate
-            return rule.isSettled(on: date) || rule.isSkipped(on: date) ? notification.identifier : nil
+            return rule.isPending(on: notification.payload.occurrenceDate) ? nil : notification.identifier
         }
     }
 
@@ -147,12 +146,12 @@ final class RecurringNotificationScheduler {
         do {
             guard let currency = try MonthService.shared.latestMonth(in: context)?.currency else { return [] }
             let rules = try context.fetch(FetchDescriptor<RecurringTransactionRule>())
-            let monthIntervals = try context.fetch(FetchDescriptor<Month>()).map(\.dateInterval)
+            let months = try context.fetch(FetchDescriptor<Month>())
             return planner.requests(
                 for: rules,
                 currency: currency,
                 now: .now,
-                monthIntervals: monthIntervals
+                months: months
             )
         } catch {
             return nil

@@ -34,7 +34,7 @@ struct RecurringNotificationPlanner {
         for rules: [RecurringTransactionRule],
         currency: Currency,
         now: Date,
-        monthIntervals: [DateInterval] = []
+        months: [Month] = []
     ) -> [RecurringNotificationRequest] {
         let start = calendar.startOfDay(for: now)
         guard let end = calendar.date(byAdding: .day, value: horizonDays, to: start) else { return [] }
@@ -46,7 +46,7 @@ struct RecurringNotificationPlanner {
                 in: window,
                 currency: currency,
                 now: now,
-                monthIntervals: monthIntervals
+                months: months
             )
         }
         let sorted = planned.sorted { lhs, rhs in
@@ -63,7 +63,7 @@ struct RecurringNotificationPlanner {
         in window: DateInterval,
         currency: Currency,
         now: Date,
-        monthIntervals: [DateInterval]
+        months: [Month]
     ) -> [RecurringNotificationRequest] {
         let amountCents = rule.repartition.values.reduce(0, +)
         let kind: RecurringNotificationRequest.Kind = rule.autoConfirm ? .addedAutomatically : .due
@@ -77,15 +77,12 @@ struct RecurringNotificationPlanner {
 
         return rule.schedule.dates(in: window, calendar: calendar).compactMap { date -> RecurringNotificationRequest? in
             guard
-                !rule.isSettled(on: date, calendar: calendar),
-                !rule.isSkipped(on: date, calendar: calendar),
+                rule.isPending(on: date, calendar: calendar),
                 let fireDate = reminderTime.date(on: date, calendar: calendar),
                 fireDate > now
             else { return nil }
 
-            let hasMonth = monthIntervals.contains { interval in
-                interval.start <= date && date < interval.end
-            }
+            let hasMonth = months.contains { month in month.contains(date) }
             return RecurringNotificationRequest(
                 ruleID: rule.id,
                 occurrenceDate: date,

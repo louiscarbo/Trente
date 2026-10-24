@@ -281,9 +281,9 @@ struct RecurringNotificationPlannerTests {
         let planner = RecurringNotificationPlanner(horizonDays: 40, calendar: calendar)
         let rent = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
         let salary = insertRule("Salary", startingOn: day(2025, 1, 12), repartition: [.needs: 1000_00], automatic: true, in: context)
-        let april = DateInterval(start: day(2025, 4, 1), end: day(2025, 5, 1))
+        let april = insertMonth(year: 2025, month: 4, in: context)
 
-        let requests = planner.requests(for: [rent, salary], currency: euro, now: now, monthIntervals: [april])
+        let requests = planner.requests(for: [rent, salary], currency: euro, now: now, months: [april])
 
         let confirmable = requests.map { request in "\(request.ruleID == rent.id ? "rent" : "salary") \(request.canBeConfirmed)" }
         #expect(confirmable == ["salary false", "rent true", "salary false", "rent false"])
