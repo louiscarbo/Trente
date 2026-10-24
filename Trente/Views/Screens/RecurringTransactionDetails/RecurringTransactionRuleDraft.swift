@@ -24,7 +24,7 @@ struct RecurringTransactionRuleDraft {
         endDate = rule.endDate
         autoConfirm = rule.autoConfirm
         repartition = rule.repartition
-        repartitionTotalCents = rule.repartition.values.reduce(0, +)
+        repartitionTotalCents = rule.amountCents
         originalStartDate = rule.startDate
         originalEndDate = rule.endDate
         let today = Calendar.current.startOfDay(for: .now)

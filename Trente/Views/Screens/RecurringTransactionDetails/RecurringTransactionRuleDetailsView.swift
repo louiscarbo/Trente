@@ -25,7 +25,7 @@ struct RecurringTransactionRuleDetailsView: View {
     @FocusState private var amountFocused: Bool
 
     private var totalAmount: Int {
-        rule.repartition.values.reduce(0, +)
+        rule.amountCents
     }
 
     var body: some View {

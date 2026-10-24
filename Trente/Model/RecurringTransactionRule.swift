@@ -50,6 +50,10 @@ extension SchemaV1 {
 }
 
 extension RecurringTransactionRule {
+    var amountCents: Int {
+        repartition.values.reduce(0, +)
+    }
+
     func setRepartition(_ newRepartition: [BudgetCategory: Int]) {
         Self.validateRepartitionInvariant(newRepartition)
         repartition = newRepartition

@@ -23,7 +23,7 @@ struct RecurringTransactionOccurrence: Identifiable, Hashable {
     }
 
     var amountCents: Int {
-        rule.repartition.values.reduce(0, +)
+        rule.amountCents
     }
 
     func amountCents(in scope: BudgetScope) -> Int {
