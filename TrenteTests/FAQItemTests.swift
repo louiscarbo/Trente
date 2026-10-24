@@ -38,4 +38,69 @@ struct FAQItemTests {
             #expect(!String(localized: item.answer).isEmpty)
         }
     }
+
+    @Test("Every topic has at least one question")
+    func everyTopicHasQuestions() {
+        let topics = FAQSection.sections(for: FAQItem.all).map(\.topic)
+
+        #expect(topics == FAQTopic.allCases)
+    }
+
+    @Test("The featured question is in the list, so search still finds it")
+    func featuredIsListed() {
+        #expect(FAQItem.all.contains(FAQItem.featured))
+    }
+
+    @Test("Sections follow the topic order and leave out empty topics")
+    func sectionsFollowTopicOrder() {
+        let items = [
+            item("rent", topic: .recurring),
+            item("months", topic: .budgetBasics),
+            item("salary", topic: .recurring)
+        ]
+
+        let sections = FAQSection.sections(for: items)
+
+        #expect(sections.map(\.topic) == [.budgetBasics, .recurring])
+        #expect(sections.last?.items.map(\.id) == ["rent", "salary"])
+    }
+
+    @Test("An empty search shows every question")
+    func emptySearchKeepsEverything() {
+        let items = [item("rent"), item("salary")]
+
+        #expect(FAQItem.matching("   ", in: items) == items)
+    }
+
+    @Test("Search ignores case and accents")
+    func searchIgnoresCaseAndAccents() {
+        let items = [
+            item("cafe", question: "Café budget"),
+            item("rent", question: "Rent")
+        ]
+
+        #expect(FAQItem.matching("CAFE", in: items).map(\.id) == ["cafe"])
+    }
+
+    @Test("Every word must appear in the question or the answer")
+    func searchNeedsEveryWord() {
+        let items = [item("rent", question: "What is rent?", answer: "Paid monthly")]
+
+        #expect(FAQItem.matching("rent monthly", in: items).map(\.id) == ["rent"])
+        #expect(FAQItem.matching("rent yearly", in: items).isEmpty)
+    }
+
+    private func item(
+        _ id: String,
+        topic: FAQTopic = .budgetBasics,
+        question: String = "Question",
+        answer: String = "Answer"
+    ) -> FAQItem {
+        FAQItem(
+            id: id,
+            topic: topic,
+            question: LocalizedStringResource(stringLiteral: question),
+            answer: LocalizedStringResource(stringLiteral: answer)
+        )
+    }
 }
