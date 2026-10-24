@@ -117,10 +117,8 @@ struct MonthListView: View {
         .onAppear {
             selection = months.first.map(SidebarSelection.month)
         }
-        .onChange(of: months) { _, newMonths in
-            if let firstMonth = newMonths.first {
-                selection = .month(firstMonth)
-            }
+        .onChange(of: months) { oldMonths, newMonths in
+            followLatestMonthIfNeeded(previousLatestMonth: oldMonths.first, newMonths: newMonths)
             catchUp()
         }
         .onChange(of: scenePhase, initial: true) { _, phase in
@@ -159,6 +157,32 @@ struct MonthListView: View {
             if let currency = months.first?.currency {
                 RecurringTransactionsListView(currency: currency)
             }
+        }
+    }
+
+    private func followLatestMonthIfNeeded(previousLatestMonth: Month?, newMonths: [Month]) {
+        guard let latestMonth = newMonths.first else { return }
+        let selectedMonthID: UUID?
+        let isShowingOtherScreen: Bool
+        switch selection {
+        case .month(let month):
+            selectedMonthID = month.id
+            isShowingOtherScreen = false
+        case .recurring:
+            selectedMonthID = nil
+            isShowingOtherScreen = true
+        case nil:
+            selectedMonthID = nil
+            isShowingOtherScreen = false
+        }
+        let shouldFollow = LatestMonthFollowRule.shouldSelectLatestMonth(
+            selectedMonthID: selectedMonthID,
+            isShowingOtherScreen: isShowingOtherScreen,
+            previousLatestMonthID: previousLatestMonth?.id,
+            remainingMonthIDs: Set(newMonths.map(\.id))
+        )
+        if shouldFollow {
+            selection = .month(latestMonth)
         }
     }
 
