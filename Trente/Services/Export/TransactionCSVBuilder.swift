@@ -24,17 +24,25 @@ enum TransactionCSVBuilder {
     private static let lineEnding = "\r\n"
     private static let charactersRequiringQuotes: Set<Unicode.Scalar> = ["\"", "\r", "\n"]
 
-    static func header(for format: TransactionCSVFormat) -> [String] {
-        format.includesNotes ? header : header.filter { column in column != "Note" }
+    private static let imageColumn = "Image"
+
+    static func header(for format: TransactionCSVFormat, includesImages: Bool = false) -> [String] {
+        var columns = format.includesNotes ? header : header.filter { column in column != "Note" }
+        if includesImages {
+            columns.insert(imageColumn, at: columns.count - 1)
+        }
+        return columns
     }
 
     static func csv(
         from rows: [TransactionExportRow],
         format: TransactionCSVFormat = TransactionCSVFormat(),
+        imagePaths: [UUID: String]? = nil,
         timeZone: TimeZone = .current
     ) -> String {
         let calendar = exportCalendar(in: timeZone)
-        let records = [header(for: format)] + sorted(rows).map { fields(for: $0, format: format, calendar: calendar) }
+        let records = [header(for: format, includesImages: imagePaths != nil)]
+            + sorted(rows).map { fields(for: $0, format: format, imagePaths: imagePaths, calendar: calendar) }
         return records
             .map { record in
                 record
@@ -46,6 +54,10 @@ enum TransactionCSVBuilder {
 
     static func monthText(for date: Date, timeZone: TimeZone = .current) -> String {
         monthText(for: date, calendar: exportCalendar(in: timeZone))
+    }
+
+    static func dayText(for date: Date, timeZone: TimeZone = .current) -> String {
+        dayText(for: date, calendar: exportCalendar(in: timeZone))
     }
 
     static func amountText(fromCents cents: Int, decimalSeparator: String = ".") -> String {
@@ -82,6 +94,7 @@ enum TransactionCSVBuilder {
     private static func fields(
         for row: TransactionExportRow,
         format: TransactionCSVFormat,
+        imagePaths: [UUID: String]?,
         calendar: Calendar
     ) -> [String] {
         var fields = [
@@ -96,6 +109,9 @@ enum TransactionCSVBuilder {
         ]
         if format.includesNotes {
             fields.append(row.note ?? "")
+        }
+        if let imagePaths {
+            fields.append(imagePaths[row.transactionID] ?? "")
         }
         fields.append(row.transactionID.uuidString)
         return fields

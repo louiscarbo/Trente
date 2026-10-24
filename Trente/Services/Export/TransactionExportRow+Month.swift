@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftData
 
 extension TransactionExportRow {
-    init(entry: TransactionEntry) {
+    init(entry: TransactionEntry, hasImage: Bool = false) {
         let group = entry.group
         self.init(
             date: group.addedDate,
@@ -20,14 +21,24 @@ extension TransactionExportRow {
             currencyCode: group.month.currency.isoCode,
             isRecurring: group.recurringOccurrenceDate != nil,
             note: group.note,
-            transactionID: group.id
+            transactionID: group.id,
+            imageSourceID: hasImage ? group.persistentModelID : nil
         )
     }
 
-    static func rows(from months: [Month]) -> [TransactionExportRow] {
+    static func rows(
+        from months: [Month],
+        groupsWithImages: Set<PersistentIdentifier> = []
+    ) -> [TransactionExportRow] {
         months
             .flatMap(\.transactionGroups)
             .flatMap(\.entries)
-            .map(TransactionExportRow.init(entry:))
+            .map { entry in
+                TransactionExportRow(entry: entry, hasImage: groupsWithImages.contains(entry.group.persistentModelID))
+            }
+    }
+
+    static var groupsWithImagesDescriptor: FetchDescriptor<TransactionGroup> {
+        FetchDescriptor(predicate: #Predicate { group in group.imageAttachmentData != nil })
     }
 }

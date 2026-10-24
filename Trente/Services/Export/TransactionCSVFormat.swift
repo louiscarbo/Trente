@@ -26,9 +26,11 @@ struct TransactionCSVFormat: Hashable, Sendable {
 
     static let styleKey = "export.style"
     static let includesNotesKey = "export.includesNotes"
+    static let includesImagesKey = "export.includesImages"
 
     var style: Style = .standard
     var includesNotes = true
+    var includesImages = true
 
     var separator: String {
         switch style {
