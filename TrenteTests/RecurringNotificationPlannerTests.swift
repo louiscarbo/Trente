@@ -270,9 +270,7 @@ struct RecurringNotificationPlannerTests {
         let rule = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
         let request = try #require(planner.requests(for: [rule], currency: euro, now: now).first)
 
-        let identifier = RecurringNotificationScheduler.identifier(for: request, calendar: calendar)
-
-        #expect(identifier == "recurring.\(rule.id.uuidString).2025-04-15")
+        #expect(request.identifier == "recurring.\(rule.id.uuidString).2025-04-15")
     }
 
     @Test("Buttons are offered only for a manual occurrence inside an existing month")

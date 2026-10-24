@@ -14,6 +14,7 @@ struct RecurringNotificationRequest: Equatable {
         case addedAutomatically
     }
 
+    let identifier: String
     let ruleID: UUID
     let occurrenceDate: Date
     let fireDate: Date
@@ -25,6 +26,8 @@ struct RecurringNotificationRequest: Equatable {
 }
 
 struct RecurringNotificationPlanner {
+    static let identifierPrefix = "recurring."
+
     var horizonDays = 35
     var limit = 60
     var reminderTime = ReminderTime.standard
@@ -84,6 +87,7 @@ struct RecurringNotificationPlanner {
 
             let hasMonth = months.contains { month in month.contains(date) }
             return RecurringNotificationRequest(
+                identifier: identifier(forRuleID: rule.id, on: date),
                 ruleID: rule.id,
                 occurrenceDate: date,
                 fireDate: fireDate,
@@ -94,6 +98,30 @@ struct RecurringNotificationPlanner {
                 body: body
             )
         }
+    }
+
+    func identifiersToClear(
+        delivered: [(identifier: String, payload: RecurringNotificationPayload)],
+        rules: [RecurringTransactionRule]
+    ) -> [String] {
+        delivered.compactMap { notification in
+            guard let rule = rules.first(where: { rule in rule.id == notification.payload.ruleID }) else {
+                return notification.identifier
+            }
+            let isPending = rule.isPending(on: notification.payload.occurrenceDate, calendar: calendar)
+            return isPending ? nil : notification.identifier
+        }
+    }
+
+    private func identifier(forRuleID ruleID: UUID, on date: Date) -> String {
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        let dayString = String(
+            format: "%04ld-%02ld-%02ld",
+            components.year ?? 0,
+            components.month ?? 0,
+            components.day ?? 0
+        )
+        return "\(Self.identifierPrefix)\(ruleID.uuidString).\(dayString)"
     }
 
     static func body(for kind: RecurringNotificationRequest.Kind, isIncome: Bool) -> String {
