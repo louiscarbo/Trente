@@ -96,6 +96,19 @@ struct RecurringNotificationPlannerTests {
         #expect(requests.map(\.fireDate) == [day(2025, 5, 15, hour: 9)])
     }
 
+    @Test("The chosen reminder time replaces nine")
+    func usesChosenReminderTime() throws {
+        let context = try makeContext()
+        let rule = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
+        try context.save()
+        let planner = RecurringNotificationPlanner(reminderTime: ReminderTime(hour: 18, minute: 30), calendar: calendar)
+
+        let request = try #require(planner.requests(for: [rule], currency: euro, now: now).first)
+
+        let expected = try #require(calendar.date(from: DateComponents(year: 2025, month: 4, day: 15, hour: 18, minute: 30)))
+        #expect(request.fireDate == expected)
+    }
+
     @Test("Nothing is planned before the rule's creation day")
     func neverBeforeRuleCreation() throws {
         let context = try makeContext()
