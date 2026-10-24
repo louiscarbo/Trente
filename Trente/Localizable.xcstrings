@@ -7,16 +7,6 @@
     "    You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
 
     },
-    "%@, %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@, %2$@"
-          }
-        }
-      }
-    },
     "-" : {
 
     },
@@ -62,16 +52,20 @@
     "%@ won't appear after today. Transactions already recorded stay." : {
 
     },
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
     "%lld" : {
 
     },
     "%lld active" : {
-
-    },
-    "%lld%% Left" : {
-
-    },
-    "%lld%% Spent" : {
 
     },
     "Abercrombie & Fitch Lyon Part-Dieu" : {
@@ -340,6 +334,9 @@
 
     },
     "Latest Transactions" : {
+
+    },
+    "Left" : {
 
     },
     "Log Apple Pay purchases automatically" : {
