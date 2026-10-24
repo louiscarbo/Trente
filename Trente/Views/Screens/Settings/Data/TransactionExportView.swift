@@ -10,15 +10,29 @@ import SwiftData
 
 struct TransactionExportView: View {
     @Query(sort: \Month.startDate, order: .reverse) private var months: [Month]
+    @Query(TransactionExportRow.groupsWithImagesDescriptor) private var groupsWithImages: [TransactionGroup]
 
     @AppStorage(TransactionCSVFormat.styleKey) private var style = TransactionCSVFormat.Style.standard
     @AppStorage(TransactionCSVFormat.includesNotesKey) private var includesNotes = true
+    @AppStorage(TransactionCSVFormat.includesImagesKey) private var includesImages = true
     @State private var excludedMonthIDs: Set<UUID> = []
 
     var body: some View {
         let selectedMonths = months.filter { month in !excludedMonthIDs.contains(month.id) }
-        let rows = TransactionExportRow.rows(from: selectedMonths)
+        let rows = TransactionExportRow.rows(
+            from: selectedMonths,
+            groupsWithImages: Set(groupsWithImages.map(\.persistentModelID))
+        )
         let transactionCount = Set(rows.map(\.transactionID)).count
+        let hasImages = rows.contains { row in row.imageSourceID != nil }
+        let file = TransactionsCSVFile(
+            rows: rows,
+            fileName: TransactionsCSVFile.fileName(
+                forMonthsStartingOn: selectedMonths.map(\.startDate),
+                includesEveryMonth: excludedMonthIDs.isEmpty
+            ),
+            format: TransactionCSVFormat(style: style, includesNotes: includesNotes, includesImages: includesImages)
+        )
 
         Form {
             Section {
@@ -44,24 +58,25 @@ struct TransactionExportView: View {
                     }
                 }
                 Toggle("Include Notes", isOn: $includesNotes)
+                if hasImages {
+                    Toggle("Include Images", isOn: $includesImages)
+                }
             } header: {
                 Text("File")
             } footer: {
-                Text(formatFooter)
+                VStack(alignment: .leading, spacing: .small) {
+                    Text(formatFooter)
+                    if file.includesImages {
+                        Text("Images are saved next to the spreadsheet in a .zip file.")
+                    }
+                }
             }
         }
         .formStyle(.grouped)
         .safeAreaInset(edge: .bottom) {
             ExportButton(
                 title: "Export ^[\(transactionCount) Transaction](inflect: true)",
-                file: TransactionsCSVFile(
-                    rows: rows,
-                    fileName: TransactionsCSVFile.fileName(
-                        forMonthsStartingOn: selectedMonths.map(\.startDate),
-                        includesEveryMonth: excludedMonthIDs.isEmpty
-                    ),
-                    format: TransactionCSVFormat(style: style, includesNotes: includesNotes)
-                )
+                file: file
             )
             .padding()
             .background(.bar)
