@@ -35,13 +35,17 @@ struct NotificationPermissionService {
     func status() async -> NotificationPermissionStatus {
         switch await center.currentAuthorizationStatus() {
         case .notDetermined:
-            .notDetermined
+            return .notDetermined
         case .denied:
-            .denied
-        case .authorized, .provisional, .ephemeral:
-            .authorized
+            return .denied
+        case .authorized, .provisional:
+            return .authorized
+        #if os(iOS)
+        case .ephemeral:
+            return .authorized
+        #endif
         @unknown default:
-            .denied
+            return .denied
         }
     }
 
