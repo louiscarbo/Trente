@@ -72,11 +72,6 @@ extension RecurringNotificationPayload {
 
 @MainActor
 enum RecurringNotificationResponder {
-    static func respond(to action: RecurringNotificationAction, payload: RecurringNotificationPayload) {
-        guard case .success(let container) = TrenteContainer.shared else { return }
-        _ = try? handle(action, payload: payload, in: container.mainContext)
-    }
-
     @discardableResult
     static func handle(
         _ action: RecurringNotificationAction,

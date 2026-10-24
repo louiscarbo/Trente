@@ -209,7 +209,7 @@ struct RecurringNotificationPlannerTests {
 
         #expect(request.kind == .due)
         #expect(request.body == String(localized: "Expected today. Open Trente to mark it as received."))
-        #expect(request.title == WalletNotificationService.title(amountCents: 2000_00, currency: euro, title: "Salary"))
+        #expect(request.title == NotificationText.amountTitle(amountCents: 2000_00, currency: euro, title: "Salary"))
     }
 
     @Test("The title shows the absolute amount and the rule's title")
@@ -220,7 +220,7 @@ struct RecurringNotificationPlannerTests {
 
         let request = try #require(planner.requests(for: [rule], currency: euro, now: now).first)
 
-        #expect(request.title == WalletNotificationService.title(amountCents: 800_00, currency: euro, title: "Rent"))
+        #expect(request.title == NotificationText.amountTitle(amountCents: 800_00, currency: euro, title: "Rent"))
         #expect(request.title.hasSuffix(" - Rent"))
         #expect(!request.title.contains("-800"))
     }
