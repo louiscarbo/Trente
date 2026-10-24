@@ -44,9 +44,9 @@ struct NotificationsStepView: View {
 
     private var subtitle: LocalizedStringKey {
         if showsApplePay {
-            "Trente reminds you when a recurring payment like rent is due, and sends you a notification after each Apple Pay purchase so you can log it in one go."
+            "Trente tells you when a new month starts and when a recurring payment like rent is due, and sends you a notification after each Apple Pay purchase so you can log it in one go."
         } else {
-            "Trente reminds you when a recurring payment like rent or a salary is due, so you can mark it as paid in one tap."
+            "Trente tells you when a new month starts and when a recurring payment like rent or a salary is due, so you can mark it as paid in one tap."
         }
     }
 
