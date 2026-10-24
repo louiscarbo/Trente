@@ -25,7 +25,7 @@ struct RecurringNotificationRequest: Equatable {
 struct RecurringNotificationPlanner {
     var horizonDays = 35
     var limit = 60
-    var deliveryHour = 9
+    var reminderTime = ReminderTime.standard
     var calendar: Calendar = .current
 
     func requests(
@@ -73,7 +73,7 @@ struct RecurringNotificationPlanner {
             guard
                 !rule.isSettled(on: date, calendar: calendar),
                 !rule.isSkipped(on: date, calendar: calendar),
-                let fireDate = calendar.date(bySettingHour: deliveryHour, minute: 0, second: 0, of: date),
+                let fireDate = reminderTime.date(on: date, calendar: calendar),
                 fireDate > now
             else { return nil }
 

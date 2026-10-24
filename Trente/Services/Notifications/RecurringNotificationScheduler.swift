@@ -48,7 +48,7 @@ final class RecurringNotificationScheduler {
     func reschedule() async {
         guard let container else { return }
         guard await NotificationPermissionService().status() == .authorized else { return }
-        let planner = RecurringNotificationPlanner()
+        let planner = RecurringNotificationPlanner(reminderTime: .stored())
         guard let planned = plannedRequests(in: container, planner: planner) else { return }
 
         var requestsByIdentifier: [String: RecurringNotificationRequest] = [:]
@@ -91,7 +91,7 @@ final class RecurringNotificationScheduler {
     }
 
     private static var rescheduleTriggers: [Notification.Name] {
-        var names: [Notification.Name] = [ModelContext.didSave, .NSCalendarDayChanged]
+        var names: [Notification.Name] = [ModelContext.didSave, .NSCalendarDayChanged, UserDefaults.didChangeNotification]
         #if os(iOS)
         names.append(UIApplication.didBecomeActiveNotification)
         #elseif os(macOS)
