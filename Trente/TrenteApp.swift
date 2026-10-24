@@ -17,7 +17,7 @@ struct TrenteApp: App {
         if case .success(let modelContainer) = container {
             CatchUpService.shared.start(container: modelContainer)
             NotificationDelegate.shared.start(container: modelContainer)
-            RecurringNotificationScheduler.shared.start(container: modelContainer)
+            NotificationScheduler.shared.start(container: modelContainer)
         }
     }
 

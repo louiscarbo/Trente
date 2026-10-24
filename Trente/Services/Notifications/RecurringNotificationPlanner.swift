@@ -27,9 +27,9 @@ struct RecurringNotificationRequest: Equatable {
 
 struct RecurringNotificationPlanner {
     static let identifierPrefix = "recurring."
+    static let threadIdentifier = "recurring"
 
     var horizonDays = 35
-    var limit = 60
     var reminderTime = ReminderTime.standard
     var calendar: Calendar = .current
 
@@ -43,7 +43,7 @@ struct RecurringNotificationPlanner {
         guard let end = calendar.date(byAdding: .day, value: horizonDays, to: start) else { return [] }
         let window = DateInterval(start: start, end: end)
 
-        let planned = rules.flatMap { rule in
+        return rules.flatMap { rule in
             requests(
                 for: rule,
                 in: window,
@@ -52,13 +52,6 @@ struct RecurringNotificationPlanner {
                 months: months
             )
         }
-        let sorted = planned.sorted { lhs, rhs in
-            if lhs.fireDate != rhs.fireDate {
-                return lhs.fireDate < rhs.fireDate
-            }
-            return lhs.title < rhs.title
-        }
-        return Array(sorted.prefix(max(0, limit)))
     }
 
     private func requests(
@@ -133,5 +126,25 @@ struct RecurringNotificationPlanner {
         case .addedAutomatically:
             String(localized: "Added automatically.")
         }
+    }
+}
+
+extension RecurringNotificationRequest {
+    var scheduledNotification: ScheduledNotification {
+        ScheduledNotification(
+            identifier: identifier,
+            title: title,
+            body: body,
+            fireDate: fireDate,
+            threadIdentifier: RecurringNotificationPlanner.threadIdentifier,
+            categoryIdentifier: categoryIdentifier,
+            userInfo: RecurringNotificationPayload(ruleID: ruleID, occurrenceDate: occurrenceDate).userInfo,
+            prominence: kind == .due ? .alert : .passive
+        )
+    }
+
+    private var categoryIdentifier: String? {
+        guard canBeConfirmed else { return nil }
+        return isIncome ? RecurringNotificationAction.incomeCategory : RecurringNotificationAction.expenseCategory
     }
 }
