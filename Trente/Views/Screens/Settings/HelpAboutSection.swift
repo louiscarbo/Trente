@@ -25,11 +25,19 @@ struct HelpAboutSection: View {
             }
 
             ContactButton(url: contactURL, address: contactAddress) {
-                Label("Contact", systemImage: "envelope")
+                ExternalLinkLabel(
+                    title: "Email the Developer",
+                    detail: "Opens Mail with your app version",
+                    systemImage: "envelope"
+                )
             }
 
             Link(destination: reviewURL) {
-                Label("Rate Trente", systemImage: "star")
+                ExternalLinkLabel(
+                    title: "Rate on the App Store",
+                    detail: "Opens Trente's App Store page",
+                    systemImage: "star"
+                )
             }
 
             NavigationLink {
