@@ -115,7 +115,15 @@ struct MonthListView: View {
             selection = months.first.map(SidebarSelection.month)
         }
         .onChange(of: months) { oldMonths, newMonths in
-            followLatestMonthIfNeeded(previousLatestMonth: oldMonths.first, newMonths: newMonths)
+            guard let latestMonth = newMonths.first else { return }
+            switch selection {
+            case .recurring:
+                return
+            case .month(let month) where month != oldMonths.first && newMonths.contains(month):
+                return
+            default:
+                selection = .month(latestMonth)
+            }
         }
         .sheet(isPresented: isShowingPendingTransaction) {
             if let id = pendingTransactionRouter.presentedPendingTransactionID {
@@ -145,32 +153,6 @@ struct MonthListView: View {
             if let currency = months.first?.currency {
                 RecurringTransactionsListView(currency: currency)
             }
-        }
-    }
-
-    private func followLatestMonthIfNeeded(previousLatestMonth: Month?, newMonths: [Month]) {
-        guard let latestMonth = newMonths.first else { return }
-        let selectedMonthID: UUID?
-        let isShowingOtherScreen: Bool
-        switch selection {
-        case .month(let month):
-            selectedMonthID = month.id
-            isShowingOtherScreen = false
-        case .recurring:
-            selectedMonthID = nil
-            isShowingOtherScreen = true
-        case nil:
-            selectedMonthID = nil
-            isShowingOtherScreen = false
-        }
-        let shouldFollow = LatestMonthFollowRule.shouldSelectLatestMonth(
-            selectedMonthID: selectedMonthID,
-            isShowingOtherScreen: isShowingOtherScreen,
-            previousLatestMonthID: previousLatestMonth?.id,
-            remainingMonthIDs: Set(newMonths.map(\.id))
-        )
-        if shouldFollow {
-            selection = .month(latestMonth)
         }
     }
 
