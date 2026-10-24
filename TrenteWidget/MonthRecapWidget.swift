@@ -118,17 +118,14 @@ struct HomescreenMonthRecapWidgetView: View {
                     
                     if family != .systemSmall {
                         Link(destination: URL(string: "trente://newtransaction/" + currentMonth.id.uuidString)!) {
-                            Button { } label: {
-                                Label("New Transaction", systemImage: "plus")
-                                    .foregroundStyle(.primary)
-                                    .font(.subheadline)
-                                    .padding(.horizontal)
-                            }
-                            .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                            .padding(.leading)
-                            .padding(.trailing, -3)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            Label("New Transaction", systemImage: "plus")
+                                .font(.subheadline)
+                                .padding(.horizontal)
+                                .trentePrimaryCapsule(narrow: true, solidFill: true)
                         }
+                        .padding(.leading)
+                        .padding(.trailing, -3)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }
                 

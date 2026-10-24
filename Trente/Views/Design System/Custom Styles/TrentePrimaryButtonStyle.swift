@@ -8,19 +8,33 @@
 import SwiftUI
 
 struct TrentePrimaryButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled: Bool
+
+    var narrow: Bool = false
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .trentePrimaryCapsule(narrow: narrow, isPressed: configuration.isPressed)
+            .glassEffect(.regular.interactive(isEnabled), in: .capsule)
+    }
+}
+
+struct TrentePrimaryCapsule: ViewModifier {
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.isEnabled) private var isEnabled: Bool
     private var lightMode: Bool { colorScheme == .light }
-    
-    var narrow: Bool = false
-    var strokeOpacity: Double {
+
+    var narrow: Bool
+    var isPressed: Bool
+    var solidFill: Bool
+
+    private var strokeOpacity: Double {
         isEnabled ? 0.6 : 0.3
     }
 
-    func makeBody(configuration: Configuration) -> some View {
+    func body(content: Content) -> some View {
         ZStack {
-            Capsule()
-                .fill(.regularMaterial)
+            fill
                 .overlay(
                     ZStack {
                         Capsule()
@@ -31,7 +45,7 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
                                 : Color.white.opacity(strokeOpacity),
                                 lineWidth: 3
                             )
-                        if configuration.isPressed {
+                        if isPressed {
                             Capsule()
                                 .fill(
                                     LinearGradient(
@@ -43,7 +57,7 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
                         }
                     }
                 )
-            configuration.label
+            content
                 .bold()
                 .foregroundStyle(lightMode ? Color.white : Color.black)
                 .opacity(isEnabled ? 1 : 0.5)
@@ -52,8 +66,24 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
         }
         .frame(maxWidth: .infinity)
         .fixedSize(horizontal: false, vertical: true)
-        .environment(\.colorScheme, lightMode ? .dark : .light)
-        .glassEffect(.regular.interactive(isEnabled), in: .capsule)
+    }
+
+    @ViewBuilder
+    private var fill: some View {
+        if solidFill {
+            Capsule()
+                .fill(lightMode ? Color(white: 0.22) : Color(white: 0.9))
+        } else {
+            Capsule()
+                .fill(.regularMaterial)
+                .environment(\.colorScheme, lightMode ? .dark : .light)
+        }
+    }
+}
+
+extension View {
+    func trentePrimaryCapsule(narrow: Bool = false, isPressed: Bool = false, solidFill: Bool = false) -> some View {
+        modifier(TrentePrimaryCapsule(narrow: narrow, isPressed: isPressed, solidFill: solidFill))
     }
 }
 
