@@ -24,14 +24,6 @@ struct HelpAboutSection: View {
                 Label("Frequently Asked Questions", systemImage: "questionmark.circle")
             }
 
-            ContactButton(url: contactURL, address: contactAddress) {
-                ExternalLinkLabel(
-                    title: "Email the Developer",
-                    detail: "Opens Mail with your app version",
-                    systemImage: "envelope"
-                )
-            }
-
             Link(destination: reviewURL) {
                 ExternalLinkLabel(
                     title: "Rate on the App Store",
