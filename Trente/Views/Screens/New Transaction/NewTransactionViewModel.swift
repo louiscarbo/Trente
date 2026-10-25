@@ -19,6 +19,13 @@ class NewTransactionViewModel: ObservableObject {
     var nextButtonDisabled: Bool = true
     var isRepartitionComplete: Bool = false
     var showErrorAlert: Bool = false
+
+    @ObservationIgnored private let permissionService: NotificationPermissionService
+    @ObservationIgnored private(set) var permissionRequest: Task<Void, Never>?
+
+    init(permissionService: NotificationPermissionService = NotificationPermissionService()) {
+        self.permissionService = permissionService
+    }
     
     var filteredSteps: [NewTransactionStep] {
         var steps: [NewTransactionStep] = [.amountCategory, .title, .notesImage]
@@ -49,10 +56,15 @@ class NewTransactionViewModel: ObservableObject {
     func createTransaction(for month: Month, in context: ModelContext) -> Bool {
         do {
             try TransactionService.shared.create(with: request, for: month, in: context)
-            return true
         } catch {
             showErrorAlert = true
             return false
         }
+        if request.isRecurrent {
+            permissionRequest = Task { [permissionService] in
+                _ = await permissionService.requestIfNeeded()
+            }
+        }
+        return true
     }
 }

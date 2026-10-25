@@ -29,10 +29,7 @@ final class MonthService {
         let months = try context.fetch(
             FetchDescriptor<Month>(sortBy: [SortDescriptor(\.startDate, order: .reverse)])
         )
-        return months.first { month in
-            let interval = month.dateInterval
-            return interval.start <= date && date < interval.end
-        }
+        return months.first { month in month.contains(date) }
     }
 
     @discardableResult
