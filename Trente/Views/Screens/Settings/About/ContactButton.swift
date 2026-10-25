@@ -42,6 +42,6 @@ struct ContactButton<Content: View>: View {
 
 #Preview {
     ContactButton(url: nil, address: SupportMail.address) {
-        Text("Contact Me")
+        Text("Send Me an Email")
     }
 }
