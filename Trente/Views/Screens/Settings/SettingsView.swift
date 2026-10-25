@@ -13,8 +13,7 @@ struct SettingsView: View {
     @State private var isSubscribed = false
     @State private var isShowingPaywall = false
     @State private var notificationPermission = NotificationPermissionState()
-    @AppStorage(ReminderTime.hourKey) private var reminderHour = ReminderTime.standard.hour
-    @AppStorage(ReminderTime.minuteKey) private var reminderMinute = ReminderTime.standard.minute
+    @State private var reminderTime = ReminderTime.stored().date(on: .now) ?? .now
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingManageSubscriptions = false
@@ -32,7 +31,7 @@ struct SettingsView: View {
                 )
                 NotificationsSection(
                     status: notificationPermission.status,
-                    reminderTime: reminderTime,
+                    reminderTime: $reminderTime,
                     mentionsApplePay: isPhone,
                     onTurnOn: turnOnNotifications,
                     onOpenSettings: openNotificationSettings
@@ -74,6 +73,9 @@ struct SettingsView: View {
             SubscriptionView()
         }
         .refreshesNotificationPermission(notificationPermission)
+        .onChange(of: reminderTime) { _, time in
+            ReminderTime(date: time).store()
+        }
         #if os(iOS)
         .manageSubscriptionsSheet(
             isPresented: $isShowingManageSubscriptions,
@@ -98,19 +100,6 @@ struct SettingsView: View {
         #else
         openURL(ExternalLinks.manageSubscriptions)
         #endif
-    }
-
-    private var reminderTime: Binding<Date> {
-        Binding(
-            get: {
-                ReminderTime(hour: reminderHour, minute: reminderMinute).date(on: .now) ?? .now
-            },
-            set: { date in
-                let time = ReminderTime(date: date)
-                reminderHour = time.hour
-                reminderMinute = time.minute
-            }
-        )
     }
 
     private func turnOnNotifications() {
