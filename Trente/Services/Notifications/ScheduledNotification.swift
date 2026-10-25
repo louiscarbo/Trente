@@ -25,6 +25,16 @@ struct ScheduledNotification {
 }
 
 extension ScheduledNotification {
+    static func dayStamp(of date: Date, calendar: Calendar) -> String {
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        return String(
+            format: "%04ld-%02ld-%02ld",
+            components.year ?? 0,
+            components.month ?? 0,
+            components.day ?? 0
+        )
+    }
+
     var request: UNNotificationRequest {
         let content = UNMutableNotificationContent()
         content.title = title

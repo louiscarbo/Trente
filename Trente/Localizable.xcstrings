@@ -7,6 +7,9 @@
     "    You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
 
     },
+    "%@ starts today" : {
+
+    },
     "-" : {
 
     },
@@ -108,6 +111,9 @@
 
     },
     "Add your notes here." : {
+
+    },
+    "Added automatically." : {
 
     },
     "All Months" : {
@@ -233,6 +239,9 @@
     "Due today" : {
 
     },
+    "Due today. Open Trente to mark it as paid." : {
+
+    },
     "Edit" : {
 
     },
@@ -274,6 +283,9 @@
 
     },
     "Expected This Month" : {
+
+    },
+    "Expected today. Open Trente to mark it as received." : {
 
     },
     "Expense" : {
@@ -694,6 +706,12 @@
     "Trente splits your budget into Needs, Wants and Savings, so you always know what's left this month." : {
 
     },
+    "Trente tells you when a new month starts and when a recurring payment like rent is due, and sends you a notification after each Apple Pay purchase so you can log it in one go." : {
+
+    },
+    "Trente tells you when a new month starts and when a recurring payment like rent or a salary is due, so you can mark it as paid in one tap." : {
+
+    },
     "Trente+" : {
 
     },
@@ -730,9 +748,6 @@
     "What's included" : {
 
     },
-    "When you pay with Apple Pay, Trente sends you a notification. Tap it to review the expense and log it in one go." : {
-
-    },
     "With Trente+, you can add images and notes to your transactions. Try it now!" : {
 
     },
@@ -752,6 +767,9 @@
 
     },
     "Your monthly budget" : {
+
+    },
+    "Your new month is ready, with the same budget as last month. Open Trente to see it." : {
 
     }
   },

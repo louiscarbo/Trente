@@ -101,14 +101,7 @@ struct RecurringNotificationPlanner {
     }
 
     private func identifier(forRuleID ruleID: UUID, on date: Date) -> String {
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        let dayString = String(
-            format: "%04ld-%02ld-%02ld",
-            components.year ?? 0,
-            components.month ?? 0,
-            components.day ?? 0
-        )
-        return "\(Self.identifierPrefix)\(ruleID.uuidString).\(dayString)"
+        "\(Self.identifierPrefix)\(ruleID.uuidString).\(ScheduledNotification.dayStamp(of: date, calendar: calendar))"
     }
 
     static func body(for kind: RecurringNotificationRequest.Kind, isIncome: Bool) -> String {
