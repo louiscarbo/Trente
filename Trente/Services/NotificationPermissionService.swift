@@ -52,6 +52,13 @@ struct NotificationPermissionService {
     func requestIfNeeded() async -> NotificationPermissionStatus {
         guard await status() == .notDetermined else { return await status() }
         let isGranted = (try? await center.requestAuthorization(options: [.alert, .sound])) ?? false
+        if isGranted {
+            NotificationCenter.default.post(name: .notificationPermissionGranted, object: nil)
+        }
         return isGranted ? .authorized : .denied
     }
+}
+
+extension Notification.Name {
+    static let notificationPermissionGranted = Notification.Name("notificationPermissionGranted")
 }
