@@ -33,22 +33,25 @@ struct NotificationsSection: View {
                 }
                 Button("Notification Settings", systemImage: "gear", action: onOpenSettings)
             }
-            DatePicker(
-                "Reminder Time",
-                selection: $reminderTime,
-                displayedComponents: .hourAndMinute
-            )
-            .disabled(status != .authorized)
+            if status == .authorized {
+                DatePicker(
+                    "Reminder Time",
+                    selection: $reminderTime,
+                    displayedComponents: .hourAndMinute
+                )
+            }
         } header: {
             Text("Notifications")
         } footer: {
-            if mentionsApplePay {
-                Text("""
+            if status == .authorized {
+                if mentionsApplePay {
+                    Text("""
                     Trente reminds you at this time when a new month starts and when a recurring transaction is due. \
                     Apple Pay notifications arrive right after each purchase.
                     """)
-            } else {
-                Text("Trente reminds you at this time when a new month starts and when a recurring transaction is due.")
+                } else {
+                    Text("Trente reminds you at this time when a new month starts and when a recurring transaction is due.")
+                }
             }
         }
     }
