@@ -10,18 +10,15 @@ import StoreKit
 
 struct SettingsView: View {
     @Environment(\.openURL) private var openURL
-    @Environment(\.scenePhase) private var scenePhase
     @State private var isSubscribed = false
     @State private var isShowingPaywall = false
-    @State private var notificationStatus: NotificationPermissionStatus?
+    @State private var notificationPermission = NotificationPermissionState()
     @AppStorage(ReminderTime.hourKey) private var reminderHour = ReminderTime.standard.hour
     @AppStorage(ReminderTime.minuteKey) private var reminderMinute = ReminderTime.standard.minute
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingManageSubscriptions = false
     #endif
-
-    private let notificationPermission = NotificationPermissionService()
 
     var body: some View {
         let appInfo = AppInfo.current
@@ -34,7 +31,7 @@ struct SettingsView: View {
                     onManage: manageSubscription
                 )
                 NotificationsSection(
-                    status: notificationStatus,
+                    status: notificationPermission.status,
                     reminderTime: reminderTime,
                     mentionsApplePay: isPhone,
                     onTurnOn: turnOnNotifications,
@@ -76,13 +73,7 @@ struct SettingsView: View {
         .sheet(isPresented: $isShowingPaywall) {
             SubscriptionView()
         }
-        .task {
-            await refreshNotificationStatus()
-        }
-        .onChange(of: scenePhase) { _, phase in
-            guard phase == .active else { return }
-            Task { await refreshNotificationStatus() }
-        }
+        .refreshesNotificationPermission(notificationPermission)
         #if os(iOS)
         .manageSubscriptionsSheet(
             isPresented: $isShowingManageSubscriptions,
@@ -122,13 +113,9 @@ struct SettingsView: View {
         )
     }
 
-    private func refreshNotificationStatus() async {
-        notificationStatus = await notificationPermission.status()
-    }
-
     private func turnOnNotifications() {
         Task {
-            notificationStatus = await notificationPermission.requestIfNeeded()
+            await notificationPermission.request()
         }
     }
 
