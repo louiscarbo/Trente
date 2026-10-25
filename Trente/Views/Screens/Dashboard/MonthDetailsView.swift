@@ -23,6 +23,9 @@ struct MonthDetailsView: View {
 
     @State private var resetDraft: Bool = false
 
+    @AppStorage(TransactionCSVFormat.styleKey) private var exportStyle = TransactionCSVFormat.Style.standard
+    @AppStorage(TransactionCSVFormat.includesNotesKey) private var exportIncludesNotes = true
+
     init(month: Month) {
         self.original = month
         _draft = State(initialValue: .init(from: month))
@@ -41,6 +44,7 @@ struct MonthDetailsView: View {
                     )
                     .id(resetDraft)
                     DeleteSection(onConfirmDelete: deleteMonth)
+                    ExportMonthSection(file: exportFile)
                 }
                 .padding()
             }
@@ -64,6 +68,14 @@ struct MonthDetailsView: View {
         .onChange(of: showErrorAlert) {
             if !showErrorAlert { errorAction = nil }
         }
+    }
+
+    private var exportFile: TransactionsCSVFile {
+        TransactionsCSVFile(
+            rows: TransactionExportRow.rows(from: [original]),
+            fileName: TransactionsCSVFile.fileName(for: original),
+            format: TransactionCSVFormat(style: exportStyle, includesNotes: exportIncludesNotes)
+        )
     }
 
     private func saveMonth() {
@@ -115,6 +127,36 @@ struct MonthDetailsView: View {
             .fill(.regularMaterial)
             .stroke(.secondary.opacity(0.4), lineWidth: 3)
             .ignoresSafeArea()
+        }
+    }
+}
+
+private struct ExportMonthSection: View {
+    let file: TransactionsCSVFile
+
+    var body: some View {
+        GroupBox(label: Label("Export Month", systemImage: "square.and.arrow.up")) {
+            VStack(spacing: .medium) {
+                Text(description)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                ExportButton(title: "Export…", file: file)
+
+                Text("To export several months or change the format, go to Settings › Export Transactions.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .groupBoxStyle(TrenteGroupBoxStyle())
+    }
+
+    private var description: LocalizedStringKey {
+        if file.rows.isEmpty {
+            "This month has no transactions to export yet."
+        } else {
+            "Save this month's transactions as a spreadsheet file (.csv) that opens in Numbers, Excel or Google Sheets."
         }
     }
 }
