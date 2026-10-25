@@ -42,7 +42,10 @@ struct NotificationsSection: View {
             Text("Notifications")
         } footer: {
             if mentionsApplePay {
-                Text("Trente reminds you at this time when a new month starts and when a recurring transaction is due. Apple Pay notifications arrive right after each purchase.")
+                Text("""
+                    Trente reminds you at this time when a new month starts and when a recurring transaction is due. \
+                    Apple Pay notifications arrive right after each purchase.
+                    """)
             } else {
                 Text("Trente reminds you at this time when a new month starts and when a recurring transaction is due.")
             }
