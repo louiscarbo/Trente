@@ -25,11 +25,7 @@ struct HelpAboutSection: View {
             }
 
             Link(destination: reviewURL) {
-                ExternalLinkLabel(
-                    title: "Rate on the App Store",
-                    detail: "Opens Trente's App Store page",
-                    systemImage: "star"
-                )
+                ExternalLinkLabel(title: "Rate on the App Store", systemImage: "star")
             }
 
             NavigationLink {
