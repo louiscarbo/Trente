@@ -9,21 +9,11 @@ import SwiftUI
 
 struct ExternalLinkLabel: View {
     let title: LocalizedStringKey
-    let detail: LocalizedStringKey
     let systemImage: String
 
     var body: some View {
         HStack {
-            Label {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                    Text(detail)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-            } icon: {
-                Image(systemName: systemImage)
-            }
+            Label(title, systemImage: systemImage)
             Spacer()
             Image(systemName: "arrow.up.right")
                 .font(.footnote)
@@ -38,11 +28,7 @@ struct ExternalLinkLabel: View {
 #Preview {
     Form {
         Link(destination: ExternalLinks.writeReview) {
-            ExternalLinkLabel(
-                title: "Rate on the App Store",
-                detail: "Opens Trente's App Store page",
-                systemImage: "star"
-            )
+            ExternalLinkLabel(title: "Rate on the App Store", systemImage: "star")
         }
     }
     .formStyle(.grouped)

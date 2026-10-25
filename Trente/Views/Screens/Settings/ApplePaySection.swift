@@ -14,11 +14,7 @@ struct ApplePaySection: View {
     var body: some View {
         Section {
             Button(action: onGetShortcut) {
-                ExternalLinkLabel(
-                    title: "Get the Shortcut",
-                    detail: "Opens Shortcuts to add it",
-                    systemImage: "square.and.arrow.down"
-                )
+                ExternalLinkLabel(title: "Get the Shortcut", systemImage: "square.and.arrow.down")
             }
             NavigationLink {
                 ApplePaySetupView(steps: setupSteps, onGetShortcut: onGetShortcut)
