@@ -8,31 +8,6 @@
 import SwiftUI
 import StoreKit
 
-enum TrentePlus: Hashable {
-    case monthly
-    case annual
-    
-    static let groupID = "21676268"
-    
-    init?(_ product: Product) {
-        switch product.id {
-        case Self.monthly.id:
-            self = .monthly
-        case Self.annual.id:
-            self = .annual
-        default:
-            return nil
-        }
-    }
-    
-    var id: String {
-        switch self {
-        case .monthly: return "TrentePlus"
-        case .annual: return "TrentePlusYearly"
-        }
-    }
-}
-
 struct SubscriptionView: View {
     @Environment(\.dismiss) private var dismiss
 

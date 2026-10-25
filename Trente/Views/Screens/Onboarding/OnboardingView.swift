@@ -14,15 +14,12 @@ struct OnboardingView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
     @State private var model = OnboardingModel(steps: OnboardingStep.availableSteps)
     @State private var saveErrorMessage: String?
-    @State private var notificationStatus: NotificationPermissionStatus = .notDetermined
+    @State private var notificationPermission = NotificationPermissionState()
     @State private var isShowingPaywall = false
     @State private var hasOpenedShortcut = false
-
-    private let notificationPermission = NotificationPermissionService()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -32,13 +29,7 @@ struct OnboardingView: View {
                 .transition(stepTransition)
         }
         .clipped()
-        .task(id: model.currentStep) {
-            await refreshNotificationStatus()
-        }
-        .onChange(of: scenePhase) { _, phase in
-            guard phase == .active else { return }
-            Task { await refreshNotificationStatus() }
-        }
+        .refreshesNotificationPermission(notificationPermission)
         .sheet(isPresented: $isShowingPaywall, onDismiss: onFinish) {
             SubscriptionView()
         }
@@ -109,7 +100,7 @@ struct OnboardingView: View {
             NotificationsStepView(
                 currency: model.draft.currency,
                 showsApplePay: model.steps.contains(.applePay),
-                status: notificationStatus,
+                status: notificationPermission.status ?? .notDetermined,
                 onEnable: requestNotifications,
                 onOpenSettings: openNotificationSettings,
                 onContinue: goForward
@@ -140,14 +131,9 @@ struct OnboardingView: View {
         return Text("Step \(position) of \(model.steps.count)")
     }
 
-    private func refreshNotificationStatus() async {
-        guard model.currentStep == .notifications else { return }
-        notificationStatus = await notificationPermission.status()
-    }
-
     private func requestNotifications() {
         Task {
-            notificationStatus = await notificationPermission.requestIfNeeded()
+            await notificationPermission.request()
             guard model.currentStep == .notifications else { return }
             goForward()
         }

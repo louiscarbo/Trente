@@ -22,7 +22,13 @@ final class NotificationScheduler {
     func start(container: ModelContainer) {
         guard self.container == nil else { return }
         self.container = container
-        let events = [ModelContext.didSave, .NSCalendarDayChanged, UserDefaults.didChangeNotification, .appDidBecomeActive]
+        let events = [
+            ModelContext.didSave,
+            .NSCalendarDayChanged,
+            UserDefaults.didChangeNotification,
+            .appDidBecomeActive,
+            .notificationPermissionGranted
+        ]
         trigger = AppEventTrigger(events: events, delay: .seconds(1)) {
             await NotificationScheduler.shared.reschedule()
         }

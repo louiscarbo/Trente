@@ -17,11 +17,9 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
 
     @MainActor
     static var availableSteps: [OnboardingStep] {
-        #if os(iOS)
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if DeviceIdiom.isPhone {
             return allCases
         }
-        #endif
         return allCases.filter { $0 != .applePay }
     }
 }
