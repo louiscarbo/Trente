@@ -62,8 +62,10 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             #if os(iOS)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Close") { dismiss() }
+                ToolbarItem(placement: .closeButtonPlacement) {
+                    Button { dismiss() } label: {
+                        Label("Close", systemImage: "chevron.down")
+                    }
                 }
             }
             #endif
