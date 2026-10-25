@@ -38,6 +38,7 @@ struct NotificationsSection: View {
                 selection: $reminderTime,
                 displayedComponents: .hourAndMinute
             )
+            .disabled(status != .authorized)
         } header: {
             Text("Notifications")
         } footer: {
