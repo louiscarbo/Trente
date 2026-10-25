@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-struct ExternalLinkLabel: View {
-    let title: LocalizedStringKey
-    let systemImage: String
+struct ExternalLinkLabel<Content: View>: View {
+    @ViewBuilder let content: () -> Content
 
     var body: some View {
         HStack {
-            Label(title, systemImage: systemImage)
+            content()
             Spacer()
             Image(systemName: "arrow.up.right")
                 .font(.footnote)
@@ -22,6 +21,18 @@ struct ExternalLinkLabel: View {
                 .accessibilityHidden(true)
         }
         .contentShape(.rect)
+    }
+}
+
+extension ExternalLinkLabel where Content == Label<Text, Image> {
+    init(title: LocalizedStringResource, systemImage: String) {
+        self.init {
+            Label {
+                Text(title)
+            } icon: {
+                Image(systemName: systemImage)
+            }
+        }
     }
 }
 

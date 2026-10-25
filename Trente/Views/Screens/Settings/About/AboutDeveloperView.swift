@@ -83,19 +83,8 @@ struct ProfileLinkRow: View {
 
     var body: some View {
         Link(destination: url) {
-            HStack {
-                Label {
-                    Text(title)
-                } icon: {
-                    Image(systemName: systemImage)
-                }
-                Spacer()
-                Image(systemName: "arrow.up.right")
-                    .foregroundStyle(.secondary)
-                    .accessibilityHidden(true)
-            }
-            .padding(.vertical, DesignSystem.Spacing.medium.rawValue)
-            .contentShape(Rectangle())
+            ExternalLinkLabel(title: title, systemImage: systemImage)
+                .padding(.vertical, DesignSystem.Spacing.medium.rawValue)
         }
         .buttonStyle(.plain)
     }
