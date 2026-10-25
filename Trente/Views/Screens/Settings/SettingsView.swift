@@ -32,17 +32,17 @@ struct SettingsView: View {
                 NotificationsSection(
                     status: notificationPermission.status,
                     reminderTime: $reminderTime,
-                    mentionsApplePay: isPhone,
+                    mentionsApplePay: DeviceIdiom.isPhone,
                     onTurnOn: turnOnNotifications,
                     onOpenSettings: openNotificationSettings
                 )
                 #if os(iOS)
-                if isPhone {
+                if DeviceIdiom.isPhone {
                     ApplePaySection(onGetShortcut: openShortcut)
                 }
                 #endif
                 HelpAboutSection(
-                    faqItems: FAQItem.items(isPhone: isPhone),
+                    faqItems: FAQItem.items(isPhone: DeviceIdiom.isPhone),
                     contactURL: SupportMail.feedbackURL(appInfo: appInfo),
                     contactAddress: SupportMail.address,
                     reviewURL: ExternalLinks.writeReview,
@@ -80,14 +80,6 @@ struct SettingsView: View {
         )
         #elseif os(macOS)
         .frame(minWidth: 460, idealWidth: 500, minHeight: 520)
-        #endif
-    }
-
-    private var isPhone: Bool {
-        #if os(iOS)
-        UIDevice.current.userInterfaceIdiom == .phone
-        #else
-        false
         #endif
     }
 
