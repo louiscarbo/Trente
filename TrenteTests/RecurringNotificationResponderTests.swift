@@ -92,17 +92,25 @@ struct RecurringNotificationResponderTests {
         #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
     }
 
-    @Test("Mark as Paid does nothing when the month doesn't exist yet")
-    func markAsPaidWithoutMonth() throws {
+    @Test("Mark as Paid starts the occurrence's month when the app hasn't yet")
+    func markAsPaidStartsMissingMonth() throws {
         let context = try makeContext()
+        insertMonth(year: 2026, month: 9, in: context)
         let rule = insertRule("Rent", in: context)
         try context.save()
         let payload = RecurringNotificationPayload(ruleID: rule.id, occurrenceDate: day(2026, 10, 15))
 
-        let handled = try RecurringNotificationResponder.handle(.markAsPaid, payload: payload, in: context)
+        let handled = try RecurringNotificationResponder.handle(
+            .markAsPaid,
+            payload: payload,
+            in: context,
+            now: day(2026, 10, 15)
+        )
 
-        #expect(!handled)
-        #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
+        #expect(handled)
+        let group = try #require(try context.fetch(FetchDescriptor<TransactionGroup>()).first)
+        #expect(group.month.startDate == day(2026, 10, 1))
+        #expect(group.recurringOccurrenceDate == day(2026, 10, 15))
     }
 
     @Test("A date that isn't one of the rule's occurrences is ignored")

@@ -259,18 +259,20 @@ struct RecurringNotificationPlannerTests {
         #expect(request.identifier == "recurring.\(rule.id.uuidString).2025-04-15")
     }
 
-    @Test("Buttons are offered only for a manual occurrence inside an existing month")
-    func buttonsNeedAManualOccurrenceInAMonth() throws {
+    @Test("Buttons are offered even before the occurrence's month exists")
+    func buttonsDoNotNeedAMonth() throws {
         let context = try makeContext()
         let planner = RecurringNotificationPlanner(horizonDays: 40, calendar: calendar)
+        insertMonth(year: 2025, month: 4, in: context)
         let rent = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
-        let salary = insertRule("Salary", startingOn: day(2025, 1, 12), repartition: [.needs: 1000_00], automatic: true, in: context)
-        let april = insertMonth(year: 2025, month: 4, in: context)
 
-        let requests = planner.requests(for: [rent, salary], currency: euro, now: now, months: [april])
+        let notifications = planner.requests(for: [rent], currency: euro, now: now)
+            .map(\.scheduledNotification)
 
-        let confirmable = requests.map { request in "\(request.ruleID == rent.id ? "rent" : "salary") \(request.canBeConfirmed)" }
-        #expect(confirmable == ["rent true", "rent false", "salary false", "salary false"])
+        #expect(notifications.map(\.categoryIdentifier) == [
+            RecurringNotificationAction.expenseCategory,
+            RecurringNotificationAction.expenseCategory
+        ])
     }
 
     @Test("An income occurrence is flagged as income")
@@ -286,12 +288,11 @@ struct RecurringNotificationPlannerTests {
     @Test("A confirmable reminder gets the buttons matching its direction, an automatic one stays quiet")
     func scheduledNotificationCarriesCategoryAndProminence() throws {
         let context = try makeContext()
-        let april = insertMonth(year: 2025, month: 4, in: context)
         let rent = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
         let salary = insertRule("Salary", startingOn: day(2025, 1, 20), repartition: [.needs: 1000_00], in: context)
         let netflix = insertRule("Netflix", startingOn: day(2025, 1, 25), repartition: [.wants: -13_99], automatic: true, in: context)
 
-        let notifications = planner.requests(for: [rent, salary, netflix], currency: euro, now: now, months: [april])
+        let notifications = planner.requests(for: [rent, salary, netflix], currency: euro, now: now)
             .map(\.scheduledNotification)
 
         #expect(notifications.map(\.categoryIdentifier) == [

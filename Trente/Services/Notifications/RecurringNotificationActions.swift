@@ -76,8 +76,10 @@ enum RecurringNotificationResponder {
     static func handle(
         _ action: RecurringNotificationAction,
         payload: RecurringNotificationPayload,
-        in context: ModelContext
+        in context: ModelContext,
+        now: Date = .now
     ) throws -> Bool {
+        try CatchUpService.shared.catchUp(in: context, now: now)
         let ruleID = payload.ruleID
         let descriptor = FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { rule in rule.id == ruleID })
         guard let rule = try context.fetch(descriptor).first,

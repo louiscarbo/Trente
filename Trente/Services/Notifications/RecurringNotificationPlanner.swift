@@ -20,7 +20,6 @@ struct RecurringNotificationRequest: Equatable {
     let fireDate: Date
     let kind: Kind
     let isIncome: Bool
-    let canBeConfirmed: Bool
     let title: String
     let body: String
 }
@@ -36,8 +35,7 @@ struct RecurringNotificationPlanner {
     func requests(
         for rules: [RecurringTransactionRule],
         currency: Currency,
-        now: Date,
-        months: [Month] = []
+        now: Date
     ) -> [RecurringNotificationRequest] {
         let start = calendar.startOfDay(for: now)
         guard let end = calendar.date(byAdding: .day, value: horizonDays, to: start) else { return [] }
@@ -48,8 +46,7 @@ struct RecurringNotificationPlanner {
                 for: rule,
                 in: window,
                 currency: currency,
-                now: now,
-                months: months
+                now: now
             )
         }
     }
@@ -58,8 +55,7 @@ struct RecurringNotificationPlanner {
         for rule: RecurringTransactionRule,
         in window: DateInterval,
         currency: Currency,
-        now: Date,
-        months: [Month]
+        now: Date
     ) -> [RecurringNotificationRequest] {
         let amountCents = rule.amountCents
         let kind: RecurringNotificationRequest.Kind = rule.autoConfirm ? .addedAutomatically : .due
@@ -78,7 +74,6 @@ struct RecurringNotificationPlanner {
                 fireDate > now
             else { return nil }
 
-            let hasMonth = months.contains { month in month.contains(date) }
             return RecurringNotificationRequest(
                 identifier: identifier(forRuleID: rule.id, on: date),
                 ruleID: rule.id,
@@ -86,7 +81,6 @@ struct RecurringNotificationPlanner {
                 fireDate: fireDate,
                 kind: kind,
                 isIncome: isIncome,
-                canBeConfirmed: kind == .due && hasMonth,
                 title: title,
                 body: body
             )
@@ -144,7 +138,7 @@ extension RecurringNotificationRequest {
     }
 
     private var categoryIdentifier: String? {
-        guard canBeConfirmed else { return nil }
+        guard kind == .due else { return nil }
         return isIncome ? RecurringNotificationAction.incomeCategory : RecurringNotificationAction.expenseCategory
     }
 }
