@@ -33,7 +33,9 @@ struct CreditRow: View {
     var body: some View {
         if let url = credit.url {
             Link(destination: url) {
-                content
+                ExternalLinkLabel {
+                    content
+                }
             }
         } else {
             content
@@ -41,22 +43,13 @@ struct CreditRow: View {
     }
 
     private var content: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(credit.title)
-                    .foregroundStyle(.primary)
-                Text(credit.detail)
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            if credit.url != nil {
-                Image(systemName: "arrow.up.right")
-                    .foregroundStyle(.secondary)
-                    .accessibilityHidden(true)
-            }
+        VStack(alignment: .leading, spacing: 2) {
+            Text(credit.title)
+                .foregroundStyle(.primary)
+            Text(credit.detail)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
         }
-        .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
     }
 }
