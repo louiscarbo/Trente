@@ -24,8 +24,8 @@ struct FAQView: View {
             } else {
                 if items.contains(FAQItem.featured) {
                     Section {
-                        NavigationLink {
-                            FAQAnswerView(item: FAQItem.featured)
+                        DisclosureGroup {
+                            FAQAnswer(text: FAQItem.featured.answer)
                         } label: {
                             FAQFeaturedCard(shares: FAQFeaturedCard.fiftyThirtyTwenty)
                         }
@@ -50,8 +50,8 @@ struct FAQView: View {
         ForEach(FAQSection.sections(for: items)) { section in
             Section {
                 ForEach(section.items) { item in
-                    NavigationLink {
-                        FAQAnswerView(item: item)
+                    DisclosureGroup {
+                        FAQAnswer(text: item.answer)
                     } label: {
                         Text(item.question)
                     }
@@ -121,35 +121,18 @@ struct FAQFeaturedCard: View {
     }
 }
 
-struct FAQAnswerView: View {
-    let item: FAQItem
+struct FAQAnswer: View {
+    let text: LocalizedStringResource
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: .medium) {
-                Text(item.question)
-                    .font(.title2)
-                    .bold()
-                Text(item.answer)
-                    .textSelection(.enabled)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-        }
-        #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-        #endif
+        Text(text)
+            .foregroundStyle(.secondary)
+            .textSelection(.enabled)
     }
 }
 
 #Preview {
     NavigationStack {
         FAQView(items: FAQItem.all)
-    }
-}
-
-#Preview("Answer") {
-    NavigationStack {
-        FAQAnswerView(item: FAQItem.featured)
     }
 }
