@@ -108,7 +108,7 @@ struct FAQItem: Identifiable, Equatable {
             question: "What are recurring transactions?",
             answer: """
                 Transactions that come back every week, month or year, like rent or a salary. \
-                Upcoming ones appear in the months you've created. Tap one, or swipe it, to mark it as Paid (or Received) \
+                Upcoming ones appear in the months you've created. Open one to mark it as Paid (or Received) \
                 or to skip just that one. A recurring transaction never changes past months.
                 """
         ),
@@ -157,7 +157,7 @@ struct FAQItem: Identifiable, Equatable {
             question: "Which widgets are available?",
             answer: """
                 Month Recap (remaining budget and spending) and Category Recap (what's left in one category; \
-                touch and hold the widget to choose it). Both are also available on the Lock Screen on iPhone.
+                edit the widget to choose it). Both are also available on the Lock Screen on iPhone.
                 """
         )
     ]
