@@ -61,7 +61,7 @@ struct RecurringNotificationPlanner {
         now: Date,
         months: [Month]
     ) -> [RecurringNotificationRequest] {
-        let amountCents = rule.repartition.values.reduce(0, +)
+        let amountCents = rule.amountCents
         let kind: RecurringNotificationRequest.Kind = rule.autoConfirm ? .addedAutomatically : .due
         let title = NotificationText.amountTitle(
             amountCents: amountCents,
