@@ -28,7 +28,7 @@ struct AboutDeveloperView: View {
                 .fixedSize(horizontal: false, vertical: true)
 
                 ContactButton(url: contactURL, address: contactAddress) {
-                    Text("Send Me an Email")
+                    Label("Send Me an Email", systemImage: "envelope")
                 }
                 .buttonStyle(TrentePrimaryButtonStyle())
 
