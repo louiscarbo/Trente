@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ApplePaySection: View {
-    let setupSteps: [LocalizedStringKey]
     let onGetShortcut: () -> Void
 
     var body: some View {
@@ -17,7 +16,7 @@ struct ApplePaySection: View {
                 ExternalLinkLabel(title: "Get the Shortcut", systemImage: "square.and.arrow.down")
             }
             NavigationLink {
-                ApplePaySetupView(steps: setupSteps, onGetShortcut: onGetShortcut)
+                ApplePaySetupView(onGetShortcut: onGetShortcut)
             } label: {
                 Label("How to Set It Up", systemImage: "list.number")
             }
@@ -28,13 +27,12 @@ struct ApplePaySection: View {
 }
 
 struct ApplePaySetupView: View {
-    let steps: [LocalizedStringKey]
     let onGetShortcut: () -> Void
 
     var body: some View {
         ScrollView {
             VStack(spacing: .large) {
-                ApplePaySetupGuide(steps: steps)
+                ApplePaySetupGuide()
 
                 Button(action: onGetShortcut) {
                     Text("Get the Shortcut")
@@ -50,7 +48,7 @@ struct ApplePaySetupView: View {
 #Preview {
     NavigationStack {
         Form {
-            ApplePaySection(setupSteps: ShortcutsSetupCard.applePaySetupSteps) {}
+            ApplePaySection {}
         }
         .formStyle(.grouped)
     }
@@ -58,6 +56,6 @@ struct ApplePaySetupView: View {
 
 #Preview("Setup") {
     NavigationStack {
-        ApplePaySetupView(steps: ShortcutsSetupCard.applePaySetupSteps) {}
+        ApplePaySetupView {}
     }
 }

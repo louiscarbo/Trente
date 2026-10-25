@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ApplePaySetupGuide: View {
-    let steps: [LocalizedStringKey]
+    static let steps: [LocalizedStringKey] = [
+        "Tap **Get the Shortcut** below and add **Log Wallet Transaction** to your shortcuts.",
+        "In the **Automation** tab, create a new automation with the **Wallet** trigger, choose your cards and select **Run Immediately**.",
+        "Add **Run Shortcut**, pick **Log Wallet Transaction** and pass it the **Shortcut Input**."
+    ]
 
     var body: some View {
         VStack(spacing: .medium) {
             ShortcutsSetupCard(
                 title: "In the Shortcuts app",
                 systemImage: "creditcard",
-                steps: steps
+                steps: Self.steps
             )
 
             Label(
@@ -31,6 +35,6 @@ struct ApplePaySetupGuide: View {
 }
 
 #Preview {
-    ApplePaySetupGuide(steps: ShortcutsSetupCard.applePaySetupSteps)
+    ApplePaySetupGuide()
         .padding()
 }

@@ -20,7 +20,7 @@ struct ApplePayStepView: View {
             )
         } secondary: {
             OnboardingScrollPane {
-                ApplePaySetupGuide(steps: ShortcutsSetupCard.applePaySetupSteps)
+                ApplePaySetupGuide()
             }
         } actions: {
             if hasOpenedShortcut {

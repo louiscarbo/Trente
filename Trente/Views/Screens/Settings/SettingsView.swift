@@ -38,10 +38,7 @@ struct SettingsView: View {
                 )
                 #if os(iOS)
                 if isPhone {
-                    ApplePaySection(
-                        setupSteps: ShortcutsSetupCard.applePaySetupSteps,
-                        onGetShortcut: openShortcut
-                    )
+                    ApplePaySection(onGetShortcut: openShortcut)
                 }
                 #endif
                 HelpAboutSection(
