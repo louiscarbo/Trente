@@ -20,20 +20,7 @@ struct ApplePayStepView: View {
             )
         } secondary: {
             OnboardingScrollPane {
-                ShortcutsSetupCard(
-                    title: "In the Shortcuts app",
-                    systemImage: "creditcard",
-                    steps: ShortcutsSetupCard.applePaySetupSteps
-                )
-
-                Label(
-                    "Trente only receives the merchant name and the amount. Never your card details.",
-                    systemImage: "lock.fill"
-                )
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .padding(.horizontal, 4)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                ApplePaySetupGuide(steps: ShortcutsSetupCard.applePaySetupSteps)
             }
         } actions: {
             if hasOpenedShortcut {
