@@ -50,6 +50,10 @@ struct BudgetFigures: Hashable, Sendable {
 // MARK: - Computed Properties
 extension Month {
     var name: String {
+        Month.name(startingOn: startDate)
+    }
+
+    static func name(startingOn startDate: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy"
         return formatter.string(from: startDate).capitalized
