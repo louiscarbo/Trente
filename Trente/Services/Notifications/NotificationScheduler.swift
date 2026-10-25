@@ -66,14 +66,8 @@ final class NotificationScheduler {
     ) throws -> [ScheduledNotification] {
         guard let currency = try MonthService.shared.latestMonth(in: context)?.currency else { return [] }
         let rules = try context.fetch(FetchDescriptor<RecurringTransactionRule>())
-        let months = try context.fetch(FetchDescriptor<Month>())
-        return planner.requests(
-            for: rules,
-            currency: currency,
-            now: .now,
-            months: months
-        )
-        .map(\.scheduledNotification)
+        return planner.requests(for: rules, currency: currency, now: .now)
+            .map(\.scheduledNotification)
     }
 
     private func clearSettledRecurringNotifications(
