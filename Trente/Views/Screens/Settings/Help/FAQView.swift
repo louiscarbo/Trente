@@ -28,6 +28,8 @@ struct FAQView: View {
                             FAQAnswer(text: FAQItem.featured.answer)
                         } label: {
                             FAQFeaturedCard(shares: FAQFeaturedCard.fiftyThirtyTwenty)
+                                .accessibilityElement(children: .ignore)
+                                .accessibilityLabel(Text(FAQItem.featured.question))
                         }
                     }
                 }
