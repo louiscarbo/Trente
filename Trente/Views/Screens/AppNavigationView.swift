@@ -79,6 +79,24 @@ struct AppNavigationView: View {
             NewTransactionView(context: context)
         }
         #endif
+        .reviewPrompt(
+            monthCount: months.count,
+            isShowingLatestMonth: isShowingLatestMonth,
+            isPresentingSheet: isPresentingSheet
+        )
+    }
+
+    private var isShowingLatestMonth: Bool {
+        guard let latestMonth = months.first else { return false }
+        return selection == .month(latestMonth)
+    }
+
+    private var isPresentingSheet: Bool {
+        #if os(iOS)
+        pendingTransactionRouter.presentedPendingTransactionID != nil || deepLinkedTransaction != nil
+        #else
+        pendingTransactionRouter.presentedPendingTransactionID != nil
+        #endif
     }
 
     private func openDeepLink(_ link: DeepLink?) {
