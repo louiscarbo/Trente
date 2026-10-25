@@ -53,6 +53,7 @@ struct SettingsView: View {
             }
             .formStyle(.grouped)
             .navigationTitle("Settings")
+            .inlineNavigationBarTitleDisplayMode()
             #if os(iOS)
             .toolbar {
                 ToolbarItem(placement: .closeButtonPlacement) {
