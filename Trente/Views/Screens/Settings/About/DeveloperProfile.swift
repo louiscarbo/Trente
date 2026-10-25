@@ -27,19 +27,19 @@ struct DeveloperProfile {
                 id: "website",
                 title: "Website",
                 systemImage: "globe",
-                url: URL(string: "https://louis.carbo-estaque.fr")!
+                url: ExternalLinks.developerWebsite
             ),
             ProfileLink(
                 id: "linkedIn",
                 title: "LinkedIn",
                 systemImage: "person.crop.rectangle",
-                url: URL(string: "https://www.linkedin.com/in/louiscarbo")!
+                url: ExternalLinks.developerLinkedIn
             ),
             ProfileLink(
                 id: "gitHub",
                 title: "GitHub",
                 systemImage: "chevron.left.forwardslash.chevron.right",
-                url: URL(string: "https://github.com/louiscarbo")!
+                url: ExternalLinks.developerGitHub
             )
         ]
     )
