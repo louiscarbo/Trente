@@ -37,9 +37,7 @@ struct FAQView: View {
         .formStyle(.grouped)
         .searchable(text: $searchText, prompt: "Search questions")
         .navigationTitle("Frequently Asked Questions")
-        #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-        #endif
+        .inlineNavigationBarTitleDisplayMode()
     }
 
     private var isSearching: Bool {

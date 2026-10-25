@@ -39,9 +39,7 @@ struct AboutDeveloperView: View {
             .frame(maxWidth: .infinity)
         }
         .navigationTitle("About the Developer")
-        #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-        #endif
+        .inlineNavigationBarTitleDisplayMode()
     }
 
     private var portrait: some View {
