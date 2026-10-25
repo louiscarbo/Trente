@@ -27,6 +27,7 @@ A `RecurringTransactionRule` defines a transaction that repeats over time. It is
 *   The start date (its day is the anchor of the schedule) and optional end date, both inclusive and compared by day.
 *   `createdAt`: nothing is ever scheduled before the rule's creation day, so a new rule never touches past budgets.
 *   `skippedOccurrenceDates`: occurrences the user chose to skip.
+*   `id`: a permanent identifier, so a notification can find its rule again (a `PersistentIdentifier` decoded from a notification isn't reliable).
 *   `lastAutoConfirmedDate`: the latest occurrence an automatic rule recorded by itself. Automatic recording only looks after this date, so a deleted automatic transaction comes back as pending instead of being recorded again.
 *   The template for the `TransactionGroup` to be created, including title, amount, and category information.
 

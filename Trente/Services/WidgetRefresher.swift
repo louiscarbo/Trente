@@ -13,30 +13,13 @@ import WidgetKit
 final class WidgetRefresher {
     static let shared = WidgetRefresher()
 
-    private let debounceDelay: Duration = .seconds(1)
-    private var saveObserver: (any NSObjectProtocol)?
-    private var reloadTask: Task<Void, Never>?
+    private var trigger: AppEventTrigger?
 
     private init() {}
 
     func start() {
-        guard saveObserver == nil else { return }
-        saveObserver = NotificationCenter.default.addObserver(
-            forName: ModelContext.didSave,
-            object: nil,
-            queue: .main
-        ) { _ in
-            MainActor.assumeIsolated {
-                WidgetRefresher.shared.scheduleReload()
-            }
-        }
-    }
-
-    private func scheduleReload() {
-        reloadTask?.cancel()
-        reloadTask = Task { [debounceDelay] in
-            try? await Task.sleep(for: debounceDelay)
-            guard !Task.isCancelled else { return }
+        guard trigger == nil else { return }
+        trigger = AppEventTrigger(events: [ModelContext.didSave], delay: .seconds(1)) {
             WidgetCenter.shared.reloadAllTimelines()
         }
     }

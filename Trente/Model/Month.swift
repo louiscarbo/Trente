@@ -205,6 +205,11 @@ extension Month {
         return DateInterval(start: start, end: end)
     }
 
+    func contains(_ date: Date) -> Bool {
+        let interval = dateInterval
+        return interval.start <= date && date < interval.end
+    }
+
     var latestTransactions: [TransactionGroup] {
         transactionGroups.sorted(by: { $0.addedDate > $1.addedDate })
     }
