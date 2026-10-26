@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var isShowingPaywall = false
     @State private var notificationPermission = NotificationPermissionState()
     @State private var reminderTime = ReminderTime.stored().date(on: .now) ?? .now
+    @State private var syncMonitor = CloudSyncMonitor.shared
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingManageSubscriptions = false
@@ -41,7 +42,7 @@ struct SettingsView: View {
                     ApplePaySection(onGetShortcut: openShortcut)
                 }
                 #endif
-                DataSection(syncStatus: CloudSyncMonitor.shared.status)
+                DataSection(syncStatus: syncMonitor.status)
                 HelpAboutSection(
                     faqItems: FAQItem.items(isPhone: DeviceIdiom.isPhone),
                     contactURL: SupportMail.feedbackURL(appInfo: appInfo),
