@@ -12,6 +12,7 @@ import UniformTypeIdentifiers
 
 struct TransactionsCSVFile: Transferable, Sendable {
     private static let byteOrderMark = Data([0xEF, 0xBB, 0xBF])
+    private static let exportsDirectory = URL.temporaryDirectory.appending(path: "Exports", directoryHint: .isDirectory)
 
     let monthIDs: [UUID]
     let fileName: String
@@ -59,17 +60,28 @@ struct TransactionsCSVFile: Transferable, Sendable {
 
     func archive(rows: [TransactionExportRow], using container: ModelContainer) throws -> URL {
         let directory = try Self.makeTemporaryDirectory()
-        let folder = try writeFolder(rows: rows, in: directory, using: container)
-        let archiveURL = directory.appending(path: "\(fileName).zip", directoryHint: .notDirectory)
-        try Self.zipItem(at: folder, to: archiveURL)
-        try? FileManager.default.removeItem(at: folder)
-        return archiveURL
+        do {
+            let folder = try writeFolder(rows: rows, in: directory, using: container)
+            let archiveURL = directory.appending(path: "\(fileName).zip", directoryHint: .notDirectory)
+            try Self.zipItem(at: folder, to: archiveURL)
+            try? FileManager.default.removeItem(at: folder)
+            return archiveURL
+        } catch {
+            try? FileManager.default.removeItem(at: directory)
+            throw error
+        }
     }
 
     func writeCSV(rows: [TransactionExportRow]) throws -> URL {
-        let fileURL = try Self.makeTemporaryDirectory().appending(path: csvFileName, directoryHint: .notDirectory)
-        try csvData(rows: rows).write(to: fileURL, options: .atomic)
-        return fileURL
+        let directory = try Self.makeTemporaryDirectory()
+        do {
+            let fileURL = directory.appending(path: csvFileName, directoryHint: .notDirectory)
+            try csvData(rows: rows).write(to: fileURL, options: .atomic)
+            return fileURL
+        } catch {
+            try? FileManager.default.removeItem(at: directory)
+            throw error
+        }
     }
 
     static var transferRepresentation: some TransferRepresentation {
@@ -91,7 +103,8 @@ struct TransactionsCSVFile: Transferable, Sendable {
     }
 
     private static func makeTemporaryDirectory() throws -> URL {
-        let directory = URL.temporaryDirectory.appending(path: UUID().uuidString, directoryHint: .isDirectory)
+        try? FileManager.default.removeItem(at: exportsDirectory)
+        let directory = exportsDirectory.appending(path: UUID().uuidString, directoryHint: .isDirectory)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         return directory
     }
