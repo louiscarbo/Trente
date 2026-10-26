@@ -44,6 +44,19 @@ struct TransactionCSVFormatTests {
         ])
     }
 
+    @Test(
+        "The style follows the region's decimal separator",
+        arguments: [
+            ("en_US", TransactionCSVFormat.Style.standard),
+            ("en_GB", .standard),
+            ("fr_FR", .european),
+            ("de_DE", .european)
+        ]
+    )
+    func styleFollowsRegion(identifier: String, expected: TransactionCSVFormat.Style) {
+        #expect(TransactionCSVFormat.Style(locale: Locale(identifier: identifier)) == expected)
+    }
+
     @Test("A semicolon inside a field is quoted in the European style only")
     func quotesSeparator() {
         #expect(TransactionCSVBuilder.escaped("Rent; flat", separator: ";") == "\"Rent; flat\"")
