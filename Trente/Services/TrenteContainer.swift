@@ -12,12 +12,18 @@ import SwiftData
 enum TrenteContainer {
     static let iCloudStoreArgument = "-useICloudStore"
 
-    static let shared: Result<ModelContainer, any Error> = {
+    static var usesICloudStore: Bool {
         #if DEBUG
-        guard ProcessInfo.processInfo.arguments.contains(iCloudStoreArgument) else {
+        ProcessInfo.processInfo.arguments.contains(iCloudStoreArgument)
+        #else
+        true
+        #endif
+    }
+
+    static let shared: Result<ModelContainer, any Error> = {
+        guard usesICloudStore else {
             return .success(DataProvider.shared.modelContainer)
         }
-        #endif
         let configuration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: false, cloudKitDatabase: .automatic)
         return Result {
             try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [configuration])
