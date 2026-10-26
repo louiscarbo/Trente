@@ -54,6 +54,10 @@ struct TransactionCSVBuilderTests {
         Array(csv.components(separatedBy: "\r\n").dropFirst().dropLast())
     }
 
+    private func dataRecords(of csv: String) -> [[String]] {
+        Array(csvRecords(csv).dropFirst())
+    }
+
     @Test("Empty input gives only the header")
     func emptyInputGivesHeader() {
         #expect(TransactionCSVBuilder.csv(from: [], timeZone: paris) == headerLine)
@@ -113,36 +117,40 @@ struct TransactionCSVBuilderTests {
     }
 
     @Test("Escapes titles and notes inside a row")
-    func escapesInsideRow() {
-        let lines = dataLines(
+    func escapesInsideRow() throws {
+        let records = dataRecords(
             of: TransactionCSVBuilder.csv(
                 from: [row(title: "Dinner, \"Chez Paul\"", note: "With Anna\nand Tom")],
                 timeZone: paris
             )
         )
 
-        #expect(lines.count == 1)
-        #expect(lines.first?.contains("\"Dinner, \"\"Chez Paul\"\"\"") == true)
-        #expect(lines.first?.contains("\"With Anna\nand Tom\"") == true)
+        #expect(records.count == 1)
+        let record = try #require(records.first)
+        #expect(record.count == 10)
+        #expect(record[2] == "Dinner, \"Chez Paul\"")
+        #expect(record[8] == "With Anna\nand Tom")
     }
 
     @Test(
         "Dates around midnight use the given time zone",
         arguments: [(0, 0), (0, 1), (23, 59)]
     )
-    func datesAroundMidnight(hour: Int, minute: Int) {
+    func datesAroundMidnight(hour: Int, minute: Int) throws {
         let added = date(2026, 10, 1, hour: hour, minute: minute)
         let lines = dataLines(of: TransactionCSVBuilder.csv(from: [row(date: added)], timeZone: paris))
 
-        #expect(lines.first?.hasPrefix("2026-10-01,2026-10,") == true)
+        let line = try #require(lines.first)
+        #expect(line.hasPrefix("2026-10-01,2026-10,"))
     }
 
     @Test("Midnight in Paris is the previous day in UTC")
-    func midnightInOtherTimeZone() {
+    func midnightInOtherTimeZone() throws {
         let added = date(2026, 10, 1, hour: 0)
         let lines = dataLines(of: TransactionCSVBuilder.csv(from: [row(date: added)], timeZone: .gmt))
 
-        #expect(lines.first?.hasPrefix("2026-09-30,2026-09,") == true)
+        let line = try #require(lines.first)
+        #expect(line.hasPrefix("2026-09-30,2026-09,"))
     }
 
     @Test("Month text pads the month")
@@ -159,12 +167,12 @@ struct TransactionCSVBuilderTests {
             row(title: "Salary", type: .income, category: .wants, amountCents: 600_00, transactionID: salaryID)
         ]
 
-        let lines = dataLines(of: TransactionCSVBuilder.csv(from: rows, timeZone: paris))
+        let records = dataRecords(of: TransactionCSVBuilder.csv(from: rows, timeZone: paris))
 
-        #expect(lines.count == 3)
-        #expect(lines.allSatisfy { $0.hasSuffix(salaryID.uuidString) && $0.contains(",income,") })
-        #expect(lines.map { $0.components(separatedBy: ",")[4] } == ["Needs", "Wants", "Savings and Debts"])
-        #expect(lines.map { $0.components(separatedBy: ",")[5] } == ["1000.00", "600.00", "400.00"])
+        #expect(records.count == 3)
+        #expect(records.allSatisfy { record in record[9] == salaryID.uuidString && record[3] == "income" })
+        #expect(records.map { record in record[4] } == ["Needs", "Wants", "Savings and Debts"])
+        #expect(records.map { record in record[5] } == ["1000.00", "600.00", "400.00"])
     }
 
     @Test("Every row of an income split repeats the image path")
@@ -177,9 +185,9 @@ struct TransactionCSVBuilderTests {
         ]
         let path = "Images/2026-10-05 Salary \(salaryID.uuidString.prefix(8)).jpg"
 
-        let lines = dataLines(of: TransactionCSVBuilder.csv(from: rows, imagePaths: [salaryID: path], timeZone: paris))
+        let records = dataRecords(of: TransactionCSVBuilder.csv(from: rows, imagePaths: [salaryID: path], timeZone: paris))
 
-        #expect(lines.map { $0.components(separatedBy: ",")[9] } == [path, path, ""])
+        #expect(records.map { record in record[9] } == [path, path, ""])
     }
 
     @Test("Rows are sorted by date, then by title")
@@ -191,8 +199,8 @@ struct TransactionCSVBuilderTests {
             row(title: "Rent", date: date(2026, 10, 1), transactionID: UUID())
         ]
 
-        let titles = dataLines(of: TransactionCSVBuilder.csv(from: rows, timeZone: paris))
-            .map { $0.components(separatedBy: ",")[2] }
+        let titles = dataRecords(of: TransactionCSVBuilder.csv(from: rows, timeZone: paris))
+            .map { record in record[2] }
 
         #expect(titles == ["Rent", "Bakery", "coffee", "Taxi"])
     }

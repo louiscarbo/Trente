@@ -94,6 +94,22 @@ struct TransactionCSVFormatTests {
         #expect(!(lines(csv).first ?? "").contains("Image"))
     }
 
+    @Test("A European row with a semicolon in its title and note keeps every column")
+    func europeanRowWithSemicolons() {
+        let csv = TransactionCSVBuilder.csv(
+            from: [row(title: "Rent; flat", note: "Paid; late")],
+            format: european,
+            timeZone: paris
+        )
+
+        let records = csvRecords(csv, separator: ";")
+
+        #expect(records.count == 2)
+        #expect(records.allSatisfy { record in record.count == 10 })
+        #expect(records.last?[2] == "Rent; flat")
+        #expect(records.last?[8] == "Paid; late")
+    }
+
     @Test("The file uses the chosen format")
     func fileUsesFormat() {
         let file = TransactionsCSVFile(rows: [row()], fileName: "Trente 2026-10", format: european)
