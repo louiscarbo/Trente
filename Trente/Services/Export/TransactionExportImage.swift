@@ -63,7 +63,6 @@ enum TransactionExportImage {
         }
     }
 
-    @MainActor
     static func writeImages(
         of rows: [TransactionExportRow],
         to folder: URL,
@@ -82,7 +81,6 @@ enum TransactionExportImage {
         return paths
     }
 
-    @MainActor
     private static func imageData(for sourceID: PersistentIdentifier, in context: ModelContext) throws -> Data? {
         var descriptor = FetchDescriptor<TransactionGroup>(predicate: #Predicate { group in group.persistentModelID == sourceID })
         descriptor.fetchLimit = 1

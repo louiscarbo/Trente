@@ -18,32 +18,30 @@ struct TransactionExportView: View {
     @State private var excludedMonthIDs: Set<UUID> = []
 
     var body: some View {
-        let selectedMonths = months.filter { month in !excludedMonthIDs.contains(month.id) }
-        let rows = TransactionExportRow.rows(
-            from: selectedMonths,
-            groupsWithImages: Set(groupsWithImages.map(\.persistentModelID))
-        )
-        let transactionCount = Set(rows.map(\.transactionID)).count
-        let hasImages = rows.contains { row in row.imageSourceID != nil }
+        let options = months.map(ExportMonthOption.init(month:))
+        let selectedOptions = options.filter { option in !excludedMonthIDs.contains(option.id) }
+        let transactionCount = selectedOptions.reduce(0) { total, option in total + option.transactionCount }
+        let monthIDsWithImages = Set(groupsWithImages.map(\.month.id))
         let file = TransactionsCSVFile(
-            rows: rows,
+            monthIDs: selectedOptions.map(\.id),
             fileName: TransactionsCSVFile.fileName(
-                forMonthsStartingOn: selectedMonths.map(\.startDate),
+                forMonthsStartingOn: selectedOptions.map(\.startDate),
                 includesEveryMonth: excludedMonthIDs.isEmpty
             ),
-            format: TransactionCSVFormat(style: style, includesNotes: includesNotes, includesImages: includesImages)
+            format: TransactionCSVFormat(style: style, includesNotes: includesNotes, includesImages: includesImages),
+            hasImages: selectedOptions.contains { option in monthIDsWithImages.contains(option.id) }
         )
 
         Form {
             Section {
                 NavigationLink {
                     ExportMonthSelectionView(
-                        options: months.map(ExportMonthOption.init(month:)),
+                        options: options,
                         excludedMonthIDs: $excludedMonthIDs
                     )
                 } label: {
                     LabeledContent("Months") {
-                        Text(monthsSummary(selectedCount: selectedMonths.count))
+                        Text(monthsSummary(selectedCount: selectedOptions.count))
                     }
                 }
             } header: {
@@ -58,7 +56,7 @@ struct TransactionExportView: View {
                     }
                 }
                 Toggle("Include Notes", isOn: $includesNotes)
-                if hasImages {
+                if file.hasImages {
                     Toggle("Include Images", isOn: $includesImages)
                 }
             } header: {
@@ -78,6 +76,7 @@ struct TransactionExportView: View {
                 title: "Export ^[\(transactionCount) Transaction](inflect: true)",
                 file: file
             )
+            .disabled(transactionCount == 0)
             .padding()
             .background(.bar)
         }
