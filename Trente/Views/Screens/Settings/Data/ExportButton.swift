@@ -13,7 +13,8 @@ struct ExportButton: View {
 
     #if os(macOS)
     @State private var isShowingFileExporter = false
-    @State private var exportError: Error?
+    @State private var exportError: (any Error)?
+    @State private var isShowingError = false
     #endif
 
     var body: some View {
@@ -37,23 +38,15 @@ struct ExportButton: View {
         ) { result in
             if case .failure(let error) = result {
                 exportError = error
+                isShowingError = true
             }
         }
-        .alert("Export Failed", isPresented: isShowingError, presenting: exportError) { _ in
+        .alert("Export Failed", isPresented: $isShowingError, presenting: exportError) { _ in
         } message: { error in
             Text(error.localizedDescription)
         }
         #endif
     }
-
-    #if os(macOS)
-    private var isShowingError: Binding<Bool> {
-        Binding(
-            get: { exportError != nil },
-            set: { if !$0 { exportError = nil } }
-        )
-    }
-    #endif
 }
 
 #Preview {
