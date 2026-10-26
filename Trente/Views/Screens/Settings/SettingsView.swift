@@ -41,6 +41,7 @@ struct SettingsView: View {
                     ApplePaySection(onGetShortcut: openShortcut)
                 }
                 #endif
+                DataSection()
                 HelpAboutSection(
                     faqItems: FAQItem.items(isPhone: DeviceIdiom.isPhone),
                     contactURL: SupportMail.feedbackURL(appInfo: appInfo),

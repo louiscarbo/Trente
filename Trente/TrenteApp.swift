@@ -59,7 +59,9 @@ struct TrenteApp: App {
         .defaultSize(width: 500, height: 600)
 
         Settings {
-            SettingsView()
+            ModelContainerGate(container: container) {
+                SettingsView()
+            }
         }
 
         Window("Trente Help", id: WindowIdentifiers.help) {

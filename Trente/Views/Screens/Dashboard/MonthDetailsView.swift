@@ -23,9 +23,14 @@ struct MonthDetailsView: View {
 
     @State private var resetDraft: Bool = false
 
+    @AppStorage(TransactionCSVFormat.includesNotesKey) private var exportIncludesNotes = true
+    @AppStorage(TransactionCSVFormat.includesImagesKey) private var exportIncludesImages = true
+    @Query private var groupsWithImages: [TransactionGroup]
+
     init(month: Month) {
         self.original = month
         _draft = State(initialValue: .init(from: month))
+        _groupsWithImages = Query(TransactionExportRow.groupsWithImagesDescriptor(inMonth: month.id))
     }
 
     private var isEditing: Bool { draft != MonthDraft(from: original) }
@@ -40,6 +45,10 @@ struct MonthDetailsView: View {
                         isRepartitionComplete: $isRepartitionComplete
                     )
                     .id(resetDraft)
+                    ExportMonthSection(
+                        file: exportFile,
+                        isEmpty: original.transactionGroups.isEmpty
+                    )
                     DeleteSection(onConfirmDelete: deleteMonth)
                 }
                 .padding()
@@ -64,6 +73,19 @@ struct MonthDetailsView: View {
         .onChange(of: showErrorAlert) {
             if !showErrorAlert { errorAction = nil }
         }
+    }
+
+    private var exportFile: TransactionsCSVFile {
+        TransactionsCSVFile(
+            monthIDs: [original.id],
+            fileName: TransactionsCSVFile.fileName(for: original),
+            format: TransactionCSVFormat(
+                style: .current,
+                includesNotes: exportIncludesNotes,
+                includesImages: exportIncludesImages
+            ),
+            hasImages: !groupsWithImages.isEmpty
+        )
     }
 
     private func saveMonth() {
@@ -115,6 +137,40 @@ struct MonthDetailsView: View {
             .fill(.regularMaterial)
             .stroke(.secondary.opacity(0.4), lineWidth: 3)
             .ignoresSafeArea()
+        }
+    }
+}
+
+private struct ExportMonthSection: View {
+    let file: TransactionsCSVFile
+    let isEmpty: Bool
+
+    var body: some View {
+        GroupBox(label: Label("Export Month", systemImage: "square.and.arrow.up")) {
+            VStack(spacing: .medium) {
+                Text(description)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                ExportButton(title: "Export…", file: file)
+                    .disabled(isEmpty)
+
+                Text("To export several months or choose what to include, go to Settings › Export Transactions.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .groupBoxStyle(TrenteGroupBoxStyle())
+    }
+
+    private var description: LocalizedStringKey {
+        if isEmpty {
+            "This month has no transactions to export yet."
+        } else if file.includesImages {
+            "Save this month's transactions and their images in a .zip file, with a spreadsheet (.csv) that opens in Numbers, Excel or Google Sheets."
+        } else {
+            "Save this month's transactions as a spreadsheet file (.csv) that opens in Numbers, Excel or Google Sheets."
         }
     }
 }
