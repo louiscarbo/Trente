@@ -29,6 +29,46 @@ func insertMonth(year: Int, month: Int, in context: ModelContext) -> Month {
     return month
 }
 
+func csvRecords(_ csv: String, separator: Character = ",") -> [[String]] {
+    let characters = Array(csv)
+    var records: [[String]] = []
+    var record: [String] = []
+    var field = ""
+    var isQuoted = false
+    var index = 0
+    while index < characters.count {
+        let character = characters[index]
+        if isQuoted {
+            if character != "\"" {
+                field.append(character)
+            } else if index + 1 < characters.count, characters[index + 1] == "\"" {
+                field.append("\"")
+                index += 1
+            } else {
+                isQuoted = false
+            }
+        } else if character == "\"" {
+            isQuoted = true
+        } else if character == separator {
+            record.append(field)
+            field = ""
+        } else if character == "\r\n" {
+            record.append(field)
+            records.append(record)
+            record = []
+            field = ""
+        } else {
+            field.append(character)
+        }
+        index += 1
+    }
+    if !field.isEmpty || !record.isEmpty {
+        record.append(field)
+        records.append(record)
+    }
+    return records
+}
+
 actor FakeNotificationCenter: NotificationAuthorizing {
     let status: UNAuthorizationStatus
     let grants: Bool
