@@ -22,7 +22,6 @@ struct ExportButton: View {
             Label(title, systemImage: "square.and.arrow.up")
         }
         .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-        .disabled(file.rows.isEmpty)
         #else
         Button {
             isShowingFileExporter = true
@@ -30,7 +29,6 @@ struct ExportButton: View {
             Label(title, systemImage: "square.and.arrow.up")
         }
         .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-        .disabled(file.rows.isEmpty)
         .fileExporter(
             isPresented: $isShowingFileExporter,
             item: file,
@@ -59,6 +57,6 @@ struct ExportButton: View {
 }
 
 #Preview {
-    ExportButton(title: "Export…", file: TransactionsCSVFile(rows: [], fileName: "Trente 2026-10"))
+    ExportButton(title: "Export…", file: TransactionsCSVFile(monthIDs: [], fileName: "Trente 2026-10"))
         .padding()
 }

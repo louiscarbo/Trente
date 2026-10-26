@@ -39,6 +39,18 @@ extension TransactionExportRow {
     }
 
     static var groupsWithImagesDescriptor: FetchDescriptor<TransactionGroup> {
-        FetchDescriptor(predicate: #Predicate { group in group.imageAttachmentData != nil })
+        var descriptor = FetchDescriptor<TransactionGroup>(predicate: #Predicate { group in group.imageAttachmentData != nil })
+        descriptor.propertiesToFetch = [\.id]
+        descriptor.relationshipKeyPathsForPrefetching = [\.month]
+        return descriptor
+    }
+
+    static func groupsWithImagesDescriptor(inMonth monthID: UUID) -> FetchDescriptor<TransactionGroup> {
+        var descriptor = FetchDescriptor<TransactionGroup>(
+            predicate: #Predicate { group in group.month.id == monthID && group.imageAttachmentData != nil }
+        )
+        descriptor.propertiesToFetch = [\.id]
+        descriptor.fetchLimit = 1
+        return descriptor
     }
 }

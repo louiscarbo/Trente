@@ -137,7 +137,6 @@ struct TransactionExportRowTests {
     }
 
     @Test("Writes one file per transaction image and skips images removed since")
-    @MainActor
     func writesImages() throws {
         let context = try makeContext()
         let month = insertMonth(year: 2026, month: 10, in: context)

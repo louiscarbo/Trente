@@ -111,10 +111,10 @@ struct TransactionCSVFormatTests {
     }
 
     @Test("The file uses the chosen format")
-    func fileUsesFormat() {
-        let file = TransactionsCSVFile(rows: [row()], fileName: "Trente 2026-10", format: european)
+    func fileUsesFormat() throws {
+        let file = TransactionsCSVFile(monthIDs: [], fileName: "Trente 2026-10", format: european)
 
-        let text = String(decoding: file.data.dropFirst(3), as: UTF8.self)
+        let text = try #require(String(bytes: file.csvData(rows: [row()]).dropFirst(3), encoding: .utf8))
 
         #expect(text == TransactionCSVBuilder.csv(from: [row()], format: european))
     }
