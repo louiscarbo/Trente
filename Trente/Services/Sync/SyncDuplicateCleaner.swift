@@ -67,7 +67,7 @@ enum SyncDuplicateCleaner {
     }
 
     private static func removeDuplicateRecurringTransactions(in context: ModelContext, calendar: Calendar) throws -> Bool {
-        let groups = try context.fetch(FetchDescriptor<TransactionGroup>())
+        let groups = try context.fetch(FetchDescriptor<TransactionGroup>(predicate: #Predicate { $0.recurringOccurrenceDate != nil }))
         var byOccurrence: [OccurrenceKey: [TransactionGroup]] = [:]
         for group in groups {
             guard let rule = group.recurringRule, let occurrenceDate = group.recurringOccurrenceDate else { continue }
