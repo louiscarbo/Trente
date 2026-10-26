@@ -23,6 +23,7 @@ enum TransactionCSVBuilder {
 
     private static let lineEnding = "\r\n"
     private static let charactersRequiringQuotes: Set<Unicode.Scalar> = ["\"", "\r", "\n"]
+    private static let formulaTriggers: Set<Unicode.Scalar> = ["=", "+", "-", "@", "\t", "\r"]
 
     private static let imageColumn = "Image"
 
@@ -75,6 +76,11 @@ enum TransactionCSVBuilder {
         return "\"" + field.replacingOccurrences(of: "\"", with: "\"\"") + "\""
     }
 
+    static func neutralized(_ text: String) -> String {
+        guard let first = text.unicodeScalars.first, formulaTriggers.contains(first) else { return text }
+        return "'" + text
+    }
+
     private static func sorted(_ rows: [TransactionExportRow]) -> [TransactionExportRow] {
         rows.sorted { lhs, rhs in
             if lhs.date != rhs.date {
@@ -100,7 +106,7 @@ enum TransactionCSVBuilder {
         var fields = [
             dayText(for: row.date, calendar: calendar),
             monthText(for: row.monthStartDate, calendar: calendar),
-            row.title,
+            neutralized(row.title),
             row.type.rawValue,
             row.category.exportName,
             amountText(fromCents: row.amountCents, decimalSeparator: format.decimalSeparator),
@@ -108,7 +114,7 @@ enum TransactionCSVBuilder {
             row.isRecurring ? "yes" : ""
         ]
         if format.includesNotes {
-            fields.append(row.note ?? "")
+            fields.append(neutralized(row.note ?? ""))
         }
         if let imagePaths {
             fields.append(imagePaths[row.transactionID] ?? "")

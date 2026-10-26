@@ -133,6 +133,38 @@ struct TransactionCSVBuilderTests {
     }
 
     @Test(
+        "Neutralizes text that a spreadsheet would run as a formula",
+        arguments: [
+            ("=SUM(A1:A9)", "'=SUM(A1:A9)"),
+            ("+33 6 12 34 56 78", "'+33 6 12 34 56 78"),
+            ("-Refund", "'-Refund"),
+            ("@Mention", "'@Mention"),
+            ("\tTabbed", "'\tTabbed"),
+            ("\r\nLine", "'\r\nLine"),
+            ("Plain = text", "Plain = text"),
+            ("", "")
+        ]
+    )
+    func neutralizesFormulas(text: String, expected: String) {
+        #expect(TransactionCSVBuilder.neutralized(text) == expected)
+    }
+
+    @Test("Titles and notes are neutralized but amounts stay numbers")
+    func neutralizesTitleAndNoteOnly() throws {
+        let records = dataRecords(
+            of: TransactionCSVBuilder.csv(
+                from: [row(title: "=HYPERLINK(\"http://example.com\")", note: "-Refund")],
+                timeZone: paris
+            )
+        )
+
+        let record = try #require(records.first)
+        #expect(record[2] == "'=HYPERLINK(\"http://example.com\")")
+        #expect(record[5] == "-12.50")
+        #expect(record[8] == "'-Refund")
+    }
+
+    @Test(
         "Dates around midnight use the given time zone",
         arguments: [(0, 0), (0, 1), (23, 59)]
     )
