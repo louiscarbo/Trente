@@ -18,7 +18,6 @@ final class CloudSyncMonitor {
 
     private(set) var accountStatus: CKAccountStatus?
     private(set) var lastSyncDate: Date?
-    private(set) var didFinishImport = false
     private var issues: [NSPersistentCloudKitContainer.EventType: CloudSyncIssue] = [:]
     @ObservationIgnored private var observers: [any NSObjectProtocol] = []
 
@@ -63,9 +62,6 @@ final class CloudSyncMonitor {
     }
 
     private func record(_ event: NSPersistentCloudKitContainer.Event) {
-        if event.type == .import {
-            didFinishImport = true
-        }
         if event.succeeded {
             issues[event.type] = nil
             if event.type != .setup {
