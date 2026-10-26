@@ -87,6 +87,12 @@
     "%lld active" : {
 
     },
+    "^[%lld Month](inflect: true)" : {
+
+    },
+    "^[%lld transaction](inflect: true)" : {
+
+    },
     "A month starts on the date you choose and lasts one month, for example October 25 to November 24, so you can line it up with your payday. A new month keeps your currency and ideal budget." : {
 
     },
@@ -276,6 +282,9 @@
     "Delete Transaction" : {
 
     },
+    "Deselect All" : {
+
+    },
     "Dining out, entertainment..." : {
 
     },
@@ -334,6 +343,9 @@
     "Every month on the %@" : {
 
     },
+    "Excel in French and Other European Languages" : {
+
+    },
     "Expected This Month" : {
 
     },
@@ -343,16 +355,37 @@
     "Expense" : {
 
     },
+    "Export Failed" : {
+
+    },
+    "Export Month" : {
+
+    },
+    "Export Transactions" : {
+
+    },
+    "Export ^[%lld Transaction](inflect: true)" : {
+
+    },
+    "Export…" : {
+
+    },
     "Failed to save changes: %@" : {
 
     },
     "Features and Data" : {
 
     },
+    "File" : {
+
+    },
     "Filter" : {
 
     },
     "Find Me Online" : {
+
+    },
+    "Format" : {
 
     },
     "Frequency" : {
@@ -406,10 +439,19 @@
     "Illustrations" : {
 
     },
+    "Images are saved next to the spreadsheet in a .zip file." : {
+
+    },
     "In the **Automation** tab, create a new automation with the **Wallet** trigger, choose your cards and select **Run Immediately**." : {
 
     },
     "In the Shortcuts app" : {
+
+    },
+    "Include Images" : {
+
+    },
+    "Include Notes" : {
 
     },
     "Income" : {
@@ -491,6 +533,9 @@
 
     },
     "Monthly" : {
+
+    },
+    "Months" : {
 
     },
     "Needs" : {
@@ -577,6 +622,9 @@
     "Open Shortcut Again" : {
 
     },
+    "Opens in Numbers, Google Sheets and Excel in English." : {
+
+    },
     "Over Budget" : {
 
     },
@@ -655,6 +703,12 @@
     "Save" : {
 
     },
+    "Save this month's transactions and their images in a .zip file, with a spreadsheet (.csv) that opens in Numbers, Excel or Google Sheets." : {
+
+    },
+    "Save this month's transactions as a spreadsheet file (.csv) that opens in Numbers, Excel or Google Sheets." : {
+
+    },
     "Savings" : {
 
     },
@@ -692,6 +746,9 @@
 
     },
     "Select a month" : {
+
+    },
+    "Select All" : {
 
     },
     "Select Category" : {
@@ -740,6 +797,9 @@
 
     },
     "Split your take-home income into Needs, Wants and Savings and Debts. Trente sorts every transaction into one of them." : {
+
+    },
+    "Standard" : {
 
     },
     "Start a New Month" : {
@@ -827,6 +887,9 @@
     "This Month" : {
 
     },
+    "This month has no transactions to export yet." : {
+
+    },
     "Title" : {
 
     },
@@ -840,6 +903,9 @@
 
     },
     "To" : {
+
+    },
+    "To export several months or change the format, go to Settings › Export Transactions." : {
 
     },
     "Total" : {
@@ -869,7 +935,13 @@
     "Trente adds it for you on its due date, the next time you open the app. Your widgets count it right away." : {
 
     },
+    "Trente All Months" : {
+
+    },
     "Trente Feedback" : {
+
+    },
+    "Trente has no account and no server: your data is yours. You can export it as a spreadsheet anytime." : {
 
     },
     "Trente Help" : {
@@ -920,6 +992,9 @@
     "Use your best estimate. Log extra income as it comes in, and adjust next month's budget." : {
 
     },
+    "Uses semicolons and decimal commas, as Excel expects in French, German, Spanish or Italian." : {
+
+    },
     "Wants" : {
 
     },
@@ -948,6 +1023,9 @@
 
     },
     "What is Trente+?" : {
+
+    },
+    "What to Export" : {
 
     },
     "What's included" : {
@@ -984,6 +1062,9 @@
 
     },
     "Your budget couldn't be opened" : {
+
+    },
+    "Your Data" : {
 
     },
     "Your data has not been deleted. Try updating Trente, and share the error details if the problem persists." : {
