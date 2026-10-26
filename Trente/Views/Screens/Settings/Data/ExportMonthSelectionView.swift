@@ -75,6 +75,7 @@ private struct MonthSelectionRow: View {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .imageScale(.large)
                     .foregroundStyle(isSelected ? Color.accentColor : Color.secondary)
+                    .accessibilityHidden(true)
             }
             .contentShape(.rect)
         }
