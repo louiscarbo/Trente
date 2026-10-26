@@ -12,16 +12,15 @@ extension SchemaV1 {
     @Model
     final class Month: Identifiable, Hashable, Equatable {
         var id: UUID = UUID()
-        var startDate: Date
-        var currency: Currency
+        var startDate: Date = Date.now
+        var modifiedDate: Date?
+        var currency: Currency = Currency.fallback
 
-        var idealBudgetCents: Int
-        var idealRepartition: [BudgetCategory: Int]
+        var idealBudgetCents: Int = 0
+        var idealRepartition: [BudgetCategory: Int] = [:]
 
-        @Relationship(deleteRule: .cascade, inverse: \TransactionGroup.month)
-        var transactionGroups: [TransactionGroup] = []
-
-        var isDeleted: Bool = false
+        @Relationship(deleteRule: .nullify, inverse: \TransactionGroup.month)
+        var storedTransactionGroups: [TransactionGroup]? = []
 
         init(startDate: Date, currency: Currency, idealBudgetCents: Int, idealRepartition: [BudgetCategory: Int]) {
             self.startDate = startDate
@@ -29,6 +28,13 @@ extension SchemaV1 {
             self.idealBudgetCents = idealBudgetCents
             self.idealRepartition = idealRepartition
         }
+    }
+}
+
+extension Month {
+    var transactionGroups: [TransactionGroup] {
+        get { storedTransactionGroups ?? [] }
+        set { storedTransactionGroups = newValue }
     }
 }
 

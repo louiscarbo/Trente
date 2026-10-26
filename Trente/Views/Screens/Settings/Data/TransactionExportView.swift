@@ -20,7 +20,7 @@ struct TransactionExportView: View {
         let options = months.map(ExportMonthOption.init(month:))
         let selectedOptions = options.filter { option in !excludedMonthIDs.contains(option.id) }
         let transactionCount = selectedOptions.reduce(0) { total, option in total + option.transactionCount }
-        let monthIDsWithImages = Set(groupsWithImages.map(\.month.id))
+        let monthIDsWithImages = Set(groupsWithImages.compactMap(\.month?.id))
         let file = TransactionsCSVFile(
             monthIDs: selectedOptions.map(\.id),
             fileName: TransactionsCSVFile.fileName(

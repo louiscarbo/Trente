@@ -53,6 +53,10 @@ extension Currency {
 }
 
 // swiftlint:disable comma
+extension Currency {
+    static let fallback = Currency(isoCode: "EUR", symbol: "€", sfSymbolName: "eurosign", localizedName: "Euro")
+}
+
 struct Currencies {
     static let availableCurrencies: [Currency] = [
         Currency(isoCode: "USD", symbol: "$",   sfSymbolName: "dollarsign",              localizedName: "US Dollar"),

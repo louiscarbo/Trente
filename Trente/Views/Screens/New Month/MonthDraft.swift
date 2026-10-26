@@ -32,6 +32,7 @@ struct MonthDraft: Equatable {
         month.currency = currency
         month.idealBudgetCents = idealBudgetCents
         month.idealRepartition = idealRepartition
+        month.modifiedDate = .now
     }
 
     func makeMonth() -> Month {

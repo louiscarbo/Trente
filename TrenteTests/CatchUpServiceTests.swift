@@ -37,4 +37,17 @@ struct CatchUpServiceTests {
         #expect(months.map(\.startDate) == [day(2026, 8, 1), day(2026, 9, 1), day(2026, 10, 1)])
         #expect(months.map(\.transactionGroups.count) == [1, 1, 1])
     }
+
+    @Test("After a sync, duplicate months are merged before the missing months are started")
+    func catchUpAfterSyncMergesFirst() throws {
+        let context = try makeContext()
+        insertMonth(year: 2026, month: 8, in: context)
+        insertMonth(year: 2026, month: 8, in: context)
+        try context.save()
+
+        try CatchUpService.shared.catchUpAfterSync(in: context, now: day(2026, 9, 10))
+
+        let months = try context.fetch(FetchDescriptor<Month>(sortBy: [SortDescriptor(\.startDate)]))
+        #expect(months.map(\.startDate) == [day(2026, 8, 1), day(2026, 9, 1)])
+    }
 }

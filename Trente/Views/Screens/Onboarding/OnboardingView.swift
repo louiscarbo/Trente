@@ -10,6 +10,8 @@ import SwiftData
 
 struct OnboardingView: View {
     let isFirstLaunch: Bool
+    var watchesICloud = false
+    var onICloudDataFound: () -> Void = {}
     let onFinish: () -> Void
 
     @Environment(\.modelContext) private var modelContext
@@ -20,6 +22,7 @@ struct OnboardingView: View {
     @State private var notificationPermission = NotificationPermissionState()
     @State private var isShowingPaywall = false
     @State private var hasOpenedShortcut = false
+    @Query private var months: [Month]
 
     var body: some View {
         VStack(spacing: 0) {
@@ -29,6 +32,9 @@ struct OnboardingView: View {
                 .transition(stepTransition)
         }
         .clipped()
+        .onChange(of: months.count, initial: true) { _, monthCount in
+            reportICloudData(monthCount: monthCount)
+        }
         .refreshesNotificationPermission(notificationPermission)
         .sheet(isPresented: $isShowingPaywall, onDismiss: onFinish) {
             SubscriptionView()
@@ -158,7 +164,25 @@ struct OnboardingView: View {
         )
     }
 
+    private func reportICloudData(monthCount: Int) {
+        guard OnboardingGate.hasFoundICloudData(
+            watchesICloud: watchesICloud,
+            hasSavedOwnMonth: model.savedMonth != nil,
+            monthCount: monthCount
+        ) else { return }
+        onICloudDataFound()
+    }
+
     private func saveMonthAndContinue() {
+        let monthCount = (try? modelContext.fetchCount(FetchDescriptor<Month>())) ?? 0
+        if OnboardingGate.hasFoundICloudData(
+            watchesICloud: watchesICloud,
+            hasSavedOwnMonth: model.savedMonth != nil,
+            monthCount: monthCount
+        ) {
+            onICloudDataFound()
+            return
+        }
         do {
             try model.saveMonth(in: modelContext, reusingExistingMonth: isFirstLaunch)
             goForward()

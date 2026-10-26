@@ -57,7 +57,7 @@ struct RecurringNotificationResponderTests {
 
         #expect(handled)
         let group = try #require(try context.fetch(FetchDescriptor<TransactionGroup>()).first)
-        #expect(group.month.id == october.id)
+        #expect(group.month?.id == october.id)
         #expect(group.recurringRule?.id == rule.id)
         #expect(group.recurringOccurrenceDate == day(2026, 10, 15))
         #expect(group.totalAmountCents == -800_00)
@@ -109,7 +109,7 @@ struct RecurringNotificationResponderTests {
 
         #expect(handled)
         let group = try #require(try context.fetch(FetchDescriptor<TransactionGroup>()).first)
-        #expect(group.month.startDate == day(2026, 10, 1))
+        #expect(group.month?.startDate == day(2026, 10, 1))
         #expect(group.recurringOccurrenceDate == day(2026, 10, 15))
     }
 

@@ -11,10 +11,10 @@ import SwiftData
 extension SchemaV1 {
     @Model
     class TransactionEntry {
-        var amountCents: Int
-        var category: BudgetCategory
+        var amountCents: Int = 0
+        var category: BudgetCategory = BudgetCategory.needs
 
-        @Relationship var group: TransactionGroup
+        @Relationship var group: TransactionGroup?
 
         init(amountCents: Int, category: BudgetCategory, group: TransactionGroup) {
             self.amountCents = amountCents
@@ -33,6 +33,6 @@ extension TransactionEntry {
 
     /// Returns a localized string that displays the amount correctly, not in cents.
     var displayAmount: String {
-        amount.formatted(.currency(code: group.month.currency.isoCode))
+        amount.formatted(.currency(code: (group?.currency ?? Currency.fallback).isoCode))
     }
 }

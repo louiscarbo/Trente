@@ -69,7 +69,7 @@ struct TransactionGroupDetailsView: View {
     private func headerBox() -> some View {
         EditableTransactionHeader(
             isEditing: isEditing,
-            currency: transactionGroup.month.currency,
+            currency: transactionGroup.currency,
             showsExpenseRow: transactionGroup.type == .expense,
             showsNotes: isTrentePlusUser,
             title: titleBinding,
@@ -139,7 +139,7 @@ struct TransactionGroupDetailsView: View {
     @ViewBuilder
     private func incomeRepartitionBox() -> some View {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
-            let formatter = transactionGroup.month.currency.roundFormatter
+            let formatter = transactionGroup.currency.roundFormatter
             IncomeRepartitionComponent(
                 repartition: Binding(
                     get: {
