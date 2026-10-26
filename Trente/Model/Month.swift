@@ -13,12 +13,13 @@ extension SchemaV1 {
     final class Month: Identifiable, Hashable, Equatable {
         var id: UUID = UUID()
         var startDate: Date = Date.now
+        var modifiedDate: Date?
         var currency: Currency = Currency.fallback
 
         var idealBudgetCents: Int = 0
         var idealRepartition: [BudgetCategory: Int] = [:]
 
-        @Relationship(deleteRule: .cascade, inverse: \TransactionGroup.month)
+        @Relationship(deleteRule: .nullify, inverse: \TransactionGroup.month)
         var storedTransactionGroups: [TransactionGroup]? = []
 
         init(startDate: Date, currency: Currency, idealBudgetCents: Int, idealRepartition: [BudgetCategory: Int]) {

@@ -17,6 +17,13 @@ final class MonthService {
         try context.save()
     }
 
+    func delete(month: Month, in context: ModelContext) {
+        for group in month.transactionGroups {
+            context.delete(group)
+        }
+        context.delete(month)
+    }
+
     func latestMonth(in context: ModelContext) throws -> Month? {
         var descriptor = FetchDescriptor<Month>(
             sortBy: [SortDescriptor(\.startDate, order: .reverse)]

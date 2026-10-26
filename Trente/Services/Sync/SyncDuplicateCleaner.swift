@@ -16,23 +16,31 @@ enum SyncDuplicateCleaner {
 
     @discardableResult
     static func mergeDuplicates(in context: ModelContext, calendar: Calendar = .current) throws -> Bool {
-        let mergedMonths = try mergeDuplicateMonths(in: context, calendar: calendar)
+        let (keptMonths, mergedMonths) = try mergeDuplicateMonths(in: context, calendar: calendar)
+        let reattachedOrphans = try reattachOrphanTransactions(to: keptMonths, in: context)
         let removedOccurrences = try removeDuplicateRecurringTransactions(in: context, calendar: calendar)
-        guard mergedMonths || removedOccurrences else { return false }
+        guard mergedMonths || reattachedOrphans || removedOccurrences else { return false }
         try context.save()
         return true
     }
 
-    static func keeper<Item>(of duplicates: [Item], id: (Item) -> UUID) -> Item? {
-        duplicates.min { lhs, rhs in id(lhs).uuidString < id(rhs).uuidString }
+    static func keeper<Item>(of duplicates: [Item], modifiedDate: (Item) -> Date?, id: (Item) -> UUID) -> Item? {
+        duplicates.max { lhs, rhs in
+            let lhsDate = modifiedDate(lhs) ?? .distantPast
+            let rhsDate = modifiedDate(rhs) ?? .distantPast
+            guard lhsDate == rhsDate else { return lhsDate < rhsDate }
+            return id(lhs).uuidString > id(rhs).uuidString
+        }
     }
 
-    private static func mergeDuplicateMonths(in context: ModelContext, calendar: Calendar) throws -> Bool {
+    private static func mergeDuplicateMonths(in context: ModelContext, calendar: Calendar) throws -> (kept: [Month], merged: Bool) {
         let months = try context.fetch(FetchDescriptor<Month>())
         let byStartDay = Dictionary(grouping: months) { month in calendar.startOfDay(for: month.startDate) }
+        var keptMonths: [Month] = []
         var merged = false
-        for duplicates in byStartDay.values where duplicates.count > 1 {
-            guard let keeper = keeper(of: duplicates, id: \.id) else { continue }
+        for duplicates in byStartDay.values {
+            guard let keeper = keeper(of: duplicates, modifiedDate: \.modifiedDate, id: \.id) else { continue }
+            keptMonths.append(keeper)
             for duplicate in duplicates where duplicate.id != keeper.id {
                 let movedGroups = duplicate.transactionGroups
                 duplicate.transactionGroups = []
@@ -43,7 +51,19 @@ enum SyncDuplicateCleaner {
                 merged = true
             }
         }
-        return merged
+        return (keptMonths, merged)
+    }
+
+    private static func reattachOrphanTransactions(to months: [Month], in context: ModelContext) throws -> Bool {
+        let orphans = try context.fetch(FetchDescriptor<TransactionGroup>(predicate: #Predicate { $0.month == nil }))
+        var reattached = false
+        for orphan in orphans {
+            let date = orphan.recurringOccurrenceDate ?? orphan.addedDate
+            guard let month = months.first(where: { $0.contains(date) }) else { continue }
+            orphan.month = month
+            reattached = true
+        }
+        return reattached
     }
 
     private static func removeDuplicateRecurringTransactions(in context: ModelContext, calendar: Calendar) throws -> Bool {
@@ -55,7 +75,7 @@ enum SyncDuplicateCleaner {
         }
         var removed = false
         for duplicates in byOccurrence.values where duplicates.count > 1 {
-            guard let keeper = keeper(of: duplicates, id: \.id) else { continue }
+            guard let keeper = keeper(of: duplicates, modifiedDate: \.modifiedDate, id: \.id) else { continue }
             for duplicate in duplicates where duplicate.id != keeper.id {
                 context.delete(duplicate)
                 removed = true
