@@ -46,11 +46,11 @@ struct MonthDetailsView: View {
                         isRepartitionComplete: $isRepartitionComplete
                     )
                     .id(resetDraft)
-                    DeleteSection(onConfirmDelete: deleteMonth)
                     ExportMonthSection(
                         file: exportFile,
                         isEmpty: original.transactionGroups.isEmpty
                     )
+                    DeleteSection(onConfirmDelete: deleteMonth)
                 }
                 .padding()
             }
