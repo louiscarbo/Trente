@@ -189,4 +189,16 @@ struct TransactionsCSVFileTests {
         #expect(try Data(contentsOf: archiveURL).starts(with: [0x50, 0x4B, 0x03, 0x04]))
         #expect(try FileManager.default.contentsOfDirectory(atPath: directory.path(percentEncoded: false)) == ["Trente 2026-10.zip"])
     }
+
+    @Test("A new export removes the files of the previous one")
+    func newExportRemovesPreviousFiles() throws {
+        let file = TransactionsCSVFile(monthIDs: [], fileName: "Trente 2026-10")
+
+        let first = try file.writeCSV(rows: [])
+        let second = try file.writeCSV(rows: [])
+        defer { try? FileManager.default.removeItem(at: second.deletingLastPathComponent()) }
+
+        #expect(!FileManager.default.fileExists(atPath: first.path(percentEncoded: false)))
+        #expect(FileManager.default.fileExists(atPath: second.path(percentEncoded: false)))
+    }
 }
