@@ -5,6 +5,7 @@
 //  Created by Louis Carbo Estaque on 24/10/2026.
 //
 
+import CoreData
 import Foundation
 import SwiftData
 import UserNotifications
@@ -24,6 +25,7 @@ final class NotificationScheduler {
         self.container = container
         let events = [
             ModelContext.didSave,
+            .NSPersistentStoreRemoteChange,
             .NSCalendarDayChanged,
             UserDefaults.didChangeNotification,
             .appDidBecomeActive,

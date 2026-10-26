@@ -47,7 +47,7 @@ struct PendingTransactionServiceTests {
         #expect(group.type == .expense)
         #expect(group.note == "Snacks")
         #expect(group.addedDate == date)
-        #expect(group.month.id == latest.id)
+        #expect(group.month?.id == latest.id)
 
         let entries = try context.fetch(FetchDescriptor<TransactionEntry>())
         #expect(entries.count == 1)
@@ -72,7 +72,7 @@ struct PendingTransactionServiceTests {
         try PendingTransactionService.shared.validate(pending, with: draft, in: context)
 
         let group = try #require(try context.fetch(FetchDescriptor<TransactionGroup>()).first)
-        #expect(group.month.id == october.id)
+        #expect(group.month?.id == october.id)
     }
 
     @Test("Validating without any month throws and keeps the pending item")

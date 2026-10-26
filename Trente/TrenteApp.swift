@@ -10,9 +10,11 @@ import SwiftData
 
 @main
 struct TrenteApp: App {
-    let container = TrenteContainer.shared
+    let container: Result<ModelContainer, any Error>
 
     init() {
+        CloudSyncMonitor.shared.start()
+        container = TrenteContainer.shared
         WidgetRefresher.shared.start()
         if case .success(let modelContainer) = container {
             CatchUpService.shared.start(container: modelContainer)

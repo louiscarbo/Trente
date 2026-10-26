@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct DataSection: View {
+    let syncStatus: CloudSyncStatus
+
     var body: some View {
         Section {
+            LabeledContent("iCloud Sync") {
+                syncStatusText
+            }
             NavigationLink {
                 TransactionExportView()
             } label: {
@@ -18,7 +23,39 @@ struct DataSection: View {
         } header: {
             Text("Your Data")
         } footer: {
-            Text("Trente has no account and no server: your data is yours. You can export it as a spreadsheet anytime.")
+            Text(footer)
+        }
+    }
+
+    @ViewBuilder
+    private var syncStatusText: some View {
+        switch syncStatus {
+        case .signedOut:
+            Text("Off")
+        case .waiting:
+            Text("On")
+        case .synced(let date):
+            TimelineView(.periodic(from: .now, by: 60)) { _ in
+                Text("Synced \(date, format: .relative(presentation: .named))")
+            }
+        case .needsAttention:
+            Text("Not Syncing")
+        }
+    }
+
+    private var footer: LocalizedStringKey {
+        switch syncStatus {
+        case .signedOut:
+            "Sign in to iCloud in the Settings app to keep your months and transactions on all your devices. You can export them as a spreadsheet anytime."
+        case .needsAttention(.storageFull):
+            "Your iCloud storage is full, so new changes stay on this device. Free up space in the Settings app to sync again."
+        case .needsAttention(.accountUnavailable):
+            "iCloud isn't available for Trente. Check that iCloud is turned on for Trente in the Settings app."
+        case .waiting, .synced:
+            """
+            Your months and transactions sync through your iCloud account on all your devices. \
+            Trente has no account and no server. You can export them as a spreadsheet anytime.
+            """
         }
     }
 }
@@ -26,7 +63,9 @@ struct DataSection: View {
 #Preview {
     NavigationStack {
         Form {
-            DataSection()
+            DataSection(syncStatus: .synced(.now.addingTimeInterval(-120)))
+            DataSection(syncStatus: .signedOut)
+            DataSection(syncStatus: .needsAttention(.storageFull))
         }
         .formStyle(.grouped)
     }

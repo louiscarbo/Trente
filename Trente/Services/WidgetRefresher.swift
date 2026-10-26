@@ -5,6 +5,7 @@
 //  Created by Louis Carbo Estaque on 23/10/2026.
 //
 
+import CoreData
 import Foundation
 import SwiftData
 import WidgetKit
@@ -19,7 +20,7 @@ final class WidgetRefresher {
 
     func start() {
         guard trigger == nil else { return }
-        trigger = AppEventTrigger(events: [ModelContext.didSave], delay: .seconds(1)) {
+        trigger = AppEventTrigger(events: [ModelContext.didSave, .NSPersistentStoreRemoteChange], delay: .seconds(1)) {
             WidgetCenter.shared.reloadAllTimelines()
         }
     }

@@ -100,7 +100,7 @@ struct MonthDetailsView: View {
     }
 
     private func deleteMonth() {
-        modelContext.delete(original)
+        MonthService.shared.delete(month: original, in: modelContext)
         do {
             try modelContext.save()
             dismiss()

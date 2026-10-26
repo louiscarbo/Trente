@@ -5,18 +5,28 @@
 //  Created by Louis Carbo Estaque on 07/10/2026.
 //
 
+import Foundation
 import SwiftData
 
 @MainActor
 enum TrenteContainer {
-    static let shared: Result<ModelContainer, any Error> = {
+    static let iCloudStoreArgument = "-useICloudStore"
+
+    static var usesICloudStore: Bool {
         #if DEBUG
-        return .success(DataProvider.shared.modelContainer)
+        ProcessInfo.processInfo.arguments.contains(iCloudStoreArgument)
         #else
-        let configuration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: false)
+        true
+        #endif
+    }
+
+    static let shared: Result<ModelContainer, any Error> = {
+        guard usesICloudStore else {
+            return .success(DataProvider.shared.modelContainer)
+        }
+        let configuration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: false, cloudKitDatabase: .automatic)
         return Result {
             try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [configuration])
         }
-        #endif
     }()
 }

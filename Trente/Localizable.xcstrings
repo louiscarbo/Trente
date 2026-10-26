@@ -343,6 +343,9 @@
     "Every month on the %@" : {
 
     },
+    "Excel in French and Other European Languages" : {
+
+    },
     "Expected This Month" : {
 
     },
@@ -350,6 +353,9 @@
 
     },
     "Expense" : {
+
+    },
+    "Export Failed" : {
 
     },
     "Export Failed" : {
@@ -380,6 +386,9 @@
 
     },
     "Find Me Online" : {
+
+    },
+    "Format" : {
 
     },
     "Frequency" : {
@@ -425,6 +434,12 @@
 
     },
     "I'm a French 🇫🇷 developer who loves building apps. Trente is the app I wished I had to follow the 50/30/20 rule. Every suggestion helps, so feel free to write to me!" : {
+
+    },
+    "iCloud isn't available for Trente. Check that iCloud is turned on for Trente in the Settings app." : {
+
+    },
+    "iCloud Sync" : {
 
     },
     "Ideal Budget" : {
@@ -574,6 +589,9 @@
     "Not Now" : {
 
     },
+    "Not Syncing" : {
+
+    },
     "Notes and images" : {
 
     },
@@ -604,7 +622,7 @@
     "On the due date, %@ is added to that month's transactions." : {
 
     },
-    "On your device, and in your iCloud backups if you have them turned on. Trente has no account and no server, and never connects to your bank. Deleting the app deletes the data on this device." : {
+    "On your devices and in your own iCloud account, which keeps them in sync when they use the same Apple Account. Without iCloud, it stays on this device and in its backups. Trente has no account and no server, and never connects to your bank. Deleting the app leaves your data in iCloud." : {
 
     },
     "Only this one is skipped. The next ones stay planned." : {
@@ -614,6 +632,9 @@
 
     },
     "Open Shortcut Again" : {
+
+    },
+    "Opens in Numbers, Google Sheets and Excel in English." : {
 
     },
     "Over Budget" : {
@@ -757,6 +778,9 @@
     "Share error details" : {
 
     },
+    "Sign in to iCloud in the Settings app to keep your months and transactions on all your devices. You can export them as a spreadsheet anytime." : {
+
+    },
     "Skip" : {
 
     },
@@ -788,6 +812,9 @@
 
     },
     "Split your take-home income into Needs, Wants and Savings and Debts. Trente sorts every transaction into one of them." : {
+
+    },
+    "Standard" : {
 
     },
     "Start a New Month" : {
@@ -837,6 +864,9 @@
 
     },
     "Support an indie developer" : {
+
+    },
+    "Synced %@" : {
 
     },
     "Take control of your budget." : {
@@ -980,6 +1010,9 @@
     "Use your best estimate. Log extra income as it comes in, and adjust next month's budget." : {
 
     },
+    "Uses semicolons and decimal commas, as Excel expects in French, German, Spanish or Italian." : {
+
+    },
     "Wants" : {
 
     },
@@ -989,6 +1022,16 @@
     "We couldn't save your month" : {
 
     },
+    "We found your data in iCloud: ^[%lld month](inflect: true) and ^[%lld transaction](inflect: true). It's all here, ready to pick up where you left off." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We found your data in iCloud: ^[%1$lld month](inflect: true) and ^[%2$lld transaction](inflect: true). It's all here, ready to pick up where you left off."
+          }
+        }
+      }
+    },
     "We start you on the 50/30/20 rule. Adjust it until it fits your life, you can change it every month." : {
 
     },
@@ -996,6 +1039,9 @@
 
     },
     "Weekly" : {
+
+    },
+    "Welcome back!" : {
 
     },
     "What are recurring transactions?" : {
@@ -1058,7 +1104,13 @@
     "Your first month starts today. Log expenses as you go and Trente shows you what's left." : {
 
     },
+    "Your iCloud storage is full, so new changes stay on this device. Free up space in the Settings app to sync again." : {
+
+    },
     "Your monthly budget" : {
+
+    },
+    "Your months and transactions sync through your iCloud account on all your devices. Trente has no account and no server. You can export them as a spreadsheet anytime." : {
 
     },
     "Your new month is ready, with the same budget as last month. Open Trente to see it." : {

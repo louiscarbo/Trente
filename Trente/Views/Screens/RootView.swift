@@ -13,6 +13,7 @@ struct RootView: View {
     @AppStorage(OnboardingGate.completedKey) private var hasCompletedOnboarding = false
     @State private var isShowingOnboarding: Bool?
     @State private var isFirstLaunch = false
+    @State private var isShowingWelcomeBack = false
     @State private var pendingDeepLink: DeepLink?
 
     var body: some View {
@@ -20,8 +21,15 @@ struct RootView: View {
             switch isShowingOnboarding {
             case .none:
                 Color.clear
+            case .some(true) where isShowingWelcomeBack:
+                WelcomeBackView(onContinue: finishOnboarding)
             case .some(true):
-                OnboardingView(isFirstLaunch: isFirstLaunch, onFinish: finishOnboarding)
+                OnboardingView(
+                    isFirstLaunch: isFirstLaunch,
+                    watchesICloud: isFirstLaunch && TrenteContainer.usesICloudStore,
+                    onICloudDataFound: showWelcomeBack,
+                    onFinish: finishOnboarding
+                )
             case .some(false):
                 AppNavigationView(pendingDeepLink: $pendingDeepLink)
             }
@@ -56,6 +64,12 @@ struct RootView: View {
     private func handleOpenURL(_ url: URL) {
         guard isShowingOnboarding != true, let link = DeepLink(url: url) else { return }
         pendingDeepLink = link
+    }
+
+    private func showWelcomeBack() {
+        withAnimation {
+            isShowingWelcomeBack = true
+        }
     }
 
     private func finishOnboarding() {

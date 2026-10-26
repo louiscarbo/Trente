@@ -117,9 +117,9 @@ struct FAQItem: Identifiable, Equatable {
             topic: .featuresAndData,
             question: "Where is my data stored?",
             answer: """
-                On your device, and in your iCloud backups if you have them turned on. \
-                Trente has no account and no server, and never connects to your bank. \
-                Deleting the app deletes the data on this device.
+                On your devices and in your own iCloud account, which keeps them in sync when they use the same \
+                Apple Account. Without iCloud, it stays on this device and in its backups. Trente has no account \
+                and no server, and never connects to your bank. Deleting the app leaves your data in iCloud.
                 """
         ),
         FAQItem(
