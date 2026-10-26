@@ -219,9 +219,6 @@
     "Change or stop this schedule" : {
 
     },
-    "Checking your iCloud account for months and transactions from your other devices." : {
-
-    },
     "Close" : {
 
     },
@@ -356,6 +353,9 @@
 
     },
     "Expense" : {
+
+    },
+    "Export Failed" : {
 
     },
     "Export Failed" : {
@@ -497,9 +497,6 @@
 
     },
     "Log Wallet Transaction" : {
-
-    },
-    "Looking for your data" : {
 
     },
     "Manage Subscription" : {
@@ -770,9 +767,6 @@
 
     },
     "Send Me an Email" : {
-
-    },
-    "Set Up as New" : {
 
     },
     "Set Up Later" : {

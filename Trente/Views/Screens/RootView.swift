@@ -13,7 +13,7 @@ struct RootView: View {
     @AppStorage(OnboardingGate.completedKey) private var hasCompletedOnboarding = false
     @State private var isShowingOnboarding: Bool?
     @State private var isFirstLaunch = false
-    @State private var isRestoringFromICloud = false
+    @State private var isShowingWelcomeBack = false
     @State private var pendingDeepLink: DeepLink?
 
     var body: some View {
@@ -21,10 +21,15 @@ struct RootView: View {
             switch isShowingOnboarding {
             case .none:
                 Color.clear
-            case .some(true) where isRestoringFromICloud:
-                ICloudRestoreView(onContinue: finishOnboarding, onNothingFound: startOnboarding)
+            case .some(true) where isShowingWelcomeBack:
+                WelcomeBackView(onContinue: finishOnboarding)
             case .some(true):
-                OnboardingView(isFirstLaunch: isFirstLaunch, onFinish: finishOnboarding)
+                OnboardingView(
+                    isFirstLaunch: isFirstLaunch,
+                    watchesICloud: isFirstLaunch && TrenteContainer.usesICloudStore,
+                    onICloudDataFound: showWelcomeBack,
+                    onFinish: finishOnboarding
+                )
             case .some(false):
                 AppNavigationView(pendingDeepLink: $pendingDeepLink)
             }
@@ -51,7 +56,6 @@ struct RootView: View {
             isForced: false
         )
         isShowingOnboarding = isFirstLaunch || OnboardingGate.isForced
-        isRestoringFromICloud = isFirstLaunch && TrenteContainer.usesICloudStore
         if isShowingOnboarding == true {
             pendingDeepLink = nil
         }
@@ -62,9 +66,9 @@ struct RootView: View {
         pendingDeepLink = link
     }
 
-    private func startOnboarding() {
+    private func showWelcomeBack() {
         withAnimation {
-            isRestoringFromICloud = false
+            isShowingWelcomeBack = true
         }
     }
 

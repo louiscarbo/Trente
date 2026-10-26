@@ -18,4 +18,8 @@ enum OnboardingGate {
     static func shouldShow(hasCompletedOnboarding: Bool, monthCount: Int, isForced: Bool) -> Bool {
         isForced || (!hasCompletedOnboarding && monthCount == 0)
     }
+
+    static func hasFoundICloudData(watchesICloud: Bool, hasSavedOwnMonth: Bool, monthCount: Int) -> Bool {
+        watchesICloud && !hasSavedOwnMonth && monthCount > 0
+    }
 }
