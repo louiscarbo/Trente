@@ -11,12 +11,12 @@ enum CloudSyncStatus: Equatable {
     case signedOut
     case waiting
     case synced(Date)
-    case failed(String)
+    case needsAttention(CloudSyncIssue)
 
-    static func status(isSignedIn: Bool, lastSyncDate: Date?, lastErrorDescription: String?) -> CloudSyncStatus {
+    static func status(isSignedIn: Bool, lastSyncDate: Date?, issue: CloudSyncIssue?) -> CloudSyncStatus {
         guard isSignedIn else { return .signedOut }
-        if let lastErrorDescription {
-            return .failed(lastErrorDescription)
+        if let issue {
+            return .needsAttention(issue)
         }
         if let lastSyncDate {
             return .synced(lastSyncDate)
