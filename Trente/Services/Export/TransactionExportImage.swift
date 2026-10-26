@@ -66,9 +66,8 @@ enum TransactionExportImage {
     static func writeImages(
         of rows: [TransactionExportRow],
         to folder: URL,
-        from container: ModelContainer
+        in context: ModelContext
     ) throws -> [UUID: String] {
-        let context = ModelContext(container)
         var paths: [UUID: String] = [:]
         for row in rowsWithImages(in: rows) {
             guard let sourceID = row.imageSourceID, let data = try imageData(for: sourceID, in: context) else {
