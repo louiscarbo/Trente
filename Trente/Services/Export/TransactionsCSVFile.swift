@@ -5,12 +5,10 @@
 //  Created by Louis Carbo Estaque on 23/10/2026.
 //
 
-import CoreTransferable
 import Foundation
 import SwiftData
-import UniformTypeIdentifiers
 
-struct TransactionsCSVFile: Transferable, Sendable {
+struct TransactionsCSVFile: Sendable {
     private static let byteOrderMark = Data([0xEF, 0xBB, 0xBF])
     private static let exportsDirectory = URL.temporaryDirectory.appending(path: "Exports", directoryHint: .isDirectory)
 
@@ -23,45 +21,42 @@ struct TransactionsCSVFile: Transferable, Sendable {
         format.includesImages && hasImages
     }
 
-    var contentType: UTType {
-        includesImages ? .zip : .commaSeparatedText
-    }
-
-    var fileNameWithExtension: String {
-        includesImages ? "\(fileName).zip" : csvFileName
-    }
-
     var csvFileName: String {
         "\(fileName).csv"
+    }
+
+    @concurrent
+    func write(from container: ModelContainer) async throws -> URL {
+        let context = ModelContext(container)
+        let rows = try rows(in: context)
+        return includesImages ? try archive(rows: rows, using: context) : try writeCSV(rows: rows)
     }
 
     func csvData(rows: [TransactionExportRow], imagePaths: [UUID: String]? = nil) -> Data {
         Self.byteOrderMark + Data(TransactionCSVBuilder.csv(from: rows, format: format, imagePaths: imagePaths).utf8)
     }
 
-    @MainActor
-    func rows(in container: ModelContainer) throws -> [TransactionExportRow] {
-        let context = container.mainContext
+    func rows(in context: ModelContext) throws -> [TransactionExportRow] {
         let monthIDs = monthIDs
         let months = try context.fetch(FetchDescriptor<Month>(predicate: #Predicate { month in monthIDs.contains(month.id) }))
         let groupsWithImages = try context.fetch(TransactionExportRow.groupsWithImagesDescriptor)
         return TransactionExportRow.rows(from: months, groupsWithImages: Set(groupsWithImages.map(\.persistentModelID)))
     }
 
-    func writeFolder(rows: [TransactionExportRow], in directory: URL, using container: ModelContainer) throws -> URL {
+    func writeFolder(rows: [TransactionExportRow], in directory: URL, using context: ModelContext) throws -> URL {
         let folder = directory.appending(path: fileName, directoryHint: .isDirectory)
         let imagesFolder = folder.appending(path: TransactionExportImage.folderName, directoryHint: .isDirectory)
         try FileManager.default.createDirectory(at: imagesFolder, withIntermediateDirectories: true)
-        let imagePaths = try TransactionExportImage.writeImages(of: rows, to: imagesFolder, from: container)
+        let imagePaths = try TransactionExportImage.writeImages(of: rows, to: imagesFolder, in: context)
         let csvURL = folder.appending(path: csvFileName, directoryHint: .notDirectory)
         try csvData(rows: rows, imagePaths: imagePaths).write(to: csvURL, options: .atomic)
         return folder
     }
 
-    func archive(rows: [TransactionExportRow], using container: ModelContainer) throws -> URL {
+    func archive(rows: [TransactionExportRow], using context: ModelContext) throws -> URL {
         let directory = try Self.makeTemporaryDirectory()
         do {
-            let folder = try writeFolder(rows: rows, in: directory, using: container)
+            let folder = try writeFolder(rows: rows, in: directory, using: context)
             let archiveURL = directory.appending(path: "\(fileName).zip", directoryHint: .notDirectory)
             try Self.zipItem(at: folder, to: archiveURL)
             try? FileManager.default.removeItem(at: folder)
@@ -82,24 +77,6 @@ struct TransactionsCSVFile: Transferable, Sendable {
             try? FileManager.default.removeItem(at: directory)
             throw error
         }
-    }
-
-    static var transferRepresentation: some TransferRepresentation {
-        FileRepresentation(exportedContentType: .zip) { file in
-            let container = try await MainActor.run { try TrenteContainer.shared.get() }
-            let rows = try await file.rows(in: container)
-            return SentTransferredFile(try file.archive(rows: rows, using: container))
-        }
-        .suggestedFileName { $0.fileNameWithExtension }
-        .exportingCondition { file in file.includesImages }
-
-        FileRepresentation(exportedContentType: .commaSeparatedText) { file in
-            let container = try await MainActor.run { try TrenteContainer.shared.get() }
-            let rows = try await file.rows(in: container)
-            return SentTransferredFile(try file.writeCSV(rows: rows))
-        }
-        .suggestedFileName { $0.fileNameWithExtension }
-        .exportingCondition { file in !file.includesImages }
     }
 
     private static func makeTemporaryDirectory() throws -> URL {

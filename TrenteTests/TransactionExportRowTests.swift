@@ -157,7 +157,7 @@ struct TransactionExportRowTests {
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         defer { try? FileManager.default.removeItem(at: folder) }
 
-        let paths = try TransactionExportImage.writeImages(of: rows, to: folder, from: context.container)
+        let paths = try TransactionExportImage.writeImages(of: rows, to: folder, in: context)
 
         let fileName = TransactionExportImage.fileName(date: salary.addedDate, title: "Salary", transactionID: salary.id, data: jpeg)
         #expect(paths == [salary.id: "Images/\(fileName)"])

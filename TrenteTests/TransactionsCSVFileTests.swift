@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 import Testing
-import UniformTypeIdentifiers
 @testable import Trente
 
 @Suite(.serialized)
@@ -69,7 +68,7 @@ struct TransactionsCSVFileTests {
         let month = insertMonth(year: 2026, month: 3, in: context)
 
         #expect(TransactionsCSVFile.fileName(for: month) == "Trente 2026-03")
-        #expect(TransactionsCSVFile(monthIDs: [month.id], fileName: "Trente 2026-03").fileNameWithExtension == "Trente 2026-03.csv")
+        #expect(TransactionsCSVFile(monthIDs: [month.id], fileName: "Trente 2026-03").csvFileName == "Trente 2026-03.csv")
     }
 
     @Test("Exporting every month gives the all-months name")
@@ -105,42 +104,50 @@ struct TransactionsCSVFileTests {
         #expect(name == "Trente 2026-10")
     }
 
-    @Test("An export with images is a zip file")
-    func imagesMakeAZip() {
-        let file = TransactionsCSVFile(monthIDs: [], fileName: "Trente 2026-10", hasImages: true)
+    @Test("An export with images is a zip, without the folder it was made from")
+    func writesAZip() async throws {
+        let context = try makeContext()
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        insertGroup(title: "Groceries", image: png, in: month, context: context)
+        try context.save()
+        let file = TransactionsCSVFile(monthIDs: [month.id], fileName: "Trente 2026-10", hasImages: true)
 
-        #expect(file.includesImages)
-        #expect(file.contentType == .zip)
-        #expect(file.fileNameWithExtension == "Trente 2026-10.zip")
-        #expect(file.csvFileName == "Trente 2026-10.csv")
+        let fileURL = try await file.write(from: context.container)
+        let directory = fileURL.deletingLastPathComponent()
+        defer { try? FileManager.default.removeItem(at: directory) }
+
+        #expect(fileURL.lastPathComponent == "Trente 2026-10.zip")
+        #expect(try Data(contentsOf: fileURL).starts(with: [0x50, 0x4B, 0x03, 0x04]))
+        #expect(try FileManager.default.contentsOfDirectory(atPath: directory.path(percentEncoded: false)) == ["Trente 2026-10.zip"])
     }
 
-    @Test("Leaving images out keeps a plain CSV file")
-    func imagesLeftOutMakeACSV() {
+    @Test(
+        "Leaving images out, or having none, writes a plain CSV file with no Image column",
+        arguments: [(includesImages: false, hasImages: true), (includesImages: true, hasImages: false)]
+    )
+    func writesACSV(includesImages: Bool, hasImages: Bool) async throws {
+        let context = try makeContext()
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        insertGroup(title: "Groceries", image: png, in: month, context: context)
+        try context.save()
         let file = TransactionsCSVFile(
-            monthIDs: [],
+            monthIDs: [month.id],
             fileName: "Trente 2026-10",
-            format: TransactionCSVFormat(includesImages: false),
-            hasImages: true
+            format: TransactionCSVFormat(includesImages: includesImages),
+            hasImages: hasImages
         )
 
-        #expect(!file.includesImages)
-        #expect(file.contentType == .commaSeparatedText)
-        #expect(file.fileNameWithExtension == "Trente 2026-10.csv")
-    }
+        let fileURL = try await file.write(from: context.container)
+        defer { try? FileManager.default.removeItem(at: fileURL.deletingLastPathComponent()) }
 
-    @Test("An export without images is a plain CSV file with no Image column")
-    func noImagesMakeACSV() {
-        let file = TransactionsCSVFile(monthIDs: [], fileName: "Trente 2026-10")
-
-        #expect(!file.includesImages)
-        #expect(file.contentType == .commaSeparatedText)
-        #expect(file.fileNameWithExtension == "Trente 2026-10.csv")
-        #expect(!text(of: file.csvData(rows: [])).contains("Image"))
+        let records = csvRecords(text(of: try Data(contentsOf: fileURL)))
+        #expect(fileURL.lastPathComponent == "Trente 2026-10.csv")
+        let header = try #require(records.first)
+        #expect(records.count == 2)
+        #expect(!header.contains("Image"))
     }
 
     @Test("Rows come from the selected months only, with their images")
-    @MainActor
     func rowsComeFromSelectedMonths() throws {
         let context = try makeContext()
         let october = insertMonth(year: 2026, month: 10, in: context)
@@ -150,7 +157,7 @@ struct TransactionsCSVFileTests {
         try context.save()
         let file = TransactionsCSVFile(monthIDs: [october.id], fileName: "Trente 2026-10")
 
-        let rows = try file.rows(in: context.container)
+        let rows = try file.rows(in: context)
 
         #expect(rows.map(\.transactionID) == [groceries.id])
         #expect(rows.map(\.imageSourceID) == [groceries.persistentModelID])
@@ -164,7 +171,7 @@ struct TransactionsCSVFileTests {
         let directory = try makeFolder()
         defer { try? FileManager.default.removeItem(at: directory) }
 
-        let folder = try file.writeFolder(rows: rows, in: directory, using: context.container)
+        let folder = try file.writeFolder(rows: rows, in: directory, using: context)
 
         let csv = text(of: try Data(contentsOf: folder.appending(path: file.csvFileName)))
         let records = csvRecords(csv)
@@ -174,20 +181,6 @@ struct TransactionsCSVFileTests {
         #expect(records.count == 2)
         #expect(imagePath == "Images/\(expectedName)")
         #expect(try Data(contentsOf: folder.appending(path: imagePath)) == png)
-    }
-
-    @Test("The archive is a zip named after the export, without the folder it was made from")
-    func archiveIsAZip() throws {
-        let context = try makeContext()
-        let file = TransactionsCSVFile(monthIDs: [], fileName: "Trente 2026-10", hasImages: true)
-
-        let archiveURL = try file.archive(rows: try rowsWithImage(in: context).rows, using: context.container)
-        let directory = archiveURL.deletingLastPathComponent()
-        defer { try? FileManager.default.removeItem(at: directory) }
-
-        #expect(archiveURL.lastPathComponent == "Trente 2026-10.zip")
-        #expect(try Data(contentsOf: archiveURL).starts(with: [0x50, 0x4B, 0x03, 0x04]))
-        #expect(try FileManager.default.contentsOfDirectory(atPath: directory.path(percentEncoded: false)) == ["Trente 2026-10.zip"])
     }
 
     @Test("A new export removes the files of the previous one")
