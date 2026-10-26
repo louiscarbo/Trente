@@ -23,7 +23,6 @@ struct MonthDetailsView: View {
 
     @State private var resetDraft: Bool = false
 
-    @AppStorage(TransactionCSVFormat.styleKey) private var exportStyle = TransactionCSVFormat.Style.standard
     @AppStorage(TransactionCSVFormat.includesNotesKey) private var exportIncludesNotes = true
     @AppStorage(TransactionCSVFormat.includesImagesKey) private var exportIncludesImages = true
     @Query private var groupsWithImages: [TransactionGroup]
@@ -81,7 +80,7 @@ struct MonthDetailsView: View {
             monthIDs: [original.id],
             fileName: TransactionsCSVFile.fileName(for: original),
             format: TransactionCSVFormat(
-                style: exportStyle,
+                style: .current,
                 includesNotes: exportIncludesNotes,
                 includesImages: exportIncludesImages
             ),
@@ -156,7 +155,7 @@ private struct ExportMonthSection: View {
                 ExportButton(title: "Export…", file: file)
                     .disabled(isEmpty)
 
-                Text("To export several months or change the format, go to Settings › Export Transactions.")
+                Text("To export several months or choose what to include, go to Settings › Export Transactions.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)

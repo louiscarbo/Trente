@@ -343,9 +343,6 @@
     "Every month on the %@" : {
 
     },
-    "Excel in French and Other European Languages" : {
-
-    },
     "Expected This Month" : {
 
     },
@@ -383,9 +380,6 @@
 
     },
     "Find Me Online" : {
-
-    },
-    "Format" : {
 
     },
     "Frequency" : {
@@ -622,9 +616,6 @@
     "Open Shortcut Again" : {
 
     },
-    "Opens in Numbers, Google Sheets and Excel in English." : {
-
-    },
     "Over Budget" : {
 
     },
@@ -799,9 +790,6 @@
     "Split your take-home income into Needs, Wants and Savings and Debts. Trente sorts every transaction into one of them." : {
 
     },
-    "Standard" : {
-
-    },
     "Start a New Month" : {
 
     },
@@ -905,7 +893,7 @@
     "To" : {
 
     },
-    "To export several months or change the format, go to Settings › Export Transactions." : {
+    "To export several months or choose what to include, go to Settings › Export Transactions." : {
 
     },
     "Total" : {
@@ -990,9 +978,6 @@
 
     },
     "Use your best estimate. Log extra income as it comes in, and adjust next month's budget." : {
-
-    },
-    "Uses semicolons and decimal commas, as Excel expects in French, German, Spanish or Italian." : {
 
     },
     "Wants" : {

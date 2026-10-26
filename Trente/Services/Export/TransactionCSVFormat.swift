@@ -8,23 +8,19 @@
 import Foundation
 
 struct TransactionCSVFormat: Hashable, Sendable {
-    enum Style: String, CaseIterable, Identifiable, Sendable {
+    enum Style: Sendable {
         case standard
         case european
 
-        var id: String { rawValue }
+        static var current: Style {
+            Style(locale: .current)
+        }
 
-        var title: LocalizedStringResource {
-            switch self {
-            case .standard:
-                "Standard"
-            case .european:
-                "Excel in French and Other European Languages"
-            }
+        init(locale: Locale) {
+            self = locale.decimalSeparator == "," ? .european : .standard
         }
     }
 
-    static let styleKey = "export.style"
     static let includesNotesKey = "export.includesNotes"
     static let includesImagesKey = "export.includesImages"
 
