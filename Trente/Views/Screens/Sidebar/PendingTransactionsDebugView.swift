@@ -50,30 +50,12 @@ struct PendingTransactionsDebugView: View {
                 Button("Add sample", systemImage: "plus", action: addSample)
             }
         }
-        .sheet(isPresented: isShowingReview) {
+        .sheet(isPresented: $reviewedID.isPresent()) {
             if let reviewedID {
                 PendingTransactionReviewLoader(id: reviewedID)
             }
         }
-        .alert("Wallet intake failed", isPresented: isShowingError) {
-            Button("OK") { errorMessage = nil }
-        } message: {
-            Text(errorMessage ?? "")
-        }
-    }
-
-    private var isShowingReview: Binding<Bool> {
-        Binding(
-            get: { reviewedID != nil },
-            set: { if !$0 { reviewedID = nil } }
-        )
-    }
-
-    private var isShowingError: Binding<Bool> {
-        Binding(
-            get: { errorMessage != nil },
-            set: { if !$0 { errorMessage = nil } }
-        )
+        .errorAlert("Wallet intake failed", message: $errorMessage)
     }
 
     private func row(for pending: PendingTransaction) -> some View {

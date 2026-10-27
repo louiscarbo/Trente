@@ -69,7 +69,7 @@ struct AppNavigationView: View {
                 selection = .month(latestMonth)
             }
         }
-        .sheet(isPresented: isShowingPendingTransaction) {
+        .sheet(isPresented: $pendingTransactionRouter.presentedPendingTransactionID.isPresent()) {
             if let id = pendingTransactionRouter.presentedPendingTransactionID {
                 PendingTransactionReviewLoader(id: id)
                     .id(id)
@@ -145,13 +145,6 @@ struct AppNavigationView: View {
     private func show(_ destination: SidebarSelection) {
         selection = destination
         preferredCompactColumn = .detail
-    }
-
-    private var isShowingPendingTransaction: Binding<Bool> {
-        Binding(
-            get: { pendingTransactionRouter.presentedPendingTransactionID != nil },
-            set: { if !$0 { pendingTransactionRouter.presentedPendingTransactionID = nil } }
-        )
     }
 }
 

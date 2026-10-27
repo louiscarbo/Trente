@@ -61,14 +61,7 @@ struct RecurringTransactionRuleDetailsView: View {
             if startInEditMode { enterEditMode() }
         }
         .onChange(of: isEditing) { _, editing in if !editing { clearFocus() } }
-        .alert(String(localized: "Stop Failed"), isPresented: Binding(
-            get: { stopError != nil },
-            set: { if !$0 { stopError = nil } }
-        )) {
-            Button("OK", role: .cancel) { stopError = nil }
-        } message: {
-            Text(stopError ?? "")
-        }
+        .errorAlert("Stop Failed", message: $stopError)
     }
 
     private func clearFocus() {

@@ -55,18 +55,11 @@ struct RecurringTransactionsListView: View {
         .sheet(item: $selectedRule) { rule in
             RecurringTransactionRuleDetailsView(rule: rule, currency: currency)
         }
-        .deleteConfirmation(isPresented: isShowingDeleteConfirmation) {
+        .deleteConfirmation(isPresented: $ruleToDelete.isPresent()) {
             guard let ruleToDelete else { return }
             RecurringTransactionService.shared.delete(rule: ruleToDelete, in: modelContext)
             try? modelContext.save()
         }
-    }
-
-    private var isShowingDeleteConfirmation: Binding<Bool> {
-        Binding(
-            get: { ruleToDelete != nil },
-            set: { if !$0 { ruleToDelete = nil } }
-        )
     }
 
     private func row(for rule: RecurringTransactionRule) -> some View {
