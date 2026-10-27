@@ -54,21 +54,11 @@ struct RecurrenceView: View {
 
     @ViewBuilder
     private var endDatePicker: some View {
-        if recurrenceEndDate == nil {
-            Button("Add an End Date") {
-                withAnimation(.bouncy) {
-                    recurrenceEndDate = recurrenceStartDate
-                }
-            }
-            .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-        } else {
+        if let endDate = Binding($recurrenceEndDate) {
             HStack {
                 DatePicker(
                     "End Date",
-                    selection: Binding<Date>(
-                        get: { recurrenceEndDate! },
-                        set: { recurrenceEndDate = $0 }
-                    ),
+                    selection: endDate,
                     in: minimumEndDate...,
                     displayedComponents: .date
                 )
@@ -82,6 +72,13 @@ struct RecurrenceView: View {
                 }
                 .tint(.primary)
             }
+        } else {
+            Button("Add an End Date") {
+                withAnimation(.bouncy) {
+                    recurrenceEndDate = recurrenceStartDate
+                }
+            }
+            .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
         }
     }
 }

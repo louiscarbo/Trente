@@ -74,9 +74,11 @@ struct AmountCategoryView: View {
         }
         .onAppear {
             updateNextButtonState()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                currencyTextFieldFocused = true
-            }
+        }
+        .task {
+            try? await Task.sleep(for: .seconds(0.6))
+            guard !Task.isCancelled else { return }
+            currencyTextFieldFocused = true
         }
     }
     
