@@ -22,37 +22,38 @@ struct AppNavigationView: View {
     ) private var months: [Month]
 
     @State private var selection: SidebarSelection?
+    @State private var preferredCompactColumn: NavigationSplitViewColumn = .sidebar
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
     #if os(iOS)
     @State private var deepLinkedTransaction: NewTransactionContext?
     #endif
 
     var body: some View {
-        NavigationSplitView {
-            SidebarView(months: months, selection: $selection)
-                .navigationDestination(item: $selection) { destination in
-                    destinationView(for: destination)
-                }
+        NavigationSplitView(preferredCompactColumn: $preferredCompactColumn) {
+            SidebarView(months: months, selection: sidebarSelection)
         } detail: {
-            if months.isEmpty {
-                ContentUnavailableView {
-                    Label("No months available", systemImage: "calendar")
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
-                }
-            } else {
-                if let selection {
-                    destinationView(for: selection)
+            NavigationStack {
+                if months.isEmpty {
+                    ContentUnavailableView {
+                        Label("No months available", systemImage: "calendar")
+                            .font(.headline)
+                            .foregroundStyle(.secondary)
+                    }
                 } else {
-                    Text("Select a month")
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
+                    if let selection {
+                        destinationView(for: selection)
+                    } else {
+                        Text("Select a month")
+                            .font(.headline)
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
+            .id(selection)
         }
         .onAppear {
-            guard selection == nil else { return }
-            selection = months.first.map(SidebarSelection.month)
+            guard selection == nil, let latestMonth = months.first else { return }
+            show(.month(latestMonth))
         }
         .onChange(of: pendingDeepLink, initial: true) { _, link in
             openDeepLink(link)
@@ -103,7 +104,7 @@ struct AppNavigationView: View {
         guard let link else { return }
         pendingDeepLink = nil
         guard let destination = link.destination(in: months) else { return }
-        selection = .month(destination.month)
+        show(.month(destination.month))
         if destination.opensNewTransaction {
             presentNewTransaction(for: destination.month)
         }
@@ -129,6 +130,21 @@ struct AppNavigationView: View {
                 RecurringTransactionsListView(currency: currency)
             }
         }
+    }
+
+    private var sidebarSelection: Binding<SidebarSelection?> {
+        Binding(
+            get: { selection },
+            set: { newSelection in
+                guard let newSelection else { return }
+                show(newSelection)
+            }
+        )
+    }
+
+    private func show(_ destination: SidebarSelection) {
+        selection = destination
+        preferredCompactColumn = .detail
     }
 
     private var isShowingPendingTransaction: Binding<Bool> {

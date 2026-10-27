@@ -37,30 +37,28 @@ struct MonthDetailsView: View {
     private var isSaveDisabled: Bool { draft.idealBudgetCents <= 0 || !isRepartitionComplete }
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: .medium) {
-                    MonthDetailsComponent(
-                        month: $draft,
-                        isRepartitionComplete: $isRepartitionComplete
-                    )
-                    .id(resetDraft)
-                    ExportMonthSection(
-                        file: exportFile,
-                        isEmpty: original.transactionGroups.isEmpty
-                    )
-                    DeleteSection(onConfirmDelete: deleteMonth)
-                }
-                .padding()
+        ScrollView {
+            VStack(spacing: .medium) {
+                MonthDetailsComponent(
+                    month: $draft,
+                    isRepartitionComplete: $isRepartitionComplete
+                )
+                .id(resetDraft)
+                ExportMonthSection(
+                    file: exportFile,
+                    isEmpty: original.transactionGroups.isEmpty
+                )
+                DeleteSection(onConfirmDelete: deleteMonth)
             }
-            .safeAreaInset(edge: .bottom) {
-                if isEditing {
-                    editingFooter
-                }
-            }
-            .navigationBarBackButtonHidden(isEditing)
-            .navigationTitle(MonthFormatting.name(from: draft.startDate))
+            .padding()
         }
+        .safeAreaInset(edge: .bottom) {
+            if isEditing {
+                editingFooter
+            }
+        }
+        .navigationBarBackButtonHidden(isEditing)
+        .navigationTitle(MonthFormatting.name(from: draft.startDate))
         .interactiveDismissDisabled(isEditing)
         .alert(String(localized: "An error occurred"), isPresented: $showErrorAlert) {
             if let action = errorAction {
@@ -206,5 +204,7 @@ private struct DeleteSection: View {
 }
 
 #Preview {
-    MonthDetailsView(month: Month.getSampleMonthWithTransactions())
+    NavigationStack {
+        MonthDetailsView(month: Month.getSampleMonthWithTransactions())
+    }
 }
