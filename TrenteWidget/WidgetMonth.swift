@@ -5,7 +5,7 @@
 //  Created by Louis Carbo Estaque on 22/10/2026.
 //
 
-import Foundation
+import SwiftUI
 
 struct WidgetMonth: Sendable {
     let id: UUID
@@ -21,6 +21,14 @@ struct WidgetMonth: Sendable {
 
     func display(_ amount: Double) -> String {
         amount.formatted(.currency(code: currencyCode).precision(.fractionLength(0)))
+    }
+
+    func displayWithSmallCents(_ amount: Double) -> AttributedString {
+        var formatted = amount.formatted(.currency(code: currencyCode).attributed)
+        for run in formatted.runs where run.numberPart == .fraction || run.numberSymbol == .decimalSeparator {
+            formatted[run.range].font = .title2
+        }
+        return formatted
     }
 }
 
