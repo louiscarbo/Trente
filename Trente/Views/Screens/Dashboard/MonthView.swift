@@ -89,11 +89,13 @@ private struct LatestTransactionsView: View {
     var transactionCount: Int = 3
     
     var body: some View {
+        let latestTransactions = Array(month.latestTransactions.prefix(transactionCount))
+
         GroupBox(label: Label("Latest Transactions", systemImage: "clock.arrow.circlepath")) {
-            ForEach(month.latestTransactions.prefix(transactionCount)) { transaction in
+            ForEach(latestTransactions) { transaction in
                 TransactionGroupRowView(transactionGroup: transaction)
                 
-                if transaction != month.latestTransactions.prefix(transactionCount).last {
+                if transaction != latestTransactions.last {
                     Divider()
                 }
             }
@@ -102,7 +104,7 @@ private struct LatestTransactionsView: View {
                 if transactionGroupsCount == 0 {
                     Text("Add your first transaction by tapping 'Add Transaction'.")
                         .foregroundStyle(.secondary)
-                } else if month.latestTransactions.isEmpty {
+                } else if latestTransactions.isEmpty {
                     Text("Add your first transaction for this month by tapping 'Add Transaction'.")
                         .foregroundStyle(.secondary)
                 }
@@ -129,11 +131,13 @@ private struct RecurringTransactionsView: View {
     var transactionCount: Int = 3
     
     var body: some View {
+        let shownOccurrences = Array(upcomingOccurrences.prefix(transactionCount))
+
         GroupBox(label: Label("Expected This Month", systemImage: "calendar.badge.clock")) {
-            ForEach(upcomingOccurrences.prefix(transactionCount)) { occurrence in
+            ForEach(shownOccurrences) { occurrence in
                 RecurringTransactionRowView(occurrence: occurrence)
                 
-                if occurrence != upcomingOccurrences.prefix(transactionCount).last {
+                if occurrence != shownOccurrences.last {
                     Divider()
                 }
             }
