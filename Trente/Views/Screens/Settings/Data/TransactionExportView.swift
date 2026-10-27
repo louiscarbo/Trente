@@ -16,31 +16,29 @@ struct TransactionExportView: View {
     @AppStorage(TransactionCSVFormat.includesImagesKey) private var includesImages = true
     @State private var excludedMonthIDs: Set<UUID> = []
 
-    var body: some View {
-        let options = months.map(ExportMonthOption.init(month:))
-        let selectedOptions = options.filter { option in !excludedMonthIDs.contains(option.id) }
-        let transactionCount = selectedOptions.reduce(0) { total, option in total + option.transactionCount }
-        let monthIDsWithImages = Set(groupsWithImages.compactMap(\.month?.id))
-        let file = TransactionsCSVFile(
-            monthIDs: selectedOptions.map(\.id),
-            fileName: TransactionsCSVFile.fileName(
-                forMonthsStartingOn: selectedOptions.map(\.startDate),
-                includesEveryMonth: excludedMonthIDs.isEmpty
-            ),
-            format: TransactionCSVFormat(style: .current, includesNotes: includesNotes, includesImages: includesImages),
-            hasImages: selectedOptions.contains { option in monthIDsWithImages.contains(option.id) }
+    private var selection: ExportSelection {
+        ExportSelection(
+            options: months.map(ExportMonthOption.init(month:)),
+            excludedMonthIDs: excludedMonthIDs,
+            monthIDsWithImages: Set(groupsWithImages.compactMap(\.month?.id)),
+            format: TransactionCSVFormat(style: .current, includesNotes: includesNotes, includesImages: includesImages)
         )
+    }
+
+    var body: some View {
+        let selection = selection
+        let file = selection.file
 
         Form {
             Section {
                 NavigationLink {
                     ExportMonthSelectionView(
-                        options: options,
+                        options: selection.options,
                         excludedMonthIDs: $excludedMonthIDs
                     )
                 } label: {
                     LabeledContent("Months") {
-                        Text(monthsSummary(selectedCount: selectedOptions.count))
+                        Text(monthsSummary(of: selection))
                     }
                 }
             } header: {
@@ -63,10 +61,10 @@ struct TransactionExportView: View {
         .formStyle(.grouped)
         .safeAreaInset(edge: .bottom) {
             ExportButton(
-                title: "Export ^[\(transactionCount) Transaction](inflect: true)",
+                title: "Export ^[\(selection.transactionCount) Transaction](inflect: true)",
                 file: file
             )
-            .disabled(transactionCount == 0)
+            .disabled(selection.transactionCount == 0)
             .padding()
             .background(.bar)
         }
@@ -76,11 +74,11 @@ struct TransactionExportView: View {
         #endif
     }
 
-    private func monthsSummary(selectedCount: Int) -> LocalizedStringKey {
-        if excludedMonthIDs.isEmpty {
+    private func monthsSummary(of selection: ExportSelection) -> LocalizedStringKey {
+        if selection.includesEveryMonth {
             return "All Months"
         }
-        return "^[\(selectedCount) Month](inflect: true)"
+        return "^[\(selection.selectedOptions.count) Month](inflect: true)"
     }
 }
 
