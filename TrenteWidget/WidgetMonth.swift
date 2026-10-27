@@ -59,7 +59,7 @@ extension WidgetMonth {
     }
 
     static var sample: WidgetMonth {
-        WidgetMonth(month: .getSampleMonthWithTransactions())
+        WidgetMonth(month: .sample(monthsAgo: 1))
     }
 }
 

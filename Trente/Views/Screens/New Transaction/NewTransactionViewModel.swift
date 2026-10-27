@@ -18,7 +18,6 @@ final class NewTransactionViewModel {
     // View State
     var step: NewTransactionStep = .amountCategory
     var nextButtonDisabled: Bool = true
-    var isRepartitionComplete: Bool = false
     var showErrorAlert: Bool = false
 
     @ObservationIgnored private let permissionService: NotificationPermissionService
@@ -36,8 +35,6 @@ final class NewTransactionViewModel {
     }
     
     var showPreviousButton: Bool { step != .amountCategory }
-    
-    var showNextButton: Bool { step != .recurrence }
     
     func nextStep() {
         if let currentIndex = filteredSteps.firstIndex(of: step) {
