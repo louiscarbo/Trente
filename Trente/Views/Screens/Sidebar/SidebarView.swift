@@ -47,7 +47,7 @@ struct SidebarView: View {
                         .foregroundStyle(.secondary)
                         .padding(.horizontal)
                     RecurringTransactionsRowView(
-                        activeCount: recurringRules.filter { !$0.hasEnded }.count,
+                        activeCount: recurringRules.count { !$0.hasEnded },
                         isSelected: selection == .recurring
                     ) {
                         selection = .recurring

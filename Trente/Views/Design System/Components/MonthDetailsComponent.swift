@@ -72,6 +72,6 @@ struct MonthDetailsComponent: View {
     
     NavigationStack {
         MonthDetailsComponent(month: $draft, isRepartitionComplete: $isRepartitionComplete)
-            .navigationTitle(MonthFormatting.name(from: draft.startDate))
+            .navigationTitle(Month.name(startingOn: draft.startDate))
     }
 }

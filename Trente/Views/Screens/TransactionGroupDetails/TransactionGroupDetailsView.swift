@@ -211,7 +211,7 @@ struct TransactionGroupDetailsView: View {
 
     static func previewGroup() -> TransactionGroup {
         let month1 = Month(
-            startDate: Date(),
+            startDate: .now,
             currency: Currencies.currency(for: "EUR")!,
             idealBudgetCents: 2000_00,
             idealRepartition: [

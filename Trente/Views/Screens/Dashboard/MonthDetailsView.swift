@@ -58,7 +58,7 @@ struct MonthDetailsView: View {
             }
         }
         .navigationBarBackButtonHidden(isEditing)
-        .navigationTitle(MonthFormatting.name(from: draft.startDate))
+        .navigationTitle(Month.name(startingOn: draft.startDate))
         .interactiveDismissDisabled(isEditing)
         .alert(String(localized: "An error occurred"), isPresented: $showErrorAlert) {
             if let action = errorAction {

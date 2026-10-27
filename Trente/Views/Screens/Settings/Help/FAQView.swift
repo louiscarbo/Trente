@@ -17,7 +17,7 @@ struct FAQView: View {
             if isSearching {
                 let results = FAQItem.matching(searchText, in: items)
                 if results.isEmpty {
-                    ContentUnavailableView.search(text: searchText)
+                    ContentUnavailableView.search
                 } else {
                     sections(for: results)
                 }
