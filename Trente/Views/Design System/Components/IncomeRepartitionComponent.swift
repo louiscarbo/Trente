@@ -303,6 +303,12 @@ struct RepartitionSlider: View {
 
     @State private var measuredHeight: CGFloat = 0
 
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var filledTextColor: Color {
+        colorScheme == .dark ? color.darken(0.8) : color.lighten(0.5)
+    }
+
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
@@ -331,7 +337,7 @@ struct RepartitionSlider: View {
                         categoryNameView
                         textView
                     }
-                    .foregroundColor(color.lighten(0.5))
+                    .foregroundColor(filledTextColor)
                     .padding(.vertical, 6)
                     .mask(
                         HStack {
