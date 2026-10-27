@@ -259,16 +259,16 @@ private struct ZoomableUIKitContainer: UIViewRepresentable {
         func installAccessibilityActions() {
             guard let view = contentView else { return }
             view.isAccessibilityElement = true
-            view.accessibilityLabel = "Photo"
+            view.accessibilityLabel = String(localized: "Photo")
             view.accessibilityTraits = [.image, .allowsDirectInteraction]
 
-            let zoomIn = UIAccessibilityCustomAction(name: "Zoom in") { [weak self] _ in
+            let zoomIn = UIAccessibilityCustomAction(name: String(localized: "Zoom in")) { [weak self] _ in
                 guard let self, let scroll = self.scrollView else { return false }
                 let target = min(scroll.zoomScale * 1.5, scroll.maximumZoomScale)
                 scroll.setZoomScale(target, animated: true)
                 return true
             }
-            let zoomOut = UIAccessibilityCustomAction(name: "Zoom out") { [weak self] _ in
+            let zoomOut = UIAccessibilityCustomAction(name: String(localized: "Zoom out")) { [weak self] _ in
                 guard let self, let scroll = self.scrollView else { return false }
                 let target = max(scroll.zoomScale / 1.5, scroll.minimumZoomScale)
                 scroll.setZoomScale(target, animated: true)
