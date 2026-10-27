@@ -163,10 +163,6 @@ extension Month {
     @MainActor static let month4 = Month.sample(monthsAgo: 3)
 
     @MainActor static let sampleData: [Month] = [month1, month2, month3, month4]
-
-    static func getSampleMonthWithTransactions() -> Month {
-        sample(monthsAgo: 1)
-    }
 }
 
 extension RecurringTransactionRule {

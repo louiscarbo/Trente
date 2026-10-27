@@ -247,7 +247,6 @@ private struct NarrowMonthView: View {
     var recurringTransactionsCount: Int
     
     // View State
-    @State private var isShowingNewTransactionSheet = false
     @State private var carouselPage: CarouselPage?
 
     private enum CarouselPage: Int, CaseIterable {

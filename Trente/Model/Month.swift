@@ -112,10 +112,6 @@ extension Month {
         return remainingAmount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
     }
 
-    var negativeSpentAmount: Double {
-        Double(spentAmountCents) / 100
-    }
-
     var overSpent: Bool {
         remainingAmountCents < 0
     }
@@ -158,7 +154,7 @@ extension Month {
 
     func spentAmount(in scope: BudgetScope) -> Double {
         switch scope {
-        case .all: abs(negativeSpentAmount)
+        case .all: abs(spentAmount)
         case .category(let category): spentAmount(for: category)
         }
     }

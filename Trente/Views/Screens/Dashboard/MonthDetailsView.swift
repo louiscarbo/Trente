@@ -205,6 +205,6 @@ private struct DeleteSection: View {
 
 #Preview {
     NavigationStack {
-        MonthDetailsView(month: Month.getSampleMonthWithTransactions())
+        MonthDetailsView(month: .sample(monthsAgo: 1))
     }
 }
