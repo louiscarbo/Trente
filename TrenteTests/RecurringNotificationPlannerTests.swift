@@ -304,4 +304,13 @@ struct RecurringNotificationPlannerTests {
         let payload = try #require(RecurringNotificationPayload(userInfo: notifications[0].userInfo))
         #expect(payload == RecurringNotificationPayload(ruleID: rent.id, occurrenceDate: day(2025, 4, 15)))
     }
+
+    @Test("Turned off, no recurring transaction is reminded")
+    func disabledRemindsNothing() throws {
+        let context = try makeContext()
+        let rule = insertRule("Rent", startingOn: day(2025, 1, 15), in: context)
+        let planner = RecurringNotificationPlanner(isEnabled: false, calendar: calendar)
+
+        #expect(planner.requests(for: [rule], currency: euro, now: now).isEmpty)
+    }
 }

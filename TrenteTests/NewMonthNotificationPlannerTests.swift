@@ -71,4 +71,11 @@ struct NewMonthNotificationPlannerTests {
 
         #expect(request.identifier == "newMonth.2025-11-01")
     }
+
+    @Test("Turned off, no new month is announced")
+    func disabledAnnouncesNothing() {
+        let planner = NewMonthNotificationPlanner(isEnabled: false, calendar: calendar)
+
+        #expect(planner.requests(afterMonthStartingOn: day(2025, 10, 1), now: day(2025, 10, 10)).isEmpty)
+    }
 }
