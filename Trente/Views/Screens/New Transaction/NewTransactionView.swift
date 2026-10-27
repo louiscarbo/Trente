@@ -77,7 +77,7 @@ struct NewTransactionView: View {
                             }
                         }
                     }
-                    .disabled(viewModel.nextButtonDisabled)
+                    .disabled(!viewModel.canAdvance)
                     .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
                 }
             }
@@ -95,8 +95,6 @@ struct NewTransactionView: View {
                     amountCents: $viewModel.request.amountCents,
                     transactionType: $viewModel.request.type,
                     isRecurrent: $viewModel.request.isRecurrent,
-                    
-                    nextButtonDisabled: $viewModel.nextButtonDisabled,
                     currency: context.currency
                 )
                 .toolbar {
@@ -111,8 +109,6 @@ struct NewTransactionView: View {
             case .title:
                 TitleView(
                     title: $viewModel.request.title,
-
-                    nextButtonDisabled: $viewModel.nextButtonDisabled,
                     step: $viewModel.step,
                     showKeyboardDismissButton: $showKeyboardDismissButton
                 )
@@ -120,8 +116,6 @@ struct NewTransactionView: View {
                 NotesImageView(
                     imageData: $viewModel.request.imageData,
                     notes: $viewModel.request.notes,
-
-                    nextButtonDisabled: $viewModel.nextButtonDisabled,
                     showKeyboardDismissButton: $showKeyboardDismissButton
                 )
             case .repartition:
@@ -129,8 +123,7 @@ struct NewTransactionView: View {
                     currency: context.currency,
                     transactionAmount: viewModel.request.amountCents,
                     repartition: $viewModel.request.repartition,
-                    
-                    nextButtonDisabled: $viewModel.nextButtonDisabled
+                    isRepartitionComplete: $viewModel.isRepartitionComplete
                 )
             case .recurrence:
                 RecurrenceView(
