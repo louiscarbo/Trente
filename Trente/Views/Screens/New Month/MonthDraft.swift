@@ -44,15 +44,3 @@ struct MonthDraft: Equatable {
         )
     }
 }
-
-enum MonthFormatting {
-    static let monthYearFormatter: DateFormatter = {
-        let f = DateFormatter()
-        f.dateFormat = "MMMM yyyy"
-        return f
-    }()
-
-    static func name(from startDate: Date) -> String {
-        monthYearFormatter.string(from: startDate).capitalized
-    }
-}

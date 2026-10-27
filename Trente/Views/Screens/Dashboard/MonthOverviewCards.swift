@@ -98,7 +98,7 @@ struct DailySpendingCard: View {
         switch mode {
         case .month:
             if spending.today != nil { return String(localized: "This Month") }
-            let isCurrentYear = calendar.isDate(Date(), equalTo: month.startDate, toGranularity: .year)
+            let isCurrentYear = calendar.isDate(.now, equalTo: month.startDate, toGranularity: .year)
             return isCurrentYear
                 ? month.startDate.formatted(.dateTime.month(.wide))
                 : month.startDate.formatted(.dateTime.month(.wide).year())

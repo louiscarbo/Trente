@@ -82,7 +82,7 @@ struct FilterSheetView: View {
         } catch {
             self.error = error
             errorIsPresented = true
-            return Date()...Date()
+            return Date.now...Date.now
         }
     }
 }

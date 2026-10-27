@@ -88,7 +88,7 @@ struct RecurrenceView: View {
 
 #Preview {
     @Previewable @State var recurrenceFrequency: RecurrenceFrequency = .monthly
-    @Previewable @State var recurrenceStartDate: Date = Date()
+    @Previewable @State var recurrenceStartDate: Date = .now
     @Previewable @State var recurrenceEndDate: Date?
     
     Text("Hello")
