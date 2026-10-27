@@ -28,13 +28,7 @@ struct FilterSheetView: View {
                 categoriesSection
             }
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Label("OK", systemImage: "checkmark")
-                    }
-                }
+                ConfirmToolbarItem { dismiss() }
             }
             .alert("An error occurred", isPresented: $errorIsPresented, presenting: error) { _ in
                 Button("OK", role: .cancel) {

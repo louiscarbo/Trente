@@ -32,13 +32,12 @@ struct NewMonthView: View {
                     MonthDetailsComponent(month: draftBinding, isRepartitionComplete: $isRepartitionComplete)
                         .navigationTitle("New Month")
                         .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Cancel") { dismiss() }
-                            }
-                            ToolbarItem(placement: .confirmationAction) {
-                                Button("Create", action: saveMonth)
-                                    .disabled(isCreateButtonDisabled)
-                            }
+                            CancelToolbarItem { dismiss() }
+                            ConfirmToolbarItem(
+                                title: "Create",
+                                isDisabled: isCreateButtonDisabled,
+                                action: saveMonth
+                            )
                         }
                 }
                 .padding()
