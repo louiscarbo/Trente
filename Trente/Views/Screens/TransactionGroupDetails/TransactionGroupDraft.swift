@@ -107,19 +107,19 @@ struct TransactionGroupDraft: Equatable {
     func validate() -> [String] {
         var issues: [String] = []
         if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            issues.append("Title cannot be empty.")
+            issues.append(String(localized: "Title cannot be empty."))
         }
         switch type {
         case .expense:
-            if expenseCategory == nil { issues.append("Select a category for the expense.") }
-            if (expenseAmountCents ?? 0) >= 0 { issues.append("Amount must be less than 0.") }
+            if expenseCategory == nil { issues.append(String(localized: "Select a category for the expense.")) }
+            if (expenseAmountCents ?? 0) >= 0 { issues.append(String(localized: "Amount must be less than 0.")) }
         case .income:
             let total = incomeRepartition.values.reduce(0, +)
             if total <= 0 {
-                issues.append("Income repartition total must be greater than 0.")
+                issues.append(String(localized: "Income repartition total must be greater than 0."))
             }
             if total != incomeAmountToSplitCents && incomeAmountToSplitCents > 0 {
-                issues.append("Repartition total does not match the amount to split.")
+                issues.append(String(localized: "Repartition total does not match the amount to split."))
             }
         }
         return issues

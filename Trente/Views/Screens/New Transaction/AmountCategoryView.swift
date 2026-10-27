@@ -22,8 +22,8 @@ struct AmountCategoryView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Label(transactionType == .income
-                  ? "You will select categories for this income in the next steps."
-                  : selectedCategory?.shortExamples ?? "Select a category for this transaction.", systemImage: "info.circle")
+                  ? String(localized: "You will select categories for this income in the next steps.")
+                  : selectedCategory?.shortExamples ?? String(localized: "Select a category for this transaction."), systemImage: "info.circle")
             .font(.headline)
             .foregroundStyle(.secondary)
 

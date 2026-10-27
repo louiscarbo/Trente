@@ -30,7 +30,7 @@ struct SubscriptionAccessible: ViewModifier {
                             .font(.title3)
                             .padding(.trailing, 4)
                             
-                        Text(prompt ?? "Subscribe to Trente+ to unlock")
+                        Text(prompt ?? String(localized: "Subscribe to Trente+ to unlock"))
                             .font(.title3)
                     }
                 }

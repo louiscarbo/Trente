@@ -23,9 +23,9 @@ struct MonthCurrencyPicker: View {
         LabeledPicker(
             title: "Currency",
             selection: $currency,
-            options: Currencies.availableCurrencies.sorted(by: { $0.localizedName < $1.localizedName })
+            options: Currencies.availableCurrencies.sorted(by: { $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending })
         ) { currency in
-            Label(currency.localizedName, systemImage: currency.sfSymbolName ?? "xmark")
+            Label(currency.displayName, systemImage: currency.sfSymbolName ?? "xmark")
         }
     }
 }

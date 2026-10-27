@@ -129,7 +129,7 @@ struct NotesImageView: View {
                             imageData = nil
                         }
                     } catch {
-                        errorWrapper = ErrorWrapper(error: error, guidance: "The image could not be loaded. Please try again.")
+                        errorWrapper = ErrorWrapper(error: error, guidance: String(localized: "The image could not be loaded. Please try again."))
                         showErrorAlert = true
                         imageData = nil
                     }

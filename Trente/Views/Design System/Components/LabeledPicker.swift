@@ -9,7 +9,7 @@ import SwiftUI
 
 /// A reusable view that presents a labeled picker, suitable for use in a `Form`.
 struct LabeledPicker<SelectionValue: Identifiable & Hashable, Content: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     @Binding var selection: SelectionValue
     let options: [SelectionValue]
     @ViewBuilder let content: (SelectionValue) -> Content
@@ -69,7 +69,7 @@ struct LabeledPicker<SelectionValue: Identifiable & Hashable, Content: View>: Vi
                     selection: $currency,
                     options: Currencies.availableCurrencies
                 ) { currency in
-                    Label(currency.localizedName, systemImage: currency.sfSymbolName ?? "xmark")
+                    Label(currency.displayName, systemImage: currency.sfSymbolName ?? "xmark")
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
