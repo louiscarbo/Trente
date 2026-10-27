@@ -48,7 +48,11 @@ struct MonthDetailsView: View {
                     file: exportFile,
                     isEmpty: original.transactionGroups.isEmpty
                 )
-                DeleteSection(onConfirmDelete: deleteMonth)
+                DeleteSectionBox(
+                    title: String(localized: "Delete Month"),
+                    message: String(localized: "This action cannot be undone. All transactions associated with this month will also be deleted."),
+                    onDelete: deleteMonth
+                )
             }
             .padding()
         }
@@ -126,16 +130,7 @@ struct MonthDetailsView: View {
             .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
         }
         .padding()
-        .background {
-            UnevenRoundedRectangle(
-                cornerRadii:
-                    RectangleCornerRadii(topLeading: 26, bottomLeading: 0, bottomTrailing: 0, topTrailing: 26)
-            )
-            .offset(y: 1.5)
-            .fill(.regularMaterial)
-            .stroke(.secondary.opacity(0.4), lineWidth: 3)
-            .ignoresSafeArea()
-        }
+        .bottomBarBackground()
     }
 }
 
@@ -170,36 +165,6 @@ private struct ExportMonthSection: View {
         } else {
             "Save this month's transactions as a spreadsheet file (.csv) that opens in Numbers, Excel or Google Sheets."
         }
-    }
-}
-
-private struct DeleteSection: View {
-    @State private var showDeleteConfirmation = false
-    let onConfirmDelete: () -> Void
-
-    var body: some View {
-        let deleteWarningMessage = String(localized: "This action cannot be undone. All transactions associated with this month will also be deleted.")
-        GroupBox(label: Label("Delete Month", systemImage: "trash.fill")) {
-            VStack(spacing: .medium) {
-                Text(deleteWarningMessage)
-                    .foregroundStyle(.secondary)
-
-                Button(role: .destructive) {
-                    showDeleteConfirmation = true
-                } label: {
-                    Label("Delete Month", systemImage: "trash.fill")
-                        .font(.headline)
-                }
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                .confirmationDialog(String(localized: "Are you sure?"), isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
-                    Button(String(localized: "Delete"), role: .destructive, action: onConfirmDelete)
-                    Button(String(localized: "Cancel"), role: .cancel) {}
-                } message: {
-                    Text(deleteWarningMessage)
-                }
-            }
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle())
     }
 }
 

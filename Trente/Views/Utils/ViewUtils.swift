@@ -166,6 +166,7 @@ extension View {
     /// Standard destructive-delete confirmation dialog with a "cannot be undone" warning.
     func deleteConfirmation(
         isPresented: Binding<Bool>,
+        message: String = String(localized: "This action cannot be undone."),
         onDelete: @escaping () -> Void
     ) -> some View {
         confirmationDialog(
@@ -176,7 +177,7 @@ extension View {
             Button(String(localized: "Delete"), role: .destructive, action: onDelete)
             Button(String(localized: "Cancel"), role: .cancel) {}
         } message: {
-            Text("This action cannot be undone.")
+            Text(message)
         }
     }
 }
