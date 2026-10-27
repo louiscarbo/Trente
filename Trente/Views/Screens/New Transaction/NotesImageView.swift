@@ -21,27 +21,16 @@ struct NotesImageView: View {
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showImageSubscriptionSheet: Bool = false
     @State private var showFullScreen = false
-    @State private var errorWrapper: ErrorWrapper?
-    @State private var showErrorAlert = false
+    @State private var imageLoadingError: String?
+    @State private var image: Image?
     @FocusState private var notesFocused: Bool
-    
-    private var image: Image? {
-        guard let data = imageData else { return nil }
-        #if canImport(UIKit)
-        guard let uiImage = UIImage(data: data) else { return nil }
-        return Image(uiImage: uiImage)
-        #elseif canImport(AppKit)
-        guard let nsImage = NSImage(data: data) else { return nil }
-        return Image(nsImage: nsImage)
-        #endif
-    }
     
     var body: some View {
         ZStack {
             // Content
             ScrollView {
                 VStack(spacing: 20) {
-                    if photosPickerItem == nil {
+                    if imageData == nil && photosPickerItem == nil {
                         PhotosPicker(selection: $photosPickerItem) {
                             Label("Add Image", systemImage: "photo.badge.plus")
                         }
@@ -115,25 +104,24 @@ struct NotesImageView: View {
                 .padding(.top, 30)
             }
             .subscriptionAccessible(subscribed: userSubscriptionIsActive)
-            .onChange(of: photosPickerItem) { _, newItem in
-                Task {
-                    guard let item = newItem else {
-                        imageData = nil
-                        return
-                    }
-                    do {
-                        let loadedData = try await item.loadTransferable(type: Data.self)
-                        if let loadedData {
-                            imageData = await ImageAttachment.prepared(loadedData)
-                        } else {
-                            imageData = nil
-                        }
-                    } catch {
-                        errorWrapper = ErrorWrapper(error: error, guidance: String(localized: "The image could not be loaded. Please try again."))
-                        showErrorAlert = true
+            .task(id: photosPickerItem) {
+                guard let item = photosPickerItem else { return }
+                do {
+                    let loadedData = try await item.loadTransferable(type: Data.self)
+                    guard !Task.isCancelled else { return }
+                    if let loadedData {
+                        imageData = await ImageAttachment.prepared(loadedData)
+                    } else {
                         imageData = nil
                     }
+                } catch {
+                    guard !Task.isCancelled else { return }
+                    imageLoadingError = String(localized: "The image could not be loaded. Please try again.")
+                    photosPickerItem = nil
                 }
+            }
+            .task(id: imageData) {
+                image = imageData.flatMap(createImage)
             }
             
             if !userSubscriptionIsActive {
@@ -156,11 +144,7 @@ struct NotesImageView: View {
                 .padding()
             }
         }
-        .alert("Error Loading Image", isPresented: $showErrorAlert, presenting: errorWrapper) { _ in
-            Button("OK") {}
-        } message: { wrapper in
-            Text(wrapper.guidance)
-        }
+        .errorAlert("Error Loading Image", message: $imageLoadingError)
         .onAppear {
             nextButtonDisabled = false
         }
