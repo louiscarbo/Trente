@@ -14,11 +14,8 @@ struct GraphCardView: View {
     
     @State private var showRemaining = false
 
-    private var figures: BudgetFigures {
-        month.figures(in: scope)
-    }
-
     var body: some View {
+        let figures = month.figures(in: scope)
         let exactAmount = figures.amount(showingRemaining: showRemaining)
 
         Button {
