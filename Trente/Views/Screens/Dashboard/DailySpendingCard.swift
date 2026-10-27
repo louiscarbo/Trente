@@ -1,5 +1,5 @@
 //
-//  MonthOverviewCards.swift
+//  DailySpendingCard.swift
 //  Trente
 //
 //  Created by Louis Carbo Estaque on 16/05/2026.
@@ -7,8 +7,6 @@
 
 import SwiftUI
 import Charts
-
-// MARK: - Daily Spending Card
 
 struct DailySpendingCard: View {
     let spending: DailySpending
@@ -50,10 +48,6 @@ struct DailySpendingCard: View {
         selectedDate.flatMap(spending.day(on:))
     }
 
-    private func formattedAmount(_ value: Double) -> String {
-        value.formatted(.currency(code: currencyCode).precision(.fractionLength(0)))
-    }
-
     var body: some View {
         let hasData = !spending.days.isEmpty
         let selectedDay = selectedDay(in: spending)
@@ -82,7 +76,7 @@ struct DailySpendingCard: View {
                     }
                     .animation(.easeInOut(duration: 0.25), value: selectedDay?.date)
                 } else {
-                    emptyState
+                    DailySpendingEmptyState()
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
@@ -204,71 +198,18 @@ struct DailySpendingCard: View {
     @ViewBuilder
     private func dock(_ spending: DailySpending, selectedDay: DailySpend?) -> some View {
         if let selectedDay {
-            dockContent(title: dayTitle(selectedDay.date), days: [selectedDay])
+            DailySpendingDock(
+                title: selectedDay.date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated)),
+                days: [selectedDay],
+                currencyCode: currencyCode
+            )
         } else {
-            dockContent(title: String(localized: "Total"), days: visibleDays(in: spending))
+            DailySpendingDock(
+                title: String(localized: "Total"),
+                days: visibleDays(in: spending),
+                currencyCode: currencyCode
+            )
         }
-    }
-
-    private func dayTitle(_ date: Date) -> String {
-        date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated))
-    }
-
-    @ViewBuilder
-    private func dockContent(title: String, days: [DailySpend]) -> some View {
-        let slices = CategorySlice.slices(for: days)
-        VStack(alignment: .leading, spacing: 6) {
-            HStack {
-                Text(title).font(.caption.bold())
-                Spacer()
-                Text(formattedAmount(days.reduce(0) { $0 + $1.total })).font(.caption.bold())
-            }
-            proportionCapsule(for: slices)
-            proportionLegend(for: slices)
-        }
-    }
-
-    private func proportionCapsule(for slices: [CategorySlice]) -> some View {
-        GeometryReader { geo in
-            HStack(spacing: 3) {
-                ForEach(slices, id: \.category) { slice in
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(slice.category.color.gradient)
-                        .frame(width: max(geo.size.width * slice.share - 3, 3))
-                }
-            }
-        }
-        .frame(height: 10)
-    }
-
-    private func proportionLegend(for slices: [CategorySlice]) -> some View {
-        HStack(alignment: .top, spacing: DesignSystem.Spacing.medium.rawValue) {
-            ForEach(slices, id: \.category) { slice in
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Circle().fill(slice.category.color).frame(width: 6, height: 6)
-                    VStack(alignment: .leading, spacing: 1) {
-                        Text(slice.category.shortName)
-                            .font(.caption2.bold())
-                        Text("\(formattedAmount(slice.amount)) · \(slice.percent)%")
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-    }
-
-    private var emptyState: some View {
-        VStack(spacing: DesignSystem.Spacing.medium.rawValue) {
-            Image(systemName: "calendar.badge.plus")
-                .font(.largeTitle)
-                .foregroundStyle(.secondary)
-            Text("No spending recorded yet.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, minHeight: 240)
     }
 }
 
