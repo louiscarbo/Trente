@@ -17,6 +17,7 @@ struct AmountCategoryView: View {
     // View State
     @Binding var nextButtonDisabled: Bool
     @FocusState private var currencyTextFieldFocused: Bool
+    @ScaledMetric(relativeTo: .largeTitle) private var amountFontSize = 80
     let currency: Currency
     
     var body: some View {
@@ -86,9 +87,10 @@ struct AmountCategoryView: View {
     private var stackContent: some View {
         #if os(iOS)
         Picker("Income/Expense", selection: $transactionType) {
-            Image(systemName: "minus").tag(TransactionType.expense)
-            Image(systemName: "plus").tag(TransactionType.income)
+            Label("Expense", systemImage: "minus").tag(TransactionType.expense)
+            Label("Income", systemImage: "plus").tag(TransactionType.income)
         }
+        .labelStyle(.iconOnly)
         .pickerStyle(.inline)
         .frame(width: 60)
         #elseif os(macOS)
@@ -103,7 +105,7 @@ struct AmountCategoryView: View {
             .focused($currencyTextFieldFocused)
             #if os(iOS)
             .textFieldStyle(.plain)
-            .font(.system(size: 80, weight: .bold))
+            .font(.system(size: amountFontSize, weight: .bold))
             .multilineTextAlignment(.center)
             #endif
     }

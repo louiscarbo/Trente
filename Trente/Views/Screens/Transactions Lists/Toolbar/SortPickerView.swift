@@ -64,7 +64,7 @@ struct SortPickerView: View {
                 }
             }
         } label: {
-            Image(systemName: "arrow.up.arrow.down")
+            Label("Sort", systemImage: "arrow.up.arrow.down")
         }
     }
 }

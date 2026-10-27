@@ -63,13 +63,12 @@ struct RecurrenceView: View {
                     displayedComponents: .date
                 )
                 
-                Button {
+                Button("Remove End Date", systemImage: "xmark.circle.fill") {
                     withAnimation(.bouncy) {
                         recurrenceEndDate = nil
                     }
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
                 }
+                .labelStyle(.iconOnly)
                 .tint(.primary)
             }
         } else {

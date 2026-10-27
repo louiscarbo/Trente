@@ -182,13 +182,12 @@ struct RecurringTransactionRuleDetailsView: View {
                     displayedComponents: .date
                 )
                 if isEditing {
-                    Button {
+                    Button("Remove End Date", systemImage: "xmark.circle.fill") {
                         withAnimation(.bouncy) {
                             draft?.endDate = nil
                         }
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
                     }
+                    .labelStyle(.iconOnly)
                     .tint(.primary)
                 }
             }
