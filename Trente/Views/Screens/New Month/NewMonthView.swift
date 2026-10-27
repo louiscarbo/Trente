@@ -51,7 +51,7 @@ struct NewMonthView: View {
             Button("Retry") { saveMonth() }
             Button("Cancel", role: .cancel) { dismiss() }
         } message: {
-            Text(errorMessage.isEmpty ? "We couldn't create the month. Please try again." : errorMessage)
+            Text(errorMessage.isEmpty ? String(localized: "We couldn't create the month. Please try again.") : errorMessage)
         }
     }
 
@@ -65,7 +65,7 @@ struct NewMonthView: View {
             )
         } else {
             guard let defaultCurrency = Currencies.currency(for: "EUR") else {
-                errorMessage = "No currencies available to create a new month."
+                errorMessage = String(localized: "No currencies available to create a new month.")
                 showErrorAlert = true
                 return
             }

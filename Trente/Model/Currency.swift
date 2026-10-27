@@ -16,6 +16,13 @@ struct Currency: Codable, Hashable, Identifiable {
 }
 
 extension Currency {
+    var displayName: String {
+        guard let systemName = Locale.current.localizedString(forCurrencyCode: isoCode) else { return localizedName }
+        return systemName.prefix(1).localizedUppercase + systemName.dropFirst()
+    }
+}
+
+extension Currency {
     nonisolated(unsafe) private static var formatterCache: [String: NumberFormatter] = [:]
     private static let cacheLock = NSLock()
     
