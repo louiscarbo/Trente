@@ -124,7 +124,7 @@ struct NotesImageView: View {
                     do {
                         imageData = try await item.loadTransferable(type: Data.self)
                     } catch {
-                        errorWrapper = ErrorWrapper(error: error, guidance: "The image could not be loaded. Please try again.")
+                        errorWrapper = ErrorWrapper(error: error, guidance: String(localized: "The image could not be loaded. Please try again."))
                         showErrorAlert = true
                         imageData = nil
                     }
