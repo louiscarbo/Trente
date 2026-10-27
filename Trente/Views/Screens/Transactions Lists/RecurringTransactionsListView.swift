@@ -10,6 +10,7 @@ import SwiftData
 
 struct RecurringTransactionsListView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.transactionActions) private var transactionActions
 
     let currency: Currency
 
@@ -57,8 +58,7 @@ struct RecurringTransactionsListView: View {
         }
         .deleteConfirmation(isPresented: $ruleToDelete.isPresent()) {
             guard let ruleToDelete else { return }
-            RecurringTransactionService.shared.delete(rule: ruleToDelete, in: modelContext)
-            try? modelContext.save()
+            transactionActions.delete(ruleToDelete, in: modelContext)
         }
     }
 

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RecurringTransactionRowView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.transactionActions) private var transactionActions
     let occurrence: RecurringTransactionOccurrence
 
     @State private var showPaymentSheet = false
@@ -72,7 +73,7 @@ struct RecurringTransactionRowView: View {
             titleVisibility: .visible
         ) {
             Button(occurrence.isIncome ? String(localized: "Mark as Received") : String(localized: "Mark as Paid")) {
-                try? RecurringTransactionService.shared.confirm(occurrence, in: modelContext)
+                transactionActions.confirm(occurrence, in: modelContext)
             }
             Button(String(localized: "Cancel"), role: .cancel) {}
         } message: {
@@ -84,7 +85,7 @@ struct RecurringTransactionRowView: View {
             date: occurrence.date,
             frequency: occurrence.rule.frequency
         ) {
-            try? RecurringTransactionService.shared.skip(occurrence, in: modelContext)
+            transactionActions.skip(occurrence, in: modelContext)
         }
         .sheet(isPresented: $showPaymentSheet) {
             RecurringOccurrenceSheet(occurrence: occurrence)
