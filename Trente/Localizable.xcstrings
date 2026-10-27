@@ -156,6 +156,9 @@
     "Amount" : {
 
     },
+    "Amount must be less than 0." : {
+
+    },
     "Amount to split" : {
 
     },
@@ -330,16 +333,6 @@
     "Every %@" : {
 
     },
-    "Every %@ %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Every %1$@ %2$@"
-          }
-        }
-      }
-    },
     "Every month on the %@" : {
 
     },
@@ -353,9 +346,6 @@
 
     },
     "Expense" : {
-
-    },
-    "Export Failed" : {
 
     },
     "Export Failed" : {
@@ -469,6 +459,9 @@
     "Income Repartition" : {
 
     },
+    "Income repartition total must be greater than 0." : {
+
+    },
     "Income varies?" : {
 
     },
@@ -568,6 +561,9 @@
     "Next" : {
 
     },
+    "No currencies available to create a new month." : {
+
+    },
     "No month available" : {
 
     },
@@ -647,6 +643,9 @@
 
     },
     "Paid" : {
+
+    },
+    "Photo" : {
 
     },
     "Please open this window from a month dashboard." : {
@@ -754,7 +753,13 @@
     "See your remaining budget for the current month, as well as your spending on larger widgets.\nQuickly see how you're doing, and easily log new transactions.\n\nSee examples below." : {
 
     },
+    "Select a category for the expense." : {
+
+    },
     "Select a category for the widget." : {
+
+    },
+    "Select a category for this transaction." : {
 
     },
     "Select a month" : {
@@ -857,6 +862,9 @@
     "Stop Future Transactions" : {
 
     },
+    "Subscribe to Trente+ to unlock" : {
+
+    },
     "Sum of displayed transactions" : {
 
     },
@@ -891,6 +899,9 @@
 
     },
     "The 50/30/20 rule in 30 seconds" : {
+
+    },
+    "The image could not be loaded. Please try again." : {
 
     },
     "Think of it as the money you're free to spend each month, once taxes are taken care of." : {
@@ -1016,6 +1027,9 @@
     "Wants" : {
 
     },
+    "We couldn't create the month. Please try again." : {
+
+    },
     "We couldn't create the transaction. Please try again." : {
 
     },
@@ -1086,6 +1100,9 @@
     "You can write to %@ from any email app." : {
 
     },
+    "You will select categories for this income in the next steps." : {
+
+    },
     "You're a Trente+ member. Thank you!" : {
 
     },
@@ -1114,6 +1131,12 @@
 
     },
     "Your new month is ready, with the same budget as last month. Open Trente to see it." : {
+
+    },
+    "Zoom in" : {
+
+    },
+    "Zoom out" : {
 
     }
   },
