@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-final class MonthService {
+final class MonthService: Sendable {
     static let shared = MonthService()
     private init() {}
 

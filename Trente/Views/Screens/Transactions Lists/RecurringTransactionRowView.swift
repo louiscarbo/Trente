@@ -5,6 +5,7 @@
 //  Created by Louis Carbo Estaque on 20/04/2025.
 //
 
+import SwiftData
 import SwiftUI
 
 struct RecurringTransactionRowView: View {

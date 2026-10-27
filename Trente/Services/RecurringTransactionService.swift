@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-final class RecurringTransactionService {
+final class RecurringTransactionService: Sendable {
     static let shared = RecurringTransactionService()
     private init() {}
 

@@ -5,6 +5,7 @@
 //  Created by Louis Carbo Estaque on 17/04/2025.
 //
 
+import SwiftData
 import SwiftUI
 
 struct TransactionGroupRowView: View {

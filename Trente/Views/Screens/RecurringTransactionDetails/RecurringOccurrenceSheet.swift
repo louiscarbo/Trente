@@ -5,6 +5,7 @@
 //  Created by Louis Carbo Estaque on 22/10/2026.
 //
 
+import SwiftData
 import SwiftUI
 
 struct RecurringOccurrenceSheet: View {

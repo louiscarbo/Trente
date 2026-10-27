@@ -12,7 +12,7 @@ enum PendingTransactionError: Error {
     case noMonth
 }
 
-final class PendingTransactionService {
+final class PendingTransactionService: Sendable {
     static let shared = PendingTransactionService()
     private init() {}
 
