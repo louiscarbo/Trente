@@ -69,7 +69,7 @@ struct LabeledPicker<SelectionValue: Identifiable & Hashable, Content: View>: Vi
                     selection: $currency,
                     options: Currencies.availableCurrencies
                 ) { currency in
-                    Label(currency.localizedName, systemImage: currency.sfSymbolName ?? "xmark")
+                    Label(currency.displayName, systemImage: currency.sfSymbolName ?? "xmark")
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
