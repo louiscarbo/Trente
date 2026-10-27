@@ -266,43 +266,41 @@ private struct NarrowMonthView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                LazyVStack(spacing: 20) {
-                    CardCarousel(selection: $carouselPage, safeAreaPadding: true) { page in
-                        card(for: page)
-                    }
+        ScrollView {
+            LazyVStack(spacing: 20) {
+                CardCarousel(selection: $carouselPage, safeAreaPadding: true) { page in
+                    card(for: page)
+                }
 
-                    LatestTransactionsView(
-                        month: month,
-                        transactionGroupsCount: transactionGroupsCount
-                    )
-                    .padding(.horizontal)
-                    
-                    RecurringTransactionsView(
-                        month: month,
-                        upcomingOccurrences: upcomingOccurrences,
-                        recurringTransactionsCount: recurringTransactionsCount
-                    )
-                    .padding(.horizontal)
-                }
+                LatestTransactionsView(
+                    month: month,
+                    transactionGroupsCount: transactionGroupsCount
+                )
+                .padding(.horizontal)
+                
+                RecurringTransactionsView(
+                    month: month,
+                    upcomingOccurrences: upcomingOccurrences,
+                    recurringTransactionsCount: recurringTransactionsCount
+                )
+                .padding(.horizontal)
             }
-            .safeAreaInset(edge: .bottom) {
-                ZStack(alignment: .bottom) {
-                    #if os(iOS)
-                    LinearGradient(
-                        colors: [
-                            .clear,
-                            lightMode ? .white : .black
-                        ],
-                        startPoint: .top,
-                        endPoint: .center
-                    )
-                    .frame(height: 130)
-                    .offset(y: 50)
-                    #endif
-                    AddTransactionButton(currency: month.currency, month: month)
-                }
+        }
+        .safeAreaInset(edge: .bottom) {
+            ZStack(alignment: .bottom) {
+                #if os(iOS)
+                LinearGradient(
+                    colors: [
+                        .clear,
+                        lightMode ? .white : .black
+                    ],
+                    startPoint: .top,
+                    endPoint: .center
+                )
+                .frame(height: 130)
+                .offset(y: 50)
+                #endif
+                AddTransactionButton(currency: month.currency, month: month)
             }
         }
     }
@@ -333,35 +331,33 @@ private struct WideMonthView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                Grid(horizontalSpacing: 20, verticalSpacing: 20) {
-                    GridRow {
-                        SecondaryGraphCards(month: month)
-                        LatestTransactionsView(
-                            month: month,
-                            transactionGroupsCount: transactionGroupsCount,
-                            transactionCount: 5
-                        )
-                        .frame(idealWidth: 400)
-                    }
-                    GridRow {
-                        CardCarousel(selection: $carouselPage) { page in
-                            card(for: page)
-                        }
-                        RecurringTransactionsView(
-                            month: month,
-                            upcomingOccurrences: upcomingOccurrences,
-                            recurringTransactionsCount: recurringTransactionsCount,
-                            transactionCount: 5
-                        )
-                    }
+        ScrollView {
+            Grid(horizontalSpacing: 20, verticalSpacing: 20) {
+                GridRow {
+                    SecondaryGraphCards(month: month)
+                    LatestTransactionsView(
+                        month: month,
+                        transactionGroupsCount: transactionGroupsCount,
+                        transactionCount: 5
+                    )
+                    .frame(idealWidth: 400)
                 }
-                .padding(26)
+                GridRow {
+                    CardCarousel(selection: $carouselPage) { page in
+                        card(for: page)
+                    }
+                    RecurringTransactionsView(
+                        month: month,
+                        upcomingOccurrences: upcomingOccurrences,
+                        recurringTransactionsCount: recurringTransactionsCount,
+                        transactionCount: 5
+                    )
+                }
             }
-            .safeAreaInset(edge: .bottom) {
-                AddTransactionButton(currency: month.currency, month: month, wide: true)
-            }
+            .padding(26)
+        }
+        .safeAreaInset(edge: .bottom) {
+            AddTransactionButton(currency: month.currency, month: month, wide: true)
         }
     }
 }
