@@ -132,17 +132,6 @@ func imageData(named name: String) -> Data? {
     #endif
 }
 
-extension ToolbarItemPlacement {
-    /// Leading "close sheet" button placement: `.topBarLeading` on iOS, `.cancellationAction` on macOS.
-    static var closeButtonPlacement: ToolbarItemPlacement {
-        #if os(iOS)
-        .topBarLeading
-        #else
-        .cancellationAction
-        #endif
-    }
-}
-
 extension View {
     /// Applies `.navigationBarTitleDisplayMode(.inline)` on iOS; no-op on macOS, which has no equivalent.
     @ViewBuilder

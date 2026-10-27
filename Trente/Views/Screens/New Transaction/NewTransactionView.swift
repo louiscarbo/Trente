@@ -109,13 +109,7 @@ struct NewTransactionView: View {
                     currency: context.currency
                 )
                 .toolbar {
-                    ToolbarItem(placement: .closeButtonPlacement) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Label("Close", systemImage: "chevron.down")
-                        }
-                    }
+                    CloseToolbarItem { dismiss() }
                 }
             case .title:
                 TitleView(
