@@ -17,7 +17,7 @@ struct NewTransactionView: View {
     @Environment(\.dismiss) private var dismiss
     
     // Transaction Data
-    @Bindable private var viewModel: NewTransactionViewModel = .init()
+    @State private var viewModel = NewTransactionViewModel()
     @State private var showKeyboardDismissButton: Bool = false
 
     var body: some View {
