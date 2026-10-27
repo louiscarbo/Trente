@@ -108,7 +108,7 @@ struct TransactionGroupDetailsView: View {
                     transactionGroup.entries.first?.amountCents ?? 0
                 }
             },
-            set: { draft?.expenseAmountCents = -abs($0) }
+            set: { draft?.expenseAmountCents = $0 }
         )
     }
 
@@ -176,12 +176,8 @@ struct TransactionGroupDetailsView: View {
     }
 
     private func onTapDone() {
-        guard var draft = draft else { return }
-        if transactionGroup.type == .income,
-           draft.incomeAmountToSplitCents == 0 {
-            draft.incomeAmountToSplitCents = draft.incomeRepartition.values.reduce(0, +)
-            self.draft?.incomeAmountToSplitCents = draft.incomeAmountToSplitCents
-        }
+        draft?.fillMissingAmountToSplit()
+        guard let draft else { return }
         let issues = draft.validate()
         if !issues.isEmpty {
             validationErrors = issues

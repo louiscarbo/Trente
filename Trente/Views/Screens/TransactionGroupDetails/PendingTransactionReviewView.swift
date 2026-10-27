@@ -92,7 +92,7 @@ struct PendingTransactionReviewView: View {
     private var amountBinding: Binding<Int> {
         Binding(
             get: { draft.expenseAmountCents ?? 0 },
-            set: { draft.expenseAmountCents = -abs($0) }
+            set: { draft.expenseAmountCents = $0 }
         )
     }
 
