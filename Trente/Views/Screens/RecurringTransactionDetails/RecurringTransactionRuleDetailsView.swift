@@ -220,31 +220,17 @@ struct RecurringTransactionRuleDetailsView: View {
 
     private var isExpense: Bool { totalAmount < 0 }
 
-    private var expenseCategory: BudgetCategory? {
-        isEditing ? draft?.repartition.keys.first : rule.repartition.keys.first
-    }
-
     private var categoryBinding: Binding<BudgetCategory?> {
         Binding(
-            get: { expenseCategory },
-            set: { newCategory in
-                guard let newCategory else { return }
-                let amount = draft?.repartitionTotalCents ?? totalAmount
-                draft?.repartition = [newCategory: amount]
-            }
+            get: { isEditing ? draft?.expenseCategory : rule.repartition.keys.first },
+            set: { draft?.expenseCategory = $0 }
         )
     }
 
     private var expenseAmountBinding: Binding<Int> {
         Binding(
-            get: { isEditing ? (draft?.repartitionTotalCents ?? totalAmount) : totalAmount },
-            set: { newValue in
-                let signedAmount = -abs(newValue)
-                draft?.repartitionTotalCents = signedAmount
-                if let category = expenseCategory {
-                    draft?.repartition = [category: signedAmount]
-                }
-            }
+            get: { isEditing ? (draft?.expenseAmountCents ?? totalAmount) : totalAmount },
+            set: { draft?.expenseAmountCents = $0 }
         )
     }
 

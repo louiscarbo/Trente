@@ -19,7 +19,13 @@ struct TransactionGroupDraft: Equatable {
 
     // Expense-only fields
     var expenseCategory: BudgetCategory?
-    var expenseAmountCents: Int?
+    var expenseAmountCents: Int? {
+        didSet {
+            if let expenseAmountCents, expenseAmountCents > 0 {
+                self.expenseAmountCents = -expenseAmountCents
+            }
+        }
+    }
 
     // Income-only fields: repartition per category in cents
     // Must sum to total amount you want to split
@@ -101,6 +107,11 @@ struct TransactionGroupDraft: Equatable {
         }
 
         group.modifiedDate = .now
+    }
+
+    mutating func fillMissingAmountToSplit() {
+        guard type == .income, incomeAmountToSplitCents == 0 else { return }
+        incomeAmountToSplitCents = incomeRepartition.values.reduce(0, +)
     }
 
     // MARK: Validation
