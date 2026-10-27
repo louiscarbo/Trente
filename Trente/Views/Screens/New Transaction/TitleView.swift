@@ -12,7 +12,6 @@ struct TitleView: View {
     @Binding var title: String
     
     // View State
-    @Binding var nextButtonDisabled: Bool
     @Binding var step: NewTransactionStep
     @Binding var showKeyboardDismissButton: Bool
     @FocusState private var titleFieldIsFocused: Bool
@@ -46,9 +45,6 @@ struct TitleView: View {
             Spacer()
         }
         .padding()
-        .onChange(of: title) {
-            updateNextButtonState()
-        }
         .onChange(of: titleFieldIsFocused) { _, newValue in
             if newValue == true {
                 showKeyboardDismissButton = true
@@ -57,7 +53,6 @@ struct TitleView: View {
             }
         }
         .onAppear {
-            updateNextButtonState()
             titleFieldIsFocused = true
         }
         .onChange(of: step) { _, newStep in
@@ -65,9 +60,5 @@ struct TitleView: View {
                 titleFieldIsFocused = false
             }
         }
-    }
-    
-    private func updateNextButtonState() {
-        nextButtonDisabled = title.isEmpty
     }
 }

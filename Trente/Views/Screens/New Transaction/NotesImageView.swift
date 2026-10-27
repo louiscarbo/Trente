@@ -15,7 +15,6 @@ struct NotesImageView: View {
     @Binding var notes: String
             
     // View State
-    @Binding var nextButtonDisabled: Bool
     @Binding var showKeyboardDismissButton: Bool
     @State private var userSubscriptionIsActive: Bool = true
     @State private var photosPickerItem: PhotosPickerItem?
@@ -148,8 +147,5 @@ struct NotesImageView: View {
             }
         }
         .errorAlert("Error Loading Image", message: $imageLoadingError)
-        .onAppear {
-            nextButtonDisabled = false
-        }
     }
 }

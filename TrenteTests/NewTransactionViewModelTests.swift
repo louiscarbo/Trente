@@ -35,4 +35,57 @@ struct NewTransactionViewModelTests {
 
         #expect(await center.requestCount == (isRecurrent ? 1 : 0))
     }
+
+    @Test("An expense needs an amount and a category to advance")
+    func expenseNeedsAmountAndCategory() {
+        let viewModel = NewTransactionViewModel()
+        viewModel.request.type = .expense
+        #expect(!viewModel.canAdvance)
+
+        viewModel.request.amountCents = -12_00
+        #expect(!viewModel.canAdvance)
+
+        viewModel.request.selectedCategory = .wants
+        #expect(viewModel.canAdvance)
+
+        viewModel.request.amountCents = 0
+        #expect(!viewModel.canAdvance)
+    }
+
+    @Test("An income advances with an amount and no category")
+    func incomeNeedsOnlyAmount() {
+        let viewModel = NewTransactionViewModel()
+        viewModel.request.type = .income
+        #expect(!viewModel.canAdvance)
+
+        viewModel.request.amountCents = 1_500_00
+        #expect(viewModel.canAdvance)
+    }
+
+    @Test("The title step needs a title")
+    func titleStepNeedsTitle() {
+        let viewModel = NewTransactionViewModel()
+        viewModel.step = .title
+        #expect(!viewModel.canAdvance)
+
+        viewModel.request.title = "Groceries"
+        #expect(viewModel.canAdvance)
+    }
+
+    @Test("The repartition step needs a complete split")
+    func repartitionStepNeedsCompleteSplit() {
+        let viewModel = NewTransactionViewModel()
+        viewModel.step = .repartition
+        #expect(!viewModel.canAdvance)
+
+        viewModel.isRepartitionComplete = true
+        #expect(viewModel.canAdvance)
+    }
+
+    @Test("The notes and recurrence steps can always advance", arguments: [NewTransactionStep.notesImage, .recurrence])
+    func optionalStepsAlwaysAdvance(step: NewTransactionStep) {
+        let viewModel = NewTransactionViewModel()
+        viewModel.step = step
+        #expect(viewModel.canAdvance)
+    }
 }

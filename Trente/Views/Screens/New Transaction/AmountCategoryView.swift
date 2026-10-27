@@ -15,7 +15,6 @@ struct AmountCategoryView: View {
     @Binding var isRecurrent: Bool
     
     // View State
-    @Binding var nextButtonDisabled: Bool
     @FocusState private var currencyTextFieldFocused: Bool
     @ScaledMetric(relativeTo: .largeTitle) private var amountFontSize = 80
     let currency: Currency
@@ -61,20 +60,12 @@ struct AmountCategoryView: View {
         #endif
         .onChange(of: transactionType) { _, newValue in
             amountCents = (newValue == .income) ? abs(amountCents) : -abs(amountCents)
-            updateNextButtonState()
             if newValue == .income {
                 selectedCategory = nil
             }
         }
-        .onChange(of: selectedCategory) {
-            updateNextButtonState()
-        }
         .onChange(of: amountCents) {
             amountCents = (transactionType == .income) ? abs(amountCents) : -abs(amountCents)
-            updateNextButtonState()
-        }
-        .onAppear {
-            updateNextButtonState()
         }
         .task {
             try? await Task.sleep(for: .seconds(0.6))
@@ -109,14 +100,6 @@ struct AmountCategoryView: View {
             .multilineTextAlignment(.center)
             #endif
     }
-    
-    private func updateNextButtonState() {
-        if transactionType == .income {
-            nextButtonDisabled = amountCents == 0
-        } else {
-            nextButtonDisabled = amountCents == 0 || selectedCategory == nil
-        }
-    }
 }
 
 #Preview {
@@ -124,7 +107,6 @@ struct AmountCategoryView: View {
     @Previewable @State var amount: Int = -2550
     @Previewable @State var type: TransactionType = .expense
     @Previewable @State var recurrent: Bool = false
-    @Previewable @State var disabled: Bool = false
     let euro = Currencies.availableCurrencies.first { $0.isoCode == "EUR" }!
     
     AmountCategoryView(
@@ -132,13 +114,7 @@ struct AmountCategoryView: View {
         amountCents: $amount,
         transactionType: $type,
         isRecurrent: $recurrent,
-        nextButtonDisabled: $disabled,
         currency: euro
     )
     .padding()
-    
-    Button("NEXT") { }
-        .buttonStyle(TrentePrimaryButtonStyle())
-        .disabled(disabled)
-        .padding()
 }
