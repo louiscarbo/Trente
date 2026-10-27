@@ -173,11 +173,23 @@ struct BudgetCategorySliderRow: View {
                     }
                 }
 
+                let increaseAction = {
+                    withAnimation(.spring) {
+                        let currentValue = repartition[category] ?? 0
+                        let amountToIncrease = min(100, remainingAmount)
+                        let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
+                        let delta = newValue - currentValue // will be positive or zero
+                        repartition[category] = newValue
+                        remainingAmount -= delta
+                    }
+                }
+
                 if isEnabled {
                     Button(action: decreaseAction, label: {
                         Image(systemName: "minus")
                             .foregroundStyle(category.color.darken(0.8))
                     })
+                    .accessibilityLabel(Text("Decrease \(category.shortName)"))
                     .frame(width: 40)
                     .buttonStyle(TrenteSliderButtonStyle(color: category.color))
                     .disabled((repartition[category] ?? 0) == 0)
@@ -219,15 +231,18 @@ struct BudgetCategorySliderRow: View {
                     maxValue: maxValueForSlider,
                     formatter: formatter
                 )
-
-                let increaseAction = {
-                    withAnimation(.spring) {
-                        let currentValue = repartition[category] ?? 0
-                        let amountToIncrease = min(100, remainingAmount)
-                        let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
-                        let delta = newValue - currentValue // will be positive or zero
-                        repartition[category] = newValue
-                        remainingAmount -= delta
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(category.name)
+                .accessibilityValue(accessibilityValue)
+                .accessibilityAdjustableAction { direction in
+                    guard isEnabled else { return }
+                    switch direction {
+                    case .increment:
+                        increaseAction()
+                    case .decrement:
+                        decreaseAction()
+                    @unknown default:
+                        break
                     }
                 }
 
@@ -236,6 +251,7 @@ struct BudgetCategorySliderRow: View {
                         Image(systemName: "plus")
                             .foregroundStyle(category.color.darken(0.8))
                     })
+                    .accessibilityLabel(Text("Increase \(category.shortName)"))
                     .buttonStyle(TrenteSliderButtonStyle(color: category.color))
                     .frame(width: 40)
                     .disabled(remainingAmount == 0)
@@ -259,6 +275,13 @@ struct BudgetCategorySliderRow: View {
             timer?.invalidate()
             timer = nil
         }
+    }
+
+    private var accessibilityValue: String {
+        let value = repartition[category] ?? 0
+        let amount = formatter.string(from: NSNumber(value: Double(value) / 100.0)) ?? ""
+        let share = amountToSplit > 0 ? Double(value) / Double(amountToSplit) : 0
+        return "\(amount), \(share.formatted(.percent.precision(.fractionLength(0))))"
     }
 }
 
