@@ -157,30 +157,23 @@ private struct SecondaryGraphCards: View {
     var body: some View {
         VStack(spacing: 20) {
             HStack(spacing: 20) {
-                GraphCardView(
-                    month: month,
-                    scope: .all,
-                    size: size
-                )
-                GraphCardView(
-                    month: month,
-                    category: BudgetCategory.needs,
-                    size: size
-                )
+                card(for: .all)
+                card(for: .category(.needs))
             }
             HStack(spacing: 20) {
-                GraphCardView(
-                    month: month,
-                    category: BudgetCategory.wants,
-                    size: size
-                )
-                GraphCardView(
-                    month: month,
-                    category: BudgetCategory.savingsAndDebts,
-                    size: size
-                )
+                card(for: .category(.wants))
+                card(for: .category(.savingsAndDebts))
             }
         }
+    }
+
+    private func card(for scope: BudgetScope) -> some View {
+        GraphCardView(
+            figures: month.figures(in: scope),
+            scope: scope,
+            currency: month.currency,
+            size: size
+        )
     }
 }
 
@@ -239,7 +232,7 @@ private struct NarrowMonthView: View {
     private func card(for page: CarouselPage) -> some View {
         switch page {
         case .gauges: SecondaryGraphCards(month: month)
-        case .dailySpending: DailySpendingCard(month: month)
+        case .dailySpending: DailySpendingCard(spending: DailySpending(month: month), currencyCode: month.currency.isoCode)
         }
     }
 
@@ -302,7 +295,7 @@ private struct WideMonthView: View {
     @ViewBuilder
     private func card(for page: CarouselPage) -> some View {
         switch page {
-        case .dailySpending: DailySpendingCard(month: month)
+        case .dailySpending: DailySpendingCard(spending: DailySpending(month: month), currencyCode: month.currency.isoCode)
         }
     }
 

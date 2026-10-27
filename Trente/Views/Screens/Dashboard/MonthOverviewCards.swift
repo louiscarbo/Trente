@@ -11,7 +11,8 @@ import Charts
 // MARK: - Daily Spending Card
 
 struct DailySpendingCard: View {
-    @State var month: Month
+    let spending: DailySpending
+    let currencyCode: String
 
     @State private var mode: SpendingWindowMode = .month
     @State private var scrollPosition: Date
@@ -19,9 +20,10 @@ struct DailySpendingCard: View {
     @State private var settleTask: Task<Void, Never>?
     @State private var selectedDate: Date?
 
-    init(month: Month) {
-        self._month = State(initialValue: month)
-        let defaultWeekStart = DailySpending(month: month).defaultWeekStart
+    init(spending: DailySpending, currencyCode: String) {
+        self.spending = spending
+        self.currencyCode = currencyCode
+        let defaultWeekStart = spending.defaultWeekStart
         self._scrollPosition = State(initialValue: defaultWeekStart)
         self._settledScrollPosition = State(initialValue: defaultWeekStart)
     }
@@ -49,11 +51,10 @@ struct DailySpendingCard: View {
     }
 
     private func formattedAmount(_ value: Double) -> String {
-        value.formatted(.currency(code: month.currency.isoCode).precision(.fractionLength(0)))
+        value.formatted(.currency(code: currencyCode).precision(.fractionLength(0)))
     }
 
     var body: some View {
-        let spending = DailySpending(month: month)
         let hasData = !spending.days.isEmpty
         let selectedDay = selectedDay(in: spending)
 
@@ -98,10 +99,10 @@ struct DailySpendingCard: View {
         switch mode {
         case .month:
             if spending.today != nil { return String(localized: "This Month") }
-            let isCurrentYear = calendar.isDate(.now, equalTo: month.startDate, toGranularity: .year)
+            let isCurrentYear = calendar.isDate(.now, equalTo: spending.monthStartDay, toGranularity: .year)
             return isCurrentYear
-                ? month.startDate.formatted(.dateTime.month(.wide))
-                : month.startDate.formatted(.dateTime.month(.wide).year())
+                ? spending.monthStartDay.formatted(.dateTime.month(.wide))
+                : spending.monthStartDay.formatted(.dateTime.month(.wide).year())
         case .week:
             let window = spending.weekWindow(at: scrollPosition)
             if let today = spending.today, calendar.isDate(window.upperBound, inSameDayAs: today) {
@@ -272,6 +273,6 @@ struct DailySpendingCard: View {
 }
 
 #Preview {
-    DailySpendingCard(month: .month2)
+    DailySpendingCard(spending: DailySpending(month: .month2), currencyCode: Month.month2.currency.isoCode)
         .padding()
 }
