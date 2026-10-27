@@ -9,8 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct TransactionListView: View {
-    @State var month: Month
-    @State var showRecurring: Bool
+    let month: Month
+    let showRecurring: Bool
     
     @Query(sort: \TransactionGroup.addedDate)
     private var transactionGroups: [TransactionGroup]
@@ -31,8 +31,8 @@ struct TransactionListView: View {
     @State private var dateUpperBound: Date
     
     init(month: Month, showRecurring: Bool) {
-        _showRecurring = State(initialValue: showRecurring)
-        _month = State(initialValue: month)
+        self.showRecurring = showRecurring
+        self.month = month
         _dateLowerBound = State(
             initialValue: month.startDate
         )

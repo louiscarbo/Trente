@@ -16,10 +16,8 @@ struct FilterSheetView: View {
     @Binding var dateUpperBound: Date
     @Binding var selectedCategories: Set<BudgetCategory>
     
-    @State private var errorIsPresented: Bool = false
     @State private var error: Error?
-    
-    private var dateLimits: ClosedRange<Date> { computeDateLimits() }
+    @State private var dateLimits = Date.distantPast...Date.distantFuture
     
     var body: some View {
         NavigationStack {
@@ -36,7 +34,8 @@ struct FilterSheetView: View {
                     }
                 }
             }
-            .alert("An error occurred", isPresented: $errorIsPresented, presenting: error) { _ in
+            .task { loadDateLimits() }
+            .alert("An error occurred", isPresented: $error.isPresent(), presenting: error) { _ in
                 Button("OK", role: .cancel) {
                     dismiss()
                 }
@@ -76,13 +75,11 @@ struct FilterSheetView: View {
         }
     }
     
-    private func computeDateLimits() -> ClosedRange<Date> {
+    private func loadDateLimits() {
         do {
-            return try TransactionService.shared.fetchTransactionDateBounds(from: modelContext)
+            dateLimits = try TransactionService.shared.fetchTransactionDateBounds(from: modelContext)
         } catch {
             self.error = error
-            errorIsPresented = true
-            return Date.now...Date.now
         }
     }
 }

@@ -10,17 +10,12 @@ import SwiftData
 
 struct MonthView: View {
     // Data
-    @State var month: Month
+    let month: Month
     @Environment(\.modelContext) private var modelContext
     @Query private var recurringRules: [RecurringTransactionRule]
-    
-    // View State
-    @State private var error: Error?
-    @State private var errorIsPresented: Bool = false
-    
-    // Computed Properties
+
     private var transactionGroupsCount: Int {
-        fetchCount(FetchDescriptor<TransactionGroup>())
+        (try? modelContext.fetchCount(FetchDescriptor<TransactionGroup>())) ?? 0
     }
 
     private var recurringTransactionsCount: Int {
@@ -51,9 +46,6 @@ struct MonthView: View {
                 }
             }
             .navigationTitle(month.name)
-            .alert("An error occurred", isPresented: $errorIsPresented, presenting: error) { _ in } message: { error in
-                Text("\(error.localizedDescription)")
-            }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     NavigationLink {
@@ -63,16 +55,6 @@ struct MonthView: View {
                     }
                 }
             }
-        }
-    }
-    
-    private func fetchCount<T: PersistentModel>(_ descriptor: FetchDescriptor<T>) -> Int {
-        do {
-            return try modelContext.fetchCount(descriptor)
-        } catch {
-            self.error = error
-            errorIsPresented = true
-            return 0
         }
     }
 }
@@ -241,7 +223,7 @@ private struct AddTransactionButton: View {
 // MARK: Narrow view
 private struct NarrowMonthView: View {
     // Data
-    @State var month: Month
+    let month: Month
     var upcomingOccurrences: [RecurringTransactionOccurrence]
     var transactionGroupsCount: Int
     var recurringTransactionsCount: Int
@@ -305,7 +287,7 @@ private struct NarrowMonthView: View {
 // MARK: Wide view
 private struct WideMonthView: View {
     // Data
-    @State var month: Month
+    let month: Month
     var upcomingOccurrences: [RecurringTransactionOccurrence]
     var transactionGroupsCount: Int
     var recurringTransactionsCount: Int

@@ -10,7 +10,7 @@ struct RecurringTransactionRuleDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
 
-    @State var rule: RecurringTransactionRule
+    let rule: RecurringTransactionRule
     let currency: Currency
     var startInEditMode: Bool = false
 
