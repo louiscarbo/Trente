@@ -14,7 +14,6 @@ struct FilterSheetView: View {
     @Binding var dateLowerBound: Date
     @Binding var dateUpperBound: Date
     @Binding var selectedCategories: Set<BudgetCategory>
-    @State var allItems: [DisplayableTransaction]
     
     @State private var errorIsPresented: Bool = false
     @State private var error: Error?
