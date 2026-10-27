@@ -31,6 +31,8 @@ enum ExternalLinks {
     static let manageSubscriptions = URL(string: "https://apps.apple.com/account/subscriptions")!
     static let ccBy3License = URL(string: "https://creativecommons.org/licenses/by/3.0/")!
     static let developerWebsite = URL(string: "https://carbo-estaque.fr")!
+    static let privacyPolicy = URL(string: "https://carbo-estaque.fr/trente/privacy")!
+    static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
     static let developerLinkedIn = URL(string: "https://www.linkedin.com/in/louiscarbo")!
     static let developerGitHub = URL(string: "https://github.com/louiscarbo")!
 }
