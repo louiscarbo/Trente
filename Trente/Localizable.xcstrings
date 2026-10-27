@@ -1270,6 +1270,9 @@
         }
       }
     },
+    "Decrease %@" : {
+
+    },
     "Delete" : {
       "localizations" : {
         "es" : {
@@ -1638,9 +1641,6 @@
         }
       }
     },
-    "Excel in French and Other European Languages" : {
-
-    },
     "Expected This Month" : {
       "localizations" : {
         "es" : {
@@ -1689,6 +1689,46 @@
         }
       }
     },
+    "Export ^[%lld Transaction](inflect: true)" : {
+      "localizations" : {
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Exportar %lld transacción"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Exportar %lld transacciones"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Exporter %lld transaction"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Exporter %lld transactions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Export Failed" : {
       "localizations" : {
         "es" : {
@@ -1733,46 +1773,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporter les transactions"
-          }
-        }
-      }
-    },
-    "Export ^[%lld Transaction](inflect: true)" : {
-      "localizations" : {
-        "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Exportar %lld transacción"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Exportar %lld transacciones"
-                }
-              }
-            }
-          }
-        },
-        "fr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Exporter %lld transaction"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Exporter %lld transactions"
-                }
-              }
-            }
           }
         }
       }
@@ -1872,9 +1872,6 @@
           }
         }
       }
-    },
-    "Format" : {
-
     },
     "Frequency" : {
       "localizations" : {
@@ -2339,6 +2336,9 @@
           }
         }
       }
+    },
+    "Increase %@" : {
+
     },
     "It's added to this month's transactions." : {
       "localizations" : {
@@ -3203,9 +3203,6 @@
           }
         }
       }
-    },
-    "Opens in Numbers, Google Sheets and Excel in English." : {
-
     },
     "Over Budget" : {
       "localizations" : {
@@ -4187,6 +4184,7 @@
       }
     },
     "Standard" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -4947,9 +4945,6 @@
         }
       }
     },
-    "Trente has no account and no server: your data is yours. You can export it as a spreadsheet anytime." : {
-
-    },
     "Trente Help" : {
       "localizations" : {
         "es" : {
@@ -5205,9 +5200,6 @@
           }
         }
       }
-    },
-    "Uses semicolons and decimal commas, as Excel expects in French, German, Spanish or Italian." : {
-
     },
     "Wants" : {
       "localizations" : {
