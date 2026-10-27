@@ -11,6 +11,8 @@ import SwiftData
 extension SchemaV1 {
     @Model
     class PendingTransaction: Identifiable {
+        #Index<PendingTransaction>([\.id])
+
         var id: UUID = UUID()
         var date: Date = Date.now
         var amountCents: Int = 0

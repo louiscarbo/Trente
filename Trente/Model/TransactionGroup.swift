@@ -12,6 +12,8 @@ import SwiftUI
 extension SchemaV1 {
     @Model
     class TransactionGroup: Identifiable {
+        #Index<TransactionGroup>([\.addedDate], [\.recurringOccurrenceDate], [\.id])
+
         var id: UUID = UUID()
         var addedDate: Date = Date.now
         var modifiedDate: Date?

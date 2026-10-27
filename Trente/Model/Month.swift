@@ -11,6 +11,8 @@ import SwiftData
 extension SchemaV1 {
     @Model
     final class Month: Identifiable, Hashable, Equatable {
+        #Index<Month>([\.startDate], [\.id])
+
         var id: UUID = UUID()
         var startDate: Date = Date.now
         var modifiedDate: Date?
