@@ -35,25 +35,33 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
 
     nonisolated func userNotificationCenter(
         _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
+        didReceive response: UNNotificationResponse
+    ) async {
         let userInfo = response.notification.request.content.userInfo
         let pendingTransactionID = (userInfo[WalletNotificationService.pendingTransactionIDKey] as? String)
             .flatMap(UUID.init(uuidString:))
         let recurringAction = RecurringNotificationAction(rawValue: response.actionIdentifier)
         let recurringPayload = RecurringNotificationPayload(userInfo: userInfo)
-        Task { @MainActor in
-            if let recurringAction, let recurringPayload, let container {
-                _ = try? RecurringNotificationResponder.handle(
-                    recurringAction,
-                    payload: recurringPayload,
-                    in: container.mainContext
-                )
-            } else if let pendingTransactionID {
-                PendingTransactionRouter.shared.presentedPendingTransactionID = pendingTransactionID
-            }
-            completionHandler()
+        await respond(
+            to: recurringAction,
+            payload: recurringPayload,
+            pendingTransactionID: pendingTransactionID
+        )
+    }
+
+    private func respond(
+        to recurringAction: RecurringNotificationAction?,
+        payload recurringPayload: RecurringNotificationPayload?,
+        pendingTransactionID: UUID?
+    ) {
+        if let recurringAction, let recurringPayload, let container {
+            _ = try? RecurringNotificationResponder.handle(
+                recurringAction,
+                payload: recurringPayload,
+                in: container.mainContext
+            )
+        } else if let pendingTransactionID {
+            PendingTransactionRouter.shared.presentedPendingTransactionID = pendingTransactionID
         }
     }
 }

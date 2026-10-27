@@ -90,7 +90,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
     }
     
     // TODO: Change/Vary for macOS (or maybe the list that holds them?)
-    @ViewBuilder
+    @MainActor @ViewBuilder
     func rowView(isInList: Bool = false) -> some View {
         switch kind {
         case .group(let g):      TransactionGroupRowView(transactionGroup: g, isInList: isInList)

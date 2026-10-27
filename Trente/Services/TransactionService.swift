@@ -14,7 +14,7 @@ enum TransactionServiceError: Error {
     case recurrenceStartsInPast
 }
 
-final class TransactionService {
+final class TransactionService: Sendable {
     static let shared = TransactionService()
     private init() {}
 

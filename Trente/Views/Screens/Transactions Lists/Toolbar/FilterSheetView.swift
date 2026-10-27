@@ -5,6 +5,7 @@
 //  Created by Louis Carbo Estaque on 25/06/2025.
 //
 
+import SwiftData
 import SwiftUI
 
 struct FilterSheetView: View {

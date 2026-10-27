@@ -51,7 +51,7 @@ struct TransactionListView: View {
         dateUpperBound != month.endDate()
     }
     
-    static func days(from firstDate: Date, through lastDate: Date, calendar: Calendar = .current) -> Range<Date> {
+    nonisolated static func days(from firstDate: Date, through lastDate: Date, calendar: Calendar = .current) -> Range<Date> {
         let firstDay = calendar.startOfDay(for: firstDate)
         let lastDay = calendar.startOfDay(for: lastDate)
         let dayAfterLastDay = calendar.date(byAdding: .day, value: 1, to: lastDay) ?? lastDate

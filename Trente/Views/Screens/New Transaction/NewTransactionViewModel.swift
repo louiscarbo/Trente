@@ -9,8 +9,9 @@ import SwiftUI
 import SwiftData
 import Observation
 
+@MainActor
 @Observable
-class NewTransactionViewModel: ObservableObject {
+final class NewTransactionViewModel {
     // Transaction Data
     var request = TransactionCreationRequest()
     

@@ -157,12 +157,12 @@ extension Month {
         return month
     }
 
-    static let month1 = Month.sample(monthsAgo: 0)
-    static let month2 = Month.sample(monthsAgo: 1)
-    static let month3 = Month.sample(monthsAgo: 2)
-    static let month4 = Month.sample(monthsAgo: 3)
+    @MainActor static let month1 = Month.sample(monthsAgo: 0)
+    @MainActor static let month2 = Month.sample(monthsAgo: 1)
+    @MainActor static let month3 = Month.sample(monthsAgo: 2)
+    @MainActor static let month4 = Month.sample(monthsAgo: 3)
 
-    static let sampleData: [Month] = [month1, month2, month3, month4]
+    @MainActor static let sampleData: [Month] = [month1, month2, month3, month4]
 
     static func getSampleMonthWithTransactions() -> Month {
         sample(monthsAgo: 1)
@@ -170,7 +170,7 @@ extension Month {
 }
 
 extension RecurringTransactionRule {
-    static let sampleData: [RecurringTransactionRule] = SampleData.recurring.map { transaction in
+    @MainActor static let sampleData: [RecurringTransactionRule] = SampleData.recurring.map { transaction in
         let startDate = SampleData.date(
             day: transaction.day,
             inMonthStartingAt: SampleData.startDate(monthsAgo: SampleData.monthCount - 1)

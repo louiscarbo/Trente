@@ -16,7 +16,7 @@ struct Currency: Codable, Hashable, Identifiable {
 }
 
 extension Currency {
-    private static var formatterCache: [String: NumberFormatter] = [:]
+    nonisolated(unsafe) private static var formatterCache: [String: NumberFormatter] = [:]
     private static let cacheLock = NSLock()
     
     var roundFormatter: NumberFormatter {

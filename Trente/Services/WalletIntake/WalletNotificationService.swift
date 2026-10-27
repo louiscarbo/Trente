@@ -8,7 +8,7 @@
 import Foundation
 import UserNotifications
 
-final class WalletNotificationService {
+final class WalletNotificationService: Sendable {
     static let shared = WalletNotificationService()
     static let pendingTransactionIDKey = "pendingTransactionID"
 
