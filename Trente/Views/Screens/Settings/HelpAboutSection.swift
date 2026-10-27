@@ -12,6 +12,8 @@ struct HelpAboutSection: View {
     let contactURL: URL?
     let contactAddress: String
     let reviewURL: URL
+    let privacyPolicyURL: URL
+    let termsOfUseURL: URL
     let profile: DeveloperProfile
     let credits: [CreditSection]
     let versionDescription: String
@@ -43,6 +45,14 @@ struct HelpAboutSection: View {
             } label: {
                 Label("Credits", systemImage: "heart")
             }
+
+            Link(destination: privacyPolicyURL) {
+                ExternalLinkLabel(title: "Privacy Policy", systemImage: "hand.raised")
+            }
+
+            Link(destination: termsOfUseURL) {
+                ExternalLinkLabel(title: "Terms of Use", systemImage: "doc.text")
+            }
         } header: {
             Text("Help & About")
         } footer: {
@@ -60,6 +70,8 @@ struct HelpAboutSection: View {
                 contactURL: nil,
                 contactAddress: SupportMail.address,
                 reviewURL: ExternalLinks.writeReview,
+                privacyPolicyURL: ExternalLinks.privacyPolicy,
+                termsOfUseURL: ExternalLinks.termsOfUse,
                 profile: .louis,
                 credits: CreditSection.all,
                 versionDescription: "1.0 (1)"

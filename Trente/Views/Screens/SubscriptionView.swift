@@ -16,7 +16,9 @@ struct SubscriptionView: View {
             TrentePlusMarketingHeader()
         }
         .subscriptionStoreControlStyle(.compactPicker)
-        .storeButton(.visible, for: .cancellation, .restorePurchases)
+        .storeButton(.visible, for: .cancellation, .restorePurchases, .policies)
+        .subscriptionStorePolicyDestination(url: ExternalLinks.privacyPolicy, for: .privacyPolicy)
+        .subscriptionStorePolicyDestination(url: ExternalLinks.termsOfUse, for: .termsOfService)
         .onInAppPurchaseCompletion { _, result in
             if case .success(.success) = result {
                 dismiss()
