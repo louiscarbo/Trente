@@ -28,6 +28,7 @@ struct RecurringNotificationPlanner {
     static let identifierPrefix = "recurring."
     static let threadIdentifier = "recurring"
 
+    var isEnabled = true
     var horizonDays = 35
     var reminderTime = ReminderTime.standard
     var calendar: Calendar = .current
@@ -37,6 +38,7 @@ struct RecurringNotificationPlanner {
         currency: Currency,
         now: Date
     ) -> [RecurringNotificationRequest] {
+        guard isEnabled else { return [] }
         let start = calendar.startOfDay(for: now)
         guard let end = calendar.date(byAdding: .day, value: horizonDays, to: start) else { return [] }
         let window = DateInterval(start: start, end: end)
