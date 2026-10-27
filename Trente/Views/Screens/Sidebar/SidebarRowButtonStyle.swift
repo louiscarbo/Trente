@@ -28,8 +28,6 @@ private struct SidebarRowPressedOverlay<PressedShape: Shape, Content: View>: Vie
     let drawsBehindContent: Bool
     @ViewBuilder let content: Content
 
-    @Environment(\.colorScheme) private var colorScheme
-
     var body: some View {
         content
             .contentShape(.rect)
@@ -44,7 +42,7 @@ private struct SidebarRowPressedOverlay<PressedShape: Shape, Content: View>: Vie
 
     private var pressedFill: some View {
         shape
-            .fill(colorScheme == .light ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
+            .fill(.primary.opacity(0.1))
             .opacity(isPressed ? 1 : 0)
             .allowsHitTesting(false)
     }

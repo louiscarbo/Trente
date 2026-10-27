@@ -26,7 +26,7 @@ struct GraphCardView: View {
                     scope.shortName,
                     systemImage: figures.isOverspent ? "exclamationmark.triangle.fill" : month.currency.sfSymbolGaugeName
                 )
-                .foregroundColor(figures.isOverspent ? .red : scope.color)
+                .foregroundStyle(figures.isOverspent ? .red : scope.color)
             ) {
                 VStack(spacing: 0) {
                     BudgetGaugeView(

@@ -35,16 +35,11 @@ struct TrentePrimaryCapsule: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             fill
-                .overlay(
+                .overlay {
                     ZStack {
                         Capsule()
                             .inset(by: 1.5)
-                            .stroke(
-                                lightMode
-                                ? Color.black.opacity(strokeOpacity)
-                                : Color.white.opacity(strokeOpacity),
-                                lineWidth: 3
-                            )
+                            .stroke(.primary.opacity(strokeOpacity), lineWidth: 3)
                         if isPressed {
                             Capsule()
                                 .fill(
@@ -56,7 +51,7 @@ struct TrentePrimaryCapsule: ViewModifier {
                                 )
                         }
                     }
-                )
+                }
             content
                 .bold()
                 .foregroundStyle(lightMode ? Color.white : Color.black)
