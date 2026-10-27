@@ -10,9 +10,6 @@ import SwiftUI
 struct ArchivedMonthsList: View {
     @Binding var selectedMonth: Month?
     var archivedMonths: ArraySlice<Month>
-    
-    @Environment(\.colorScheme) var colorScheme
-    private var lightMode: Bool { colorScheme == .light }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -34,8 +31,6 @@ private struct MonthRowView: View {
     var isSelected: Bool {
         selectedMonth == month
     }
-    @Environment(\.colorScheme) var colorScheme
-    private var lightMode: Bool { colorScheme == .light }
 
     private var rowShape: UnevenRoundedRectangle {
         let radius = DesignSystem.Radius.large.rawValue
@@ -65,7 +60,7 @@ private struct MonthRowView: View {
         .overlay {
             if isSelected {
                 rowShape
-                    .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
+                    .stroke(.primary.opacity(0.5), lineWidth: 3)
             }
         }
         .accessibilityAddTraits(isSelected ? .isSelected : [])

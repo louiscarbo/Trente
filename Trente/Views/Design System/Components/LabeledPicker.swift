@@ -14,7 +14,7 @@ struct LabeledPicker<SelectionValue: Identifiable & Hashable, Content: View>: Vi
     let options: [SelectionValue]
     @ViewBuilder let content: (SelectionValue) -> Content
     
-    @Environment(\.sizeCategory) private var sizeCategory
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         let titleText = Text(title)
@@ -30,7 +30,7 @@ struct LabeledPicker<SelectionValue: Identifiable & Hashable, Content: View>: Vi
         .pickerStyle(.automatic)
         .tint(.primary)
         
-        if sizeCategory.isAccessibilityCategory {
+        if dynamicTypeSize.isAccessibilitySize {
             VStack {
                 titleText
                 picker

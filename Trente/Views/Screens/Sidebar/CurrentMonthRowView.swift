@@ -59,7 +59,7 @@ struct CurrentMonthRowView: View {
                     .font(.subheadline)
                 Text(currentMonth.remainingAmountDisplay)
                     .font(.title)
-                    .foregroundColor(currentMonth.overSpent ? .red : .green)
+                    .foregroundStyle(currentMonth.overSpent ? .red : .green)
             }
             
             Spacer()
@@ -69,7 +69,7 @@ struct CurrentMonthRowView: View {
                     .font(.subheadline)
                 Text(currentMonth.spentAmountDisplay)
                     .font(.title)
-                    .foregroundColor(.red)
+                    .foregroundStyle(.red)
             }
         }
     }
@@ -95,13 +95,10 @@ struct CurrentMonthRowView: View {
                 )
             RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                 .foregroundStyle(.regularMaterial)
-                .overlay(
+                .overlay {
                     RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
-                        .stroke(
-                            isSelected ?
-                                (lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5)) :
-                                (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
-                        )
+                        .stroke(.primary.opacity(isSelected ? 0.5 : 0.2), lineWidth: 3)
+                }
         }
     }
 }

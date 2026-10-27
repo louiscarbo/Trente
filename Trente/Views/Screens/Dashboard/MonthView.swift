@@ -209,7 +209,6 @@ private struct AddTransactionButton: View {
     
     @State private var isShowingNewTransactionSheet: Bool = false
     @Environment(\.openWindow) private var openWindow
-    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         Button {
@@ -250,8 +249,6 @@ private struct NarrowMonthView: View {
     // View State
     @State private var isShowingNewTransactionSheet = false
     @State private var carouselPage: CarouselPage?
-    @Environment(\.colorScheme) private var colorScheme
-    private var lightMode: Bool { colorScheme == .light }
 
     private enum CarouselPage: Int, CaseIterable {
         case gauges, dailySpending
@@ -292,7 +289,7 @@ private struct NarrowMonthView: View {
                 LinearGradient(
                     colors: [
                         .clear,
-                        lightMode ? .white : .black
+                        Color(uiColor: .systemBackground)
                     ],
                     startPoint: .top,
                     endPoint: .center
@@ -316,8 +313,6 @@ private struct WideMonthView: View {
     
     // View State
     @State private var carouselPage: CarouselPage?
-    @Environment(\.colorScheme) private var colorScheme
-    private var lightMode: Bool { colorScheme == .light }
 
     private enum CarouselPage: Int, CaseIterable {
         case dailySpending

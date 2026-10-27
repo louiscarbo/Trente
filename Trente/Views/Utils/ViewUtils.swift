@@ -52,44 +52,10 @@ struct WidthThresholdProxy: Equatable {
     var isCompact: Bool
 }
 
-struct WidthThresholdReader_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 40) {
-            WidthThresholdReader { proxy in
-                Label {
-                    Text("Standard")
-                } icon: {
-                    compactIndicator(proxy: proxy)
-                }
-            }
-            .border(.quaternary)
-            
-            WidthThresholdReader { proxy in
-                Label {
-                    Text("200 Wide")
-                } icon: {
-                    compactIndicator(proxy: proxy)
-                }
-            }
-            .frame(width: 200)
-            .border(.quaternary)
-            
-            #if os(iOS)
-            WidthThresholdReader { proxy in
-                Label {
-                    Text("Manually Compact Size Class")
-                } icon: {
-                    compactIndicator(proxy: proxy)
-                }
-            }
-            .border(.quaternary)
-            .environment(\.horizontalSizeClass, .compact)
-            #endif
-        }
-    }
-    
-    @ViewBuilder
-    static func compactIndicator(proxy: WidthThresholdProxy) -> some View {
+private struct CompactIndicator: View {
+    let proxy: WidthThresholdProxy
+
+    var body: some View {
         if proxy.isCompact {
             Image(systemName: "arrowtriangle.right.and.line.vertical.and.arrowtriangle.left.fill")
                 .foregroundStyle(.red)
@@ -97,6 +63,41 @@ struct WidthThresholdReader_Previews: PreviewProvider {
             Image(systemName: "checkmark.circle")
                 .foregroundStyle(.secondary)
         }
+    }
+}
+
+#Preview {
+    VStack(spacing: 40) {
+        WidthThresholdReader { proxy in
+            Label {
+                Text("Standard")
+            } icon: {
+                CompactIndicator(proxy: proxy)
+            }
+        }
+        .border(.quaternary)
+
+        WidthThresholdReader { proxy in
+            Label {
+                Text("200 Wide")
+            } icon: {
+                CompactIndicator(proxy: proxy)
+            }
+        }
+        .frame(width: 200)
+        .border(.quaternary)
+
+        #if os(iOS)
+        WidthThresholdReader { proxy in
+            Label {
+                Text("Manually Compact Size Class")
+            } icon: {
+                CompactIndicator(proxy: proxy)
+            }
+        }
+        .border(.quaternary)
+        .environment(\.horizontalSizeClass, .compact)
+        #endif
     }
 }
 

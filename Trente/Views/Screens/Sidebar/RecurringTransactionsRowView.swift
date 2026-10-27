@@ -12,9 +12,6 @@ struct RecurringTransactionsRowView: View {
     let isSelected: Bool
     var onSelect: () -> Void
 
-    @Environment(\.colorScheme) private var colorScheme
-    private var lightMode: Bool { colorScheme == .light }
-
     var body: some View {
         Button {
             withAnimation(.easeOut) {
@@ -36,7 +33,7 @@ struct RecurringTransactionsRowView: View {
         .background(TrenteListBackgroundView())
         .overlay {
             RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
-                .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
+                .stroke(.primary.opacity(0.5), lineWidth: 3)
                 .opacity(isSelected ? 1 : 0)
         }
         .accessibilityAddTraits(isSelected ? .isSelected : [])
