@@ -34,8 +34,6 @@ private struct MonthRowView: View {
     var isSelected: Bool {
         selectedMonth == month
     }
-    @State var isPressed: Bool = false
-    
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
 
@@ -52,39 +50,25 @@ private struct MonthRowView: View {
     }
 
     var body: some View {
-        HStack {
-            Text(month.name)
-            Spacer()
-            Text(month.overSpent ? "Over Budget" : "Under Budget")
-            Image(systemName: "chevron.right")
-                .foregroundStyle(Color.secondary)
+        Button(action: toggleSelection) {
+            HStack {
+                Text(month.name)
+                Spacer()
+                Text(month.overSpent ? "Over Budget" : "Under Budget")
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(Color.secondary)
+                    .accessibilityHidden(true)
+            }
+            .padding()
         }
-        .padding()
+        .buttonStyle(SidebarRowButtonStyle(pressedShape: rowShape))
         .overlay {
-            ZStack {
-                if isSelected {
-                    rowShape
-                        .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
-                }
-                if isPressed {
-                    rowShape
-                        .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
-                }
+            if isSelected {
+                rowShape
+                    .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
             }
         }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            toggleSelection()
-        }
-        .onLongPressGesture(
-            minimumDuration: 0,
-            pressing: { inProgress in
-                withAnimation(.easeOut) {
-                    isPressed = inProgress
-                }
-            },
-            perform: { }
-        )
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
         
         if month != archivedMonths.last {
             Divider()

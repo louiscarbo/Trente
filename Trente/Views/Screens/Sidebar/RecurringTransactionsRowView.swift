@@ -12,45 +12,34 @@ struct RecurringTransactionsRowView: View {
     let isSelected: Bool
     var onSelect: () -> Void
 
-    @State private var isPressed = false
-
     @Environment(\.colorScheme) private var colorScheme
     private var lightMode: Bool { colorScheme == .light }
 
     var body: some View {
-        HStack {
-            Label("Recurring Transactions", systemImage: "clock.arrow.circlepath")
-            Spacer()
-            Text("\(activeCount) active")
-                .foregroundStyle(.secondary)
-            Image(systemName: "chevron.right")
-                .foregroundStyle(.secondary)
+        Button {
+            withAnimation(.easeOut) {
+                onSelect()
+            }
+        } label: {
+            HStack {
+                Label("Recurring Transactions", systemImage: "clock.arrow.circlepath")
+                Spacer()
+                Text("\(activeCount) active")
+                    .foregroundStyle(.secondary)
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.secondary)
+                    .accessibilityHidden(true)
+            }
+            .padding()
         }
-        .padding()
+        .buttonStyle(SidebarRowButtonStyle(pressedShape: RoundedRectangle(cornerRadius: .large)))
         .background(TrenteListBackgroundView())
         .overlay {
             RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                 .stroke(lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5), lineWidth: 3)
                 .opacity(isSelected ? 1 : 0)
-            RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
-                .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
-                .opacity(isPressed ? 1 : 0)
         }
-        .contentShape(.rect)
-        .onTapGesture {
-            withAnimation(.easeOut) {
-                onSelect()
-            }
-        }
-        .onLongPressGesture(
-            minimumDuration: 0,
-            pressing: { inProgress in
-                withAnimation(.easeOut) {
-                    isPressed = inProgress
-                }
-            },
-            perform: { }
-        )
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 

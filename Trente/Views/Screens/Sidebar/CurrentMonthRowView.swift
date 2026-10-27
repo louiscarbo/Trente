@@ -10,7 +10,6 @@ import SwiftUI
 struct CurrentMonthRowView: View {
     var currentMonth: Month
     @Binding var selectedMonth: Month?
-    @State private var isPressed: Bool = false
     
     @Environment(\.colorScheme) var colorScheme
     private var lightMode: Bool { colorScheme == .light }
@@ -18,6 +17,26 @@ struct CurrentMonthRowView: View {
     private var isSelected: Bool { selectedMonth == currentMonth }
     
     var body: some View {
+        Button {
+            withAnimation(.easeOut) {
+                selectedMonth = currentMonth
+            }
+        } label: {
+            rowContent
+        }
+        .buttonStyle(
+            SidebarRowButtonStyle(
+                pressedShape: RoundedRectangle(cornerRadius: .large),
+                drawsBehindContent: true
+            )
+        )
+        .background(
+            backgroundView
+        )
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
+    }
+
+    private var rowContent: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text("\(currentMonth.name)")
@@ -31,23 +50,6 @@ struct CurrentMonthRowView: View {
             remainingSpentView
         }
         .padding()
-        .background(
-            backgroundView
-        )
-        .onTapGesture {
-            withAnimation(.easeOut) {
-                selectedMonth = currentMonth
-            }
-        }
-        .onLongPressGesture(
-            minimumDuration: 0,
-            pressing: { inProgress in
-                withAnimation(.easeOut) {
-                    isPressed = inProgress
-                }
-            },
-            perform: { }
-        )
     }
     
     var remainingSpentView: some View {
@@ -100,10 +102,6 @@ struct CurrentMonthRowView: View {
                                 (lightMode ? Color.black.opacity(0.5) : Color.white.opacity(0.5)) :
                                 (lightMode ? Color.black.opacity(0.2) : Color.white.opacity(0.2)), lineWidth: 3)
                         )
-            if isPressed {
-                RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
-                    .fill(lightMode ? Color.black.opacity(0.1) : Color.white.opacity(0.1))
-            }
         }
     }
 }
