@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NotificationsSection: View {
     let status: NotificationPermissionStatus?
+    @Binding var remindsRecurringTransactions: Bool
+    @Binding var announcesNewMonths: Bool
     @Binding var reminderTime: Date
     let mentionsApplePay: Bool
     let onTurnOn: () -> Void
@@ -16,63 +18,155 @@ struct NotificationsSection: View {
 
     var body: some View {
         Section {
-            switch status {
-            case .none:
-                ProgressView()
-                    .frame(maxWidth: .infinity)
-            case .some(.notDetermined):
-                Button("Turn On Notifications", systemImage: "bell.badge", action: onTurnOn)
-            case .some(.denied):
-                LabeledContent("Status") {
-                    Text("Off")
-                }
-                Button("Open Settings", systemImage: "gear", action: onOpenSettings)
-            case .some(.authorized):
-                LabeledContent("Status") {
-                    Text("On")
-                }
-                Button("Notification Settings", systemImage: "gear", action: onOpenSettings)
-            }
-            if status == .authorized {
-                DatePicker(
-                    "Reminder Time",
-                    selection: $reminderTime,
-                    displayedComponents: .hourAndMinute
+            NavigationLink {
+                NotificationSettingsView(
+                    status: status,
+                    remindsRecurringTransactions: $remindsRecurringTransactions,
+                    announcesNewMonths: $announcesNewMonths,
+                    reminderTime: $reminderTime,
+                    mentionsApplePay: mentionsApplePay,
+                    onTurnOn: onTurnOn,
+                    onOpenSettings: onOpenSettings
                 )
-            }
-        } header: {
-            Text("Notifications")
-        } footer: {
-            if status == .authorized {
-                if mentionsApplePay {
-                    Text("""
-                    Trente reminds you at this time when a new month starts and when a recurring transaction is due. \
-                    Apple Pay notifications arrive right after each purchase.
-                    """)
-                } else {
-                    Text("Trente reminds you at this time when a new month starts and when a recurring transaction is due.")
+            } label: {
+                LabeledContent {
+                    statusText
+                } label: {
+                    Label("Notifications", systemImage: "bell")
                 }
             }
+        }
+    }
+
+    @ViewBuilder
+    private var statusText: some View {
+        switch status {
+        case .none:
+            EmptyView()
+        case .some(.notDetermined), .some(.denied):
+            Text("Off")
+        case .some(.authorized):
+            Text("On")
+        }
+    }
+}
+
+struct NotificationSettingsView: View {
+    let status: NotificationPermissionStatus?
+    @Binding var remindsRecurringTransactions: Bool
+    @Binding var announcesNewMonths: Bool
+    @Binding var reminderTime: Date
+    let mentionsApplePay: Bool
+    let onTurnOn: () -> Void
+    let onOpenSettings: () -> Void
+
+    var body: some View {
+        Form {
+            Section {
+                switch status {
+                case .none:
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                case .some(.notDetermined):
+                    Button("Turn On Notifications", systemImage: "bell.badge", action: onTurnOn)
+                case .some(.denied):
+                    LabeledContent("Status") {
+                        Text("Off")
+                    }
+                    Button("Open Settings", systemImage: "gear", action: onOpenSettings)
+                case .some(.authorized):
+                    LabeledContent("Status") {
+                        Text("On")
+                    }
+                    Button("Notification Settings", systemImage: "gear", action: onOpenSettings)
+                }
+            }
+
+            if status == .authorized {
+                Section {
+                    Toggle("Recurring Transactions", systemImage: "repeat", isOn: $remindsRecurringTransactions)
+                    Toggle("New Month", systemImage: "calendar", isOn: $announcesNewMonths)
+                    DatePicker(
+                        "Reminder Time",
+                        selection: $reminderTime,
+                        displayedComponents: .hourAndMinute
+                    )
+                    .disabled(!usesReminderTime)
+                } header: {
+                    Text("Reminders")
+                } footer: {
+                    Text(remindersFooter)
+                }
+
+                if mentionsApplePay {
+                    Section {
+                        LabeledContent {
+                            Text("After Each Purchase")
+                        } label: {
+                            Label("Apple Pay", systemImage: "wallet.pass")
+                        }
+                    } footer: {
+                        Text("""
+                        These come from your Apple Pay automation in the Shortcuts app. \
+                        To stop them, turn off or delete that automation.
+                        """)
+                    }
+                }
+            }
+        }
+        .formStyle(.grouped)
+        .navigationTitle("Notifications")
+    }
+
+    private var usesReminderTime: Bool {
+        NotificationPreferences(
+            remindsRecurringTransactions: remindsRecurringTransactions,
+            announcesNewMonths: announcesNewMonths
+        )
+        .usesReminderTime
+    }
+
+    private var remindersFooter: LocalizedStringKey {
+        switch (remindsRecurringTransactions, announcesNewMonths) {
+        case (true, true):
+            "Trente reminds you at this time when a new month starts and when a recurring transaction is due."
+        case (true, false):
+            "Trente reminds you at this time when a recurring transaction is due."
+        case (false, true):
+            "Trente reminds you at this time when a new month starts."
+        case (false, false):
+            "Turn on a reminder to choose when Trente notifies you."
         }
     }
 }
 
 #Preview {
-    Form {
-        NotificationsSection(
-            status: .notDetermined,
+    NavigationStack {
+        Form {
+            NotificationsSection(
+                status: .authorized,
+                remindsRecurringTransactions: .constant(true),
+                announcesNewMonths: .constant(true),
+                reminderTime: .constant(.now),
+                mentionsApplePay: true,
+                onTurnOn: {},
+                onOpenSettings: {}
+            )
+        }
+        .formStyle(.grouped)
+    }
+}
+
+#Preview("Screen") {
+    NavigationStack {
+        NotificationSettingsView(
+            status: .authorized,
+            remindsRecurringTransactions: .constant(true),
+            announcesNewMonths: .constant(false),
             reminderTime: .constant(.now),
             mentionsApplePay: true,
             onTurnOn: {},
             onOpenSettings: {}
         )
-        NotificationsSection(
-            status: .authorized,
-            reminderTime: .constant(.now),
-            mentionsApplePay: false,
-            onTurnOn: {},
-            onOpenSettings: {}
-        )
     }
-    .formStyle(.grouped)
 }

@@ -14,6 +14,8 @@ struct SettingsView: View {
     @State private var isShowingPaywall = false
     @State private var notificationPermission = NotificationPermissionState()
     @State private var reminderTime = ReminderTime.stored().date(on: .now) ?? .now
+    @AppStorage(NotificationPreferences.recurringTransactionsKey) private var remindsRecurringTransactions = true
+    @AppStorage(NotificationPreferences.newMonthKey) private var announcesNewMonths = true
     @State private var syncMonitor = CloudSyncMonitor.shared
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
@@ -32,6 +34,8 @@ struct SettingsView: View {
                 )
                 NotificationsSection(
                     status: notificationPermission.status,
+                    remindsRecurringTransactions: $remindsRecurringTransactions,
+                    announcesNewMonths: $announcesNewMonths,
                     reminderTime: $reminderTime,
                     mentionsApplePay: DeviceIdiom.isPhone,
                     onTurnOn: turnOnNotifications,
