@@ -80,6 +80,7 @@ struct EditableTransactionHeader: View {
                         Button("Delete", role: .destructive) {
                             withAnimation {
                                 imageData = nil
+                                photosPickerItem = nil
                             }
                         }
                         Button("Cancel", role: .cancel) { }
@@ -100,10 +101,7 @@ struct EditableTransactionHeader: View {
             }
         }
         .task(id: photosPickerItem) {
-            guard let item = photosPickerItem else {
-                imageData = nil
-                return
-            }
+            guard let item = photosPickerItem else { return }
             do {
                 imageData = try await item.loadTransferable(type: Data.self)
             } catch {
