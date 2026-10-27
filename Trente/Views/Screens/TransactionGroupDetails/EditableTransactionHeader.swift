@@ -28,6 +28,7 @@ struct EditableTransactionHeader: View {
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showDeleteConfirmation = false
     @State private var imageLoadingError: String?
+    @State private var image: Image?
 
     var body: some View {
         GroupBox {
@@ -65,8 +66,8 @@ struct EditableTransactionHeader: View {
     private var imageSection: some View {
         ZStack(alignment: .bottomTrailing) {
             if isEditing {
-                if let imageData {
-                    tappableImage(from: imageData)
+                if let image {
+                    tappableImage(image)
                 }
                 if imageData != nil {
                     Button(role: .destructive) {
@@ -96,8 +97,8 @@ struct EditableTransactionHeader: View {
                     .padding()
                 }
             } else {
-                if let imageData {
-                    tappableImage(from: imageData)
+                if let image {
+                    tappableImage(image)
                 }
             }
         }
@@ -114,36 +115,36 @@ struct EditableTransactionHeader: View {
                 imageLoadingError = String(localized: "The image could not be loaded. Please try again.")
             }
         }
+        .task(id: imageData) {
+            image = imageData.flatMap(createImage)
+        }
         .errorAlert("Error Loading Image", message: $imageLoadingError)
     }
 
-    @ViewBuilder
-    private func tappableImage(from imageData: Data) -> some View {
-        if let image = createImage(imageData) {
-            Button {
-                showFullScreen = true
-            } label: {
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipShape(
-                        UnevenRoundedRectangle(
-                            topLeadingRadius: DesignSystem.Radius.large.rawValue,
-                            topTrailingRadius: DesignSystem.Radius.large.rawValue
-                        )
+    private func tappableImage(_ image: Image) -> some View {
+        Button {
+            showFullScreen = true
+        } label: {
+            image
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .clipShape(
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: DesignSystem.Radius.large.rawValue,
+                        topTrailingRadius: DesignSystem.Radius.large.rawValue
                     )
-            }
-            .buttonStyle(.plain)
-            .modify { view in
+                )
+        }
+        .buttonStyle(.plain)
+        .modify { view in
 #if os(iOS)
-                view.fullScreenCover(isPresented: $showFullScreen) {
-                    ZoomableImageView(image: image)
-                }
-#else
-                view
-#endif
+            view.fullScreenCover(isPresented: $showFullScreen) {
+                ZoomableImageView(image: image)
             }
+#else
+            view
+#endif
         }
     }
 
