@@ -15,10 +15,11 @@ enum NotificationText {
     }
 
     static var goodbyeTitle: String {
-        String(localized: "These reminders don't seem to help 😢")
+        String(localized: "Reminders paused")
     }
 
-    static var goodbyeBody: String {
-        String(localized: "We'll stop sending them for now. Open Trente whenever you want to pick things back up.")
+    static func goodbyeBody(lastAppOpen: Date) -> String {
+        let lastOpenDay = lastAppOpen.formatted(.dateTime.day().month(.wide))
+        return String(localized: "You haven't opened Trente since \(lastOpenDay), so reminders are paused. Open the app anytime to turn them back on.")
     }
 }
