@@ -52,6 +52,8 @@ struct SettingsView: View {
                     contactURL: SupportMail.feedbackURL(appInfo: appInfo),
                     contactAddress: SupportMail.address,
                     reviewURL: ExternalLinks.writeReview,
+                    privacyPolicyURL: ExternalLinks.privacyPolicy,
+                    termsOfUseURL: ExternalLinks.termsOfUse,
                     profile: .louis,
                     credits: CreditSection.all,
                     versionDescription: appInfo.versionDescription
