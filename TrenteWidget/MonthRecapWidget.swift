@@ -86,7 +86,7 @@ struct HomescreenMonthRecapWidgetView: View {
                     VStack(alignment: .leading) {
                         Text("Remaining")
                             .font(.subheadline)
-                        Text(currentMonth.display(currentMonth.overall.remaining))
+                        Text(currentMonth.displayWithSmallCents(currentMonth.overall.remaining))
                             .font(.title)
                             .foregroundStyle(currentMonth.overall.isOverspent ? .red : .green)
                             .privacySensitive()
