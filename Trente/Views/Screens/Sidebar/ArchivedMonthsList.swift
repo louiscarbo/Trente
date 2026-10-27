@@ -14,7 +14,17 @@ struct ArchivedMonthsList: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(archivedMonths) { month in
-                MonthRowView(month: month, archivedMonths: archivedMonths, selectedMonth: $selectedMonth)
+                ArchivedMonthRow(
+                    name: month.name,
+                    isOverspent: month.overSpent,
+                    isSelected: selectedMonth == month,
+                    isFirst: month == archivedMonths.first,
+                    isLast: month == archivedMonths.last
+                ) {
+                    withAnimation {
+                        selectedMonth = month
+                    }
+                }
             }
         }
         .background(
@@ -23,19 +33,16 @@ struct ArchivedMonthsList: View {
    }
 }
 
-private struct MonthRowView: View {
-    var month: Month
-    var archivedMonths: ArraySlice<Month>
-    @Binding var selectedMonth: Month?
-    
-    var isSelected: Bool {
-        selectedMonth == month
-    }
+private struct ArchivedMonthRow: View {
+    let name: String
+    let isOverspent: Bool
+    let isSelected: Bool
+    let isFirst: Bool
+    let isLast: Bool
+    let onSelect: () -> Void
 
     private var rowShape: UnevenRoundedRectangle {
         let radius = DesignSystem.Radius.large.rawValue
-        let isFirst = month == archivedMonths.first
-        let isLast = month == archivedMonths.last
         return UnevenRoundedRectangle(
             topLeadingRadius: isFirst ? radius : 0,
             bottomLeadingRadius: isLast ? radius : 0,
@@ -45,11 +52,11 @@ private struct MonthRowView: View {
     }
 
     var body: some View {
-        Button(action: toggleSelection) {
+        Button(action: onSelect) {
             HStack {
-                Text(month.name)
+                Text(name)
                 Spacer()
-                Text(month.overSpent ? "Over Budget" : "Under Budget")
+                Text(isOverspent ? "Over Budget" : "Under Budget")
                 Image(systemName: "chevron.right")
                     .foregroundStyle(Color.secondary)
                     .accessibilityHidden(true)
@@ -65,14 +72,8 @@ private struct MonthRowView: View {
         }
         .accessibilityAddTraits(isSelected ? .isSelected : [])
         
-        if month != archivedMonths.last {
+        if !isLast {
             Divider()
-        }
-    }
-    
-    func toggleSelection() {
-        withAnimation {
-            selectedMonth = month
         }
     }
 }
