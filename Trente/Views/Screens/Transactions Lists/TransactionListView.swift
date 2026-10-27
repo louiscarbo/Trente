@@ -51,12 +51,20 @@ struct TransactionListView: View {
         dateUpperBound != month.endDate()
     }
     
+    static func days(from firstDate: Date, through lastDate: Date, calendar: Calendar = .current) -> Range<Date> {
+        let firstDay = calendar.startOfDay(for: firstDate)
+        let lastDay = calendar.startOfDay(for: lastDate)
+        let dayAfterLastDay = calendar.date(byAdding: .day, value: 1, to: lastDay) ?? lastDate
+        return firstDay..<max(firstDay, dayAfterLastDay)
+    }
+
     private var filteredAndSorted: [DisplayableTransaction] {
-        allItems
+        let displayedDates = Self.days(from: dateLowerBound, through: dateUpperBound)
+        return allItems
             .filter { searchText.isEmpty ||
                 $0.searchableString.localizedCaseInsensitiveContains(searchText)
             }
-            .filter { $0.date >= dateLowerBound && $0.date <= dateUpperBound }
+            .filter { displayedDates.contains($0.date) }
             .filter { transaction in
                 selectedCategories.isEmpty
                 || transaction.categories.contains(where: selectedCategories.contains)
