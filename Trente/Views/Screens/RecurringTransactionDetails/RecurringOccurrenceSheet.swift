@@ -31,11 +31,7 @@ struct RecurringOccurrenceSheet: View {
             .navigationTitle(occurrence.rule.title)
             .inlineNavigationBarTitleDisplayMode()
             .toolbar {
-                ToolbarItem(placement: .closeButtonPlacement) {
-                    Button { dismiss() } label: {
-                        Label("Close", systemImage: "chevron.down")
-                    }
-                }
+                CloseToolbarItem { dismiss() }
             }
             .alert(
                 String(localized: "An error occurred"),
