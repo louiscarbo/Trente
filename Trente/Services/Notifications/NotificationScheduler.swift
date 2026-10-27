@@ -42,8 +42,15 @@ final class NotificationScheduler {
         guard await NotificationPermissionService().status() == .authorized else { return }
         let context = ModelContext(container)
         let reminderTime = ReminderTime.stored()
-        let recurringPlanner = RecurringNotificationPlanner(reminderTime: reminderTime)
-        let newMonthPlanner = NewMonthNotificationPlanner(reminderTime: reminderTime)
+        let preferences = NotificationPreferences.stored()
+        let recurringPlanner = RecurringNotificationPlanner(
+            isEnabled: preferences.remindsRecurringTransactions,
+            reminderTime: reminderTime
+        )
+        let newMonthPlanner = NewMonthNotificationPlanner(
+            isEnabled: preferences.announcesNewMonths,
+            reminderTime: reminderTime
+        )
         guard let recurring = try? recurringNotifications(in: context, planner: recurringPlanner),
               let newMonths = try? newMonthNotifications(in: context, planner: newMonthPlanner)
         else { return }

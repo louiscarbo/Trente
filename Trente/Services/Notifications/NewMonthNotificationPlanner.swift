@@ -19,6 +19,7 @@ struct NewMonthNotificationPlanner {
     static let identifierPrefix = "newMonth."
     static let threadIdentifier = "newMonth"
 
+    var isEnabled = true
     var count = 3
     var reminderTime = ReminderTime.standard
     var calendar: Calendar = .current
@@ -26,6 +27,7 @@ struct NewMonthNotificationPlanner {
     private let maximumMonthsAhead = 1200
 
     func requests(afterMonthStartingOn latestStartDate: Date, now: Date) -> [NewMonthNotificationRequest] {
+        guard isEnabled else { return [] }
         var requests: [NewMonthNotificationRequest] = []
         var startDate = calendar.startOfDay(for: latestStartDate)
         var monthsAhead = 0
