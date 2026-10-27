@@ -16,6 +16,7 @@ struct TitleView: View {
     @Binding var step: NewTransactionStep
     @Binding var showKeyboardDismissButton: Bool
     @FocusState private var titleFieldIsFocused: Bool
+    @ScaledMetric(relativeTo: .largeTitle) private var titleFontSize = 40
     
     var body: some View {
         VStack {
@@ -38,7 +39,7 @@ struct TitleView: View {
                 .lineLimit(3)
                 .focused($titleFieldIsFocused)
                 .textFieldStyle(.plain)
-                .font(.system(size: 40, weight: .bold))
+                .font(.system(size: titleFontSize, weight: .bold))
                 .multilineTextAlignment(.center)
             }
             
