@@ -13,7 +13,7 @@ struct TransactionGroupDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
 
-    @State var transactionGroup: TransactionGroup
+    let transactionGroup: TransactionGroup
     var startInEditMode: Bool = false
 
     @State private var isEditing = false
