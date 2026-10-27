@@ -17,12 +17,16 @@ final class NotificationScheduler {
 
     private var container: ModelContainer?
     private var trigger: AppEventTrigger?
+    private var appOpenTrigger: AppEventTrigger?
 
     private init() {}
 
     func start(container: ModelContainer) {
         guard self.container == nil else { return }
         self.container = container
+        appOpenTrigger = AppEventTrigger(events: [.appDidBecomeActive]) {
+            InactivityNotificationPlanner.recordAppOpen()
+        }
         let events = [
             ModelContext.didSave,
             .NSPersistentStoreRemoteChange,
@@ -51,11 +55,16 @@ final class NotificationScheduler {
             isEnabled: preferences.announcesNewMonths,
             reminderTime: reminderTime
         )
+        let inactivityPlanner = InactivityNotificationPlanner(reminderTime: reminderTime)
+        let lastAppOpen = InactivityNotificationPlanner.storedLastAppOpen() ?? .now
         guard let recurring = try? recurringNotifications(in: context, planner: recurringPlanner),
               let newMonths = try? newMonthNotifications(in: context, planner: newMonthPlanner)
         else { return }
 
-        let notifications = Self.soonest(recurring + newMonths, limit: Self.systemLimit)
+        let notifications = inactivityPlanner.notifications(
+            keeping: Self.soonest(recurring + newMonths, limit: Self.systemLimit - 1),
+            lastAppOpen: lastAppOpen
+        )
         let identifiers = Set(notifications.map(\.identifier))
         let center = UNUserNotificationCenter.current()
         let staleIdentifiers = await center.pendingNotificationRequests()
