@@ -43,15 +43,33 @@ struct NotificationsSection: View {
         } header: {
             Text("Notifications")
         } footer: {
-            if status == .authorized {
-                if mentionsApplePay {
-                    Text("""
-                    Trente reminds you at this time when a new month starts and when a recurring transaction is due. \
-                    Apple Pay notifications arrive right after each purchase.
-                    """)
-                } else {
-                    Text("Trente reminds you at this time when a new month starts and when a recurring transaction is due.")
-                }
+            if let footer {
+                Text(footer)
+            }
+        }
+    }
+
+    private var footer: LocalizedStringKey? {
+        switch status {
+        case .none:
+            nil
+        case .some(.authorized):
+            if mentionsApplePay {
+                """
+                Trente reminds you at this time when a new month starts and when a recurring transaction is due. \
+                Apple Pay notifications arrive right after each purchase.
+                """
+            } else {
+                "Trente reminds you at this time when a new month starts and when a recurring transaction is due."
+            }
+        case .some(.notDetermined), .some(.denied):
+            if mentionsApplePay {
+                """
+                Get a reminder when a new month starts and when a recurring transaction is due, \
+                and a notification after each Apple Pay purchase.
+                """
+            } else {
+                "Get a reminder when a new month starts and when a recurring transaction is due."
             }
         }
     }
