@@ -122,10 +122,11 @@ struct TransactionListView: View {
                 ToolbarItemGroup(placement: .primaryAction) {
                     SortPickerView(sortOption: $sortOption)
 
-                    Button {
+                    Button(
+                        "Filter",
+                        systemImage: filtersAreOn ? "line.horizontal.3.decrease.circle.fill" : "line.horizontal.3.decrease.circle"
+                    ) {
                         isShowingFilterSheet = true
-                    } label: {
-                        Image(systemName: filtersAreOn ? "line.horizontal.3.decrease.circle.fill" : "line.horizontal.3.decrease.circle")
                     }
                     .sheet(isPresented: $isShowingFilterSheet) {
                         FilterSheetView(

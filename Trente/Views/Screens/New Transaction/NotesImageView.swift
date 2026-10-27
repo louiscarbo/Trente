@@ -37,42 +37,45 @@ struct NotesImageView: View {
                         .buttonStyle(TrenteSecondaryButtonStyle())
                     } else {
                         if let selectedImage = image {
-                            selectedImage
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(
-                                    RoundedRectangle(cornerRadius: .large)
-                                )
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: .large)
-                                        .strokeBorder(Color.white, lineWidth: 10)
-                                }
-                                .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
-                                .frame(height: 200)
-                                .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
-                                .padding(.bottom, 30)
-                                .overlay(alignment: .bottom) {
-                                    PhotosPicker(selection: $photosPickerItem) {
-                                        Label("Change Image", systemImage: "photo.badge.plus")
-                                            .font(.headline)
-                                            .padding(.horizontal)
+                            Button {
+                                showFullScreen = true
+                            } label: {
+                                selectedImage
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(
+                                        RoundedRectangle(cornerRadius: .large)
+                                    )
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: .large)
+                                            .strokeBorder(Color.white, lineWidth: 10)
                                     }
-                                    .buttonStyle(TrenteSecondaryButtonStyle())
-                                    .fixedSize()
-                                    .padding(.top, 30)
+                                    .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
+                                    .frame(height: 200)
+                                    .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(Text("Show Image"))
+                            .padding(.bottom, 30)
+                            .overlay(alignment: .bottom) {
+                                PhotosPicker(selection: $photosPickerItem) {
+                                    Label("Change Image", systemImage: "photo.badge.plus")
+                                        .font(.headline)
+                                        .padding(.horizontal)
                                 }
-                                .onTapGesture {
-                                    showFullScreen = true
-                                }
-                                .modify { view in
-                                    #if os(iOS)
-                                        view.fullScreenCover(isPresented: $showFullScreen) {
-                                            ZoomableImageView(image: selectedImage)
-                                        }
-                                    #else
-                                        view
-                                    #endif
-                                }
+                                .buttonStyle(TrenteSecondaryButtonStyle())
+                                .fixedSize()
+                                .padding(.top, 30)
+                            }
+                            .modify { view in
+                                #if os(iOS)
+                                    view.fullScreenCover(isPresented: $showFullScreen) {
+                                        ZoomableImageView(image: selectedImage)
+                                    }
+                                #else
+                                    view
+                                #endif
+                            }
                         } else {
                             ProgressView()
                                 .frame(height: 200)
