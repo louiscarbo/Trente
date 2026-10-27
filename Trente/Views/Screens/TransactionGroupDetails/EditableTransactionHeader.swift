@@ -103,7 +103,12 @@ struct EditableTransactionHeader: View {
         .task(id: photosPickerItem) {
             guard let item = photosPickerItem else { return }
             do {
-                imageData = try await item.loadTransferable(type: Data.self)
+                let loadedData = try await item.loadTransferable(type: Data.self)
+                if let loadedData {
+                    imageData = await ImageAttachment.prepared(loadedData)
+                } else {
+                    imageData = nil
+                }
             } catch {
                 imageData = nil
             }
