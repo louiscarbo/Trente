@@ -78,17 +78,13 @@ struct RecurringTransactionRowView: View {
         } message: {
             Text("It's added to this month's transactions.")
         }
-        .confirmationDialog(
-            skipConfirmationTitle,
+        .skipOccurrenceConfirmation(
             isPresented: $showSkipConfirmation,
-            titleVisibility: .visible
+            title: occurrence.rule.title,
+            date: occurrence.date,
+            frequency: occurrence.rule.frequency
         ) {
-            Button(String(localized: "Skip")) {
-                try? RecurringTransactionService.shared.skip(occurrence, in: modelContext)
-            }
-            Button(String(localized: "Cancel"), role: .cancel) {}
-        } message: {
-            Text("Only this one is skipped. The next ones stay planned.")
+            try? RecurringTransactionService.shared.skip(occurrence, in: modelContext)
         }
         .sheet(isPresented: $showPaymentSheet) {
             RecurringOccurrenceSheet(occurrence: occurrence)
@@ -101,18 +97,6 @@ struct RecurringTransactionRowView: View {
         return occurrence.isIncome
             ? String(localized: "Mark \(title) as received?")
             : String(localized: "Mark \(title) as paid?")
-    }
-
-    private var skipConfirmationTitle: String {
-        let title = occurrence.rule.title
-        switch occurrence.rule.frequency {
-        case .weekly:
-            return String(localized: "Skip \(title) this week?")
-        case .monthly:
-            return String(localized: "Skip \(title) this month?")
-        case .yearly:
-            return String(localized: "Skip \(title) this year?")
-        }
     }
 }
 
