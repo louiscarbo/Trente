@@ -64,14 +64,21 @@ struct MonthView: View {
         .modelContainer(DataProvider.shared.modelContainer)
 }
 
+private extension Month {
+    var newTransactionContext: NewTransactionContext {
+        NewTransactionContext(currency: currency, monthID: persistentModelID)
+    }
+}
+
 // MARK: - Shared Views
-private struct LatestTransactionsView: View {
-    var month: Month
-    var transactionGroupsCount: Int
+private struct LatestTransactionsView<AllTransactions: View>: View {
+    let transactions: [TransactionGroup]
+    let transactionGroupsCount: Int
     var transactionCount: Int = 3
-    
+    @ViewBuilder let allTransactions: () -> AllTransactions
+
     var body: some View {
-        let latestTransactions = Array(month.latestTransactions.prefix(transactionCount))
+        let latestTransactions = Array(transactions.prefix(transactionCount))
 
         GroupBox(label: Label("Latest Transactions", systemImage: "clock.arrow.circlepath")) {
             ForEach(latestTransactions) { transaction in
@@ -94,9 +101,7 @@ private struct LatestTransactionsView: View {
             }
             
             if transactionGroupsCount > 0 {
-                NavigationLink {
-                    TransactionListView(month: month, showRecurring: false)
-                } label: {
+                NavigationLink(destination: allTransactions) {
                     Text("See all transactions")
                 }
                 .buttonStyle(TrenteSecondaryButtonStyle())
@@ -106,12 +111,12 @@ private struct LatestTransactionsView: View {
     }
 }
 
-private struct RecurringTransactionsView: View {
-    var month: Month
-    var upcomingOccurrences: [RecurringTransactionOccurrence]
-    var recurringTransactionsCount: Int
+private struct RecurringTransactionsView<AllOccurrences: View>: View {
+    let upcomingOccurrences: [RecurringTransactionOccurrence]
+    let recurringTransactionsCount: Int
     var transactionCount: Int = 3
-    
+    @ViewBuilder let allOccurrences: () -> AllOccurrences
+
     var body: some View {
         let shownOccurrences = Array(upcomingOccurrences.prefix(transactionCount))
 
@@ -136,9 +141,7 @@ private struct RecurringTransactionsView: View {
             }
             
             if recurringTransactionsCount > 0 {
-                NavigationLink {
-                    TransactionListView(month: month, showRecurring: true)
-                } label: {
+                NavigationLink(destination: allOccurrences) {
                     Text("See all expected")
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
@@ -178,8 +181,7 @@ private struct SecondaryGraphCards: View {
 }
 
 private struct AddTransactionButton: View {
-    var currency: Currency
-    var month: Month
+    let context: NewTransactionContext
     var wide: Bool = false
     
     @State private var isShowingNewTransactionSheet: Bool = false
@@ -190,7 +192,6 @@ private struct AddTransactionButton: View {
             #if os(iOS)
             isShowingNewTransactionSheet = true
             #else
-            let context: NewTransactionContext = .init(currency: currency, monthID: month.persistentModelID)
             openWindow(id: WindowIdentifiers.newTransaction, value: context)
             #endif
         } label: {
@@ -205,9 +206,7 @@ private struct AddTransactionButton: View {
         .padding(.bottom)
         #else
         .sheet(isPresented: $isShowingNewTransactionSheet) {
-            NewTransactionView(
-                context: .init(currency: currency, monthID: month.persistentModelID)
-            )
+            NewTransactionView(context: context)
         }
         #endif
     }
@@ -244,16 +243,19 @@ private struct NarrowMonthView: View {
                 }
 
                 LatestTransactionsView(
-                    month: month,
+                    transactions: month.latestTransactions,
                     transactionGroupsCount: transactionGroupsCount
-                )
+                ) {
+                    TransactionListView(month: month, showRecurring: false)
+                }
                 .padding(.horizontal)
-                
+
                 RecurringTransactionsView(
-                    month: month,
                     upcomingOccurrences: upcomingOccurrences,
                     recurringTransactionsCount: recurringTransactionsCount
-                )
+                ) {
+                    TransactionListView(month: month, showRecurring: true)
+                }
                 .padding(.horizontal)
             }
         }
@@ -271,7 +273,7 @@ private struct NarrowMonthView: View {
                 .frame(height: 130)
                 .offset(y: 50)
                 #endif
-                AddTransactionButton(currency: month.currency, month: month)
+                AddTransactionButton(context: month.newTransactionContext)
             }
         }
     }
@@ -305,10 +307,12 @@ private struct WideMonthView: View {
                 GridRow {
                     SecondaryGraphCards(month: month)
                     LatestTransactionsView(
-                        month: month,
+                        transactions: month.latestTransactions,
                         transactionGroupsCount: transactionGroupsCount,
                         transactionCount: 5
-                    )
+                    ) {
+                        TransactionListView(month: month, showRecurring: false)
+                    }
                     .frame(idealWidth: 400)
                 }
                 GridRow {
@@ -316,17 +320,18 @@ private struct WideMonthView: View {
                         card(for: page)
                     }
                     RecurringTransactionsView(
-                        month: month,
                         upcomingOccurrences: upcomingOccurrences,
                         recurringTransactionsCount: recurringTransactionsCount,
                         transactionCount: 5
-                    )
+                    ) {
+                        TransactionListView(month: month, showRecurring: true)
+                    }
                 }
             }
             .padding(26)
         }
         .safeAreaInset(edge: .bottom) {
-            AddTransactionButton(currency: month.currency, month: month, wide: true)
+            AddTransactionButton(context: month.newTransactionContext, wide: true)
         }
     }
 }
