@@ -15,6 +15,7 @@ struct RecurringOccurrenceSheet: View {
     let occurrence: RecurringTransactionOccurrence
 
     @State private var showRecurringTransaction = false
+    @State private var showSkipConfirmation = false
     @State private var errorMessage: String?
 
     var body: some View {
@@ -97,11 +98,20 @@ struct RecurringOccurrenceSheet: View {
             }
             .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
 
-            Button(action: skip) {
+            Button {
+                showSkipConfirmation = true
+            } label: {
                 Label(skipTitle, systemImage: "forward.end.fill")
                     .font(.headline)
             }
             .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
+            .skipOccurrenceConfirmation(
+                isPresented: $showSkipConfirmation,
+                title: occurrence.rule.title,
+                date: occurrence.date,
+                frequency: occurrence.rule.frequency,
+                onSkip: skip
+            )
         }
     }
 
