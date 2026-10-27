@@ -643,6 +643,9 @@
         }
       }
     },
+    "After Each Purchase" : {
+
+    },
     "All Months" : {
       "localizations" : {
         "es" : {
@@ -1937,6 +1940,12 @@
         }
       }
     },
+    "Get a reminder when a new month starts and when a recurring transaction is due, and a notification after each Apple Pay purchase." : {
+
+    },
+    "Get a reminder when a new month starts and when a recurring transaction is due." : {
+
+    },
     "Get Started" : {
       "localizations" : {
         "es" : {
@@ -2338,6 +2347,15 @@
       }
     },
     "Increase %@" : {
+
+    },
+    "It won't be added in %@. Next years aren't affected. You can't undo this." : {
+
+    },
+    "It won't be added that week. Next weeks aren't affected. You can't undo this." : {
+
+    },
+    "It won't be added to %@. Next months aren't affected. You can't undo this." : {
 
     },
     "It's added to this month's transactions." : {
@@ -3157,6 +3175,7 @@
       }
     },
     "Only this one is skipped. The next ones stay planned." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -3507,6 +3526,9 @@
           }
         }
       }
+    },
+    "Reminders" : {
+
     },
     "Rent" : {
       "localizations" : {
@@ -4023,7 +4045,28 @@
         }
       }
     },
+    "Skip “%@” for %@?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Skip “%1$@” for %2$@?"
+          }
+        }
+      }
+    },
+    "Skip “%@” on %@?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Skip “%1$@” on %2$@?"
+          }
+        }
+      }
+    },
     "Skip %@ this month?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -4040,6 +4083,7 @@
       }
     },
     "Skip %@ this week?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -4056,6 +4100,7 @@
       }
     },
     "Skip %@ this year?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -4070,6 +4115,12 @@
           }
         }
       }
+    },
+    "Skip for %@" : {
+
+    },
+    "Skip on %@" : {
+
     },
     "Skip This Month" : {
       "localizations" : {
@@ -4593,6 +4644,9 @@
         }
       }
     },
+    "These come from your Apple Pay automation in the Shortcuts app. To stop them, turn off or delete that automation." : {
+
+    },
     "Think of it as the money you're free to spend each month, once taxes are taken care of." : {
       "localizations" : {
         "es" : {
@@ -5026,6 +5080,7 @@
       }
     },
     "Trente reminds you at this time when a new month starts and when a recurring transaction is due. Apple Pay notifications arrive right after each purchase." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -5040,6 +5095,12 @@
           }
         }
       }
+    },
+    "Trente reminds you at this time when a new month starts." : {
+
+    },
+    "Trente reminds you at this time when a recurring transaction is due." : {
+
     },
     "Trente splits your budget into Needs, Wants and Savings, so you always know what's left this month." : {
       "localizations" : {
@@ -5058,6 +5119,7 @@
       }
     },
     "Trente tells you when a new month starts and when a recurring payment like rent is due, and sends you a notification after each Apple Pay purchase so you can log it in one go." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -5073,7 +5135,14 @@
         }
       }
     },
+    "Trente tells you when a new month starts and when a recurring payment like rent is due, so you can mark it as paid right from the notification." : {
+
+    },
+    "Trente tells you when a new month starts and when a recurring payment like rent is due. Once Apple Pay is set up, it also sends you a notification after each purchase so you can log it in one go." : {
+
+    },
     "Trente tells you when a new month starts and when a recurring payment like rent or a salary is due, so you can mark it as paid in one tap." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -5136,6 +5205,9 @@
           }
         }
       }
+    },
+    "Turn on a reminder to choose when Trente notifies you." : {
+
     },
     "Turn On Notifications" : {
       "localizations" : {

@@ -82,6 +82,10 @@ struct NotificationSettingsView: View {
                         ExternalLinkLabel(title: "Notification Settings", systemImage: "gear")
                     }
                 }
+            } footer: {
+                if let statusFooter {
+                    Text(statusFooter)
+                }
             }
 
             if status == .authorized {
@@ -126,6 +130,22 @@ struct NotificationSettingsView: View {
             announcesNewMonths: announcesNewMonths
         )
         .usesReminderTime
+    }
+
+    private var statusFooter: LocalizedStringKey? {
+        switch status {
+        case .none, .some(.authorized):
+            nil
+        case .some(.notDetermined), .some(.denied):
+            if mentionsApplePay {
+                """
+                Get a reminder when a new month starts and when a recurring transaction is due, \
+                and a notification after each Apple Pay purchase.
+                """
+            } else {
+                "Get a reminder when a new month starts and when a recurring transaction is due."
+            }
+        }
     }
 
     private var remindersFooter: LocalizedStringKey {
