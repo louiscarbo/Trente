@@ -13,4 +13,12 @@ enum NotificationText {
             .formatted(.currency(code: currency.isoCode))
         return "\(amount) - \(title)"
     }
+
+    static var goodbyeTitle: String {
+        String(localized: "These reminders don't seem to help 😢")
+    }
+
+    static var goodbyeBody: String {
+        String(localized: "We'll stop sending them for now. Open Trente whenever you want to pick things back up.")
+    }
 }
