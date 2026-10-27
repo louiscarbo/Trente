@@ -80,6 +80,7 @@ struct AppNavigationView: View {
             NewTransactionView(context: context)
         }
         #endif
+        .transactionActionsErrorAlert()
         .reviewPrompt(
             monthCount: months.count,
             isShowingLatestMonth: isShowingLatestMonth,

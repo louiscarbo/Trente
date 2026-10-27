@@ -10,8 +10,9 @@ import SwiftUI
 
 struct TransactionGroupRowView: View {
     @Environment(\.modelContext) private var modelContext
-    @State var transactionGroup: TransactionGroup
-    @State var isInList = false
+    @Environment(\.transactionActions) private var transactionActions
+    let transactionGroup: TransactionGroup
+    var isInList = false
 
     @State private var showDeleteConfirmation = false
     @State private var showDetailsInEdit = false
@@ -52,8 +53,7 @@ struct TransactionGroupRowView: View {
             }
         }
         .deleteConfirmation(isPresented: $showDeleteConfirmation) {
-            TransactionService.shared.delete(group: transactionGroup, in: modelContext)
-            try? modelContext.save()
+            transactionActions.delete(transactionGroup, in: modelContext)
         }
         .sheet(isPresented: $showDetailsInEdit) {
             TransactionGroupDetailsView(
@@ -89,9 +89,9 @@ struct TransactionGroupRowView: View {
 }
 
 private struct TransactionEntryRowView: View {
-    @State var transactionGroup: TransactionGroup
-    @State var transactionEntry: TransactionEntry
-    @State var title: String?
+    let transactionGroup: TransactionGroup
+    let transactionEntry: TransactionEntry
+    var title: String?
     
     @State private var showTransactionGroupDetails: Bool = false
     

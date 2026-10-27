@@ -27,6 +27,7 @@ struct EditableTransactionHeader: View {
     @State private var showFullScreen = false
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showDeleteConfirmation = false
+    @State private var imageLoadingError: String?
 
     var body: some View {
         GroupBox {
@@ -110,9 +111,10 @@ struct EditableTransactionHeader: View {
                     imageData = nil
                 }
             } catch {
-                imageData = nil
+                imageLoadingError = String(localized: "The image could not be loaded. Please try again.")
             }
         }
+        .errorAlert("Error Loading Image", message: $imageLoadingError)
     }
 
     @ViewBuilder
