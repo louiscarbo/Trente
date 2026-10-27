@@ -78,7 +78,9 @@ struct NotificationSettingsView: View {
                     LabeledContent("Status") {
                         Text("On")
                     }
-                    Button("Notification Settings", systemImage: "gear", action: onOpenSettings)
+                    Button(action: onOpenSettings) {
+                        ExternalLinkLabel(title: "Notification Settings", systemImage: "gear")
+                    }
                 }
             }
 
