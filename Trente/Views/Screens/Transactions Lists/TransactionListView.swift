@@ -62,7 +62,7 @@ struct TransactionListView: View {
         let displayedDates = Self.days(from: dateLowerBound, through: dateUpperBound)
         return allItems
             .filter { searchText.isEmpty ||
-                $0.searchableString.localizedCaseInsensitiveContains(searchText)
+                $0.searchableString.localizedStandardContains(searchText)
             }
             .filter { displayedDates.contains($0.date) }
             .filter { transaction in
@@ -81,17 +81,19 @@ struct TransactionListView: View {
             }
     }
     
-    private var totalDisplay: String {
-        let sum = filteredAndSorted.reduce(0) { $0 + $1.amountCents }
+    private func totalDisplay(of items: [DisplayableTransaction]) -> String {
+        let sum = items.reduce(0) { $0 + $1.amountCents }
         let code = month.currency.isoCode
         return (Double(sum)/100).formatted(.currency(code: code))
     }
     
     var body: some View {
+        let items = filteredAndSorted
+
         VStack {
             List {
                 Section {
-                    ForEach(filteredAndSorted) { item in
+                    ForEach(items) { item in
                         item.rowView(isInList: true)
                     }
                 }
@@ -106,7 +108,7 @@ struct TransactionListView: View {
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Text(totalDisplay)
+                        Text(totalDisplay(of: items))
                             .font(.title)
                     }
                 }
@@ -129,8 +131,7 @@ struct TransactionListView: View {
                         FilterSheetView(
                             dateLowerBound: $dateLowerBound,
                             dateUpperBound: $dateUpperBound,
-                            selectedCategories: $selectedCategories,
-                            allItems: allItems
+                            selectedCategories: $selectedCategories
                         )
                         .presentationDetents([.medium, .large])
                     }
