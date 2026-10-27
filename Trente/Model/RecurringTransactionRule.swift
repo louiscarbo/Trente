@@ -95,7 +95,7 @@ extension RecurringTransactionRule {
             let day = Calendar.current.component(.day, from: startDate)
             return String(localized: "Every month on the \(day.ordinalString)")
         case .yearly:
-            return String(localized: "Every \(startDate.formatted(.dateTime.month(.wide))) \(startDate.formatted(.dateTime.day(.ordinalOfDayInMonth)))")
+            return String(localized: "Every \(startDate.formatted(.dateTime.month(.wide).day()))")
         }
     }
 }
