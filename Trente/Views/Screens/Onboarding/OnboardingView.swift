@@ -41,7 +41,7 @@ struct OnboardingView: View {
         }
         .alert(
             "We couldn't save your month",
-            isPresented: isShowingSaveError,
+            isPresented: $saveErrorMessage.isPresent(),
             presenting: saveErrorMessage
         ) { _ in
             Button("Retry", action: saveMonthAndContinue)
@@ -155,13 +155,6 @@ struct OnboardingView: View {
     private func openNotificationSettings() {
         guard let url = ExternalLinks.notificationSettings else { return }
         openURL(url)
-    }
-
-    private var isShowingSaveError: Binding<Bool> {
-        Binding(
-            get: { saveErrorMessage != nil },
-            set: { if !$0 { saveErrorMessage = nil } }
-        )
     }
 
     private func reportICloudData(monthCount: Int) {
