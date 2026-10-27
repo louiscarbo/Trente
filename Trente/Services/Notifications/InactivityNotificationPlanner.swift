@@ -35,15 +35,14 @@ struct InactivityNotificationPlanner {
     func notifications(keeping reminders: [ScheduledNotification], lastAppOpen: Date) -> [ScheduledNotification] {
         guard let goodbyeDate = goodbyeDate(lastAppOpen: lastAppOpen) else { return reminders }
         let keptReminders = reminders.filter { reminder in reminder.fireDate < goodbyeDate }
-        guard !keptReminders.isEmpty else { return [] }
-        return keptReminders + [Self.goodbye(on: goodbyeDate)]
+        return keptReminders + [Self.goodbye(on: goodbyeDate, lastAppOpen: lastAppOpen)]
     }
 
-    static func goodbye(on fireDate: Date) -> ScheduledNotification {
+    static func goodbye(on fireDate: Date, lastAppOpen: Date) -> ScheduledNotification {
         ScheduledNotification(
             identifier: goodbyeIdentifier,
             title: NotificationText.goodbyeTitle,
-            body: NotificationText.goodbyeBody,
+            body: NotificationText.goodbyeBody(lastAppOpen: lastAppOpen),
             fireDate: fireDate,
             threadIdentifier: threadIdentifier
         )

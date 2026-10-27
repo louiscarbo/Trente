@@ -65,12 +65,15 @@ struct InactivityNotificationPlannerTests {
         #expect(notifications.last?.fireDate == day(2026, 11, 3, hour: 9))
     }
 
-    @Test("Without reminders to send, there is no goodbye either")
-    func noGoodbyeWithoutReminders() {
+    @Test("The goodbye is scheduled even without reminders in the week")
+    func goodbyeWithoutReminders() {
         let reminders = [reminder("nextMonth", firingAt: day(2026, 11, 25, hour: 9))]
 
-        #expect(planner.notifications(keeping: [], lastAppOpen: day(2026, 10, 27)).isEmpty)
-        #expect(planner.notifications(keeping: reminders, lastAppOpen: day(2026, 10, 27)).isEmpty)
+        let withoutReminders = planner.notifications(keeping: [], lastAppOpen: day(2026, 10, 27))
+        let withLaterReminder = planner.notifications(keeping: reminders, lastAppOpen: day(2026, 10, 27))
+
+        #expect(withoutReminders.map(\.identifier) == [InactivityNotificationPlanner.goodbyeIdentifier])
+        #expect(withLaterReminder.map(\.identifier) == [InactivityNotificationPlanner.goodbyeIdentifier])
     }
 
     @Test("Opening the app again moves the goodbye and keeps later reminders")
@@ -88,12 +91,14 @@ struct InactivityNotificationPlannerTests {
         #expect(afterReopening.last?.fireDate == day(2026, 11, 7, hour: 9))
     }
 
-    @Test("The goodbye explains why reminders stop")
+    @Test("The goodbye mentions the last time the app was opened")
     func goodbyeContent() {
-        let goodbye = InactivityNotificationPlanner.goodbye(on: day(2026, 11, 3, hour: 9))
+        let lastAppOpen = day(2026, 10, 27, hour: 12)
+        let goodbye = InactivityNotificationPlanner.goodbye(on: day(2026, 11, 3, hour: 9), lastAppOpen: lastAppOpen)
 
         #expect(goodbye.title == NotificationText.goodbyeTitle)
-        #expect(goodbye.body == NotificationText.goodbyeBody)
+        #expect(goodbye.body == NotificationText.goodbyeBody(lastAppOpen: lastAppOpen))
+        #expect(goodbye.body.contains(lastAppOpen.formatted(.dateTime.day().month(.wide))))
         #expect(goodbye.categoryIdentifier == nil)
         #expect(!goodbye.identifier.hasPrefix(RecurringNotificationPlanner.identifierPrefix))
     }
