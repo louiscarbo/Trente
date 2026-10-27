@@ -122,7 +122,12 @@ struct NotesImageView: View {
                         return
                     }
                     do {
-                        imageData = try await item.loadTransferable(type: Data.self)
+                        let loadedData = try await item.loadTransferable(type: Data.self)
+                        if let loadedData {
+                            imageData = await ImageAttachment.prepared(loadedData)
+                        } else {
+                            imageData = nil
+                        }
                     } catch {
                         errorWrapper = ErrorWrapper(error: error, guidance: "The image could not be loaded. Please try again.")
                         showErrorAlert = true
