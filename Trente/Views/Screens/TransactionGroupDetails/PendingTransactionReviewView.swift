@@ -84,7 +84,7 @@ struct PendingTransactionReviewView: View {
             try PendingTransactionService.shared.validate(pending, with: draft, in: modelContext)
             dismiss()
         } catch {
-            validationErrors = ["Failed to save changes: \(error.localizedDescription)"]
+            validationErrors = [String(localized: "Failed to save changes: \(error.localizedDescription)")]
         }
     }
 

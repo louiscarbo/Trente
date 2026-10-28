@@ -61,14 +61,8 @@ extension Month {
         Month.name(startingOn: startDate)
     }
 
-    private static let monthYearFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy"
-        return formatter
-    }()
-
     static func name(startingOn startDate: Date) -> String {
-        monthYearFormatter.string(from: startDate).capitalized
+        startDate.formatted(Date.FormatStyle(capitalizationContext: .beginningOfSentence).month(.wide).year())
     }
 
     private var transactionEntries: [TransactionEntry] {
