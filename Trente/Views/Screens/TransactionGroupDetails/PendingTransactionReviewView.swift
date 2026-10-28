@@ -41,8 +41,6 @@ struct PendingTransactionReviewView: View {
     @FocusState private var notesFocused: Bool
     @FocusState private var amountFocused: Bool
 
-    private var isTrentePlusUser: Bool { true } // TODO: plug real entitlement
-
     init(pending: PendingTransaction) {
         self.pending = pending
         _draft = State(initialValue: TransactionGroupDraft(from: pending))
@@ -68,7 +66,6 @@ struct PendingTransactionReviewView: View {
                     isEditing: true,
                     currency: currency,
                     showsExpenseRow: true,
-                    showsNotes: isTrentePlusUser,
                     title: $draft.title,
                     category: $draft.expenseCategory,
                     amountCents: amountBinding,

@@ -12,7 +12,6 @@ struct EditableTransactionHeader: View {
     var isEditing: Bool
     var currency: Currency
     var showsExpenseRow: Bool
-    var showsNotes: Bool
 
     @Binding var title: String
     @Binding var category: BudgetCategory?
@@ -49,7 +48,10 @@ struct EditableTransactionHeader: View {
                             focus: amountFocus
                         )
                     }
-                    if showsNotes {
+                    if isEditing {
+                        noteEditor
+                            .requiresTrentePlus()
+                    } else {
                         noteEditor
                     }
                 }
@@ -92,6 +94,7 @@ struct EditableTransactionHeader: View {
                         Label("Add Image", systemImage: "photo.badge.plus")
                     }
                     .buttonStyle(TrenteSecondaryButtonStyle())
+                    .requiresTrentePlus()
                     .padding()
                 }
             } else {

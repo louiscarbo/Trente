@@ -21,6 +21,7 @@ struct SubscriptionView: View {
         .subscriptionStorePolicyDestination(url: ExternalLinks.termsOfUse, for: .termsOfService)
         .onInAppPurchaseCompletion { _, result in
             if case .success(.success) = result {
+                await TrentePlusStatus.shared.refresh()
                 dismiss()
             }
         }
