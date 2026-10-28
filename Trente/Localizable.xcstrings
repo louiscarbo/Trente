@@ -4212,6 +4212,22 @@
         }
       }
     },
+    "Skip “%@” in %@?" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Omitir “%@” en %@?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer « %@ » en %@ ?"
+          }
+        }
+      }
+    },
     "Skip “%@” on %@?" : {
       "localizations" : {
         "en" : {
@@ -4286,6 +4302,22 @@
       }
     },
     "Skip for %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omitir en %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer en %@"
+          }
+        }
+      }
+    },
+    "Skip in %@" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
