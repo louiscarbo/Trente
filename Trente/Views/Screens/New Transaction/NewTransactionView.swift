@@ -18,23 +18,22 @@ struct NewTransactionView: View {
     
     // Transaction Data
     @State private var viewModel = NewTransactionViewModel()
-    @State private var showKeyboardDismissButton: Bool = false
+    @FocusState private var focusedField: NewTransactionField?
 
     var body: some View {
         NavigationStack {
             stepsView
-                .keyboardDismissButton(isVisible: showKeyboardDismissButton) {
-                    #if os(iOS)
-                    UIApplication.shared.sendAction(
-                        #selector(UIResponder.resignFirstResponder),
-                        to: nil, from: nil, for: nil
-                    )
-                    #endif
-                    showKeyboardDismissButton = false
+                .keyboardDismissButton(isVisible: focusedField != nil) {
+                    focusedField = nil
                 }
                 .safeAreaInset(edge: .bottom) {
                     navigationButtons
                 }
+        }
+        .onChange(of: viewModel.step) { _, newStep in
+            if newStep != .title {
+                focusedField = nil
+            }
         }
         .alert("An error occurred", isPresented: $viewModel.showErrorAlert) {
             Button("Retry") {
@@ -105,15 +104,14 @@ struct NewTransactionView: View {
             case .title:
                 TitleView(
                     title: $viewModel.request.title,
-                    step: $viewModel.step,
-                    showKeyboardDismissButton: $showKeyboardDismissButton
+                    focusedField: $focusedField
                 )
             case .notesImage:
                 NotesImageView(
                     imageData: viewModel.request.imageData,
                     isLoadingImage: viewModel.isLoadingImage,
                     notes: $viewModel.request.notes,
-                    showKeyboardDismissButton: $showKeyboardDismissButton,
+                    focusedField: $focusedField,
                     imageLoadingError: $viewModel.imageLoadingError
                 ) { item in
                     viewModel.loadImage { try await item.loadTransferable(type: Data.self) }
@@ -137,6 +135,11 @@ struct NewTransactionView: View {
         .navigationTitle("New Transaction")
         .toolbarTitleDisplayMode(.inline)
     }
+}
+
+enum NewTransactionField {
+    case title
+    case notes
 }
 
 enum NewTransactionStep: CaseIterable {

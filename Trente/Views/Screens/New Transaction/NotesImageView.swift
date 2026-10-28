@@ -16,13 +16,12 @@ struct NotesImageView: View {
     @Binding var notes: String
 
     // View State
-    @Binding var showKeyboardDismissButton: Bool
+    var focusedField: FocusState<NewTransactionField?>.Binding
     @Binding var imageLoadingError: String?
     let onPickImage: (PhotosPickerItem) -> Void
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showFullScreen = false
     @State private var image: Image?
-    @FocusState private var notesFocused: Bool
     
     var body: some View {
         ZStack {
@@ -82,17 +81,10 @@ struct NotesImageView: View {
                             prompt: Text("Add your notes here."),
                             axis: .vertical
                         )
-                        .focused($notesFocused)
+                        .focused(focusedField, equals: .notes)
                         .lineLimit(5, reservesSpace: true)
                         .fixedSize(horizontal: false, vertical: true)
                         .textFieldStyle(.plain)
-                        .onChange(of: notesFocused) { _, newValue in
-                            if newValue == true {
-                                showKeyboardDismissButton = true
-                            } else {
-                                showKeyboardDismissButton = false
-                            }
-                        }
                     }
                     .groupBoxStyle(TrenteGroupBoxStyle())
                 }
