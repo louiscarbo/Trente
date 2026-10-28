@@ -34,6 +34,11 @@ final class TransactionService: Sendable {
     }
 
     func create(with request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
+        try insert(with: request, for: month, in: context)
+        try context.save()
+    }
+
+    func insert(with request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
         if request.isRecurrent {
             guard request.recurrenceStartDate >= Calendar.current.startOfDay(for: .now) else {
                 throw TransactionServiceError.recurrenceStartsInPast
@@ -49,8 +54,6 @@ final class TransactionService: Sendable {
         } else {
             try createTransactionGroupWithEntries(from: request, for: month, in: context)
         }
-        
-        try context.save()
     }
 }
 
