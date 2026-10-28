@@ -1229,38 +1229,6 @@
         }
       }
     },
-    "Date ↑" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fecha ↑"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Date ↑"
-          }
-        }
-      }
-    },
-    "Date ↓" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fecha ↓"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Date ↓"
-          }
-        }
-      }
-    },
     "Dates" : {
       "localizations" : {
         "es" : {
@@ -2631,38 +2599,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Min"
-          }
-        }
-      }
-    },
-    "Montant ↑" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importe ↑"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montant ↑"
-          }
-        }
-      }
-    },
-    "Montant ↓" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importe ↓"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montant ↓"
           }
         }
       }
@@ -4773,38 +4709,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le titre ne peut pas être vide."
-          }
-        }
-      }
-    },
-    "Titre A→Z" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Título A→Z"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Titre A→Z"
-          }
-        }
-      }
-    },
-    "Titre Z→A" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Título Z→A"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Titre Z→A"
           }
         }
       }

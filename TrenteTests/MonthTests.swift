@@ -45,7 +45,7 @@ struct MonthTests {
 
         month.transactionGroups = [groceries, rent]
 
-        #expect(month.negativeSpentAmount == -500.0)
+        #expect(month.spentAmount(in: .all) == 500.0)
     }
 
     @Test("Remaining amount")

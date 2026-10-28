@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RecurringTransactionRowView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.transactionActions) private var transactionActions
     let occurrence: RecurringTransactionOccurrence
 
     @State private var showPaymentSheet = false
@@ -20,7 +21,7 @@ struct RecurringTransactionRowView: View {
         Button {
             showPaymentSheet = true
         } label: {
-            RecurringOccurrenceRowContent(
+            OccurrenceContent(
                 title: occurrence.rule.title,
                 date: occurrence.date,
                 categoryName: occurrence.categoryName,
@@ -72,7 +73,7 @@ struct RecurringTransactionRowView: View {
             titleVisibility: .visible
         ) {
             Button(occurrence.isIncome ? String(localized: "Mark as Received") : String(localized: "Mark as Paid")) {
-                try? RecurringTransactionService.shared.confirm(occurrence, in: modelContext)
+                transactionActions.confirm(occurrence, in: modelContext)
             }
             Button(String(localized: "Cancel"), role: .cancel) {}
         } message: {
@@ -84,7 +85,7 @@ struct RecurringTransactionRowView: View {
             date: occurrence.date,
             frequency: occurrence.rule.frequency
         ) {
-            try? RecurringTransactionService.shared.skip(occurrence, in: modelContext)
+            transactionActions.skip(occurrence, in: modelContext)
         }
         .sheet(isPresented: $showPaymentSheet) {
             RecurringOccurrenceSheet(occurrence: occurrence)
@@ -97,58 +98,6 @@ struct RecurringTransactionRowView: View {
         return occurrence.isIncome
             ? String(localized: "Mark \(title) as received?")
             : String(localized: "Mark \(title) as paid?")
-    }
-}
-
-private struct RecurringOccurrenceRowContent: View {
-    let title: String
-    let date: Date
-    let categoryName: String
-    let frequency: RecurrenceFrequency
-    let amount: Double
-    let currencyCode: String
-    let isOverdue: Bool
-
-    var body: some View {
-        HStack(spacing: 12) {
-            OccurrenceDateBadge(date: date, isOverdue: isOverdue)
-            VStack(alignment: .leading) {
-                Text(title)
-                    .multilineTextAlignment(.leading)
-                    .font(.headline)
-                subtitle
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-            Spacer()
-            Text(amount, format: .currency(code: currencyCode))
-                .font(.title2)
-        }
-    }
-
-    private var subtitle: Text {
-        guard isOverdue else {
-            return Text("\(categoryName) · \(frequency.displayName)")
-        }
-        return Text("\(Text("Overdue").foregroundStyle(.orange)) · \(categoryName)")
-    }
-}
-
-private struct OccurrenceDateBadge: View {
-    let date: Date
-    let isOverdue: Bool
-
-    var body: some View {
-        VStack(spacing: 0) {
-            Text(date, format: .dateTime.day())
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(isOverdue ? Color.orange : Color.primary)
-            Text(date, format: .dateTime.month(.abbreviated))
-                .font(.caption2)
-                .textCase(.uppercase)
-                .foregroundStyle(isOverdue ? Color.orange : Color.secondary)
-        }
-        .frame(width: 36)
     }
 }
 

@@ -20,6 +20,7 @@ final class CloudSyncMonitor {
     private(set) var lastSyncDate: Date?
     private var issues: [NSPersistentCloudKitContainer.EventType: CloudSyncIssue] = [:]
     @ObservationIgnored private var observers: [any NSObjectProtocol] = []
+    @ObservationIgnored private var accountStatusTask: Task<Void, Never>?
 
     private init() {}
 
@@ -56,8 +57,11 @@ final class CloudSyncMonitor {
     }
 
     private func refreshAccountStatus() {
-        Task {
-            accountStatus = try? await CKContainer(identifier: Self.containerIdentifier).accountStatus()
+        accountStatusTask?.cancel()
+        accountStatusTask = Task {
+            let status = try? await CKContainer(identifier: Self.containerIdentifier).accountStatus()
+            guard !Task.isCancelled else { return }
+            accountStatus = status
         }
     }
 

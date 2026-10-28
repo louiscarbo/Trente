@@ -51,42 +51,6 @@ struct SplitStepView: View {
     }
 }
 
-private struct AdaptiveCategoryLegend: View {
-    let isInPrimaryColumn: Bool
-
-    @Environment(\.isOnboardingLayoutRegular) private var isRegular
-
-    var body: some View {
-        if isRegular == isInPrimaryColumn {
-            CategoryLegend()
-        }
-    }
-}
-
-struct CategoryLegend: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            ForEach(BudgetCategory.allCases) { category in
-                HStack(spacing: DesignSystem.Spacing.small.rawValue) {
-                    Circle()
-                        .fill(category.color)
-                        .frame(width: 10, height: 10)
-                        .accessibilityHidden(true)
-                    Text(category.name)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                    Text(category.shortExamples)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-                .accessibilityElement(children: .combine)
-            }
-        }
-        .padding(.horizontal, 4)
-        .frame(maxWidth: .infinity, alignment: .leading)
-    }
-}
-
 #Preview("Compact", traits: .fixedLayout(width: 390, height: 844)) {
     @Previewable @State var repartition = OnboardingModel.suggestedRepartition(for: 2000_00)
     @Previewable @State var isRepartitionComplete = false

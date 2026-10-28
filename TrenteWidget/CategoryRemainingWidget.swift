@@ -182,14 +182,14 @@ struct CategoryTimeline: AppIntentTimelineProvider {
     func snapshot(for configuration: SelectCategoryIntent, in context: Context) async -> CategoryEntry {
         if context.isPreview {
             return CategoryEntry(
-                date: Date(),
+                date: .now,
                 month: .sample,
                 category: WidgetBudgetCategory.needs
             )
         }
         let timeline = await timeline(for: configuration, in: context)
         return timeline.entries.first ?? CategoryEntry(
-            date: Date(),
+            date: .now,
             month: nil,
             category: configuration.category ?? .needs
         )
@@ -197,7 +197,7 @@ struct CategoryTimeline: AppIntentTimelineProvider {
     
     func placeholder(in context: Context) -> CategoryEntry {
         CategoryEntry(
-            date: Date(),
+            date: .now,
             month: .sample,
             category: WidgetBudgetCategory.needs
         )
@@ -213,5 +213,5 @@ struct CategoryEntry: TimelineEntry {
 #Preview(as: .systemSmall) {
     CategoryRemainingWidget()
 } timeline: {
-    CategoryEntry(date: Date(), month: .sample, category: .needs)
+    CategoryEntry(date: .now, month: .sample, category: .needs)
 }

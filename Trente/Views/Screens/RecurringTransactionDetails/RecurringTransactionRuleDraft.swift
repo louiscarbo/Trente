@@ -31,6 +31,25 @@ struct RecurringTransactionRuleDraft {
         nextScheduledDate = rule.schedule.firstDate(onOrAfter: today) ?? today
     }
 
+    var expenseCategory: BudgetCategory? {
+        get { repartition.keys.first }
+        set {
+            guard let newValue else { return }
+            repartition = [newValue: repartitionTotalCents]
+        }
+    }
+
+    var expenseAmountCents: Int {
+        get { repartitionTotalCents }
+        set {
+            let signedAmount = -abs(newValue)
+            repartitionTotalCents = signedAmount
+            if let expenseCategory {
+                repartition = [expenseCategory: signedAmount]
+            }
+        }
+    }
+
     mutating func setFrequency(_ newFrequency: RecurrenceFrequency) {
         frequency = newFrequency
         if startDate < Calendar.current.startOfDay(for: .now) {

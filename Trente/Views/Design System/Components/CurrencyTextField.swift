@@ -83,7 +83,7 @@ struct CurrencyTextField: View {
         let decimalSep = Locale.current.decimalSeparator ?? "."
         
         // Validation: prevent more than one decimal separator.
-        if unsignedText.filter({ String($0) == decimalSep }).count > 1 {
+        if unsignedText.count(where: { String($0) == decimalSep }) > 1 {
             amountText = oldValue
             return
         }
@@ -123,7 +123,7 @@ struct CurrencyTextField: View {
             .multilineTextAlignment(.center)
             .padding()
             .background(Color.gray.opacity(0.1))
-            .cornerRadius(10)
+            .clipShape(.rect(cornerRadius: 10))
         
         HStack {
             Button("Set to 50.00") { amount = 5000 }

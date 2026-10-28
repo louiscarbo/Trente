@@ -64,7 +64,7 @@ struct SortPickerView: View {
                 }
             }
         } label: {
-            Image(systemName: "arrow.up.arrow.down")
+            Label("Sort", systemImage: "arrow.up.arrow.down")
         }
     }
 }
@@ -73,15 +73,4 @@ enum SortOption: CaseIterable {
     case dateAsc, dateDesc
     case amountAsc, amountDesc
     case titleAsc, titleDesc
-
-    var label: String {
-        switch self {
-        case .dateAsc:    return String(localized: "Date ↑")
-        case .dateDesc:   return String(localized: "Date ↓")
-        case .amountAsc:  return String(localized: "Montant ↑")
-        case .amountDesc: return String(localized: "Montant ↓")
-        case .titleAsc:   return String(localized: "Titre A→Z")
-        case .titleDesc:  return String(localized: "Titre Z→A")
-        }
-    }
 }

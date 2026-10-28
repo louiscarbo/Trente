@@ -11,77 +11,64 @@ import PhotosUI
 // TODO: Refactor/Simplify/Split into smaller views
 struct NotesImageView: View {
     // Transaction Data
-    @Binding var imageData: Data?
+    let imageData: Data?
+    let isLoadingImage: Bool
     @Binding var notes: String
-            
+
     // View State
-    @Binding var nextButtonDisabled: Bool
     @Binding var showKeyboardDismissButton: Bool
+    @Binding var imageLoadingError: String?
+    let onPickImage: (PhotosPickerItem) -> Void
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showFullScreen = false
-    @State private var errorWrapper: ErrorWrapper?
-    @State private var showErrorAlert = false
+    @State private var image: Image?
     @FocusState private var notesFocused: Bool
-    
-    private var image: Image? {
-        guard let data = imageData else { return nil }
-        #if canImport(UIKit)
-        guard let uiImage = UIImage(data: data) else { return nil }
-        return Image(uiImage: uiImage)
-        #elseif canImport(AppKit)
-        guard let nsImage = NSImage(data: data) else { return nil }
-        return Image(nsImage: nsImage)
-        #endif
-    }
     
     var body: some View {
         ZStack {
             // Content
             ScrollView {
                 VStack(spacing: 20) {
-                    if photosPickerItem == nil {
+                    if imageData == nil && !isLoadingImage {
                         PhotosPicker(selection: $photosPickerItem) {
                             Label("Add Image", systemImage: "photo.badge.plus")
                         }
                         .buttonStyle(TrenteSecondaryButtonStyle())
                     } else {
                         if let selectedImage = image {
-                            selectedImage
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(
-                                    RoundedRectangle(cornerRadius: .large)
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: .large)
-                                        .strokeBorder(Color.white, lineWidth: 10)
-                                )
-                                .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
-                                .frame(height: 200)
-                                .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
-                                .padding(.bottom, 30)
-                                .overlay(alignment: .bottom) {
-                                    PhotosPicker(selection: $photosPickerItem) {
-                                        Label("Change Image", systemImage: "photo.badge.plus")
-                                            .font(.headline)
-                                            .padding(.horizontal)
-                                    }
-                                    .buttonStyle(TrenteSecondaryButtonStyle())
-                                    .fixedSize()
-                                    .padding(.top, 30)
-                                }
-                                .onTapGesture {
+                            Group {
+                                #if os(iOS)
+                                Button {
                                     showFullScreen = true
+                                } label: {
+                                    thumbnail(selectedImage)
                                 }
-                                .modify { view in
-                                    #if os(iOS)
-                                        view.fullScreenCover(isPresented: $showFullScreen) {
-                                            ZoomableImageView(image: selectedImage)
-                                        }
-                                    #else
-                                        view
-                                    #endif
+                                .buttonStyle(.plain)
+                                .accessibilityLabel(Text("Show Image"))
+                                #else
+                                thumbnail(selectedImage)
+                                #endif
+                            }
+                            .padding(.bottom, 30)
+                            .overlay(alignment: .bottom) {
+                                PhotosPicker(selection: $photosPickerItem) {
+                                    Label("Change Image", systemImage: "photo.badge.plus")
+                                        .font(.headline)
+                                        .padding(.horizontal)
                                 }
+                                .buttonStyle(TrenteSecondaryButtonStyle())
+                                .fixedSize()
+                                .padding(.top, 30)
+                            }
+                            .modify { view in
+                                #if os(iOS)
+                                    view.fullScreenCover(isPresented: $showFullScreen) {
+                                        ZoomableImageView(image: selectedImage)
+                                    }
+                                #else
+                                    view
+                                #endif
+                            }
                         } else {
                             ProgressView()
                                 .frame(height: 200)
@@ -113,34 +100,31 @@ struct NotesImageView: View {
                 .padding()
                 .padding(.top, 30)
             }
-            .onChange(of: photosPickerItem) { _, newItem in
-                Task {
-                    guard let item = newItem else {
-                        imageData = nil
-                        return
-                    }
-                    do {
-                        let loadedData = try await item.loadTransferable(type: Data.self)
-                        if let loadedData {
-                            imageData = await ImageAttachment.prepared(loadedData)
-                        } else {
-                            imageData = nil
-                        }
-                    } catch {
-                        errorWrapper = ErrorWrapper(error: error, guidance: String(localized: "The image could not be loaded. Please try again."))
-                        showErrorAlert = true
-                        imageData = nil
-                    }
-                }
+            .onChange(of: photosPickerItem) { _, item in
+                guard let item else { return }
+                onPickImage(item)
+                photosPickerItem = nil
+            }
+            .task(id: imageData) {
+                image = imageData.flatMap(createImage)
             }
         }
-        .alert("Error Loading Image", isPresented: $showErrorAlert, presenting: errorWrapper) { _ in
-            Button("OK") {}
-        } message: { wrapper in
-            Text(wrapper.guidance)
-        }
-        .onAppear {
-            nextButtonDisabled = false
-        }
+        .errorAlert("Error Loading Image", message: $imageLoadingError)
+    }
+
+    private func thumbnail(_ image: Image) -> some View {
+        image
+            .resizable()
+            .scaledToFit()
+            .clipShape(
+                RoundedRectangle(cornerRadius: .large)
+            )
+            .overlay {
+                RoundedRectangle(cornerRadius: .large)
+                    .strokeBorder(Color.white, lineWidth: 10)
+            }
+            .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
+            .frame(height: 200)
+            .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
     }
 }

@@ -10,7 +10,7 @@ struct RecurringTransactionRuleDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
 
-    @State var rule: RecurringTransactionRule
+    let rule: RecurringTransactionRule
     let currency: Currency
     var startInEditMode: Bool = false
 
@@ -54,21 +54,14 @@ struct RecurringTransactionRuleDetailsView: View {
                 repartitionBox()
             }
             if !isEditing && !rule.hasEnded {
-                StopRecurringBox(title: rule.title, onStop: stopRule)
+                StopBox(title: rule.title, onStop: stopRule)
             }
         }
         .onAppear {
             if startInEditMode { enterEditMode() }
         }
         .onChange(of: isEditing) { _, editing in if !editing { clearFocus() } }
-        .alert(String(localized: "Stop Failed"), isPresented: Binding(
-            get: { stopError != nil },
-            set: { if !$0 { stopError = nil } }
-        )) {
-            Button("OK", role: .cancel) { stopError = nil }
-        } message: {
-            Text(stopError ?? "")
-        }
+        .errorAlert("Stop Failed", message: $stopError)
     }
 
     private func clearFocus() {
@@ -189,13 +182,12 @@ struct RecurringTransactionRuleDetailsView: View {
                     displayedComponents: .date
                 )
                 if isEditing {
-                    Button {
+                    Button("Remove End Date", systemImage: "xmark.circle.fill") {
                         withAnimation(.bouncy) {
                             draft?.endDate = nil
                         }
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
                     }
+                    .labelStyle(.iconOnly)
                     .tint(.primary)
                 }
             }
@@ -228,31 +220,17 @@ struct RecurringTransactionRuleDetailsView: View {
 
     private var isExpense: Bool { totalAmount < 0 }
 
-    private var expenseCategory: BudgetCategory? {
-        isEditing ? draft?.repartition.keys.first : rule.repartition.keys.first
-    }
-
     private var categoryBinding: Binding<BudgetCategory?> {
         Binding(
-            get: { expenseCategory },
-            set: { newCategory in
-                guard let newCategory else { return }
-                let amount = draft?.repartitionTotalCents ?? totalAmount
-                draft?.repartition = [newCategory: amount]
-            }
+            get: { isEditing ? draft?.expenseCategory : rule.repartition.keys.first },
+            set: { draft?.expenseCategory = $0 }
         )
     }
 
     private var expenseAmountBinding: Binding<Int> {
         Binding(
-            get: { isEditing ? (draft?.repartitionTotalCents ?? totalAmount) : totalAmount },
-            set: { newValue in
-                let signedAmount = -abs(newValue)
-                draft?.repartitionTotalCents = signedAmount
-                if let category = expenseCategory {
-                    draft?.repartition = [category: signedAmount]
-                }
-            }
+            get: { isEditing ? (draft?.expenseAmountCents ?? totalAmount) : totalAmount },
+            set: { draft?.expenseAmountCents = $0 }
         )
     }
 
@@ -339,42 +317,5 @@ struct RecurringTransactionRuleDetailsView: View {
         } catch {
             deleteError = error.localizedDescription
         }
-    }
-}
-
-private struct StopRecurringBox: View {
-    let title: String
-    var onStop: () -> Void
-
-    @State private var showConfirmation = false
-
-    var body: some View {
-        let explanation = String(localized: "\(title) won't appear after today. Transactions already recorded stay.")
-        GroupBox(label: Label("Stop Future Transactions", systemImage: "stop.circle.fill")) {
-            VStack(spacing: .medium) {
-                Text(explanation)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(.secondary)
-                Button {
-                    showConfirmation = true
-                } label: {
-                    Label("Stop Future Transactions", systemImage: "stop.circle.fill")
-                        .font(.headline)
-                }
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                .confirmationDialog(
-                    String(localized: "Stop future \(title) transactions?"),
-                    isPresented: $showConfirmation,
-                    titleVisibility: .visible
-                ) {
-                    Button(String(localized: "Stop Future Transactions"), role: .destructive, action: onStop)
-                    Button(String(localized: "Cancel"), role: .cancel) {}
-                } message: {
-                    Text(explanation)
-                }
-            }
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle())
     }
 }

@@ -61,4 +61,36 @@ struct RecurringTransactionRuleDraftTests {
 
         #expect(draft.validate().isEmpty)
     }
+
+    @Test("Changing the category of an expense moves its whole amount")
+    func categoryChangeMovesExpenseAmount() {
+        var draft = RecurringTransactionRuleDraft(from: makeRule(frequency: .monthly, startDate: daysFromToday(10)))
+
+        draft.expenseCategory = .wants
+
+        #expect(draft.expenseCategory == .wants)
+        #expect(draft.repartition == [.wants: -800_00])
+        #expect(draft.validate().isEmpty)
+    }
+
+    @Test("Clearing the category of an expense keeps the current one")
+    func clearingCategoryKeepsRepartition() {
+        var draft = RecurringTransactionRuleDraft(from: makeRule(frequency: .monthly, startDate: daysFromToday(10)))
+
+        draft.expenseCategory = nil
+
+        #expect(draft.repartition == [.needs: -800_00])
+    }
+
+    @Test("An expense amount is always stored as a negative amount in its category")
+    func expenseAmountIsStoredNegative() {
+        var draft = RecurringTransactionRuleDraft(from: makeRule(frequency: .monthly, startDate: daysFromToday(10)))
+
+        draft.expenseAmountCents = 950_00
+
+        #expect(draft.expenseAmountCents == -950_00)
+        #expect(draft.repartitionTotalCents == -950_00)
+        #expect(draft.repartition == [.needs: -950_00])
+        #expect(draft.validate().isEmpty)
+    }
 }

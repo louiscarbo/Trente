@@ -29,21 +29,6 @@ struct OnboardingHeader: View {
     }
 }
 
-struct OnboardingContinueButton: View {
-    let title: LocalizedStringKey
-    var isEnabled: Bool = true
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            Text(title)
-        }
-        .buttonStyle(TrentePrimaryButtonStyle())
-        .disabled(!isEnabled)
-        .keyboardShortcut(.defaultAction)
-    }
-}
-
 #Preview {
     VStack(spacing: .large) {
         OnboardingHeader(
@@ -60,8 +45,6 @@ struct OnboardingContinueButton: View {
             subtitle: "When you pay with Apple Pay, Trente sends you a notification.",
             alignment: .center
         )
-        OnboardingContinueButton(title: "Continue") {}
-        OnboardingContinueButton(title: "Continue", isEnabled: false) {}
     }
     .padding()
 }

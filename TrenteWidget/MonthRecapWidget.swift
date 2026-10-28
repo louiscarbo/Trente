@@ -248,15 +248,15 @@ struct AccessoryRectangularMonthRecapWidgetView: View {
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> MonthRecapEntry {
-        MonthRecapEntry(date: Date(), month: .sample)
+        MonthRecapEntry(date: .now, month: .sample)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (MonthRecapEntry) -> Void) {
         if context.isPreview {
-            completion(MonthRecapEntry(date: Date(), month: .sample))
+            completion(MonthRecapEntry(date: .now, month: .sample))
         } else {
             getTimeline(in: context) { timeline in
-                completion(timeline.entries.first ?? MonthRecapEntry(date: Date(), month: nil))
+                completion(timeline.entries.first ?? MonthRecapEntry(date: .now, month: nil))
             }
         }
     }
@@ -275,6 +275,6 @@ struct MonthRecapEntry: TimelineEntry {
 #Preview(as: .accessoryRectangular) {
     MonthRecapWidget()
 } timeline: {
-    MonthRecapEntry(date: Date(), month: .sample)
+    MonthRecapEntry(date: .now, month: .sample)
 }
 #endif

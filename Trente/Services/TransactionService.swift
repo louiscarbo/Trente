@@ -18,19 +18,14 @@ final class TransactionService: Sendable {
     static let shared = TransactionService()
     private init() {}
 
-    // TODO: Check if it really works :/
     func fetchTransactionDateBounds(from model: ModelContext) throws -> ClosedRange<Date> {
-        let defaultEarliest = Date.distantPast
-        let defaultLatest   = Date.distantFuture
+        var earliestDescriptor = FetchDescriptor<TransactionGroup>(sortBy: [SortDescriptor(\.addedDate)])
+        earliestDescriptor.fetchLimit = 1
+        var latestDescriptor = FetchDescriptor<TransactionGroup>(sortBy: [SortDescriptor(\.addedDate, order: .reverse)])
+        latestDescriptor.fetchLimit = 1
 
-        let descriptor = FetchDescriptor<TransactionGroup>(
-            sortBy: [ SortDescriptor(\.addedDate, order: .forward) ]
-        )
-
-        let groups = try model.fetch(descriptor)
-        let earliest = groups.first?.addedDate ?? defaultEarliest
-        let latest   = groups.last?.addedDate  ?? defaultLatest
-
+        let earliest = try model.fetch(earliestDescriptor).first?.addedDate ?? .distantPast
+        let latest = try model.fetch(latestDescriptor).first?.addedDate ?? .distantFuture
         return earliest...latest
     }
     

@@ -27,16 +27,6 @@ struct WelcomeStepView: View {
     }
 }
 
-private struct AdaptiveCategoryTreemap: View {
-    let percentages: [BudgetCategory: Int]
-
-    @Environment(\.isOnboardingLayoutRegular) private var isRegular
-
-    var body: some View {
-        CategoryTreemap(percentages: percentages, isWide: isRegular)
-    }
-}
-
 #Preview("Compact", traits: .fixedLayout(width: 390, height: 844)) {
     WelcomeStepView(percentages: OnboardingModel.suggestedPercentages) {}
 }

@@ -1,5 +1,5 @@
 //
-//  MonthOverviewCards.swift
+//  DailySpendingCard.swift
 //  Trente
 //
 //  Created by Louis Carbo Estaque on 16/05/2026.
@@ -8,10 +8,9 @@
 import SwiftUI
 import Charts
 
-// MARK: - Daily Spending Card
-
 struct DailySpendingCard: View {
-    @State var month: Month
+    let spending: DailySpending
+    let currencyCode: String
 
     @State private var mode: SpendingWindowMode = .month
     @State private var scrollPosition: Date
@@ -19,9 +18,10 @@ struct DailySpendingCard: View {
     @State private var settleTask: Task<Void, Never>?
     @State private var selectedDate: Date?
 
-    init(month: Month) {
-        self._month = State(initialValue: month)
-        let defaultWeekStart = DailySpending(month: month).defaultWeekStart
+    init(spending: DailySpending, currencyCode: String) {
+        self.spending = spending
+        self.currencyCode = currencyCode
+        let defaultWeekStart = spending.defaultWeekStart
         self._scrollPosition = State(initialValue: defaultWeekStart)
         self._settledScrollPosition = State(initialValue: defaultWeekStart)
     }
@@ -48,12 +48,7 @@ struct DailySpendingCard: View {
         selectedDate.flatMap(spending.day(on:))
     }
 
-    private func formattedAmount(_ value: Double) -> String {
-        value.formatted(.currency(code: month.currency.isoCode).precision(.fractionLength(0)))
-    }
-
     var body: some View {
-        let spending = DailySpending(month: month)
         let hasData = !spending.days.isEmpty
         let selectedDay = selectedDay(in: spending)
 
@@ -81,7 +76,7 @@ struct DailySpendingCard: View {
                     }
                     .animation(.easeInOut(duration: 0.25), value: selectedDay?.date)
                 } else {
-                    emptyState
+                    EmptyState()
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
@@ -98,10 +93,10 @@ struct DailySpendingCard: View {
         switch mode {
         case .month:
             if spending.today != nil { return String(localized: "This Month") }
-            let isCurrentYear = calendar.isDate(Date(), equalTo: month.startDate, toGranularity: .year)
+            let isCurrentYear = calendar.isDate(.now, equalTo: spending.monthStartDay, toGranularity: .year)
             return isCurrentYear
-                ? month.startDate.formatted(.dateTime.month(.wide))
-                : month.startDate.formatted(.dateTime.month(.wide).year())
+                ? spending.monthStartDay.formatted(.dateTime.month(.wide))
+                : spending.monthStartDay.formatted(.dateTime.month(.wide).year())
         case .week:
             let window = spending.weekWindow(at: scrollPosition)
             if let today = spending.today, calendar.isDate(window.upperBound, inSameDayAs: today) {
@@ -203,75 +198,22 @@ struct DailySpendingCard: View {
     @ViewBuilder
     private func dock(_ spending: DailySpending, selectedDay: DailySpend?) -> some View {
         if let selectedDay {
-            dockContent(title: dayTitle(selectedDay.date), days: [selectedDay])
+            Dock(
+                title: selectedDay.date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated)),
+                days: [selectedDay],
+                currencyCode: currencyCode
+            )
         } else {
-            dockContent(title: String(localized: "Total"), days: visibleDays(in: spending))
+            Dock(
+                title: String(localized: "Total"),
+                days: visibleDays(in: spending),
+                currencyCode: currencyCode
+            )
         }
-    }
-
-    private func dayTitle(_ date: Date) -> String {
-        date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated))
-    }
-
-    @ViewBuilder
-    private func dockContent(title: String, days: [DailySpend]) -> some View {
-        let slices = CategorySlice.slices(for: days)
-        VStack(alignment: .leading, spacing: 6) {
-            HStack {
-                Text(title).font(.caption.bold())
-                Spacer()
-                Text(formattedAmount(days.reduce(0) { $0 + $1.total })).font(.caption.bold())
-            }
-            proportionCapsule(for: slices)
-            proportionLegend(for: slices)
-        }
-    }
-
-    private func proportionCapsule(for slices: [CategorySlice]) -> some View {
-        GeometryReader { geo in
-            HStack(spacing: 3) {
-                ForEach(slices, id: \.category) { slice in
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(slice.category.color.gradient)
-                        .frame(width: max(geo.size.width * slice.share - 3, 3))
-                }
-            }
-        }
-        .frame(height: 10)
-    }
-
-    private func proportionLegend(for slices: [CategorySlice]) -> some View {
-        HStack(alignment: .top, spacing: DesignSystem.Spacing.medium.rawValue) {
-            ForEach(slices, id: \.category) { slice in
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Circle().fill(slice.category.color).frame(width: 6, height: 6)
-                    VStack(alignment: .leading, spacing: 1) {
-                        Text(slice.category.shortName)
-                            .font(.caption2.bold())
-                        Text("\(formattedAmount(slice.amount)) · \(slice.percent)%")
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-    }
-
-    private var emptyState: some View {
-        VStack(spacing: DesignSystem.Spacing.medium.rawValue) {
-            Image(systemName: "calendar.badge.plus")
-                .font(.largeTitle)
-                .foregroundStyle(.secondary)
-            Text("No spending recorded yet.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, minHeight: 240)
     }
 }
 
 #Preview {
-    DailySpendingCard(month: .month2)
+    DailySpendingCard(spending: DailySpending(month: .month2), currencyCode: Month.month2.currency.isoCode)
         .padding()
 }

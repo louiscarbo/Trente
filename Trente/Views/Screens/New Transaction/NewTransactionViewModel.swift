@@ -17,12 +17,14 @@ final class NewTransactionViewModel {
     
     // View State
     var step: NewTransactionStep = .amountCategory
-    var nextButtonDisabled: Bool = true
     var isRepartitionComplete: Bool = false
     var showErrorAlert: Bool = false
+    private(set) var isLoadingImage: Bool = false
+    var imageLoadingError: String?
 
     @ObservationIgnored private let permissionService: NotificationPermissionService
     @ObservationIgnored private(set) var permissionRequest: Task<Void, Never>?
+    @ObservationIgnored private(set) var imageLoad: Task<Void, Never>?
 
     init(permissionService: NotificationPermissionService = NotificationPermissionService()) {
         self.permissionService = permissionService
@@ -36,9 +38,41 @@ final class NewTransactionViewModel {
     }
     
     var showPreviousButton: Bool { step != .amountCategory }
+
+    var isLastStep: Bool { step == filteredSteps.last }
+
+    var canAdvance: Bool {
+        guard !(isLastStep && isLoadingImage) else { return false }
+        return switch step {
+        case .amountCategory:
+            request.amountCents != 0 && (request.type == .income || request.selectedCategory != nil)
+        case .title:
+            !request.title.isEmpty
+        case .repartition:
+            isRepartitionComplete
+        case .notesImage, .recurrence:
+            true
+        }
+    }
     
-    var showNextButton: Bool { step != .recurrence }
-    
+    func loadImage(_ loadData: @escaping @Sendable () async throws -> Data?) {
+        imageLoad?.cancel()
+        isLoadingImage = true
+        imageLoad = Task {
+            var preparedData: Data?
+            if let loadedData = try? await loadData() {
+                preparedData = await ImageAttachment.prepared(loadedData)
+            }
+            guard !Task.isCancelled else { return }
+            if let preparedData {
+                request.imageData = preparedData
+            } else {
+                imageLoadingError = String(localized: "The image could not be loaded. Please try again.")
+            }
+            isLoadingImage = false
+        }
+    }
+
     func nextStep() {
         if let currentIndex = filteredSteps.firstIndex(of: step) {
             let isLastStep = currentIndex == filteredSteps.count - 1

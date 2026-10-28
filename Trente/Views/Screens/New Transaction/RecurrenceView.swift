@@ -54,41 +54,37 @@ struct RecurrenceView: View {
 
     @ViewBuilder
     private var endDatePicker: some View {
-        if recurrenceEndDate == nil {
+        if let endDate = Binding($recurrenceEndDate) {
+            HStack {
+                DatePicker(
+                    "End Date",
+                    selection: endDate,
+                    in: minimumEndDate...,
+                    displayedComponents: .date
+                )
+                
+                Button("Remove End Date", systemImage: "xmark.circle.fill") {
+                    withAnimation(.bouncy) {
+                        recurrenceEndDate = nil
+                    }
+                }
+                .labelStyle(.iconOnly)
+                .tint(.primary)
+            }
+        } else {
             Button("Add an End Date") {
                 withAnimation(.bouncy) {
                     recurrenceEndDate = recurrenceStartDate
                 }
             }
             .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-        } else {
-            HStack {
-                DatePicker(
-                    "End Date",
-                    selection: Binding<Date>(
-                        get: { recurrenceEndDate! },
-                        set: { recurrenceEndDate = $0 }
-                    ),
-                    in: minimumEndDate...,
-                    displayedComponents: .date
-                )
-                
-                Button {
-                    withAnimation(.bouncy) {
-                        recurrenceEndDate = nil
-                    }
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                }
-                .tint(.primary)
-            }
         }
     }
 }
 
 #Preview {
     @Previewable @State var recurrenceFrequency: RecurrenceFrequency = .monthly
-    @Previewable @State var recurrenceStartDate: Date = Date()
+    @Previewable @State var recurrenceStartDate: Date = .now
     @Previewable @State var recurrenceEndDate: Date?
     
     Text("Hello")

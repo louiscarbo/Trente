@@ -23,20 +23,7 @@ private struct KeyboardDismissButtonModifier: ViewModifier {
                         .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
                     }
                     .padding()
-                    .background {
-                        UnevenRoundedRectangle(
-                            cornerRadii: RectangleCornerRadii(
-                                topLeading: 26,
-                                bottomLeading: 0,
-                                bottomTrailing: 0,
-                                topTrailing: 26
-                            )
-                        )
-                        .offset(y: 1.5)
-                        .fill(.regularMaterial)
-                        .stroke(.secondary.opacity(0.4), lineWidth: 3)
-                        .ignoresSafeArea()
-                    }
+                    .bottomBarBackground()
                 }
             }
         #else

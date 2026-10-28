@@ -7,15 +7,15 @@ import SwiftUI
 
 struct DeleteSectionBox: View {
     var title: String
+    var message = String(localized: "This action cannot be undone.")
     var onDelete: () -> Void
 
     @State private var showConfirmation = false
 
     var body: some View {
-        let warning = String(localized: "This action cannot be undone.")
         GroupBox(label: Label(title, systemImage: "trash.fill")) {
             VStack(spacing: .medium) {
-                Text(warning)
+                Text(message)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(.secondary)
@@ -26,12 +26,7 @@ struct DeleteSectionBox: View {
                         .font(.headline)
                 }
                 .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                .confirmationDialog(String(localized: "Are you sure?"), isPresented: $showConfirmation, titleVisibility: .visible) {
-                    Button(String(localized: "Delete"), role: .destructive, action: onDelete)
-                    Button(String(localized: "Cancel"), role: .cancel) {}
-                } message: {
-                    Text(warning)
-                }
+                .deleteConfirmation(isPresented: $showConfirmation, message: message, onDelete: onDelete)
             }
         }
         .groupBoxStyle(TrenteGroupBoxStyle())

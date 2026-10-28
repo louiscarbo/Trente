@@ -33,17 +33,7 @@ struct RecurringOccurrenceSheet: View {
             .toolbar {
                 CloseToolbarItem { dismiss() }
             }
-            .alert(
-                String(localized: "An error occurred"),
-                isPresented: Binding(
-                    get: { errorMessage != nil },
-                    set: { if !$0 { errorMessage = nil } }
-                )
-            ) {
-                Button("OK", role: .cancel) { errorMessage = nil }
-            } message: {
-                Text(errorMessage ?? "")
-            }
+            .errorAlert(message: $errorMessage)
         }
         .presentationDetents([.medium, .large])
         .sheet(isPresented: $showRecurringTransaction) {

@@ -10,8 +10,9 @@ import SwiftUI
 
 struct TransactionGroupRowView: View {
     @Environment(\.modelContext) private var modelContext
-    @State var transactionGroup: TransactionGroup
-    @State var isInList = false
+    @Environment(\.transactionActions) private var transactionActions
+    let transactionGroup: TransactionGroup
+    var isInList = false
 
     @State private var showDeleteConfirmation = false
     @State private var showDetailsInEdit = false
@@ -21,7 +22,7 @@ struct TransactionGroupRowView: View {
             if transactionGroup.entries.count > 1 {
                 groupDisclosure
             } else if transactionGroup.entries.count == 1 {
-                TransactionEntryRowView(
+                EntryRow(
                     transactionGroup: transactionGroup,
                     transactionEntry: transactionGroup.entries[0],
                     title: transactionGroup.title
@@ -52,8 +53,7 @@ struct TransactionGroupRowView: View {
             }
         }
         .deleteConfirmation(isPresented: $showDeleteConfirmation) {
-            TransactionService.shared.delete(group: transactionGroup, in: modelContext)
-            try? modelContext.save()
+            transactionActions.delete(transactionGroup, in: modelContext)
         }
         .sheet(isPresented: $showDetailsInEdit) {
             TransactionGroupDetailsView(
@@ -71,7 +71,7 @@ struct TransactionGroupRowView: View {
                     Divider()
                 }
                 ForEach(transactionGroup.entries) { entry in
-                    TransactionEntryRowView(
+                    EntryRow(
                         transactionGroup: transactionGroup,
                         transactionEntry: entry
                     )
@@ -84,32 +84,6 @@ struct TransactionGroupRowView: View {
                 amount: transactionGroup.totalAmount,
                 currencyCode: transactionGroup.currency.isoCode
             )
-        }
-    }
-}
-
-private struct TransactionEntryRowView: View {
-    @State var transactionGroup: TransactionGroup
-    @State var transactionEntry: TransactionEntry
-    @State var title: String?
-    
-    @State private var showTransactionGroupDetails: Bool = false
-    
-    var body: some View {
-        Button {
-            showTransactionGroupDetails = true
-        } label: {
-            TransactionEntryRowContent(
-                category: transactionEntry.category,
-                amount: transactionEntry.amount,
-                currencyCode: transactionGroup.currency.isoCode,
-                title: title
-            )
-        }
-        .contentShape(.rect)
-        .buttonStyle(.plain)
-        .sheet(isPresented: $showTransactionGroupDetails) {
-            TransactionGroupDetailsView(transactionGroup: transactionGroup)
         }
     }
 }

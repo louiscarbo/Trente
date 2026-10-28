@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct GraphCardView: View {
-    var month: Month
-    var scope: BudgetScope
+    let figures: BudgetFigures
+    let scope: BudgetScope
+    let currency: Currency
     var size: CGFloat = 100
-    
+
     @State private var showRemaining = false
 
     var body: some View {
-        let figures = month.figures(in: scope)
         let exactAmount = figures.amount(showingRemaining: showRemaining)
 
         Button {
@@ -24,15 +24,15 @@ struct GraphCardView: View {
             GroupBox(label:
                 Label(
                     scope.shortName,
-                    systemImage: figures.isOverspent ? "exclamationmark.triangle.fill" : month.currency.sfSymbolGaugeName
+                    systemImage: figures.isOverspent ? "exclamationmark.triangle.fill" : currency.sfSymbolGaugeName
                 )
-                .foregroundColor(figures.isOverspent ? .red : scope.color)
+                .foregroundStyle(figures.isOverspent ? .red : scope.color)
             ) {
                 VStack(spacing: 0) {
                     BudgetGaugeView(
                         figures: figures,
                         scope: scope,
-                        currencyCode: month.currency.isoCode,
+                        currencyCode: currency.isoCode,
                         size: size,
                         showRemaining: showRemaining,
                         showsPercentage: true
@@ -41,14 +41,14 @@ struct GraphCardView: View {
 
                     VStack(spacing: 2) {
                         HStack(spacing: 3) {
-                            Text(exactAmount, format: .currency(code: month.currency.isoCode))
+                            Text(exactAmount, format: .currency(code: currency.isoCode))
                                 .foregroundStyle(figures.isOverspent ? .red : .primary)
                                 .contentTransition(.numericText(value: exactAmount))
                             Text(verbatim: "/")
                                 .foregroundStyle(.secondary)
                             Text(
                                 figures.income,
-                                format: .currency(code: month.currency.isoCode).precision(.fractionLength(0...2))
+                                format: .currency(code: currency.isoCode).precision(.fractionLength(0...2))
                             )
                             .foregroundStyle(.secondary)
                         }
@@ -67,12 +67,6 @@ struct GraphCardView: View {
         }
         .buttonStyle(PressableCardButtonStyle())
         .sensoryFeedback(.selection, trigger: showRemaining)
-    }
-}
-
-extension GraphCardView {
-    init(month: Month, category: BudgetCategory, size: CGFloat = 100) {
-        self.init(month: month, scope: .category(category), size: size)
     }
 }
 
@@ -202,17 +196,11 @@ extension BudgetGaugeView {
 
 #Preview {
     let month = Month.month1
-    
-    VStack {
-        HStack {
-            GraphCardView(month: month, scope: .all)
-            
-            GraphCardView(month: month, category: .needs)
-        }
-        HStack {
-            GraphCardView(month: month, category: .wants)
-            
-            GraphCardView(month: month, category: .savingsAndDebts)
+    let scopes: [BudgetScope] = [.all] + BudgetCategory.allCases.map { .category($0) }
+
+    LazyVGrid(columns: [GridItem(), GridItem()]) {
+        ForEach(scopes, id: \.self) { scope in
+            GraphCardView(figures: month.figures(in: scope), scope: scope, currency: month.currency)
         }
     }
 }
