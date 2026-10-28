@@ -11,15 +11,18 @@ struct PageIndicator<Page: Hashable>: View {
 
     var body: some View {
         HStack(spacing: 6) {
-            ForEach(pages, id: \.self) { page in
+            ForEach(Array(pages.enumerated()), id: \.element) { index, page in
+                let isCurrent = page == (currentPage ?? pages.first)
                 Button {
                     withAnimation { currentPage = page }
                 } label: {
                     Circle()
-                        .fill(page == (currentPage ?? pages.first) ? Color.primary : Color.secondary.opacity(0.3))
+                        .fill(isCurrent ? Color.primary : Color.secondary.opacity(0.3))
                         .frame(width: 6, height: 6)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(Text("Page \(index + 1) of \(pages.count)"))
+                .accessibilityAddTraits(isCurrent ? .isSelected : [])
             }
         }
         .animation(.easeInOut(duration: 0.2), value: currentPage)

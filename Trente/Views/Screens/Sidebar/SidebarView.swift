@@ -38,7 +38,7 @@ struct SidebarView: View {
                     CurrentMonthRowView(currentMonth: currentMonth, selectedMonth: selectedMonth)
                 }
 
-                NewMonthButtonView()
+                NewMonthButton()
                     .padding(.vertical)
 
                 if !months.isEmpty {
@@ -47,7 +47,7 @@ struct SidebarView: View {
                         .foregroundStyle(.secondary)
                         .padding(.horizontal)
                     RecurringTransactionsRowView(
-                        activeCount: recurringRules.filter { !$0.hasEnded }.count,
+                        activeCount: recurringRules.count { !$0.hasEnded },
                         isSelected: selection == .recurring
                     ) {
                         selection = .recurring
@@ -114,26 +114,5 @@ struct SidebarView: View {
             },
             set: { selection = $0.map(SidebarSelection.month) }
         )
-    }
-}
-
-private struct NewMonthButtonView: View {
-    @Environment(\.openWindow) private var openWindow
-    @State private var isShowingNewMonthSheet = false
-
-    var body: some View {
-        Button {
-            #if os(macOS)
-            openWindow(id: WindowIdentifiers.newMonth)
-            #else
-            isShowingNewMonthSheet = true
-            #endif
-        } label: {
-            Label("Start a New Month", systemImage: "calendar.badge.plus")
-        }
-        .buttonStyle(TrenteSecondaryButtonStyle())
-        .sheet(isPresented: $isShowingNewMonthSheet) {
-            NewMonthView()
-        }
     }
 }

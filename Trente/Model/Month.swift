@@ -11,6 +11,8 @@ import SwiftData
 extension SchemaV1 {
     @Model
     final class Month: Identifiable, Hashable, Equatable {
+        #Index<Month>([\.startDate], [\.id])
+
         var id: UUID = UUID()
         var startDate: Date = Date.now
         var modifiedDate: Date?
@@ -59,10 +61,14 @@ extension Month {
         Month.name(startingOn: startDate)
     }
 
-    static func name(startingOn startDate: Date) -> String {
+    private static let monthYearFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy"
-        return formatter.string(from: startDate).capitalized
+        return formatter
+    }()
+
+    static func name(startingOn startDate: Date) -> String {
+        monthYearFormatter.string(from: startDate).capitalized
     }
 
     private var transactionEntries: [TransactionEntry] {
@@ -108,10 +114,6 @@ extension Month {
         return remainingAmount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
     }
 
-    var negativeSpentAmount: Double {
-        Double(spentAmountCents) / 100
-    }
-
     var overSpent: Bool {
         remainingAmountCents < 0
     }
@@ -154,7 +156,7 @@ extension Month {
 
     func spentAmount(in scope: BudgetScope) -> Double {
         switch scope {
-        case .all: abs(negativeSpentAmount)
+        case .all: abs(spentAmount)
         case .category(let category): spentAmount(for: category)
         }
     }

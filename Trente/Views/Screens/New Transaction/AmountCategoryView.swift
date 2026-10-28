@@ -15,8 +15,8 @@ struct AmountCategoryView: View {
     @Binding var isRecurrent: Bool
     
     // View State
-    @Binding var nextButtonDisabled: Bool
     @FocusState private var currencyTextFieldFocused: Bool
+    @ScaledMetric(relativeTo: .largeTitle) private var amountFontSize = 80
     let currency: Currency
     
     var body: some View {
@@ -60,23 +60,17 @@ struct AmountCategoryView: View {
         #endif
         .onChange(of: transactionType) { _, newValue in
             amountCents = (newValue == .income) ? abs(amountCents) : -abs(amountCents)
-            updateNextButtonState()
             if newValue == .income {
                 selectedCategory = nil
             }
         }
-        .onChange(of: selectedCategory) {
-            updateNextButtonState()
-        }
         .onChange(of: amountCents) {
             amountCents = (transactionType == .income) ? abs(amountCents) : -abs(amountCents)
-            updateNextButtonState()
         }
-        .onAppear {
-            updateNextButtonState()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                currencyTextFieldFocused = true
-            }
+        .task {
+            try? await Task.sleep(for: .seconds(0.6))
+            guard !Task.isCancelled else { return }
+            currencyTextFieldFocused = true
         }
     }
     
@@ -84,9 +78,10 @@ struct AmountCategoryView: View {
     private var stackContent: some View {
         #if os(iOS)
         Picker("Income/Expense", selection: $transactionType) {
-            Image(systemName: "minus").tag(TransactionType.expense)
-            Image(systemName: "plus").tag(TransactionType.income)
+            Label("Expense", systemImage: "minus").tag(TransactionType.expense)
+            Label("Income", systemImage: "plus").tag(TransactionType.income)
         }
+        .labelStyle(.iconOnly)
         .pickerStyle(.inline)
         .frame(width: 60)
         #elseif os(macOS)
@@ -101,17 +96,9 @@ struct AmountCategoryView: View {
             .focused($currencyTextFieldFocused)
             #if os(iOS)
             .textFieldStyle(.plain)
-            .font(.system(size: 80, weight: .bold))
+            .font(.system(size: amountFontSize, weight: .bold))
             .multilineTextAlignment(.center)
             #endif
-    }
-    
-    private func updateNextButtonState() {
-        if transactionType == .income {
-            nextButtonDisabled = amountCents == 0
-        } else {
-            nextButtonDisabled = amountCents == 0 || selectedCategory == nil
-        }
     }
 }
 
@@ -120,7 +107,6 @@ struct AmountCategoryView: View {
     @Previewable @State var amount: Int = -2550
     @Previewable @State var type: TransactionType = .expense
     @Previewable @State var recurrent: Bool = false
-    @Previewable @State var disabled: Bool = false
     let euro = Currencies.availableCurrencies.first { $0.isoCode == "EUR" }!
     
     AmountCategoryView(
@@ -128,13 +114,7 @@ struct AmountCategoryView: View {
         amountCents: $amount,
         transactionType: $type,
         isRecurrent: $recurrent,
-        nextButtonDisabled: $disabled,
         currency: euro
     )
     .padding()
-    
-    Button("NEXT") { }
-        .buttonStyle(TrentePrimaryButtonStyle())
-        .disabled(disabled)
-        .padding()
 }

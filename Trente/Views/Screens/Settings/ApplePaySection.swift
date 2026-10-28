@@ -26,36 +26,11 @@ struct ApplePaySection: View {
     }
 }
 
-struct ApplePaySetupView: View {
-    let onGetShortcut: () -> Void
-
-    var body: some View {
-        ScrollView {
-            VStack(spacing: .large) {
-                ApplePaySetupGuide()
-
-                Button(action: onGetShortcut) {
-                    Text("Get the Shortcut")
-                }
-                .buttonStyle(TrentePrimaryButtonStyle())
-            }
-            .padding()
-        }
-        .navigationTitle("Apple Pay")
-    }
-}
-
 #Preview {
     NavigationStack {
         Form {
             ApplePaySection {}
         }
         .formStyle(.grouped)
-    }
-}
-
-#Preview("Setup") {
-    NavigationStack {
-        ApplePaySetupView {}
     }
 }

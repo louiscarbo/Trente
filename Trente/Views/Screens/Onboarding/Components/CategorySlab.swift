@@ -13,6 +13,8 @@ struct CategorySlab: View {
     let percentage: Int
     let color: Color
 
+    @ScaledMetric(relativeTo: .largeTitle) private var percentageFontSize = 72
+
     private var fraction: Double {
         Double(percentage) / 100
     }
@@ -59,7 +61,7 @@ struct CategorySlab: View {
 
     private var percentageText: some View {
         Text(fraction, format: .percent)
-            .font(.system(size: 72, weight: .heavy))
+            .font(.system(size: percentageFontSize, weight: .heavy))
             .tracking(-2.16)
             .lineLimit(1)
             .minimumScaleFactor(0.5)

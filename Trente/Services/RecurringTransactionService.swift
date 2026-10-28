@@ -43,9 +43,6 @@ final class RecurringTransactionService: Sendable {
             return TransactionEntry(amountCents: amount, category: category, group: group)
         }
         entries.forEach { context.insert($0) }
-        group.entries = entries
-
-        occurrence.month.transactionGroups.append(group)
         try context.save()
     }
 

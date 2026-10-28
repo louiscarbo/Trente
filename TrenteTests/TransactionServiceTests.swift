@@ -117,4 +117,31 @@ struct TransactionServiceTests {
         }
         #expect(try context.fetch(FetchDescriptor<RecurringTransactionRule>()).isEmpty)
     }
+
+    @Test("Date bounds span the earliest and latest transactions")
+    func dateBoundsSpanTransactions() throws {
+        let context = try makeContext()
+        let month = makeMonth(in: context)
+        let dates = [12, 3, 27].map { day in
+            Calendar.current.date(from: DateComponents(year: 2025, month: 4, day: day))!
+        }
+        for date in dates {
+            let group = TransactionGroup(title: "Coffee", type: .expense, month: month, note: nil, imageAttachmentData: nil, addedDate: date)
+            context.insert(group)
+        }
+        try context.save()
+
+        let bounds = try TransactionService.shared.fetchTransactionDateBounds(from: context)
+
+        #expect(bounds == dates.min()!...dates.max()!)
+    }
+
+    @Test("Date bounds are open-ended without transactions")
+    func dateBoundsWithoutTransactions() throws {
+        let context = try makeContext()
+
+        let bounds = try TransactionService.shared.fetchTransactionDateBounds(from: context)
+
+        #expect(bounds == Date.distantPast...Date.distantFuture)
+    }
 }

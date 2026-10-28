@@ -21,16 +21,11 @@ struct TrenteSecondaryButtonStyle: ButtonStyle {
         ZStack {
             Capsule()
                 .fill(.regularMaterial)
-                .overlay(
+                .overlay {
                     ZStack {
                         Capsule()
                             .inset(by: 1.5)
-                            .stroke(
-                                lightMode
-                                ? Color.black.opacity(strokeOpacity)
-                                : Color.white.opacity(strokeOpacity),
-                                lineWidth: 3
-                            )
+                            .stroke(.primary.opacity(strokeOpacity), lineWidth: 3)
                         if configuration.isPressed {
                             Capsule()
                                 .fill(
@@ -44,10 +39,10 @@ struct TrenteSecondaryButtonStyle: ButtonStyle {
                                 )
                         }
                     }
-                )
+                }
             configuration.label
                 .bold()
-                .foregroundStyle(lightMode ? Color.black : Color.white)
+                .foregroundStyle(.primary)
                 .opacity(isEnabled ? 1 : 0.5)
                 .font(.title3)
                 .padding(.vertical, narrow ? 5 : 16)

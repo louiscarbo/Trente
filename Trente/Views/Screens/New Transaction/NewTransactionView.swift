@@ -77,22 +77,13 @@ struct NewTransactionView: View {
                             }
                         }
                     }
-                    .disabled(viewModel.nextButtonDisabled)
+                    .disabled(!viewModel.canAdvance)
                     .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
                 }
             }
         }
         .padding()
-        .background {
-            UnevenRoundedRectangle(
-                cornerRadii:
-                    RectangleCornerRadii(topLeading: 26, bottomLeading: 0, bottomTrailing: 0, topTrailing: 26)
-            )
-            .offset(y: 1.5)
-            .fill(.regularMaterial)
-            .stroke(.secondary.opacity(0.4), lineWidth: 3)
-            .ignoresSafeArea()
-        }
+        .bottomBarBackground()
     }
     
     private var stepsView: some View {
@@ -104,8 +95,6 @@ struct NewTransactionView: View {
                     amountCents: $viewModel.request.amountCents,
                     transactionType: $viewModel.request.type,
                     isRecurrent: $viewModel.request.isRecurrent,
-                    
-                    nextButtonDisabled: $viewModel.nextButtonDisabled,
                     currency: context.currency
                 )
                 #if os(iOS)
@@ -116,26 +105,25 @@ struct NewTransactionView: View {
             case .title:
                 TitleView(
                     title: $viewModel.request.title,
-
-                    nextButtonDisabled: $viewModel.nextButtonDisabled,
                     step: $viewModel.step,
                     showKeyboardDismissButton: $showKeyboardDismissButton
                 )
             case .notesImage:
                 NotesImageView(
-                    imageData: $viewModel.request.imageData,
+                    imageData: viewModel.request.imageData,
+                    isLoadingImage: viewModel.isLoadingImage,
                     notes: $viewModel.request.notes,
-
-                    nextButtonDisabled: $viewModel.nextButtonDisabled,
-                    showKeyboardDismissButton: $showKeyboardDismissButton
-                )
+                    showKeyboardDismissButton: $showKeyboardDismissButton,
+                    imageLoadingError: $viewModel.imageLoadingError
+                ) { item in
+                    viewModel.loadImage { try await item.loadTransferable(type: Data.self) }
+                }
             case .repartition:
                 IncomeRepartitionView(
                     currency: context.currency,
                     transactionAmount: viewModel.request.amountCents,
                     repartition: $viewModel.request.repartition,
-                    
-                    nextButtonDisabled: $viewModel.nextButtonDisabled
+                    isRepartitionComplete: $viewModel.isRepartitionComplete
                 )
             case .recurrence:
                 RecurrenceView(

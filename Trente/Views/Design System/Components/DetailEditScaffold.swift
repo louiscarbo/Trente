@@ -52,14 +52,7 @@ struct DetailEditScaffold<Content: View>: View {
             } message: {
                 Text(validationErrors.joined(separator: "\n"))
             }
-            .alert(String(localized: "Delete Failed"), isPresented: Binding(
-                get: { deleteError != nil },
-                set: { if !$0 { deleteError = nil } }
-            )) {
-                Button("OK", role: .cancel) { deleteError = nil }
-            } message: {
-                Text(deleteError ?? "")
-            }
+            .errorAlert("Delete Failed", message: $deleteError)
         }
     }
 

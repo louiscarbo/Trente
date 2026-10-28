@@ -35,7 +35,7 @@ struct TrentePrimaryCapsule: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             fill
-                .overlay(
+                .overlay {
                     ZStack {
                         Capsule()
                             .inset(by: 1.5)
@@ -56,7 +56,7 @@ struct TrentePrimaryCapsule: ViewModifier {
                                 )
                         }
                     }
-                )
+                }
             content
                 .bold()
                 .foregroundStyle(lightMode ? Color.white : Color.black)

@@ -44,11 +44,15 @@ struct MonthDetailsView: View {
                     isRepartitionComplete: $isRepartitionComplete
                 )
                 .id(resetDraft)
-                ExportMonthSection(
+                ExportSection(
                     file: exportFile,
                     isEmpty: original.transactionGroups.isEmpty
                 )
-                DeleteSection(onConfirmDelete: deleteMonth)
+                DeleteSectionBox(
+                    title: String(localized: "Delete Month"),
+                    message: String(localized: "This action cannot be undone. All transactions associated with this month will also be deleted."),
+                    onDelete: deleteMonth
+                )
             }
             .padding()
         }
@@ -63,7 +67,7 @@ struct MonthDetailsView: View {
             }
         }
         .navigationBarBackButtonHidden(isEditing)
-        .navigationTitle(MonthFormatting.name(from: draft.startDate))
+        .navigationTitle(Month.name(startingOn: draft.startDate))
         .interactiveDismissDisabled(isEditing)
         .alert(String(localized: "An error occurred"), isPresented: $showErrorAlert) {
             if let action = errorAction {
@@ -120,72 +124,8 @@ struct MonthDetailsView: View {
     }
 }
 
-private struct ExportMonthSection: View {
-    let file: TransactionsCSVFile
-    let isEmpty: Bool
-
-    var body: some View {
-        GroupBox(label: Label("Export Month", systemImage: "square.and.arrow.up")) {
-            VStack(spacing: .medium) {
-                Text(description)
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                ExportButton(title: "Export…", file: file)
-                    .disabled(isEmpty)
-
-                Text("To export several months or choose what to include, go to Settings › Export Transactions.")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle())
-    }
-
-    private var description: LocalizedStringKey {
-        if isEmpty {
-            "This month has no transactions to export yet."
-        } else if file.includesImages {
-            "Save this month's transactions and their images in a .zip file, with a spreadsheet (.csv) that opens in Numbers, Excel or Google Sheets."
-        } else {
-            "Save this month's transactions as a spreadsheet file (.csv) that opens in Numbers, Excel or Google Sheets."
-        }
-    }
-}
-
-private struct DeleteSection: View {
-    @State private var showDeleteConfirmation = false
-    let onConfirmDelete: () -> Void
-
-    var body: some View {
-        let deleteWarningMessage = String(localized: "This action cannot be undone. All transactions associated with this month will also be deleted.")
-        GroupBox(label: Label("Delete Month", systemImage: "trash.fill")) {
-            VStack(spacing: .medium) {
-                Text(deleteWarningMessage)
-                    .foregroundStyle(.secondary)
-
-                Button(role: .destructive) {
-                    showDeleteConfirmation = true
-                } label: {
-                    Label("Delete Month", systemImage: "trash.fill")
-                        .font(.headline)
-                }
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                .confirmationDialog(String(localized: "Are you sure?"), isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
-                    Button(String(localized: "Delete"), role: .destructive, action: onConfirmDelete)
-                    Button(String(localized: "Cancel"), role: .cancel) {}
-                } message: {
-                    Text(deleteWarningMessage)
-                }
-            }
-        }
-        .groupBoxStyle(TrenteGroupBoxStyle())
-    }
-}
-
 #Preview {
     NavigationStack {
-        MonthDetailsView(month: Month.getSampleMonthWithTransactions())
+        MonthDetailsView(month: .sample(monthsAgo: 1))
     }
 }

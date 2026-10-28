@@ -7,99 +7,6 @@
 
 import SwiftUI
 
-// MARK: WidthThresholdReader
-/**
- A view useful for determining if a child view should act like it is horizontally compressed.
- 
- Several elements are used to decide if a view is compressed:
- - Width
- - Horizontal size class (on iOS)
- */
-struct WidthThresholdReader<Content: View>: View {
-    var widthThreshold: Double = 400
-    @ViewBuilder var content: (WidthThresholdProxy) -> Content
-    
-    #if os(iOS)
-    @Environment(\.horizontalSizeClass) private var sizeClass
-    #endif
-    
-    var body: some View {
-        GeometryReader { geometryProxy in
-            let compressionProxy = WidthThresholdProxy(
-                width: geometryProxy.size.width,
-                isCompact: isCompact(width: geometryProxy.size.width)
-            )
-            content(compressionProxy)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-    }
-                
-    func isCompact(width: Double) -> Bool {
-        #if os(iOS)
-        if sizeClass == .compact {
-            return true
-        }
-        #endif
-        if width < widthThreshold {
-            return true
-        }
-        return false
-    }
-}
-
-struct WidthThresholdProxy: Equatable {
-    var width: Double
-    var isCompact: Bool
-}
-
-struct WidthThresholdReader_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 40) {
-            WidthThresholdReader { proxy in
-                Label {
-                    Text("Standard")
-                } icon: {
-                    compactIndicator(proxy: proxy)
-                }
-            }
-            .border(.quaternary)
-            
-            WidthThresholdReader { proxy in
-                Label {
-                    Text("200 Wide")
-                } icon: {
-                    compactIndicator(proxy: proxy)
-                }
-            }
-            .frame(width: 200)
-            .border(.quaternary)
-            
-            #if os(iOS)
-            WidthThresholdReader { proxy in
-                Label {
-                    Text("Manually Compact Size Class")
-                } icon: {
-                    compactIndicator(proxy: proxy)
-                }
-            }
-            .border(.quaternary)
-            .environment(\.horizontalSizeClass, .compact)
-            #endif
-        }
-    }
-    
-    @ViewBuilder
-    static func compactIndicator(proxy: WidthThresholdProxy) -> some View {
-        if proxy.isCompact {
-            Image(systemName: "arrowtriangle.right.and.line.vertical.and.arrowtriangle.left.fill")
-                .foregroundStyle(.red)
-        } else {
-            Image(systemName: "checkmark.circle")
-                .foregroundStyle(.secondary)
-        }
-    }
-}
-
 func createImage(_ value: Data) -> Image? {
     #if canImport(UIKit)
     guard let uiImage: UIImage = UIImage(data: value) else { return nil }
@@ -154,6 +61,7 @@ extension View {
     /// Standard destructive-delete confirmation dialog with a "cannot be undone" warning.
     func deleteConfirmation(
         isPresented: Binding<Bool>,
+        message: String = String(localized: "This action cannot be undone."),
         onDelete: @escaping () -> Void
     ) -> some View {
         confirmationDialog(
@@ -164,7 +72,7 @@ extension View {
             Button(String(localized: "Delete"), role: .destructive, action: onDelete)
             Button(String(localized: "Cancel"), role: .cancel) {}
         } message: {
-            Text("This action cannot be undone.")
+            Text(message)
         }
     }
 }
