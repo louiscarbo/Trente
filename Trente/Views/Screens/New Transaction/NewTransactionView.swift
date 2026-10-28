@@ -145,8 +145,8 @@ enum NewTransactionField {
 enum NewTransactionStep: CaseIterable {
     case amountCategory
     case title
-    case notesImage
     case repartition
+    case notesImage
     case recurrence
 }
 
