@@ -33,39 +33,38 @@ struct TrentePrimaryCapsule: ViewModifier {
     }
 
     func body(content: Content) -> some View {
-        ZStack {
-            fill
-                .overlay {
-                    ZStack {
-                        Capsule()
-                            .inset(by: 1.5)
-                            .stroke(
-                                lightMode
-                                ? Color.black.opacity(strokeOpacity)
-                                : Color.white.opacity(strokeOpacity),
-                                lineWidth: 3
-                            )
-                        if isPressed {
+        content
+            .bold()
+            .foregroundStyle(lightMode ? Color.white : Color.black)
+            .opacity(isEnabled ? 1 : 0.5)
+            .font(narrow ? .title3 : .title2)
+            .padding(.vertical, narrow ? 5 : 16)
+            .frame(maxWidth: .infinity)
+            .background {
+                fill
+                    .overlay {
+                        ZStack {
                             Capsule()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.black.opacity(0.05), .black.opacity(0.3)],
-                                        startPoint: .top,
-                                        endPoint: .bottom
-                                    )
+                                .inset(by: 1.5)
+                                .stroke(
+                                    lightMode
+                                    ? Color.black.opacity(strokeOpacity)
+                                    : Color.white.opacity(strokeOpacity),
+                                    lineWidth: 3
                                 )
+                            if isPressed {
+                                Capsule()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [.black.opacity(0.05), .black.opacity(0.3)],
+                                            startPoint: .top,
+                                            endPoint: .bottom
+                                        )
+                                    )
+                            }
                         }
                     }
-                }
-            content
-                .bold()
-                .foregroundStyle(lightMode ? Color.white : Color.black)
-                .opacity(isEnabled ? 1 : 0.5)
-                .font(narrow ? .title3 : .title2)
-                .padding(.vertical, narrow ? 5 : 16)
-        }
-        .frame(maxWidth: .infinity)
-        .fixedSize(horizontal: false, vertical: true)
+            }
     }
 
     @ViewBuilder

@@ -24,6 +24,7 @@ struct ExportButton: View {
     var body: some View {
         Button(action: export) {
             Label(title, systemImage: "square.and.arrow.up")
+                .font(.headline)
                 .opacity(isWriting ? 0 : 1)
                 .overlay {
                     if isWriting {
