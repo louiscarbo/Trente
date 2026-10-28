@@ -113,6 +113,7 @@ struct EditableTransactionHeader: View {
                 }
             } catch {
                 imageLoadingError = String(localized: "The image could not be loaded. Please try again.")
+                photosPickerItem = nil
             }
         }
         .task(id: imageData) {
