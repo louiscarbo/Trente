@@ -45,7 +45,7 @@ private struct SkipOccurrenceCopy {
         case .monthly:
             String(localized: "Skip “\(title)” for \(monthName)?")
         case .yearly:
-            String(localized: "Skip “\(title)” for \(yearName)?")
+            String(localized: "Skip “\(title)” in \(yearName)?")
         }
     }
 
@@ -56,7 +56,7 @@ private struct SkipOccurrenceCopy {
         case .monthly:
             String(localized: "Skip for \(monthName)")
         case .yearly:
-            String(localized: "Skip for \(yearName)")
+            String(localized: "Skip in \(yearName)")
         }
     }
 
