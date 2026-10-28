@@ -165,8 +165,7 @@ struct BudgetCategorySliderRow: View {
                 let decreaseAction = {
                     withAnimation(.spring) {
                         let currentValue = repartition[category] ?? 0
-                        let amountToDecrease = min(100, currentValue % 100 == 0 ? 100 : currentValue % 100)
-                        let newValue = max(0, currentValue - amountToDecrease)
+                        let newValue = RepartitionSplit.decreasedValue(from: currentValue)
                         let delta = newValue - currentValue
                         repartition[category] = newValue
                         remainingAmount -= delta
@@ -176,8 +175,7 @@ struct BudgetCategorySliderRow: View {
                 let increaseAction = {
                     withAnimation(.spring) {
                         let currentValue = repartition[category] ?? 0
-                        let amountToIncrease = min(100, remainingAmount)
-                        let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
+                        let newValue = RepartitionSplit.increasedValue(from: currentValue, remaining: remainingAmount)
                         let delta = newValue - currentValue // will be positive or zero
                         repartition[category] = newValue
                         remainingAmount -= delta
@@ -217,10 +215,12 @@ struct BudgetCategorySliderRow: View {
                         get: { repartition[category] ?? 0 },
                         set: { newValue in
                             let oldValue = repartition[category] ?? 0
-                            let clampedNewValue = min(newValue, oldValue + remainingAmount)
-                            let roundedValue = (clampedNewValue / 100) * 100
-                            let finalValue = min(roundedValue, oldValue + remainingAmount)
-                            
+                            let finalValue = RepartitionSplit.clampedValue(
+                                newValue,
+                                from: oldValue,
+                                remaining: remainingAmount
+                            )
+
                             let delta = finalValue - oldValue
 
                             repartition[category] = finalValue
@@ -381,11 +381,11 @@ struct RepartitionSlider: View {
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { drag in
-                        let pct = min(max(0, drag.location.x / width), 1)
-                        let rawNewValue = Int(round(pct * CGFloat(total)))
-                        let roundedNewValue = (rawNewValue / 100) * 100
-                        let clampedNewValue = min(roundedNewValue, maxValue)
-                        value = clampedNewValue
+                        value = RepartitionSplit.dragValue(
+                            atFraction: drag.location.x / width,
+                            total: total,
+                            maxValue: maxValue
+                        )
                     }
             )
             .sensoryFeedback(.selection, trigger: value)
