@@ -11,6 +11,7 @@ import Foundation
 import Synchronization
 @testable import Trente
 
+@MainActor
 @Suite(.serialized)
 struct PendingTransactionServiceTests {
 

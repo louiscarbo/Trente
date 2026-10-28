@@ -25,6 +25,7 @@ final class NewTransactionViewModel {
     @ObservationIgnored private let permissionService: NotificationPermissionService
     @ObservationIgnored private(set) var permissionRequest: Task<Void, Never>?
     @ObservationIgnored private(set) var imageLoad: Task<Void, Never>?
+    @ObservationIgnored private var repartitionAmountCents: Int?
 
     init(permissionService: NotificationPermissionService = NotificationPermissionService()) {
         self.permissionService = permissionService
@@ -80,6 +81,15 @@ final class NewTransactionViewModel {
                 step = filteredSteps[currentIndex + 1]
             }
         }
+        if step == .repartition {
+            prepareRepartition()
+        }
+    }
+
+    private func prepareRepartition() {
+        guard repartitionAmountCents != request.amountCents else { return }
+        request.repartition = Dictionary(uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
+        repartitionAmountCents = request.amountCents
     }
     
     func previousStep() {
