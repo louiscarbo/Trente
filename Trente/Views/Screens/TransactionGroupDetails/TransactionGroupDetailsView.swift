@@ -25,8 +25,6 @@ struct TransactionGroupDetailsView: View {
     @FocusState private var notesFocused: Bool
     @FocusState private var amountFocused: Bool
 
-    private var isTrentePlusUser: Bool { true } // TODO: plug real entitlement
-
     var body: some View {
         DetailEditScaffold(
             title: transactionGroup.title,
@@ -71,7 +69,6 @@ struct TransactionGroupDetailsView: View {
             isEditing: isEditing,
             currency: transactionGroup.currency,
             showsExpenseRow: transactionGroup.type == .expense,
-            showsNotes: isTrentePlusUser,
             title: titleBinding,
             category: categoryBinding,
             amountCents: expenseAmountBinding,
