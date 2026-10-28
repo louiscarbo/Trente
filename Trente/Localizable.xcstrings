@@ -5294,7 +5294,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "매월 %@ 날"
+            "value" : "매월 %@일"
           }
         },
         "pt-BR" : {
