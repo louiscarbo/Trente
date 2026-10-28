@@ -500,6 +500,7 @@
       }
     },
     "Add Notes and Images" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -514,6 +515,9 @@
           }
         }
       }
+    },
+    "Add notes and images with Trente+" : {
+
     },
     "Add the Trente shortcut, then create one automation. Every card payment then shows up in Trente, ready to review." : {
       "localizations" : {
@@ -1405,6 +1409,7 @@
       }
     },
     "Discover Trente+" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -3383,6 +3388,9 @@
         }
       }
     },
+    "Privacy Policy" : {
+
+    },
     "Rate on the App Store" : {
       "localizations" : {
         "es" : {
@@ -3530,6 +3538,9 @@
     "Reminders" : {
 
     },
+    "Reminders paused" : {
+
+    },
     "Rent" : {
       "localizations" : {
         "es" : {
@@ -3593,6 +3604,9 @@
           }
         }
       }
+    },
+    "Requires Trente+" : {
+
     },
     "Retry" : {
       "localizations" : {
@@ -4434,6 +4448,7 @@
       }
     },
     "Subscribe to Trente+ to unlock" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -4547,6 +4562,9 @@
           }
         }
       }
+    },
+    "Terms of Use" : {
+
     },
     "TestFlight Testers" : {
       "localizations" : {
@@ -5668,6 +5686,7 @@
       }
     },
     "With Trente+, you can add images and notes to your transactions. Try it now!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -5730,6 +5749,9 @@
           }
         }
       }
+    },
+    "You haven't opened Trente since %@, so reminders are paused. Open the app anytime to turn them back on." : {
+
     },
     "You will select categories for this income in the next steps." : {
       "localizations" : {
