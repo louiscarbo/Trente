@@ -36,25 +36,19 @@ struct NotesImageView: View {
                         .buttonStyle(TrenteSecondaryButtonStyle())
                     } else {
                         if let selectedImage = image {
-                            Button {
-                                showFullScreen = true
-                            } label: {
-                                selectedImage
-                                    .resizable()
-                                    .scaledToFit()
-                                    .clipShape(
-                                        RoundedRectangle(cornerRadius: .large)
-                                    )
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: .large)
-                                            .strokeBorder(Color.white, lineWidth: 10)
-                                    }
-                                    .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
-                                    .frame(height: 200)
-                                    .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
+                            Group {
+                                #if os(iOS)
+                                Button {
+                                    showFullScreen = true
+                                } label: {
+                                    thumbnail(selectedImage)
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel(Text("Show Image"))
+                                #else
+                                thumbnail(selectedImage)
+                                #endif
                             }
-                            .buttonStyle(.plain)
-                            .accessibilityLabel(Text("Show Image"))
                             .padding(.bottom, 30)
                             .overlay(alignment: .bottom) {
                                 PhotosPicker(selection: $photosPickerItem) {
@@ -147,5 +141,21 @@ struct NotesImageView: View {
             }
         }
         .errorAlert("Error Loading Image", message: $imageLoadingError)
+    }
+
+    private func thumbnail(_ image: Image) -> some View {
+        image
+            .resizable()
+            .scaledToFit()
+            .clipShape(
+                RoundedRectangle(cornerRadius: .large)
+            )
+            .overlay {
+                RoundedRectangle(cornerRadius: .large)
+                    .strokeBorder(Color.white, lineWidth: 10)
+            }
+            .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
+            .frame(height: 200)
+            .shadow(radius: DesignSystem.Radius.large.rawValue, y: 10)
     }
 }
