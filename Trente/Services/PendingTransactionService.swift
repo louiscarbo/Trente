@@ -31,9 +31,14 @@ final class PendingTransactionService: Sendable {
         request.imageData = draft.imageAttachmentData
         request.date = pending.date
 
-        try TransactionService.shared.create(with: request, for: month, in: context)
-        context.delete(pending)
-        try context.save()
+        do {
+            try TransactionService.shared.insert(with: request, for: month, in: context)
+            context.delete(pending)
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
     }
 
     func discard(_ pending: PendingTransaction, in context: ModelContext) throws {
