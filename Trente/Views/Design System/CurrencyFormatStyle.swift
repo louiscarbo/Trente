@@ -9,10 +9,10 @@ import Foundation
 
 extension FormatStyle where Self == FloatingPointFormatStyle<Double>.Currency {
     static func budget(_ currencyCode: String) -> Self {
-        .currency(code: currencyCode).precision(.fractionLength(0))
+        .currency(code: currencyCode).presentation(.narrow).precision(.fractionLength(0))
     }
 
     static func amount(_ currencyCode: String) -> Self {
-        .currency(code: currencyCode)
+        .currency(code: currencyCode).presentation(.narrow)
     }
 }
