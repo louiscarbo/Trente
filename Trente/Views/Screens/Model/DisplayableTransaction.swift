@@ -83,7 +83,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
         case .group(let g):      code = g.currency.isoCode
         case .recurring(let r):  code = r.month.currency.isoCode
         }
-        return (Double(amountCents)/100).formatted(.currency(code: code))
+        return (Double(amountCents)/100).formatted(.amount(code))
     }
     var displayDate: String {
         date.formatted(.dateTime.weekday().day().month(.wide).year())

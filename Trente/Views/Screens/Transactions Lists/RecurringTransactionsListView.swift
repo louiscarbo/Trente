@@ -90,7 +90,7 @@ struct RecurringTransactionsListView: View {
     }
 
     private func displayAmount(for rule: RecurringTransactionRule) -> String {
-        (Double(rule.amountCents) / 100).formatted(.currency(code: currency.isoCode))
+        (Double(rule.amountCents) / 100).formatted(.amount(currency.isoCode))
     }
 }
 

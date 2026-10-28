@@ -27,7 +27,7 @@ extension DailySpendingCard {
         }
 
         private func formattedAmount(_ value: Double) -> String {
-            value.formatted(.currency(code: currencyCode).precision(.fractionLength(0)))
+            value.formatted(.budget(currencyCode))
         }
 
         private func proportionCapsule(for slices: [CategorySlice]) -> some View {

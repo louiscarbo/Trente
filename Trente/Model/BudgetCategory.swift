@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 enum BudgetCategory: String, Codable, CaseIterable, Identifiable {
     var id: String { self.rawValue }
@@ -33,17 +32,6 @@ enum BudgetCategory: String, Codable, CaseIterable, Identifiable {
             String(localized: "Wants")
         case .savingsAndDebts:
             String(localized: "Savings")
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .needs:
-            Color.blue
-        case .wants:
-            Color.yellow
-        case .savingsAndDebts:
-            Color.green
         }
     }
     

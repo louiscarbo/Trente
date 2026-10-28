@@ -57,7 +57,7 @@ struct CurrentMonthRowView: View {
             VStack(alignment: .leading) {
                 Text("Remaining")
                     .font(.subheadline)
-                Text(currentMonth.remainingAmountDisplay)
+                Text(currentMonth.remainingAmount, format: .budget(currentMonth.currency.isoCode))
                     .font(.title)
                     .foregroundStyle(currentMonth.overSpent ? .red : .green)
             }
@@ -67,7 +67,7 @@ struct CurrentMonthRowView: View {
             VStack(alignment: .trailing) {
                 Text("Spent")
                     .font(.subheadline)
-                Text(currentMonth.spentAmountDisplay)
+                Text(-currentMonth.spentAmount(in: .all), format: .budget(currentMonth.currency.isoCode))
                     .font(.title)
                     .foregroundStyle(.red)
             }

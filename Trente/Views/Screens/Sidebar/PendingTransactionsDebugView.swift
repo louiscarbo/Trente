@@ -62,7 +62,7 @@ struct PendingTransactionsDebugView: View {
         HStack {
             Text(pending.title)
             Spacer()
-            Text(Double(pending.amountCents) / 100.0, format: .currency(code: currencyCode))
+            Text(Double(pending.amountCents) / 100.0, format: .amount(currencyCode))
         }
     }
 

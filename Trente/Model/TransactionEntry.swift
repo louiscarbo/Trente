@@ -30,9 +30,4 @@ extension TransactionEntry {
     var amount: Double {
         Double(amountCents) / 100.0
     }
-
-    /// Returns a localized string that displays the amount correctly, not in cents.
-    var displayAmount: String {
-        amount.formatted(.currency(code: (group?.currency ?? Currency.fallback).isoCode))
-    }
 }
