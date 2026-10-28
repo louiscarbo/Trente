@@ -10,9 +10,8 @@ import SwiftUI
 struct MonthDetailsComponent: View {
     @Binding var month: MonthDraft
     @Binding var isRepartitionComplete: Bool
+    var isAmountFocused: FocusState<Bool>.Binding
 
-    @FocusState private var isAmountFocused: Bool
-        
     var body: some View {
         VStack(spacing: .medium) {
             GroupBox(label: Label("Month Details", systemImage: "calendar")) {
@@ -28,7 +27,7 @@ struct MonthDetailsComponent: View {
                     IdealBudgetField(
                         amountCents: $month.idealBudgetCents,
                         currency: month.currency,
-                        isFocused: $isAmountFocused
+                        isFocused: isAmountFocused
                     )
                     .onChange(of: month.idealBudgetCents) { oldValue, newValue in
                         if newValue < oldValue {
@@ -50,7 +49,6 @@ struct MonthDetailsComponent: View {
             .groupBoxStyle(TrenteGroupBoxStyle())
             .animation(.bouncy, value: month.idealBudgetCents > 0)
         }
-        .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
     }
 
     private func resetRepartition() {
@@ -69,9 +67,14 @@ struct MonthDetailsComponent: View {
         )
     )
     @Previewable @State var isRepartitionComplete: Bool = false
-    
+    @Previewable @FocusState var isAmountFocused: Bool
+
     NavigationStack {
-        MonthDetailsComponent(month: $draft, isRepartitionComplete: $isRepartitionComplete)
-            .navigationTitle(Month.name(startingOn: draft.startDate))
+        MonthDetailsComponent(
+            month: $draft,
+            isRepartitionComplete: $isRepartitionComplete,
+            isAmountFocused: $isAmountFocused
+        )
+        .navigationTitle(Month.name(startingOn: draft.startDate))
     }
 }
