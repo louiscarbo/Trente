@@ -38,10 +38,15 @@ extension Currency {
         formatter.numberStyle = .currency
         formatter.currencyCode = isoCode
         formatter.locale = .autoupdatingCurrent
+        formatter.currencySymbol = narrowSymbol
         formatter.maximumFractionDigits = 2
         
         Currency.formatterCache[isoCode] = formatter
         return formatter
+    }
+
+    private var narrowSymbol: String {
+        0.0.formatted(.budget(isoCode)).filter { !$0.isNumber && !$0.isWhitespace }
     }
 }
 
