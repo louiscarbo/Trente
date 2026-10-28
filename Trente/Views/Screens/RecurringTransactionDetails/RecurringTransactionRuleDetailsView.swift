@@ -54,7 +54,7 @@ struct RecurringTransactionRuleDetailsView: View {
                 repartitionBox()
             }
             if !isEditing && !rule.hasEnded {
-                StopRecurringBox(title: rule.title, onStop: stopRule)
+                StopBox(title: rule.title, onStop: stopRule)
             }
         }
         .onAppear {

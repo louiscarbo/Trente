@@ -76,7 +76,7 @@ struct DailySpendingCard: View {
                     }
                     .animation(.easeInOut(duration: 0.25), value: selectedDay?.date)
                 } else {
-                    DailySpendingEmptyState()
+                    EmptyState()
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
@@ -198,13 +198,13 @@ struct DailySpendingCard: View {
     @ViewBuilder
     private func dock(_ spending: DailySpending, selectedDay: DailySpend?) -> some View {
         if let selectedDay {
-            DailySpendingDock(
+            Dock(
                 title: selectedDay.date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated)),
                 days: [selectedDay],
                 currencyCode: currencyCode
             )
         } else {
-            DailySpendingDock(
+            Dock(
                 title: String(localized: "Total"),
                 days: visibleDays(in: spending),
                 currencyCode: currencyCode

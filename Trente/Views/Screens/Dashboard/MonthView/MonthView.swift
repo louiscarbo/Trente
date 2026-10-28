@@ -30,14 +30,14 @@ struct MonthView: View {
         WidthThresholdReader(widthThreshold: 730) { proxy in
             Group {
                 if proxy.isCompact {
-                    NarrowMonthView(
+                    Narrow(
                         month: month,
                         upcomingOccurrences: upcomingOccurrences,
                         transactionGroupsCount: transactionGroupsCount,
                         recurringTransactionsCount: recurringTransactionsCount
                     )
                 } else {
-                    WideMonthView(
+                    Wide(
                         month: month,
                         upcomingOccurrences: upcomingOccurrences,
                         transactionGroupsCount: transactionGroupsCount,
