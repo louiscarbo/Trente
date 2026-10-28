@@ -24,4 +24,20 @@ struct RecurringTransactionRuleDescriptionTests {
         #expect(rule.frequencyDescription.contains("27"))
         #expect(rule.frequencyDescription.contains(startDate.formatted(.dateTime.month(.wide))))
     }
+
+    @Test("Monthly day is an ordinal only in languages whose sentence needs one", arguments: [
+        ("en", "15th"),
+        ("en-GB", "15th"),
+        ("de", "15."),
+        ("fr", "15"),
+        ("es", "15"),
+        ("es-419", "15"),
+        ("it", "15"),
+        ("ko", "15"),
+        ("pt-BR", "15"),
+        ("pt-PT", "15"),
+    ])
+    func monthlyDayFormatting(localization: String, expected: String) {
+        #expect(15.dayOfMonthString(localization: localization) == expected)
+    }
 }

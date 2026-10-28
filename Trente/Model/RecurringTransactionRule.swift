@@ -95,7 +95,7 @@ extension RecurringTransactionRule {
             return String(localized: "Every \(startDate.formatted(.dateTime.weekday(.wide)))")
         case .monthly:
             let day = Calendar.current.component(.day, from: startDate)
-            return String(localized: "Every month on the \(day.ordinalString)")
+            return String(localized: "Every month on the \(day.dayOfMonthString())")
         case .yearly:
             return String(localized: "Every \(startDate.formatted(.dateTime.month(.wide).day()))")
         }
@@ -103,11 +103,18 @@ extension RecurringTransactionRule {
 }
 
 extension Int {
-    /// “1st”, “2nd”, “3rd”, “4th”, … localized
-    var ordinalString: String {
-        let fmt = NumberFormatter()
-        fmt.numberStyle = .ordinal
-        return fmt.string(from: NSNumber(value: self)) ?? "\(self)"
+    private static let ordinalDayLanguages: Set<String> = ["en", "de"]
+
+    func dayOfMonthString(localization: String = Bundle.main.preferredLocalizations.first ?? "en") -> String {
+        let locale = Locale(identifier: localization)
+        guard let languageCode = locale.language.languageCode?.identifier,
+              Self.ordinalDayLanguages.contains(languageCode) else {
+            return "\(self)"
+        }
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        formatter.numberStyle = .ordinal
+        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
 }
 
