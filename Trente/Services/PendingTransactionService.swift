@@ -16,6 +16,7 @@ final class PendingTransactionService: Sendable {
     static let shared = PendingTransactionService()
     private init() {}
 
+    @MainActor
     func validate(_ pending: PendingTransaction, with draft: TransactionGroupDraft, in context: ModelContext) throws {
         let purchaseMonth = try MonthService.shared.month(containing: pending.date, in: context)
         guard let month = try purchaseMonth ?? MonthService.shared.latestMonth(in: context) else {

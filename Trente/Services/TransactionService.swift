@@ -33,11 +33,13 @@ final class TransactionService: Sendable {
         context.delete(group)
     }
 
+    @MainActor
     func create(with request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
         try insert(with: request, for: month, in: context)
         try context.save()
     }
 
+    @MainActor
     func insert(with request: TransactionCreationRequest, for month: Month, in context: ModelContext) throws {
         if request.isRecurrent {
             guard request.recurrenceStartDate >= Calendar.current.startOfDay(for: .now) else {
@@ -57,6 +59,7 @@ final class TransactionService: Sendable {
     }
 }
 
+@MainActor
 private extension TransactionService {
     func recurringRepartition(from request: TransactionCreationRequest) throws -> [BudgetCategory: Int] {
         switch request.type {

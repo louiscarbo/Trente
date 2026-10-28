@@ -58,15 +58,6 @@ struct AmountCategoryView: View {
         #if os(macOS)
         .padding(.top)
         #endif
-        .onChange(of: transactionType) { _, newValue in
-            amountCents = (newValue == .income) ? abs(amountCents) : -abs(amountCents)
-            if newValue == .income {
-                selectedCategory = nil
-            }
-        }
-        .onChange(of: amountCents) {
-            amountCents = (transactionType == .income) ? abs(amountCents) : -abs(amountCents)
-        }
         .task {
             try? await Task.sleep(for: .seconds(0.6))
             guard !Task.isCancelled else { return }

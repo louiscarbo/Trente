@@ -89,6 +89,49 @@ struct NewTransactionViewModelTests {
         #expect(viewModel.canAdvance)
     }
 
+    private func incomeAtNotesStep(amountCents: Int) -> NewTransactionViewModel {
+        let viewModel = NewTransactionViewModel()
+        viewModel.request.type = .income
+        viewModel.request.amountCents = amountCents
+        viewModel.step = .notesImage
+        return viewModel
+    }
+
+    @Test("Entering the split step the first time starts every category at zero")
+    func splitStartsAtZero() {
+        let viewModel = incomeAtNotesStep(amountCents: 1_000_00)
+
+        viewModel.nextStep()
+
+        #expect(viewModel.step == .repartition)
+        #expect(viewModel.request.repartition == [.needs: 0, .wants: 0, .savingsAndDebts: 0])
+    }
+
+    @Test("The split survives going back and forth")
+    func splitSurvivesBackAndNext() {
+        let viewModel = incomeAtNotesStep(amountCents: 1_000_00)
+        viewModel.nextStep()
+        viewModel.request.repartition = [.needs: 500_00, .wants: 200_00, .savingsAndDebts: 0]
+
+        viewModel.previousStep()
+        viewModel.nextStep()
+
+        #expect(viewModel.request.repartition == [.needs: 500_00, .wants: 200_00, .savingsAndDebts: 0])
+    }
+
+    @Test("The split starts over when the amount changed")
+    func splitResetsWhenAmountChanged() {
+        let viewModel = incomeAtNotesStep(amountCents: 1_000_00)
+        viewModel.nextStep()
+        viewModel.request.repartition = [.needs: 1_000_00, .wants: 0, .savingsAndDebts: 0]
+
+        viewModel.previousStep()
+        viewModel.request.amountCents = 1_200_00
+        viewModel.nextStep()
+
+        #expect(viewModel.request.repartition == [.needs: 0, .wants: 0, .savingsAndDebts: 0])
+    }
+
     @Test("A picked photo still lands after leaving its step")
     func photoSurvivesLeavingTheStep() async {
         let viewModel = NewTransactionViewModel()
