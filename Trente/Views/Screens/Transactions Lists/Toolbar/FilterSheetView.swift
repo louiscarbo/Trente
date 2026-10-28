@@ -12,8 +12,8 @@ struct FilterSheetView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
     
-    @Binding var dateLowerBound: Date
-    @Binding var dateUpperBound: Date
+    @Binding var firstDay: Date
+    @Binding var lastDay: Date
     @Binding var selectedCategories: Set<BudgetCategory>
     
     @State private var error: Error?
@@ -43,8 +43,8 @@ struct FilterSheetView: View {
     
     private var datesSection: some View {
         Section("Dates") {
-            DatePicker("From", selection: $dateLowerBound, in: dateLimits, displayedComponents: .date)
-            DatePicker("To", selection: $dateUpperBound, in: dateLimits, displayedComponents: .date)
+            DatePicker("From", selection: $firstDay, in: dateLimits, displayedComponents: .date)
+            DatePicker("To", selection: $lastDay, in: dateLimits, displayedComponents: .date)
         }
     }
     
