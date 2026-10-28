@@ -52,9 +52,14 @@ struct MonthDetailsView: View {
             }
             .padding()
         }
-        .safeAreaInset(edge: .bottom) {
+        .toolbar {
             if isEditing {
-                editingFooter
+                CancelToolbarItem(systemImage: "arrow.uturn.backward", action: cancelEditing)
+                ConfirmToolbarItem(
+                    title: "Save",
+                    isDisabled: isSaveDisabled,
+                    action: saveMonth
+                )
             }
         }
         .navigationBarBackButtonHidden(isEditing)
@@ -109,33 +114,9 @@ struct MonthDetailsView: View {
         }
     }
 
-    private var editingFooter: some View {
-        VStack(spacing: .small) {
-            Button(action: saveMonth) {
-                Label("Save", systemImage: "checkmark")
-            }
-            .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-            .disabled(isSaveDisabled)
-
-            Button {
-                draft = .init(from: original)
-                resetDraft.toggle()
-            } label: {
-                Label("Cancel", systemImage: "xmark")
-            }
-            .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
-        }
-        .padding()
-        .background {
-            UnevenRoundedRectangle(
-                cornerRadii:
-                    RectangleCornerRadii(topLeading: 26, bottomLeading: 0, bottomTrailing: 0, topTrailing: 26)
-            )
-            .offset(y: 1.5)
-            .fill(.regularMaterial)
-            .stroke(.secondary.opacity(0.4), lineWidth: 3)
-            .ignoresSafeArea()
-        }
+    private func cancelEditing() {
+        draft = .init(from: original)
+        resetDraft.toggle()
     }
 }
 
