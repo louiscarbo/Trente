@@ -35,7 +35,18 @@ struct SidebarView: View {
                         .foregroundStyle(.secondary)
                         .padding(.horizontal)
 
-                    CurrentMonthRowView(currentMonth: currentMonth, selectedMonth: selectedMonth)
+                    MonthSummaryCard(
+                        name: currentMonth.name,
+                        remaining: currentMonth.remainingAmount,
+                        spent: currentMonth.spentAmount(in: .all),
+                        currencyCode: currentMonth.currency.isoCode,
+                        isOverspent: currentMonth.overSpent,
+                        isSelected: selectedMonth.wrappedValue == currentMonth
+                    ) {
+                        withAnimation(.easeOut) {
+                            selectedMonth.wrappedValue = currentMonth
+                        }
+                    }
                 }
 
                 NewMonthButton()

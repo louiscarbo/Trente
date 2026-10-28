@@ -17,6 +17,7 @@ struct NewMonthView: View {
 
     @State private var draft: MonthDraft?
     @State private var isRepartitionComplete: Bool = false
+    @FocusState private var isAmountFocused: Bool
     @State private var showErrorAlert: Bool = false
     @State private var errorMessage: String = ""
 
@@ -29,7 +30,11 @@ struct NewMonthView: View {
         NavigationStack {
             if let draftBinding = Binding($draft) {
                 ScrollView {
-                    MonthDetailsComponent(month: draftBinding, isRepartitionComplete: $isRepartitionComplete)
+                    MonthDetailsComponent(
+                        month: draftBinding,
+                        isRepartitionComplete: $isRepartitionComplete,
+                        isAmountFocused: $isAmountFocused
+                    )
                         .navigationTitle("New Month")
                         .toolbar {
                             #if os(iOS)
@@ -43,6 +48,7 @@ struct NewMonthView: View {
                         }
                 }
                 .padding()
+                .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
             } else {
                 ProgressView("Preparing New Month...")
             }

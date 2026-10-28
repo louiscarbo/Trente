@@ -93,4 +93,19 @@ struct RecurringTransactionRuleDraftTests {
         #expect(draft.repartition == [.needs: -950_00])
         #expect(draft.validate().isEmpty)
     }
+
+    @Test("Applying an untouched draft leaves the rule unchanged")
+    func untouchedDraftRoundTrips() {
+        let rule = makeRule(frequency: .monthly, startDate: daysFromToday(-40), endDate: daysFromToday(200))
+        rule.autoConfirm = true
+
+        RecurringTransactionRuleDraft(from: rule).apply(to: rule)
+
+        #expect(rule.title == "Rent")
+        #expect(rule.frequency == .monthly)
+        #expect(rule.startDate == daysFromToday(-40))
+        #expect(rule.endDate == daysFromToday(200))
+        #expect(rule.autoConfirm)
+        #expect(rule.repartition == [.needs: -800_00])
+    }
 }

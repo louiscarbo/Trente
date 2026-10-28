@@ -50,7 +50,7 @@ struct RecurringOccurrenceSheet: View {
                 Text(dueDescription)
                     .font(.subheadline)
                     .foregroundStyle(occurrence.isOverdue ? Color.orange : Color.secondary)
-                Text(occurrence.displayAmount)
+                Text(Double(occurrence.amountCents) / 100, format: .amount(occurrence.month.currency.isoCode))
                     .font(.largeTitle.weight(.semibold))
                 ForEach(splitCategories, id: \.self) { category in
                     HStack {
@@ -153,7 +153,7 @@ struct RecurringOccurrenceSheet: View {
 
     private func displayAmount(for category: BudgetCategory) -> String {
         let cents = occurrence.rule.repartition[category] ?? 0
-        return (Double(cents) / 100.0).formatted(.currency(code: occurrence.month.currency.isoCode))
+        return (Double(cents) / 100.0).formatted(.amount(occurrence.month.currency.isoCode))
     }
 
     private func confirm() {

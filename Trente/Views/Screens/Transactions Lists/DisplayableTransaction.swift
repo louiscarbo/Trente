@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftData
-import SwiftUI
 
 struct DisplayableTransaction: Identifiable, Equatable {
     static func == (lhs: DisplayableTransaction, rhs: DisplayableTransaction) -> Bool {
@@ -83,18 +82,6 @@ struct DisplayableTransaction: Identifiable, Equatable {
         case .group(let g):      code = g.currency.isoCode
         case .recurring(let r):  code = r.month.currency.isoCode
         }
-        return (Double(amountCents)/100).formatted(.currency(code: code))
-    }
-    var displayDate: String {
-        date.formatted(.dateTime.weekday().day().month(.wide).year())
-    }
-    
-    // TODO: Change/Vary for macOS (or maybe the list that holds them?)
-    @MainActor @ViewBuilder
-    func rowView(isInList: Bool = false) -> some View {
-        switch kind {
-        case .group(let g):      TransactionGroupRowView(transactionGroup: g, isInList: isInList)
-        case .recurring(let r):  RecurringTransactionRowView(occurrence: r)
-        }
+        return (Double(amountCents)/100).formatted(.amount(code))
     }
 }

@@ -16,6 +16,7 @@ struct MonthDetailsView: View {
     @State private var draft: MonthDraft
 
     @State private var isRepartitionComplete: Bool = false
+    @FocusState private var isAmountFocused: Bool
 
     @State private var showErrorAlert: Bool = false
     @State private var errorMessage: String = ""
@@ -41,7 +42,8 @@ struct MonthDetailsView: View {
             VStack(spacing: .medium) {
                 MonthDetailsComponent(
                     month: $draft,
-                    isRepartitionComplete: $isRepartitionComplete
+                    isRepartitionComplete: $isRepartitionComplete,
+                    isAmountFocused: $isAmountFocused
                 )
                 .id(resetDraft)
                 ExportSection(
@@ -56,6 +58,7 @@ struct MonthDetailsView: View {
             }
             .padding()
         }
+        .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
         .toolbar {
             if isEditing {
                 CancelToolbarItem(systemImage: "arrow.uturn.backward", action: cancelEditing)

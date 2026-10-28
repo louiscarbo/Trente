@@ -16,6 +16,7 @@ final class PendingTransactionService: Sendable {
     static let shared = PendingTransactionService()
     private init() {}
 
+    @MainActor
     func validate(_ pending: PendingTransaction, with draft: TransactionGroupDraft, in context: ModelContext) throws {
         let purchaseMonth = try MonthService.shared.month(containing: pending.date, in: context)
         guard let month = try purchaseMonth ?? MonthService.shared.latestMonth(in: context) else {
@@ -24,16 +25,21 @@ final class PendingTransactionService: Sendable {
 
         let request = TransactionCreationRequest()
         request.title = draft.title
-        request.amountCents = draft.expenseAmountCents ?? pending.amountCents
+        request.amountCents = draft.expenseAmountCents
         request.type = .expense
         request.selectedCategory = draft.expenseCategory
-        request.notes = draft.note ?? ""
+        request.notes = draft.note
         request.imageData = draft.imageAttachmentData
         request.date = pending.date
 
-        try TransactionService.shared.create(with: request, for: month, in: context)
-        context.delete(pending)
-        try context.save()
+        do {
+            try TransactionService.shared.insert(with: request, for: month, in: context)
+            context.delete(pending)
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
     }
 
     func discard(_ pending: PendingTransaction, in context: ModelContext) throws {

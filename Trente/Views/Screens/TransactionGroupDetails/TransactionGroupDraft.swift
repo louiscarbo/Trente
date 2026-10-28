@@ -13,16 +13,16 @@ import SwiftData
 struct TransactionGroupDraft: Equatable {
     // Always editable
     var title: String
-    var note: String?
+    var note: String
     
     var imageAttachmentData: Data?
 
     // Expense-only fields
     var expenseCategory: BudgetCategory?
-    var expenseAmountCents: Int? {
+    var expenseAmountCents: Int = 0 {
         didSet {
-            if let expenseAmountCents, expenseAmountCents > 0 {
-                self.expenseAmountCents = -expenseAmountCents
+            if expenseAmountCents > 0 {
+                expenseAmountCents = -expenseAmountCents
             }
         }
     }
@@ -37,7 +37,7 @@ struct TransactionGroupDraft: Equatable {
     // MARK: Init from model
     init(from group: TransactionGroup) {
         self.title = group.title
-        self.note = group.note
+        self.note = group.note ?? ""
         self.imageAttachmentData = group.imageAttachmentData
         self.type = group.type
 
@@ -46,7 +46,7 @@ struct TransactionGroupDraft: Equatable {
             // For expense we expect exactly one entry carrying category+amount
             let e = group.entries.first
             self.expenseCategory = e?.category
-            self.expenseAmountCents = e?.amountCents
+            self.expenseAmountCents = e?.amountCents ?? 0
         case .income:
             // For income, derive repartition from entries.
             // If entries are empty, leave blank; the UI can fill it.
@@ -63,6 +63,7 @@ struct TransactionGroupDraft: Equatable {
 
     init(from pending: PendingTransaction) {
         self.title = pending.title
+        self.note = ""
         self.type = .expense
         self.expenseAmountCents = pending.amountCents
     }
@@ -70,7 +71,7 @@ struct TransactionGroupDraft: Equatable {
     // MARK: Apply back into model (mutates group and entries)
     func apply(to group: TransactionGroup, context: ModelContext) {
         group.title = title
-        group.note = note
+        group.note = note.isEmpty ? nil : note
         // imageAttachmentData stays read-only for now in UI, but carry over any pre-existing value.
         group.imageAttachmentData = imageAttachmentData
 
@@ -80,7 +81,7 @@ struct TransactionGroupDraft: Equatable {
             let amt = expenseAmountCents
             if group.entries.isEmpty {
                 let entry = TransactionEntry(
-                    amountCents: amt ?? 0,
+                    amountCents: amt,
                     category: cat ?? .needs,
                     group: group
                 )
@@ -88,7 +89,7 @@ struct TransactionGroupDraft: Equatable {
                 group.entries = [entry]
             } else {
                 group.entries[0].category = cat ?? group.entries[0].category
-                group.entries[0].amountCents = amt ?? group.entries[0].amountCents
+                group.entries[0].amountCents = amt
                 // Delete extra entries before removing from the array
                 if group.entries.count > 1 {
                     for entry in group.entries[1...] { context.delete(entry) }
@@ -123,7 +124,7 @@ struct TransactionGroupDraft: Equatable {
         switch type {
         case .expense:
             if expenseCategory == nil { issues.append(String(localized: "Select a category for the expense.")) }
-            if (expenseAmountCents ?? 0) >= 0 { issues.append(String(localized: "Amount must be less than 0.")) }
+            if expenseAmountCents >= 0 { issues.append(String(localized: "Amount must be less than 0.")) }
         case .income:
             let total = incomeRepartition.values.reduce(0, +)
             if total <= 0 {

@@ -93,6 +93,7 @@
 			membershipExceptions = (
 				Localizable.xcstrings,
 				Model/BudgetCategory.swift,
+				Model/BudgetFigures.swift,
 				Model/Currency.swift,
 				Model/Month.swift,
 				Model/PendingTransaction.swift,
@@ -106,6 +107,8 @@
 				Services/RecurringTransactionService.swift,
 				Services/SampleData.swift,
 				Services/TransactionCreationRequest.swift,
+				"Views/Design System/BudgetCategory+Color.swift",
+				"Views/Design System/CurrencyFormatStyle.swift",
 				"Views/Design System/Custom Styles/PressableCardButtonStyle.swift",
 				"Views/Design System/Custom Styles/TrenteGaugeStyle.swift",
 				"Views/Design System/Custom Styles/TrenteGroupBoxStyle.swift",
@@ -113,6 +116,7 @@
 				"Views/Design System/Custom Styles/TrenteSecondaryButtonStyle.swift",
 				"Views/Design System/Custom Styles/TrenteToggleStyle.swift",
 				"Views/Design System/DesignSystem.swift",
+				"Views/Screens/Dashboard/BudgetScope+Display.swift",
 				Views/Screens/Dashboard/GraphCardView.swift,
 				"Views/Screens/Transactions Lists/TransactionGroupRowContent.swift",
 			);

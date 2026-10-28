@@ -8,8 +8,10 @@
 import Testing
 import SwiftData
 import Foundation
+import Synchronization
 @testable import Trente
 
+@MainActor
 @Suite(.serialized)
 struct PendingTransactionServiceTests {
 
@@ -85,6 +87,30 @@ struct PendingTransactionServiceTests {
             try PendingTransactionService.shared.validate(pending, with: draft, in: context)
         }
         #expect(try context.fetch(FetchDescriptor<PendingTransaction>()).count == 1)
+    }
+
+    @Test("Validating saves once and leaves nothing unsaved")
+    func validateSavesOnce() throws {
+        let context = try makeContext()
+        insertMonth(year: 2026, month: 10, in: context)
+        let pending = insertPending(in: context)
+        try context.save()
+        var draft = TransactionGroupDraft(from: pending)
+        draft.expenseCategory = .needs
+        let saveCount = Mutex(0)
+        let observer = NotificationCenter.default.addObserver(
+            forName: ModelContext.didSave,
+            object: context,
+            queue: nil
+        ) { _ in
+            saveCount.withLock { $0 += 1 }
+        }
+        defer { NotificationCenter.default.removeObserver(observer) }
+
+        try PendingTransactionService.shared.validate(pending, with: draft, in: context)
+
+        #expect(saveCount.withLock { $0 } == 1)
+        #expect(!context.hasChanges)
     }
 
     @Test("Discarding removes the pending item and creates nothing")
