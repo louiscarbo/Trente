@@ -84,7 +84,7 @@ struct TransactionListView: View {
     private func totalDisplay(of items: [DisplayableTransaction]) -> String {
         let sum = items.reduce(0) { $0 + $1.amountCents }
         let code = month.currency.isoCode
-        return (Double(sum)/100).formatted(.currency(code: code))
+        return (Double(sum)/100).formatted(.amount(code))
     }
     
     var body: some View {

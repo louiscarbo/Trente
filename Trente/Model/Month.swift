@@ -91,27 +91,12 @@ extension Month {
         transactionEntries.filter { $0.amountCents > 0 }.reduce(0) { $0 + $1.amountCents }
     }
 
-    /// A localized string that displays the spent amount for the month in entire value, truncating the cents.
-    var spentAmountDisplay: String {
-        let amount = spentAmount
-        return amount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
-    }
-
     var remainingAmount: Double {
         Double(remainingAmountCents) / 100
     }
 
     var incomeAmount: Double {
         Double(incomeAmountCents) / 100
-    }
-
-    var incomeAmountDisplay: String {
-        return incomeAmount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
-    }
-
-    /// A localized string that displays the remaining amount for the month in entire value, truncating the cents.
-    var remainingAmountDisplay: String {
-        return remainingAmount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
     }
 
     var overSpent: Bool {
@@ -123,12 +108,6 @@ extension Month {
         let categoryTransactions = transactionEntries.filter { $0.category == category && $0.amountCents < 0 }
         let categoryRemainingAmount = categoryTransactions.reduce(0) { $0 + $1.amountCents }
         return abs(Double(categoryRemainingAmount) / 100)
-    }
-
-    /// Returns a localized string that displays the spent amount for a category in entire value, truncating the cents.
-    func spentAmountDisplay(for category: BudgetCategory) -> String {
-        let amount = spentAmount(for: category)
-        return amount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
     }
 
     /// Calculates the sum of incomes for a specific category. Not in cents.
@@ -143,12 +122,6 @@ extension Month {
         return (incomeAmount(for: category) - spentAmount(for: category))
     }
 
-    /// Returns a localized string that displays the remaining amount for a category in entire value, truncating the cents.
-    func remainingAmountDisplay(for category: BudgetCategory) -> String {
-        let amount = remainingAmount(for: category)
-        return amount.formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
-    }
-
     /// Returns true if the user is overspending in a specific category
     func overSpending(in category: BudgetCategory) -> Bool {
         remainingAmount(for: category) < 0
@@ -161,13 +134,6 @@ extension Month {
         }
     }
 
-    func spentAmountDisplay(in scope: BudgetScope) -> String {
-        spentAmount(in: scope).formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
-    }
-
-    func remainingAmountDisplay(in scope: BudgetScope) -> String {
-        remainingAmount(in: scope).formatted(.currency(code: currency.isoCode).precision(.fractionLength(0)))
-    }
 
     func incomeAmount(in scope: BudgetScope) -> Double {
         switch scope {

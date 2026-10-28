@@ -31,7 +31,7 @@ struct TransactionGroupSummaryRow: View {
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Text(amount, format: .currency(code: currencyCode))
+            Text(amount, format: .amount(currencyCode))
                 .font(.title)
         }
         .tint(.primary)
@@ -66,7 +66,7 @@ struct TransactionEntryRowContent: View {
                 }
             }
             Spacer()
-            Text(amount, format: .currency(code: currencyCode))
+            Text(amount, format: .amount(currencyCode))
                 .font(title == nil ? .subheadline : .title)
                 .foregroundStyle(title == nil ? .secondary : .primary)
         }
