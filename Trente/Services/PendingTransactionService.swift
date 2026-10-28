@@ -25,10 +25,10 @@ final class PendingTransactionService: Sendable {
 
         let request = TransactionCreationRequest()
         request.title = draft.title
-        request.amountCents = draft.expenseAmountCents ?? pending.amountCents
+        request.amountCents = draft.expenseAmountCents
         request.type = .expense
         request.selectedCategory = draft.expenseCategory
-        request.notes = draft.note ?? ""
+        request.notes = draft.note
         request.imageData = draft.imageAttachmentData
         request.date = pending.date
 

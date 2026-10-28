@@ -12,10 +12,10 @@ struct RecurringTransactionRuleDetailsView: View {
 
     let rule: RecurringTransactionRule
     let currency: Currency
-    var startInEditMode: Bool = false
+    let startInEditMode: Bool
 
     @State private var isEditing = false
-    @State private var draft: RecurringTransactionRuleDraft?
+    @State private var draft: RecurringTransactionRuleDraft
     @State private var validationErrors: [String] = []
     @State private var deleteError: String?
     @State private var stopError: String?
@@ -24,8 +24,15 @@ struct RecurringTransactionRuleDetailsView: View {
     @FocusState private var titleFocused: Bool
     @FocusState private var amountFocused: Bool
 
-    private var totalAmount: Int {
-        rule.amountCents
+    init(rule: RecurringTransactionRule, currency: Currency, startInEditMode: Bool = false) {
+        self.rule = rule
+        self.currency = currency
+        self.startInEditMode = startInEditMode
+        _draft = State(initialValue: RecurringTransactionRuleDraft(from: rule))
+    }
+
+    private var shown: Binding<RecurringTransactionRuleDraft> {
+        isEditing ? $draft : .constant(RecurringTransactionRuleDraft(from: rule))
     }
 
     var body: some View {
@@ -40,7 +47,6 @@ struct RecurringTransactionRuleDetailsView: View {
             onBeginEdit: enterEditMode,
             onCancel: {
                 withAnimation {
-                    draft = nil
                     isEditing = false
                 }
             },
@@ -76,7 +82,7 @@ struct RecurringTransactionRuleDetailsView: View {
         GroupBox {
             VStack(alignment: .leading, spacing: .small) {
                 EditableTitleField(
-                    text: titleBinding,
+                    text: shown.title,
                     isEditing: isEditing,
                     placeholder: String(localized: "Recurring transaction title"),
                     focus: $titleFocused
@@ -86,8 +92,8 @@ struct RecurringTransactionRuleDetailsView: View {
                 if isExpense {
                     EditableExpenseRow(
                         isEditing: isEditing,
-                        category: categoryBinding,
-                        amountCents: expenseAmountBinding,
+                        category: shown.expenseCategory,
+                        amountCents: shown.expenseAmountCents,
                         currency: currency,
                         focus: $amountFocused
                     )
@@ -96,13 +102,6 @@ struct RecurringTransactionRuleDetailsView: View {
             .padding([.bottom, .horizontal])
         }
         .groupBoxStyle(TrenteGroupBoxStyle(withPadding: false))
-    }
-
-    private var titleBinding: Binding<String> {
-        Binding(
-            get: { isEditing ? (draft?.title ?? rule.title) : rule.title },
-            set: { draft?.title = $0 }
-        )
     }
 
     @ViewBuilder
@@ -128,8 +127,8 @@ struct RecurringTransactionRuleDetailsView: View {
                 LabeledPicker(
                     title: "Frequency",
                     selection: Binding(
-                        get: { isEditing ? (draft?.frequency ?? rule.frequency) : rule.frequency },
-                        set: { draft?.setFrequency($0) }
+                        get: { shown.wrappedValue.frequency },
+                        set: { draft.setFrequency($0) }
                     ),
                     options: RecurrenceFrequency.allCases
                 ) { frequency in
@@ -138,10 +137,7 @@ struct RecurringTransactionRuleDetailsView: View {
 
                 DatePicker(
                     "Start Date",
-                    selection: Binding(
-                        get: { isEditing ? (draft?.startDate ?? rule.startDate) : rule.startDate },
-                        set: { draft?.startDate = $0 }
-                    ),
+                    selection: shown.startDate,
                     in: (isEditing ? Calendar.current.startOfDay(for: .now) : .distantPast)...,
                     displayedComponents: .date
                 )
@@ -156,12 +152,11 @@ struct RecurringTransactionRuleDetailsView: View {
 
     @ViewBuilder
     private func endDatePicker() -> some View {
-        let currentEndDate = isEditing ? draft?.endDate : rule.endDate
-        if currentEndDate == nil {
+        if shown.wrappedValue.endDate == nil {
             if isEditing {
                 Button("Add an End Date") {
                     withAnimation(.bouncy) {
-                        draft?.endDate = draft?.startDate ?? rule.startDate
+                        draft.endDate = draft.startDate
                     }
                 }
                 .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
@@ -169,14 +164,14 @@ struct RecurringTransactionRuleDetailsView: View {
         } else {
             let minimumEndDate = Calendar.current.date(
                 byAdding: .day, value: 7,
-                to: isEditing ? (draft?.startDate ?? rule.startDate) : rule.startDate
+                to: shown.wrappedValue.startDate
             ) ?? rule.startDate
             HStack {
                 DatePicker(
                     "End Date",
                     selection: Binding(
-                        get: { (isEditing ? draft?.endDate : rule.endDate) ?? rule.startDate },
-                        set: { draft?.endDate = $0 }
+                        get: { shown.wrappedValue.endDate ?? rule.startDate },
+                        set: { draft.endDate = $0 }
                     ),
                     in: minimumEndDate...,
                     displayedComponents: .date
@@ -184,7 +179,7 @@ struct RecurringTransactionRuleDetailsView: View {
                 if isEditing {
                     Button("Remove End Date", systemImage: "xmark.circle.fill") {
                         withAnimation(.bouncy) {
-                            draft?.endDate = nil
+                            draft.endDate = nil
                         }
                     }
                     .labelStyle(.iconOnly)
@@ -202,10 +197,7 @@ struct RecurringTransactionRuleDetailsView: View {
             VStack(alignment: .leading, spacing: .small) {
                 Toggle(
                     isExpense ? String(localized: "Mark as paid automatically") : String(localized: "Mark as received automatically"),
-                    isOn: Binding(
-                        get: { isEditing ? (draft?.autoConfirm ?? rule.autoConfirm) : rule.autoConfirm },
-                        set: { draft?.autoConfirm = $0 }
-                    )
+                    isOn: shown.autoConfirm
                 )
                 Text("On the due date, \(rule.title) is added to that month's transactions.")
                     .font(.subheadline)
@@ -218,21 +210,7 @@ struct RecurringTransactionRuleDetailsView: View {
 
     // MARK: - Category & Amount (Expense)
 
-    private var isExpense: Bool { totalAmount < 0 }
-
-    private var categoryBinding: Binding<BudgetCategory?> {
-        Binding(
-            get: { isEditing ? draft?.expenseCategory : rule.repartition.keys.first },
-            set: { draft?.expenseCategory = $0 }
-        )
-    }
-
-    private var expenseAmountBinding: Binding<Int> {
-        Binding(
-            get: { isEditing ? (draft?.expenseAmountCents ?? totalAmount) : totalAmount },
-            set: { draft?.expenseAmountCents = $0 }
-        )
-    }
+    private var isExpense: Bool { rule.amountCents < 0 }
 
     // MARK: - Repartition (Income)
 
@@ -242,10 +220,7 @@ struct RecurringTransactionRuleDetailsView: View {
             VStack(spacing: .medium) {
                 if isEditing {
                     CurrencyTextField(
-                        amountCents: Binding(
-                            get: { draft?.repartitionTotalCents ?? totalAmount },
-                            set: { draft?.repartitionTotalCents = $0 }
-                        ),
+                        amountCents: $draft.repartitionTotalCents,
                         currency: currency
                     )
                     .focused($amountFocused)
@@ -256,13 +231,8 @@ struct RecurringTransactionRuleDetailsView: View {
                     }
                 }
                 IncomeRepartitionComponent(
-                    repartition: Binding(
-                        get: { isEditing ? (draft?.repartition ?? rule.repartition) : rule.repartition },
-                        set: { draft?.repartition = $0 }
-                    ),
-                    amountToSplit: isEditing
-                        ? (draft?.repartitionTotalCents ?? totalAmount)
-                        : totalAmount,
+                    repartition: shown.repartition,
+                    amountToSplit: shown.wrappedValue.repartitionTotalCents,
                     formatter: currency.roundFormatter,
                     isRepartitionComplete: $isRepartitionComplete
                 )
@@ -275,7 +245,7 @@ struct RecurringTransactionRuleDetailsView: View {
     // MARK: - Actions
 
     private func enterEditMode() {
-        guard !isEditing, draft == nil else { return }
+        guard !isEditing else { return }
         withAnimation {
             draft = RecurringTransactionRuleDraft(from: rule)
             isEditing = true
@@ -283,17 +253,15 @@ struct RecurringTransactionRuleDetailsView: View {
     }
 
     private func onTapDone() {
-        guard let currentDraft = draft else { return }
-        let issues = currentDraft.validate()
+        let issues = draft.validate()
         if !issues.isEmpty {
             validationErrors = issues
             return
         }
-        currentDraft.apply(to: rule)
+        draft.apply(to: rule)
         do {
             try modelContext.save()
             withAnimation {
-                draft = nil
                 isEditing = false
             }
         } catch {

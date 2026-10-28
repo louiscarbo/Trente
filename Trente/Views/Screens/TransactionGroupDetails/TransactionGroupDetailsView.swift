@@ -14,16 +14,26 @@ struct TransactionGroupDetailsView: View {
     @Environment(\.modelContext) private var modelContext
 
     let transactionGroup: TransactionGroup
-    var startInEditMode: Bool = false
+    let startInEditMode: Bool
 
     @State private var isEditing = false
-    @State private var draft: TransactionGroupDraft?
+    @State private var draft: TransactionGroupDraft
     @State private var validationErrors: [String] = []
     @State private var deleteError: String? = nil
 
     @FocusState private var titleFocused: Bool
     @FocusState private var notesFocused: Bool
     @FocusState private var amountFocused: Bool
+
+    init(transactionGroup: TransactionGroup, startInEditMode: Bool = false) {
+        self.transactionGroup = transactionGroup
+        self.startInEditMode = startInEditMode
+        _draft = State(initialValue: TransactionGroupDraft(from: transactionGroup))
+    }
+
+    private var shown: Binding<TransactionGroupDraft> {
+        isEditing ? $draft : .constant(TransactionGroupDraft(from: transactionGroup))
+    }
 
     var body: some View {
         DetailEditScaffold(
@@ -37,7 +47,6 @@ struct TransactionGroupDetailsView: View {
             onBeginEdit: enterEditMode,
             onCancel: {
                 withAnimation {
-                    draft = nil
                     isEditing = false
                 }
             },
@@ -69,65 +78,14 @@ struct TransactionGroupDetailsView: View {
             isEditing: isEditing,
             currency: transactionGroup.currency,
             showsExpenseRow: transactionGroup.type == .expense,
-            title: titleBinding,
-            category: categoryBinding,
-            amountCents: expenseAmountBinding,
-            note: noteBinding,
-            imageData: imageDataBinding,
+            title: shown.title,
+            category: shown.expenseCategory,
+            amountCents: shown.expenseAmountCents,
+            note: shown.note,
+            imageData: shown.imageAttachmentData,
             titleFocus: $titleFocused,
             notesFocus: $notesFocused,
             amountFocus: $amountFocused
-        )
-    }
-
-    private var titleBinding: Binding<String> {
-        Binding(
-            get: { isEditing ? (draft?.title ?? transactionGroup.title) : transactionGroup.title },
-            set: { draft?.title = $0 }
-        )
-    }
-
-    // MARK: - Category & Amount (Expense)
-
-    private var categoryBinding: Binding<BudgetCategory?> {
-        Binding(
-            get: { isEditing ? draft?.expenseCategory : transactionGroup.entries.first?.category },
-            set: { draft?.expenseCategory = $0 }
-        )
-    }
-
-    private var expenseAmountBinding: Binding<Int> {
-        Binding(
-            get: {
-                if isEditing {
-                    -abs(draft?.expenseAmountCents ?? transactionGroup.entries.first?.amountCents ?? 0)
-                } else {
-                    transactionGroup.entries.first?.amountCents ?? 0
-                }
-            },
-            set: { draft?.expenseAmountCents = $0 }
-        )
-    }
-
-    // MARK: - Notes & Image
-
-    private var noteBinding: Binding<String> {
-        Binding(
-            get: {
-                if isEditing {
-                    draft?.note ?? transactionGroup.note ?? ""
-                } else {
-                    transactionGroup.note ?? ""
-                }
-            },
-            set: { draft?.note = $0 }
-        )
-    }
-
-    private var imageDataBinding: Binding<Data?> {
-        Binding(
-            get: { isEditing ? draft?.imageAttachmentData : transactionGroup.imageAttachmentData },
-            set: { draft?.imageAttachmentData = $0 }
         )
     }
 
@@ -138,22 +96,8 @@ struct TransactionGroupDetailsView: View {
         GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
             let formatter = transactionGroup.currency.roundFormatter
             IncomeRepartitionComponent(
-                repartition: Binding(
-                    get: {
-                        if isEditing {
-                            draft?.incomeRepartition ?? [:]
-                        } else {
-                            Dictionary(grouping: transactionGroup.entries, by: \.category)
-                                .mapValues { $0.map(\.amountCents).reduce(0, +) }
-                        }
-                    },
-                    set: { newValue in
-                        draft?.incomeRepartition = newValue
-                    }
-                ),
-                amountToSplit: isEditing
-                    ? (draft?.incomeAmountToSplitCents ?? transactionGroup.totalAmountCents)
-                    : transactionGroup.totalAmountCents,
+                repartition: shown.incomeRepartition,
+                amountToSplit: shown.wrappedValue.incomeAmountToSplitCents,
                 formatter: formatter,
                 isRepartitionComplete: Binding.constant(true)
             )
@@ -165,7 +109,7 @@ struct TransactionGroupDetailsView: View {
     // MARK: - Actions
 
     private func enterEditMode() {
-        guard !isEditing, draft == nil else { return }
+        guard !isEditing else { return }
         withAnimation {
             draft = TransactionGroupDraft(from: transactionGroup)
             isEditing = true
@@ -173,8 +117,7 @@ struct TransactionGroupDetailsView: View {
     }
 
     private func onTapDone() {
-        draft?.fillMissingAmountToSplit()
-        guard let draft else { return }
+        draft.fillMissingAmountToSplit()
         let issues = draft.validate()
         if !issues.isEmpty {
             validationErrors = issues
@@ -184,7 +127,6 @@ struct TransactionGroupDetailsView: View {
         do {
             try modelContext.save()
             withAnimation {
-                self.draft = nil
                 isEditing = false
             }
         } catch {
