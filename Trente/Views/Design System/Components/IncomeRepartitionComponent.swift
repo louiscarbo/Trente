@@ -215,10 +215,12 @@ struct BudgetCategorySliderRow: View {
                         get: { repartition[category] ?? 0 },
                         set: { newValue in
                             let oldValue = repartition[category] ?? 0
-                            let clampedNewValue = min(newValue, oldValue + remainingAmount)
-                            let roundedValue = (clampedNewValue / 100) * 100
-                            let finalValue = min(roundedValue, oldValue + remainingAmount)
-                            
+                            let finalValue = RepartitionSplit.clampedValue(
+                                newValue,
+                                from: oldValue,
+                                remaining: remainingAmount
+                            )
+
                             let delta = finalValue - oldValue
 
                             repartition[category] = finalValue
