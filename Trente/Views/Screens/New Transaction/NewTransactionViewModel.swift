@@ -19,12 +19,11 @@ final class NewTransactionViewModel {
     var step: NewTransactionStep = .amountCategory
     var isRepartitionComplete: Bool = false
     var showErrorAlert: Bool = false
-    private(set) var isLoadingImage: Bool = false
-    var imageLoadingError: String?
+    let imageLoader = ImageAttachmentLoader()
 
     @ObservationIgnored private let permissionService: NotificationPermissionService
     @ObservationIgnored private(set) var permissionRequest: Task<Void, Never>?
-    @ObservationIgnored private(set) var imageLoad: Task<Void, Never>?
+    @ObservationIgnored private var repartitionAmountCents: Int?
 
     init(permissionService: NotificationPermissionService = NotificationPermissionService()) {
         self.permissionService = permissionService
@@ -55,21 +54,16 @@ final class NewTransactionViewModel {
         }
     }
     
+    var isLoadingImage: Bool { imageLoader.isLoading }
+
+    var imageLoadingError: String? {
+        get { imageLoader.error }
+        set { imageLoader.error = newValue }
+    }
+
     func loadImage(_ loadData: @escaping @Sendable () async throws -> Data?) {
-        imageLoad?.cancel()
-        isLoadingImage = true
-        imageLoad = Task {
-            var preparedData: Data?
-            if let loadedData = try? await loadData() {
-                preparedData = await ImageAttachment.prepared(loadedData)
-            }
-            guard !Task.isCancelled else { return }
-            if let preparedData {
-                request.imageData = preparedData
-            } else {
-                imageLoadingError = String(localized: "The image could not be loaded. Please try again.")
-            }
-            isLoadingImage = false
+        imageLoader.load(loadData) { [request] preparedData in
+            request.imageData = preparedData
         }
     }
 
@@ -80,6 +74,15 @@ final class NewTransactionViewModel {
                 step = filteredSteps[currentIndex + 1]
             }
         }
+        if step == .repartition {
+            prepareRepartition()
+        }
+    }
+
+    private func prepareRepartition() {
+        guard repartitionAmountCents != request.amountCents else { return }
+        request.repartition = Dictionary(uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
+        repartitionAmountCents = request.amountCents
     }
     
     func previousStep() {

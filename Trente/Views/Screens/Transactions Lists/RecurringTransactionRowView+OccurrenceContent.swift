@@ -30,7 +30,7 @@ extension RecurringTransactionRowView {
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
-                Text(amount, format: .currency(code: currencyCode))
+                Text(amount, format: .amount(currencyCode))
                     .font(.title2)
             }
         }

@@ -7,11 +7,26 @@
 
 import Foundation
 
+@MainActor
 @Observable
-class TransactionCreationRequest {
+final class TransactionCreationRequest {
     var title: String = ""
-    var amountCents: Int = 0
-    var type: TransactionType = .expense
+    var amountCents: Int = 0 {
+        didSet {
+            let signedAmount = signed(amountCents)
+            if amountCents != signedAmount {
+                amountCents = signedAmount
+            }
+        }
+    }
+    var type: TransactionType = .expense {
+        didSet {
+            amountCents = signed(amountCents)
+            if type == .income {
+                selectedCategory = nil
+            }
+        }
+    }
     var selectedCategory: BudgetCategory? = nil
     var notes: String = ""
     var imageData: Data? = nil
@@ -19,8 +34,12 @@ class TransactionCreationRequest {
     var date: Date = .now
 
     var repartition: [BudgetCategory: Int] = [:]
-    
+
     var recurrenceFrequency: RecurrenceFrequency = .monthly
     var recurrenceStartDate: Date = .now
     var recurrenceEndDate: Date? = nil
+
+    private func signed(_ cents: Int) -> Int {
+        type == .income ? abs(cents) : -abs(cents)
+    }
 }

@@ -9,6 +9,7 @@ import Testing
 import SwiftData
 @testable import Trente
 import Foundation
+import Synchronization
 
 @Suite(.serialized)
 struct RecurringTransactionsTests {
@@ -322,5 +323,70 @@ struct RecurringTransactionsTests {
         #expect(overall == BudgetFigures(spent: 800, income: 1500, remaining: 700))
         #expect(needs == BudgetFigures(spent: 800, income: 1000, remaining: 200))
         #expect(wants == BudgetFigures(spent: 0, income: 500, remaining: 500))
+    }
+
+    private func countSaves(of context: ModelContext, during work: () throws -> Void) rethrows -> Int {
+        let saveCount = Mutex(0)
+        let observer = NotificationCenter.default.addObserver(
+            forName: ModelContext.didSave,
+            object: context,
+            queue: nil
+        ) { _ in
+            saveCount.withLock { $0 += 1 }
+        }
+        defer { NotificationCenter.default.removeObserver(observer) }
+        try work()
+        return saveCount.withLock { $0 }
+    }
+
+    @Test("Catching up on several months confirms them all in one save")
+    func catchUpSavesOnce() throws {
+        let context = try makeContext()
+        for month in 1...4 {
+            insertMonth(year: 2025, month: month, in: context)
+        }
+        insertRule("Rent", startingOn: day(2025, 1, 2), repartition: [.needs: -800_00], automatic: true, in: context)
+        try context.save()
+
+        var confirmedCount = 0
+        let saves = try countSaves(of: context) {
+            confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+        }
+
+        #expect(confirmedCount == 4)
+        #expect(saves == 1)
+        #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).count == 4)
+    }
+
+    @Test("Catching up with nothing due doesn't save")
+    func catchUpWithNothingDueDoesNotSave() throws {
+        let context = try makeContext()
+        insertMonth(year: 2025, month: 4, in: context)
+        insertRule("Gym", startingOn: day(2025, 4, 28), repartition: [.wants: -29_00], automatic: true, in: context)
+        try context.save()
+
+        let saves = try countSaves(of: context) {
+            try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+        }
+
+        #expect(saves == 0)
+    }
+
+    @Test("Catching up resumes after the last automatic confirmation")
+    func catchUpResumesAfterCheckpoint() throws {
+        let context = try makeContext()
+        for month in 1...4 {
+            insertMonth(year: 2025, month: month, in: context)
+        }
+        let rule = insertRule("Rent", startingOn: day(2025, 1, 2), repartition: [.needs: -800_00], automatic: true, in: context)
+        rule.lastAutoConfirmedDate = day(2025, 2, 2)
+        try context.save()
+
+        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+
+        let confirmedDates = try context.fetch(FetchDescriptor<TransactionGroup>()).compactMap(\.recurringOccurrenceDate).sorted()
+        #expect(confirmedCount == 2)
+        #expect(confirmedDates == [day(2025, 3, 2), day(2025, 4, 2)])
+        #expect(rule.lastAutoConfirmedDate == day(2025, 4, 2))
     }
 }

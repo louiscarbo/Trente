@@ -17,7 +17,7 @@ struct CurrencyTextField: View {
         TextField(
             "",
             text: $amountText,
-            prompt: Text(0, format: .currency(code: currency.isoCode))
+            prompt: Text(0, format: .amount(currency.isoCode))
         )
         #if os(iOS)
         .keyboardType(.decimalPad)

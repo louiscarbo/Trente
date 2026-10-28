@@ -24,7 +24,7 @@ struct EditableAmountRow: View {
                         .fill(.gray.opacity(0.2))
                 }
         } else {
-            Text(currency.roundFormatter.string(from: NSNumber(value: Double(amountCents) / 100.0)) ?? "")
+            Text(Double(amountCents) / 100, format: .amount(currency.isoCode))
                 .font(.subheadline)
                 .padding(.vertical, 4)
                 .padding(.horizontal, 8)

@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftData
-import SwiftUI
 
 extension SchemaV1 {
     @Model
@@ -74,11 +73,5 @@ extension TransactionGroup {
 
     var totalAmount: Double {
         Double(totalAmountCents) / 100.0
-    }
-
-    /// Returns a localized string that displays the amount correctly, not in cents.
-    var displayAmount: String {
-        totalAmount
-            .formatted(.currency(code: currency.isoCode))
     }
 }

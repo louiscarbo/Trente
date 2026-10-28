@@ -50,8 +50,8 @@ struct PendingTransactionReviewView: View {
                     showsExpenseRow: true,
                     title: $draft.title,
                     category: $draft.expenseCategory,
-                    amountCents: amountBinding,
-                    note: noteBinding,
+                    amountCents: $draft.expenseAmountCents,
+                    note: $draft.note,
                     imageData: $draft.imageAttachmentData,
                     titleFocus: $titleFocused,
                     notesFocus: $notesFocused,
@@ -66,20 +66,6 @@ struct PendingTransactionReviewView: View {
                 description: Text("Create a month to log this transaction.")
             )
         }
-    }
-
-    private var amountBinding: Binding<Int> {
-        Binding(
-            get: { draft.expenseAmountCents ?? 0 },
-            set: { draft.expenseAmountCents = $0 }
-        )
-    }
-
-    private var noteBinding: Binding<String> {
-        Binding(
-            get: { draft.note ?? "" },
-            set: { draft.note = $0 }
-        )
     }
 
     private func clearFocus() {
@@ -98,7 +84,7 @@ struct PendingTransactionReviewView: View {
             try PendingTransactionService.shared.validate(pending, with: draft, in: modelContext)
             dismiss()
         } catch {
-            validationErrors = ["Failed to save changes: \(error.localizedDescription)"]
+            validationErrors = [String(localized: "Failed to save changes: \(error.localizedDescription)")]
         }
     }
 

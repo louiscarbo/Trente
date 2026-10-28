@@ -6,9 +6,11 @@
 //
 
 import Testing
+import SwiftData
 @testable import Trente
 import Foundation
 
+@Suite(.serialized)
 struct TransactionGroupDraftTests {
     private func makeMonth() -> Month {
         Month(
@@ -42,15 +44,13 @@ struct TransactionGroupDraftTests {
         #expect(draft.expenseAmountCents == -45_50)
     }
 
-    @Test("A negative or missing expense amount is kept as is")
+    @Test("A negative expense amount is kept as is")
     func negativeExpenseAmountIsKept() {
         var draft = TransactionGroupDraft(from: makeExpense(amountCents: -12_00, category: .needs))
 
         draft.expenseAmountCents = -8_00
-        #expect(draft.expenseAmountCents == -8_00)
 
-        draft.expenseAmountCents = nil
-        #expect(draft.expenseAmountCents == nil)
+        #expect(draft.expenseAmountCents == -8_00)
     }
 
     @Test("Changing the category of an expense keeps its amount")
@@ -93,5 +93,48 @@ struct TransactionGroupDraftTests {
         draft.fillMissingAmountToSplit()
 
         #expect(draft.incomeAmountToSplitCents == 0)
+    }
+
+    private func insertGroup(_ type: TransactionType, entries: [BudgetCategory: Int], note: String?, in context: ModelContext) -> TransactionGroup {
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        let group = TransactionGroup(title: "Groceries", type: type, month: month, note: note, imageAttachmentData: nil)
+        context.insert(group)
+        group.entries = entries.map { category, amountCents in
+            TransactionEntry(amountCents: amountCents, category: category, group: group)
+        }
+        return group
+    }
+
+    private func amountsByCategory(of group: TransactionGroup) -> [BudgetCategory: Int] {
+        Dictionary(grouping: group.entries, by: \.category).mapValues { entries in
+            entries.reduce(0) { total, entry in total + entry.amountCents }
+        }
+    }
+
+    @Test("Applying an untouched draft leaves the transaction unchanged", arguments: [TransactionType.expense, .income])
+    func untouchedDraftRoundTrips(type: TransactionType) throws {
+        let context = try makeContext()
+        let entries: [BudgetCategory: Int] = type == .expense ? [.needs: -12_00] : [.needs: 600_00, .wants: 400_00]
+        let group = insertGroup(type, entries: entries, note: "Weekly", in: context)
+        try context.save()
+
+        TransactionGroupDraft(from: group).apply(to: group, context: context)
+
+        #expect(group.title == "Groceries")
+        #expect(group.note == "Weekly")
+        #expect(amountsByCategory(of: group) == entries)
+    }
+
+    @Test("An empty note is saved as no note")
+    func emptyNoteIsSavedAsNoNote() throws {
+        let context = try makeContext()
+        let group = insertGroup(.expense, entries: [.needs: -12_00], note: "Weekly", in: context)
+        try context.save()
+        var draft = TransactionGroupDraft(from: group)
+
+        draft.note = ""
+        draft.apply(to: group, context: context)
+
+        #expect(group.note == nil)
     }
 }

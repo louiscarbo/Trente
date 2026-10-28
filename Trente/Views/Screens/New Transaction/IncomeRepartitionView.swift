@@ -32,10 +32,6 @@ struct IncomeRepartitionView: View {
             .groupBoxStyle(TrenteGroupBoxStyle())
             .padding()
         }
-        .onAppear {
-            repartition = Dictionary(
-                uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
-        }
     }
 }
 

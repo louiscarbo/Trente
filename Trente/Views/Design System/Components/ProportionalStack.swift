@@ -10,6 +10,7 @@ import SwiftUI
 struct ProportionalStack: Layout {
     var axis: Axis = .vertical
     var spacing: CGFloat = DesignSystem.Spacing.small.rawValue
+    var minimumLength: CGFloat = 0
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         CGSize(width: finiteLength(proposal.width), height: finiteLength(proposal.height))
@@ -17,15 +18,13 @@ struct ProportionalStack: Layout {
 
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
         let weights = subviews.map { $0[LayoutWeight.self] }
-        let totalWeight = weights.reduce(0, +)
-        guard totalWeight > 0 else { return }
+        guard weights.reduce(0, +) > 0 else { return }
 
         let totalSpacing = spacing * CGFloat(max(subviews.count - 1, 0))
         let availableLength = max((axis == .vertical ? bounds.height : bounds.width) - totalSpacing, 0)
         var offset = axis == .vertical ? bounds.minY : bounds.minX
 
-        for (subview, weight) in zip(subviews, weights) {
-            let length = availableLength * weight / totalWeight
+        for (subview, length) in zip(subviews, lengths(for: weights, availableLength: availableLength)) {
             let origin = axis == .vertical
                 ? CGPoint(x: bounds.minX, y: offset)
                 : CGPoint(x: offset, y: bounds.minY)
@@ -34,6 +33,20 @@ struct ProportionalStack: Layout {
                 : CGSize(width: length, height: bounds.height)
             subview.place(at: origin, anchor: .topLeading, proposal: ProposedViewSize(size))
             offset += length + spacing
+        }
+    }
+
+    func lengths(for weights: [CGFloat], availableLength: CGFloat) -> [CGFloat] {
+        let totalWeight = weights.reduce(0, +)
+        let weightedLengths = weights.map { weight in availableLength * weight / totalWeight }
+        let isRaised = weightedLengths.map { length in length < minimumLength }
+        let raisedCount = isRaised.filter { $0 }.count
+        let otherWeight = zip(weights, isRaised).reduce(0) { total, pair in pair.1 ? total : total + pair.0 }
+        guard raisedCount > 0, otherWeight > 0 else { return weightedLengths }
+
+        let otherLength = max(availableLength - minimumLength * CGFloat(raisedCount), 0)
+        return zip(weights, isRaised).map { weight, raised in
+            raised ? minimumLength : otherLength * weight / otherWeight
         }
     }
 
@@ -54,10 +67,18 @@ extension View {
 }
 
 #Preview {
-    ProportionalStack {
-        Color.blue.layoutWeight(5)
-        Color.yellow.layoutWeight(3)
-        Color.green.layoutWeight(2)
+    VStack(spacing: 20) {
+        ProportionalStack {
+            Color.blue.layoutWeight(5)
+            Color.yellow.layoutWeight(3)
+            Color.green.layoutWeight(2)
+        }
+        ProportionalStack(axis: .horizontal, spacing: 3, minimumLength: 3) {
+            Color.blue.layoutWeight(0.98)
+            Color.yellow.layoutWeight(0.01)
+            Color.green.layoutWeight(0.01)
+        }
+        .frame(height: 10)
     }
     .padding()
 }

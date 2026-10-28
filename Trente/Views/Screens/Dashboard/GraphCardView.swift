@@ -41,14 +41,14 @@ struct GraphCardView: View {
 
                     VStack(spacing: 2) {
                         HStack(spacing: 3) {
-                            Text(exactAmount, format: .currency(code: currency.isoCode))
+                            Text(exactAmount, format: .amount(currency.isoCode))
                                 .foregroundStyle(figures.isOverspent ? .red : .primary)
                                 .contentTransition(.numericText(value: exactAmount))
                             Text(verbatim: "/")
                                 .foregroundStyle(.secondary)
                             Text(
                                 figures.income,
-                                format: .currency(code: currency.isoCode).precision(.fractionLength(0...2))
+                                format: .budget(currency.isoCode)
                             )
                             .foregroundStyle(.secondary)
                         }
@@ -70,29 +70,6 @@ struct GraphCardView: View {
     }
 }
 
-extension BudgetScope {
-    var name: String {
-        switch self {
-        case .all: String(localized: "Total")
-        case .category(let category): category.name
-        }
-    }
-    
-    var shortName: String {
-        switch self {
-        case .all: String(localized: "Total")
-        case .category(let category): category.shortName
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .all: .purple
-        case .category(let category): category.color
-        }
-    }
-}
-
 private extension BudgetFigures {
     func amount(showingRemaining: Bool) -> Double {
         showingRemaining ? remaining : spent
@@ -109,7 +86,7 @@ struct BudgetGaugeView: View {
     var showsPercentage = false
 
     private var currencyFormat: FloatingPointFormatStyle<Double>.Currency {
-        .currency(code: currencyCode).precision(.fractionLength(0))
+        .budget(currencyCode)
     }
 
     private var displayedAmount: Double {

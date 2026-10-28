@@ -47,12 +47,4 @@ struct RecurringTransactionOccurrence: Identifiable, Hashable {
         }
         return String(localized: "Income")
     }
-
-    var displayAmount: String {
-        (Double(amountCents) / 100.0).formatted(.currency(code: month.currency.isoCode))
-    }
-
-    var displayDate: String {
-        date.formatted(.dateTime.weekday().day().month(.wide).year())
-    }
 }

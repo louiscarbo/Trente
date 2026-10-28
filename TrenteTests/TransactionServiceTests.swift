@@ -10,6 +10,7 @@ import SwiftData
 @testable import Trente
 import Foundation
 
+@MainActor
 @Suite(.serialized)
 struct TransactionServiceTests {
 
