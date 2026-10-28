@@ -13,6 +13,7 @@ struct DebugMenuView: View {
     @Environment(\.replayOnboarding) private var replayOnboarding
 
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
+    @State private var trentePlus = TrentePlusStatus.shared
 
     var body: some View {
         NavigationStack {
@@ -27,6 +28,13 @@ struct DebugMenuView: View {
                     replayOnboarding()
                 } label: {
                     Label("Onboarding", systemImage: "sparkles")
+                }
+                Picker(selection: $trentePlus.debugOverride) {
+                    Text("App Store").tag(TrentePlusDebugOverride.appStore)
+                    Text("Subscribed").tag(TrentePlusDebugOverride.subscribed)
+                    Text("Not Subscribed").tag(TrentePlusDebugOverride.notSubscribed)
+                } label: {
+                    Label("Trente+", systemImage: "plus.circle")
                 }
             }
             .navigationTitle("Debug")
