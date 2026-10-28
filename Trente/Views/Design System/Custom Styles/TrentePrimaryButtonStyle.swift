@@ -39,7 +39,12 @@ struct TrentePrimaryCapsule: ViewModifier {
                     ZStack {
                         Capsule()
                             .inset(by: 1.5)
-                            .stroke(.primary.opacity(strokeOpacity), lineWidth: 3)
+                            .stroke(
+                                lightMode
+                                ? Color.black.opacity(strokeOpacity)
+                                : Color.white.opacity(strokeOpacity),
+                                lineWidth: 3
+                            )
                         if isPressed {
                             Capsule()
                                 .fill(
