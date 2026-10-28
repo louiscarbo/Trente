@@ -66,28 +66,11 @@ struct DetailEditScaffold<Content: View>: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         if isEditing {
-            ToolbarItem(placement: .cancellationAction) {
-                Button(role: .cancel, action: onCancel) {
-                    Label("Cancel", systemImage: cancelSystemImage)
-                }
-            }
-            ToolbarItem(placement: .confirmationAction) {
-                Button(action: onDone) {
-                    Label("Done", systemImage: "checkmark")
-                }
-                .disabled(isDoneDisabled)
-            }
+            CancelToolbarItem(systemImage: cancelSystemImage, action: onCancel)
+            ConfirmToolbarItem(isDisabled: isDoneDisabled, action: onDone)
         } else {
-            ToolbarItem(placement: .primaryAction) {
-                Button(action: onBeginEdit) {
-                    Label("Edit", systemImage: "pencil")
-                }
-            }
-            ToolbarItem(placement: .closeButtonPlacement) {
-                Button { dismiss() } label: {
-                    Label("Close", systemImage: "chevron.down")
-                }
-            }
+            EditToolbarItem(action: onBeginEdit)
+            CloseToolbarItem { dismiss() }
         }
     }
 }

@@ -42,9 +42,7 @@ struct DebugMenuView: View {
                 if id != nil { dismiss() }
             }
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Close") { dismiss() }
-                }
+                CloseToolbarItem { dismiss() }
             }
         }
         #if os(macOS)
