@@ -108,15 +108,11 @@ struct NewTransactionView: View {
                     nextButtonDisabled: $viewModel.nextButtonDisabled,
                     currency: context.currency
                 )
+                #if os(iOS)
                 .toolbar {
-                    ToolbarItem(placement: .closeButtonPlacement) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Label("Close", systemImage: "chevron.down")
-                        }
-                    }
+                    CloseToolbarItem { dismiss() }
                 }
+                #endif
             case .title:
                 TitleView(
                     title: $viewModel.request.title,
