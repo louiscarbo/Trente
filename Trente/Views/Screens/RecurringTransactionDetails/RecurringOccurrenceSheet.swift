@@ -80,7 +80,10 @@ struct RecurringOccurrenceSheet: View {
                     occurrence.isIncome ? String(localized: "Mark as Received") : String(localized: "Mark as Paid"),
                     systemImage: "checkmark.circle.fill"
                 )
+                .labelStyle(.centeredIcon)
                 .font(.headline)
+                .multilineTextAlignment(.center)
+                .frame(maxHeight: .infinity)
             }
             .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
 
@@ -88,7 +91,10 @@ struct RecurringOccurrenceSheet: View {
                 showSkipConfirmation = true
             } label: {
                 Label(skipTitle, systemImage: "forward.end.fill")
+                    .labelStyle(.centeredIcon)
                     .font(.headline)
+                    .multilineTextAlignment(.center)
+                    .frame(maxHeight: .infinity)
             }
             .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
             .skipOccurrenceConfirmation(
@@ -99,6 +105,7 @@ struct RecurringOccurrenceSheet: View {
                 onSkip: skip
             )
         }
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     private var recurringTransactionBox: some View {
