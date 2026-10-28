@@ -24,7 +24,13 @@ struct AllSetStepView: View {
             }
         } secondary: {
             if let month {
-                CurrentMonthRowView(currentMonth: month)
+                MonthSummaryCard(
+                    name: month.name,
+                    remaining: month.remainingAmount,
+                    spent: month.spentAmount(in: .all),
+                    currencyCode: month.currency.isoCode,
+                    isOverspent: month.overSpent
+                )
                     .allowsHitTesting(false)
                     .frame(maxWidth: 420)
                     .frame(maxWidth: .infinity)
