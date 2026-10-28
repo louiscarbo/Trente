@@ -70,29 +70,6 @@ struct GraphCardView: View {
     }
 }
 
-extension BudgetScope {
-    var name: String {
-        switch self {
-        case .all: String(localized: "Total")
-        case .category(let category): category.name
-        }
-    }
-    
-    var shortName: String {
-        switch self {
-        case .all: String(localized: "Total")
-        case .category(let category): category.shortName
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .all: .purple
-        case .category(let category): category.color
-        }
-    }
-}
-
 private extension BudgetFigures {
     func amount(showingRemaining: Bool) -> Double {
         showingRemaining ? remaining : spent

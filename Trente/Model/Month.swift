@@ -40,21 +40,6 @@ extension Month {
     }
 }
 
-enum BudgetScope: Hashable {
-    case all
-    case category(BudgetCategory)
-}
-
-struct BudgetFigures: Hashable, Sendable {
-    let spent: Double
-    let income: Double
-    let remaining: Double
-
-    var isOverspent: Bool {
-        remaining < 0
-    }
-}
-
 // MARK: - Computed Properties
 extension Month {
     var name: String {
@@ -127,7 +112,6 @@ extension Month {
         case .category(let category): spentAmount(for: category)
         }
     }
-
 
     func incomeAmount(in scope: BudgetScope) -> Double {
         switch scope {
