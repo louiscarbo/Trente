@@ -26,7 +26,7 @@ struct EditableTransactionHeader: View {
     @State private var showFullScreen = false
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showDeleteConfirmation = false
-    @State private var imageLoadingError: String?
+    @State private var imageLoader = ImageAttachmentLoader()
     @State private var image: Image?
 
     var body: some View {
@@ -91,6 +91,9 @@ struct EditableTransactionHeader: View {
                     } message: {
                         Text("This action cannot be undone.")
                     }
+                } else if imageLoader.isLoading {
+                    ProgressView()
+                        .padding()
                 } else {
                     PhotosPicker(selection: $photosPickerItem) {
                         Label("Add Image", systemImage: "photo.badge.plus")
@@ -105,24 +108,17 @@ struct EditableTransactionHeader: View {
                 }
             }
         }
-        .task(id: photosPickerItem) {
-            guard let item = photosPickerItem else { return }
-            do {
-                let loadedData = try await item.loadTransferable(type: Data.self)
-                if let loadedData {
-                    imageData = await ImageAttachment.prepared(loadedData)
-                } else {
-                    imageData = nil
-                }
-            } catch {
-                imageLoadingError = String(localized: "The image could not be loaded. Please try again.")
-                photosPickerItem = nil
+        .onChange(of: photosPickerItem) { _, item in
+            guard let item else { return }
+            imageLoader.load({ try await item.loadTransferable(type: Data.self) }) { preparedData in
+                imageData = preparedData
             }
+            photosPickerItem = nil
         }
         .task(id: imageData) {
             image = imageData.flatMap(createImage)
         }
-        .errorAlert("Error Loading Image", message: $imageLoadingError)
+        .errorAlert("Error Loading Image", message: $imageLoader.error)
     }
 
     private func tappableImage(_ image: Image) -> some View {
