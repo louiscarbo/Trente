@@ -17,9 +17,7 @@ struct NotesImageView: View {
     // View State
     @Binding var nextButtonDisabled: Bool
     @Binding var showKeyboardDismissButton: Bool
-    @State private var userSubscriptionIsActive: Bool = true
     @State private var photosPickerItem: PhotosPickerItem?
-    @State private var showImageSubscriptionSheet: Bool = false
     @State private var showFullScreen = false
     @State private var errorWrapper: ErrorWrapper?
     @State private var showErrorAlert = false
@@ -111,10 +109,10 @@ struct NotesImageView: View {
                     }
                     .groupBoxStyle(TrenteGroupBoxStyle())
                 }
+                .requiresTrentePlus(.section(prompt: "Add notes and images with Trente+"))
                 .padding()
                 .padding(.top, 30)
             }
-            .subscriptionAccessible(subscribed: userSubscriptionIsActive)
             .onChange(of: photosPickerItem) { _, newItem in
                 Task {
                     guard let item = newItem else {
@@ -134,26 +132,6 @@ struct NotesImageView: View {
                         imageData = nil
                     }
                 }
-            }
-            
-            if !userSubscriptionIsActive {
-                GroupBox(label: Label("Add Notes and Images", systemImage: "sparkle")) {
-                    Text("With Trente+, you can add images and notes to your transactions. Try it now!")
-                        .padding(.bottom)
-                    
-                    Button {
-                        showImageSubscriptionSheet = true
-                    } label: {
-                        Text("Discover Trente+")
-                            .font(.title3)
-                    }
-                    .buttonStyle(TrentePrimaryButtonStyle())
-                    .sheet(isPresented: $showImageSubscriptionSheet) {
-                        SubscriptionView()
-                    }
-                }
-                .groupBoxStyle(TrenteGroupBoxStyle())
-                .padding()
             }
         }
         .alert("Error Loading Image", isPresented: $showErrorAlert, presenting: errorWrapper) { _ in

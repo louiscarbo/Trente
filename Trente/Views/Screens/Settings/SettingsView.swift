@@ -10,7 +10,7 @@ import StoreKit
 
 struct SettingsView: View {
     @Environment(\.openURL) private var openURL
-    @State private var isSubscribed = false
+    @Environment(\.isTrentePlusSubscribed) private var isSubscribed
     @State private var isShowingPaywall = false
     @State private var notificationPermission = NotificationPermissionState()
     @State private var reminderTime = ReminderTime.stored().date(on: .now) ?? .now
@@ -71,9 +71,6 @@ struct SettingsView: View {
                 }
             }
             #endif
-        }
-        .subscriptionStatusTask(for: TrentePlus.groupID) { taskState in
-            isSubscribed = TrentePlus.isActive((taskState.value ?? []).map(\.state))
         }
         .sheet(isPresented: $isShowingPaywall) {
             SubscriptionView()
