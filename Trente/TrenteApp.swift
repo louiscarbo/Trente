@@ -11,9 +11,11 @@ import SwiftData
 @main
 struct TrenteApp: App {
     let container: Result<ModelContainer, any Error>
+    @State private var trentePlus = TrentePlusStatus.shared
 
     init() {
         CloudSyncMonitor.shared.start()
+        TrentePlusStatus.shared.start()
         container = TrenteContainer.shared
         WidgetRefresher.shared.start()
         if case .success(let modelContainer) = container {
@@ -28,6 +30,7 @@ struct TrenteApp: App {
             ModelContainerGate(container: container) {
                 RootView()
             }
+            .environment(\.isTrentePlusSubscribed, trentePlus.isSubscribed)
         }
         .defaultSize(width: 1200, height: 800)
         #if os(macOS)
@@ -50,6 +53,7 @@ struct TrenteApp: App {
                     )
                 }
             }
+            .environment(\.isTrentePlusSubscribed, trentePlus.isSubscribed)
         }
         .defaultSize(width: 500, height: 550)
 
@@ -57,6 +61,7 @@ struct TrenteApp: App {
             ModelContainerGate(container: container) {
                 NewMonthView()
             }
+            .environment(\.isTrentePlusSubscribed, trentePlus.isSubscribed)
         }
         .defaultSize(width: 500, height: 600)
 
@@ -64,6 +69,7 @@ struct TrenteApp: App {
             ModelContainerGate(container: container) {
                 SettingsView()
             }
+            .environment(\.isTrentePlusSubscribed, trentePlus.isSubscribed)
         }
 
         Window("Trente Help", id: WindowIdentifiers.help) {
