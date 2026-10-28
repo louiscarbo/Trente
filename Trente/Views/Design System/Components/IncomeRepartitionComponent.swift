@@ -175,8 +175,7 @@ struct BudgetCategorySliderRow: View {
                 let increaseAction = {
                     withAnimation(.spring) {
                         let currentValue = repartition[category] ?? 0
-                        let amountToIncrease = min(100, remainingAmount)
-                        let newValue = min(currentValue + amountToIncrease, currentValue + remainingAmount)
+                        let newValue = RepartitionSplit.increasedValue(from: currentValue, remaining: remainingAmount)
                         let delta = newValue - currentValue // will be positive or zero
                         repartition[category] = newValue
                         remainingAmount -= delta
