@@ -114,10 +114,14 @@ struct NewTransactionView: View {
                 )
             case .notesImage:
                 NotesImageView(
-                    imageData: $viewModel.request.imageData,
+                    imageData: viewModel.request.imageData,
+                    isLoadingImage: viewModel.isLoadingImage,
                     notes: $viewModel.request.notes,
-                    showKeyboardDismissButton: $showKeyboardDismissButton
-                )
+                    showKeyboardDismissButton: $showKeyboardDismissButton,
+                    imageLoadingError: $viewModel.imageLoadingError
+                ) { item in
+                    viewModel.loadImage { try await item.loadTransferable(type: Data.self) }
+                }
             case .repartition:
                 IncomeRepartitionView(
                     currency: context.currency,
