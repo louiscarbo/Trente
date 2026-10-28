@@ -18,37 +18,37 @@ struct TrenteSecondaryButtonStyle: ButtonStyle {
     }
 
     func makeBody(configuration: Configuration) -> some View {
-        ZStack {
-            Capsule()
-                .fill(.regularMaterial)
-                .overlay {
-                    ZStack {
-                        Capsule()
-                            .inset(by: 1.5)
-                            .stroke(.primary.opacity(strokeOpacity), lineWidth: 3)
-                        if configuration.isPressed {
+        configuration.label
+            .bold()
+            .foregroundStyle(.primary)
+            .opacity(isEnabled ? 1 : 0.5)
+            .font(.title3)
+            .padding(.vertical, narrow ? 5 : 16)
+            .frame(maxWidth: .infinity)
+            .background {
+                Capsule()
+                    .fill(.regularMaterial)
+                    .overlay {
+                        ZStack {
                             Capsule()
-                                .fill(
-                                    LinearGradient(
-                                        colors: lightMode ?
-                                        [.black.opacity(0.05), .black.opacity(0.1)] :
-                                            [.white.opacity(0.05), .white.opacity(0.2)],
-                                        startPoint: .top,
-                                        endPoint: .bottom
+                                .inset(by: 1.5)
+                                .stroke(.primary.opacity(strokeOpacity), lineWidth: 3)
+                            if configuration.isPressed {
+                                Capsule()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: lightMode ?
+                                            [.black.opacity(0.05), .black.opacity(0.1)] :
+                                                [.white.opacity(0.05), .white.opacity(0.2)],
+                                            startPoint: .top,
+                                            endPoint: .bottom
+                                        )
                                     )
-                                )
+                            }
                         }
                     }
-                }
-            configuration.label
-                .bold()
-                .foregroundStyle(.primary)
-                .opacity(isEnabled ? 1 : 0.5)
-                .font(.title3)
-                .padding(.vertical, narrow ? 5 : 16)
-        }
-        .fixedSize(horizontal: false, vertical: true)
-        .glassEffect(.regular.interactive(isEnabled), in: .capsule)
+            }
+            .glassEffect(.regular.interactive(isEnabled), in: .capsule)
     }
 }
 

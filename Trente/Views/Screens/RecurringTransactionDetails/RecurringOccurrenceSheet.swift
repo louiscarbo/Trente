@@ -83,6 +83,7 @@ struct RecurringOccurrenceSheet: View {
                 .labelStyle(.centeredIcon)
                 .font(.headline)
                 .multilineTextAlignment(.center)
+                .padding(.horizontal)
                 .frame(maxHeight: .infinity)
             }
             .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
@@ -94,6 +95,7 @@ struct RecurringOccurrenceSheet: View {
                     .labelStyle(.centeredIcon)
                     .font(.headline)
                     .multilineTextAlignment(.center)
+                    .padding(.horizontal)
                     .frame(maxHeight: .infinity)
             }
             .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
