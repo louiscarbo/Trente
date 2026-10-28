@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "shouldTranslate" : false
     },
     "    You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
       "localizations" : {
@@ -21,7 +21,7 @@
       }
     },
     "-" : {
-
+      "shouldTranslate" : false
     },
     "- %@ Remaining" : {
       "localizations" : {
@@ -246,7 +246,7 @@
       }
     },
     "%lld" : {
-
+      "shouldTranslate" : false
     },
     "%lld active" : {
       "localizations" : {
@@ -401,7 +401,7 @@
       }
     },
     "Abercrombie & Fitch Lyon Part-Dieu" : {
-
+      "shouldTranslate" : false
     },
     "About the Developer" : {
       "localizations" : {
@@ -517,7 +517,20 @@
       }
     },
     "Add notes and images with Trente+" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade notas e imágenes con Trente+"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez des notes et des images avec Trente+"
+          }
+        }
+      }
     },
     "Add the Trente shortcut, then create one automation. Every card payment then shows up in Trente, ready to review." : {
       "localizations" : {
@@ -648,7 +661,20 @@
       }
     },
     "After Each Purchase" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Después de cada compra"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après chaque achat"
+          }
+        }
+      }
     },
     "All Months" : {
       "localizations" : {
@@ -1067,7 +1093,20 @@
       }
     },
     "Clothes" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ropa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vêtements"
+          }
+        }
+      }
     },
     "Continue" : {
       "localizations" : {
@@ -1246,7 +1285,20 @@
       }
     },
     "Decrease %@" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disminuir %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diminuer %@"
+          }
+        }
+      }
     },
     "Delete" : {
       "localizations" : {
@@ -1914,10 +1966,36 @@
       }
     },
     "Get a reminder when a new month starts and when a recurring transaction is due, and a notification after each Apple Pay purchase." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recibe un recordatorio cuando empieza un nuevo mes y cuando vence una transacción recurrente, y una notificación tras cada compra con Apple Pay."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recevez un rappel quand un nouveau mois commence et quand une transaction récurrente arrive à échéance, et une notification après chaque achat Apple Pay."
+          }
+        }
+      }
     },
     "Get a reminder when a new month starts and when a recurring transaction is due." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recibe un recordatorio cuando empieza un nuevo mes y cuando vence una transacción recurrente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recevez un rappel quand un nouveau mois commence et quand une transaction récurrente arrive à échéance."
+          }
+        }
+      }
     },
     "Get Started" : {
       "localizations" : {
@@ -2320,16 +2398,68 @@
       }
     },
     "Increase %@" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aumentar %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Augmenter %@"
+          }
+        }
+      }
     },
     "It won't be added in %@. Next years aren't affected. You can't undo this." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se añadirá en %@. Los años siguientes no se verán afectados. Esta acción no se puede deshacer."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle ne sera pas ajoutée en %@. Les années suivantes ne sont pas concernées. Cette action est irréversible."
+          }
+        }
+      }
     },
     "It won't be added that week. Next weeks aren't affected. You can't undo this." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se añadirá esa semana. Las semanas siguientes no se verán afectadas. Esta acción no se puede deshacer."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle ne sera pas ajoutée cette semaine-là. Les semaines suivantes ne sont pas concernées. Cette action est irréversible."
+          }
+        }
+      }
     },
     "It won't be added to %@. Next months aren't affected. You can't undo this." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se añadirá en %@. Los meses siguientes no se verán afectados. Esta acción no se puede deshacer."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle ne sera pas ajoutée en %@. Les mois suivants ne sont pas concernés. Cette action est irréversible."
+          }
+        }
+      }
     },
     "It's added to this month's transactions." : {
       "localizations" : {
@@ -3325,7 +3455,20 @@
       }
     },
     "Privacy Policy" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Política de privacidad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Politique de confidentialité"
+          }
+        }
+      }
     },
     "Rate on the App Store" : {
       "localizations" : {
@@ -3472,10 +3615,36 @@
       }
     },
     "Reminders" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recordatorios"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rappels"
+          }
+        }
+      }
     },
     "Reminders paused" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recordatorios en pausa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rappels en pause"
+          }
+        }
+      }
     },
     "Rent" : {
       "localizations" : {
@@ -3542,7 +3711,20 @@
       }
     },
     "Requires Trente+" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Requiere Trente+"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite Trente+"
+          }
+        }
+      }
     },
     "Retry" : {
       "localizations" : {
@@ -3577,7 +3759,20 @@
       }
     },
     "Salary" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sueldo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salaire"
+          }
+        }
+      }
     },
     "Save" : {
       "localizations" : {
@@ -4002,6 +4197,18 @@
             "state" : "new",
             "value" : "Skip “%1$@” for %2$@?"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Omitir “%@” en %@?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer « %@ » en %@ ?"
+          }
         }
       }
     },
@@ -4011,6 +4218,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Skip “%1$@” on %2$@?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Omitir “%@” el %@?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer « %@ » le %@ ?"
           }
         }
       }
@@ -4067,10 +4286,36 @@
       }
     },
     "Skip for %@" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omitir en %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer en %@"
+          }
+        }
+      }
     },
     "Skip on %@" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omitir el %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer le %@"
+          }
+        }
+      }
     },
     "Skip This Month" : {
       "localizations" : {
@@ -4417,7 +4662,20 @@
       }
     },
     "Supermarket" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supermercado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supermarché"
+          }
+        }
+      }
     },
     "Support an indie developer" : {
       "localizations" : {
@@ -4500,7 +4758,20 @@
       }
     },
     "Terms of Use" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condiciones de uso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conditions d’utilisation"
+          }
+        }
+      }
     },
     "TestFlight Testers" : {
       "localizations" : {
@@ -4599,7 +4870,20 @@
       }
     },
     "These come from your Apple Pay automation in the Shortcuts app. To stop them, turn off or delete that automation." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Provienen de tu automatización de Apple Pay en la app Atajos. Para detenerlas, desactiva o elimina esa automatización."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elles proviennent de votre automatisation Apple Pay dans l’app Raccourcis. Pour les arrêter, désactivez ou supprimez cette automatisation."
+          }
+        }
+      }
     },
     "Think of it as the money you're free to spend each month, once taxes are taken care of." : {
       "localizations" : {
@@ -5019,10 +5303,36 @@
       }
     },
     "Trente reminds you at this time when a new month starts." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te avisa a esta hora cuando empieza un nuevo mes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient à cette heure-ci quand un nouveau mois commence."
+          }
+        }
+      }
     },
     "Trente reminds you at this time when a recurring transaction is due." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te avisa a esta hora cuando vence una transacción recurrente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient à cette heure-ci quand une transaction récurrente arrive à échéance."
+          }
+        }
+      }
     },
     "Trente splits your budget into Needs, Wants and Savings, so you always know what's left this month." : {
       "localizations" : {
@@ -5058,10 +5368,36 @@
       }
     },
     "Trente tells you when a new month starts and when a recurring payment like rent is due, so you can mark it as paid right from the notification." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te avisa cuando empieza un nuevo mes y cuando vence un pago recurrente como el alquiler, para que lo marques como pagado directamente desde la notificación."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient quand un nouveau mois commence et quand un paiement récurrent comme le loyer arrive à échéance, pour le marquer comme payé directement depuis la notification."
+          }
+        }
+      }
     },
     "Trente tells you when a new month starts and when a recurring payment like rent is due. Once Apple Pay is set up, it also sends you a notification after each purchase so you can log it in one go." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te avisa cuando empieza un nuevo mes y cuando vence un pago recurrente como el alquiler. Una vez configurado Apple Pay, también te envía una notificación tras cada compra para que la registres en un momento."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient quand un nouveau mois commence et quand un paiement récurrent comme le loyer arrive à échéance. Une fois Apple Pay configuré, il vous envoie aussi une notification après chaque achat pour l’enregistrer en un instant."
+          }
+        }
+      }
     },
     "Trente tells you when a new month starts and when a recurring payment like rent or a salary is due, so you can mark it as paid in one tap." : {
       "extractionState" : "stale",
@@ -5129,7 +5465,20 @@
       }
     },
     "Turn on a reminder to choose when Trente notifies you." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activa un recordatorio para elegir cuándo te avisa Trente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activez un rappel pour choisir quand Trente vous prévient."
+          }
+        }
+      }
     },
     "Turn On Notifications" : {
       "localizations" : {
@@ -5655,7 +6004,20 @@
       }
     },
     "You haven't opened Trente since %@, so reminders are paused. Open the app anytime to turn them back on." : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No has abierto Trente desde el %@, así que los recordatorios están en pausa. Abre la app cuando quieras para reactivarlos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas ouvert Trente depuis le %@, les rappels sont donc en pause. Ouvrez l’app à tout moment pour les réactiver."
+          }
+        }
+      }
     },
     "You will select categories for this income in the next steps." : {
       "localizations" : {
