@@ -381,11 +381,11 @@ struct RepartitionSlider: View {
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { drag in
-                        let pct = min(max(0, drag.location.x / width), 1)
-                        let rawNewValue = Int(round(pct * CGFloat(total)))
-                        let roundedNewValue = (rawNewValue / 100) * 100
-                        let clampedNewValue = min(roundedNewValue, maxValue)
-                        value = clampedNewValue
+                        value = RepartitionSplit.dragValue(
+                            atFraction: drag.location.x / width,
+                            total: total,
+                            maxValue: maxValue
+                        )
                     }
             )
             .sensoryFeedback(.selection, trigger: value)
