@@ -25,9 +25,9 @@ struct FAQView: View {
                 if items.contains(FAQItem.featured) {
                     Section {
                         DisclosureGroup {
-                            FAQAnswer(text: FAQItem.featured.answer)
+                            Answer(text: FAQItem.featured.answer)
                         } label: {
-                            FAQFeaturedCard(shares: FAQFeaturedCard.fiftyThirtyTwenty)
+                            FeaturedCard(shares: FeaturedCard.fiftyThirtyTwenty)
                                 .accessibilityElement(children: .ignore)
                                 .accessibilityLabel(Text(FAQItem.featured.question))
                         }
@@ -51,7 +51,7 @@ struct FAQView: View {
             Section {
                 ForEach(section.items) { item in
                     DisclosureGroup {
-                        FAQAnswer(text: item.answer)
+                        Answer(text: item.answer)
                     } label: {
                         Text(item.question)
                     }
@@ -60,74 +60,6 @@ struct FAQView: View {
                 Text(section.topic.title)
             }
         }
-    }
-}
-
-struct FAQFeaturedCard: View {
-    static let fiftyThirtyTwenty: [BudgetCategory: Int] = [.needs: 50, .wants: 30, .savingsAndDebts: 20]
-
-    let shares: [BudgetCategory: Int]
-
-    private let barSpacing: CGFloat = 2
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: .small) {
-            Text("New to Trente?")
-                .font(.caption)
-                .fontWeight(.semibold)
-                .textCase(.uppercase)
-                .foregroundStyle(.secondary)
-            Text("The 50/30/20 rule in 30 seconds")
-                .font(.headline)
-            bar
-            HStack(spacing: DesignSystem.Spacing.medium.rawValue) {
-                ForEach(BudgetCategory.allCases) { category in
-                    Label {
-                        Text("\(category.shortName) \(percentage(for: category))")
-                    } icon: {
-                        Circle()
-                            .fill(category.color)
-                            .frame(width: 8, height: 8)
-                    }
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                }
-            }
-            Text("Split your take-home income into Needs, Wants and Savings and Debts. Trente sorts every transaction into one of them.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-        .padding(.vertical, DesignSystem.Spacing.small.rawValue)
-    }
-
-    private var bar: some View {
-        GeometryReader { proxy in
-            let total = max(1, shares.values.reduce(0, +))
-            let width = proxy.size.width - barSpacing * CGFloat(BudgetCategory.allCases.count - 1)
-            HStack(spacing: barSpacing) {
-                ForEach(BudgetCategory.allCases) { category in
-                    category.color
-                        .frame(width: max(0, width) * CGFloat(shares[category] ?? 0) / CGFloat(total))
-                }
-            }
-        }
-        .frame(height: 10)
-        .clipShape(.capsule)
-        .accessibilityHidden(true)
-    }
-
-    private func percentage(for category: BudgetCategory) -> String {
-        (Double(shares[category] ?? 0) / 100).formatted(.percent)
-    }
-}
-
-struct FAQAnswer: View {
-    let text: LocalizedStringResource
-
-    var body: some View {
-        Text(text)
-            .foregroundStyle(.secondary)
-            .textSelection(.enabled)
     }
 }
 
