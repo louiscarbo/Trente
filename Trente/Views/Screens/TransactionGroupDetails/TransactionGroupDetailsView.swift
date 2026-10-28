@@ -130,7 +130,7 @@ struct TransactionGroupDetailsView: View {
                 isEditing = false
             }
         } catch {
-            validationErrors = ["Failed to save changes: \(error.localizedDescription)"]
+            validationErrors = [String(localized: "Failed to save changes: \(error.localizedDescription)")]
         }
     }
 
