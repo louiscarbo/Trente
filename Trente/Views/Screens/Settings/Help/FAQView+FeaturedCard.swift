@@ -46,14 +46,10 @@ extension FAQView {
         }
 
         private var bar: some View {
-            GeometryReader { proxy in
-                let total = max(1, shares.values.reduce(0, +))
-                let width = proxy.size.width - barSpacing * CGFloat(BudgetCategory.allCases.count - 1)
-                HStack(spacing: barSpacing) {
-                    ForEach(BudgetCategory.allCases) { category in
-                        category.color
-                            .frame(width: max(0, width) * CGFloat(shares[category] ?? 0) / CGFloat(total))
-                    }
+            ProportionalStack(axis: .horizontal, spacing: barSpacing) {
+                ForEach(BudgetCategory.allCases) { category in
+                    category.color
+                        .layoutWeight(CGFloat(shares[category] ?? 0))
                 }
             }
             .frame(height: 10)

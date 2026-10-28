@@ -31,13 +31,11 @@ extension DailySpendingCard {
         }
 
         private func proportionCapsule(for slices: [CategorySlice]) -> some View {
-            GeometryReader { geo in
-                HStack(spacing: 3) {
-                    ForEach(slices, id: \.category) { slice in
-                        RoundedRectangle(cornerRadius: 3)
-                            .fill(slice.category.color.gradient)
-                            .frame(width: max(geo.size.width * slice.share - 3, 3))
-                    }
+            ProportionalStack(axis: .horizontal, spacing: 3, minimumLength: 3) {
+                ForEach(slices, id: \.category) { slice in
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(slice.category.color.gradient)
+                        .layoutWeight(slice.share)
                 }
             }
             .frame(height: 10)
