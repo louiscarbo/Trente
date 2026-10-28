@@ -26,75 +26,23 @@ struct TransactionListView: View {
         }
     }
     
-    @State private var searchText = ""
-    @State private var dateLowerBound: Date
-    @State private var dateUpperBound: Date
-    
+    @State private var filter: TransactionListFilter
+    @State private var isShowingFilterSheet: Bool = false
+
     init(month: Month, showRecurring: Bool) {
         self.showRecurring = showRecurring
         self.month = month
-        _dateLowerBound = State(
-            initialValue: month.startDate
-        )
-        _dateUpperBound = State(
-            initialValue: month.endDate()
-        )
-    }
-    
-    @State private var selectedCategories: Set<BudgetCategory> = []
-    @State private var sortOption: SortOption = .dateDesc
-    @State private var isShowingFilterSheet: Bool = false
-    
-    private var filtersAreOn: Bool {
-        selectedCategories.isEmpty == false ||
-        dateLowerBound != month.startDate ||
-        dateUpperBound != month.endDate()
-    }
-    
-    nonisolated static func days(from firstDate: Date, through lastDate: Date, calendar: Calendar = .current) -> Range<Date> {
-        let firstDay = calendar.startOfDay(for: firstDate)
-        let lastDay = calendar.startOfDay(for: lastDate)
-        let dayAfterLastDay = calendar.date(byAdding: .day, value: 1, to: lastDay) ?? lastDate
-        return firstDay..<max(firstDay, dayAfterLastDay)
-    }
-
-    private var filteredAndSorted: [DisplayableTransaction] {
-        let displayedDates = Self.days(from: dateLowerBound, through: dateUpperBound)
-        return allItems
-            .filter { searchText.isEmpty ||
-                $0.searchableString.localizedStandardContains(searchText)
-            }
-            .filter { displayedDates.contains($0.date) }
-            .filter { transaction in
-                selectedCategories.isEmpty
-                || transaction.categories.contains(where: selectedCategories.contains)
-            }
-            .sorted { a, b in
-                switch sortOption {
-                case .dateAsc: return a.date < b.date
-                case .dateDesc: return a.date > b.date
-                case .amountAsc: return a.amountCents < b.amountCents
-                case .amountDesc: return a.amountCents > b.amountCents
-                case .titleAsc: return a.title < b.title
-                case .titleDesc: return a.title > b.title
-                }
-            }
-    }
-    
-    private func totalDisplay(of items: [DisplayableTransaction]) -> String {
-        let sum = items.reduce(0) { $0 + $1.amountCents }
-        let code = month.currency.isoCode
-        return (Double(sum)/100).formatted(.amount(code))
+        _filter = State(initialValue: TransactionListFilter(month: month))
     }
     
     var body: some View {
-        let items = filteredAndSorted
+        let items = filter.apply(to: allItems)
 
         VStack {
             List {
                 Section {
                     ForEach(items) { item in
-                        item.rowView(isInList: true)
+                        Row(item: item)
                     }
                 }
                 
@@ -108,31 +56,31 @@ struct TransactionListView: View {
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Text(totalDisplay(of: items))
+                        Text(Double(filter.totalCents(of: items)) / 100, format: .amount(month.currency.isoCode))
                             .font(.title)
                     }
                 }
             }
             .navigationTitle("Transactions")
-            .searchable(text: $searchText, prompt: "Search by title, amount, date, category…")
+            .searchable(text: $filter.searchText, prompt: "Search by title, amount, date, category…")
             .toolbar {
                 #if os(iOS)
                 DefaultToolbarItem(kind: .search, placement: .bottomBar)
                 #endif
                 ToolbarItemGroup(placement: .primaryAction) {
-                    SortPickerView(sortOption: $sortOption)
+                    SortPickerView(sortOption: $filter.sort)
 
                     Button(
                         "Filter",
-                        systemImage: filtersAreOn ? "line.horizontal.3.decrease.circle.fill" : "line.horizontal.3.decrease.circle"
+                        systemImage: filter.isActive(for: month) ? "line.horizontal.3.decrease.circle.fill" : "line.horizontal.3.decrease.circle"
                     ) {
                         isShowingFilterSheet = true
                     }
                     .sheet(isPresented: $isShowingFilterSheet) {
                         FilterSheetView(
-                            dateLowerBound: $dateLowerBound,
-                            dateUpperBound: $dateUpperBound,
-                            selectedCategories: $selectedCategories
+                            firstDay: $filter.firstDay,
+                            lastDay: $filter.lastDay,
+                            selectedCategories: $filter.categories
                         )
                         .presentationDetents([.medium, .large])
                     }
