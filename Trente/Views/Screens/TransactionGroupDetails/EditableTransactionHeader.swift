@@ -116,7 +116,7 @@ struct EditableTransactionHeader: View {
             photosPickerItem = nil
         }
         .task(id: imageData) {
-            image = imageData.flatMap(createImage)
+            image = imageData.flatMap(Image.init(data:))
         }
         .errorAlert("Error Loading Image", message: $imageLoader.error)
     }

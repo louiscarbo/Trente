@@ -155,7 +155,7 @@ struct TransactionGroupDetailsView: View {
                 .savingsAndDebts: 20
             ]
         )
-        let imageData = imageData(named: "placeholder")
+        let imageData = Data(assetNamed: "placeholder")
         let shopping = TransactionGroup(
             title: "Abercrombie & Fitch Lyon Part-Dieu",
             type: .expense,

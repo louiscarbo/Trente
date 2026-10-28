@@ -7,38 +7,6 @@
 
 import SwiftUI
 
-func createImage(_ value: Data) -> Image? {
-    #if canImport(UIKit)
-    guard let uiImage: UIImage = UIImage(data: value) else { return nil }
-    return Image(uiImage: uiImage)
-    #elseif canImport(AppKit)
-    guard let uiImage: NSImage = NSImage(data: value) else { return nil }
-    return Image(nsImage: uiImage)
-    #else
-    return nil
-    #endif
-}
-
-#if canImport(AppKit)
-extension NSImage {
-    func pngData() -> Data? {
-        guard let tiffData = tiffRepresentation,
-              let bitmap = NSBitmapImageRep(data: tiffData) else { return nil }
-        return bitmap.representation(using: .png, properties: [:])
-    }
-}
-#endif
-
-func imageData(named name: String) -> Data? {
-    #if canImport(UIKit)
-    return UIImage(named: name)?.pngData()
-    #elseif canImport(AppKit)
-    return NSImage(named: name)?.pngData()
-    #else
-    return nil
-    #endif
-}
-
 extension View {
     /// Applies `.navigationBarTitleDisplayMode(.inline)` on iOS; no-op on macOS, which has no equivalent.
     @ViewBuilder
