@@ -20,6 +20,7 @@ struct TransactionGroupDetailsView: View {
     @State private var draft: TransactionGroupDraft
     @State private var validationErrors: [String] = []
     @State private var deleteError: String? = nil
+    @State private var isRepartitionComplete = false
 
     @FocusState private var titleFocused: Bool
     @FocusState private var notesFocused: Bool
@@ -42,6 +43,7 @@ struct TransactionGroupDetailsView: View {
             validationErrors: $validationErrors,
             deleteError: $deleteError,
             deleteSectionTitle: String(localized: "Delete Transaction"),
+            isDoneDisabled: isSplitUnfinished,
             keyboardDismissVisible: (titleFocused || notesFocused || amountFocused) && isEditing,
             onDismissKeyboard: clearFocus,
             onBeginEdit: enterEditMode,
@@ -63,6 +65,10 @@ struct TransactionGroupDetailsView: View {
             if startInEditMode { enterEditMode() }
         }
         .onChange(of: isEditing) { _, editing in if !editing { clearFocus() } }
+    }
+
+    private var isSplitUnfinished: Bool {
+        transactionGroup.type == .income && draft.incomeAmountToSplitCents > 0 && !isRepartitionComplete
     }
 
     private func clearFocus() {
@@ -99,7 +105,7 @@ struct TransactionGroupDetailsView: View {
                 repartition: shown.incomeRepartition,
                 amountToSplit: shown.wrappedValue.incomeAmountToSplitCents,
                 formatter: formatter,
-                isRepartitionComplete: Binding.constant(true)
+                isRepartitionComplete: $isRepartitionComplete
             )
             .disabled(!isEditing)
         }

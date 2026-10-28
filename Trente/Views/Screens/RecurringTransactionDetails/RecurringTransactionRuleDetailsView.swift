@@ -42,6 +42,7 @@ struct RecurringTransactionRuleDetailsView: View {
             validationErrors: $validationErrors,
             deleteError: $deleteError,
             deleteSectionTitle: String(localized: "Delete Recurring Transaction"),
+            isDoneDisabled: isSplitUnfinished,
             keyboardDismissVisible: (titleFocused || amountFocused) && isEditing,
             onDismissKeyboard: clearFocus,
             onBeginEdit: enterEditMode,
@@ -68,6 +69,10 @@ struct RecurringTransactionRuleDetailsView: View {
         }
         .onChange(of: isEditing) { _, editing in if !editing { clearFocus() } }
         .errorAlert("Stop Failed", message: $stopError)
+    }
+
+    private var isSplitUnfinished: Bool {
+        !isExpense && draft.repartitionTotalCents != 0 && !isRepartitionComplete
     }
 
     private func clearFocus() {
