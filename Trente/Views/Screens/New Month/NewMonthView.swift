@@ -32,7 +32,9 @@ struct NewMonthView: View {
                     MonthDetailsComponent(month: draftBinding, isRepartitionComplete: $isRepartitionComplete)
                         .navigationTitle("New Month")
                         .toolbar {
+                            #if os(iOS)
                             CancelToolbarItem { dismiss() }
+                            #endif
                             ConfirmToolbarItem(
                                 title: "Create",
                                 isDisabled: isCreateButtonDisabled,

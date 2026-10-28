@@ -69,11 +69,7 @@ struct DetailEditScaffold<Content: View>: View {
             CancelToolbarItem(systemImage: cancelSystemImage, action: onCancel)
             ConfirmToolbarItem(isDisabled: isDoneDisabled, action: onDone)
         } else {
-            ToolbarItem(placement: .primaryAction) {
-                Button(action: onBeginEdit) {
-                    Label("Edit", systemImage: "pencil")
-                }
-            }
+            EditToolbarItem(action: onBeginEdit)
             CloseToolbarItem { dismiss() }
         }
     }

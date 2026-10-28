@@ -43,12 +43,26 @@ struct ConfirmToolbarItem: ToolbarContent {
         ToolbarItem(placement: .confirmationAction) {
             Group {
                 #if os(iOS)
-                Button(title, systemImage: "checkmark", action: action)
+                Button(title, systemImage: "checkmark", role: .confirm, action: action)
                 #else
-                Button(title, action: action)
+                Button(title, role: .confirm, action: action)
                 #endif
             }
             .disabled(isDisabled)
+        }
+    }
+}
+
+struct EditToolbarItem: ToolbarContent {
+    let action: () -> Void
+
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) {
+            #if os(iOS)
+            Button("Edit", systemImage: "pencil", action: action)
+            #else
+            Button("Edit", action: action)
+            #endif
         }
     }
 }
