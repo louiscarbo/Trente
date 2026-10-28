@@ -88,4 +88,75 @@ struct NewTransactionViewModelTests {
         viewModel.step = step
         #expect(viewModel.canAdvance)
     }
+
+    @Test("A picked photo still lands after leaving its step")
+    func photoSurvivesLeavingTheStep() async {
+        let viewModel = NewTransactionViewModel()
+        viewModel.request.type = .income
+        viewModel.step = .notesImage
+        let (gate, release) = AsyncStream.makeStream(of: Void.self)
+
+        viewModel.loadImage {
+            for await _ in gate { break }
+            return Data("photo".utf8)
+        }
+        #expect(viewModel.canAdvance)
+        viewModel.nextStep()
+        release.yield()
+        await viewModel.imageLoad?.value
+
+        #expect(viewModel.step == .repartition)
+        #expect(viewModel.request.imageData == Data("photo".utf8))
+        #expect(!viewModel.isLoadingImage)
+    }
+
+    @Test("Create waits for a photo that is still loading")
+    func createWaitsForLoadingPhoto() async {
+        let viewModel = NewTransactionViewModel()
+        viewModel.step = .notesImage
+        let (gate, release) = AsyncStream.makeStream(of: Void.self)
+
+        viewModel.loadImage {
+            for await _ in gate { break }
+            return Data("photo".utf8)
+        }
+        #expect(viewModel.isLastStep)
+        #expect(!viewModel.canAdvance)
+
+        release.yield()
+        await viewModel.imageLoad?.value
+        #expect(viewModel.canAdvance)
+    }
+
+    @Test("A newer photo wins over a slower older one")
+    func newerPhotoWins() async {
+        let viewModel = NewTransactionViewModel()
+        let (gate, release) = AsyncStream.makeStream(of: Void.self)
+
+        viewModel.loadImage {
+            for await _ in gate { break }
+            return Data("older".utf8)
+        }
+        let olderLoad = viewModel.imageLoad
+        viewModel.loadImage { Data("newer".utf8) }
+        await viewModel.imageLoad?.value
+        release.yield()
+        await olderLoad?.value
+
+        #expect(viewModel.request.imageData == Data("newer".utf8))
+        #expect(!viewModel.isLoadingImage)
+    }
+
+    @Test("A failed photo shows an error and keeps the current image")
+    func failedPhotoKeepsCurrentImage() async {
+        let viewModel = NewTransactionViewModel()
+        viewModel.request.imageData = Data("current".utf8)
+
+        viewModel.loadImage { throw CocoaError(.fileReadUnknown) }
+        await viewModel.imageLoad?.value
+
+        #expect(viewModel.request.imageData == Data("current".utf8))
+        #expect(viewModel.imageLoadingError != nil)
+        #expect(!viewModel.isLoadingImage)
+    }
 }

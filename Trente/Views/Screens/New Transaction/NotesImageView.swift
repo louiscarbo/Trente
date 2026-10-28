@@ -11,16 +11,18 @@ import PhotosUI
 // TODO: Refactor/Simplify/Split into smaller views
 struct NotesImageView: View {
     // Transaction Data
-    @Binding var imageData: Data?
+    let imageData: Data?
+    let isLoadingImage: Bool
     @Binding var notes: String
-            
+
     // View State
     @Binding var showKeyboardDismissButton: Bool
+    @Binding var imageLoadingError: String?
+    let onPickImage: (PhotosPickerItem) -> Void
     @State private var userSubscriptionIsActive: Bool = true
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var showImageSubscriptionSheet: Bool = false
     @State private var showFullScreen = false
-    @State private var imageLoadingError: String?
     @State private var image: Image?
     @FocusState private var notesFocused: Bool
     
@@ -29,7 +31,7 @@ struct NotesImageView: View {
             // Content
             ScrollView {
                 VStack(spacing: 20) {
-                    if imageData == nil && photosPickerItem == nil {
+                    if imageData == nil && !isLoadingImage {
                         PhotosPicker(selection: $photosPickerItem) {
                             Label("Add Image", systemImage: "photo.badge.plus")
                         }
@@ -100,21 +102,10 @@ struct NotesImageView: View {
                 .padding(.top, 30)
             }
             .subscriptionAccessible(subscribed: userSubscriptionIsActive)
-            .task(id: photosPickerItem) {
-                guard let item = photosPickerItem else { return }
-                do {
-                    let loadedData = try await item.loadTransferable(type: Data.self)
-                    guard !Task.isCancelled else { return }
-                    if let loadedData {
-                        imageData = await ImageAttachment.prepared(loadedData)
-                    } else {
-                        imageData = nil
-                    }
-                } catch {
-                    guard !Task.isCancelled else { return }
-                    imageLoadingError = String(localized: "The image could not be loaded. Please try again.")
-                    photosPickerItem = nil
-                }
+            .onChange(of: photosPickerItem) { _, item in
+                guard let item else { return }
+                onPickImage(item)
+                photosPickerItem = nil
             }
             .task(id: imageData) {
                 image = imageData.flatMap(createImage)
