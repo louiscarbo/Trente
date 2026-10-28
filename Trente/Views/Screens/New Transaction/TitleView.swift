@@ -12,9 +12,7 @@ struct TitleView: View {
     @Binding var title: String
     
     // View State
-    @Binding var step: NewTransactionStep
-    @Binding var showKeyboardDismissButton: Bool
-    @FocusState private var titleFieldIsFocused: Bool
+    var focusedField: FocusState<NewTransactionField?>.Binding
     @ScaledMetric(relativeTo: .largeTitle) private var titleFontSize = 40
     
     var body: some View {
@@ -36,7 +34,7 @@ struct TitleView: View {
                     axis: .vertical
                 )
                 .lineLimit(3)
-                .focused($titleFieldIsFocused)
+                .focused(focusedField, equals: .title)
                 .textFieldStyle(.plain)
                 .font(.system(size: titleFontSize, weight: .bold))
                 .multilineTextAlignment(.center)
@@ -45,20 +43,8 @@ struct TitleView: View {
             Spacer()
         }
         .padding()
-        .onChange(of: titleFieldIsFocused) { _, newValue in
-            if newValue == true {
-                showKeyboardDismissButton = true
-            } else {
-                showKeyboardDismissButton = false
-            }
-        }
         .onAppear {
-            titleFieldIsFocused = true
-        }
-        .onChange(of: step) { _, newStep in
-            if newStep != .title {
-                titleFieldIsFocused = false
-            }
+            focusedField.wrappedValue = .title
         }
     }
 }
