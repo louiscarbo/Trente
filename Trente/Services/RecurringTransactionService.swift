@@ -23,8 +23,48 @@ final class RecurringTransactionService: Sendable {
         in context: ModelContext,
         addedDate: Date = .now
     ) throws {
+        guard insertTransaction(for: occurrence, in: context, addedDate: addedDate) else { return }
+        try context.save()
+    }
+
+    @discardableResult
+    func confirmDueOccurrences(in context: ModelContext, now: Date = .now) throws -> Int {
+        let rules = try context.fetch(
+            FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true })
+        )
+        guard let earliestCheckpoint = rules.map({ $0.lastAutoConfirmedDate ?? $0.startDate }).min() else { return 0 }
+
+        let firstMonthStart = Calendar.current.date(byAdding: .month, value: -1, to: earliestCheckpoint) ?? earliestCheckpoint
+        let months = try context.fetch(
+            FetchDescriptor<Month>(predicate: #Predicate { $0.startDate >= firstMonthStart && $0.startDate <= now })
+        )
+        let dueOccurrences = months.flatMap { month in
+            rules.flatMap { $0.dueAutomaticOccurrences(in: month, by: now) }
+        }
+        guard !dueOccurrences.isEmpty else { return 0 }
+
+        for occurrence in dueOccurrences {
+            let rule = occurrence.rule
+            rule.lastAutoConfirmedDate = max(rule.lastAutoConfirmedDate ?? .distantPast, occurrence.date)
+            insertTransaction(for: occurrence, in: context, addedDate: occurrence.date)
+        }
+        do {
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
+        return dueOccurrences.count
+    }
+
+    @discardableResult
+    private func insertTransaction(
+        for occurrence: RecurringTransactionOccurrence,
+        in context: ModelContext,
+        addedDate: Date
+    ) -> Bool {
         let rule = occurrence.rule
-        guard !rule.isSettled(on: occurrence.date) else { return }
+        guard !rule.isSettled(on: occurrence.date) else { return false }
 
         let group = TransactionGroup(
             title: rule.title,
@@ -43,26 +83,7 @@ final class RecurringTransactionService: Sendable {
             return TransactionEntry(amountCents: amount, category: category, group: group)
         }
         entries.forEach { context.insert($0) }
-        try context.save()
-    }
-
-    @discardableResult
-    func confirmDueOccurrences(in context: ModelContext, now: Date = .now) throws -> Int {
-        let rules = try context.fetch(
-            FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true })
-        )
-        guard !rules.isEmpty else { return 0 }
-
-        let months = try context.fetch(FetchDescriptor<Month>())
-        let dueOccurrences = months.flatMap { month in
-            rules.flatMap { $0.dueAutomaticOccurrences(in: month, by: now) }
-        }
-        for occurrence in dueOccurrences {
-            let rule = occurrence.rule
-            rule.lastAutoConfirmedDate = max(rule.lastAutoConfirmedDate ?? .distantPast, occurrence.date)
-            try confirm(occurrence, in: context, addedDate: occurrence.date)
-        }
-        return dueOccurrences.count
+        return true
     }
 
     func skip(_ occurrence: RecurringTransactionOccurrence, in context: ModelContext) throws {
