@@ -72,6 +72,15 @@ struct NewTransactionViewModelTests {
         #expect(viewModel.canAdvance)
     }
 
+    @Test("An income is split right after its title")
+    func incomeSplitComesAfterTitle() {
+        let viewModel = NewTransactionViewModel()
+        viewModel.request.type = .income
+        viewModel.request.isRecurrent = true
+
+        #expect(viewModel.filteredSteps == [.amountCategory, .title, .repartition, .notesImage, .recurrence])
+    }
+
     @Test("The repartition step needs a complete split")
     func repartitionStepNeedsCompleteSplit() {
         let viewModel = NewTransactionViewModel()
@@ -89,17 +98,17 @@ struct NewTransactionViewModelTests {
         #expect(viewModel.canAdvance)
     }
 
-    private func incomeAtNotesStep(amountCents: Int) -> NewTransactionViewModel {
+    private func incomeAtTitleStep(amountCents: Int) -> NewTransactionViewModel {
         let viewModel = NewTransactionViewModel()
         viewModel.request.type = .income
         viewModel.request.amountCents = amountCents
-        viewModel.step = .notesImage
+        viewModel.step = .title
         return viewModel
     }
 
     @Test("Entering the split step the first time starts every category at zero")
     func splitStartsAtZero() {
-        let viewModel = incomeAtNotesStep(amountCents: 1_000_00)
+        let viewModel = incomeAtTitleStep(amountCents: 1_000_00)
 
         viewModel.nextStep()
 
@@ -109,7 +118,7 @@ struct NewTransactionViewModelTests {
 
     @Test("The split survives going back and forth")
     func splitSurvivesBackAndNext() {
-        let viewModel = incomeAtNotesStep(amountCents: 1_000_00)
+        let viewModel = incomeAtTitleStep(amountCents: 1_000_00)
         viewModel.nextStep()
         viewModel.request.repartition = [.needs: 500_00, .wants: 200_00, .savingsAndDebts: 0]
 
@@ -121,7 +130,7 @@ struct NewTransactionViewModelTests {
 
     @Test("The split starts over when the amount changed")
     func splitResetsWhenAmountChanged() {
-        let viewModel = incomeAtNotesStep(amountCents: 1_000_00)
+        let viewModel = incomeAtTitleStep(amountCents: 1_000_00)
         viewModel.nextStep()
         viewModel.request.repartition = [.needs: 1_000_00, .wants: 0, .savingsAndDebts: 0]
 
@@ -135,7 +144,7 @@ struct NewTransactionViewModelTests {
     @Test("A picked photo still lands after leaving its step")
     func photoSurvivesLeavingTheStep() async {
         let viewModel = NewTransactionViewModel()
-        viewModel.request.type = .income
+        viewModel.request.isRecurrent = true
         viewModel.step = .notesImage
         let (gate, release) = AsyncStream.makeStream(of: Void.self)
 
@@ -148,7 +157,7 @@ struct NewTransactionViewModelTests {
         release.yield()
         await viewModel.imageLoader.currentLoad?.value
 
-        #expect(viewModel.step == .repartition)
+        #expect(viewModel.step == .recurrence)
         #expect(viewModel.request.imageData == Data("photo".utf8))
         #expect(!viewModel.isLoadingImage)
     }

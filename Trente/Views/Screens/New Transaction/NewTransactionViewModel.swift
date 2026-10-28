@@ -30,8 +30,9 @@ final class NewTransactionViewModel {
     }
     
     var filteredSteps: [NewTransactionStep] {
-        var steps: [NewTransactionStep] = [.amountCategory, .title, .notesImage]
+        var steps: [NewTransactionStep] = [.amountCategory, .title]
         if request.type == .income { steps.append(.repartition) }
+        steps.append(.notesImage)
         if request.isRecurrent { steps.append(.recurrence) }
         return steps
     }
