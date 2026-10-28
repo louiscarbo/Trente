@@ -76,20 +76,6 @@ struct AboutDeveloperView: View {
     }
 }
 
-struct ProfileLinkRow: View {
-    let title: LocalizedStringResource
-    let systemImage: String
-    let url: URL
-
-    var body: some View {
-        Link(destination: url) {
-            ExternalLinkLabel(title: title, systemImage: systemImage)
-                .padding(.vertical, DesignSystem.Spacing.medium.rawValue)
-        }
-        .buttonStyle(.plain)
-    }
-}
-
 #Preview {
     NavigationStack {
         AboutDeveloperView(

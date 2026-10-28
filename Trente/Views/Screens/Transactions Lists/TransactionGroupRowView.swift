@@ -22,7 +22,7 @@ struct TransactionGroupRowView: View {
             if transactionGroup.entries.count > 1 {
                 groupDisclosure
             } else if transactionGroup.entries.count == 1 {
-                TransactionEntryRowView(
+                EntryRow(
                     transactionGroup: transactionGroup,
                     transactionEntry: transactionGroup.entries[0],
                     title: transactionGroup.title
@@ -71,7 +71,7 @@ struct TransactionGroupRowView: View {
                     Divider()
                 }
                 ForEach(transactionGroup.entries) { entry in
-                    TransactionEntryRowView(
+                    EntryRow(
                         transactionGroup: transactionGroup,
                         transactionEntry: entry
                     )
@@ -84,32 +84,6 @@ struct TransactionGroupRowView: View {
                 amount: transactionGroup.totalAmount,
                 currencyCode: transactionGroup.currency.isoCode
             )
-        }
-    }
-}
-
-private struct TransactionEntryRowView: View {
-    let transactionGroup: TransactionGroup
-    let transactionEntry: TransactionEntry
-    var title: String?
-    
-    @State private var showTransactionGroupDetails: Bool = false
-    
-    var body: some View {
-        Button {
-            showTransactionGroupDetails = true
-        } label: {
-            TransactionEntryRowContent(
-                category: transactionEntry.category,
-                amount: transactionEntry.amount,
-                currencyCode: transactionGroup.currency.isoCode,
-                title: title
-            )
-        }
-        .contentShape(.rect)
-        .buttonStyle(.plain)
-        .sheet(isPresented: $showTransactionGroupDetails) {
-            TransactionGroupDetailsView(transactionGroup: transactionGroup)
         }
     }
 }
