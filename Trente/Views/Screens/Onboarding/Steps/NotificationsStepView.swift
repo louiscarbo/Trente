@@ -30,7 +30,7 @@ struct NotificationsStepView: View {
                 )
                 if showsApplePay {
                     NotificationPreview(
-                        title: NotificationText.amountTitle(amountCents: -4_50, currency: currency, title: "Boulangerie"),
+                        title: NotificationText.amountTitle(amountCents: -4_50, currency: currency, title: String(localized: "Bakery")),
                         message: WalletNotificationService.body
                     )
                 }
