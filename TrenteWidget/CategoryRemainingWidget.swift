@@ -72,6 +72,7 @@ struct SmallMediumCategoryRemainingWidgetView: View {
                 )
                 
                 Text(entry.category.budgetCategory.shortName)
+                    .accessibilityHidden(true)
                     .lineLimit(1)
                     .font(.subheadline)
                     .bold()
@@ -119,6 +120,7 @@ struct MediumCategoryRemainingWidgetView: View {
                 )
                 
                 Text(category.shortName)
+                    .accessibilityHidden(true)
                     .lineLimit(1)
                     .font(.subheadline)
                     .bold()
@@ -141,6 +143,7 @@ struct NoMonthWidgetView: View {
         VStack(spacing: 8) {
             Image(systemName: "calendar")
                 .font(.title2)
+                .accessibilityHidden(true)
             Text("No month yet")
                 .font(.headline)
                 .multilineTextAlignment(.center)
@@ -164,6 +167,7 @@ struct AccessoryCircularCategoryRemainingWidgetView: View {
             .gaugeStyle(AccessoryCircularGaugeStyle())
         } else {
             Image(systemName: "xmark")
+                .accessibilityLabel(Text("No month yet"))
         }
     }
 }
