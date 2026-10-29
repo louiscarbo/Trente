@@ -50,7 +50,7 @@ final class NotificationScheduler {
         let preferences = NotificationPreferences.stored()
         let recurringPlanner = RecurringNotificationPlanner(
             isEnabled: preferences.remindsRecurringTransactions,
-            isAutomaticUnlocked: await TrentePlusStatus.shared.currentStatus(),
+            automaticUnlockedUntil: await TrentePlusStatus.shared.currentAutomaticUnlockedUntil(),
             reminderTime: reminderTime
         )
         let newMonthPlanner = NewMonthNotificationPlanner(

@@ -19,6 +19,11 @@ final class TrentePlusStatus {
             if hasActiveSubscription != oldValue { statusDidChange() }
         }
     }
+    @ObservationIgnored private var endDate: Date? {
+        didSet {
+            if endDate != oldValue { statusDidChange() }
+        }
+    }
     @ObservationIgnored private var updateTasks: [Task<Void, Never>] = []
     @ObservationIgnored private var initialRefresh: Task<Void, Never>?
 
@@ -39,6 +44,14 @@ final class TrentePlusStatus {
         #else
         hasActiveSubscription
         #endif
+    }
+
+    var automaticUnlockedUntil: Date {
+        guard isSubscribed else { return .distantPast }
+        #if DEBUG
+        if debugOverride == .subscribed { return .distantFuture }
+        #endif
+        return endDate ?? .distantFuture
     }
 
     func start() {
@@ -65,12 +78,26 @@ final class TrentePlusStatus {
 
     func refresh() async {
         guard let statuses = try? await Product.SubscriptionInfo.status(for: TrentePlus.groupID) else { return }
-        hasActiveSubscription = TrentePlus.isActive(statuses.map(\.state))
+        let activeStatuses = statuses.filter { status in TrentePlus.isActive([status.state]) }
+        hasActiveSubscription = !activeStatuses.isEmpty
+        endDate = TrentePlus.endDate(of: activeStatuses.map(Self.renewal))
     }
 
     func currentStatus() async -> Bool {
         await initialRefresh?.value
         return isSubscribed
+    }
+
+    func currentAutomaticUnlockedUntil() async -> Date {
+        await initialRefresh?.value
+        return automaticUnlockedUntil
+    }
+
+    private static func renewal(of status: Product.SubscriptionInfo.Status) -> (willAutoRenew: Bool, expirationDate: Date?) {
+        guard case .verified(let renewalInfo) = status.renewalInfo,
+              case .verified(let transaction) = status.transaction
+        else { return (true, nil) }
+        return (renewalInfo.willAutoRenew, transaction.expirationDate)
     }
 
     private func statusDidChange() {

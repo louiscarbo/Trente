@@ -18,7 +18,12 @@ enum TrentePlus: Hashable {
             state == .subscribed || state == .inGracePeriod
         }
     }
-    
+
+    static func endDate(of renewals: [(willAutoRenew: Bool, expirationDate: Date?)]) -> Date? {
+        guard !renewals.contains(where: { renewal in renewal.willAutoRenew }) else { return nil }
+        return renewals.compactMap { renewal in renewal.expirationDate }.max()
+    }
+
     init?(_ product: Product) {
         switch product.id {
         case Self.monthly.id:

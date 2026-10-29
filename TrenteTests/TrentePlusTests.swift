@@ -27,6 +27,18 @@ struct TrentePlusTests {
         #expect(TrentePlus.isActive(states) == expected)
     }
 
+    @Test("Trente+ has no end date while any subscription renews, otherwise it ends with the latest one")
+    func endDate() {
+        let april = Date(timeIntervalSinceReferenceDate: 765_000_000)
+        let may = april.addingTimeInterval(30 * 86_400)
+
+        #expect(TrentePlus.endDate(of: []) == nil)
+        #expect(TrentePlus.endDate(of: [(true, april)]) == nil)
+        #expect(TrentePlus.endDate(of: [(false, april)]) == april)
+        #expect(TrentePlus.endDate(of: [(false, april), (false, may)]) == may)
+        #expect(TrentePlus.endDate(of: [(false, april), (true, may)]) == nil)
+    }
+
     #if DEBUG
     @Test(
         "The debug override replaces the App Store status only when one is picked",
