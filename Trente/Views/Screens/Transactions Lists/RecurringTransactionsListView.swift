@@ -56,9 +56,8 @@ struct RecurringTransactionsListView: View {
         .sheet(item: $selectedRule) { rule in
             RecurringTransactionRuleDetailsView(rule: rule, currency: currency)
         }
-        .deleteConfirmation(isPresented: $ruleToDelete.isPresent()) {
-            guard let ruleToDelete else { return }
-            transactionActions.delete(ruleToDelete, in: modelContext)
+        .deleteConfirmation(item: $ruleToDelete) { rule in
+            transactionActions.delete(rule, in: modelContext)
         }
     }
 

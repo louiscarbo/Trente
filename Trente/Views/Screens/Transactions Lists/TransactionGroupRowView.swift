@@ -20,7 +20,7 @@ struct TransactionGroupRowView: View {
         var id: Self { self }
     }
 
-    @State private var showDeleteConfirmation = false
+    @State private var groupToDelete: TransactionGroup?
     @State private var presentedDetails: DetailsMode?
 
     var body: some View {
@@ -35,7 +35,7 @@ struct TransactionGroupRowView: View {
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             Button(role: .destructive) {
-                showDeleteConfirmation = true
+                groupToDelete = transactionGroup
             } label: {
                 Label("Delete", systemImage: "trash")
             }
@@ -51,11 +51,11 @@ struct TransactionGroupRowView: View {
                 presentedDetails = .editing
             }
             Button("Delete", systemImage: "trash", role: .destructive) {
-                showDeleteConfirmation = true
+                groupToDelete = transactionGroup
             }
         }
-        .deleteConfirmation(isPresented: $showDeleteConfirmation) {
-            transactionActions.delete(transactionGroup, in: modelContext)
+        .deleteConfirmation(item: $groupToDelete) { group in
+            transactionActions.delete(group, in: modelContext)
         }
         .sheet(item: $presentedDetails) { mode in
             TransactionGroupDetailsView(
