@@ -27,14 +27,20 @@ struct CreditSection: Identifiable {
                 Credit(
                     id: "piggySavings",
                     title: "“Piggy Savings” by Vectors Market",
-                    detail: "From the Noun Project, licensed under CC BY 3.0. Used for the app icon and the pig sticker.",
-                    url: ExternalLinks.ccBy3License
+                    detail: "From Noun Project, licensed under CC BY 3.0. Adapted for the app icon and the pig sticker.",
+                    url: ExternalLinks.piggySavingsIcon
                 ),
                 Credit(
-                    id: "rocket",
-                    title: "Rocket sticker",
-                    detail: "Author to be confirmed.",
-                    url: nil
+                    id: "financialStartup",
+                    title: "“Financial Startup” by Vectors Market",
+                    detail: "From Noun Project, licensed under CC BY 3.0. Used for the rocket sticker.",
+                    url: ExternalLinks.financialStartupIcon
+                ),
+                Credit(
+                    id: "ccBy3",
+                    title: "Creative Commons Attribution 3.0",
+                    detail: "The license of both illustrations.",
+                    url: ExternalLinks.ccBy3License
                 )
             ]
         ),
