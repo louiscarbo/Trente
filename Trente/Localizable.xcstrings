@@ -111,6 +111,266 @@
         }
       }
     },
+    "Creative Commons Attribution 3.0" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Namensnennung 3.0"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Reconocimiento 3.0"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Atribución 3.0"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Attribution 3.0"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Attribuzione 3.0"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "크리에이티브 커먼즈 저작자표시 3.0"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Atribuição 3.0"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Atribuição 3.0"
+          }
+        }
+      }
+    },
+    "From Noun Project, licensed under CC BY 3.0. Adapted for the app icon and the pig sticker." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von Noun Project, lizenziert unter CC BY 3.0. Angepasst für das App-Symbol und den Schweinchen-Sticker."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De Noun Project, con licencia CC BY 3.0. Adaptada para el icono de la app y la pegatina del cerdito."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De Noun Project, con licencia CC BY 3.0. Adaptada para el ícono de la app y el sticker del cerdito."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Issue de Noun Project, sous licence CC BY 3.0. Adaptée pour l’icône de l’app et l’autocollant du cochon."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Da Noun Project, con licenza CC BY 3.0. Adattata per l’icona dell’app e l’adesivo del maialino."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noun Project 제공, CC BY 3.0 라이선스. 앱 아이콘과 돼지 스티커에 맞게 수정해 사용했어요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do Noun Project, sob licença CC BY 3.0. Adaptada para o ícone do app e o adesivo do porquinho."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do Noun Project, com licença CC BY 3.0. Adaptada para o ícone da app e o autocolante do porquinho."
+          }
+        }
+      }
+    },
+    "From Noun Project, licensed under CC BY 3.0. Used for the rocket sticker." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von Noun Project, lizenziert unter CC BY 3.0. Verwendet für den Raketen-Sticker."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De Noun Project, con licencia CC BY 3.0. Se usa para la pegatina del cohete."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De Noun Project, con licencia CC BY 3.0. Se usa para el sticker del cohete."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Issue de Noun Project, sous licence CC BY 3.0. Utilisée pour l’autocollant de la fusée."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Da Noun Project, con licenza CC BY 3.0. Usata per l’adesivo del razzo."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noun Project 제공, CC BY 3.0 라이선스. 로켓 스티커에 사용했어요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do Noun Project, sob licença CC BY 3.0. Usada no adesivo do foguete."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do Noun Project, com licença CC BY 3.0. Usada no autocolante do foguetão."
+          }
+        }
+      }
+    },
+    "The license of both illustrations." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Lizenz beider Illustrationen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La licencia de ambas ilustraciones."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La licencia de ambas ilustraciones."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La licence des deux illustrations."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La licenza di entrambe le illustrazioni."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 일러스트의 라이선스예요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A licença das duas ilustrações."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A licença das duas ilustrações."
+          }
+        }
+      }
+    },
+    "“Financial Startup” by Vectors Market" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„Financial Startup“ von Vectors Market"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Financial Startup” de Vectors Market"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Financial Startup” de Vectors Market"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« Financial Startup » par Vectors Market"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Financial Startup” di Vectors Market"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vectors Market의 “Financial Startup”"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Financial Startup” por Vectors Market"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Financial Startup» por Vectors Market"
+          }
+        }
+      }
+    },
     "“Piggy Savings” by Vectors Market" : {
       "localizations" : {
         "de" : {
@@ -2730,58 +2990,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anexe recibos, fotografias e notas a qualquer transação."
-          }
-        }
-      }
-    },
-    "Author to be confirmed." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autor noch nicht bestätigt."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autor por confirmar."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autor por confirmar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auteur à confirmer."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autore da confermare."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "작가 확인 중."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autor a confirmar."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autor a confirmar."
           }
         }
       }
@@ -6223,58 +6431,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De"
-          }
-        }
-      }
-    },
-    "From the Noun Project, licensed under CC BY 3.0. Used for the app icon and the pig sticker." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Von The Noun Project, lizenziert unter CC BY 3.0. Verwendet für das App-Symbol und den Schweinchen-Sticker."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "De The Noun Project, con licencia CC BY 3.0. Se usa para el icono de la app y la pegatina del cerdito."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "De The Noun Project, con licencia CC BY 3.0. Se usa para el ícono de la app y el sticker del cerdito."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Issue de The Noun Project, sous licence CC BY 3.0. Utilisée pour l’icône de l’app et l’autocollant du cochon."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Da The Noun Project, con licenza CC BY 3.0. Usata per l’icona dell’app e l’adesivo del maialino."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The Noun Project 제공, CC BY 3.0 라이선스. 앱 아이콘과 돼지 스티커에 사용했어요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do The Noun Project, sob licença CC BY 3.0. Usada no ícone do app e no adesivo do porquinho."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do The Noun Project, com licença CC BY 3.0. Usada no ícone da app e no autocolante do porquinho."
           }
         }
       }
@@ -12134,58 +12290,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tentar novamente"
-          }
-        }
-      }
-    },
-    "Rocket sticker" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Raketen-Sticker"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pegatina del cohete"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pegatina del cohete"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autocollant fusée"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adesivo razzo"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "로켓 스티커"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adesivo de foguete"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autocolante de foguetão"
           }
         }
       }
