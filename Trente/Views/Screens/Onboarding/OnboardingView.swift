@@ -39,11 +39,7 @@ struct OnboardingView: View {
         .sheet(isPresented: $isShowingPaywall, onDismiss: onFinish) {
             SubscriptionView()
         }
-        .alert(
-            "We couldn't save your month",
-            isPresented: $saveErrorMessage.isPresent(),
-            presenting: saveErrorMessage
-        ) { _ in
+        .alert("We couldn't save your month", item: $saveErrorMessage) { _ in
             Button("Retry", action: saveMonthAndContinue)
             Button("Cancel", role: .cancel) {}
         } message: { message in

@@ -43,4 +43,21 @@ extension View {
             Text(message)
         }
     }
+
+    func deleteConfirmation<Item>(
+        item: Binding<Item?>,
+        message: String = String(localized: "This action cannot be undone."),
+        onDelete: @escaping (Item) -> Void
+    ) -> some View {
+        confirmationDialog(
+            String(localized: "Are you sure?"),
+            item: item,
+            titleVisibility: .visible
+        ) { presentedItem in
+            Button(String(localized: "Delete"), role: .destructive) { onDelete(presentedItem) }
+            Button(String(localized: "Cancel"), role: .cancel) {}
+        } message: { _ in
+            Text(message)
+        }
+    }
 }
