@@ -155,6 +155,69 @@ struct OnboardingModelTests {
         #expect(budgets.sorted() == [2000_00, 3000_00])
     }
 
+    @Test("Adding the income logs this month's income and repeats it from next month, not automatically")
+    func addingIncome() throws {
+        let context = try makeContext()
+        let today = try #require(Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 29, hour: 14)))
+        let model = OnboardingModel(steps: OnboardingStep.allCases, startDate: today)
+        model.budgetCents = 2000_00
+        try model.saveMonth(in: context)
+
+        try model.addIncome(in: context, now: today)
+
+        let month = try #require(model.savedMonth)
+        let income = try #require(month.transactionGroups.first)
+        let rule = try #require(income.recurringRule)
+        #expect(month.transactionGroups.count == 1)
+        #expect(income.type == .income)
+        #expect(income.addedDate == Calendar.current.startOfDay(for: today))
+        #expect(month.remainingAmount == 2000)
+        #expect(rule.frequency == .monthly)
+        #expect(!rule.autoConfirm)
+        #expect(rule.repartition == OnboardingModel.suggestedRepartition(for: 2000_00))
+        #expect(rule.startDate == month.dateInterval.end)
+        #expect(rule.pendingOccurrences(in: month).isEmpty)
+    }
+
+    @Test("The income is added once")
+    func addingIncomeTwiceAddsItOnce() throws {
+        let context = try makeContext()
+        let model = OnboardingModel(steps: OnboardingStep.allCases)
+        model.budgetCents = 2000_00
+        try model.saveMonth(in: context)
+
+        try model.addIncome(in: context)
+        try model.addIncome(in: context)
+
+        #expect(try context.fetchCount(FetchDescriptor<RecurringTransactionRule>()) == 1)
+        #expect(try context.fetchCount(FetchDescriptor<TransactionGroup>()) == 1)
+    }
+
+    @Test(
+        "The income repeats from the first month start that isn't in the past",
+        arguments: [
+            ((2026, 10, 29), (2026, 10, 29), (2026, 11, 29)),
+            ((2026, 10, 1), (2026, 10, 29), (2026, 11, 1)),
+            ((2026, 8, 15), (2026, 10, 29), (2026, 11, 15)),
+            ((2026, 9, 29), (2026, 10, 29), (2026, 10, 29)),
+            ((2026, 11, 5), (2026, 10, 29), (2026, 12, 5)),
+            ((2027, 1, 31), (2027, 1, 31), (2027, 2, 28))
+        ]
+    )
+    func incomeStartDate(monthStart: (Int, Int, Int), today: (Int, Int, Int), expected: (Int, Int, Int)) throws {
+        let calendar = Calendar.current
+        func date(_ components: (Int, Int, Int)) throws -> Date {
+            try #require(calendar.date(from: DateComponents(year: components.0, month: components.1, day: components.2)))
+        }
+
+        let startDate = OnboardingModel.incomeStartDate(
+            afterMonthStartingOn: try date(monthStart),
+            today: try date(today)
+        )
+
+        #expect(startDate == (try date(expected)))
+    }
+
     @Test(
         "The gate shows onboarding only without a completed flag and without months, unless forced",
         arguments: [
