@@ -99,31 +99,20 @@ final class OnboardingModel {
         let repartition = month.idealRepartition.filter { $0.value > 0 }
         guard !repartition.isEmpty else { return }
 
-        let title = String(localized: "Income")
         let monthStartDate = month.dateInterval.start
         let rule = RecurringTransactionRule(
-            title: title,
+            title: String(localized: "Income"),
             frequency: .monthly,
             startDate: Self.incomeStartDate(afterMonthStartingOn: monthStartDate, today: now),
             repartition: repartition,
             createdAt: now
         )
         context.insert(rule)
-
-        let income = TransactionGroup(
-            title: title,
-            type: .income,
-            month: month,
-            note: nil,
-            imageAttachmentData: nil,
+        RecurringTransactionService.shared.insertTransaction(
+            for: RecurringTransactionOccurrence(rule: rule, date: monthStartDate, month: month),
+            in: context,
             addedDate: monthStartDate
         )
-        income.recurringRule = rule
-        income.recurringOccurrenceDate = monthStartDate
-        context.insert(income)
-        for (category, amountCents) in repartition {
-            context.insert(TransactionEntry(amountCents: amountCents, category: category, group: income))
-        }
         do {
             try context.save()
         } catch {

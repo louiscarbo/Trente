@@ -64,7 +64,7 @@ final class RecurringTransactionService: Sendable {
     }
 
     @discardableResult
-    private func insertTransaction(
+    func insertTransaction(
         for occurrence: RecurringTransactionOccurrence,
         in context: ModelContext,
         addedDate: Date

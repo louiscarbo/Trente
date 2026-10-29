@@ -48,7 +48,7 @@ struct OnboardingView: View {
         }
         .alert("We couldn't add your income", item: $incomeErrorMessage) { _ in
             Button("Retry", action: startTracking)
-            Button("Cancel", role: .cancel) {}
+            Button("Cancel", role: .cancel) { isShowingPaywall = true }
         } message: { message in
             Text(message)
         }
