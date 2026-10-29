@@ -20,6 +20,7 @@ struct SettingsView: View {
     #if os(iOS)
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingManageSubscriptions = false
+    @State private var appIcon = AppIconSwitcher.current
     #endif
 
     var body: some View {
@@ -32,6 +33,11 @@ struct SettingsView: View {
                     onDiscover: { isShowingPaywall = true },
                     onManage: manageSubscription
                 )
+                #if os(iOS)
+                if AppIconSwitcher.isAvailable {
+                    AppIconSection(selection: $appIcon)
+                }
+                #endif
                 NotificationsSection(
                     status: notificationPermission.status,
                     remindsRecurringTransactions: $remindsRecurringTransactions,
@@ -76,6 +82,9 @@ struct SettingsView: View {
             ReminderTime(date: time).store()
         }
         #if os(iOS)
+        .onChange(of: appIcon) { _, icon in
+            applyAppIcon(icon)
+        }
         .manageSubscriptionsSheet(
             isPresented: $isShowingManageSubscriptions,
             subscriptionGroupID: TrentePlus.groupID
@@ -107,6 +116,16 @@ struct SettingsView: View {
     #if os(iOS)
     private func openShortcut() {
         openURL(ExternalLinks.logWalletTransactionShortcut)
+    }
+
+    private func applyAppIcon(_ icon: AppIcon) {
+        Task {
+            do {
+                try await AppIconSwitcher.apply(icon)
+            } catch {
+                appIcon = AppIconSwitcher.current
+            }
+        }
     }
     #endif
 }
