@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BudgetCategory: String, Codable, CaseIterable, Identifiable {
+enum BudgetCategory: String, Codable, CaseIterable, Identifiable, Sendable {
     var id: String { self.rawValue }
     case needs
     case wants

@@ -121,6 +121,7 @@
 			membershipExceptions = (
 				Localizable.xcstrings,
 				Model/BudgetCategory.swift,
+				"Model/BudgetCategory+AppEnum.swift",
 				Model/BudgetFigures.swift,
 				Model/Currency.swift,
 				Model/Month.swift,

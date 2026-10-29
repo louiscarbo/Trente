@@ -10,7 +10,7 @@ import AppIntents
 struct SelectCategoryIntent: WidgetConfigurationIntent {
     static let title: LocalizedStringResource = "Select Category"
     static let description = IntentDescription("Select a category for the widget.")
-    
+
     @Parameter(title: "Category")
     var category: WidgetBudgetCategory?
 }
@@ -18,33 +18,28 @@ struct SelectCategoryIntent: WidgetConfigurationIntent {
 struct WidgetBudgetCategory: AppEntity {
     var budgetCategory: BudgetCategory
     var id: String { budgetCategory.rawValue }
-    
+
     static let typeDisplayRepresentation: TypeDisplayRepresentation = "Budget Category"
     static let defaultQuery = WidgetBudgetCategoryQuery()
-    
+
     var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(budgetCategory.name)")
+        BudgetCategory.caseDisplayRepresentations[budgetCategory] ?? DisplayRepresentation(title: "\(budgetCategory.name)")
     }
-    
-    static let allCategories: [WidgetBudgetCategory] = {
-        let categories = BudgetCategory.allCases
-        return categories.map { WidgetBudgetCategory(budgetCategory: $0) }
-    }()
-    
-    static let needs: WidgetBudgetCategory = {
-        WidgetBudgetCategory(budgetCategory: BudgetCategory.needs)
-    }()
+
+    static let allCategories = BudgetCategory.allCases.map(WidgetBudgetCategory.init)
+
+    static let needs = WidgetBudgetCategory(budgetCategory: .needs)
 }
 
 struct WidgetBudgetCategoryQuery: EntityQuery {
     func entities(for identifiers: [WidgetBudgetCategory.ID]) async throws -> [WidgetBudgetCategory] {
         WidgetBudgetCategory.allCategories.filter { identifiers.contains($0.id) }
     }
-    
+
     func defaultResult() async -> DefaultValue? {
         return WidgetBudgetCategory.allCategories.first
     }
-    
+
     func suggestedEntities() async throws -> some ResultsCollection {
         return WidgetBudgetCategory.allCategories
     }
