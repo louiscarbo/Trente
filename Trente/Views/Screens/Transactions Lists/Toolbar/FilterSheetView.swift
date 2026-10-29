@@ -14,6 +14,8 @@ struct FilterSheetView: View {
     @Binding var firstDay: Date
     @Binding var lastDay: Date
     @Binding var selectedCategories: Set<BudgetCategory>
+    let canReset: Bool
+    let onReset: () -> Void
     
     var body: some View {
         NavigationStack {
@@ -22,6 +24,10 @@ struct FilterSheetView: View {
                 categoriesSection
             }
             .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Reset", action: onReset)
+                        .disabled(!canReset)
+                }
                 ConfirmToolbarItem { dismiss() }
             }
             .navigationTitle("Filter")
@@ -56,4 +62,21 @@ struct FilterSheetView: View {
             }
         }
     }
+}
+
+#Preview {
+    @Previewable @State var firstDay = Calendar.current.date(byAdding: .day, value: -30, to: .now)!
+    @Previewable @State var lastDay = Date.now
+    @Previewable @State var selectedCategories: Set<BudgetCategory> = [.wants]
+
+    let monthStart = Calendar.current.date(byAdding: .day, value: -30, to: .now)!
+
+    FilterSheetView(
+        dateLimits: monthStart...Date.now,
+        firstDay: $firstDay,
+        lastDay: $lastDay,
+        selectedCategories: $selectedCategories,
+        canReset: !selectedCategories.isEmpty,
+        onReset: { selectedCategories = [] }
+    )
 }

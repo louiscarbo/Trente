@@ -42,6 +42,7 @@ struct TransactionListView: View {
     
     var body: some View {
         let items = filter.apply(to: allItems)
+        let showsNoMatches = items.isEmpty && filter.isActive(for: month)
 
         VStack {
             List {
@@ -53,18 +54,27 @@ struct TransactionListView: View {
                     }
                 }
                 
-                Section {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Total")
-                                .font(.headline)
-                            Text("Sum of displayed transactions")
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
+                if !showsNoMatches {
+                    Section {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Total")
+                                    .font(.headline)
+                                Text("Sum of displayed transactions")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Text(Double(filter.totalCents(of: items)) / 100, format: .amount(month.currency.isoCode))
+                                .font(.title)
                         }
-                        Spacer()
-                        Text(Double(filter.totalCents(of: items)) / 100, format: .amount(month.currency.isoCode))
-                            .font(.title)
+                    }
+                }
+            }
+            .overlay {
+                if showsNoMatches {
+                    NoMatches {
+                        filter.reset(for: month)
                     }
                 }
             }
@@ -88,8 +98,11 @@ struct TransactionListView: View {
                             dateLimits: filterDateLimits,
                             firstDay: $filter.firstDay,
                             lastDay: $filter.lastDay,
-                            selectedCategories: $filter.categories
-                        )
+                            selectedCategories: $filter.categories,
+                            canReset: filter.isActive(for: month)
+                        ) {
+                            filter.reset(for: month)
+                        }
                         .presentationDetents([.medium, .large])
                     }
                 }
