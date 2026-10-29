@@ -120,6 +120,27 @@ struct TransactionListFilterTests {
         #expect(categoryFilter.isActive(for: month))
     }
 
+    @Test("Resetting clears dates and categories but keeps search and sort")
+    func resetClearsOnlyFilters() throws {
+        let context = try makeContext()
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        var filter = TransactionListFilter(month: month)
+        filter.firstDay = date(10, 5)
+        filter.lastDay = date(10, 12)
+        filter.categories = [.needs, .wants]
+        filter.searchText = "rent"
+        filter.sort = .amountAsc
+
+        filter.reset(for: month)
+
+        #expect(!filter.isActive(for: month))
+        #expect(filter.firstDay == month.startDate)
+        #expect(filter.lastDay == month.endDate())
+        #expect(filter.categories.isEmpty)
+        #expect(filter.searchText == "rent")
+        #expect(filter.sort == .amountAsc)
+    }
+
     @Test("The total adds up only the transactions shown")
     func totalOfShownTransactions() throws {
         let context = try makeContext()

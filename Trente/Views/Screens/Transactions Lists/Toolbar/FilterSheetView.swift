@@ -14,6 +14,8 @@ struct FilterSheetView: View {
     @Binding var firstDay: Date
     @Binding var lastDay: Date
     @Binding var selectedCategories: Set<BudgetCategory>
+    let canReset: Bool
+    let onReset: () -> Void
     
     var body: some View {
         NavigationStack {
@@ -22,6 +24,10 @@ struct FilterSheetView: View {
                 categoriesSection
             }
             .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Reset", action: onReset)
+                        .disabled(!canReset)
+                }
                 ConfirmToolbarItem { dismiss() }
             }
             .navigationTitle("Filter")
