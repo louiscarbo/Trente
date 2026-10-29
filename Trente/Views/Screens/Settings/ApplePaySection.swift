@@ -12,13 +12,10 @@ struct ApplePaySection: View {
 
     var body: some View {
         Section {
-            Button(action: onGetShortcut) {
-                ExternalLinkLabel(title: "Get the Shortcut", systemImage: "square.and.arrow.down")
-            }
             NavigationLink {
                 ApplePaySetupView(onGetShortcut: onGetShortcut)
             } label: {
-                Label("How to Set It Up", systemImage: "list.number")
+                Label("Connect Trente to Apple Pay", systemImage: "creditcard")
             }
         } header: {
             Text("Apple Pay")

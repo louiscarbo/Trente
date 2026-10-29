@@ -8,7 +8,7 @@
 import AppIntents
 
 struct LogWalletTransactionIntent: AppIntent {
-    static let title: LocalizedStringResource = "Log Wallet Transaction"
+    static let title: LocalizedStringResource = "Trente & Apple Pay"
     static let description = IntentDescription(
         "Prepares an expense from an Apple Pay payment so you can review it in Trente."
     )
