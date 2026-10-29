@@ -1,0 +1,32 @@
+//
+//  PendingTransaction.swift
+//  Trente
+//
+//  Created by Louis Carbo Estaque on 07/10/2026.
+//
+
+import Foundation
+import SwiftData
+
+extension SchemaV1 {
+    @Model
+    class PendingTransaction: Identifiable {
+        #Index<PendingTransaction>([\.id])
+
+        var id: UUID = UUID()
+        var date: Date = Date.now
+        var amountCents: Int = 0
+        var title: String = ""
+
+        init(
+            date: Date,
+            amountCents: Int,
+            title: String
+        ) {
+            self.id = UUID()
+            self.date = date
+            self.amountCents = amountCents
+            self.title = title
+        }
+    }
+}

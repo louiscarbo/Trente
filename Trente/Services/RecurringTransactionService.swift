@@ -8,52 +8,103 @@
 import Foundation
 import SwiftData
 
-final class RecurringTransactionService {
+final class RecurringTransactionService: Sendable {
     static let shared = RecurringTransactionService()
     private init() {}
 
-    /// Fetches all rules whose window overlaps the given month,
-    /// asks each rule to build its instances, then persists them all in one save.
-    func generateInstances(for month: Month, in context: ModelContext) throws {
-        // Compute month bounds
-        let startOfMonth = month.startDate
-        let endOfMonth   = month.endDate()
-        
-        // Treat nil endDate as Date.distantFuture so ($0.endDate ?? farFuture) >= startOfMonth
-        let farFuture = Date.distantFuture
+    func pendingOccurrences(of rules: [RecurringTransactionRule], in month: Month) -> [RecurringTransactionOccurrence] {
+        rules
+            .flatMap { $0.pendingOccurrences(in: month) }
+            .sorted { $0.date < $1.date }
+    }
 
-        // Predicate: rule.startDate ≤ endOfMonth AND (rule.endDate is nil ⇒ farFuture) ≥ startOfMonth
-        let predicate = #Predicate<RecurringTransactionRule> {
-            $0.startDate <= endOfMonth &&
-            ($0.endDate ?? farFuture) >= startOfMonth
-        }
-
-        // Fetch all relevant rules
-        let fetchDesc = FetchDescriptor<RecurringTransactionRule>(
-            predicate: predicate
-        )
-        let rules = try context.fetch(fetchDesc)
-
-        // Generate instances
-        var newInstances: [RecurringTransactionInstance] = []
-        for rule in rules {
-            let instances = rule.createRecurringInstances(for: month)
-            newInstances.append(contentsOf: instances)
-        }
-
-        // Persist them all at once
-        newInstances.forEach { context.insert($0) }
+    func confirm(
+        _ occurrence: RecurringTransactionOccurrence,
+        in context: ModelContext,
+        addedDate: Date = .now
+    ) throws {
+        guard insertTransaction(for: occurrence, in: context, addedDate: addedDate) else { return }
         try context.save()
     }
-    
-    func fetchRecurringTransactionsCount(from model: ModelContext) -> Int {
-        let descriptor = FetchDescriptor<RecurringTransactionInstance>()
-        do {
-            let groupsCount = try model.fetchCount(descriptor)
-            return groupsCount
-        } catch {
-            print("⚠️ fetchTransactionsCount failed:", error)
-            return 0
+
+    @discardableResult
+    func confirmDueOccurrences(
+        in context: ModelContext,
+        now: Date = .now,
+        isAutomaticUnlocked: Bool
+    ) throws -> Int {
+        let rules = try context.fetch(
+            FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true })
+        )
+        guard let earliestCheckpoint = rules.map({ $0.lastAutoConfirmedDate ?? $0.startDate }).min() else { return 0 }
+
+        let firstMonthStart = Calendar.current.date(byAdding: .month, value: -1, to: earliestCheckpoint) ?? earliestCheckpoint
+        let months = try context.fetch(
+            FetchDescriptor<Month>(predicate: #Predicate { $0.startDate >= firstMonthStart && $0.startDate <= now })
+        )
+        let dueOccurrences = months.flatMap { month in
+            rules.flatMap { $0.dueAutomaticOccurrences(in: month, by: now) }
         }
+        guard !dueOccurrences.isEmpty else { return 0 }
+
+        for occurrence in dueOccurrences {
+            let rule = occurrence.rule
+            rule.lastAutoConfirmedDate = max(rule.lastAutoConfirmedDate ?? .distantPast, occurrence.date)
+            if isAutomaticUnlocked {
+                insertTransaction(for: occurrence, in: context, addedDate: occurrence.date)
+            }
+        }
+        do {
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
+        return isAutomaticUnlocked ? dueOccurrences.count : 0
+    }
+
+    @discardableResult
+    func insertTransaction(
+        for occurrence: RecurringTransactionOccurrence,
+        in context: ModelContext,
+        addedDate: Date
+    ) -> Bool {
+        let rule = occurrence.rule
+        guard !rule.isSettled(on: occurrence.date) else { return false }
+
+        let group = TransactionGroup(
+            title: rule.title,
+            type: occurrence.amountCents < 0 ? .expense : .income,
+            month: occurrence.month,
+            note: nil,
+            imageAttachmentData: nil,
+            addedDate: addedDate
+        )
+        context.insert(group)
+        group.recurringRule = rule
+        group.recurringOccurrenceDate = occurrence.date
+
+        let entries = BudgetCategory.allCases.compactMap { category -> TransactionEntry? in
+            guard let amount = rule.repartition[category], amount != 0 else { return nil }
+            return TransactionEntry(amountCents: amount, category: category, group: group)
+        }
+        entries.forEach { context.insert($0) }
+        return true
+    }
+
+    func skip(_ occurrence: RecurringTransactionOccurrence, in context: ModelContext) throws {
+        let rule = occurrence.rule
+        guard !rule.isSkipped(on: occurrence.date) else { return }
+        rule.skippedOccurrenceDates.append(occurrence.date)
+        try context.save()
+    }
+
+    func stop(_ rule: RecurringTransactionRule, in context: ModelContext) throws {
+        rule.endDate = Calendar.current.startOfDay(for: .now)
+        try context.save()
+    }
+
+    func delete(rule: RecurringTransactionRule, in context: ModelContext) {
+        context.delete(rule)
     }
 }

@@ -1,0 +1,102 @@
+//
+//  RecurrenceView.swift
+//  Trente
+//
+//  Created by Louis Carbo Estaque on 14/07/2025.
+//
+
+import SwiftUI
+
+struct RecurrenceView: View {
+    // Transaction Data
+    @Binding var recurrenceFrequency: RecurrenceFrequency
+    @Binding var recurrenceStartDate: Date
+    @Binding var recurrenceEndDate: Date?
+    
+    // View State
+    private var minimumEndDate: Date {
+        Calendar.current.date(byAdding: .day, value: 7, to: recurrenceStartDate) ?? recurrenceStartDate
+    }
+    
+    var body: some View {
+        ScrollView {
+            GroupBox(label: Label("Recurrence Details", systemImage: "calendar")) {
+                VStack(spacing: .medium) {
+                    frequencyPicker
+                    startDatePicker
+                    endDatePicker
+                }
+            }
+            .groupBoxStyle(TrenteGroupBoxStyle())
+            .padding()
+        }
+    }
+    
+    private var frequencyPicker: some View {
+        LabeledPicker(
+            title: "Frequency",
+            selection: $recurrenceFrequency,
+            options: RecurrenceFrequency.allCases
+        ) { frequency in
+            Text(frequency.displayName)
+        }
+    }
+    
+    private var startDatePicker: some View {
+        DatePicker(
+            "Start Date",
+            selection: $recurrenceStartDate,
+            in: Calendar.current.startOfDay(for: .now)...,
+            displayedComponents: .date
+        )
+        .datePickerStyle(.compact)
+    }
+
+    @ViewBuilder
+    private var endDatePicker: some View {
+        if let endDate = Binding($recurrenceEndDate) {
+            HStack {
+                DatePicker(
+                    "End Date",
+                    selection: endDate,
+                    in: minimumEndDate...,
+                    displayedComponents: .date
+                )
+                
+                Button("Remove End Date", systemImage: "xmark.circle.fill") {
+                    withAnimation(.bouncy) {
+                        recurrenceEndDate = nil
+                    }
+                }
+                .labelStyle(.iconOnly)
+                .tint(.primary)
+            }
+        } else {
+            Button("Add an End Date") {
+                withAnimation(.bouncy) {
+                    recurrenceEndDate = recurrenceStartDate
+                }
+            }
+            .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
+        }
+    }
+}
+
+#Preview {
+    @Previewable @State var recurrenceFrequency: RecurrenceFrequency = .monthly
+    @Previewable @State var recurrenceStartDate: Date = .now
+    @Previewable @State var recurrenceEndDate: Date?
+    
+    Text("Hello")
+        .sheet(isPresented: .constant(true)) {
+            NavigationStack {
+                RecurrenceView(
+                    recurrenceFrequency: $recurrenceFrequency,
+                    recurrenceStartDate: $recurrenceStartDate,
+                    recurrenceEndDate: $recurrenceEndDate
+                )
+                .navigationTitle("New Transaction")
+                .inlineNavigationBarTitleDisplayMode()
+            }
+        }
+}

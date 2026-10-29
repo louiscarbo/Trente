@@ -8,39 +8,26 @@
 import Foundation
 import SwiftData
 
-@Model
-class TransactionEntry {
-    var amountCents: Int
-    var category: BudgetCategory
+extension SchemaV1 {
+    @Model
+    class TransactionEntry {
+        var amountCents: Int = 0
+        var category: BudgetCategory = BudgetCategory.needs
 
-    @Relationship var group: TransactionGroup
+        @Relationship var group: TransactionGroup?
 
-    init(amountCents: Int, category: BudgetCategory, group: TransactionGroup) {
-        self.amountCents = amountCents
-        self.category = category
-        self.group = group
+        init(amountCents: Int, category: BudgetCategory, group: TransactionGroup) {
+            self.amountCents = amountCents
+            self.category = category
+            self.group = group
+        }
     }
 }
 
+// MARK: Computed Properties
 extension TransactionEntry {
     /// The amount, not in cents. Can be negative or positive.
     var amount: Double {
         Double(amountCents) / 100.0
-    }
-
-    /// Returns a localized string that displays the amount correctly, not in cents.
-    var displayAmount: String {
-        amount.formatted(.currency(code: group.month.currency.isoCode))
-    }
-}
-
-extension TransactionEntry {
-    func detachedCopy() -> TransactionEntry {
-        let copy = TransactionEntry(
-            amountCents: amountCents,
-            category: category,
-            group: group
-        )
-        return copy
     }
 }

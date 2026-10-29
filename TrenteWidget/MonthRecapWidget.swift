@@ -7,7 +7,6 @@
 
 import WidgetKit
 import SwiftUI
-import SwiftData
 
 struct MonthRecapWidget: Widget {
     let kind: String = "MonthRecapWidget"
@@ -21,7 +20,15 @@ struct MonthRecapWidget: Widget {
                 }
         }
         .configurationDisplayName(String(localized: "Month Recap"))
-        .description(String(localized: "See your remaining budget for the current month, as well as your spending on larger widgets. Quickly see how you're doing, and easily log new transactions.\n\nSee examples below."))
+        .description(
+            String(localized: """
+            See your remaining budget for the current month, as well as your spending on larger widgets.
+            Quickly see how you're doing, and easily log new transactions.
+
+            See examples below.
+            """
+            )
+        )
         #if os(iOS)
         .supportedFamilies([.systemMedium, .systemLarge, .systemSmall, .accessoryCircular, .accessoryInline, .accessoryRectangular])
         #elseif os(macOS)
@@ -54,14 +61,15 @@ struct MonthRecapWidgetView: View {
     }
 }
 
-struct HomescreenMonthRecapWidgetView : View {
+struct HomescreenMonthRecapWidgetView: View {
     var entry: Provider.Entry
+    private var spacing: CGFloat { family == .systemMedium ? 6 : 12 }
     
     @Environment(\.widgetFamily) var family
 
     var body: some View {
         if let currentMonth = entry.month {
-            VStack(spacing: family == .systemMedium ? 6 : 12) {
+            VStack(spacing: spacing) {
                 HStack {
                     Text(currentMonth.name)
                         .font(.headline)
@@ -78,9 +86,9 @@ struct HomescreenMonthRecapWidgetView : View {
                     VStack(alignment: .leading) {
                         Text("Remaining")
                             .font(.subheadline)
-                        Text(currentMonth.remainingAmountDisplay)
+                        Text(currentMonth.displayWithSmallCents(currentMonth.overall.remaining))
                             .font(.title)
-                            .foregroundStyle(currentMonth.overSpent ? .red : .green)
+                            .foregroundStyle(currentMonth.overall.isOverspent ? .red : .green)
                             .privacySensitive()
                     }
                     
@@ -90,7 +98,7 @@ struct HomescreenMonthRecapWidgetView : View {
                         VStack(alignment: .trailing) {
                             Text("Spent")
                                 .font(.subheadline)
-                            Text(currentMonth.spentAmountDisplay)
+                            Text(currentMonth.display(currentMonth.overall.spent))
                                 .font(.title)
                                 .foregroundStyle(.red)
                                 .privacySensitive()
@@ -100,39 +108,63 @@ struct HomescreenMonthRecapWidgetView : View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(entry.date.formatted(.dateTime.day().month(.wide).year()))
-                            .font(.subheadline)
+                        Text(entry.date.formatted(.dateTime.day().month(.abbreviated)))
+                            .font(.footnote)
                             .foregroundStyle(.secondary)
                         Text(entry.date.formatted(.dateTime.hour().minute()))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
                     
-                    Spacer()
-                    
                     if family != .systemSmall {
                         Link(destination: URL(string: "trente://newtransaction/" + currentMonth.id.uuidString)!) {
-                            Button { } label: {
-                                Label("New Transaction", systemImage: "plus")
-                                    .foregroundStyle(.primary)
-                                    .font(.subheadline)
-                                    .padding(.horizontal)
-                            }
-                            .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
-                            .scaledToFit()
-                            .padding(.leading)
-                            .padding(.trailing, -3)
+                            Label("New Transaction", systemImage: "plus")
+                                .font(.subheadline)
+                                .padding(.horizontal)
+                                .trentePrimaryCapsule(narrow: true, solidFill: true)
                         }
-                    } else {
-                        Spacer()
+                        .padding(.leading)
+                        .padding(.trailing, -3)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }
                 
                 if family == .systemLarge {
                     Divider()
-                    ForEach(currentMonth.latestTransactions.prefix(3)) { transactionGroup in
-                        TransactionGroupRowView(transactionGroup: transactionGroup)
-                            .privacySensitive()
+                    ViewThatFits(in: .vertical) {
+                        VStack(spacing: spacing) {
+                            ForEach(currentMonth.latestTransactions.prefix(3)) { transaction in
+                                TransactionGroupRowContent(
+                                    title: transaction.title,
+                                    categories: transaction.categories,
+                                    amount: transaction.amount,
+                                    currencyCode: currentMonth.currencyCode
+                                )
+                                    .privacySensitive()
+                            }
+                        }
+                        VStack(spacing: spacing) {
+                            ForEach(currentMonth.latestTransactions.prefix(2)) { transaction in
+                                TransactionGroupRowContent(
+                                    title: transaction.title,
+                                    categories: transaction.categories,
+                                    amount: transaction.amount,
+                                    currencyCode: currentMonth.currencyCode
+                                )
+                                    .privacySensitive()
+                            }
+                        }
+                        VStack(spacing: spacing) {
+                            ForEach(currentMonth.latestTransactions.prefix(1)) { transaction in
+                                TransactionGroupRowContent(
+                                    title: transaction.title,
+                                    categories: transaction.categories,
+                                    amount: transaction.amount,
+                                    currencyCode: currentMonth.currencyCode
+                                )
+                                    .privacySensitive()
+                            }
+                        }
                     }
                     
                     if currentMonth.latestTransactions.isEmpty {
@@ -146,9 +178,17 @@ struct HomescreenMonthRecapWidgetView : View {
                     }
                 }
             }
+            .widgetURL(URL(string: "trente://month/" + currentMonth.id.uuidString))
         } else {
             if family == .systemLarge {
-                ContentUnavailableView("No month yet", systemImage: "calendar", description: Text("You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!"))
+                ContentUnavailableView(
+                    "No month yet",
+                    systemImage: "calendar",
+                    description:
+                        Text("""
+                            You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!
+                        """)
+                )
             } else {
                 Text("Start tracking your budget with Trente by opening the app!")
                     .multilineTextAlignment(.center)
@@ -162,13 +202,14 @@ struct AccessoryCircularMonthRecapWidgetView: View {
     
     var body: some View {
         if let currentMonth = entry.month {
-            Gauge(value: currentMonth.remainingAmount, in: 0...currentMonth.incomeAmount) {
-                Text(currentMonth.remainingAmountDisplay)
+            Gauge(value: currentMonth.overall.remaining, in: 0...currentMonth.overall.income) {
+                Text(currentMonth.display(currentMonth.overall.remaining))
                     .privacySensitive()
             }
             .gaugeStyle(AccessoryCircularGaugeStyle())
         } else {
             Image(systemName: "xmark")
+                .accessibilityLabel(Text("No month yet"))
         }
     }
 }
@@ -178,12 +219,14 @@ struct AccessoryInlineMonthRecapWidgetView: View {
     
     var body: some View {
         if let currentMonth = entry.month {
-            Text("- \(currentMonth.remainingAmountDisplay) Remaining")
+            Text("- \(currentMonth.display(currentMonth.overall.remaining)) Remaining")
                 .privacySensitive()
                 .font(.headline)
-                .foregroundStyle(currentMonth.overSpent ? .red : .green)
+                .foregroundStyle(currentMonth.overall.isOverspent ? .red : .green)
+                .accessibilityLabel(Text("\(currentMonth.display(currentMonth.overall.remaining)) Remaining"))
         } else {
             Image(systemName: "xmark")
+                .accessibilityLabel(Text("No month yet"))
         }
     }
 }
@@ -194,9 +237,9 @@ struct AccessoryRectangularMonthRecapWidgetView: View {
     var body: some View {
         if let currentMonth = entry.month {
             VStack {
-                Text("\(currentMonth.remainingAmountDisplay) Remaining")
+                Text("\(currentMonth.display(currentMonth.overall.remaining)) Remaining")
                     .privacySensitive()
-                Gauge(value: currentMonth.remainingAmount, in: 0...currentMonth.incomeAmount) {
+                Gauge(value: currentMonth.overall.remaining, in: 0...currentMonth.overall.income) {
                 }
                 .gaugeStyle(AccessoryLinearGaugeStyle())
             }
@@ -206,40 +249,35 @@ struct AccessoryRectangularMonthRecapWidgetView: View {
     }
 }
 
-struct Provider: @preconcurrency TimelineProvider {
-    @MainActor
+struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> MonthRecapEntry {
-        MonthRecapEntry(date: Date(), month: Month.getSampleMonthWithTransactions())
+        MonthRecapEntry(date: .now, month: .sample)
     }
 
-    @MainActor
-    func getSnapshot(in context: Context, completion: @escaping (MonthRecapEntry) -> ()) {
-        let entry = MonthRecapEntry(date: Date(), month: Month.getSampleMonthWithTransactions())
-        completion(entry)
+    func getSnapshot(in context: Context, completion: @escaping (MonthRecapEntry) -> Void) {
+        if context.isPreview {
+            completion(MonthRecapEntry(date: .now, month: .sample))
+        } else {
+            getTimeline(in: context) { timeline in
+                completion(timeline.entries.first ?? MonthRecapEntry(date: .now, month: nil))
+            }
+        }
     }
 
-    @MainActor
-    func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> ()) {
-        
-        var entries: [MonthRecapEntry] = []
-        // MARK: TODO: Change this in the release version
-        let entry = MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
-        entries.append(entry)
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+    func getTimeline(in context: Context, completion: @escaping (Timeline<MonthRecapEntry>) -> Void) {
+        completion(currentMonthTimeline(makeEntry: MonthRecapEntry.init))
     }
 }
 
 struct MonthRecapEntry: TimelineEntry {
     let date: Date
-    let month: Month?
+    let month: WidgetMonth?
 }
 
 #if os(iOS)
 #Preview(as: .accessoryRectangular) {
     MonthRecapWidget()
 } timeline: {
-    MonthRecapEntry(date: Date(), month: getCurrentMonth(inPreview: true))
+    MonthRecapEntry(date: .now, month: .sample)
 }
 #endif

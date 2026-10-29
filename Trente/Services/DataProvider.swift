@@ -1,5 +1,5 @@
 //
-//  SampleData.swift
+//  DataProvider.swift
 //  Trente
 //
 //  Created by Louis Carbo Estaque on 16/04/2025.
@@ -19,15 +19,12 @@ class DataProvider {
     }
     
     private init() {
-        let schema = Schema([
-            Month.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-        
+        let modelConfiguration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
+
         do {
-            modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            modelContainer = try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: [modelConfiguration])
             
-            insertSampleData()
+            try insertSampleData()
             
             try context.save()
         } catch {
@@ -35,23 +32,23 @@ class DataProvider {
         }
     }
     
-    private func insertSampleData() {
-        for recurringTransactionRule in RecurringTransactionRule.sampleData {
-            context.insert(recurringTransactionRule)
+    private func insertSampleData() throws {
+        let rules = RecurringTransactionRule.sampleData
+        for rule in rules {
+            context.insert(rule)
         }
-        
-        for month in Month.sampleData {
-            do {
-                try RecurringTransactionService.shared.generateInstances(for: month, in: context)
-            } catch {
-                print("Error generating instances for month \(month): \(error)")
-            }
 
+        for month in Month.sampleData {
             context.insert(month)
+            linkRecurringTransactions(of: month, to: rules)
         }
-        
-        for transaction in TransactionGroup.sampleData(month1: Month.month1, month2: Month.month2) {
-            context.insert(transaction)
+    }
+
+    private func linkRecurringTransactions(of month: Month, to rules: [RecurringTransactionRule]) {
+        for group in month.transactionGroups {
+            guard let rule = rules.first(where: { $0.title == group.title }) else { continue }
+            group.recurringRule = rule
+            group.recurringOccurrenceDate = group.addedDate
         }
     }
 }

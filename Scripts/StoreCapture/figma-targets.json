@@ -1,0 +1,198 @@
+{
+  "fileKey": "vYkuo4KuKOfe4nVeSd5eLn",
+  "pageId": "107:5",
+  "targets": {
+    "en/iphone-dashboard-light.png": [
+      "150:526",
+      "150:533"
+    ],
+    "en/iphone-dashboard-dark.png": [
+      "150:535",
+      "150:542"
+    ],
+    "en/ipad-dashboard-light.png": [
+      "150:545",
+      "150:551"
+    ],
+    "en/ipad-dashboard-dark.png": [
+      "150:553",
+      "150:559"
+    ],
+    "en/mac-dashboard-light.png": [
+      "150:562",
+      "150:564"
+    ],
+    "en/mac-dashboard-dark.png": [
+      "288:4499",
+      "288:4501"
+    ],
+    "fr/iphone-dashboard-light.png": [
+      "195:3357",
+      "195:3363"
+    ],
+    "fr/iphone-dashboard-dark.png": [
+      "195:3360",
+      "195:3365"
+    ],
+    "fr/ipad-dashboard-light.png": [
+      "195:3427",
+      "195:3430"
+    ],
+    "fr/ipad-dashboard-dark.png": [
+      "195:3432",
+      "195:3435"
+    ],
+    "fr/mac-dashboard-light.png": [
+      "195:3497",
+      "195:3499"
+    ],
+    "fr/mac-dashboard-dark.png": [
+      "288:4503",
+      "288:4505"
+    ],
+    "es/iphone-dashboard-light.png": [
+      "195:3367",
+      "195:3373"
+    ],
+    "es/iphone-dashboard-dark.png": [
+      "195:3370",
+      "195:3375"
+    ],
+    "es/ipad-dashboard-light.png": [
+      "195:3437",
+      "195:3440"
+    ],
+    "es/ipad-dashboard-dark.png": [
+      "195:3442",
+      "195:3445"
+    ],
+    "es/mac-dashboard-light.png": [
+      "195:3501",
+      "195:3503"
+    ],
+    "es/mac-dashboard-dark.png": [
+      "288:4507",
+      "288:4509"
+    ],
+    "it/iphone-dashboard-light.png": [
+      "195:3377",
+      "195:3383"
+    ],
+    "it/iphone-dashboard-dark.png": [
+      "195:3380",
+      "195:3385"
+    ],
+    "it/ipad-dashboard-light.png": [
+      "195:3447",
+      "195:3450"
+    ],
+    "it/ipad-dashboard-dark.png": [
+      "195:3452",
+      "195:3455"
+    ],
+    "it/mac-dashboard-light.png": [
+      "195:3505",
+      "195:3507"
+    ],
+    "it/mac-dashboard-dark.png": [
+      "288:4511",
+      "288:4513"
+    ],
+    "de/iphone-dashboard-light.png": [
+      "195:3387",
+      "195:3393"
+    ],
+    "de/iphone-dashboard-dark.png": [
+      "195:3390",
+      "195:3395"
+    ],
+    "de/ipad-dashboard-light.png": [
+      "195:3457",
+      "195:3460"
+    ],
+    "de/ipad-dashboard-dark.png": [
+      "195:3462",
+      "195:3465"
+    ],
+    "de/mac-dashboard-light.png": [
+      "195:3509",
+      "195:3511"
+    ],
+    "de/mac-dashboard-dark.png": [
+      "288:4515",
+      "288:4517"
+    ],
+    "ko/iphone-dashboard-light.png": [
+      "195:3397",
+      "195:3403"
+    ],
+    "ko/iphone-dashboard-dark.png": [
+      "195:3400",
+      "195:3405"
+    ],
+    "ko/ipad-dashboard-light.png": [
+      "195:3467",
+      "195:3470"
+    ],
+    "ko/ipad-dashboard-dark.png": [
+      "195:3472",
+      "195:3475"
+    ],
+    "ko/mac-dashboard-light.png": [
+      "195:3513",
+      "195:3515"
+    ],
+    "ko/mac-dashboard-dark.png": [
+      "288:4519",
+      "288:4521"
+    ],
+    "pt-BR/iphone-dashboard-light.png": [
+      "195:3407",
+      "195:3413"
+    ],
+    "pt-BR/iphone-dashboard-dark.png": [
+      "195:3410",
+      "195:3415"
+    ],
+    "pt-BR/ipad-dashboard-light.png": [
+      "195:3477",
+      "195:3480"
+    ],
+    "pt-BR/ipad-dashboard-dark.png": [
+      "195:3482",
+      "195:3485"
+    ],
+    "pt-BR/mac-dashboard-light.png": [
+      "195:3517",
+      "195:3519"
+    ],
+    "pt-BR/mac-dashboard-dark.png": [
+      "288:4523",
+      "288:4525"
+    ],
+    "pt-PT/iphone-dashboard-light.png": [
+      "195:3417",
+      "195:3423"
+    ],
+    "pt-PT/iphone-dashboard-dark.png": [
+      "195:3420",
+      "195:3425"
+    ],
+    "pt-PT/ipad-dashboard-light.png": [
+      "195:3487",
+      "195:3490"
+    ],
+    "pt-PT/ipad-dashboard-dark.png": [
+      "195:3492",
+      "195:3495"
+    ],
+    "pt-PT/mac-dashboard-light.png": [
+      "195:3521",
+      "195:3523"
+    ],
+    "pt-PT/mac-dashboard-dark.png": [
+      "288:4527",
+      "288:4529"
+    ]
+  }
+}
