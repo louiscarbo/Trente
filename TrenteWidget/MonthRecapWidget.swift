@@ -209,6 +209,7 @@ struct AccessoryCircularMonthRecapWidgetView: View {
             .gaugeStyle(AccessoryCircularGaugeStyle())
         } else {
             Image(systemName: "xmark")
+                .accessibilityLabel(Text("No month yet"))
         }
     }
 }
@@ -222,8 +223,10 @@ struct AccessoryInlineMonthRecapWidgetView: View {
                 .privacySensitive()
                 .font(.headline)
                 .foregroundStyle(currentMonth.overall.isOverspent ? .red : .green)
+                .accessibilityLabel(Text("\(currentMonth.display(currentMonth.overall.remaining)) Remaining"))
         } else {
             Image(systemName: "xmark")
+                .accessibilityLabel(Text("No month yet"))
         }
     }
 }
