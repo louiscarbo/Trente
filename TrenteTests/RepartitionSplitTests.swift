@@ -159,4 +159,105 @@ struct RepartitionSplitTests {
         }
         #expect(split.values == [.needs: 29_00, .wants: 0, .savingsAndDebts: 30_00])
     }
+
+    @Test("Stepping up moves by a twentieth of the amount to split")
+    func stepUpMovesByFivePercent() {
+        var split = RepartitionSplit(amountToSplit: 3000_00, values: [:])
+
+        split.stepUp(.needs)
+        #expect(split.amount(for: .needs) == 150_00)
+
+        split.stepUp(.needs)
+        #expect(split.amount(for: .needs) == 300_00)
+    }
+
+    @Test("Stepping up from between two steps lands on the next step")
+    func stepUpSnapsToNextStep() {
+        var split = RepartitionSplit(amountToSplit: 3000_00, values: [.needs: 1234_00])
+
+        split.stepUp(.needs)
+
+        #expect(split.amount(for: .needs) == 1350_00)
+    }
+
+    @Test("Stepping down from between two steps lands on the previous step")
+    func stepDownSnapsToPreviousStep() {
+        var split = RepartitionSplit(amountToSplit: 3000_00, values: [.needs: 1234_00])
+
+        split.stepDown(.needs)
+
+        #expect(split.amount(for: .needs) == 1200_00)
+    }
+
+    @Test("Steps are rounded to whole units")
+    func stepsAreRoundedToWholeUnits() {
+        var split = RepartitionSplit(amountToSplit: 1234_56, values: [:])
+
+        split.stepUp(.needs)
+        #expect(split.amount(for: .needs) == 62_00)
+
+        split.stepUp(.needs)
+        #expect(split.amount(for: .needs) == 123_00)
+    }
+
+    @Test("Stepping up is capped at what is left, cents included")
+    func stepUpIsCappedAtRemaining() {
+        var split = RepartitionSplit(amountToSplit: 1234_56, values: [.wants: 1000_00, .needs: 200_00])
+
+        split.stepUp(.needs)
+
+        #expect(split.amount(for: .needs) == 234_56)
+        #expect(split.remaining == 0)
+    }
+
+    @Test("The last step up gives out the last cents")
+    func lastStepUpReachesTotal() {
+        var split = RepartitionSplit(amountToSplit: 1234_56, values: [.needs: 1173_00])
+
+        split.stepUp(.needs)
+
+        #expect(split.amount(for: .needs) == 1234_56)
+    }
+
+    @Test("Stepping up with nothing left does nothing")
+    func stepUpWithNothingLeftDoesNothing() {
+        var split = RepartitionSplit(amountToSplit: 3000_00, values: [.needs: 1500_00, .wants: 1500_00])
+
+        split.stepUp(.needs)
+
+        #expect(split.amount(for: .needs) == 1500_00)
+    }
+
+    @Test("Stepping down never goes below zero")
+    func stepDownStopsAtZero() {
+        var split = RepartitionSplit(amountToSplit: 3000_00, values: [.needs: 0_40])
+
+        split.stepDown(.needs)
+        #expect(split.amount(for: .needs) == 0)
+
+        split.stepDown(.needs)
+        #expect(split.amount(for: .needs) == 0)
+    }
+
+    @Test("Small amounts step by whole units without repeating a value")
+    func smallAmountsStepByWholeUnits() {
+        var split = RepartitionSplit(amountToSplit: 5_00, values: [:])
+        var reachedValues: [Int] = []
+
+        for _ in 0..<10 {
+            split.stepUp(.needs)
+            reachedValues.append(split.amount(for: .needs))
+        }
+
+        #expect(reachedValues == [1_00, 2_00, 3_00, 4_00, 5_00, 5_00, 5_00, 5_00, 5_00, 5_00])
+    }
+
+    @Test("An amount below one unit is given out in a single step")
+    func amountBelowOneUnitIsOneStep() {
+        var split = RepartitionSplit(amountToSplit: 0_60, values: [:])
+
+        split.stepUp(.needs)
+
+        #expect(split.amount(for: .needs) == 0_60)
+    }
 }
