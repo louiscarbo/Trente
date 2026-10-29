@@ -56,6 +56,11 @@ struct AppNavigationView: View {
             guard selection == nil, let latestMonth = months.first else { return }
             show(.month(latestMonth))
         }
+        #if DEBUG
+        .task {
+            await prepareStoreCapture()
+        }
+        #endif
         .onChange(of: pendingDeepLink, initial: true) { _, link in
             openDeepLink(link)
         }
@@ -153,6 +158,25 @@ struct AppNavigationView: View {
         selection = destination
         preferredCompactColumn = .detail
     }
+
+    #if DEBUG
+    private func prepareStoreCapture() async {
+        guard StoreCapture.isEnabled else { return }
+        #if os(macOS)
+        NSApp.appearance = NSAppearance(named: StoreCapture.isDark ? .darkAqua : .aqua)
+        if let window = NSApp.windows.first(where: \.isVisible) {
+            window.setFrame(NSRect(origin: window.frame.origin, size: StoreCapture.macWindowSize), display: true)
+            window.center()
+        }
+        #endif
+        try? await Task.sleep(for: .seconds(1))
+        selection = nil
+        try? await Task.sleep(for: .milliseconds(300))
+        if let latestMonth = months.first {
+            show(.month(latestMonth))
+        }
+    }
+    #endif
 }
 
 #Preview {

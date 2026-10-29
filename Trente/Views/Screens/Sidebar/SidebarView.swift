@@ -117,9 +117,11 @@ struct SidebarView: View {
             }
             #endif
             #if DEBUG
-            ToolbarItem {
-                Button("Debug", systemImage: "ladybug") {
-                    isShowingDebugMenu = true
+            if !StoreCapture.isEnabled {
+                ToolbarItem {
+                    Button("Debug", systemImage: "ladybug") {
+                        isShowingDebugMenu = true
+                    }
                 }
             }
             #endif
