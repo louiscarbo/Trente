@@ -10,23 +10,28 @@ import SwiftUI
 struct AppIconPicker: View {
     @Binding var selection: AppIcon
 
-    private let columns = [
-        GridItem(.adaptive(minimum: 90), spacing: DesignSystem.Spacing.medium.rawValue)
-    ]
+    private let rows = Array(
+        repeating: GridItem(.fixed(90), spacing: DesignSystem.Spacing.medium.rawValue),
+        count: 2
+    )
 
     var body: some View {
-        LazyVGrid(columns: columns, spacing: DesignSystem.Spacing.large.rawValue) {
-            ForEach(AppIcon.allCases) { icon in
-                Button {
-                    selection = icon
-                } label: {
-                    tile(for: icon, isSelected: icon == selection)
+        ScrollView(.horizontal) {
+            LazyHGrid(rows: rows, spacing: DesignSystem.Spacing.medium.rawValue) {
+                ForEach(AppIcon.allCases) { icon in
+                    Button {
+                        selection = icon
+                    } label: {
+                        tile(for: icon, isSelected: icon == selection)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityAddTraits(icon == selection ? .isSelected : [])
                 }
-                .buttonStyle(.plain)
-                .accessibilityAddTraits(icon == selection ? .isSelected : [])
             }
+            .padding(.vertical, DesignSystem.Spacing.medium.rawValue)
         }
-        .padding(.vertical, DesignSystem.Spacing.small.rawValue)
+        .scrollIndicators(.hidden)
+        .contentMargins(.horizontal, DesignSystem.Spacing.medium.rawValue, for: .scrollContent)
     }
 
     private func tile(for icon: AppIcon, isSelected: Bool) -> some View {
@@ -49,7 +54,7 @@ struct AppIconPicker: View {
                 .font(.caption)
                 .foregroundStyle(isSelected ? .primary : .secondary)
         }
-        .frame(maxWidth: .infinity)
+        .frame(width: 76)
         .contentShape(.rect)
     }
 }

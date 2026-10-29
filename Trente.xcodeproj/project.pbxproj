@@ -27,7 +27,19 @@
 		7BAC12022EB2000000A1C0DE /* Trente Pink.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC12012EB2000000A1C0DE /* Trente Pink.icon */; platformFilters = (ios, ); };
 		7BAC12032EB2000000A1C0DE /* Trente Pink.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC12012EB2000000A1C0DE /* Trente Pink.icon */; platformFilters = (ios, ); };
 		7BAC13022EB2000000A1C0DE /* Trente Midnight.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC13012EB2000000A1C0DE /* Trente Midnight.icon */; platformFilters = (ios, ); };
+		7BAC14022EB2000000A1C0DE /* Trente Mint.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC14012EB2000000A1C0DE /* Trente Mint.icon */; platformFilters = (ios, ); };
+		7BAC15022EB2000000A1C0DE /* Trente Teal.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC15012EB2000000A1C0DE /* Trente Teal.icon */; platformFilters = (ios, ); };
+		7BAC16022EB2000000A1C0DE /* Trente Purple.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC16012EB2000000A1C0DE /* Trente Purple.icon */; platformFilters = (ios, ); };
+		7BAC17022EB2000000A1C0DE /* Trente Red.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC17012EB2000000A1C0DE /* Trente Red.icon */; platformFilters = (ios, ); };
+		7BAC18022EB2000000A1C0DE /* Trente Yellow.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */; platformFilters = (ios, ); };
+		7BAC19022EB2000000A1C0DE /* Trente Black.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC19012EB2000000A1C0DE /* Trente Black.icon */; platformFilters = (ios, ); };
 		7BAC13032EB2000000A1C0DE /* Trente Midnight.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC13012EB2000000A1C0DE /* Trente Midnight.icon */; platformFilters = (ios, ); };
+		7BAC14032EB2000000A1C0DE /* Trente Mint.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC14012EB2000000A1C0DE /* Trente Mint.icon */; platformFilters = (ios, ); };
+		7BAC15032EB2000000A1C0DE /* Trente Teal.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC15012EB2000000A1C0DE /* Trente Teal.icon */; platformFilters = (ios, ); };
+		7BAC16032EB2000000A1C0DE /* Trente Purple.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC16012EB2000000A1C0DE /* Trente Purple.icon */; platformFilters = (ios, ); };
+		7BAC17032EB2000000A1C0DE /* Trente Red.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC17012EB2000000A1C0DE /* Trente Red.icon */; platformFilters = (ios, ); };
+		7BAC18032EB2000000A1C0DE /* Trente Yellow.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */; platformFilters = (ios, ); };
+		7BAC19032EB2000000A1C0DE /* Trente Black.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC19012EB2000000A1C0DE /* Trente Black.icon */; platformFilters = (ios, ); };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +90,12 @@
 		7BAC11012EB2000000A1C0DE /* Trente Orange.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Orange.icon"; sourceTree = "<group>"; };
 		7BAC12012EB2000000A1C0DE /* Trente Pink.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Pink.icon"; sourceTree = "<group>"; };
 		7BAC13012EB2000000A1C0DE /* Trente Midnight.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Midnight.icon"; sourceTree = "<group>"; };
+		7BAC14012EB2000000A1C0DE /* Trente Mint.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Mint.icon"; sourceTree = "<group>"; };
+		7BAC15012EB2000000A1C0DE /* Trente Teal.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Teal.icon"; sourceTree = "<group>"; };
+		7BAC16012EB2000000A1C0DE /* Trente Purple.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Purple.icon"; sourceTree = "<group>"; };
+		7BAC17012EB2000000A1C0DE /* Trente Red.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Red.icon"; sourceTree = "<group>"; };
+		7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Yellow.icon"; sourceTree = "<group>"; };
+		7BAC19012EB2000000A1C0DE /* Trente Black.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Black.icon"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -244,6 +262,12 @@
 				7BAC11012EB2000000A1C0DE /* Trente Orange.icon */,
 				7BAC12012EB2000000A1C0DE /* Trente Pink.icon */,
 				7BAC13012EB2000000A1C0DE /* Trente Midnight.icon */,
+				7BAC14012EB2000000A1C0DE /* Trente Mint.icon */,
+				7BAC15012EB2000000A1C0DE /* Trente Teal.icon */,
+				7BAC16012EB2000000A1C0DE /* Trente Purple.icon */,
+				7BAC17012EB2000000A1C0DE /* Trente Red.icon */,
+				7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */,
+				7BAC19012EB2000000A1C0DE /* Trente Black.icon */,
 			);
 			path = "App Icons";
 			sourceTree = "<group>";
@@ -409,6 +433,12 @@
 				7BAC11022EB2000000A1C0DE /* Trente Orange.icon in Resources */,
 				7BAC12022EB2000000A1C0DE /* Trente Pink.icon in Resources */,
 				7BAC13022EB2000000A1C0DE /* Trente Midnight.icon in Resources */,
+				7BAC14022EB2000000A1C0DE /* Trente Mint.icon in Resources */,
+				7BAC15022EB2000000A1C0DE /* Trente Teal.icon in Resources */,
+				7BAC16022EB2000000A1C0DE /* Trente Purple.icon in Resources */,
+				7BAC17022EB2000000A1C0DE /* Trente Red.icon in Resources */,
+				7BAC18022EB2000000A1C0DE /* Trente Yellow.icon in Resources */,
+				7BAC19022EB2000000A1C0DE /* Trente Black.icon in Resources */,
 				7B826FCE2E2840260074907E /* .gitignore in Resources */,
 				7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */,
 			);
@@ -427,6 +457,12 @@
 				7BAC11032EB2000000A1C0DE /* Trente Orange.icon in Resources */,
 				7BAC12032EB2000000A1C0DE /* Trente Pink.icon in Resources */,
 				7BAC13032EB2000000A1C0DE /* Trente Midnight.icon in Resources */,
+				7BAC14032EB2000000A1C0DE /* Trente Mint.icon in Resources */,
+				7BAC15032EB2000000A1C0DE /* Trente Teal.icon in Resources */,
+				7BAC16032EB2000000A1C0DE /* Trente Purple.icon in Resources */,
+				7BAC17032EB2000000A1C0DE /* Trente Red.icon in Resources */,
+				7BAC18032EB2000000A1C0DE /* Trente Yellow.icon in Resources */,
+				7BAC19032EB2000000A1C0DE /* Trente Black.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,7 +696,7 @@
 		7B2847592DAFE05500EEF97C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Grey\" \"Trente Blue\" \"Trente Orange\" \"Trente Pink\" \"Trente Midnight\"";
+				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Mint\" \"Trente Teal\" \"Trente Blue\" \"Trente Midnight\" \"Trente Purple\" \"Trente Pink\" \"Trente Red\" \"Trente Orange\" \"Trente Yellow\" \"Trente Grey\" \"Trente Black\"";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Green";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
@@ -701,7 +737,7 @@
 		7B28475A2DAFE05500EEF97C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Grey\" \"Trente Blue\" \"Trente Orange\" \"Trente Pink\" \"Trente Midnight\"";
+				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Mint\" \"Trente Teal\" \"Trente Blue\" \"Trente Midnight\" \"Trente Purple\" \"Trente Pink\" \"Trente Red\" \"Trente Orange\" \"Trente Yellow\" \"Trente Grey\" \"Trente Black\"";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Green";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
@@ -742,7 +778,7 @@
 		7BA4429A2E204E4300925EF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Green\" \"Trente Blue\" \"Trente Orange\" \"Trente Pink\" \"Trente Midnight\"";
+				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Green\" \"Trente Mint\" \"Trente Teal\" \"Trente Blue\" \"Trente Midnight\" \"Trente Purple\" \"Trente Pink\" \"Trente Red\" \"Trente Orange\" \"Trente Yellow\" \"Trente Black\"";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Grey";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
@@ -781,7 +817,7 @@
 		7BA4429B2E204E4300925EF5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Green\" \"Trente Blue\" \"Trente Orange\" \"Trente Pink\" \"Trente Midnight\"";
+				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Green\" \"Trente Mint\" \"Trente Teal\" \"Trente Blue\" \"Trente Midnight\" \"Trente Purple\" \"Trente Pink\" \"Trente Red\" \"Trente Orange\" \"Trente Yellow\" \"Trente Black\"";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Grey";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
