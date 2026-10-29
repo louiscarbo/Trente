@@ -101,6 +101,7 @@ struct MonthSummaryCard: View {
 
     private var backgroundView: some View {
         ZStack {
+            if SurfaceStyle.active != .outline {
             RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                 .foregroundStyle(
                     LinearGradient(
@@ -118,8 +119,9 @@ struct MonthSummaryCard: View {
                         endRadius: 500
                     )
                 )
+            }
             RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
-                .foregroundStyle(.regularMaterial)
+                .foregroundStyle(SurfaceStyle.isCurrent ? AnyShapeStyle(.regularMaterial) : AnyShapeStyle(SurfaceStyle.cardColor.opacity(SurfaceStyle.heroCardOverlayOpacity)))
                 .overlay {
                     RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
                         .stroke(.primary.opacity(isSelected ? 0.5 : 0.2), lineWidth: 3)

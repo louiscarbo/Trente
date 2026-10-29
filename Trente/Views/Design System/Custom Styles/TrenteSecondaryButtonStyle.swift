@@ -27,7 +27,7 @@ struct TrenteSecondaryButtonStyle: ButtonStyle {
             .frame(maxWidth: .infinity)
             .background {
                 Capsule()
-                    .fill(.regularMaterial)
+                    .fill(SurfaceStyle.secondaryButtonFill)
                     .overlay {
                         ZStack {
                             Capsule()

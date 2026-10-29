@@ -64,6 +64,7 @@ struct GraphCardView: View {
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
+            .environment(\.surfaceTint, figures.isOverspent ? .red : scope.color)
         }
         .buttonStyle(PressableCardButtonStyle())
         .sensoryFeedback(.selection, trigger: showRemaining)

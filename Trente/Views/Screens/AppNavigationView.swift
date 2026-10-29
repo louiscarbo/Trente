@@ -11,6 +11,7 @@ import SwiftData
 struct AppNavigationView: View {
     #if os(macOS)
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.openSettings) private var openSettings
     #else
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
@@ -60,7 +61,20 @@ struct AppNavigationView: View {
         }
         .onAppear {
             guard selection == nil, let latestMonth = months.first else { return }
-            show(.month(latestMonth))
+            switch SurfaceStyle.previewScreen {
+            case "sidebar", "settings":
+                selection = .month(latestMonth)
+                #if os(macOS)
+                if SurfaceStyle.previewScreen == "settings" {
+                    openSettings()
+                }
+                #endif
+            case "newExpense":
+                show(.month(latestMonth))
+                presentNewTransaction(for: latestMonth)
+            default:
+                show(.month(latestMonth))
+            }
         }
         #if DEBUG
         .task {
@@ -149,8 +163,12 @@ struct AppNavigationView: View {
     private func destinationView(for destination: SidebarSelection) -> some View {
         switch destination {
         case .month(let month):
-            MonthView(month: month)
-                .id(month)
+            if SurfaceStyle.previewScreen == "editMonth" {
+                MonthDetailsView(month: month)
+            } else {
+                MonthView(month: month)
+                    .id(month)
+            }
         case .recurring:
             if let currency = months.first?.currency {
                 RecurringTransactionsListView(currency: currency)

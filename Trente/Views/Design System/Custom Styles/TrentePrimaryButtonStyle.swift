@@ -69,7 +69,7 @@ struct TrentePrimaryCapsule: ViewModifier {
 
     @ViewBuilder
     private var fill: some View {
-        if solidFill {
+        if solidFill || !SurfaceStyle.isCurrent {
             Capsule()
                 .fill(lightMode ? Color(white: 0.22) : Color(white: 0.9))
         } else {

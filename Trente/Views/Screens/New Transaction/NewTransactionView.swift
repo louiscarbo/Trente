@@ -29,6 +29,7 @@ struct NewTransactionView: View {
                 .safeAreaInset(edge: .bottom) {
                     navigationButtons
                 }
+                .surfacePageBackground()
         }
         .onChange(of: viewModel.step) { _, newStep in
             if newStep != .title {

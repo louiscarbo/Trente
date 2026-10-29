@@ -19,7 +19,7 @@ extension View {
                 )
             )
             .offset(y: 1.5)
-            .fill(.regularMaterial)
+            .fill(SurfaceStyle.barFill)
             .stroke(.secondary.opacity(0.4), lineWidth: 3)
             .ignoresSafeArea()
         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TrenteGroupBoxStyle: GroupBoxStyle {
     var withPadding: Bool = true
+    @Environment(\.surfaceTint) private var surfaceTint
 
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -23,7 +24,7 @@ struct TrenteGroupBoxStyle: GroupBoxStyle {
         .padding(withPadding ? 16 : 0)
         .background {
             RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)
-                .fill(.regularMaterial)
+                .fill(SurfaceStyle.cardFill(tint: surfaceTint))
         }
         .overlay {
             RoundedRectangle(cornerRadius: DesignSystem.Radius.large.rawValue)

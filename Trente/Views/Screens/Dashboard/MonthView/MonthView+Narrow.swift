@@ -62,7 +62,7 @@ extension MonthView {
                     LinearGradient(
                         colors: [
                             .clear,
-                            Color(uiColor: .systemBackground)
+                            SurfaceStyle.pageColor
                         ],
                         startPoint: .top,
                         endPoint: .center

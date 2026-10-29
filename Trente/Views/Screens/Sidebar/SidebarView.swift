@@ -132,7 +132,13 @@ struct SidebarView: View {
         .sheet(isPresented: $isShowingSettings) {
             SettingsView()
         }
+        .onAppear {
+            if SurfaceStyle.previewScreen == "settings" {
+                isShowingSettings = true
+            }
+        }
         #endif
+        .surfacePageBackground()
         #if DEBUG
         .sheet(isPresented: $isShowingDebugMenu) {
             DebugMenuView()

@@ -56,6 +56,7 @@ struct MonthDetailsView: View {
             }
             .padding()
         }
+        .surfacePageBackground()
         .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
         .toolbar {
             if isEditing {

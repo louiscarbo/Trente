@@ -52,7 +52,7 @@ struct RequiresTrentePlus: ViewModifier {
                     .foregroundStyle(.primary)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
-                    .background(.regularMaterial, in: .capsule)
+                    .background(SurfaceStyle.isCurrent ? AnyShapeStyle(.regularMaterial) : SurfaceStyle.secondaryButtonFill, in: .capsule)
                     .overlay(
                         Capsule()
                             .inset(by: 1)

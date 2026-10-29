@@ -48,6 +48,7 @@ struct MonthView: View {
                 }
             }
             .navigationTitle(month.name)
+            .surfacePageBackground()
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     NavigationLink {
