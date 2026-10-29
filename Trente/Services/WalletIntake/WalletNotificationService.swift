@@ -36,10 +36,10 @@ final class WalletNotificationService: Sendable {
     }
 
     @MainActor
-    func postLimitReached(amountCents: Int, title: String, currency: Currency) async throws {
+    func postLimitReached() async throws {
         let content = UNMutableNotificationContent()
         content.title = Self.limitReachedTitle
-        content.body = Self.limitReachedBody(amountCents: amountCents, currency: currency, title: title)
+        content.body = Self.limitReachedBody
         content.sound = .default
         content.userInfo = [Self.opensPaywallKey: true]
 
@@ -55,9 +55,11 @@ final class WalletNotificationService: Sendable {
         String(localized: "Apple Pay limit reached")
     }
 
-    static func limitReachedBody(amountCents: Int, currency: Currency, title: String) -> String {
-        let amount = NotificationText.amount(cents: amountCents, currency: currency)
-        return String(localized: "\(amount) at \(title) wasn't logged. Get unlimited Apple Pay logging with Trente+.")
+    static var limitReachedBody: String {
+        let limit = WalletIntakeAllowance.freeMonthlyLimit
+        return String(
+            localized: "You've used your \(limit) free Apple Pay logs this month. Get Trente+ for unlimited automatic logging."
+        )
     }
 
     static var body: String {

@@ -93,20 +93,18 @@ struct WalletIntakeServiceTests {
         #expect(allowance.count(on: .now) == 0)
     }
 
-    @Test("Past the free monthly limit, the purchase is not logged and comes back for the limit notice")
+    @Test("Past the free monthly limit, the purchase is not logged")
     func limitReached() throws {
         let context = try makeContext()
         let allowance = makeAllowance()
         allowance.setCount(WalletIntakeAllowance.freeMonthlyLimit, on: .now)
 
-        let result = try intake(transaction: "Café Lumière", amount: "4,20 €", in: context, allowance: allowance)
+        let result = try intake(in: context, allowance: allowance)
 
-        guard case .limitReached(let amountCents, let title) = result else {
+        guard case .limitReached = result else {
             Issue.record("Expected the limit to be reached, got \(result)")
             return
         }
-        #expect(amountCents == -4_20)
-        #expect(title == "Café Lumière")
         #expect(try context.fetch(FetchDescriptor<PendingTransaction>()).isEmpty)
         #expect(allowance.count(on: .now) == WalletIntakeAllowance.freeMonthlyLimit)
     }

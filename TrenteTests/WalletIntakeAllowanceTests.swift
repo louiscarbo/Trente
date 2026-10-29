@@ -70,6 +70,29 @@ struct WalletIntakeAllowanceTests {
         #expect(allowance.allowsIntake(on: today, isTrentePlusSubscribed: true))
     }
 
+    @Test("The limit notice is sent once a month")
+    func limitNoticeOncePerMonth() {
+        let allowance = makeAllowance()
+        allowance.setCount(WalletIntakeAllowance.freeMonthlyLimit, on: date(month: 10, day: 20))
+
+        #expect(!allowance.hasSentLimitNotice(on: date(month: 10, day: 20)))
+        allowance.recordLimitNotice(on: date(month: 10, day: 20))
+        #expect(allowance.hasSentLimitNotice(on: date(month: 10, day: 31)))
+        #expect(!allowance.hasSentLimitNotice(on: date(month: 11, day: 1)))
+    }
+
+    @Test("Going back under the limit allows a new limit notice")
+    func limitNoticeClearsUnderLimit() {
+        let allowance = makeAllowance()
+        let today = date(month: 10, day: 29)
+        allowance.setCount(WalletIntakeAllowance.freeMonthlyLimit, on: today)
+        allowance.recordLimitNotice(on: today)
+
+        allowance.setCount(0, on: today)
+
+        #expect(!allowance.hasSentLimitNotice(on: today))
+    }
+
     @Test("Cancelling a log gives it back, never below zero")
     func cancelGivesLogBack() {
         let allowance = makeAllowance()

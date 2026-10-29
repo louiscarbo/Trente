@@ -56,64 +56,6 @@
         }
       }
     },
-    "%@ at %@ wasn't logged. Get unlimited Apple Pay logging with Trente+." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Zahlung von %1$@ bei %2$@ wurde nicht erfasst. Mit Trente+ erfasst du Apple Pay-Zahlungen unbegrenzt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ at %2$@ wasn't logged. Get unlimited Apple Pay logging with Trente+."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El pago de %1$@ en %2$@ no se ha registrado. Consigue registros ilimitados de Apple Pay con Trente+."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El pago de %1$@ en %2$@ no se registró. Obtén registros ilimitados de Apple Pay con Trente+."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le paiement de %1$@ chez %2$@ n’a pas été enregistré. Profitez d’enregistrements Apple Pay illimités avec Trente+."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La spesa di %1$@ da %2$@ non è stata registrata. Ottieni registrazioni Apple Pay illimitate con Trente+."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%2$@에서 결제한 %1$@이(가) 기록되지 않았어요. Trente+로 Apple Pay 결제를 무제한 기록하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O pagamento de %1$@ em %2$@ não foi registrado. Tenha registros ilimitados do Apple Pay com o Trente+."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O pagamento de %1$@ em %2$@ não foi registado. Tenha registos ilimitados do Apple Pay com o Trente+."
-          }
-        }
-      }
-    },
     "%@ left of %@" : {
       "localizations" : {
         "de" : {
@@ -2217,6 +2159,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Amarelo"
+          }
+        }
+      }
+    },
+    "You've used your %lld free Apple Pay logs this month. Get Trente+ for unlimited automatic logging." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast deine %lld kostenlosen Apple Pay-Erfassungen für diesen Monat aufgebraucht. Mit Trente+ erfasst du alle Zahlungen automatisch und unbegrenzt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Has usado tus %lld registros gratuitos de Apple Pay de este mes. Consigue Trente+ para registrar sin límites y de forma automática."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usaste tus %lld registros gratuitos de Apple Pay de este mes. Obtén Trente+ para registrar sin límites y de forma automática."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez utilisé vos %lld enregistrements Apple Pay gratuits ce mois-ci. Passez à Trente+ pour des enregistrements automatiques illimités."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai usato le %lld registrazioni Apple Pay gratuite di questo mese. Passa a Trente+ per registrazioni automatiche illimitate."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이번 달 무료 Apple Pay 기록 %lld개를 모두 사용했어요. Trente+로 무제한 자동 기록을 이용하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você usou seus %lld registros gratuitos do Apple Pay este mês. Assine o Trente+ para registros automáticos ilimitados."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilizou os seus %lld registos gratuitos do Apple Pay este mês. Subscreva o Trente+ para registos automáticos ilimitados."
           }
         }
       }
