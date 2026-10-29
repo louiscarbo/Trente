@@ -337,6 +337,58 @@
         }
       }
     },
+    "Add a receipt, a photo or a note to your transactions." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füge deinen Transaktionen einen Beleg, ein Foto oder eine Notiz hinzu."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade un ticket, una foto o una nota a tus transacciones."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agrega un recibo, una foto o una nota a tus transacciones."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez un ticket de caisse, une photo ou une note à vos transactions."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi uno scontrino, una foto o una nota alle tue transazioni."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "거래에 영수증, 사진, 메모를 추가하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicione um recibo, uma foto ou uma nota às suas transações."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicione um talão, uma fotografia ou uma nota às suas transações."
+          }
+        }
+      }
+    },
     "Amount, highest first" : {
       "localizations" : {
         "de" : {
@@ -489,6 +541,64 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Limite do Apple Pay atingido"
+          }
+        }
+      }
+    },
+    "Customize how Trente looks on your Home Screen." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passe das Aussehen von Trente auf deinem Home-Bildschirm an."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customise how Trente looks on your Home Screen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personaliza el aspecto de Trente en tu pantalla de inicio."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personaliza el aspecto de Trente en tu pantalla de inicio."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personnalisez l’apparence de Trente sur votre écran d’accueil."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizza l’aspetto di Trente nella schermata Home."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "홈 화면에서 Trente의 모습을 바꿔 보세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalize a aparência do Trente na sua Tela de Início."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalize o aspeto do Trente no seu ecrã principal."
           }
         }
       }
@@ -649,6 +759,110 @@
         }
       }
     },
+    "Included with Trente+" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enthalten in Trente+"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluido con Trente+"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluido con Trente+"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inclus avec Trente+"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluso in Trente+"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+에 포함된 기능"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluído no Trente+"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluído no Trente+"
+          }
+        }
+      }
+    },
+    "Let Trente+ do the typing, and unlock new features." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+ führt für dich Buch und schaltet neue Funktionen frei."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+ lleva las cuentas por ti y te da acceso a nuevas funciones."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+ lleva las cuentas por ti y te da acceso a nuevas funciones."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+ fait les comptes à votre place, et vous donne accès à de nouvelles fonctionnalités."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+ tiene i conti al posto tuo e ti dà accesso a nuove funzioni."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+가 대신 기록하고, 새로운 기능도 열어 드려요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente+ faz as contas por você e libera novos recursos."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente+ faz as contas por si e dá-lhe acesso a novas funcionalidades."
+          }
+        }
+      }
+    },
     "Log every Apple Pay purchase, not just 10 a month." : {
       "localizations" : {
         "de" : {
@@ -697,6 +911,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registe cada compra com Apple Pay, não só 10 por mês."
+          }
+        }
+      }
+    },
+    "Rent, salary, subscriptions: added automatically, without you having to think about it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miete, Gehalt, Abos: automatisch hinzugefügt, ohne dass du daran denken musst."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alquiler, sueldo, suscripciones: se añaden solos, sin que tengas que pensar en ello."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renta, sueldo, suscripciones: se agregan solos, sin que tengas que pensar en ello."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loyer, salaire, abonnements : ajoutés automatiquement, sans que vous ayez à y penser."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affitto, stipendio, abbonamenti: aggiunti in automatico, senza doverci pensare."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "월세, 월급, 구독료가 신경 쓰지 않아도 자동으로 추가돼요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aluguel, salário, assinaturas: adicionados automaticamente, sem você precisar pensar nisso."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renda, salário, subscrições: adicionados automaticamente, sem ter de pensar nisso."
           }
         }
       }
@@ -1747,58 +2013,6 @@
         }
       }
     },
-    "Rent, salary, subscriptions: added on their due date, without a tap." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Miete, Gehalt, Abos: am Fälligkeitsdatum hinzugefügt, ganz ohne Tippen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alquiler, sueldo, suscripciones: se añaden en su fecha de vencimiento, sin tocar nada."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renta, sueldo, suscripciones: se agregan en su fecha de vencimiento, sin tocar nada."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Loyer, salaire, abonnements : ajoutés à leur échéance, sans que vous ayez à y penser."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Affitto, stipendio, abbonamenti: aggiunti alla scadenza, senza toccare nulla."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "월세, 월급, 구독료가 예정일에 알아서 추가돼요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aluguel, salário, assinaturas: adicionados na data de vencimento, sem você tocar em nada."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renda, salário, subscrições: adicionados na data de vencimento, sem tocar em nada."
-          }
-        }
-      }
-    },
     "Spending Split" : {
       "localizations" : {
         "de" : {
@@ -1903,6 +2117,58 @@
         }
       }
     },
+    "Trente is designed and maintained entirely by one person." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente wird komplett von einer einzigen Person gestaltet und gepflegt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente está diseñado y mantenido íntegramente por una sola persona."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente está diseñado y mantenido íntegramente por una sola persona."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente est conçu et maintenu entièrement par une seule personne."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente è progettato e mantenuto interamente da una sola persona."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente는 한 사람이 처음부터 끝까지 디자인하고 관리해요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente é projetado e mantido inteiramente por uma única pessoa."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente é concebido e mantido inteiramente por uma única pessoa."
+          }
+        }
+      }
+    },
     "Unlimited Apple Pay logging" : {
       "localizations" : {
         "de" : {
@@ -1914,19 +2180,19 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registro ilimitado de Apple Pay"
+            "value" : "Registro ilimitado con Apple Pay"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registro ilimitado de Apple Pay"
+            "value" : "Registro ilimitado con Apple Pay"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enregistrement Apple Pay illimité"
+            "value" : "Connexion à Apple Pay illimitée"
           }
         },
         "it" : {
@@ -2263,6 +2529,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Amarelo"
+          }
+        }
+      }
+    },
+    "You have access to all Trente+ benefits. Thanks for subscribing!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast Zugriff auf alle Trente+-Vorteile. Danke für dein Abo!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tienes acceso a las ventajas de Trente+. ¡Gracias por suscribirte!"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tienes acceso a los beneficios de Trente+. ¡Gracias por suscribirte!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez accès aux avantages Trente+. Merci pour votre abonnement !"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai accesso a tutti i vantaggi di Trente+. Grazie per l’abbonamento!"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+의 모든 혜택을 이용할 수 있어요. 구독해 주셔서 감사합니다!"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você tem acesso a todos os benefícios do Trente+. Obrigado por assinar!"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tem acesso a todas as vantagens do Trente+. Obrigado pela sua subscrição!"
           }
         }
       }
@@ -5088,58 +5406,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pelo menos uma categoria tem de ter um montante diferente de zero."
-          }
-        }
-      }
-    },
-    "Attach receipts, photos and notes to any transaction." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hänge Belege, Fotos und Notizen an jede Transaktion an."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adjunta recibos, fotos y notas a cualquier transacción."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adjunta recibos, fotos y notas a cualquier transacción."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Joignez des reçus, des photos et des notes à n’importe quelle transaction."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Allega ricevute, foto e note a qualsiasi transazione."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "모든 거래에 영수증, 사진, 메모를 첨부하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anexe recibos, fotos e notas a qualquer transação."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anexe recibos, fotografias e notas a qualquer transação."
           }
         }
       }
@@ -8949,64 +9215,6 @@
         }
       }
     },
-    "Give Trente a new color on your Home Screen." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gib Trente auf deinem Home-Bildschirm eine neue Farbe."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Give Trente a new colour on your Home Screen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dale un nuevo color a Trente en tu pantalla de inicio."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dale un nuevo color a Trente en tu pantalla de inicio."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donnez une nouvelle couleur à Trente sur votre écran d’accueil."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dai un nuovo colore a Trente nella schermata Home."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "홈 화면의 Trente에 새로운 색을 입혀 보세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dê uma nova cor ao Trente na sua Tela de Início."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dê uma nova cor ao Trente no seu ecrã principal."
-          }
-        }
-      }
-    },
     "Gray" : {
       "localizations" : {
         "de" : {
@@ -10465,58 +10673,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "É adicionada às transações deste mês."
-          }
-        }
-      }
-    },
-    "Keep the full story of your spending, right next to the numbers." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Behalte den ganzen Kontext deiner Ausgaben – direkt neben den Zahlen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guarda toda la historia de tus gastos, justo al lado de las cifras."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guarda toda la historia de tus gastos, justo al lado de las cifras."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gardez tout le contexte de vos dépenses, juste à côté des chiffres."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Conserva tutta la storia delle tue spese, proprio accanto ai numeri."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "지출에 얽힌 이야기를 숫자 바로 옆에 남겨 두세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guarde toda a história dos seus gastos, bem ao lado dos números."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guarde toda a história dos seus gastos, mesmo ao lado dos números."
           }
         }
       }
@@ -19501,58 +19657,6 @@
         }
       }
     },
-    "Trente is built and maintained by one person." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente wird von einer einzigen Person entwickelt und gepflegt."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente lo desarrolla y mantiene una sola persona."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente lo desarrolla y mantiene una sola persona."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente est conçu et maintenu par une seule personne."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente è creato e mantenuto da una sola persona."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente는 한 사람이 만들고 관리해요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Trente é criado e mantido por uma única pessoa."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Trente é criado e mantido por uma única pessoa."
-          }
-        }
-      }
-    },
     "Trente is the successor of TrenteVingt (2023)." : {
       "localizations" : {
         "de" : {
@@ -21482,58 +21586,6 @@
         }
       }
     },
-    "What's included" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Was enthalten ist"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Qué incluye"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Qué incluye"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ce qui est inclus"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cosa è incluso"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "포함된 기능"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O que está incluído"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O que está incluído"
-          }
-        }
-      }
-    },
     "When you add an income, choose how much goes to Needs, Wants and Savings and Debts. An expense always goes to a single category." : {
       "localizations" : {
         "de" : {
@@ -22027,58 +22079,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vai selecionar as categorias desta receita nos próximos passos."
-          }
-        }
-      }
-    },
-    "You're a Trente+ member. Thank you!" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dein Trente+-Abo ist aktiv. Danke!"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eres miembro de Trente+. ¡Gracias!"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eres miembro de Trente+. ¡Gracias!"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Votre abonnement Trente+ est actif. Merci !"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il tuo abbonamento Trente+ è attivo. Grazie!"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente+ 구독 중이에요. 감사합니다!"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sua assinatura Trente+ está ativa. Obrigado!"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A sua subscrição Trente+ está ativa. Obrigado!"
           }
         }
       }
