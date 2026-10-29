@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ApplePaySetupGuide: View {
     static let steps: [LocalizedStringKey] = [
-        "Tap **Get the Shortcut** below and add **Trente & Apple Pay** to your shortcuts.",
-        "Tap the **Trente & Apple Pay** shortcut you just added, then tap **Edit**.",
+        "Tap **Get the Shortcut** below and add **Trente & Wallet** to your shortcuts.",
+        "Tap the **Trente & Wallet** shortcut you just added, then tap **Edit**.",
         "In the menu at the bottom of the screen, tap the **Automation** category, then scroll down to the **Wallet** row. Tap **Wallet – When I tap a Wallet card**.",
         "You should see two blocks in your automation. You're all set: Trente will receive your next Apple Pay purchases!"
     ]

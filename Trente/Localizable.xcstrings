@@ -1707,106 +1707,106 @@
         }
       }
     },
-    "Tap **Get the Shortcut** below and add **Trente & Apple Pay** to your shortcuts." : {
+    "Tap **Get the Shortcut** below and add **Trente & Wallet** to your shortcuts." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tippe unten auf **Kurzbefehl laden** und füge **Trente & Apple Pay** zu deinen Kurzbefehlen hinzu."
+            "value" : "Tippe unten auf **Kurzbefehl laden** und füge **Trente & Wallet** zu deinen Kurzbefehlen hinzu."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca **Obtener el atajo** a continuación y añade **Trente & Apple Pay** a tus atajos."
+            "value" : "Toca **Obtener el atajo** a continuación y añade **Trente & Wallet** a tus atajos."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca **Obtener el atajo** a continuación y agrega **Trente & Apple Pay** a tus atajos."
+            "value" : "Toca **Obtener el atajo** a continuación y agrega **Trente & Wallet** a tus atajos."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Touchez **Obtenir le raccourci** ci-dessous et ajoutez **Trente & Apple Pay** à vos raccourcis."
+            "value" : "Touchez **Obtenir le raccourci** ci-dessous et ajoutez **Trente & Wallet** à vos raccourcis."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tocca **Ottieni il comando rapido** qui sotto e aggiungi **Trente & Apple Pay** ai tuoi comandi rapidi."
+            "value" : "Tocca **Ottieni il comando rapido** qui sotto e aggiungi **Trente & Wallet** ai tuoi comandi rapidi."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "아래의 **단축어 받기**를 탭하고 **Trente & Apple Pay**을 단축어에 추가하세요."
+            "value" : "아래의 **단축어 받기**를 탭하고 **Trente & Wallet**을 단축어에 추가하세요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque em **Obter o atalho** abaixo e adicione **Trente & Apple Pay** aos seus atalhos."
+            "value" : "Toque em **Obter o atalho** abaixo e adicione **Trente & Wallet** aos seus atalhos."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque em **Obter o atalho** abaixo e adicione **Trente & Apple Pay** aos seus atalhos."
+            "value" : "Toque em **Obter o atalho** abaixo e adicione **Trente & Wallet** aos seus atalhos."
           }
         }
       }
     },
-    "Tap the **Trente & Apple Pay** shortcut you just added, then tap **Edit**." : {
+    "Tap the **Trente & Wallet** shortcut you just added, then tap **Edit**." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tippe auf den Kurzbefehl **Trente & Apple Pay**, den du gerade hinzugefügt hast, und dann auf **Bearbeiten**."
+            "value" : "Tippe auf den Kurzbefehl **Trente & Wallet**, den du gerade hinzugefügt hast, und dann auf **Bearbeiten**."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca el atajo **Trente & Apple Pay** que acabas de añadir y luego toca **Editar**."
+            "value" : "Toca el atajo **Trente & Wallet** que acabas de añadir y luego toca **Editar**."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca el atajo **Trente & Apple Pay** que acabas de agregar y luego toca **Editar**."
+            "value" : "Toca el atajo **Trente & Wallet** que acabas de agregar y luego toca **Editar**."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Touchez le raccourci **Trente & Apple Pay** que vous venez d’ajouter, puis touchez **Modifier**."
+            "value" : "Touchez le raccourci **Trente & Wallet** que vous venez d’ajouter, puis touchez **Modifier**."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tocca il comando rapido **Trente & Apple Pay** che hai appena aggiunto, poi tocca **Modifica**."
+            "value" : "Tocca il comando rapido **Trente & Wallet** che hai appena aggiunto, poi tocca **Modifica**."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "방금 추가한 **Trente & Apple Pay** 단축어를 탭한 다음 **편집**을 탭하세요."
+            "value" : "방금 추가한 **Trente & Wallet** 단축어를 탭한 다음 **편집**을 탭하세요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque no atalho **Trente & Apple Pay** que você acabou de adicionar e depois toque em **Editar**."
+            "value" : "Toque no atalho **Trente & Wallet** que você acabou de adicionar e depois toque em **Editar**."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque no atalho **Trente & Apple Pay** que acabou de adicionar e depois toque em **Editar**."
+            "value" : "Toque no atalho **Trente & Wallet** que acabou de adicionar e depois toque em **Editar**."
           }
         }
       }
@@ -2851,7 +2851,7 @@
         }
       }
     },
-    "Trente & Apple Pay" : {
+    "Trente & Wallet" : {
       "shouldTranslate" : false
     },
     "Trente is designed and maintained entirely by one person." : {
@@ -14291,54 +14291,54 @@
         }
       }
     },
-    "Prepares an expense from an Apple Pay payment so you can review it in Trente." : {
+    "Prepares an expense from a Wallet payment so you can review it in Trente." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bereitet aus einer Apple Pay-Zahlung eine Ausgabe vor, die du in Trente prüfen kannst."
+            "value" : "Bereitet aus einer Wallet-Zahlung eine Ausgabe vor, die du in Trente prüfen kannst."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prepara un gasto a partir de un pago con Apple Pay para que puedas revisarlo en Trente."
+            "value" : "Prepara un gasto a partir de un pago con Wallet para que puedas revisarlo en Trente."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prepara un gasto a partir de un pago con Apple Pay para que puedas revisarlo en Trente."
+            "value" : "Prepara un gasto a partir de un pago con Wallet para que puedas revisarlo en Trente."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prépare une dépense à partir d’un paiement Apple Pay pour que vous puissiez la vérifier dans Trente."
+            "value" : "Prépare une dépense à partir d’un paiement avec Cartes pour que vous puissiez la vérifier dans Trente."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prepara una spesa a partire da un pagamento Apple Pay, così puoi verificarla in Trente."
+            "value" : "Prepara una spesa a partire da un pagamento con Wallet, così puoi verificarla in Trente."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Pay 결제로 지출을 준비해 Trente에서 확인할 수 있게 해요."
+            "value" : "지갑 결제로 지출을 준비해 Trente에서 확인할 수 있게 해요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prepara uma despesa a partir de um pagamento com Apple Pay para você revisar no Trente."
+            "value" : "Prepara uma despesa a partir de um pagamento com a Carteira para você revisar no Trente."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prepara uma despesa a partir de um pagamento Apple Pay para que a possa rever no Trente."
+            "value" : "Prepara uma despesa a partir de um pagamento com a Carteira para que a possa rever no Trente."
           }
         }
       }
