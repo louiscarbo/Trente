@@ -21,7 +21,7 @@ struct DeveloperProfile {
             I'm a French 🇫🇷 developer who loves building apps. Trente is the app I wished I had to follow the 50/30/20 rule. \
             Every suggestion helps, so feel free to write to me!
             """,
-        photoName: "placeholder",
+        photoName: "Developer Photo",
         links: [
             ProfileLink(
                 id: "website",
