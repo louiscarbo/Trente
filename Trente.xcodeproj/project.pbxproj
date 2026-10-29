@@ -7,13 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
-		7B3AA9DC2E2237530072E9CB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */; };
-		7B3AA9DD2E2237530072E9CB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */; };
 		7B7F9D7C2E0C8C01007296E5 /* Trente Grey.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Grey.icon */; platformFilter = ios; };
-		7B826FCD2E2840260074907E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7B826FCC2E2840260074907E /* .gitignore */; };
-		7B826FCE2E2840260074907E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7B826FCC2E2840260074907E /* .gitignore */; };
-		7BA442962E204E4300925EF5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
 		7BA442CA2E2052DD00925EF5 /* Trente Green.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Green.icon */; platformFilter = ios; };
 		7BAC10022EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; platformFilter = ios; };
 		7BAC10032EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; platformFilter = ios; };
@@ -103,6 +97,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Dev-Info.plist",
+				Model/README.md,
 			);
 			target = 7BA4428F2E204E4300925EF5 /* Trente Dev */;
 		};
@@ -110,6 +105,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Dev-Info.plist",
+				Model/README.md,
 			);
 			target = 7B28474C2DAFE05300EEF97C /* Trente */;
 		};
@@ -426,7 +422,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B3AA9DD2E2237530072E9CB /* .swiftlint.yml in Resources */,
 				7BAC10042EB2000000A1C0DE /* Trente Green.icon in Resources */,
 				7B7F9D7C2E0C8C01007296E5 /* Trente Grey.icon in Resources */,
 				7BAC10022EB2000000A1C0DE /* Trente Blue.icon in Resources */,
@@ -439,8 +434,6 @@
 				7BAC17022EB2000000A1C0DE /* Trente Red.icon in Resources */,
 				7BAC18022EB2000000A1C0DE /* Trente Yellow.icon in Resources */,
 				7BAC19022EB2000000A1C0DE /* Trente Black.icon in Resources */,
-				7B826FCE2E2840260074907E /* .gitignore in Resources */,
-				7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,9 +441,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B3AA9DC2E2237530072E9CB /* .swiftlint.yml in Resources */,
-				7BA442962E204E4300925EF5 /* Trente.storekit in Resources */,
-				7B826FCD2E2840260074907E /* .gitignore in Resources */,
 				7BAC10052EB2000000A1C0DE /* Trente Grey.icon in Resources */,
 				7BA442CA2E2052DD00925EF5 /* Trente Green.icon in Resources */,
 				7BAC10032EB2000000A1C0DE /* Trente Blue.icon in Resources */,
@@ -706,6 +696,8 @@
 				DEVELOPMENT_TEAM = 7T9Q86X738;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIBackgroundModes = "remote-notification";
@@ -747,6 +739,8 @@
 				DEVELOPMENT_TEAM = 7T9Q86X738;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIBackgroundModes = "remote-notification";
