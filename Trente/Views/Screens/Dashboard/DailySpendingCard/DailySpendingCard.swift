@@ -82,6 +82,10 @@ struct DailySpendingCard: View {
             .groupBoxStyle(TrenteGroupBoxStyle())
         }
         .buttonStyle(PressableCardButtonStyle())
+        .accessibilityLabel(Text("Daily Spending"))
+        .accessibilityValue(hasData ? accessibilitySummary(spending) : String(localized: "No spending recorded yet."))
+        .accessibilityHint(mode == .month ? Text("Shows one week at a time") : Text("Shows the whole month"))
+        .accessibilityChartDescriptor(ChartDescriptor(days: visibleDays(in: spending), currencyCode: currencyCode))
         .sensoryFeedback(.selection, trigger: mode)
         .sensoryFeedback(trigger: selectedDay?.date) { _, newDate in
             newDate == nil ? nil : .selection
@@ -104,6 +108,17 @@ struct DailySpendingCard: View {
             }
             return (window.lowerBound..<window.upperBound).formatted(.interval.month(.abbreviated).day())
         }
+    }
+
+    private func accessibilitySummary(_ spending: DailySpending) -> String {
+        let days = visibleDays(in: spending)
+        let total = days.reduce(0) { $0 + $1.total }.formatted(.budget(currencyCode))
+        let categories = CategorySlice.slices(for: days).map { slice in
+            let amount = slice.amount.formatted(.budget(currencyCode))
+            let share = slice.share.formatted(.percent.precision(.fractionLength(0)))
+            return "\(slice.category.shortName), \(amount), \(share)"
+        }
+        return (["\(periodTitle(spending)), \(total)"] + categories).joined(separator: ". ")
     }
 
     private func cardTitle(_ spending: DailySpending, hasData: Bool) -> some View {
