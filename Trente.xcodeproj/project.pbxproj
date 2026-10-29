@@ -107,6 +107,7 @@
 				Services/RecurringTransactionService.swift,
 				Services/SampleData.swift,
 				Services/TransactionCreationRequest.swift,
+				Services/TrentePlusEntitlement.swift,
 				"Views/Design System/BudgetCategory+Color.swift",
 				"Views/Design System/CurrencyFormatStyle.swift",
 				"Views/Design System/Custom Styles/PressableCardButtonStyle.swift",

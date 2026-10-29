@@ -97,7 +97,8 @@ struct FAQItem: Identifiable, Equatable {
             topic: .recurring,
             question: "What does “automatic” do?",
             answer: """
-                Trente adds it for you on its due date, the next time you open the app. Your widgets count it right away.
+                With Trente+, Trente adds it for you on its due date, the next time you open the app. \
+                Your widgets count it right away. Without Trente+, the setting is kept but you confirm it yourself.
                 """
         ),
         FAQItem(
@@ -127,8 +128,9 @@ struct FAQItem: Identifiable, Equatable {
             topic: .featuresAndData,
             question: "What is Trente+?",
             answer: """
-                An optional monthly or yearly subscription that lets you attach notes and images to your transactions, \
-                and supports an independent developer. Manage or cancel it anytime in your App Store account.
+                An optional monthly or yearly subscription that lets you attach notes and images to your transactions \
+                and record recurring transactions automatically, and supports an independent developer. \
+                Manage or cancel it anytime in your App Store account.
                 """
         ),
         FAQItem(

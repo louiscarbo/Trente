@@ -28,6 +28,7 @@ struct TrentePlusSection: View {
                                 .foregroundStyle(.secondary)
                         } else {
                             benefit("Notes and images on any transaction")
+                            benefit("Automatic recurring transactions")
                             benefit("Support an indie developer")
                         }
                     }

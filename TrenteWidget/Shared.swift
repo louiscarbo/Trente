@@ -38,9 +38,9 @@ private func currentMonthSnapshots(from now: Date) throws -> [(date: Date, month
         return Calendar.current.timelineDates(from: now, dueDates: []).map { ($0, nil) }
     }
 
-    let automaticRules = try context.fetch(
-        FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true })
-    )
+    let automaticRules = TrentePlusEntitlement.cached()
+        ? try context.fetch(FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true }))
+        : []
     let dueDates = automaticRules
         .flatMap { $0.dueAutomaticOccurrences(in: month, by: month.dateInterval.end) }
         .map(\.date)

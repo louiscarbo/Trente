@@ -14,12 +14,25 @@ import SwiftUI
 final class TrentePlusStatus {
     static let shared = TrentePlusStatus()
 
-    private(set) var hasActiveSubscription = false
+    private(set) var hasActiveSubscription = TrentePlusEntitlement.cached() {
+        didSet {
+            if hasActiveSubscription != oldValue { statusDidChange() }
+        }
+    }
+    @ObservationIgnored private var endDate: Date? {
+        didSet {
+            if endDate != oldValue { statusDidChange() }
+        }
+    }
     @ObservationIgnored private var updateTasks: [Task<Void, Never>] = []
+    @ObservationIgnored private var initialRefresh: Task<Void, Never>?
 
     #if DEBUG
     var debugOverride = TrentePlusDebugOverride.stored() {
-        didSet { debugOverride.store() }
+        didSet {
+            debugOverride.store()
+            statusDidChange()
+        }
     }
     #endif
 
@@ -33,11 +46,21 @@ final class TrentePlusStatus {
         #endif
     }
 
+    var automaticUnlockedUntil: Date {
+        guard isSubscribed else { return .distantPast }
+        #if DEBUG
+        if debugOverride == .subscribed { return .distantFuture }
+        #endif
+        return endDate ?? .distantFuture
+    }
+
     func start() {
         guard updateTasks.isEmpty else { return }
+        let initialRefresh = Task { await refresh() }
+        self.initialRefresh = initialRefresh
         updateTasks = [
             Task {
-                await refresh()
+                await initialRefresh.value
                 for await _ in Product.SubscriptionInfo.Status.updates {
                     await refresh()
                 }
@@ -54,8 +77,32 @@ final class TrentePlusStatus {
     }
 
     func refresh() async {
-        let statuses = (try? await Product.SubscriptionInfo.status(for: TrentePlus.groupID)) ?? []
-        hasActiveSubscription = TrentePlus.isActive(statuses.map(\.state))
+        guard let statuses = try? await Product.SubscriptionInfo.status(for: TrentePlus.groupID) else { return }
+        let activeStatuses = statuses.filter { status in TrentePlus.isActive([status.state]) }
+        hasActiveSubscription = !activeStatuses.isEmpty
+        endDate = TrentePlus.endDate(of: activeStatuses.map(Self.renewal))
+    }
+
+    func currentStatus() async -> Bool {
+        await initialRefresh?.value
+        return isSubscribed
+    }
+
+    func currentAutomaticUnlockedUntil() async -> Date {
+        await initialRefresh?.value
+        return automaticUnlockedUntil
+    }
+
+    private static func renewal(of status: Product.SubscriptionInfo.Status) -> (willAutoRenew: Bool, expirationDate: Date?) {
+        guard case .verified(let renewalInfo) = status.renewalInfo,
+              case .verified(let transaction) = status.transaction
+        else { return (true, nil) }
+        return (renewalInfo.willAutoRenew, transaction.expirationDate)
+    }
+
+    private func statusDidChange() {
+        TrentePlusEntitlement.cache(isSubscribed)
+        NotificationCenter.default.post(name: TrentePlusEntitlement.didChange, object: nil)
     }
 }
 

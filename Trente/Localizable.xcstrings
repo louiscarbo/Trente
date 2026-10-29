@@ -111,6 +111,272 @@
         }
       }
     },
+    "An optional monthly or yearly subscription that lets you attach notes and images to your transactions and record recurring transactions automatically, and supports an independent developer. Manage or cancel it anytime in your App Store account." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein optionales Monats- oder Jahresabo, mit dem du Notizen und Bilder an deine Transaktionen anhängen und wiederkehrende Transaktionen automatisch erfassen kannst und einen unabhängigen Entwickler unterstützt. Du kannst es jederzeit in deinem App Store-Account verwalten oder kündigen."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An optional monthly or yearly subscription that lets you attach notes and images to your transactions and record recurring transactions automatically, and supports an independent developer. Manage or cancel it at any time in your App Store account."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una suscripción mensual o anual opcional que te permite añadir notas e imágenes a tus transacciones y registrar automáticamente tus transacciones recurrentes, y que apoya a un desarrollador independiente. Gestiónala o cancélala cuando quieras desde tu cuenta del App Store."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una suscripción mensual o anual opcional que te permite agregar notas e imágenes a tus transacciones y registrar automáticamente tus transacciones recurrentes, y que apoya a un desarrollador independiente. Adminístrala o cancélala cuando quieras desde tu cuenta del App Store."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un abonnement mensuel ou annuel facultatif qui vous permet d’ajouter des notes et des images à vos transactions et d’enregistrer automatiquement vos transactions récurrentes, et qui soutient un développeur indépendant. Gérez-le ou résiliez-le à tout moment depuis votre compte App Store."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un abbonamento mensile o annuale facoltativo che ti permette di allegare note e immagini alle tue transazioni e di registrare in automatico le transazioni ricorrenti, e sostiene uno sviluppatore indipendente. Gestiscilo o annullalo quando vuoi dal tuo account App Store."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "거래에 메모와 이미지를 첨부하고 반복 거래를 자동으로 기록할 수 있는 선택형 월간 또는 연간 구독으로, 개인 개발자를 응원할 수 있어요. App Store 계정에서 언제든지 관리하거나 취소할 수 있어요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma assinatura mensal ou anual opcional que permite anexar notas e imagens às suas transações e registrar automaticamente as transações recorrentes, e apoia um desenvolvedor independente. Gerencie ou cancele quando quiser na sua conta da App Store."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma subscrição mensal ou anual opcional que permite anexar notas e imagens às suas transações e registar automaticamente as transações recorrentes, e apoia um programador independente. Pode geri-la ou cancelá-la a qualquer momento na sua conta da App Store."
+          }
+        }
+      }
+    },
+    "Automatic recurring transactions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatische wiederkehrende Transaktionen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transacciones recurrentes automáticas"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transacciones recurrentes automáticas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transactions récurrentes automatiques"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transazioni ricorrenti automatiche"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자동 반복 거래"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transações recorrentes automáticas"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transações recorrentes automáticas"
+          }
+        }
+      }
+    },
+    "Paused without Trente+. Until you subscribe again, you'll be asked to confirm %@." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausiert ohne Trente+. Bis du wieder abonnierst, bestätigst du %@ selbst."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En pausa sin Trente+. Hasta que vuelvas a suscribirte, Trente te pedirá que confirmes %@."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En pausa sin Trente+. Hasta que vuelvas a suscribirte, Trente te pedirá que confirmes %@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En pause sans Trente+. Jusqu’à votre prochain abonnement, Trente vous demandera de confirmer %@."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In pausa senza Trente+. Finché non ti abboni di nuovo, Trente ti chiederà di confermare %@."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+가 없어 일시 중지됐어요. 다시 구독할 때까지 %@ 항목은 직접 확인해야 해요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausado sem o Trente+. Até você assinar de novo, o Trente vai pedir que você confirme %@."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Em pausa sem o Trente+. Até voltar a subscrever, o Trente pede-lhe que confirme %@."
+          }
+        }
+      }
+    },
+    "Rent, salary, subscriptions: added on their due date, without a tap." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miete, Gehalt, Abos: am Fälligkeitsdatum hinzugefügt, ganz ohne Tippen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alquiler, sueldo, suscripciones: se añaden en su fecha de vencimiento, sin tocar nada."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renta, sueldo, suscripciones: se agregan en su fecha de vencimiento, sin tocar nada."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loyer, salaire, abonnements : ajoutés à leur échéance, sans que vous ayez à y penser."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affitto, stipendio, abbonamenti: aggiunti alla scadenza, senza toccare nulla."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "월세, 월급, 구독료가 예정일에 알아서 추가돼요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aluguel, salário, assinaturas: adicionados na data de vencimento, sem você tocar em nada."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renda, salário, subscrições: adicionados na data de vencimento, sem tocar em nada."
+          }
+        }
+      }
+    },
+    "With Trente+, Trente adds it for you on its due date, the next time you open the app. Your widgets count it right away. Without Trente+, the setting is kept but you confirm it yourself." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Trente+ fügt Trente sie am Fälligkeitsdatum für dich hinzu, sobald du die App das nächste Mal öffnest. Deine Widgets berücksichtigen sie sofort. Ohne Trente+ bleibt die Einstellung erhalten, aber du bestätigst sie selbst."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con Trente+, Trente la añade por ti en su fecha de vencimiento, la próxima vez que abras la app. Tus widgets la tienen en cuenta al momento. Sin Trente+, el ajuste se conserva, pero la confirmas tú."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con Trente+, Trente la agrega por ti en su fecha de vencimiento, la próxima vez que abras la app. Tus widgets la tienen en cuenta al momento. Sin Trente+, el ajuste se conserva, pero la confirmas tú."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avec Trente+, Trente l’ajoute pour vous à son échéance, la prochaine fois que vous ouvrez l’app. Vos widgets la prennent en compte immédiatement. Sans Trente+, le réglage est conservé, mais c’est vous qui la confirmez."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con Trente+, Trente la aggiunge per te alla scadenza, la prossima volta che apri l’app. I tuoi widget la contano subito. Senza Trente+, l’impostazione resta, ma la confermi tu."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+를 이용하면 예정일 이후 앱을 다시 열 때 Trente가 자동으로 추가해요. 위젯에는 바로 반영돼요. Trente+가 없으면 설정은 그대로지만 직접 확인해야 해요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Com o Trente+, o Trente a adiciona para você na data de vencimento, na próxima vez que você abrir o app. Seus widgets já a contabilizam na hora. Sem o Trente+, a configuração é mantida, mas é você quem confirma."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Com o Trente+, o Trente adiciona-a por si na data de vencimento, da próxima vez que abrir a app. Os seus widgets contabilizam-na de imediato. Sem o Trente+, a definição mantém-se, mas tem de a confirmar."
+          }
+        }
+      }
+    },
     "“Piggy Savings” by Vectors Market" : {
       "localizations" : {
         "de" : {
@@ -2412,64 +2678,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ocorreu um erro"
-          }
-        }
-      }
-    },
-    "An optional monthly or yearly subscription that lets you attach notes and images to your transactions, and supports an independent developer. Manage or cancel it anytime in your App Store account." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein optionales Monats- oder Jahresabo, mit dem du Notizen und Bilder an deine Transaktionen anhängen kannst und einen unabhängigen Entwickler unterstützt. Du kannst es jederzeit in deinem App Store-Account verwalten oder kündigen."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "An optional monthly or yearly subscription that lets you attach notes and images to your transactions, and supports an independent developer. Manage or cancel it at any time in your App Store account."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una suscripción mensual o anual opcional que te permite añadir notas e imágenes a tus transacciones y que apoya a un desarrollador independiente. Gestiónala o cancélala cuando quieras desde tu cuenta del App Store."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una suscripción mensual o anual opcional que te permite agregar notas e imágenes a tus transacciones y que apoya a un desarrollador independiente. Adminístrala o cancélala cuando quieras desde tu cuenta del App Store."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un abonnement mensuel ou annuel facultatif qui vous permet d’ajouter des notes et des images à vos transactions, et qui soutient un développeur indépendant. Gérez-le ou résiliez-le à tout moment depuis votre compte App Store."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un abbonamento mensile o annuale facoltativo che ti permette di allegare note e immagini alle tue transazioni e sostiene uno sviluppatore indipendente. Gestiscilo o annullalo quando vuoi dal tuo account App Store."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "거래에 메모와 이미지를 첨부할 수 있는 선택형 월간 또는 연간 구독으로, 개인 개발자를 응원할 수 있어요. App Store 계정에서 언제든지 관리하거나 취소할 수 있어요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uma assinatura mensal ou anual opcional que permite anexar notas e imagens às suas transações e apoia um desenvolvedor independente. Gerencie ou cancele quando quiser na sua conta da App Store."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uma subscrição mensal ou anual opcional que permite anexar notas e imagens às suas transações e apoia um programador independente. Pode geri-la ou cancelá-la a qualquer momento na sua conta da App Store."
           }
         }
       }
@@ -16763,58 +16971,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente %@"
-          }
-        }
-      }
-    },
-    "Trente adds it for you on its due date, the next time you open the app. Your widgets count it right away." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente fügt sie am Fälligkeitsdatum für dich hinzu, sobald du die App das nächste Mal öffnest. Deine Widgets berücksichtigen sie sofort."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente la añade por ti en su fecha de vencimiento, la próxima vez que abras la app. Tus widgets la tienen en cuenta al momento."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente la agrega por ti en su fecha de vencimiento, la próxima vez que abras la app. Tus widgets la tienen en cuenta al momento."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente l’ajoute pour vous à son échéance, la prochaine fois que vous ouvrez l’app. Vos widgets la prennent en compte immédiatement."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente la aggiunge per te alla scadenza, la prossima volta che apri l’app. I tuoi widget la contano subito."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "예정일 이후 앱을 다시 열면 Trente가 자동으로 추가해요. 위젯에는 바로 반영돼요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Trente a adiciona para você na data de vencimento, na próxima vez que você abrir o app. Seus widgets já a contabilizam na hora."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Trente adiciona-a por si na data de vencimento, da próxima vez que abrir a app. Os seus widgets contabilizam-na de imediato."
           }
         }
       }

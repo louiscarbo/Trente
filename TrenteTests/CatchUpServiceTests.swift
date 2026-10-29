@@ -31,7 +31,7 @@ struct CatchUpServiceTests {
         ))
         try context.save()
 
-        try CatchUpService.shared.catchUp(in: context, now: day(2026, 10, 10))
+        try CatchUpService.shared.catchUp(in: context, now: day(2026, 10, 10), isTrentePlusSubscribed: true)
 
         let months = try context.fetch(FetchDescriptor<Month>(sortBy: [SortDescriptor(\.startDate)]))
         #expect(months.map(\.startDate) == [day(2026, 8, 1), day(2026, 9, 1), day(2026, 10, 1)])
@@ -45,7 +45,7 @@ struct CatchUpServiceTests {
         insertMonth(year: 2026, month: 8, in: context)
         try context.save()
 
-        try CatchUpService.shared.catchUpAfterSync(in: context, now: day(2026, 9, 10))
+        try CatchUpService.shared.catchUpAfterSync(in: context, now: day(2026, 9, 10), isTrentePlusSubscribed: true)
 
         let months = try context.fetch(FetchDescriptor<Month>(sortBy: [SortDescriptor(\.startDate)]))
         #expect(months.map(\.startDate) == [day(2026, 8, 1), day(2026, 9, 1)])

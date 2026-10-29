@@ -250,7 +250,7 @@ struct RecurringTransactionsTests {
         insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], automatic: true, in: context)
         try context.save()
 
-        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10), isAutomaticUnlocked: true)
 
         #expect(confirmedCount == 1)
         let group = try #require(april.transactionGroups.first)
@@ -268,7 +268,7 @@ struct RecurringTransactionsTests {
         try context.save()
         try service.skip(try #require(rent.pendingOccurrences(in: april).first), in: context)
 
-        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10), isAutomaticUnlocked: true)
 
         #expect(confirmedCount == 0)
         #expect(april.transactionGroups.isEmpty)
@@ -282,8 +282,8 @@ struct RecurringTransactionsTests {
         insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], automatic: true, in: context)
         try context.save()
 
-        try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
-        let secondCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 11))
+        try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10), isAutomaticUnlocked: true)
+        let secondCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 11), isAutomaticUnlocked: true)
 
         #expect(secondCount == 0)
         #expect(april.transactionGroups.count == 1)
@@ -295,12 +295,12 @@ struct RecurringTransactionsTests {
         let april = insertMonth(year: 2025, month: 4, in: context)
         let rule = insertRule("Rent", startingOn: day(2025, 4, 2), repartition: [.needs: -800_00], automatic: true, in: context)
         try context.save()
-        try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+        try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10), isAutomaticUnlocked: true)
         let group = try #require(april.transactionGroups.first)
 
         TransactionService.shared.delete(group: group, in: context)
         try context.save()
-        let secondCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 11))
+        let secondCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 11), isAutomaticUnlocked: true)
 
         #expect(secondCount == 0)
         #expect(try context.fetch(FetchDescriptor<TransactionGroup>()).isEmpty)
@@ -350,7 +350,7 @@ struct RecurringTransactionsTests {
 
         var confirmedCount = 0
         let saves = try countSaves(of: context) {
-            confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+            confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10), isAutomaticUnlocked: true)
         }
 
         #expect(confirmedCount == 4)
@@ -366,7 +366,7 @@ struct RecurringTransactionsTests {
         try context.save()
 
         let saves = try countSaves(of: context) {
-            try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+            try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10), isAutomaticUnlocked: true)
         }
 
         #expect(saves == 0)
@@ -382,7 +382,7 @@ struct RecurringTransactionsTests {
         rule.lastAutoConfirmedDate = day(2025, 2, 2)
         try context.save()
 
-        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10))
+        let confirmedCount = try service.confirmDueOccurrences(in: context, now: day(2025, 4, 10), isAutomaticUnlocked: true)
 
         let confirmedDates = try context.fetch(FetchDescriptor<TransactionGroup>()).compactMap(\.recurringOccurrenceDate).sorted()
         #expect(confirmedCount == 2)

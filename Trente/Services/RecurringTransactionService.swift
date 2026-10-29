@@ -28,7 +28,11 @@ final class RecurringTransactionService: Sendable {
     }
 
     @discardableResult
-    func confirmDueOccurrences(in context: ModelContext, now: Date = .now) throws -> Int {
+    func confirmDueOccurrences(
+        in context: ModelContext,
+        now: Date = .now,
+        isAutomaticUnlocked: Bool
+    ) throws -> Int {
         let rules = try context.fetch(
             FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true })
         )
@@ -46,7 +50,9 @@ final class RecurringTransactionService: Sendable {
         for occurrence in dueOccurrences {
             let rule = occurrence.rule
             rule.lastAutoConfirmedDate = max(rule.lastAutoConfirmedDate ?? .distantPast, occurrence.date)
-            insertTransaction(for: occurrence, in: context, addedDate: occurrence.date)
+            if isAutomaticUnlocked {
+                insertTransaction(for: occurrence, in: context, addedDate: occurrence.date)
+            }
         }
         do {
             try context.save()
@@ -54,7 +60,7 @@ final class RecurringTransactionService: Sendable {
             context.rollback()
             throw error
         }
-        return dueOccurrences.count
+        return isAutomaticUnlocked ? dueOccurrences.count : 0
     }
 
     @discardableResult
