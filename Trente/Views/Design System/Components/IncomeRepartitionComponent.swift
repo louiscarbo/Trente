@@ -1,0 +1,457 @@
+//
+//  IncomeRepartitionView.swift
+//  Trente
+//
+//  Created by Louis Carbo Estaque on 12/07/2025.
+//
+
+import SwiftUI
+
+struct IncomeRepartitionComponent: View {
+    @Binding var repartition: [BudgetCategory: Int]
+    let amountToSplit: Int
+    let formatter: NumberFormatter
+    @Binding var isRepartitionComplete: Bool
+    @State private var remainingMeasuredHeight: CGFloat = 0
+    
+    @State private var remainingAmount: Int = 0
+    
+    @Environment(\.isEnabled) private var isEnabled: Bool
+
+    init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, formatter: NumberFormatter, isRepartitionComplete: Binding<Bool>) {
+        self._repartition = repartition
+        self.amountToSplit = amountToSplit
+        self.formatter = formatter
+        self._isRepartitionComplete = isRepartitionComplete
+    }
+
+    var body: some View {
+        VStack(spacing: .medium) {
+            if isEnabled {
+                remainingAmountSection
+            }
+
+            ForEach(BudgetCategory.allCases, id: \.self) { category in
+                BudgetCategorySliderRow(
+                    category: category,
+                    repartition: $repartition,
+                    remainingAmount: $remainingAmount,
+                    amountToSplit: amountToSplit,
+                    formatter: formatter
+                )
+            }
+        }
+        .onAppear {
+            let allocatedAmount = repartition.values.reduce(0, +)
+            remainingAmount = amountToSplit - allocatedAmount
+            isRepartitionComplete = remainingAmount == 0
+        }
+        .onChange(of: remainingAmount) { _, newValue in
+            isRepartitionComplete = newValue == 0
+        }
+    }
+    
+    var remainingAmountSection: some View {
+        let color: Color = .pink
+
+        return GeometryReader { geo in
+            let width = geo.size.width
+            let proportion = amountToSplit > 0
+                ? max(0, min(1, CGFloat(remainingAmount) / CGFloat(amountToSplit)))
+                : 0
+            let fillWidth = min(proportion * (width - 3) + 3, width)
+
+            ZStack(alignment: .leading) {
+                color.lighten(0.25)
+
+                Rectangle()
+                    .fill(color.gradient)
+                    .frame(width: fillWidth)
+
+                let content = HStack {
+                    Label(
+                        "Amount to split",
+                        systemImage: remainingAmount > 0
+                            ? "exclamationmark.triangle.fill"
+                            : "checkmark.circle.fill"
+                    )
+                    .contentTransition(
+                        .symbolEffect(.replace)
+                    )
+                    Spacer()
+                    Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+                }
+                .font(.subheadline)
+                .bold(remainingAmount < 100 && remainingAmount > 0)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+
+                ZStack {
+                    content
+                        .accessibilityHidden(true)
+                        .foregroundColor(color.lighten(0.5))
+                        .mask(
+                            HStack(spacing: 0) {
+                                Rectangle().frame(width: fillWidth)
+                                Spacer(minLength: 0)
+                            }
+                        )
+                        .background(
+                            GeometryReader { g in
+                                Color.clear.preference(key: HeightKey.self, value: g.size.height)
+                            }
+                        )
+
+                    content
+                        .foregroundColor(color.darken(0.6))
+                        .mask(
+                            HStack(spacing: 0) {
+                                Spacer(minLength: 0)
+                                Rectangle().frame(width: max(0, width - fillWidth))
+                            }
+                        )
+                }
+            }
+        }
+        .frame(height: max(20, remainingMeasuredHeight))
+        .clipShape(Capsule())
+        .overlay {
+            RoundedRectangle(cornerRadius: .large)
+                .strokeBorder(.pink.darken(0.1), lineWidth: 3)
+        }
+        .glassEffect(.regular.interactive(false), in: .capsule)
+        .accessibilityElement(children: .combine)
+        .onPreferenceChange(HeightKey.self) { h in
+            remainingMeasuredHeight = h
+        }
+    }
+}
+
+struct TrenteSliderButtonStyle: ButtonStyle {
+    let color: Color
+    @Environment(\.isEnabled) private var isEnabled: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: .large)
+                .fill(color)
+            configuration.label
+                .bold()
+                .opacity(isEnabled ? 1.0 : 0.3)
+            RoundedRectangle(cornerRadius: .large)
+                .strokeBorder(color.darken(0.1), lineWidth: 3)
+        }
+        .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1.0) : 1)
+        .tint(color.darken(0.8))
+        .glassEffect(.regular.interactive(isEnabled), in: .capsule)
+    }
+}
+
+// TODO: Add the percentages, maybe with ticks along the sliders?
+struct BudgetCategorySliderRow: View {
+    let category: BudgetCategory
+    @Binding var repartition: [BudgetCategory: Int]
+    @Binding var remainingAmount: Int
+    let amountToSplit: Int
+    let formatter: NumberFormatter
+
+    @State private var timer: Timer?
+    @State private var isLongPressing = false
+    
+    @Environment(\.isEnabled) private var isEnabled: Bool
+
+    var body: some View {
+        VStack(spacing: .small) {
+            HStack {
+                let decreaseAction = {
+                    withAnimation(.spring) {
+                        let currentValue = repartition[category] ?? 0
+                        let newValue = RepartitionSplit.decreasedValue(from: currentValue)
+                        let delta = newValue - currentValue
+                        repartition[category] = newValue
+                        remainingAmount -= delta
+                    }
+                }
+
+                let increaseAction = {
+                    withAnimation(.spring) {
+                        let currentValue = repartition[category] ?? 0
+                        let newValue = RepartitionSplit.increasedValue(from: currentValue, remaining: remainingAmount)
+                        let delta = newValue - currentValue // will be positive or zero
+                        repartition[category] = newValue
+                        remainingAmount -= delta
+                    }
+                }
+
+                if isEnabled {
+                    Button(action: decreaseAction, label: {
+                        Image(systemName: "minus")
+                            .foregroundStyle(category.color.darken(0.8))
+                    })
+                    .accessibilityLabel(Text("Decrease \(category.shortName)"))
+                    .frame(width: 40)
+                    .buttonStyle(TrenteSliderButtonStyle(color: category.color))
+                    .disabled((repartition[category] ?? 0) == 0)
+                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
+                        isLongPressing = true
+                        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                            decreaseAction()
+                        }
+                    })
+                    .simultaneousGesture(DragGesture(minimumDistance: 0).onEnded { _ in
+                        if isLongPressing {
+                            timer?.invalidate()
+                            timer = nil
+                            isLongPressing = false
+                        }
+                    })
+                }
+
+                let maxValueForSlider = (repartition[category] ?? 0) + remainingAmount
+
+                RepartitionSlider(
+                    categoryName: category.shortName,
+                    color: category.color,
+                    value: Binding(
+                        get: { repartition[category] ?? 0 },
+                        set: { newValue in
+                            let oldValue = repartition[category] ?? 0
+                            let finalValue = RepartitionSplit.clampedValue(
+                                newValue,
+                                from: oldValue,
+                                remaining: remainingAmount
+                            )
+
+                            let delta = finalValue - oldValue
+
+                            repartition[category] = finalValue
+                            remainingAmount -= delta
+                        }
+                    ),
+                    total: amountToSplit,
+                    maxValue: maxValueForSlider,
+                    formatter: formatter
+                )
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(category.name)
+                .accessibilityValue(accessibilityValue)
+                .accessibilityAdjustableAction { direction in
+                    guard isEnabled else { return }
+                    switch direction {
+                    case .increment:
+                        setValueForAccessibility(
+                            RepartitionSplit.steppedUpValue(
+                                from: repartition[category] ?? 0,
+                                total: amountToSplit,
+                                remaining: remainingAmount
+                            )
+                        )
+                    case .decrement:
+                        setValueForAccessibility(
+                            RepartitionSplit.steppedDownValue(from: repartition[category] ?? 0, total: amountToSplit)
+                        )
+                    @unknown default:
+                        break
+                    }
+                }
+                .accessibilityActions {
+                    if isEnabled && remainingAmount > 0 {
+                        Button("Add what's left") {
+                            setValueForAccessibility((repartition[category] ?? 0) + remainingAmount)
+                        }
+                    }
+                    if isEnabled && (repartition[category] ?? 0) > 0 {
+                        Button("Set to zero") {
+                            setValueForAccessibility(0)
+                        }
+                    }
+                }
+
+                if isEnabled {
+                    Button(action: increaseAction, label: {
+                        Image(systemName: "plus")
+                            .foregroundStyle(category.color.darken(0.8))
+                    })
+                    .accessibilityLabel(Text("Increase \(category.shortName)"))
+                    .buttonStyle(TrenteSliderButtonStyle(color: category.color))
+                    .frame(width: 40)
+                    .disabled(remainingAmount == 0)
+                    .simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded { _ in
+                        isLongPressing = true
+                        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                            increaseAction()
+                        }
+                    })
+                    .simultaneousGesture(DragGesture(minimumDistance: 0).onEnded { _ in
+                        if isLongPressing {
+                            timer?.invalidate()
+                            timer = nil
+                            isLongPressing = false
+                        }
+                    })
+                }
+            }
+        }
+        .onDisappear {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+
+    private var accessibilityValue: String {
+        let value = repartition[category] ?? 0
+        let share = amountToSplit > 0 ? Double(value) / Double(amountToSplit) : 0
+        let valueDescription = "\(formattedAmount(value)), \(share.formatted(.percent.precision(.fractionLength(0))))"
+        guard isEnabled, remainingAmount > 0 else { return valueDescription }
+        return valueDescription + ". " + String(localized: "\(formattedAmount(remainingAmount)) left to split")
+    }
+
+    private func formattedAmount(_ cents: Int) -> String {
+        formatter.string(from: NSNumber(value: Double(cents) / 100.0)) ?? ""
+    }
+
+    private func setValueForAccessibility(_ newValue: Int) {
+        let currentValue = repartition[category] ?? 0
+        withAnimation(.spring) {
+            repartition[category] = newValue
+            remainingAmount -= newValue - currentValue
+        }
+    }
+}
+
+private struct HeightKey: PreferenceKey {
+    static let defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
+    }
+}
+
+// MARK: - Custom Slider View
+struct RepartitionSlider: View {
+    let categoryName: String
+    let color: Color
+    @Binding var value: Int
+    let total: Int
+    let maxValue: Int
+    let formatter: NumberFormatter
+
+    @State private var measuredHeight: CGFloat = 0
+
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var filledTextColor: Color {
+        colorScheme == .dark ? color.darken(0.8) : color.lighten(0.5)
+    }
+
+    var body: some View {
+        GeometryReader { geo in
+            let width = geo.size.width
+            let proportion = total > 0 ? CGFloat(value) / CGFloat(total) : 0
+            let fillWidth = min(proportion * (width - 3) + 3, width)
+
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .fill(color.darken(brightnessDrop: -0.10, saturationBoost: -0.2))
+
+                Rectangle()
+                    .fill(color)
+                    .frame(width: fillWidth)
+
+                let textView = Text(formatter.string(from: NSNumber(value: Double(value) / 100.0)) ?? "")
+                    .font(.title)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                
+                let categoryNameView = Text("\(categoryName) - \(String(format: "%.0f%%", proportion * 100))")
+                    .font(.subheadline.bold())
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                ZStack {
+                    VStack {
+                        categoryNameView
+                        textView
+                    }
+                    .foregroundColor(filledTextColor)
+                    .padding(.vertical, 6)
+                    .mask(
+                        HStack {
+                            Rectangle().frame(width: fillWidth)
+                            Spacer(minLength: 0)
+                        }
+                    )
+                    .accessibilityHidden(true)
+                    // Measure the height of the text to force the slider to adapt its height
+                    .background(
+                        GeometryReader { geometry in
+                            Color.clear.preference(key: HeightKey.self, value: geometry.size.height)
+                        }
+                    )
+                    .onPreferenceChange(HeightKey.self) { height in
+                        measuredHeight = height
+                    }
+                    
+                    VStack {
+                        categoryNameView
+                        textView
+                    }
+                    .foregroundColor(color.darken(0.8))
+                    .mask(
+                        HStack {
+                            Spacer(minLength: 0)
+                            Rectangle().frame(width: width - fillWidth)
+                        }
+                    )
+                }
+            }
+            .overlay {
+                RoundedRectangle(cornerRadius: .large)
+                    .strokeBorder(
+                        color.darken(0.1),
+                        lineWidth: 3
+                    )
+            }
+            .clipShape(RoundedRectangle(cornerRadius: .large))
+            .glassEffect(.regular.interactive(true), in: RoundedRectangle(cornerRadius: .large))
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { drag in
+                        value = RepartitionSplit.dragValue(
+                            atFraction: drag.location.x / width,
+                            total: total,
+                            maxValue: maxValue
+                        )
+                    }
+            )
+            .sensoryFeedback(.selection, trigger: value)
+        }
+        .frame(height: measuredHeight)
+    }
+}
+
+#Preview {
+    @Previewable @State var repartition: [BudgetCategory: Int] = Dictionary(
+            uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) }
+        )
+    @Previewable @State var isRepartitionComplete = false
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "EUR"
+        return formatter
+    }()
+
+    ScrollView {
+        GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
+            IncomeRepartitionComponent(
+                repartition: $repartition,
+                amountToSplit: 60_30,
+                formatter: formatter,
+                isRepartitionComplete: $isRepartitionComplete
+            )
+        }
+        .groupBoxStyle(TrenteGroupBoxStyle())
+
+        Text("Is Repartition Complete: \(isRepartitionComplete ? "Yes" : "No")")
+    }
+    .padding()
+}

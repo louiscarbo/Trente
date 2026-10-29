@@ -8,43 +8,82 @@
 import Foundation
 import SwiftData
 
-@Model
-class RecurringTransactionRule {
-    var title: String
-    var frequency: RecurrenceFrequency
-    var startDate: Date
-    var endDate: Date? = nil
-    var autoConfirm: Bool = false
-    var repartition: [BudgetCategory:Int]
-    
-    @Relationship(deleteRule: .cascade, inverse: \RecurringTransactionInstance.rule)
-    var instances: [RecurringTransactionInstance] = []
+extension SchemaV1 {
+    @Model
+    class RecurringTransactionRule {
+        #Index<RecurringTransactionRule>([\.id])
 
-    var isDeleted: Bool = false
-    
-    init(title: String, frequency: RecurrenceFrequency, startDate: Date, endDate: Date? = nil, autoConfirm: Bool = false, repartition: [BudgetCategory : Int]) {
-        self.title = title
-        self.frequency = frequency
-        self.startDate = startDate
-        self.endDate = endDate
-        self.autoConfirm = autoConfirm
-        self.repartition = repartition
-        self.instances = []
-        self.isDeleted = false
+        var id: UUID = UUID()
+        var title: String = ""
+        var frequency: RecurrenceFrequency = RecurrenceFrequency.monthly
+        var startDate: Date = Date.now
+        var endDate: Date?
+        var autoConfirm: Bool = false
+        var repartition: [BudgetCategory: Int] = [:]
+        var createdAt: Date = Date.now
+        var skippedOccurrenceDates: [Date] = []
+        var lastAutoConfirmedDate: Date?
+
+        @Relationship(deleteRule: .nullify, inverse: \TransactionGroup.recurringRule)
+        var storedTransactions: [TransactionGroup]? = []
+
+        init(
+            title: String,
+            frequency: RecurrenceFrequency,
+            startDate: Date,
+            endDate: Date? = nil,
+            autoConfirm: Bool = false,
+            repartition: [BudgetCategory: Int],
+            createdAt: Date = .now
+        ) {
+            self.title = title
+            self.frequency = frequency
+            self.startDate = startDate
+            self.endDate = endDate
+            self.autoConfirm = autoConfirm
+            self.repartition = repartition
+            self.createdAt = createdAt
+            self.storedTransactions = []
+            Self.validateRepartitionInvariant(repartition)
+        }
     }
 }
 
-enum RecurrenceFrequency: String, Codable, CaseIterable {
+extension RecurringTransactionRule {
+    var amountCents: Int {
+        repartition.values.reduce(0, +)
+    }
+
+    var transactions: [TransactionGroup] {
+        get { storedTransactions ?? [] }
+        set { storedTransactions = newValue }
+    }
+
+    func setRepartition(_ newRepartition: [BudgetCategory: Int]) {
+        Self.validateRepartitionInvariant(newRepartition)
+        repartition = newRepartition
+    }
+
+    fileprivate static func validateRepartitionInvariant(_ repartition: [BudgetCategory: Int]) {
+        let total = repartition.values.reduce(0, +)
+        if total < 0 && repartition.count > 1 {
+            assertionFailure("Expense rule repartition must contain exactly one category, got \(repartition.count).")
+        }
+    }
+}
+
+enum RecurrenceFrequency: String, Codable, CaseIterable, Identifiable {
+    var id: String { self.rawValue }
     case weekly, monthly, yearly
-    
+
     var displayName: String {
         switch self {
         case .weekly:
-            return String(localized: "Weekly")
+            String(localized: "Weekly")
         case .monthly:
-            return String(localized: "Monthly")
+            String(localized: "Monthly")
         case .yearly:
-            return String(localized: "Yearly")
+            String(localized: "Yearly")
         }
     }
 }
@@ -56,191 +95,78 @@ extension RecurringTransactionRule {
             return String(localized: "Every \(startDate.formatted(.dateTime.weekday(.wide)))")
         case .monthly:
             let day = Calendar.current.component(.day, from: startDate)
-            let ordinalDay = day.ordinalString
-            return "\(ordinalDay) of every month"
+            return String(localized: "Every month on the \(day.dayOfMonthString())")
         case .yearly:
-            return String(localized: "Every \(startDate.formatted(.dateTime.month(.wide))) \(startDate.formatted(.dateTime.day(.ordinalOfDayInMonth)))")
+            return String(localized: "Every \(startDate.formatted(.dateTime.month(.wide).day()))")
         }
     }
 }
 
 extension Int {
-    /// “1st”, “2nd”, “3rd”, “4th”, … localized
-    var ordinalString: String {
-        let fmt = NumberFormatter()
-        fmt.numberStyle = .ordinal
-        return fmt.string(from: NSNumber(value: self)) ?? "\(self)"
+    private static let ordinalDayLanguages: Set<String> = ["en", "de"]
+
+    func dayOfMonthString(localization: String = Bundle.main.preferredLocalizations.first ?? "en") -> String {
+        let locale = Locale(identifier: localization)
+        guard let languageCode = locale.language.languageCode?.identifier,
+              Self.ordinalDayLanguages.contains(languageCode) else {
+            return "\(self)"
+        }
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        formatter.numberStyle = .ordinal
+        return formatter.string(from: NSNumber(value: self)) ?? "\(self)"
     }
 }
 
 extension RecurringTransactionRule {
-    /// Returns the recurring transaction instances for the given month,
-    /// based on the rule's start/end dates and its frequency.
-    func createRecurringInstances(for month: Month) -> [RecurringTransactionInstance] {
-        var instances: [RecurringTransactionInstance] = []
+    var schedule: RecurrenceSchedule {
+        RecurrenceSchedule(
+            frequency: frequency,
+            startDate: startDate,
+            endDate: endDate,
+            earliestDate: createdAt
+        )
+    }
+
+    func occurrences(in month: Month) -> [RecurringTransactionOccurrence] {
+        schedule.dates(in: month.dateInterval).map { date in
+            RecurringTransactionOccurrence(rule: self, date: date, month: month)
+        }
+    }
+
+    var hasEnded: Bool {
+        guard let endDate else { return false }
         let calendar = Calendar.current
-        
-        // 1. Compute month bounds
-        let startOfMonth = month.startDate
-        let endOfMonth = month.endDate()
-        
-        // 2. Clip rule’s date window to this month
-        let windowStart = max(self.startDate, startOfMonth)
-
-        let windowEnd = {
-            if let ruleEnd = self.endDate {
-                return min(ruleEnd, endOfMonth)
-            } else {
-                return endOfMonth
-            }
-        }()
-        guard windowStart <= windowEnd else {
-            // No overlap between rule and this month
-            return []
-        }
-        
-        switch frequency {
-        case .weekly:
-            // 3a. Weekly: same weekday as rule.startDate
-            let weekday = calendar.component(.weekday, from: self.startDate)
-            
-            // Find first occurrence on/after windowStart
-            var candidate = calendar.nextDate(
-                after: windowStart.addingTimeInterval(-1),
-                matching: DateComponents(weekday: weekday),
-                matchingPolicy: .nextTime
-            )!
-            
-            // Step by 1 week until we exceed windowEnd
-            while candidate <= windowEnd {
-                instances.append(
-                    RecurringTransactionInstance(
-                        date:     candidate,
-                        rule:     self,
-                        month:    month,
-                        confirmed: false
-                    )
-                )
-                candidate = calendar.date(
-                    byAdding: .weekOfYear,
-                    value: 1,
-                    to: candidate
-                )!
-            }
-            
-        case .monthly:
-            // 1) normalize windowStart to midnight for date‐only compare
-            let dayWindowStart = calendar.startOfDay(for: windowStart)
-            let day = calendar.component(.day, from: self.startDate)
-
-            // 2) We’ll test two calendar‐months: the one containing month.startDate, and the next one
-            for offset in 0...1 {
-                // anchor to month.startDate + offset months
-                guard let monthAnchor = calendar.date(
-                    byAdding: .month,
-                    value: offset,
-                    to: month.startDate
-                ) else { continue }
-
-                // build year/month from that anchor
-                var comps = calendar.dateComponents([.year, .month], from: monthAnchor)
-                comps.day = day
-
-                // try to form the candidate
-                guard let candidate = calendar.date(from: comps) else { continue }
-
-                // 3) only accept if it lands in our valid window
-                if candidate >= dayWindowStart && candidate <= windowEnd {
-                    instances.append(
-                        RecurringTransactionInstance(
-                            date:      candidate,
-                            rule:      self,
-                            month:     month,
-                            confirmed: false
-                        )
-                    )
-                }
-            }
-            
-        case .yearly:
-            // 3c. Yearly: same month/day as rule.startDate, but only if it falls in this month
-            let ruleMonth = calendar.component(.month, from: self.startDate)
-            let targetMonth = calendar.component(.month, from: month.startDate)
-            
-            guard ruleMonth == targetMonth else {
-                // Different month, so no yearly hit
-                break
-            }
-            
-            let day = calendar.component(.day, from: self.startDate)
-            var comps = calendar.dateComponents([.year], from: windowStart)
-            comps.month = targetMonth
-            comps.day   = day
-            
-            if let candidate = calendar.date(from: comps),
-               candidate >= windowStart,
-               candidate <= windowEnd {
-                
-                print("Adding yearly instance: \(title), \(candidate)")
-
-                instances.append(
-                    RecurringTransactionInstance(
-                        date:     candidate,
-                        rule:     self,
-                        month:    month,
-                        confirmed: false
-                    )
-                )
-            }
-        }
-        
-        return instances
+        return calendar.startOfDay(for: endDate) <= calendar.startOfDay(for: .now)
     }
-}
 
-// MARK: - Sample Data
-extension RecurringTransactionRule {
-    /// A few sample recurring rules so that month1, month2 & month3
-    /// each get at least two instances when you call `generateInstances(...)`
-    static let sampleData: [RecurringTransactionRule] = {
-        // Start all rules two months ago, so they fire in month3, month2 & month1
-        let start = Month.month3.startDate
-        
-        // 1) Monthly salary income
-        let salary = RecurringTransactionRule(
-            title: "Salary",
-            frequency: .monthly,
-            startDate: start.addingTimeInterval(-15 * 24 * 60 * 60),
-            repartition: [
-                .needs : 1600_00,
-                .wants: 500,
-                .savingsAndDebts: 300
-            ]
-        )
-        salary.autoConfirm = true
-        
-        // 2) Monthly rent expense
-        let rent = RecurringTransactionRule(
-            title: "Rent",
-            frequency: .monthly,
-            startDate: start.addingTimeInterval(-1 * 24 * 60 * 60),
-            repartition: [
-                .needs : -800_00
-            ]
-        )
-        rent.autoConfirm = true
-        
-        // 3) Weekly coffee expense
-        let coffee = RecurringTransactionRule(
-            title: "Coffee",
-            frequency: .weekly,
-            startDate: start.addingTimeInterval(-3 * 24 * 60 * 60),
-            repartition: [
-                .wants : -300
-            ]
-        )
-        coffee.autoConfirm = true
-        
-        return [salary, rent, coffee]
-    }()
+    func pendingOccurrences(in month: Month) -> [RecurringTransactionOccurrence] {
+        occurrences(in: month).filter { isPending(on: $0.date) }
+    }
+
+    func isPending(on date: Date, calendar: Calendar = .current) -> Bool {
+        !isSettled(on: date, calendar: calendar) && !isSkipped(on: date, calendar: calendar)
+    }
+
+    func dueAutomaticOccurrences(in month: Month, by date: Date) -> [RecurringTransactionOccurrence] {
+        guard autoConfirm else { return [] }
+        return pendingOccurrences(in: month).filter { occurrence in
+            occurrence.date <= date && occurrence.date > (lastAutoConfirmedDate ?? .distantPast)
+        }
+    }
+
+    func isSettled(on date: Date, calendar: Calendar = .current) -> Bool {
+        transactions.contains { transaction in
+            guard let settledDate = transaction.recurringOccurrenceDate else { return false }
+            return isSamePeriod(settledDate, date, calendar: calendar)
+        }
+    }
+
+    func isSkipped(on date: Date, calendar: Calendar = .current) -> Bool {
+        skippedOccurrenceDates.contains { isSamePeriod($0, date, calendar: calendar) }
+    }
+
+    private func isSamePeriod(_ lhs: Date, _ rhs: Date, calendar: Calendar) -> Bool {
+        calendar.isDate(lhs, equalTo: rhs, toGranularity: frequency.calendarComponent)
+    }
 }

@@ -1,0 +1,87 @@
+//
+//  DisplayableTransaction.swift
+//  Trente
+//
+//  Created by Louis Carbo Estaque on 20/04/2025.
+//
+
+import Foundation
+import SwiftData
+
+struct DisplayableTransaction: Identifiable, Equatable {
+    static func == (lhs: DisplayableTransaction, rhs: DisplayableTransaction) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    enum Kind {
+        case group(TransactionGroup)
+        case recurring(RecurringTransactionOccurrence)
+    }
+
+    enum ID: Hashable {
+        case group(PersistentIdentifier)
+        case recurring(RecurringTransactionOccurrence.Key)
+    }
+
+    let kind: Kind
+
+    var id: ID {
+        switch kind {
+        case .group(let group):         .group(group.persistentModelID)
+        case .recurring(let occurrence): .recurring(occurrence.id)
+        }
+    }
+    
+    var date: Date {
+        switch kind {
+        case .group(let g):      return g.addedDate
+        case .recurring(let r):  return r.date
+        }
+    }
+    var title: String {
+        switch kind {
+        case .group(let g):      return g.title
+        case .recurring(let r):  return r.rule.title
+        }
+    }
+    var searchableString: String {
+        let delimiter = "\u{001F}"
+        
+        switch kind {
+        case .group(let g):
+            let title = g.title
+            let categories = g.entries.map { $0.category.name }.joined(separator: delimiter)
+            let date = g.addedDate.formatted(.dateTime.year().month(.wide).day().weekday(.wide))
+            let amount = displayAmount
+            return title + delimiter + categories + delimiter + date + delimiter + amount
+        case .recurring(let r):
+            let title = r.rule.title
+            let categories = r.rule.repartition.map { $0.key.name }.joined(separator: delimiter)
+            let date = r.date.formatted(.dateTime.year().month(.wide).day().weekday(.wide))
+            let amount = displayAmount
+            return title + delimiter + categories + delimiter + date + delimiter + amount
+        }
+    }
+    var categories: [BudgetCategory] {
+        switch kind {
+        case .group(let g):
+            return g.entries.map { $0.category }
+        case .recurring(let r):
+            return r.rule.repartition.map { $0.key }
+        }
+    }
+    var amountCents: Int {
+        switch kind {
+        case .group(let g):      return g.totalAmountCents
+        case .recurring(let r):  return r.rule.amountCents
+        }
+    }
+    var displayAmount: String {
+        let code: String
+        switch kind {
+        case .group(let g):      code = g.currency.isoCode
+        case .recurring(let r):  code = r.month.currency.isoCode
+        }
+        return (Double(amountCents)/100).formatted(.amount(code))
+    }
+}

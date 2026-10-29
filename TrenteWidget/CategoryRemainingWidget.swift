@@ -7,7 +7,6 @@
 
 import WidgetKit
 import SwiftUI
-import SwiftData
 
 struct CategoryRemainingWidget: Widget {
     let kind: String = "CategoryRemainingWidget"
@@ -25,7 +24,14 @@ struct CategoryRemainingWidget: Widget {
                 }
         }
         .configurationDisplayName(String(localized: "Category Recap"))
-        .description(String(localized: "See your remaining budget for the current month in a specific category, or for all categories in the medium widget.\n\nTo select a category, hold the widget."))
+        .description(
+            String(localized: """
+                See your remaining budget for the current month in a specific category, or for all categories in the medium widget.
+                
+                To select a category, hold the widget.
+                """
+            )
+        )
         #if os(iOS)
         .supportedFamilies([.systemMedium, .systemSmall, .accessoryCircular])
         #elseif os(macOS)
@@ -56,26 +62,32 @@ struct SmallMediumCategoryRemainingWidgetView: View {
     var entry: CategoryTimeline.Entry
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            CategoryRemainingGaugeView(
-                month: entry.month ?? Month.getSampleMonthWithTransactions(),
-                category: entry.category.budgetCategory
-            )
-            
-            Text(entry.category.budgetCategory.shortName)
-                .lineLimit(1)
-                .font(.subheadline)
-                .bold()
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-                .background {
-                    Capsule()
-                        .fill(.thinMaterial)
-                        .padding(2)
-                }
-                .offset(y: 13)
+        if let month = entry.month {
+            ZStack(alignment: .bottom) {
+                let category = entry.category.budgetCategory
+                BudgetGaugeView(
+                    figures: month.figures(for: category),
+                    category: category,
+                    currencyCode: month.currencyCode
+                )
+                
+                Text(entry.category.budgetCategory.shortName)
+                    .accessibilityHidden(true)
+                    .lineLimit(1)
+                    .font(.subheadline)
+                    .bold()
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background {
+                        Capsule()
+                            .fill(.thinMaterial)
+                            .padding(2)
+                    }
+                    .offset(y: 13)
+            }
+        } else {
+            NoMonthWidgetView()
         }
-        
     }
 }
 
@@ -83,26 +95,32 @@ struct MediumCategoryRemainingWidgetView: View {
     var entry: CategoryTimeline.Entry
     
     var body: some View {
-        HStack(spacing: 25) {
-            OneGaugeView(month: entry.month, category: .needs)
-            OneGaugeView(month: entry.month, category: .wants)
-            OneGaugeView(month: entry.month, category: .savingsAndDebts)
+        if let month = entry.month {
+            HStack(spacing: 25) {
+                OneGaugeView(month: month, category: .needs)
+                OneGaugeView(month: month, category: .wants)
+                OneGaugeView(month: month, category: .savingsAndDebts)
+            }
+        } else {
+            NoMonthWidgetView()
         }
     }
     
     private struct OneGaugeView: View {
-        var month: Month?
+        var month: WidgetMonth
         var category: BudgetCategory
         
         var body: some View {
             ZStack(alignment: .bottom) {
-                CategoryRemainingGaugeView(
-                    month: month ?? Month.getSampleMonthWithTransactions(),
+                BudgetGaugeView(
+                    figures: month.figures(for: category),
                     category: category,
+                    currencyCode: month.currencyCode,
                     size: 80
                 )
                 
                 Text(category.shortName)
+                    .accessibilityHidden(true)
                     .lineLimit(1)
                     .font(.subheadline)
                     .bold()
@@ -120,6 +138,19 @@ struct MediumCategoryRemainingWidgetView: View {
     }
 }
 
+struct NoMonthWidgetView: View {
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: "calendar")
+                .font(.title2)
+                .accessibilityHidden(true)
+            Text("No month yet")
+                .font(.headline)
+                .multilineTextAlignment(.center)
+        }
+        .foregroundStyle(.secondary)
+    }
+}
 
 struct AccessoryCircularCategoryRemainingWidgetView: View {
     var entry: CategoryTimeline.Entry
@@ -128,50 +159,50 @@ struct AccessoryCircularCategoryRemainingWidgetView: View {
         let category = entry.category.budgetCategory
         
         if let currentMonth = entry.month {
-            Gauge(
-                value: currentMonth.remainingAmount(for: category),
-                in:
-                    0
-                        ...
-                    currentMonth.incomeAmount(for: category)
-            ) {
-                Text(currentMonth.remainingAmountDisplay(for: category))
+            let figures = currentMonth.figures(for: category)
+            Gauge(value: figures.remaining, in: 0...figures.income) {
+                Text(currentMonth.display(figures.remaining))
                     .privacySensitive()
             }
             .gaugeStyle(AccessoryCircularGaugeStyle())
         } else {
             Image(systemName: "xmark")
+                .accessibilityLabel(Text("No month yet"))
         }
     }
 }
 
 struct CategoryTimeline: AppIntentTimelineProvider {
-    @MainActor
     func timeline(for configuration: SelectCategoryIntent, in context: Context) async -> Timeline<CategoryEntry> {
-        Timeline(
-            entries: [
-                CategoryEntry(
-                    date: Date(),
-                    month: getCurrentMonth(),
-                    category: configuration.category ?? .needs
-                )
-            ],
-            policy: .never
-        )
+        currentMonthTimeline { date, month in
+            CategoryEntry(
+                date: date,
+                month: month,
+                category: configuration.category ?? .needs
+            )
+        }
     }
     
     func snapshot(for configuration: SelectCategoryIntent, in context: Context) async -> CategoryEntry {
-        CategoryEntry(
-            date: Date(),
-            month: Month.getSampleMonthWithTransactions(),
-            category: WidgetBudgetCategory.needs
+        if context.isPreview {
+            return CategoryEntry(
+                date: .now,
+                month: .sample,
+                category: WidgetBudgetCategory.needs
+            )
+        }
+        let timeline = await timeline(for: configuration, in: context)
+        return timeline.entries.first ?? CategoryEntry(
+            date: .now,
+            month: nil,
+            category: configuration.category ?? .needs
         )
     }
     
     func placeholder(in context: Context) -> CategoryEntry {
         CategoryEntry(
-            date: Date(),
-            month: Month.getSampleMonthWithTransactions(),
+            date: .now,
+            month: .sample,
             category: WidgetBudgetCategory.needs
         )
     }
@@ -179,12 +210,12 @@ struct CategoryTimeline: AppIntentTimelineProvider {
 
 struct CategoryEntry: TimelineEntry {
     let date: Date
-    let month: Month?
+    let month: WidgetMonth?
     let category: WidgetBudgetCategory
 }
 
 #Preview(as: .systemSmall) {
     CategoryRemainingWidget()
 } timeline: {
-    CategoryEntry(date: Date(), month: Month.getSampleMonthWithTransactions(), category: .needs)
+    CategoryEntry(date: .now, month: .sample, category: .needs)
 }

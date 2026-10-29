@@ -7,30 +7,46 @@
 
 import Foundation
 import SwiftData
-import SwiftUI
 
-@Model
-class TransactionGroup: Identifiable {
-    var id: UUID = UUID()
-    var addedDate: Date
-    var modifiedDate: Date?
-    var title: String
-    var type: TransactionType
-    var month: Month
-    var isDeleted: Bool = false
-    
-    @Relationship(deleteRule: .cascade, inverse: \TransactionEntry.group)
-    var entries: [TransactionEntry] = []
-    
-    // Trente+
-    var note: String? = nil
-    @Attribute(.externalStorage) var imageAttachmentData: Data? = nil
-    
-    init(addedDate: Date, title: String, type: TransactionType, month: Month) {
-        self.addedDate = addedDate
-        self.title = title
-        self.type = type
-        self.month = month
+extension SchemaV1 {
+    @Model
+    class TransactionGroup: Identifiable {
+        #Index<TransactionGroup>([\.addedDate])
+
+        var id: UUID = UUID()
+        var addedDate: Date = Date.now
+        var modifiedDate: Date?
+        var title: String = ""
+        var type: TransactionType = TransactionType.expense
+        var month: Month?
+        var recurringRule: RecurringTransactionRule?
+        var recurringOccurrenceDate: Date?
+
+        @Relationship(deleteRule: .cascade, inverse: \TransactionEntry.group)
+        var storedEntries: [TransactionEntry]? = []
+
+        // Trente+
+        var note: String?
+        @Attribute(.externalStorage) var imageAttachmentData: Data?
+
+        init(
+            title: String,
+            type: TransactionType,
+            month: Month,
+            note: String?,
+            imageAttachmentData: Data?,
+            addedDate: Date = .now
+        ) {
+            self.id = UUID()
+            self.addedDate = addedDate
+            self.modifiedDate = addedDate
+            self.title = title
+            self.type = type
+            self.month = month
+            self.storedEntries = []
+            self.note = note
+            self.imageAttachmentData = imageAttachmentData
+        }
     }
 }
 
@@ -41,88 +57,21 @@ enum TransactionType: String, Codable {
 
 // MARK: - Computed Properties
 extension TransactionGroup {
+    var entries: [TransactionEntry] {
+        get { storedEntries ?? [] }
+        set { storedEntries = newValue }
+    }
+
+    var currency: Currency {
+        month?.currency ?? Currency.fallback
+    }
+
     /// The total amount of all entries in cents. Can be negative or positive.
     var totalAmountCents: Int {
         entries.reduce(0) { $0 + $1.amountCents }
     }
-    
-    /// Returns a localized string that displays the amount correctly, not in cents.
-    var displayAmount: String {
-        (Double(totalAmountCents) / 100.0)
-            .formatted(.currency(code: month.currency.isoCode))
-    }
-}
 
-extension TransactionGroup {
-    func detachedCopy() -> TransactionGroup {
-        let copy = TransactionGroup(
-            addedDate: addedDate,
-            title: title,
-            type: type,
-            month: month
-        )
-        
-        copy.entries = entries.map { $0.detachedCopy() }
-        return copy
-    }
-}
-
-// MARK: - Sample Data
-extension TransactionGroup {
-    static func sampleData(month1: Month, month2: Month) -> [TransactionGroup] {
-        // Expenses
-        let supermarket = TransactionGroup(
-            addedDate: Date(),
-            title: "Supermarket",
-            type: .expense,
-            month: month1
-        )
-        let shopping = TransactionGroup(
-            addedDate: Date(),
-            title: "Shopping",
-            type: .expense,
-            month: month1
-        )
-        let livretA = TransactionGroup(
-            addedDate: Date(),
-            title: "Livret A",
-            type: .expense,
-            month: month1
-        )
-        let rent = TransactionGroup(
-            addedDate: Date().addingTimeInterval(-3600 * 24 * 10),
-            title: "Rent",
-            type: .expense,
-            month: month2
-        )
-
-        supermarket.entries = [
-            TransactionEntry(amountCents: -150_00, category: .needs, group: supermarket)
-        ]
-        shopping.entries = [
-            TransactionEntry(amountCents: -120_00, category: .wants, group: shopping)
-        ]
-        livretA.entries = [
-            TransactionEntry(amountCents: -100_00, category: .savingsAndDebts, group: livretA)
-        ]
-        rent.entries = [
-            TransactionEntry(amountCents: -800_00, category: .needs, group: rent)
-        ]
-
-        // Income (grouped under one transaction group)
-        let salary = TransactionGroup(
-            addedDate: Date(),
-            title: "Salary",
-            type: .income,
-            month: month1
-        )
-
-        salary.entries = [
-            TransactionEntry(amountCents: 540_00, category: .needs, group: salary),
-            TransactionEntry(amountCents: 300_00, category: .wants, group: salary),
-            TransactionEntry(amountCents: 200_00, category: .savingsAndDebts, group: salary)
-        ]
-
-        return [supermarket, shopping, livretA, salary, rent]
+    var totalAmount: Double {
+        Double(totalAmountCents) / 100.0
     }
 }

@@ -1,0 +1,161 @@
+//
+//  AmountCategoryView.swift
+//  Trente
+//
+//  Created by Louis Carbo Estaque on 12/07/2025.
+//
+
+import SwiftUI
+
+struct AmountCategoryView: View {
+    // Transaction Data
+    @Binding var selectedCategory: BudgetCategory?
+    @Binding var amountCents: Int
+    @Binding var transactionType: TransactionType
+    @Binding var isRecurrent: Bool
+    
+    // View State
+    @FocusState private var currencyTextFieldFocused: Bool
+    @ScaledMetric(relativeTo: .largeTitle) private var amountFontSize = 80
+    @State private var amountFieldWidth: CGFloat = 0
+    @State private var amountTextWidth: CGFloat = 0
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    let currency: Currency
+    
+    var body: some View {
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                ScrollView {
+                    fields
+                }
+            } else {
+                fields
+            }
+        }
+        .task {
+            try? await Task.sleep(for: .seconds(0.6))
+            guard !Task.isCancelled else { return }
+            currencyTextFieldFocused = true
+        }
+    }
+
+    private var fields: some View {
+        VStack(alignment: .leading) {
+            Label(transactionType == .income
+                  ? String(localized: "You will select categories for this income in the next steps.")
+                  : selectedCategory?.shortExamples ?? String(localized: "Select a category for this transaction."), systemImage: "info.circle")
+            .font(.headline)
+            .foregroundStyle(.secondary)
+
+            if transactionType == .expense {
+                Picker("Category", selection: $selectedCategory) {
+                    ForEach(BudgetCategory.allCases) { category in
+                        Text(category.shortName).tag(category as BudgetCategory?)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+            
+            Spacer()
+            
+            #if os(iOS)
+            HStack(spacing: 0) {
+                stackContent
+            }
+            #elseif os(macOS)
+            stackContent
+            #endif
+            
+            Spacer()
+            
+            Toggle(isOn: $isRecurrent) {
+                Text("Recurring transaction")
+                    .font(.headline)
+            }
+            .toggleStyle(TrenteToggleStyle())
+        }
+        .padding([.horizontal, .bottom])
+        #if os(macOS)
+        .padding(.top)
+        #endif
+    }
+    
+    @ViewBuilder
+    private var stackContent: some View {
+        #if os(iOS)
+        Picker("Income/Expense", selection: $transactionType) {
+            Label("Expense", systemImage: "minus").tag(TransactionType.expense)
+            Label("Income", systemImage: "plus").tag(TransactionType.income)
+        }
+        .labelStyle(.iconOnly)
+        .pickerStyle(.inline)
+        .frame(width: 60)
+        #elseif os(macOS)
+        Picker("Type", selection: $transactionType) {
+            Label("Expense", systemImage: "minus").tag(TransactionType.expense)
+            Label("Income", systemImage: "plus").tag(TransactionType.income)
+        }
+        .pickerStyle(.segmented)
+        #endif
+        
+        CurrencyTextField(amountCents: $amountCents, currency: currency)
+            .focused($currencyTextFieldFocused)
+            #if os(iOS)
+            .textFieldStyle(.plain)
+            .font(.system(size: fittingAmountFontSize, weight: .bold))
+            .multilineTextAlignment(.center)
+            .onGeometryChange(for: CGFloat.self) { proxy in
+                proxy.size.width
+            } action: { width in
+                amountFieldWidth = width
+            }
+            .background {
+                amountWidthProbe
+            }
+            #endif
+    }
+
+    #if os(iOS)
+    private var fittingAmountFontSize: CGFloat {
+        let usableWidth = amountFieldWidth * 0.95
+        guard usableWidth > 0, amountTextWidth > usableWidth else { return amountFontSize }
+        return amountFontSize * usableWidth / amountTextWidth
+    }
+
+    private var amountProbeText: String {
+        guard amountCents != 0 else {
+            return 0.0.formatted(.amount(currency.isoCode))
+        }
+        return (Double(amountCents) / 100).formatted(.number.precision(.fractionLength(0...2)).grouping(.never))
+    }
+
+    private var amountWidthProbe: some View {
+        Text(verbatim: amountProbeText)
+            .font(.system(size: amountFontSize, weight: .bold))
+            .fixedSize()
+            .hidden()
+            .onGeometryChange(for: CGFloat.self) { proxy in
+                proxy.size.width
+            } action: { width in
+                amountTextWidth = width
+            }
+    }
+    #endif
+}
+
+#Preview {
+    @Previewable @State var category: BudgetCategory? = .needs
+    @Previewable @State var amount: Int = -2550
+    @Previewable @State var type: TransactionType = .expense
+    @Previewable @State var recurrent: Bool = false
+    let euro = Currencies.availableCurrencies.first { $0.isoCode == "EUR" }!
+    
+    AmountCategoryView(
+        selectedCategory: $category,
+        amountCents: $amount,
+        transactionType: $type,
+        isRecurrent: $recurrent,
+        currency: euro
+    )
+    .padding()
+}

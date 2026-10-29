@@ -1,0 +1,38 @@
+//
+//  LogWalletTransactionIntent.swift
+//  Trente
+//
+//  Created by Louis Carbo Estaque on 07/10/2026.
+//
+
+import AppIntents
+
+struct LogWalletTransactionIntent: AppIntent {
+    static let title: LocalizedStringResource = "Trente & Wallet"
+    static let description = IntentDescription(
+        "Prepares an expense from a Wallet payment so you can review it in Trente."
+    )
+    static let openAppWhenRun = false
+
+    @Parameter(title: "Transaction")
+    var transaction: String
+
+    @Parameter(title: "Amount")
+    var amount: String
+
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        do {
+            try await WalletIntakeService().handle(
+                transaction: transaction,
+                amount: amount,
+                in: TrenteContainer.shared.get().mainContext
+            )
+        } catch {
+            #if DEBUG
+            await WalletNotificationService.shared.postDebugFailure("\(error)")
+            #endif
+        }
+        return .result()
+    }
+}

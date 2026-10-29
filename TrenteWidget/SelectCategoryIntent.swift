@@ -8,19 +8,19 @@
 import AppIntents
 
 struct SelectCategoryIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "Select Category"
-    static var description = IntentDescription("Select a category for the widget.")
+    static let title: LocalizedStringResource = "Select Category"
+    static let description = IntentDescription("Select a category for the widget.")
     
     @Parameter(title: "Category")
     var category: WidgetBudgetCategory?
 }
 
 struct WidgetBudgetCategory: AppEntity {
-    var id: UUID = UUID()
     var budgetCategory: BudgetCategory
+    var id: String { budgetCategory.rawValue }
     
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Budget Category"
-    static var defaultQuery = WidgetBudgetCategoryQuery()
+    static let typeDisplayRepresentation: TypeDisplayRepresentation = "Budget Category"
+    static let defaultQuery = WidgetBudgetCategoryQuery()
     
     var displayRepresentation: DisplayRepresentation {
         DisplayRepresentation(title: "\(budgetCategory.name)")
@@ -38,7 +38,7 @@ struct WidgetBudgetCategory: AppEntity {
 
 struct WidgetBudgetCategoryQuery: EntityQuery {
     func entities(for identifiers: [WidgetBudgetCategory.ID]) async throws -> [WidgetBudgetCategory] {
-        return WidgetBudgetCategory.allCategories
+        WidgetBudgetCategory.allCategories.filter { identifiers.contains($0.id) }
     }
     
     func defaultResult() async -> DefaultValue? {
