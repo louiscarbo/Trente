@@ -25,6 +25,7 @@ struct AppNavigationView: View {
     @State private var preferredCompactColumn: NavigationSplitViewColumn = .sidebar
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
     @State private var paywallRouter = PaywallRouter.shared
+    @State private var newExpenseRouter = NewExpenseRouter.shared
     #if os(iOS)
     @State private var deepLinkedTransaction: NewTransactionContext?
     #endif
@@ -63,6 +64,11 @@ struct AppNavigationView: View {
         #endif
         .onChange(of: pendingDeepLink, initial: true) { _, link in
             openDeepLink(link)
+        }
+        .onChange(of: newExpenseRouter.isRequested, initial: true) { _, isRequested in
+            guard isRequested else { return }
+            newExpenseRouter.isRequested = false
+            openNewExpenseInCurrentMonth()
         }
         .onChange(of: months) { oldMonths, newMonths in
             guard let latestMonth = newMonths.first else { return }
@@ -120,6 +126,11 @@ struct AppNavigationView: View {
         if destination.opensNewTransaction {
             presentNewTransaction(for: destination.month)
         }
+    }
+
+    private func openNewExpenseInCurrentMonth() {
+        guard let month = months.first(where: { $0.contains(.now) }) ?? months.first else { return }
+        openDeepLink(.newTransaction(monthID: month.id))
     }
 
     private func presentNewTransaction(for month: Month) {

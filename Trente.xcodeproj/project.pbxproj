@@ -133,6 +133,8 @@
 				Model/TransactionGroup.swift,
 				Model/TrenteSchema.swift,
 				Services/DataProvider.swift,
+				Services/Intents/NewExpenseRouter.swift,
+				Services/Intents/OpenNewExpenseIntent.swift,
 				Services/RecurringTransactionService.swift,
 				Services/SampleData.swift,
 				Services/TransactionCreationRequest.swift,
