@@ -24,6 +24,7 @@ struct TransactionListFilter {
     }
 
     mutating func reset(for month: Month) {
+        searchText = ""
         firstDay = month.startDate
         lastDay = month.endDate()
         categories = []
