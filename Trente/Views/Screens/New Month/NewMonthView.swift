@@ -18,8 +18,7 @@ struct NewMonthView: View {
     @State private var draft: MonthDraft?
     @State private var isRepartitionComplete: Bool = false
     @FocusState private var isAmountFocused: Bool
-    @State private var showErrorAlert: Bool = false
-    @State private var errorMessage: String = ""
+    @State private var errorMessage: String?
 
     private var isCreateButtonDisabled: Bool {
         guard let draft else { return true }
@@ -54,11 +53,11 @@ struct NewMonthView: View {
             }
         }
         .task { initializeMonth() }
-        .alert("An error occurred", isPresented: $showErrorAlert) {
+        .alert("An error occurred", item: $errorMessage) { _ in
             Button("Retry") { saveMonth() }
             Button("Cancel", role: .cancel) { dismiss() }
-        } message: {
-            Text(errorMessage.isEmpty ? String(localized: "We couldn't create the month. Please try again.") : errorMessage)
+        } message: { message in
+            Text(message.isEmpty ? String(localized: "We couldn't create the month. Please try again.") : message)
         }
     }
 
@@ -73,7 +72,6 @@ struct NewMonthView: View {
         } else {
             guard let defaultCurrency = Currencies.currency(for: "EUR") else {
                 errorMessage = String(localized: "No currencies available to create a new month.")
-                showErrorAlert = true
                 return
             }
             self.draft = MonthDraft(
@@ -93,7 +91,6 @@ struct NewMonthView: View {
             dismiss()
         } catch {
             errorMessage = error.localizedDescription
-            showErrorAlert = true
         }
     }
 }
