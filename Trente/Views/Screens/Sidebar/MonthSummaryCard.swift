@@ -40,39 +40,61 @@ struct MonthSummaryCard: View {
 
     private var content: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Text(name)
-                    .font(.headline)
-                Spacer()
-                Text(isOverspent ? "Over Budget" : "Under Budget")
+            ViewThatFits(in: .horizontal) {
+                HStack {
+                    nameText
+                    Spacer()
+                    statusText
+                }
+                VStack(alignment: .leading) {
+                    nameText
+                    statusText
+                }
             }
 
             Divider()
 
-            remainingSpentView
+            ViewThatFits(in: .horizontal) {
+                HStack {
+                    remainingView
+                    Spacer()
+                    spentView(alignment: .trailing)
+                }
+                VStack(alignment: .leading) {
+                    remainingView
+                    spentView(alignment: .leading)
+                }
+            }
         }
         .padding()
     }
 
-    private var remainingSpentView: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("Remaining")
-                    .font(.subheadline)
-                Text(remaining, format: .budget(currencyCode))
-                    .font(.title)
-                    .foregroundStyle(isOverspent ? .red : .green)
-            }
+    private var nameText: some View {
+        Text(name)
+            .font(.headline)
+    }
 
-            Spacer()
+    private var statusText: some View {
+        Text(isOverspent ? "Over Budget" : "Under Budget")
+    }
 
-            VStack(alignment: .trailing) {
-                Text("Spent")
-                    .font(.subheadline)
-                Text(spent.isZero ? 0 : -spent, format: .budget(currencyCode))
-                    .font(.title)
-                    .foregroundStyle(.red)
-            }
+    private var remainingView: some View {
+        VStack(alignment: .leading) {
+            Text("Remaining")
+                .font(.subheadline)
+            Text(remaining, format: .budget(currencyCode))
+                .font(.title)
+                .foregroundStyle(isOverspent ? .red : .green)
+        }
+    }
+
+    private func spentView(alignment: HorizontalAlignment) -> some View {
+        VStack(alignment: alignment) {
+            Text("Spent")
+                .font(.subheadline)
+            Text(spent.isZero ? 0 : -spent, format: .budget(currencyCode))
+                .font(.title)
+                .foregroundStyle(.red)
         }
     }
 
