@@ -32,6 +32,7 @@ struct TransactionListView: View {
     @State private var isShowingFilterSheet: Bool = false
     @State private var filterDateLimits = Date.distantPast...Date.distantFuture
     @State private var errorMessage: String?
+    @State private var presentedOccurrence: RecurringTransactionOccurrence?
 
     init(month: Month, showRecurring: Bool) {
         self.showRecurring = showRecurring
@@ -46,7 +47,9 @@ struct TransactionListView: View {
             List {
                 Section {
                     ForEach(items) { item in
-                        Row(item: item)
+                        Row(item: item) { occurrence in
+                            presentedOccurrence = occurrence
+                        }
                     }
                 }
                 
@@ -92,6 +95,9 @@ struct TransactionListView: View {
                 }
             }
             .errorAlert(message: $errorMessage)
+            .sheet(item: $presentedOccurrence) { occurrence in
+                RecurringOccurrenceSheet(occurrence: occurrence)
+            }
         }
     }
 
