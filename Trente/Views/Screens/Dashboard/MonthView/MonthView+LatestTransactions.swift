@@ -11,7 +11,7 @@ import SwiftData
 extension MonthView {
     struct LatestTransactions<AllTransactions: View>: View {
         let transactions: [TransactionGroup]
-        let transactionGroupsCount: Int
+        let hasTransactions: Bool
         var transactionCount: Int = 3
         @ViewBuilder let allTransactions: () -> AllTransactions
 
@@ -28,7 +28,7 @@ extension MonthView {
                 }
 
                 HStack {
-                    if transactionGroupsCount == 0 {
+                    if !hasTransactions {
                         Text("Add your first transaction by tapping 'Add Transaction'.")
                             .foregroundStyle(.secondary)
                     } else if latestTransactions.isEmpty {
@@ -38,7 +38,7 @@ extension MonthView {
                     Spacer()
                 }
 
-                if transactionGroupsCount > 0 {
+                if hasTransactions {
                     NavigationLink(destination: allTransactions) {
                         Text("See all transactions")
                     }

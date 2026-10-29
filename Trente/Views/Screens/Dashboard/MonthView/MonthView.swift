@@ -11,11 +11,13 @@ import SwiftData
 struct MonthView: View {
     // Data
     let month: Month
-    @Environment(\.modelContext) private var modelContext
     @Query private var recurringRules: [RecurringTransactionRule]
+    @Query(MonthView.anyTransactionGroupDescriptor) private var anyTransactionGroup: [TransactionGroup]
 
-    private var transactionGroupsCount: Int {
-        (try? modelContext.fetchCount(FetchDescriptor<TransactionGroup>())) ?? 0
+    private static var anyTransactionGroupDescriptor: FetchDescriptor<TransactionGroup> {
+        var descriptor = FetchDescriptor<TransactionGroup>()
+        descriptor.fetchLimit = 1
+        return descriptor
     }
 
     private var recurringTransactionsCount: Int {
@@ -33,14 +35,14 @@ struct MonthView: View {
                     Narrow(
                         month: month,
                         upcomingOccurrences: upcomingOccurrences,
-                        transactionGroupsCount: transactionGroupsCount,
+                        hasTransactions: !anyTransactionGroup.isEmpty,
                         recurringTransactionsCount: recurringTransactionsCount
                     )
                 } else {
                     Wide(
                         month: month,
                         upcomingOccurrences: upcomingOccurrences,
-                        transactionGroupsCount: transactionGroupsCount,
+                        hasTransactions: !anyTransactionGroup.isEmpty,
                         recurringTransactionsCount: recurringTransactionsCount
                     )
                 }

@@ -13,7 +13,7 @@ extension MonthView {
         // Data
         let month: Month
         var upcomingOccurrences: [RecurringTransactionOccurrence]
-        var transactionGroupsCount: Int
+        var hasTransactions: Bool
         var recurringTransactionsCount: Int
 
         // View State
@@ -37,7 +37,7 @@ extension MonthView {
                         BudgetGauges(month: month)
                         LatestTransactions(
                             transactions: month.latestTransactions,
-                            transactionGroupsCount: transactionGroupsCount,
+                            hasTransactions: hasTransactions,
                             transactionCount: 5
                         ) {
                             TransactionListView(month: month, showRecurring: false)

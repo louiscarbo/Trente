@@ -9,6 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct TransactionListView: View {
+    @Environment(\.modelContext) private var modelContext
+
     let month: Month
     let showRecurring: Bool
     
@@ -28,6 +30,8 @@ struct TransactionListView: View {
     
     @State private var filter: TransactionListFilter
     @State private var isShowingFilterSheet: Bool = false
+    @State private var filterDateLimits = Date.distantPast...Date.distantFuture
+    @State private var errorMessage: String?
 
     init(month: Month, showRecurring: Bool) {
         self.showRecurring = showRecurring
@@ -74,10 +78,11 @@ struct TransactionListView: View {
                         "Filter",
                         systemImage: filter.isActive(for: month) ? "line.horizontal.3.decrease.circle.fill" : "line.horizontal.3.decrease.circle"
                     ) {
-                        isShowingFilterSheet = true
+                        showFilterSheet()
                     }
                     .sheet(isPresented: $isShowingFilterSheet) {
                         FilterSheetView(
+                            dateLimits: filterDateLimits,
                             firstDay: $filter.firstDay,
                             lastDay: $filter.lastDay,
                             selectedCategories: $filter.categories
@@ -86,6 +91,16 @@ struct TransactionListView: View {
                     }
                 }
             }
+            .errorAlert(message: $errorMessage)
+        }
+    }
+
+    private func showFilterSheet() {
+        do {
+            filterDateLimits = try TransactionService.shared.fetchTransactionDateBounds(from: modelContext)
+            isShowingFilterSheet = true
+        } catch {
+            errorMessage = error.localizedDescription
         }
     }
 }

@@ -14,22 +14,24 @@ struct TransactionGroupRowView: View {
     let transactionGroup: TransactionGroup
     var isInList = false
 
+    private enum DetailsMode: Identifiable {
+        case reading, editing
+
+        var id: Self { self }
+    }
+
     @State private var showDeleteConfirmation = false
-    @State private var showDetailsInEdit = false
+    @State private var presentedDetails: DetailsMode?
 
     var body: some View {
-        Group {
-            if transactionGroup.entries.count > 1 {
-                groupDisclosure
-            } else if transactionGroup.entries.count == 1 {
-                EntryRow(
-                    transactionGroup: transactionGroup,
-                    transactionEntry: transactionGroup.entries[0],
-                    title: transactionGroup.title
-                )
-            } else {
-                EmptyView()
-            }
+        Content(
+            title: transactionGroup.title,
+            entries: entries,
+            totalAmount: transactionGroup.totalAmount,
+            currencyCode: transactionGroup.currency.isoCode,
+            isInList: isInList
+        ) {
+            presentedDetails = .reading
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             Button(role: .destructive) {
@@ -38,7 +40,7 @@ struct TransactionGroupRowView: View {
                 Label("Delete", systemImage: "trash")
             }
             Button {
-                showDetailsInEdit = true
+                presentedDetails = .editing
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
@@ -46,7 +48,7 @@ struct TransactionGroupRowView: View {
         }
         .contextMenu {
             Button("Edit", systemImage: "pencil") {
-                showDetailsInEdit = true
+                presentedDetails = .editing
             }
             Button("Delete", systemImage: "trash", role: .destructive) {
                 showDeleteConfirmation = true
@@ -55,35 +57,18 @@ struct TransactionGroupRowView: View {
         .deleteConfirmation(isPresented: $showDeleteConfirmation) {
             transactionActions.delete(transactionGroup, in: modelContext)
         }
-        .sheet(isPresented: $showDetailsInEdit) {
+        .sheet(item: $presentedDetails) { mode in
             TransactionGroupDetailsView(
                 transactionGroup: transactionGroup,
-                startInEditMode: true
+                startInEditMode: mode == .editing
             )
         }
         .clipShape(Rectangle().inset(by: -3))
     }
-    
-    private var groupDisclosure: some View {
-        DisclosureGroup {
-            VStack {
-                if !isInList {
-                    Divider()
-                }
-                ForEach(transactionGroup.entries) { entry in
-                    EntryRow(
-                        transactionGroup: transactionGroup,
-                        transactionEntry: entry
-                    )
-                }
-            }
-            .padding(.leading)
-        } label: {
-            TransactionGroupSummaryRow(
-                title: transactionGroup.title,
-                amount: transactionGroup.totalAmount,
-                currencyCode: transactionGroup.currency.isoCode
-            )
+
+    private var entries: [(category: BudgetCategory, amount: Double)] {
+        transactionGroup.entries.map { entry in
+            (entry.category, entry.amount)
         }
     }
 }
