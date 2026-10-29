@@ -9,6 +9,7 @@ import SwiftData
 struct RecurringTransactionRuleDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.isTrentePlusSubscribed) private var isTrentePlusSubscribed
 
     let rule: RecurringTransactionRule
     let currency: Currency
@@ -204,9 +205,16 @@ struct RecurringTransactionRuleDetailsView: View {
                     isExpense ? String(localized: "Mark as paid automatically") : String(localized: "Mark as received automatically"),
                     isOn: shown.autoConfirm
                 )
-                Text("On the due date, \(rule.title) is added to that month's transactions.")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                .requiresTrentePlus(isRequired: isEditing && !shown.wrappedValue.autoConfirm)
+                Group {
+                    if shown.wrappedValue.autoConfirm && !isTrentePlusSubscribed {
+                        Text("Paused without Trente+. Until you subscribe again, you'll be asked to confirm \(rule.title).")
+                    } else {
+                        Text("On the due date, \(rule.title) is added to that month's transactions.")
+                    }
+                }
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
             }
         }
         .groupBoxStyle(TrenteGroupBoxStyle())
