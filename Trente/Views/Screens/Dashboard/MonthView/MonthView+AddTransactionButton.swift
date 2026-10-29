@@ -34,6 +34,7 @@ extension MonthView {
                     .font(.title)
             }
             .buttonStyle(TrentePrimaryButtonStyle())
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .padding(.horizontal)
             .padding(.top)
             .frame(width: wide ? 400 : nil)
