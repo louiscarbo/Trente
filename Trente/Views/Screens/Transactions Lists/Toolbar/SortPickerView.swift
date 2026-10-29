@@ -66,6 +66,7 @@ struct SortPickerView: View {
         } label: {
             Label("Sort", systemImage: "arrow.up.arrow.down")
         }
+        .accessibilityValue(sortOption.accessibilityDescription)
     }
 }
 
@@ -73,4 +74,15 @@ enum SortOption: CaseIterable {
     case dateAsc, dateDesc
     case amountAsc, amountDesc
     case titleAsc, titleDesc
+
+    var accessibilityDescription: String {
+        switch self {
+        case .dateAsc: String(localized: "Date, oldest first")
+        case .dateDesc: String(localized: "Date, newest first")
+        case .amountAsc: String(localized: "Amount, lowest first")
+        case .amountDesc: String(localized: "Amount, highest first")
+        case .titleAsc: String(localized: "Title, A to Z")
+        case .titleDesc: String(localized: "Title, Z to A")
+        }
+    }
 }

@@ -66,6 +66,7 @@ struct TransactionListView: View {
                         Text(Double(filter.totalCents(of: items)) / 100, format: .amount(month.currency.isoCode))
                             .font(.title)
                     }
+                    .accessibilityElement(children: .combine)
                 }
             }
             .navigationTitle("Transactions")
@@ -83,6 +84,7 @@ struct TransactionListView: View {
                     ) {
                         showFilterSheet()
                     }
+                    .accessibilityValue(filter.isActive(for: month) ? Text("Active") : Text(verbatim: ""))
                     .sheet(isPresented: $isShowingFilterSheet) {
                         FilterSheetView(
                             dateLimits: filterDateLimits,
