@@ -12,15 +12,13 @@ struct RecurringTransactionRowView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.transactionActions) private var transactionActions
     let occurrence: RecurringTransactionOccurrence
+    let onOpen: () -> Void
 
-    @State private var showPaymentSheet = false
     @State private var showConfirmConfirmation = false
     @State private var showSkipConfirmation = false
 
     var body: some View {
-        Button {
-            showPaymentSheet = true
-        } label: {
+        Button(action: onOpen) {
             OccurrenceContent(
                 title: occurrence.rule.title,
                 date: occurrence.date,
@@ -87,9 +85,6 @@ struct RecurringTransactionRowView: View {
         ) {
             transactionActions.skip(occurrence, in: modelContext)
         }
-        .sheet(isPresented: $showPaymentSheet) {
-            RecurringOccurrenceSheet(occurrence: occurrence)
-        }
         .clipShape(Rectangle().inset(by: -3))
     }
 
@@ -114,7 +109,7 @@ struct RecurringTransactionRowView: View {
     ScrollView {
         LazyVStack {
             ForEach(occurrences) { occurrence in
-                RecurringTransactionRowView(occurrence: occurrence)
+                RecurringTransactionRowView(occurrence: occurrence) {}
                 Divider()
             }
         }

@@ -15,12 +15,16 @@ extension MonthView {
         var transactionCount: Int = 3
         @ViewBuilder let allOccurrences: () -> AllOccurrences
 
+        @State private var presentedOccurrence: RecurringTransactionOccurrence?
+
         var body: some View {
             let shownOccurrences = Array(upcomingOccurrences.prefix(transactionCount))
 
             GroupBox(label: Label("Expected This Month", systemImage: "calendar.badge.clock")) {
                 ForEach(shownOccurrences) { occurrence in
-                    RecurringTransactionRowView(occurrence: occurrence)
+                    RecurringTransactionRowView(occurrence: occurrence) {
+                        presentedOccurrence = occurrence
+                    }
 
                     if occurrence != shownOccurrences.last {
                         Divider()
@@ -48,6 +52,9 @@ extension MonthView {
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
+            .sheet(item: $presentedOccurrence) { occurrence in
+                RecurringOccurrenceSheet(occurrence: occurrence)
+            }
         }
     }
 }

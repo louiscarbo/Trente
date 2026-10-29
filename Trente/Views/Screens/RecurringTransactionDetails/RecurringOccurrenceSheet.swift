@@ -36,7 +36,7 @@ struct RecurringOccurrenceSheet: View {
             .errorAlert(message: $errorMessage)
         }
         .presentationDetents([.medium, .large])
-        .sheet(isPresented: $showRecurringTransaction) {
+        .sheet(isPresented: $showRecurringTransaction, onDismiss: dismissIfNoLongerPending) {
             RecurringTransactionRuleDetailsView(
                 rule: occurrence.rule,
                 currency: occurrence.month.currency
@@ -171,6 +171,15 @@ struct RecurringOccurrenceSheet: View {
             dismiss()
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+
+    private func dismissIfNoLongerPending() {
+        let rule = occurrence.rule
+        let isStillPending = rule.modelContext != nil
+            && rule.pendingOccurrences(in: occurrence.month).contains { $0.id == occurrence.id }
+        if !isStillPending {
+            dismiss()
         }
     }
 
