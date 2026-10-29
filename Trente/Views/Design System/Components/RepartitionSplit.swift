@@ -8,6 +8,8 @@
 import Foundation
 
 struct RepartitionSplit: Equatable {
+    static let adjustmentStepCount = 20
+
     var amountToSplit: Int
     var values: [BudgetCategory: Int]
 
@@ -25,6 +27,18 @@ struct RepartitionSplit: Equatable {
 
     mutating func increase(_ category: BudgetCategory) {
         values[category] = Self.increasedValue(from: amount(for: category), remaining: remaining)
+    }
+
+    mutating func stepUp(_ category: BudgetCategory) {
+        values[category] = Self.steppedUpValue(
+            from: amount(for: category),
+            total: amountToSplit,
+            remaining: remaining
+        )
+    }
+
+    mutating func stepDown(_ category: BudgetCategory) {
+        values[category] = Self.steppedDownValue(from: amount(for: category), total: amountToSplit)
     }
 
     mutating func set(_ category: BudgetCategory, to proposedValue: Int) {
@@ -60,5 +74,22 @@ struct RepartitionSplit: Equatable {
         let rawNewValue = Int(round(clampedFraction * CGFloat(total)))
         let roundedNewValue = (rawNewValue / 100) * 100
         return min(roundedNewValue, maxValue)
+    }
+
+    static func steppedUpValue(from currentValue: Int, total: Int, remaining: Int) -> Int {
+        let nextStepValue = adjustmentStepValues(total: total).first { $0 > currentValue } ?? currentValue
+        return min(nextStepValue, currentValue + remaining)
+    }
+
+    static func steppedDownValue(from currentValue: Int, total: Int) -> Int {
+        adjustmentStepValues(total: total).last { $0 < currentValue } ?? 0
+    }
+
+    private static func adjustmentStepValues(total: Int) -> [Int] {
+        (0...adjustmentStepCount).map { step in
+            guard step < adjustmentStepCount else { return total }
+            let exactValue = total * step / adjustmentStepCount
+            return min((exactValue + 50) / 100 * 100, total)
+        }
     }
 }
