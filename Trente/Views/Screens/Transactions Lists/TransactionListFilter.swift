@@ -23,6 +23,13 @@ struct TransactionListFilter {
         !categories.isEmpty || firstDay != month.startDate || lastDay != month.endDate()
     }
 
+    mutating func reset(for month: Month) {
+        searchText = ""
+        firstDay = month.startDate
+        lastDay = month.endDate()
+        categories = []
+    }
+
     func apply(to items: [DisplayableTransaction]) -> [DisplayableTransaction] {
         let shownDays = Self.days(from: firstDay, through: lastDay)
         return items
