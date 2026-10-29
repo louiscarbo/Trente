@@ -12,10 +12,19 @@ struct TrentePlusSection: View {
     let onDiscover: () -> Void
     let onManage: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    private var headerLayout: AnyLayout {
+        let spacing = DesignSystem.Spacing.large.rawValue
+        return dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: spacing))
+            : AnyLayout(HStackLayout(spacing: spacing))
+    }
+
     var body: some View {
         Section {
             VStack(spacing: .medium) {
-                HStack(spacing: DesignSystem.Spacing.large.rawValue) {
+                headerLayout {
                     StickerView(imageName: "Trente Pig Sticker")
                         .frame(width: 64)
                     VStack(alignment: .leading, spacing: 4) {
