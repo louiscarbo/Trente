@@ -1,5 +1,5 @@
 //
-//  ArchivedMonthsList+Row.swift
+//  SidebarView+ArchivedMonthRow.swift
 //  Trente
 //
 //  Created by Louis Carbo Estaque on 24/10/2026.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-extension ArchivedMonthsList {
-    struct Row: View {
+extension SidebarView {
+    struct ArchivedMonthRow: View {
         let name: String
         let isOverspent: Bool
         let isSelected: Bool
@@ -52,4 +52,27 @@ extension ArchivedMonthsList {
             }
         }
     }
+}
+
+#Preview {
+    VStack(alignment: .leading, spacing: 0) {
+        SidebarView.ArchivedMonthRow(
+            name: "September 2026",
+            isOverspent: false,
+            isSelected: false,
+            isFirst: true,
+            isLast: false
+        ) {}
+        SidebarView.ArchivedMonthRow(
+            name: "August 2026",
+            isOverspent: true,
+            isSelected: true,
+            isFirst: false,
+            isLast: true
+        ) {}
+    }
+    .background(
+        TrenteListBackgroundView()
+    )
+    .padding()
 }
