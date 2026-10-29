@@ -1,0 +1,212 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Add an expense in ${applicationName}" : {
+      "localizations" : {
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Ausgabe in ${applicationName} hinzufügen",
+              "Füge eine Ausgabe in ${applicationName} hinzu",
+              "Neue Ausgabe in ${applicationName}",
+              "Füge eine Ausgabe zu ${category} in ${applicationName} hinzu"
+            ]
+          }
+        },
+        "en-GB" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Add an expense in ${applicationName}",
+              "Add an expense to ${applicationName}",
+              "Log an expense in ${applicationName}",
+              "Add an expense to ${category} in ${applicationName}"
+            ]
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Añadir un gasto en ${applicationName}",
+              "Añade un gasto en ${applicationName}",
+              "Apunta un gasto en ${applicationName}",
+              "Añade un gasto a ${category} en ${applicationName}"
+            ]
+          }
+        },
+        "es-419" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Agregar un gasto en ${applicationName}",
+              "Agrega un gasto en ${applicationName}",
+              "Anota un gasto en ${applicationName}",
+              "Agrega un gasto a ${category} en ${applicationName}"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Ajouter une dépense dans ${applicationName}",
+              "Ajoute une dépense dans ${applicationName}",
+              "Nouvelle dépense dans ${applicationName}",
+              "Ajouter une dépense en ${category} dans ${applicationName}"
+            ]
+          }
+        },
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Aggiungi una spesa su ${applicationName}",
+              "Aggiungi una spesa in ${applicationName}",
+              "Registra una spesa su ${applicationName}",
+              "Aggiungi una spesa a ${category} su ${applicationName}"
+            ]
+          }
+        },
+        "ko" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName}에 지출 추가",
+              "${applicationName}에서 지출 추가해 줘",
+              "${applicationName}에 지출 기록",
+              "${applicationName}에서 ${category}에 지출 추가"
+            ]
+          }
+        },
+        "pt-BR" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Adicionar uma despesa no ${applicationName}",
+              "Adicione uma despesa no ${applicationName}",
+              "Registrar uma despesa no ${applicationName}",
+              "Adicionar uma despesa em ${category} no ${applicationName}"
+            ]
+          }
+        },
+        "pt-PT" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Adicionar uma despesa no ${applicationName}",
+              "Adiciona uma despesa no ${applicationName}",
+              "Registar uma despesa no ${applicationName}",
+              "Adicionar uma despesa em ${category} no ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "How much is left in ${applicationName}" : {
+      "localizations" : {
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Wie viel ist in ${applicationName} übrig",
+              "Was ist in ${applicationName} übrig",
+              "Zeig mein Restbudget in ${applicationName}",
+              "Wie viel ist in ${category} in ${applicationName} übrig"
+            ]
+          }
+        },
+        "en-GB" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "How much is left in ${applicationName}",
+              "What's left in ${applicationName}",
+              "Show my remaining budget in ${applicationName}",
+              "How much is left in ${category} in ${applicationName}"
+            ]
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Cuánto me queda en ${applicationName}",
+              "Qué me queda en ${applicationName}",
+              "Muestra mi presupuesto restante en ${applicationName}",
+              "Cuánto me queda en ${category} en ${applicationName}"
+            ]
+          }
+        },
+        "es-419" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Cuánto me queda en ${applicationName}",
+              "Qué me queda en ${applicationName}",
+              "Muestra mi presupuesto restante en ${applicationName}",
+              "Cuánto me queda en ${category} en ${applicationName}"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Combien il me reste dans ${applicationName}",
+              "Qu’est-ce qu’il me reste dans ${applicationName}",
+              "Mon budget restant dans ${applicationName}",
+              "Combien il me reste en ${category} dans ${applicationName}"
+            ]
+          }
+        },
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Quanto mi resta su ${applicationName}",
+              "Cosa mi resta su ${applicationName}",
+              "Mostra il mio budget rimanente su ${applicationName}",
+              "Quanto mi resta in ${category} su ${applicationName}"
+            ]
+          }
+        },
+        "ko" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName}에 얼마 남았어",
+              "${applicationName}에서 남은 예산 알려줘",
+              "${applicationName}에서 남은 예산 보여줘",
+              "${applicationName}에서 ${category}에 얼마 남았어"
+            ]
+          }
+        },
+        "pt-BR" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Quanto resta no ${applicationName}",
+              "O que sobrou no ${applicationName}",
+              "Mostrar meu orçamento restante no ${applicationName}",
+              "Quanto resta em ${category} no ${applicationName}"
+            ]
+          }
+        },
+        "pt-PT" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Quanto resta no ${applicationName}",
+              "O que sobra no ${applicationName}",
+              "Mostrar o meu orçamento restante no ${applicationName}",
+              "Quanto resta em ${category} no ${applicationName}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
