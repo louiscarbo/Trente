@@ -30,7 +30,7 @@ struct TrentePlusBenefit: Identifiable {
     private static let automaticRecurring = TrentePlusBenefit(
         id: "automaticRecurring",
         title: "Automatic recurring transactions",
-        detail: "Rent, salary, subscriptions: added on their due date, without a tap.",
+        detail: "Rent, salary, subscriptions: added automatically, without you having to think about it.",
         systemImage: "arrow.triangle.2.circlepath",
         tint: .blue
     )
@@ -46,7 +46,7 @@ struct TrentePlusBenefit: Identifiable {
     private static let notesAndImages = TrentePlusBenefit(
         id: "notesAndImages",
         title: "Notes and images",
-        detail: "Attach receipts, photos and notes to any transaction.",
+        detail: "Add a receipt, a photo or a note to your transactions.",
         systemImage: "photo",
         tint: .orange
     )
@@ -54,7 +54,7 @@ struct TrentePlusBenefit: Identifiable {
     private static let appIcons = TrentePlusBenefit(
         id: "appIcons",
         title: "App icons",
-        detail: "Give Trente a new color on your Home Screen.",
+        detail: "Customize how Trente looks on your Home Screen.",
         systemImage: "paintpalette.fill",
         tint: .purple
     )
@@ -62,7 +62,7 @@ struct TrentePlusBenefit: Identifiable {
     private static let supportIndieDeveloper = TrentePlusBenefit(
         id: "supportIndieDeveloper",
         title: "Support an indie developer",
-        detail: "Trente is built and maintained by one person.",
+        detail: "Trente is designed and maintained entirely by one person.",
         systemImage: "heart.fill",
         tint: .red
     )
