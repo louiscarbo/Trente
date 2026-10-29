@@ -33,7 +33,8 @@ final class NotificationScheduler {
             .NSCalendarDayChanged,
             UserDefaults.didChangeNotification,
             .appDidBecomeActive,
-            .notificationPermissionGranted
+            .notificationPermissionGranted,
+            TrentePlusEntitlement.didChange
         ]
         trigger = AppEventTrigger(events: events, delay: .seconds(1)) {
             await NotificationScheduler.shared.reschedule()
@@ -49,6 +50,7 @@ final class NotificationScheduler {
         let preferences = NotificationPreferences.stored()
         let recurringPlanner = RecurringNotificationPlanner(
             isEnabled: preferences.remindsRecurringTransactions,
+            automaticUnlockedUntil: await TrentePlusStatus.shared.currentAutomaticUnlockedUntil(),
             reminderTime: reminderTime
         )
         let newMonthPlanner = NewMonthNotificationPlanner(

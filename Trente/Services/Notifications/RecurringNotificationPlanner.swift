@@ -29,6 +29,7 @@ struct RecurringNotificationPlanner {
     static let threadIdentifier = "recurring"
 
     var isEnabled = true
+    var automaticUnlockedUntil = Date.distantFuture
     var horizonDays = 35
     var reminderTime = ReminderTime.standard
     var calendar: Calendar = .current
@@ -60,14 +61,12 @@ struct RecurringNotificationPlanner {
         now: Date
     ) -> [RecurringNotificationRequest] {
         let amountCents = rule.amountCents
-        let kind: RecurringNotificationRequest.Kind = rule.autoConfirm ? .addedAutomatically : .due
         let title = NotificationText.amountTitle(
             amountCents: amountCents,
             currency: currency,
             title: rule.title
         )
         let isIncome = amountCents > 0
-        let body = Self.body(for: kind, isIncome: isIncome)
 
         return rule.schedule.dates(in: window, calendar: calendar).compactMap { date -> RecurringNotificationRequest? in
             guard
@@ -76,6 +75,8 @@ struct RecurringNotificationPlanner {
                 fireDate > now
             else { return nil }
 
+            let isAddedAutomatically = rule.autoConfirm && fireDate < automaticUnlockedUntil
+            let kind: RecurringNotificationRequest.Kind = isAddedAutomatically ? .addedAutomatically : .due
             return RecurringNotificationRequest(
                 identifier: identifier(forRuleID: rule.id, on: date),
                 ruleID: rule.id,
@@ -84,7 +85,7 @@ struct RecurringNotificationPlanner {
                 kind: kind,
                 isIncome: isIncome,
                 title: title,
-                body: body
+                body: Self.body(for: kind, isIncome: isIncome)
             )
         }
     }

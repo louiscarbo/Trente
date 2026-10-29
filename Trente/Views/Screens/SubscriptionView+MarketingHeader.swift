@@ -31,6 +31,10 @@ extension SubscriptionView {
                             detail: "Attach receipts, photos and notes to any transaction."
                         )
                         feature(
+                            "Automatic recurring transactions",
+                            detail: "Rent, salary, subscriptions: added on their due date, without a tap."
+                        )
+                        feature(
                             "Support an indie developer",
                             detail: "Trente is built and maintained by one person."
                         )

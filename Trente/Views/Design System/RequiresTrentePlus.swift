@@ -14,10 +14,11 @@ enum TrentePlusLockStyle {
 
 struct RequiresTrentePlus: ViewModifier {
     let style: TrentePlusLockStyle
+    let isRequired: Bool
     @Environment(\.isTrentePlusSubscribed) private var isSubscribed
     @State private var isShowingPaywall = false
 
-    private var isLocked: Bool { !isSubscribed }
+    private var isLocked: Bool { isRequired && !isSubscribed }
 
     private var isSection: Bool {
         if case .section = style { true } else { false }
@@ -80,8 +81,8 @@ struct RequiresTrentePlus: ViewModifier {
 }
 
 extension View {
-    func requiresTrentePlus(_ style: TrentePlusLockStyle = .inline) -> some View {
-        modifier(RequiresTrentePlus(style: style))
+    func requiresTrentePlus(_ style: TrentePlusLockStyle = .inline, isRequired: Bool = true) -> some View {
+        modifier(RequiresTrentePlus(style: style, isRequired: isRequired))
     }
 }
 
