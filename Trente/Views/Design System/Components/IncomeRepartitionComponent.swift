@@ -238,9 +238,17 @@ struct BudgetCategorySliderRow: View {
                     guard isEnabled else { return }
                     switch direction {
                     case .increment:
-                        increaseAction()
+                        setValueForAccessibility(
+                            RepartitionSplit.steppedUpValue(
+                                from: repartition[category] ?? 0,
+                                total: amountToSplit,
+                                remaining: remainingAmount
+                            )
+                        )
                     case .decrement:
-                        decreaseAction()
+                        setValueForAccessibility(
+                            RepartitionSplit.steppedDownValue(from: repartition[category] ?? 0, total: amountToSplit)
+                        )
                     @unknown default:
                         break
                     }
@@ -279,9 +287,20 @@ struct BudgetCategorySliderRow: View {
 
     private var accessibilityValue: String {
         let value = repartition[category] ?? 0
-        let amount = formatter.string(from: NSNumber(value: Double(value) / 100.0)) ?? ""
         let share = amountToSplit > 0 ? Double(value) / Double(amountToSplit) : 0
-        return "\(amount), \(share.formatted(.percent.precision(.fractionLength(0))))"
+        return "\(formattedAmount(value)), \(share.formatted(.percent.precision(.fractionLength(0))))"
+    }
+
+    private func formattedAmount(_ cents: Int) -> String {
+        formatter.string(from: NSNumber(value: Double(cents) / 100.0)) ?? ""
+    }
+
+    private func setValueForAccessibility(_ newValue: Int) {
+        let currentValue = repartition[category] ?? 0
+        withAnimation(.spring) {
+            repartition[category] = newValue
+            remainingAmount -= newValue - currentValue
+        }
     }
 }
 
