@@ -34,6 +34,12 @@ extension SubscriptionView {
                             "Automatic recurring transactions",
                             detail: "Rent, salary, subscriptions: added on their due date, without a tap."
                         )
+                        #if os(iOS)
+                        feature(
+                            "App icons",
+                            detail: "Give Trente a new color on your Home Screen."
+                        )
+                        #endif
                         feature(
                             "Support an indie developer",
                             detail: "Trente is built and maintained by one person."

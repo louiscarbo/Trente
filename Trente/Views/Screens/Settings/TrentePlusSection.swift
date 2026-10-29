@@ -29,6 +29,9 @@ struct TrentePlusSection: View {
                         } else {
                             benefit("Notes and images on any transaction")
                             benefit("Automatic recurring transactions")
+                            #if os(iOS)
+                            benefit("Pick your app icon")
+                            #endif
                             benefit("Support an indie developer")
                         }
                     }
