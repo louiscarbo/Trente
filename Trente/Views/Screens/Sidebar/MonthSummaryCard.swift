@@ -35,6 +35,7 @@ struct MonthSummaryCard: View {
         } else {
             content
                 .background(backgroundView)
+                .accessibilityElement(children: .combine)
         }
     }
 
