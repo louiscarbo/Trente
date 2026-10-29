@@ -17,14 +17,22 @@ if [ -n "$(git status --porcelain)" ]; then
     echo "Working tree is not clean."
     exit 1
 fi
+
+git fetch --quiet --tags origin
 if git rev-parse -q --verify "refs/tags/v$version" >/dev/null; then
     echo "Tag v$version already exists."
     exit 1
 fi
-
-git fetch --quiet origin
 if [ "$(git rev-parse develop)" != "$(git rev-parse origin/develop)" ]; then
     echo "develop and origin/develop differ. Push or pull first."
+    exit 1
+fi
+if ! git rev-parse -q --verify origin/prod >/dev/null; then
+    echo "origin/prod does not exist."
+    exit 1
+fi
+if git rev-parse -q --verify refs/heads/prod >/dev/null && ! git merge-base --is-ancestor prod origin/prod; then
+    echo "Local prod has commits that are not on origin/prod."
     exit 1
 fi
 
