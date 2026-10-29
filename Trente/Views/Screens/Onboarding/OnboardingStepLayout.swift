@@ -15,6 +15,7 @@ enum OnboardingCompactArrangement {
 
 struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View {
     var compactArrangement: OnboardingCompactArrangement = .secondaryFills
+    var isEditing = false
     @ViewBuilder let primary: () -> Primary
     @ViewBuilder let secondary: () -> Secondary
     @ViewBuilder let actions: () -> Actions
@@ -24,6 +25,7 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
     #endif
     @State private var containerSize: CGSize = .zero
     @State private var compactViewportHeight: CGFloat = 0
+    @State private var compactScrollPosition = ScrollPosition(edge: .top)
 
     private static var regularMinimumWidth: CGFloat { 1000 }
     private static var primaryColumnWidth: ClosedRange<CGFloat> { 340...420 }
@@ -57,19 +59,27 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
     private var compactLayout: some View {
         ScrollView {
             compactContent
-                .frame(minHeight: compactViewportHeight)
+                .frame(minHeight: isEditing ? nil : compactViewportHeight)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .scrollPosition($compactScrollPosition)
         .onScrollGeometryChange(for: CGFloat.self) { geometry in
             geometry.containerSize.height
         } action: { _, height in
             compactViewportHeight = height
         }
-        .safeAreaInset(edge: .bottom) {
-            VStack(spacing: .small) {
-                actions()
+        .onChange(of: isEditing) { _, isEditing in
+            withAnimation {
+                compactScrollPosition.scrollTo(edge: isEditing ? .bottom : .top)
             }
-            .padding([.horizontal, .bottom])
+        }
+        .safeAreaInset(edge: .bottom) {
+            if !isEditing {
+                VStack(spacing: .small) {
+                    actions()
+                }
+                .padding([.horizontal, .bottom])
+            }
         }
     }
 
