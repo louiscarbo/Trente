@@ -14,12 +14,20 @@ import SwiftUI
 final class TrentePlusStatus {
     static let shared = TrentePlusStatus()
 
-    private(set) var hasActiveSubscription = false
+    private(set) var hasActiveSubscription = TrentePlusEntitlement.cached() {
+        didSet {
+            if hasActiveSubscription != oldValue { statusDidChange() }
+        }
+    }
     @ObservationIgnored private var updateTasks: [Task<Void, Never>] = []
+    @ObservationIgnored private var initialRefresh: Task<Void, Never>?
 
     #if DEBUG
     var debugOverride = TrentePlusDebugOverride.stored() {
-        didSet { debugOverride.store() }
+        didSet {
+            debugOverride.store()
+            statusDidChange()
+        }
     }
     #endif
 
@@ -35,9 +43,11 @@ final class TrentePlusStatus {
 
     func start() {
         guard updateTasks.isEmpty else { return }
+        let initialRefresh = Task { await refresh() }
+        self.initialRefresh = initialRefresh
         updateTasks = [
             Task {
-                await refresh()
+                await initialRefresh.value
                 for await _ in Product.SubscriptionInfo.Status.updates {
                     await refresh()
                 }
@@ -54,8 +64,18 @@ final class TrentePlusStatus {
     }
 
     func refresh() async {
-        let statuses = (try? await Product.SubscriptionInfo.status(for: TrentePlus.groupID)) ?? []
+        guard let statuses = try? await Product.SubscriptionInfo.status(for: TrentePlus.groupID) else { return }
         hasActiveSubscription = TrentePlus.isActive(statuses.map(\.state))
+    }
+
+    func currentStatus() async -> Bool {
+        await initialRefresh?.value
+        return isSubscribed
+    }
+
+    private func statusDidChange() {
+        TrentePlusEntitlement.cache(isSubscribed)
+        NotificationCenter.default.post(name: TrentePlusEntitlement.didChange, object: nil)
     }
 }
 
