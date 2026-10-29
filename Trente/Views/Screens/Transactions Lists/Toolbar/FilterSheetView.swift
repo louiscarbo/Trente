@@ -63,3 +63,20 @@ struct FilterSheetView: View {
         }
     }
 }
+
+#Preview {
+    @Previewable @State var firstDay = Calendar.current.date(byAdding: .day, value: -30, to: .now)!
+    @Previewable @State var lastDay = Date.now
+    @Previewable @State var selectedCategories: Set<BudgetCategory> = [.wants]
+
+    let monthStart = Calendar.current.date(byAdding: .day, value: -30, to: .now)!
+
+    FilterSheetView(
+        dateLimits: monthStart...Date.now,
+        firstDay: $firstDay,
+        lastDay: $lastDay,
+        selectedCategories: $selectedCategories,
+        canReset: !selectedCategories.isEmpty,
+        onReset: { selectedCategories = [] }
+    )
+}
