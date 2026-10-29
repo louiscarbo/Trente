@@ -19,9 +19,27 @@ struct AmountCategoryView: View {
     @ScaledMetric(relativeTo: .largeTitle) private var amountFontSize = 80
     @State private var amountFieldWidth: CGFloat = 0
     @State private var amountTextWidth: CGFloat = 0
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let currency: Currency
     
     var body: some View {
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                ScrollView {
+                    fields
+                }
+            } else {
+                fields
+            }
+        }
+        .task {
+            try? await Task.sleep(for: .seconds(0.6))
+            guard !Task.isCancelled else { return }
+            currencyTextFieldFocused = true
+        }
+    }
+
+    private var fields: some View {
         VStack(alignment: .leading) {
             Label(transactionType == .income
                   ? String(localized: "You will select categories for this income in the next steps.")
@@ -60,11 +78,6 @@ struct AmountCategoryView: View {
         #if os(macOS)
         .padding(.top)
         #endif
-        .task {
-            try? await Task.sleep(for: .seconds(0.6))
-            guard !Task.isCancelled else { return }
-            currencyTextFieldFocused = true
-        }
     }
     
     @ViewBuilder
