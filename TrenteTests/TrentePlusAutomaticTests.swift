@@ -120,11 +120,24 @@ struct TrentePlusAutomaticTests {
         let context = try makeContext()
         let rule = insertAutomaticRent(startingOn: day(2025, 4, 15), in: context)
         try context.save()
-        let planner = RecurringNotificationPlanner(isAutomaticUnlocked: false)
+        let planner = RecurringNotificationPlanner(automaticUnlockedUntil: .distantPast)
 
         let request = try #require(planner.requests(for: [rule], currency: Currencies.currency(for: "EUR")!, now: day(2025, 4, 10)).first)
 
         #expect(request.kind == .due)
+    }
+
+    @Test("When Trente+ won't renew, reminders after it ends ask for confirmation")
+    func endingSubscriptionAnnouncesLaterOnesAsDue() throws {
+        let context = try makeContext()
+        let rule = insertAutomaticRent(startingOn: day(2025, 4, 15), in: context)
+        try context.save()
+        let planner = RecurringNotificationPlanner(automaticUnlockedUntil: day(2025, 5, 1), horizonDays: 60)
+
+        let requests = planner.requests(for: [rule], currency: Currencies.currency(for: "EUR")!, now: day(2025, 4, 10))
+
+        #expect(requests.map(\.occurrenceDate) == [day(2025, 4, 15), day(2025, 5, 15)])
+        #expect(requests.map(\.kind) == [.addedAutomatically, .due])
     }
 
     @Test("The Trente+ status is remembered for the widget, and defaults to not subscribed")
