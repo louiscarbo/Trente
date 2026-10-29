@@ -6,7 +6,7 @@ if [ "$CI_XCODEBUILD_ACTION" != "archive" ] || [ -z "$CI_APP_STORE_SIGNED_APP_PA
 fi
 
 cd "$CI_PRIMARY_REPOSITORY_PATH"
-git fetch --tags --quiet || true
+git fetch --unshallow --tags --quiet || git fetch --tags --quiet || true
 
 previous_tag=$(git describe --tags --abbrev=0 --match 'v*' HEAD^ 2>/dev/null || true)
 range="${previous_tag:+$previous_tag..}HEAD"
