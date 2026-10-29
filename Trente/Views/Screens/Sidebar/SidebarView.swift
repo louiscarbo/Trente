@@ -71,7 +71,24 @@ struct SidebarView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .padding(.horizontal)
-                    ArchivedMonthsList(selectedMonth: selectedMonth, archivedMonths: months.dropFirst())
+                    VStack(alignment: .leading, spacing: 0) {
+                        ForEach(archivedMonths) { month in
+                            ArchivedMonthRow(
+                                name: month.name,
+                                isOverspent: month.overSpent,
+                                isSelected: selectedMonth.wrappedValue == month,
+                                isFirst: month == archivedMonths.first,
+                                isLast: month == archivedMonths.last
+                            ) {
+                                withAnimation {
+                                    selectedMonth.wrappedValue = month
+                                }
+                            }
+                        }
+                    }
+                    .background(
+                        TrenteListBackgroundView()
+                    )
                 }
 
                 Spacer()
@@ -115,6 +132,10 @@ struct SidebarView: View {
             DebugMenuView()
         }
         #endif
+    }
+
+    private var archivedMonths: ArraySlice<Month> {
+        months.dropFirst()
     }
 
     private var selectedMonth: Binding<Month?> {
