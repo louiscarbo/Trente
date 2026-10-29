@@ -20,7 +20,7 @@ final class WidgetRefresher {
 
     func start() {
         guard trigger == nil else { return }
-        trigger = AppEventTrigger(events: [ModelContext.didSave, .NSPersistentStoreRemoteChange], delay: .seconds(1)) {
+        trigger = AppEventTrigger(events: [ModelContext.didSave, .NSPersistentStoreRemoteChange, TrentePlusEntitlement.didChange], delay: .seconds(1)) {
             WidgetCenter.shared.reloadAllTimelines()
         }
     }

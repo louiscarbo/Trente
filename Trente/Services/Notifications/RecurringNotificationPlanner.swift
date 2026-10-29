@@ -29,6 +29,7 @@ struct RecurringNotificationPlanner {
     static let threadIdentifier = "recurring"
 
     var isEnabled = true
+    var isAutomaticUnlocked = true
     var horizonDays = 35
     var reminderTime = ReminderTime.standard
     var calendar: Calendar = .current
@@ -60,7 +61,7 @@ struct RecurringNotificationPlanner {
         now: Date
     ) -> [RecurringNotificationRequest] {
         let amountCents = rule.amountCents
-        let kind: RecurringNotificationRequest.Kind = rule.autoConfirm ? .addedAutomatically : .due
+        let kind: RecurringNotificationRequest.Kind = rule.autoConfirm && isAutomaticUnlocked ? .addedAutomatically : .due
         let title = NotificationText.amountTitle(
             amountCents: amountCents,
             currency: currency,
