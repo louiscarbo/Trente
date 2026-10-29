@@ -11,15 +11,26 @@ import SwiftData
 extension MonthView {
     struct BudgetGauges: View {
         var month: Month
-        var size: CGFloat = 80
+
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+        private var gaugeSize: CGFloat {
+            dynamicTypeSize.isAccessibilitySize ? 160 : 80
+        }
+
+        private var rowLayout: AnyLayout {
+            dynamicTypeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(spacing: 20))
+                : AnyLayout(HStackLayout(spacing: 20))
+        }
 
         var body: some View {
             VStack(spacing: 20) {
-                HStack(spacing: 20) {
+                rowLayout {
                     card(for: .all)
                     card(for: .category(.needs))
                 }
-                HStack(spacing: 20) {
+                rowLayout {
                     card(for: .category(.wants))
                     card(for: .category(.savingsAndDebts))
                 }
@@ -31,7 +42,7 @@ extension MonthView {
                 figures: month.figures(in: scope),
                 scope: scope,
                 currency: month.currency,
-                size: size
+                size: gaugeSize
             )
         }
     }
