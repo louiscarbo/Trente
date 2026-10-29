@@ -47,9 +47,9 @@ struct FAQItem: Identifiable, Equatable {
         topic: .budgetBasics,
         question: "What is the 50/30/20 rule?",
         answer: """
-            A simple way to split your take-home income: about 50% for Needs (rent, groceries, bills), \
-            30% for Wants (dining out, entertainment) and 20% for Savings and Debts. \
-            Trente sorts every transaction into these three categories. You can choose your own split for each month.
+            A simple way to split your take-home income: about 50% for needs (rent, groceries, bills), \
+            30% for wants (dining out, fun) and 20% for savings and paying off debt. \
+            Trente sorts every transaction into one of these three categories. You can choose your own split for each month.
             """
     )
 
@@ -60,26 +60,26 @@ struct FAQItem: Identifiable, Equatable {
             topic: .budgetBasics,
             question: "How do months work in Trente?",
             answer: """
-                A month starts on the date you choose and lasts one month, for example October 25 to November 24, \
-                so you can line it up with your payday. A new month keeps your currency and ideal budget.
+                A month starts on the date of your choice and lasts one month, \
+                for example from October 25 to November 24, to match your payday.
                 """
         ),
         FAQItem(
             id: "remaining",
             topic: .budgetBasics,
-            question: "Why does my month show nothing remaining?",
+            question: "Why doesn't my month show any amount left?",
             answer: """
-                “Remaining” is the income you logged this month minus what you spent. Your ideal budget is only a target. \
-                Add your paycheck as an income and your remaining amounts appear, overall and per category.
+                The amount left is the income you've logged this month, minus your expenses.
+                If your month shows no amount left, start by adding an income: tap “New Transaction”.
                 """
         ),
         FAQItem(
             id: "splitIncome",
             topic: .budgetBasics,
-            question: "How do I split an income between categories?",
+            question: "How do I split an income across categories?",
             answer: """
                 When you add an income, choose how much goes to Needs, Wants and Savings and Debts. \
-                An expense always goes to a single category.
+                An expense always goes into a single category.
                 """
         ),
         FAQItem(
@@ -87,18 +87,19 @@ struct FAQItem: Identifiable, Equatable {
             topic: .recurring,
             question: "What are recurring transactions?",
             answer: """
-                Transactions that come back every week, month or year, like rent or a salary. \
-                Upcoming ones appear in the months you've created. Open one to mark it as Paid (or Received) \
-                or to skip just that one. A recurring transaction never changes past months.
+                Transactions that come back every week, month or year, like rent or a salary.
+                Trente reminds you to confirm the transaction on the day it's due.
+                Trente+ subscribers can turn on automatic confirmation for recurring transactions.
                 """
         ),
         FAQItem(
             id: "automatic",
             topic: .recurring,
-            question: "What does “automatic” do?",
+            question: "What does the “Automatic” option do?",
             answer: """
-                With Trente+, Trente adds it for you on its due date, the next time you open the app. \
-                Your widgets count it right away. Without Trente+, the setting is kept but you confirm it yourself.
+                Trente+ subscribers can turn on automatic confirmation for recurring transactions. \
+                You then no longer need to open Trente to add the transaction to your budget. \
+                It's handy for regular transactions you can count on, like a salary.
                 """
         ),
         FAQItem(
@@ -106,11 +107,12 @@ struct FAQItem: Identifiable, Equatable {
             topic: .featuresAndData,
             question: "Can Trente log my Apple Pay purchases?",
             answer: """
-                Yes. Get the Trente shortcut from Settings. Then, in Shortcuts › Automation, create an automation \
-                with the Wallet trigger, choose your cards and select Run Immediately. Add Run Shortcut, \
-                pick Log Wallet Transaction and pass it the Shortcut Input. After each purchase, tap the notification, \
-                check the category and save. Nothing is added without your validation. \
-                Free for 10 purchases a month, unlimited with Trente+.
+                Yes. From Trente's Settings, you can add the shortcut that connects Trente to Apple Pay. \
+                Follow the instructions in Trente's Settings.
+                After each purchase, tap the notification, add the category and save. \
+                No transaction is added without your confirmation.
+                Without a subscription, Apple Pay logging is limited to 10 expenses a month. \
+                Trente+ subscribers can add as many transactions as they like.
                 """,
             isPhoneOnly: true
         ),
@@ -119,9 +121,10 @@ struct FAQItem: Identifiable, Equatable {
             topic: .featuresAndData,
             question: "Where is my data stored?",
             answer: """
-                On your devices and in your own iCloud account, which keeps them in sync when they use the same \
-                Apple Account. Without iCloud, it stays on this device and in its backups. Trente has no account \
-                and no server, and never connects to your bank. Deleting the app leaves your data in iCloud.
+                Your data belongs to you, and Trente never has access to it.
+                It's stored on your devices, and in your iCloud account if you turn on iCloud for Trente.
+                Trente has no account and no server, and never connects to your bank.
+                To delete your data, turn off iCloud sync for Trente in your device's Settings, then delete the app.
                 """
         ),
         FAQItem(
@@ -129,20 +132,18 @@ struct FAQItem: Identifiable, Equatable {
             topic: .featuresAndData,
             question: "What is Trente+?",
             answer: """
-                An optional monthly or yearly subscription that adds your recurring transactions automatically \
-                and lets you attach notes and images to any transaction. On iPhone and iPad, you can change \
-                the app icon's color too. On iPhone, you can log unlimited Apple Pay purchases. \
-                It also supports an independent developer. \
-                Manage or cancel it anytime in your App Store account.
+                An optional monthly or yearly subscription that unlocks new features in Trente. \
+                Open Trente's Settings to learn more.
+                Trente+ is also a way to support me as an independent developer.
+                Manage or cancel your subscription anytime from your Apple Account.
                 """
         ),
         FAQItem(
             id: "widgets",
             topic: .featuresAndData,
-            question: "Which widgets are available?",
+            question: "How do I change the category shown in the “Category Recap” widget?",
             answer: """
-                Month Recap (remaining budget and spending) and Category Recap (what's left in one category; \
-                edit the widget to choose it). Both are also available on the Lock Screen on iPhone.
+                Touch and hold the widget, then tap “Edit Widget”. You can then change the widget's category.
                 """
         )
     ]
