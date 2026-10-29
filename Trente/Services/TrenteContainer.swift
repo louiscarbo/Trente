@@ -22,6 +22,11 @@ enum TrenteContainer {
 
     static let shared: Result<ModelContainer, any Error> = {
         guard usesICloudStore else {
+            #if DEBUG
+            if StoreCapture.isEnabled {
+                return Result { try StoreCapture.makeModelContainer() }
+            }
+            #endif
             return .success(DataProvider.shared.modelContainer)
         }
         let configuration = ModelConfiguration(schema: .trente, isStoredInMemoryOnly: false, cloudKitDatabase: .automatic)
