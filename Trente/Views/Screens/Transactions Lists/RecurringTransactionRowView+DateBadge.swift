@@ -17,6 +17,8 @@ extension RecurringTransactionRowView {
             VStack(spacing: 0) {
                 Text(date, format: .dateTime.day())
                     .font(.title3.weight(.semibold))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
                     .foregroundStyle(isOverdue ? Color.orange : Color.primary)
                 Text(date, format: .dateTime.month(.abbreviated))
                     .font(.caption2)
