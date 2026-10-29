@@ -17,6 +17,8 @@ struct AmountCategoryView: View {
     // View State
     @FocusState private var currencyTextFieldFocused: Bool
     @ScaledMetric(relativeTo: .largeTitle) private var amountFontSize = 80
+    @State private var amountFieldWidth: CGFloat = 0
+    @State private var amountTextWidth: CGFloat = 0
     let currency: Currency
     
     var body: some View {
@@ -87,10 +89,45 @@ struct AmountCategoryView: View {
             .focused($currencyTextFieldFocused)
             #if os(iOS)
             .textFieldStyle(.plain)
-            .font(.system(size: amountFontSize, weight: .bold))
+            .font(.system(size: fittingAmountFontSize, weight: .bold))
             .multilineTextAlignment(.center)
+            .onGeometryChange(for: CGFloat.self) { proxy in
+                proxy.size.width
+            } action: { width in
+                amountFieldWidth = width
+            }
+            .background {
+                amountWidthProbe
+            }
             #endif
     }
+
+    #if os(iOS)
+    private var fittingAmountFontSize: CGFloat {
+        let usableWidth = amountFieldWidth * 0.95
+        guard usableWidth > 0, amountTextWidth > usableWidth else { return amountFontSize }
+        return amountFontSize * usableWidth / amountTextWidth
+    }
+
+    private var amountProbeText: String {
+        guard amountCents != 0 else {
+            return 0.0.formatted(.amount(currency.isoCode))
+        }
+        return (Double(amountCents) / 100).formatted(.number.precision(.fractionLength(0...2)).grouping(.never))
+    }
+
+    private var amountWidthProbe: some View {
+        Text(verbatim: amountProbeText)
+            .font(.system(size: amountFontSize, weight: .bold))
+            .fixedSize()
+            .hidden()
+            .onGeometryChange(for: CGFloat.self) { proxy in
+                proxy.size.width
+            } action: { width in
+                amountTextWidth = width
+            }
+    }
+    #endif
 }
 
 #Preview {
