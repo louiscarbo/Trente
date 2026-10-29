@@ -74,7 +74,11 @@ struct TrenteApp: App {
 
         Window("Trente Help", id: WindowIdentifiers.help) {
             NavigationStack {
-                FAQView(items: FAQItem.items(isPhone: false))
+                FAQView(
+                    items: FAQItem.items(isPhone: false),
+                    contactURL: SupportMail.feedbackURL(appInfo: .current),
+                    contactAddress: SupportMail.address
+                )
             }
         }
         .defaultSize(width: 520, height: 600)

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FAQView: View {
     let items: [FAQItem]
+    let contactURL: URL?
+    let contactAddress: String
 
     @State private var searchText = ""
 
@@ -34,6 +36,9 @@ struct FAQView: View {
                     }
                 }
                 sections(for: items.filter { item in item != FAQItem.featured })
+            }
+            Section {
+                ContactPrompt(contactURL: contactURL, contactAddress: contactAddress)
             }
         }
         .formStyle(.grouped)
@@ -65,6 +70,10 @@ struct FAQView: View {
 
 #Preview {
     NavigationStack {
-        FAQView(items: FAQItem.all)
+        FAQView(
+            items: FAQItem.all,
+            contactURL: nil,
+            contactAddress: SupportMail.address
+        )
     }
 }
