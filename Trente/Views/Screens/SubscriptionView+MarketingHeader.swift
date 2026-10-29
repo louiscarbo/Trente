@@ -21,12 +21,12 @@ extension SubscriptionView {
                     Text("Trente+")
                         .font(.largeTitle)
                         .bold()
-                    Text("Keep the full story of your spending, right next to the numbers.")
+                    Text("Let Trente+ do the typing, and unlock new features.")
                         .foregroundStyle(.secondary)
                 }
                 .multilineTextAlignment(.center)
 
-                GroupBox(label: Label("What's included", systemImage: "sparkles")) {
+                GroupBox(label: Label("Included with Trente+", systemImage: "sparkles")) {
                     VStack(alignment: .leading, spacing: .medium) {
                         ForEach(TrentePlusBenefit.all) { benefit in
                             benefitRow(benefit)

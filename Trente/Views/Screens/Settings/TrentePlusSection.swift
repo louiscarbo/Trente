@@ -32,7 +32,7 @@ struct TrentePlusSection: View {
                             .font(.headline)
                             .bold()
                         if isSubscribed {
-                            Text("You're a Trente+ member. Thank you!")
+                            Text("You have access to all Trente+ benefits. Thanks for subscribing!")
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         } else {
