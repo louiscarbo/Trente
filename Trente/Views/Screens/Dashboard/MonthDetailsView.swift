@@ -18,9 +18,7 @@ struct MonthDetailsView: View {
     @State private var isRepartitionComplete: Bool = false
     @FocusState private var isAmountFocused: Bool
 
-    @State private var showErrorAlert: Bool = false
-    @State private var errorMessage: String = ""
-    @State private var errorAction: (() -> Void)? = nil
+    @State private var failure: Failure?
 
     @State private var resetDraft: Bool = false
 
@@ -72,16 +70,11 @@ struct MonthDetailsView: View {
         .navigationBarBackButtonHidden(isEditing)
         .navigationTitle(Month.name(startingOn: draft.startDate))
         .interactiveDismissDisabled(isEditing)
-        .alert(String(localized: "An error occurred"), isPresented: $showErrorAlert) {
-            if let action = errorAction {
-                Button(String(localized: "Retry"), action: action)
-            }
+        .alert(String(localized: "An error occurred"), item: $failure) { failure in
+            Button(String(localized: "Retry"), action: failure.retry)
             Button(String(localized: "OK"), role: .cancel) {}
-        } message: {
-            Text(errorMessage)
-        }
-        .onChange(of: showErrorAlert) {
-            if !showErrorAlert { errorAction = nil }
+        } message: { failure in
+            Text(failure.message)
         }
     }
 
@@ -103,9 +96,7 @@ struct MonthDetailsView: View {
             draft.apply(to: original)
             try modelContext.save()
         } catch {
-            errorMessage = error.localizedDescription
-            errorAction = saveMonth
-            showErrorAlert = true
+            failure = Failure(message: error.localizedDescription, retry: saveMonth)
         }
     }
 
@@ -115,15 +106,20 @@ struct MonthDetailsView: View {
             try modelContext.save()
             dismiss()
         } catch {
-            errorMessage = error.localizedDescription
-            errorAction = deleteMonth
-            showErrorAlert = true
+            failure = Failure(message: error.localizedDescription, retry: deleteMonth)
         }
     }
 
     private func cancelEditing() {
         draft = .init(from: original)
         resetDraft.toggle()
+    }
+}
+
+private extension MonthDetailsView {
+    struct Failure {
+        let message: String
+        let retry: () -> Void
     }
 }
 
