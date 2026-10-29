@@ -2,3 +2,4 @@
 *.xcbkptlist
 .claude
 .DS_Store
+TestFlight/
