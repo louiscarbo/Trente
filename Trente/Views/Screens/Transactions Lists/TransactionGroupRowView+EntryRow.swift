@@ -5,33 +5,27 @@
 //  Created by Louis Carbo Estaque on 17/04/2025.
 //
 
-import SwiftData
 import SwiftUI
 
 extension TransactionGroupRowView {
     struct EntryRow: View {
-        let transactionGroup: TransactionGroup
-        let transactionEntry: TransactionEntry
+        let category: BudgetCategory
+        let amount: Double
+        let currencyCode: String
         var title: String?
-
-        @State private var showTransactionGroupDetails: Bool = false
+        let onTap: () -> Void
 
         var body: some View {
-            Button {
-                showTransactionGroupDetails = true
-            } label: {
+            Button(action: onTap) {
                 TransactionEntryRowContent(
-                    category: transactionEntry.category,
-                    amount: transactionEntry.amount,
-                    currencyCode: transactionGroup.currency.isoCode,
+                    category: category,
+                    amount: amount,
+                    currencyCode: currencyCode,
                     title: title
                 )
             }
             .contentShape(.rect)
             .buttonStyle(.plain)
-            .sheet(isPresented: $showTransactionGroupDetails) {
-                TransactionGroupDetailsView(transactionGroup: transactionGroup)
-            }
         }
     }
 }
