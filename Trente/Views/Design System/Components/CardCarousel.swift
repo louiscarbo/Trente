@@ -35,9 +35,7 @@ struct CardCarousel<Page: CaseIterable & Hashable, Card: View>: View where Page.
                     view
                 }
             }
-            #if os(macOS)
             PageIndicator(currentPage: $selection)
-            #endif
         }
     }
 }
