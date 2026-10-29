@@ -16,7 +16,7 @@ enum WalletIntakeError: Error {
 
 enum WalletIntakeResult {
     case logged(PendingTransaction)
-    case limitReached(amountCents: Int, title: String)
+    case limitReached
 }
 
 @MainActor
@@ -38,7 +38,7 @@ struct WalletIntakeService {
             throw WalletIntakeError.missingTitle
         }
         guard allowance.allowsIntake(on: now, isTrentePlusSubscribed: isTrentePlusSubscribed) else {
-            return .limitReached(amountCents: -cents, title: title)
+            return .limitReached
         }
 
         let pending = PendingTransaction(
@@ -84,12 +84,10 @@ struct WalletIntakeService {
                 allowance.cancelIntake(on: now)
                 throw error
             }
-        case .limitReached(let amountCents, let title):
-            try await WalletNotificationService.shared.postLimitReached(
-                amountCents: amountCents,
-                title: title,
-                currency: month.currency
-            )
+        case .limitReached:
+            guard !allowance.hasSentLimitNotice(on: now) else { return }
+            try await WalletNotificationService.shared.postLimitReached()
+            allowance.recordLimitNotice(on: now)
         }
     }
 }

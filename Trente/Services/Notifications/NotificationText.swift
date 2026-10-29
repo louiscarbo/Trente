@@ -9,11 +9,9 @@ import Foundation
 
 enum NotificationText {
     static func amountTitle(amountCents: Int, currency: Currency, title: String) -> String {
-        "\(amount(cents: amountCents, currency: currency)) - \(title)"
-    }
-
-    static func amount(cents: Int, currency: Currency) -> String {
-        (Double(abs(cents)) / 100.0).formatted(.amount(currency.isoCode))
+        let amount = (Double(abs(amountCents)) / 100.0)
+            .formatted(.amount(currency.isoCode))
+        return "\(amount) - \(title)"
     }
 
     static var goodbyeTitle: String {

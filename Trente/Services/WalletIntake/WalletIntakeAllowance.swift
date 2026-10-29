@@ -11,6 +11,7 @@ struct WalletIntakeAllowance {
     static let freeMonthlyLimit = 10
     static let monthKey = "walletIntake.month"
     static let countKey = "walletIntake.count"
+    static let limitNoticeMonthKey = "walletIntake.limitNoticeMonth"
 
     var defaults: UserDefaults = TrentePlusEntitlement.sharedDefaults
     var calendar: Calendar = .current
@@ -35,6 +36,17 @@ struct WalletIntakeAllowance {
     func setCount(_ count: Int, on date: Date) {
         defaults.set(monthIdentifier(of: date), forKey: Self.monthKey)
         defaults.set(count, forKey: Self.countKey)
+        if count < Self.freeMonthlyLimit {
+            defaults.removeObject(forKey: Self.limitNoticeMonthKey)
+        }
+    }
+
+    func hasSentLimitNotice(on date: Date) -> Bool {
+        defaults.string(forKey: Self.limitNoticeMonthKey) == monthIdentifier(of: date)
+    }
+
+    func recordLimitNotice(on date: Date) {
+        defaults.set(monthIdentifier(of: date), forKey: Self.limitNoticeMonthKey)
     }
 
     private func monthIdentifier(of date: Date) -> String {
