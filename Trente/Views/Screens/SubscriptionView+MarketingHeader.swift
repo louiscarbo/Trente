@@ -35,7 +35,6 @@ extension SubscriptionView {
                 }
                 .groupBoxStyle(TrenteGroupBoxStyle())
             }
-            .padding()
         }
 
         private func benefitRow(_ benefit: TrentePlusBenefit) -> some View {
