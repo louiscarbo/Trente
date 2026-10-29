@@ -128,8 +128,8 @@ struct FAQItem: Identifiable, Equatable {
             topic: .featuresAndData,
             question: "What is Trente+?",
             answer: """
-                An optional monthly or yearly subscription that lets you attach notes and images to your transactions \
-                and record recurring transactions automatically, and supports an independent developer. \
+                An optional monthly or yearly subscription that adds your recurring transactions automatically \
+                and lets you attach notes and images to any transaction. It also supports an independent developer. \
                 Manage or cancel it anytime in your App Store account.
                 """
         ),

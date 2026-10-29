@@ -10,6 +10,8 @@ import StoreKit
 
 extension SubscriptionView {
     struct MarketingHeader: View {
+        @ScaledMetric(relativeTo: .headline) private var iconSize = 36.0
+
         var body: some View {
             VStack(spacing: .large) {
                 StickerView(imageName: "Trente Pig Sticker", rotation: .zero)
@@ -26,24 +28,9 @@ extension SubscriptionView {
 
                 GroupBox(label: Label("What's included", systemImage: "sparkles")) {
                     VStack(alignment: .leading, spacing: .medium) {
-                        feature(
-                            "Notes and images",
-                            detail: "Attach receipts, photos and notes to any transaction."
-                        )
-                        feature(
-                            "Automatic recurring transactions",
-                            detail: "Rent, salary, subscriptions: added on their due date, without a tap."
-                        )
-                        #if os(iOS)
-                        feature(
-                            "App icons",
-                            detail: "Give Trente a new color on your Home Screen."
-                        )
-                        #endif
-                        feature(
-                            "Support an indie developer",
-                            detail: "Trente is built and maintained by one person."
-                        )
+                        ForEach(TrentePlusBenefit.all) { benefit in
+                            benefitRow(benefit)
+                        }
                     }
                 }
                 .groupBoxStyle(TrenteGroupBoxStyle())
@@ -51,18 +38,21 @@ extension SubscriptionView {
             .padding()
         }
 
-        private func feature(_ title: LocalizedStringKey, detail: LocalizedStringKey) -> some View {
-            Label {
+        private func benefitRow(_ benefit: TrentePlusBenefit) -> some View {
+            HStack(spacing: DesignSystem.Spacing.medium.rawValue) {
+                Image(systemName: benefit.systemImage)
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .frame(width: iconSize, height: iconSize)
+                    .background(benefit.tint.gradient, in: .rect(cornerRadius: iconSize / 4))
+                    .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
+                    Text(benefit.title)
                         .font(.headline)
-                    Text(detail)
+                    Text(benefit.detail)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
-            } icon: {
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundStyle(.primary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityElement(children: .combine)
