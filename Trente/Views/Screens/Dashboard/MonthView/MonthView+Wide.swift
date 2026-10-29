@@ -20,12 +20,13 @@ extension MonthView {
         @State private var carouselPage: CarouselPage?
 
         private enum CarouselPage: Int, CaseIterable {
-            case dailySpending
+            case gauges, dailySpending
         }
 
         @ViewBuilder
         private func card(for page: CarouselPage) -> some View {
             switch page {
+            case .gauges: BudgetGauges(month: month)
             case .dailySpending: DailySpendingCard(spending: DailySpending(month: month), currencyCode: month.currency.isoCode)
             }
         }
@@ -34,7 +35,7 @@ extension MonthView {
             ScrollView {
                 Grid(horizontalSpacing: 20, verticalSpacing: 20) {
                     GridRow {
-                        BudgetGauges(month: month)
+                        BudgetRingsCard(rings: BudgetRings(month: month))
                         LatestTransactions(
                             transactions: month.latestTransactions,
                             hasTransactions: hasTransactions,
