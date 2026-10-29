@@ -34,6 +34,7 @@ struct TitleView: View {
                     axis: .vertical
                 )
                 .lineLimit(3)
+                .accessibilityLabel(Text("Title"))
                 .focused(focusedField, equals: .title)
                 .textFieldStyle(.plain)
                 .font(.system(size: titleFontSize, weight: .bold))
