@@ -14,20 +14,31 @@ enum WalletIntakeError: Error {
     case missingTitle
 }
 
+enum WalletIntakeResult {
+    case logged(PendingTransaction)
+    case limitReached
+}
+
 @MainActor
 struct WalletIntakeService {
+    var allowance = WalletIntakeAllowance()
+
     func intake(
         transaction: String,
         amount: String,
         in context: ModelContext,
-        now: Date = .now
-    ) throws -> PendingTransaction {
+        now: Date = .now,
+        isTrentePlusSubscribed: Bool
+    ) throws -> WalletIntakeResult {
         guard let cents = WalletAmountParser.cents(from: amount) else {
             throw WalletIntakeError.unreadableAmount
         }
         let title = transaction.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !title.isEmpty else {
             throw WalletIntakeError.missingTitle
+        }
+        guard allowance.allowsIntake(on: now, isTrentePlusSubscribed: isTrentePlusSubscribed) else {
+            return .limitReached
         }
 
         let pending = PendingTransaction(
@@ -37,7 +48,8 @@ struct WalletIntakeService {
         )
         context.insert(pending)
         try context.save()
-        return pending
+        allowance.recordIntake(on: now)
+        return .logged(pending)
     }
 
     func currentMonth(in context: ModelContext, now: Date = .now) throws -> Month {
@@ -51,19 +63,31 @@ struct WalletIntakeService {
     func handle(
         transaction: String,
         amount: String,
-        in context: ModelContext
+        in context: ModelContext,
+        now: Date = .now,
+        isTrentePlusSubscribed: Bool = TrentePlusEntitlement.cached()
     ) async throws {
-        let month = try currentMonth(in: context)
-        let pending = try intake(
+        let month = try currentMonth(in: context, now: now)
+        let result = try intake(
             transaction: transaction,
             amount: amount,
-            in: context
+            in: context,
+            now: now,
+            isTrentePlusSubscribed: isTrentePlusSubscribed
         )
-        do {
-            try await WalletNotificationService.shared.post(for: pending, currency: month.currency)
-        } catch {
-            try? PendingTransactionService.shared.discard(pending, in: context)
-            throw error
+        switch result {
+        case .logged(let pending):
+            do {
+                try await WalletNotificationService.shared.post(for: pending, currency: month.currency)
+            } catch {
+                try? PendingTransactionService.shared.discard(pending, in: context)
+                allowance.cancelIntake(on: now)
+                throw error
+            }
+        case .limitReached:
+            guard !allowance.hasSentLimitNotice(on: now) else { return }
+            try await WalletNotificationService.shared.postLimitReached()
+            allowance.recordLimitNotice(on: now)
         }
     }
 }

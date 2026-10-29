@@ -11,6 +11,7 @@ import SwiftData
 struct PendingTransactionReviewView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.isTrentePlusSubscribed) private var isTrentePlusSubscribed
     @Query(sort: \Month.startDate, order: .reverse) private var months: [Month]
 
     let pending: PendingTransaction
@@ -18,6 +19,7 @@ struct PendingTransactionReviewView: View {
     @State private var draft: TransactionGroupDraft
     @State private var validationErrors: [String] = []
     @State private var deleteError: String? = nil
+    @State private var applePayLogCount = WalletIntakeAllowance().count(on: .now)
 
     @FocusState private var titleFocused: Bool
     @FocusState private var notesFocused: Bool
@@ -57,6 +59,12 @@ struct PendingTransactionReviewView: View {
                     notesFocus: $notesFocused,
                     amountFocus: $amountFocused
                 )
+                if !isTrentePlusSubscribed {
+                    AllowanceNote(
+                        loggedCount: min(applePayLogCount, WalletIntakeAllowance.freeMonthlyLimit),
+                        limit: WalletIntakeAllowance.freeMonthlyLimit
+                    )
+                }
             }
             .presentationDetents([.medium, .large])
         } else {

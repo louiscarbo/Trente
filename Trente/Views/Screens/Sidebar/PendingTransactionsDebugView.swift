@@ -24,25 +24,39 @@ struct PendingTransactionsDebugView: View {
 
     @State private var reviewedID: UUID?
     @State private var errorMessage: String?
+    @State private var applePayLogCount = WalletIntakeAllowance().count(on: .now)
 
     private var currencyCode: String { months.first?.currency.isoCode ?? "EUR" }
 
     var body: some View {
         List {
-            ForEach(pendingTransactions) { pending in
-                Button {
-                    reviewedID = pending.id
-                } label: {
-                    row(for: pending)
+            Section("Apple Pay logs this month") {
+                Stepper(
+                    "\(applePayLogCount) of \(WalletIntakeAllowance.freeMonthlyLimit)",
+                    value: $applePayLogCount,
+                    in: 0...WalletIntakeAllowance.freeMonthlyLimit
+                )
+                Button("Reset") { applePayLogCount = 0 }
+                Button("Fill to limit") { applePayLogCount = WalletIntakeAllowance.freeMonthlyLimit }
+            }
+            Section {
+                ForEach(pendingTransactions) { pending in
+                    Button {
+                        reviewedID = pending.id
+                    } label: {
+                        row(for: pending)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
+                .onDelete(perform: delete)
+            } footer: {
+                if pendingTransactions.isEmpty {
+                    Text("No pending transactions")
+                }
             }
-            .onDelete(perform: delete)
         }
-        .overlay {
-            if pendingTransactions.isEmpty {
-                ContentUnavailableView("No pending transactions", systemImage: "tray")
-            }
+        .onChange(of: applePayLogCount) { _, count in
+            WalletIntakeAllowance().setCount(count, on: .now)
         }
         .navigationTitle("Pending Transactions")
         .toolbar {
@@ -75,6 +89,7 @@ struct PendingTransactionsDebugView: View {
                     amount: sample.amount,
                     in: modelContext
                 )
+                applePayLogCount = WalletIntakeAllowance().count(on: .now)
             } catch {
                 errorMessage = "\(error)"
             }

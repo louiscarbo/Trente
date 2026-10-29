@@ -40,19 +40,22 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         let pendingTransactionID = (userInfo[WalletNotificationService.pendingTransactionIDKey] as? String)
             .flatMap(UUID.init(uuidString:))
+        let opensPaywall = userInfo[WalletNotificationService.opensPaywallKey] as? Bool == true
         let recurringAction = RecurringNotificationAction(rawValue: response.actionIdentifier)
         let recurringPayload = RecurringNotificationPayload(userInfo: userInfo)
         await respond(
             to: recurringAction,
             payload: recurringPayload,
-            pendingTransactionID: pendingTransactionID
+            pendingTransactionID: pendingTransactionID,
+            opensPaywall: opensPaywall
         )
     }
 
     private func respond(
         to recurringAction: RecurringNotificationAction?,
         payload recurringPayload: RecurringNotificationPayload?,
-        pendingTransactionID: UUID?
+        pendingTransactionID: UUID?,
+        opensPaywall: Bool
     ) {
         if let recurringAction, let recurringPayload, let container {
             _ = try? RecurringNotificationResponder.handle(
@@ -62,6 +65,8 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
             )
         } else if let pendingTransactionID {
             PendingTransactionRouter.shared.presentedPendingTransactionID = pendingTransactionID
+        } else if opensPaywall {
+            PaywallRouter.shared.isPresentingPaywall = true
         }
     }
 }

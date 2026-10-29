@@ -109,7 +109,8 @@ struct FAQItem: Identifiable, Equatable {
                 Yes. Get the Trente shortcut from Settings. Then, in Shortcuts › Automation, create an automation \
                 with the Wallet trigger, choose your cards and select Run Immediately. Add Run Shortcut, \
                 pick Log Wallet Transaction and pass it the Shortcut Input. After each purchase, tap the notification, \
-                check the category and save. Nothing is added without your validation.
+                check the category and save. Nothing is added without your validation. \
+                Free for 10 purchases a month, unlimited with Trente+.
                 """,
             isPhoneOnly: true
         ),
@@ -130,7 +131,8 @@ struct FAQItem: Identifiable, Equatable {
             answer: """
                 An optional monthly or yearly subscription that adds your recurring transactions automatically \
                 and lets you attach notes and images to any transaction. On iPhone and iPad, you can change \
-                the app icon's color too. It also supports an independent developer. \
+                the app icon's color too. On iPhone, you can log unlimited Apple Pay purchases. \
+                It also supports an independent developer. \
                 Manage or cancel it anytime in your App Store account.
                 """
         ),

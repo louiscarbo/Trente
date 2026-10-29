@@ -224,6 +224,64 @@
         }
       }
     },
+    "%lld of %lld free Apple Pay logs this month" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld kostenlosen Apple Pay-Erfassungen diesen Monat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld free Apple Pay logs this month"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld de %2$lld registros gratuitos de Apple Pay este mes"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld de %2$lld registros gratuitos de Apple Pay este mes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld enregistrements Apple Pay gratuits sur %2$lld ce mois-ci"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld di %2$lld registrazioni Apple Pay gratuite questo mese"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이번 달 무료 Apple Pay 기록 %2$lld개 중 %1$lld개"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld de %2$lld registros gratuitos do Apple Pay este mês"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld de %2$lld registos gratuitos do Apple Pay este mês"
+          }
+        }
+      }
+    },
     "-" : {
       "shouldTranslate" : false
     },
@@ -383,6 +441,58 @@
         }
       }
     },
+    "Apple Pay limit reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay-Limit erreicht"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Límite de Apple Pay alcanzado"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Límite de Apple Pay alcanzado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limite Apple Pay atteinte"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limite Apple Pay raggiunto"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay 한도 도달"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limite do Apple Pay atingido"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limite do Apple Pay atingido"
+          }
+        }
+      }
+    },
     "Date, newest first" : {
       "localizations" : {
         "de" : {
@@ -535,6 +645,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dia"
+          }
+        }
+      }
+    },
+    "Log every Apple Pay purchase, not just 10 a month." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfasse jede Apple Pay-Zahlung, nicht nur 10 pro Monat."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra cada compra con Apple Pay, no solo 10 al mes."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra cada compra con Apple Pay, no solo 10 al mes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrez chaque achat Apple Pay, pas seulement 10 par mois."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra ogni acquisto Apple Pay, non solo 10 al mese."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "한 달에 10건이 아닌 모든 Apple Pay 결제를 기록하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registre cada compra com Apple Pay, não só 10 por mês."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registe cada compra com Apple Pay, não só 10 por mês."
           }
         }
       }
@@ -1059,60 +1221,60 @@
         }
       }
     },
-    "An optional monthly or yearly subscription that adds your recurring transactions automatically and lets you attach notes and images to any transaction. On iPhone and iPad, you can change the app icon's color too. It also supports an independent developer. Manage or cancel it anytime in your App Store account." : {
+    "An optional monthly or yearly subscription that adds your recurring transactions automatically and lets you attach notes and images to any transaction. On iPhone and iPad, you can change the app icon's color too. On iPhone, you can log unlimited Apple Pay purchases. It also supports an independent developer. Manage or cancel it anytime in your App Store account." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein optionales Monats- oder Jahresabo, das deine wiederkehrenden Transaktionen automatisch hinzufügt und mit dem du Notizen und Bilder an jede Transaktion anhängen kannst. Auf iPhone und iPad kannst du außerdem die Farbe des App-Symbols ändern. Damit unterstützt du auch einen unabhängigen Entwickler. Du kannst es jederzeit in deinem App Store-Account verwalten oder kündigen."
+            "value" : "Ein optionales Monats- oder Jahresabo, das deine wiederkehrenden Transaktionen automatisch hinzufügt und mit dem du Notizen und Bilder an jede Transaktion anhängen kannst. Auf iPhone und iPad kannst du außerdem die Farbe des App-Symbols ändern. Auf dem iPhone kannst du unbegrenzt Apple Pay-Zahlungen erfassen. Damit unterstützt du auch einen unabhängigen Entwickler. Du kannst es jederzeit in deinem App Store-Account verwalten oder kündigen."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "An optional monthly or yearly subscription that adds your recurring transactions automatically and lets you attach notes and images to any transaction. On iPhone and iPad, you can change the app icon's colour too. It also supports an independent developer. Manage or cancel it at any time in your App Store account."
+            "value" : "An optional monthly or yearly subscription that adds your recurring transactions automatically and lets you attach notes and images to any transaction. On iPhone and iPad, you can change the app icon's colour too. On iPhone, you can log unlimited Apple Pay purchases. It also supports an independent developer. Manage or cancel it at any time in your App Store account."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Una suscripción mensual o anual opcional que añade automáticamente tus transacciones recurrentes y te permite añadir notas e imágenes a cualquier transacción. En el iPhone y el iPad, también puedes cambiar el color del icono de la app. Además, apoya a un desarrollador independiente. Gestiónala o cancélala cuando quieras desde tu cuenta del App Store."
+            "value" : "Una suscripción mensual o anual opcional que añade automáticamente tus transacciones recurrentes y te permite añadir notas e imágenes a cualquier transacción. En el iPhone y el iPad, también puedes cambiar el color del icono de la app. En el iPhone, puedes registrar compras con Apple Pay sin límite. Además, apoya a un desarrollador independiente. Gestiónala o cancélala cuando quieras desde tu cuenta del App Store."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Una suscripción mensual o anual opcional que agrega automáticamente tus transacciones recurrentes y te permite agregar notas e imágenes a cualquier transacción. En el iPhone y el iPad, también puedes cambiar el color del ícono de la app. Además, apoya a un desarrollador independiente. Adminístrala o cancélala cuando quieras desde tu cuenta del App Store."
+            "value" : "Una suscripción mensual o anual opcional que agrega automáticamente tus transacciones recurrentes y te permite agregar notas e imágenes a cualquier transacción. En el iPhone y el iPad, también puedes cambiar el color del ícono de la app. En el iPhone, puedes registrar compras con Apple Pay sin límite. Además, apoya a un desarrollador independiente. Adminístrala o cancélala cuando quieras desde tu cuenta del App Store."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un abonnement mensuel ou annuel facultatif qui ajoute automatiquement vos transactions récurrentes et vous permet d’ajouter des notes et des images à n’importe quelle transaction. Sur iPhone et iPad, il permet également de changer la couleur de l’icône de l’app. Il soutient aussi un développeur indépendant. Gérez-le ou résiliez-le à tout moment depuis votre compte App Store."
+            "value" : "Un abonnement mensuel ou annuel facultatif qui ajoute automatiquement vos transactions récurrentes et vous permet d’ajouter des notes et des images à n’importe quelle transaction. Sur iPhone et iPad, il permet également de changer la couleur de l’icône de l’app. Sur iPhone, il permet d’enregistrer des achats Apple Pay en illimité. Il soutient aussi un développeur indépendant. Gérez-le ou résiliez-le à tout moment depuis votre compte App Store."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un abbonamento mensile o annuale facoltativo che aggiunge in automatico le transazioni ricorrenti e ti permette di allegare note e immagini a qualsiasi transazione. Su iPhone e iPad permette inoltre di cambiare il colore dell’icona dell’app. Sostiene anche uno sviluppatore indipendente. Gestiscilo o annullalo quando vuoi dal tuo account App Store."
+            "value" : "Un abbonamento mensile o annuale facoltativo che aggiunge in automatico le transazioni ricorrenti e ti permette di allegare note e immagini a qualsiasi transazione. Su iPhone e iPad permette inoltre di cambiare il colore dell’icona dell’app. Su iPhone permette di registrare acquisti Apple Pay senza limiti. Sostiene anche uno sviluppatore indipendente. Gestiscilo o annullalo quando vuoi dal tuo account App Store."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "반복 거래를 자동으로 추가하고 모든 거래에 메모와 이미지를 첨부할 수 있는 선택형 월간 또는 연간 구독이에요. iPhone과 iPad에서는 앱 아이콘 색상도 바꿀 수 있어요. 개인 개발자를 응원하는 방법이기도 해요. App Store 계정에서 언제든지 관리하거나 취소할 수 있어요."
+            "value" : "반복 거래를 자동으로 추가하고 모든 거래에 메모와 이미지를 첨부할 수 있는 선택형 월간 또는 연간 구독이에요. iPhone과 iPad에서는 앱 아이콘 색상도 바꿀 수 있어요. iPhone에서는 Apple Pay 결제를 무제한으로 기록할 수 있어요. 개인 개발자를 응원하는 방법이기도 해요. App Store 계정에서 언제든지 관리하거나 취소할 수 있어요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uma assinatura mensal ou anual opcional que adiciona automaticamente as transações recorrentes e permite anexar notas e imagens a qualquer transação. No iPhone e no iPad, ainda dá para mudar a cor do ícone do app. Ela também apoia um desenvolvedor independente. Gerencie ou cancele quando quiser na sua conta da App Store."
+            "value" : "Uma assinatura mensal ou anual opcional que adiciona automaticamente as transações recorrentes e permite anexar notas e imagens a qualquer transação. No iPhone e no iPad, ainda dá para mudar a cor do ícone do app. No iPhone, dá para registrar compras com Apple Pay sem limite. Ela também apoia um desenvolvedor independente. Gerencie ou cancele quando quiser na sua conta da App Store."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uma subscrição mensal ou anual opcional que adiciona automaticamente as transações recorrentes e permite anexar notas e imagens a qualquer transação. No iPhone e no iPad, permite ainda mudar a cor do ícone da app. Também apoia um programador independente. Pode geri-la ou cancelá-la a qualquer momento na sua conta da App Store."
+            "value" : "Uma subscrição mensal ou anual opcional que adiciona automaticamente as transações recorrentes e permite anexar notas e imagens a qualquer transação. No iPhone e no iPad, permite ainda mudar a cor do ícone da app. No iPhone, permite registar compras com Apple Pay sem limite. Também apoia um programador independente. Pode geri-la ou cancelá-la a qualquer momento na sua conta da App Store."
           }
         }
       }
@@ -1741,6 +1903,58 @@
         }
       }
     },
+    "Unlimited Apple Pay logging" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbegrenzte Apple Pay-Erfassung"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registro ilimitado de Apple Pay"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registro ilimitado de Apple Pay"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement Apple Pay illimité"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrazione Apple Pay illimitata"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay 무제한 기록"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registro ilimitado do Apple Pay"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registo ilimitado do Apple Pay"
+          }
+        }
+      }
+    },
     "With Trente+, Trente adds it for you on its due date, the next time you open the app. Your widgets count it right away. Without Trente+, the setting is kept but you confirm it yourself." : {
       "localizations" : {
         "de" : {
@@ -2049,6 +2263,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Amarelo"
+          }
+        }
+      }
+    },
+    "You've used your %lld free Apple Pay logs this month. Get Trente+ for unlimited automatic logging." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast deine %lld kostenlosen Apple Pay-Erfassungen für diesen Monat aufgebraucht. Mit Trente+ erfasst du alle Zahlungen automatisch und unbegrenzt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Has usado tus %lld registros gratuitos de Apple Pay de este mes. Consigue Trente+ para registrar sin límites y de forma automática."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usaste tus %lld registros gratuitos de Apple Pay de este mes. Obtén Trente+ para registrar sin límites y de forma automática."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez utilisé vos %lld enregistrements Apple Pay gratuits ce mois-ci. Passez à Trente+ pour des enregistrements automatiques illimités."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai usato le %lld registrazioni Apple Pay gratuite di questo mese. Passa a Trente+ per registrazioni automatiche illimitate."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이번 달 무료 Apple Pay 기록 %lld개를 모두 사용했어요. Trente+로 무제한 자동 기록을 이용하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você usou seus %lld registros gratuitos do Apple Pay este mês. Assine o Trente+ para registros automáticos ilimitados."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilizou os seus %lld registos gratuitos do Apple Pay este mês. Subscreva o Trente+ para registos automáticos ilimitados."
           }
         }
       }
@@ -21551,54 +21817,54 @@
         }
       }
     },
-    "Yes. Get the Trente shortcut from Settings. Then, in Shortcuts › Automation, create an automation with the Wallet trigger, choose your cards and select Run Immediately. Add Run Shortcut, pick Log Wallet Transaction and pass it the Shortcut Input. After each purchase, tap the notification, check the category and save. Nothing is added without your validation." : {
+    "Yes. Get the Trente shortcut from Settings. Then, in Shortcuts › Automation, create an automation with the Wallet trigger, choose your cards and select Run Immediately. Add Run Shortcut, pick Log Wallet Transaction and pass it the Shortcut Input. After each purchase, tap the notification, check the category and save. Nothing is added without your validation. Free for 10 purchases a month, unlimited with Trente+." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ja. Lade den Trente-Kurzbefehl in den Einstellungen von Trente. Erstelle dann unter Kurzbefehle › Automation eine Automation mit dem Auslöser Wallet, wähle deine Karten und dann Sofort ausführen. Füge Kurzbefehl ausführen hinzu, wähle Log Wallet Transaction und übergib die Kurzbefehl-Eingabe. Tippe nach jedem Kauf auf die Mitteilung, prüfe die Kategorie und sichere. Ohne deine Bestätigung wird nichts hinzugefügt."
+            "value" : "Ja. Lade den Trente-Kurzbefehl in den Einstellungen von Trente. Erstelle dann unter Kurzbefehle › Automation eine Automation mit dem Auslöser Wallet, wähle deine Karten und dann Sofort ausführen. Füge Kurzbefehl ausführen hinzu, wähle Log Wallet Transaction und übergib die Kurzbefehl-Eingabe. Tippe nach jedem Kauf auf die Mitteilung, prüfe die Kategorie und sichere. Ohne deine Bestätigung wird nichts hinzugefügt. Kostenlos für 10 Käufe pro Monat, unbegrenzt mit Trente+."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sí. Obtén el atajo de Trente desde los Ajustes de Trente. Después, en Atajos › Automatización, crea una automatización con el activador Wallet, elige tus tarjetas y selecciona Ejecutar inmediatamente. Añade Ejecutar atajo, elige Log Wallet Transaction y pásale la Entrada del atajo. Después de cada compra, toca la notificación, comprueba la categoría y guarda. No se añade nada sin tu confirmación."
+            "value" : "Sí. Obtén el atajo de Trente desde los Ajustes de Trente. Después, en Atajos › Automatización, crea una automatización con el activador Wallet, elige tus tarjetas y selecciona Ejecutar inmediatamente. Añade Ejecutar atajo, elige Log Wallet Transaction y pásale la Entrada del atajo. Después de cada compra, toca la notificación, comprueba la categoría y guarda. No se añade nada sin tu confirmación. Gratis para 10 compras al mes, ilimitado con Trente+."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sí. Obtén el atajo de Trente desde la Configuración de Trente. Después, en Atajos › Automatización, crea una automatización con el activador Wallet, elige tus tarjetas y selecciona Ejecutar inmediatamente. Agrega Ejecutar atajo, elige Log Wallet Transaction y pásale la Entrada del atajo. Después de cada compra, toca la notificación, verifica la categoría y guarda. No se agrega nada sin tu confirmación."
+            "value" : "Sí. Obtén el atajo de Trente desde la Configuración de Trente. Después, en Atajos › Automatización, crea una automatización con el activador Wallet, elige tus tarjetas y selecciona Ejecutar inmediatamente. Agrega Ejecutar atajo, elige Log Wallet Transaction y pásale la Entrada del atajo. Después de cada compra, toca la notificación, verifica la categoría y guarda. No se agrega nada sin tu confirmación. Gratis para 10 compras al mes, ilimitado con Trente+."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oui. Obtenez le raccourci Trente depuis les Réglages de Trente. Ensuite, dans Raccourcis › Automatisation, créez une automatisation avec le déclencheur Cartes, choisissez vos cartes et sélectionnez Exécuter immédiatement. Ajoutez Exécuter le raccourci, choisissez Log Wallet Transaction et transmettez-lui l’Entrée du raccourci. Après chaque achat, touchez la notification, vérifiez la catégorie et enregistrez. Rien n’est ajouté sans votre validation."
+            "value" : "Oui. Obtenez le raccourci Trente depuis les Réglages de Trente. Ensuite, dans Raccourcis › Automatisation, créez une automatisation avec le déclencheur Cartes, choisissez vos cartes et sélectionnez Exécuter immédiatement. Ajoutez Exécuter le raccourci, choisissez Log Wallet Transaction et transmettez-lui l’Entrée du raccourci. Après chaque achat, touchez la notification, vérifiez la catégorie et enregistrez. Rien n’est ajouté sans votre validation. Gratuit pour 10 achats par mois, illimité avec Trente+."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sì. Ottieni il comando rapido di Trente dalle Impostazioni di Trente. Poi, in Comandi Rapidi › Automazione, crea un’automazione con l’attivazione Wallet, scegli le tue carte e seleziona Esegui immediatamente. Aggiungi Esegui comando rapido, scegli Log Wallet Transaction e passagli l’Input comando rapido. Dopo ogni acquisto, tocca la notifica, controlla la categoria e salva. Non viene aggiunto nulla senza la tua conferma."
+            "value" : "Sì. Ottieni il comando rapido di Trente dalle Impostazioni di Trente. Poi, in Comandi Rapidi › Automazione, crea un’automazione con l’attivazione Wallet, scegli le tue carte e seleziona Esegui immediatamente. Aggiungi Esegui comando rapido, scegli Log Wallet Transaction e passagli l’Input comando rapido. Dopo ogni acquisto, tocca la notifica, controlla la categoria e salva. Non viene aggiunto nulla senza la tua conferma. Gratis per 10 acquisti al mese, illimitato con Trente+."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "네. Trente 설정에서 Trente 단축어를 받으세요. 그런 다음 단축어 › 자동화에서 지갑 트리거로 자동화를 만들고, 카드를 선택한 뒤 즉시 실행을 선택하세요. 단축어 실행을 추가하고 Log Wallet Transaction을 선택한 다음 단축어 입력을 전달하세요. 구매할 때마다 알림을 탭하고 카테고리를 확인한 뒤 저장하세요. 직접 확인하기 전에는 아무것도 추가되지 않아요."
+            "value" : "네. Trente 설정에서 Trente 단축어를 받으세요. 그런 다음 단축어 › 자동화에서 지갑 트리거로 자동화를 만들고, 카드를 선택한 뒤 즉시 실행을 선택하세요. 단축어 실행을 추가하고 Log Wallet Transaction을 선택한 다음 단축어 입력을 전달하세요. 구매할 때마다 알림을 탭하고 카테고리를 확인한 뒤 저장하세요. 직접 확인하기 전에는 아무것도 추가되지 않아요. 매월 10건까지 무료이며, Trente+로 무제한 이용할 수 있어요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sim. Obtenha o atalho do Trente nos Ajustes do Trente. Depois, em Atalhos › Automação, crie uma automação com o gatilho Carteira, escolha seus cartões e selecione Executar Imediatamente. Adicione Executar Atalho, escolha Log Wallet Transaction e passe a Entrada do Atalho. Após cada compra, toque na notificação, confira a categoria e salve. Nada é adicionado sem a sua confirmação."
+            "value" : "Sim. Obtenha o atalho do Trente nos Ajustes do Trente. Depois, em Atalhos › Automação, crie uma automação com o gatilho Carteira, escolha seus cartões e selecione Executar Imediatamente. Adicione Executar Atalho, escolha Log Wallet Transaction e passe a Entrada do Atalho. Após cada compra, toque na notificação, confira a categoria e salve. Nada é adicionado sem a sua confirmação. Grátis para 10 compras por mês, ilimitado com o Trente+."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sim. Obtenha o atalho do Trente nas Definições do Trente. Depois, em Atalhos › Automatização, crie uma automatização com o acionador Carteira, escolha os seus cartões e selecione Executar imediatamente. Adicione Executar atalho, escolha Log Wallet Transaction e passe-lhe a Entrada do atalho. Após cada compra, toque na notificação, verifique a categoria e guarde. Nada é adicionado sem a sua confirmação."
+            "value" : "Sim. Obtenha o atalho do Trente nas Definições do Trente. Depois, em Atalhos › Automatização, crie uma automatização com o acionador Carteira, escolha os seus cartões e selecione Executar imediatamente. Adicione Executar atalho, escolha Log Wallet Transaction e passe-lhe a Entrada do atalho. Após cada compra, toque na notificação, verifique a categoria e guarde. Nada é adicionado sem a sua confirmação. Grátis para 10 compras por mês, ilimitado com o Trente+."
           }
         }
       }
