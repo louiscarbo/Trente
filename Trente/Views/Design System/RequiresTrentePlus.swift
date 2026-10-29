@@ -49,6 +49,7 @@ struct RequiresTrentePlus: ViewModifier {
             } label: {
                 Label("Trente+", systemImage: "lock.fill")
                     .font(.caption.bold())
+                    .foregroundStyle(.primary)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
                     .background(.regularMaterial, in: .capsule)
