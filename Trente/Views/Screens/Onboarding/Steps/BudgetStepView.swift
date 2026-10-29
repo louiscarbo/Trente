@@ -17,7 +17,7 @@ struct BudgetStepView: View {
     @FocusState private var isAmountFocused: Bool
 
     var body: some View {
-        OnboardingStepLayout {
+        OnboardingStepLayout(isEditing: isAmountFocused) {
             OnboardingHeader(
                 title: "Your monthly budget",
                 subtitle: "Think of it as the money you're free to spend each month, once taxes are taken care of."
