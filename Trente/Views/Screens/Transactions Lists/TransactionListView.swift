@@ -88,8 +88,11 @@ struct TransactionListView: View {
                             dateLimits: filterDateLimits,
                             firstDay: $filter.firstDay,
                             lastDay: $filter.lastDay,
-                            selectedCategories: $filter.categories
-                        )
+                            selectedCategories: $filter.categories,
+                            canReset: filter.isActive(for: month)
+                        ) {
+                            filter.reset(for: month)
+                        }
                         .presentationDetents([.medium, .large])
                     }
                 }
