@@ -19,7 +19,6 @@ struct ExportButton: View {
     @State private var writtenFile: URL?
     @State private var isShowingWrittenFile = false
     @State private var exportError: (any Error)?
-    @State private var isShowingError = false
 
     var body: some View {
         Button(action: export) {
@@ -52,11 +51,11 @@ struct ExportButton: View {
             defaultFilename: file.fileName
         ) { result in
             if case .failure(let error) = result {
-                show(error)
+                exportError = error
             }
         }
         #endif
-        .alert("Export Failed", isPresented: $isShowingError, presenting: exportError) { _ in
+        .alert("Export Failed", item: $exportError) { _ in
         } message: { error in
             Text(error.localizedDescription)
         }
@@ -73,14 +72,9 @@ struct ExportButton: View {
                 writtenFile = try await file.write(from: container)
                 isShowingWrittenFile = true
             } catch {
-                show(error)
+                exportError = error
             }
         }
-    }
-
-    private func show(_ error: any Error) {
-        exportError = error
-        isShowingError = true
     }
 }
 
