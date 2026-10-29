@@ -14,6 +14,7 @@ struct AppIconSection: View {
         Section {
             AppIconPicker(selection: $selection)
                 .requiresTrentePlus()
+                .listRowInsets(EdgeInsets())
         } header: {
             Text("App Icon")
         }

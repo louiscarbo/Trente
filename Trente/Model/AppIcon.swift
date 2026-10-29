@@ -9,11 +9,17 @@ import Foundation
 
 enum AppIcon: String, CaseIterable, Identifiable {
     case green
-    case grey
+    case mint
+    case teal
     case blue
-    case orange
-    case pink
     case midnight
+    case purple
+    case pink
+    case red
+    case orange
+    case yellow
+    case grey
+    case black
 
     var id: Self { self }
 
@@ -28,11 +34,17 @@ enum AppIcon: String, CaseIterable, Identifiable {
     var title: LocalizedStringResource {
         switch self {
         case .green: "Green"
-        case .grey: "Gray"
+        case .mint: "Mint"
+        case .teal: "Teal"
         case .blue: "Blue"
-        case .orange: "Orange"
-        case .pink: "Pink"
         case .midnight: "Midnight"
+        case .purple: "Purple"
+        case .pink: "Pink"
+        case .red: "Red"
+        case .orange: "Orange"
+        case .yellow: "Yellow"
+        case .grey: "Gray"
+        case .black: "Black"
         }
     }
 
