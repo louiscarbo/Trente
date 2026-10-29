@@ -14,9 +14,14 @@ struct TrentePlusBenefit: Identifiable {
     let systemImage: String
     let tint: Color
 
+    @MainActor
     static var all: [TrentePlusBenefit] {
         #if os(iOS)
-        [automaticRecurring, notesAndImages, appIcons, supportIndieDeveloper]
+        if DeviceIdiom.isPhone {
+            [automaticRecurring, applePayLogging, notesAndImages, appIcons, supportIndieDeveloper]
+        } else {
+            [automaticRecurring, notesAndImages, appIcons, supportIndieDeveloper]
+        }
         #else
         [automaticRecurring, notesAndImages, supportIndieDeveloper]
         #endif
@@ -28,6 +33,14 @@ struct TrentePlusBenefit: Identifiable {
         detail: "Rent, salary, subscriptions: added on their due date, without a tap.",
         systemImage: "arrow.triangle.2.circlepath",
         tint: .blue
+    )
+
+    private static let applePayLogging = TrentePlusBenefit(
+        id: "applePayLogging",
+        title: "Unlimited Apple Pay logging",
+        detail: "Log every Apple Pay purchase, not just 10 a month.",
+        systemImage: "creditcard.fill",
+        tint: .green
     )
 
     private static let notesAndImages = TrentePlusBenefit(

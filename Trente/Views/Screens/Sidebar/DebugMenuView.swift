@@ -13,6 +13,7 @@ struct DebugMenuView: View {
     @Environment(\.replayOnboarding) private var replayOnboarding
 
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
+    @State private var paywallRouter = PaywallRouter.shared
     @State private var trentePlus = TrentePlusStatus.shared
 
     var body: some View {
@@ -40,6 +41,9 @@ struct DebugMenuView: View {
             .navigationTitle("Debug")
             .onChange(of: pendingTransactionRouter.presentedPendingTransactionID) { _, id in
                 if id != nil { dismiss() }
+            }
+            .onChange(of: paywallRouter.isPresentingPaywall) { _, isPresenting in
+                if isPresenting { dismiss() }
             }
             .toolbar {
                 CloseToolbarItem { dismiss() }

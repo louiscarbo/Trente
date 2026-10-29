@@ -9,6 +9,7 @@ import Testing
 import Foundation
 @testable import Trente
 
+@MainActor
 struct TrentePlusBenefitTests {
 
     @Test("Every benefit has its own identifier")

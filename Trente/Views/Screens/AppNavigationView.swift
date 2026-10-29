@@ -24,6 +24,7 @@ struct AppNavigationView: View {
     @State private var selection: SidebarSelection?
     @State private var preferredCompactColumn: NavigationSplitViewColumn = .sidebar
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
+    @State private var paywallRouter = PaywallRouter.shared
     #if os(iOS)
     @State private var deepLinkedTransaction: NewTransactionContext?
     #endif
@@ -75,6 +76,9 @@ struct AppNavigationView: View {
                     .id(id)
             }
         }
+        .sheet(isPresented: $paywallRouter.isPresentingPaywall) {
+            SubscriptionView()
+        }
         #if os(iOS)
         .sheet(item: $deepLinkedTransaction) { context in
             NewTransactionView(context: context)
@@ -95,9 +99,11 @@ struct AppNavigationView: View {
 
     private var isPresentingSheet: Bool {
         #if os(iOS)
-        pendingTransactionRouter.presentedPendingTransactionID != nil || deepLinkedTransaction != nil
-        #else
         pendingTransactionRouter.presentedPendingTransactionID != nil
+            || paywallRouter.isPresentingPaywall
+            || deepLinkedTransaction != nil
+        #else
+        pendingTransactionRouter.presentedPendingTransactionID != nil || paywallRouter.isPresentingPaywall
         #endif
     }
 
