@@ -26,9 +26,9 @@ enum SampleData {
     static let currencyCode = "EUR"
     static let idealBudgetCents = 2500_00
     static let idealRepartition: [BudgetCategory: Int] = [
-        .needs: 50,
-        .wants: 30,
-        .savingsAndDebts: 20
+        .needs: 1250_00,
+        .wants: 750_00,
+        .savingsAndDebts: 500_00
     ]
 
     static let recurring: [SampleTransaction] = [
