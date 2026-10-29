@@ -36,12 +36,9 @@ struct TrentePlusSection: View {
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         } else {
-                            benefit("Notes and images on any transaction")
-                            benefit("Automatic recurring transactions")
-                            #if os(iOS)
-                            benefit("Pick your app icon")
-                            #endif
-                            benefit("Support an indie developer")
+                            ForEach(TrentePlusBenefit.all) { benefit in
+                                benefitRow(benefit.title)
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -58,10 +55,14 @@ struct TrentePlusSection: View {
         }
     }
 
-    private func benefit(_ title: LocalizedStringKey) -> some View {
-        Label(title, systemImage: "checkmark.circle.fill")
-            .font(.subheadline)
-            .foregroundStyle(.secondary)
+    private func benefitRow(_ title: LocalizedStringResource) -> some View {
+        Label {
+            Text(title)
+        } icon: {
+            Image(systemName: "checkmark.circle.fill")
+        }
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
     }
 }
 
