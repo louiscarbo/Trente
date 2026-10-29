@@ -10,36 +10,36 @@
 		7B1F06292DBD7910007EFDC5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
 		7B3AA9DC2E2237530072E9CB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */; };
 		7B3AA9DD2E2237530072E9CB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7B3AA9DB2E2237530072E9CB /* .swiftlint.yml */; };
-		7B7F9D7C2E0C8C01007296E5 /* Trente Grey.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Grey.icon */; platformFilters = (ios, ); };
+		7B7F9D7C2E0C8C01007296E5 /* Trente Grey.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Grey.icon */; platformFilter = ios; };
 		7B826FCD2E2840260074907E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7B826FCC2E2840260074907E /* .gitignore */; };
 		7B826FCE2E2840260074907E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7B826FCC2E2840260074907E /* .gitignore */; };
 		7BA442962E204E4300925EF5 /* Trente.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 7B1F06282DBD7910007EFDC5 /* Trente.storekit */; };
-		7BA442CA2E2052DD00925EF5 /* Trente Green.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Green.icon */; platformFilters = (ios, ); };
+		7BA442CA2E2052DD00925EF5 /* Trente Green.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Green.icon */; platformFilter = ios; };
+		7BAC10022EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; platformFilter = ios; };
+		7BAC10032EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; platformFilter = ios; };
+		7BAC10042EB2000000A1C0DE /* Trente Green.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Green.icon */; };
+		7BAC10052EB2000000A1C0DE /* Trente Grey.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Grey.icon */; };
+		7BAC11022EB2000000A1C0DE /* Trente Orange.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC11012EB2000000A1C0DE /* Trente Orange.icon */; platformFilter = ios; };
+		7BAC11032EB2000000A1C0DE /* Trente Orange.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC11012EB2000000A1C0DE /* Trente Orange.icon */; platformFilter = ios; };
+		7BAC12022EB2000000A1C0DE /* Trente Pink.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC12012EB2000000A1C0DE /* Trente Pink.icon */; platformFilter = ios; };
+		7BAC12032EB2000000A1C0DE /* Trente Pink.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC12012EB2000000A1C0DE /* Trente Pink.icon */; platformFilter = ios; };
+		7BAC13022EB2000000A1C0DE /* Trente Midnight.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC13012EB2000000A1C0DE /* Trente Midnight.icon */; platformFilter = ios; };
+		7BAC13032EB2000000A1C0DE /* Trente Midnight.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC13012EB2000000A1C0DE /* Trente Midnight.icon */; platformFilter = ios; };
+		7BAC14022EB2000000A1C0DE /* Trente Mint.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC14012EB2000000A1C0DE /* Trente Mint.icon */; platformFilter = ios; };
+		7BAC14032EB2000000A1C0DE /* Trente Mint.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC14012EB2000000A1C0DE /* Trente Mint.icon */; platformFilter = ios; };
+		7BAC15022EB2000000A1C0DE /* Trente Teal.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC15012EB2000000A1C0DE /* Trente Teal.icon */; platformFilter = ios; };
+		7BAC15032EB2000000A1C0DE /* Trente Teal.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC15012EB2000000A1C0DE /* Trente Teal.icon */; platformFilter = ios; };
+		7BAC16022EB2000000A1C0DE /* Trente Purple.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC16012EB2000000A1C0DE /* Trente Purple.icon */; platformFilter = ios; };
+		7BAC16032EB2000000A1C0DE /* Trente Purple.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC16012EB2000000A1C0DE /* Trente Purple.icon */; platformFilter = ios; };
+		7BAC17022EB2000000A1C0DE /* Trente Red.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC17012EB2000000A1C0DE /* Trente Red.icon */; platformFilter = ios; };
+		7BAC17032EB2000000A1C0DE /* Trente Red.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC17012EB2000000A1C0DE /* Trente Red.icon */; platformFilter = ios; };
+		7BAC18022EB2000000A1C0DE /* Trente Yellow.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */; platformFilter = ios; };
+		7BAC18032EB2000000A1C0DE /* Trente Yellow.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */; platformFilter = ios; };
+		7BAC19022EB2000000A1C0DE /* Trente Black.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC19012EB2000000A1C0DE /* Trente Black.icon */; platformFilter = ios; };
+		7BAC19032EB2000000A1C0DE /* Trente Black.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC19012EB2000000A1C0DE /* Trente Black.icon */; platformFilter = ios; };
 		7BBD01D32DB8DFAE007B606C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */; };
 		7BBD01D52DB8DFAE007B606C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */; };
 		7BBD01E22DB8DFAF007B606C /* TrenteWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7BAC10042EB2000000A1C0DE /* Trente Green.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Green.icon */; };
-		7BAC10052EB2000000A1C0DE /* Trente Grey.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Grey.icon */; };
-		7BAC10022EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; platformFilters = (ios, ); };
-		7BAC10032EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; platformFilters = (ios, ); };
-		7BAC11022EB2000000A1C0DE /* Trente Orange.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC11012EB2000000A1C0DE /* Trente Orange.icon */; platformFilters = (ios, ); };
-		7BAC11032EB2000000A1C0DE /* Trente Orange.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC11012EB2000000A1C0DE /* Trente Orange.icon */; platformFilters = (ios, ); };
-		7BAC12022EB2000000A1C0DE /* Trente Pink.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC12012EB2000000A1C0DE /* Trente Pink.icon */; platformFilters = (ios, ); };
-		7BAC12032EB2000000A1C0DE /* Trente Pink.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC12012EB2000000A1C0DE /* Trente Pink.icon */; platformFilters = (ios, ); };
-		7BAC13022EB2000000A1C0DE /* Trente Midnight.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC13012EB2000000A1C0DE /* Trente Midnight.icon */; platformFilters = (ios, ); };
-		7BAC14022EB2000000A1C0DE /* Trente Mint.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC14012EB2000000A1C0DE /* Trente Mint.icon */; platformFilters = (ios, ); };
-		7BAC15022EB2000000A1C0DE /* Trente Teal.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC15012EB2000000A1C0DE /* Trente Teal.icon */; platformFilters = (ios, ); };
-		7BAC16022EB2000000A1C0DE /* Trente Purple.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC16012EB2000000A1C0DE /* Trente Purple.icon */; platformFilters = (ios, ); };
-		7BAC17022EB2000000A1C0DE /* Trente Red.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC17012EB2000000A1C0DE /* Trente Red.icon */; platformFilters = (ios, ); };
-		7BAC18022EB2000000A1C0DE /* Trente Yellow.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */; platformFilters = (ios, ); };
-		7BAC19022EB2000000A1C0DE /* Trente Black.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC19012EB2000000A1C0DE /* Trente Black.icon */; platformFilters = (ios, ); };
-		7BAC13032EB2000000A1C0DE /* Trente Midnight.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC13012EB2000000A1C0DE /* Trente Midnight.icon */; platformFilters = (ios, ); };
-		7BAC14032EB2000000A1C0DE /* Trente Mint.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC14012EB2000000A1C0DE /* Trente Mint.icon */; platformFilters = (ios, ); };
-		7BAC15032EB2000000A1C0DE /* Trente Teal.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC15012EB2000000A1C0DE /* Trente Teal.icon */; platformFilters = (ios, ); };
-		7BAC16032EB2000000A1C0DE /* Trente Purple.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC16012EB2000000A1C0DE /* Trente Purple.icon */; platformFilters = (ios, ); };
-		7BAC17032EB2000000A1C0DE /* Trente Red.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC17012EB2000000A1C0DE /* Trente Red.icon */; platformFilters = (ios, ); };
-		7BAC18032EB2000000A1C0DE /* Trente Yellow.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */; platformFilters = (ios, ); };
-		7BAC19032EB2000000A1C0DE /* Trente Black.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC19012EB2000000A1C0DE /* Trente Black.icon */; platformFilters = (ios, ); };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,11 +81,6 @@
 		7B826FCC2E2840260074907E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7BA4429C2E204E4300925EF5 /* Trente Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trente Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA442C92E2052DD00925EF5 /* Trente Green.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Green.icon"; sourceTree = "<group>"; };
-		7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TrenteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		7BBD01E82DB8E135007B606C /* TrenteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrenteWidgetExtension.entitlements; sourceTree = "<group>"; };
-		7BC9E7F02DB1081800CFDF19 /* TrenteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrenteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BAC10012EB2000000A1C0DE /* Trente Blue.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Blue.icon"; sourceTree = "<group>"; };
 		7BAC11012EB2000000A1C0DE /* Trente Orange.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Orange.icon"; sourceTree = "<group>"; };
 		7BAC12012EB2000000A1C0DE /* Trente Pink.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Pink.icon"; sourceTree = "<group>"; };
@@ -96,6 +91,11 @@
 		7BAC17012EB2000000A1C0DE /* Trente Red.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Red.icon"; sourceTree = "<group>"; };
 		7BAC18012EB2000000A1C0DE /* Trente Yellow.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Yellow.icon"; sourceTree = "<group>"; };
 		7BAC19012EB2000000A1C0DE /* Trente Black.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Trente Black.icon"; sourceTree = "<group>"; };
+		7BBD01D02DB8DFAD007B606C /* TrenteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TrenteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		7BBD01E82DB8E135007B606C /* TrenteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrenteWidgetExtension.entitlements; sourceTree = "<group>"; };
+		7BC9E7F02DB1081800CFDF19 /* TrenteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrenteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -244,15 +244,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7BBD01D12DB8DFAD007B606C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */,
-				7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		7BAC10002EB2000000A1C0DE /* App Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +261,15 @@
 				7BAC19012EB2000000A1C0DE /* Trente Black.icon */,
 			);
 			path = "App Icons";
+			sourceTree = "<group>";
+		};
+		7BBD01D12DB8DFAD007B606C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7BBD01D22DB8DFAD007B606C /* WidgetKit.framework */,
+				7BBD01D42DB8DFAE007B606C /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
