@@ -15,6 +15,7 @@ struct TrenteGroupBoxStyle: GroupBoxStyle {
             configuration.label
                 .font(.headline)
                 .foregroundStyle(.primary)
+                .accessibilityAddTraits(.isHeader)
             
             configuration.content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

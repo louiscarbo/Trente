@@ -55,10 +55,12 @@ struct FilterSheetView: View {
                     HStack {
                         Image(systemName: selectedCategories.contains(category) ?  "checkmark.circle.fill" : "circle")
                             .foregroundStyle(category.color)
+                            .accessibilityHidden(true)
                         Text(category.name)
                     }
                 }
                 .tint(.primary)
+                .accessibilityAddTraits(selectedCategories.contains(category) ? .isSelected : [])
             }
         }
     }

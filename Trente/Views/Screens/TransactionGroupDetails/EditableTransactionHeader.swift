@@ -137,6 +137,7 @@ struct EditableTransactionHeader: View {
                 )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(Text("Show Image"))
         .modify { view in
 #if os(iOS)
             view.fullScreenCover(isPresented: $showFullScreen) {
@@ -157,6 +158,7 @@ struct EditableTransactionHeader: View {
             prompt: Text("Add your notes here."),
             axis: .vertical
         )
+        .accessibilityLabel(Text("Transaction Notes"))
         .focused(notesFocus)
         .lineLimit(5)
         .padding(isEditing ? 8 : 0)

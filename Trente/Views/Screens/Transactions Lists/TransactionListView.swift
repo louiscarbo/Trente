@@ -76,6 +76,7 @@ struct TransactionListView: View {
                     NoMatches {
                         filter.reset(for: month)
                     }
+                    .accessibilityElement(children: .combine)
                 }
             }
             .navigationTitle("Transactions")
@@ -93,6 +94,7 @@ struct TransactionListView: View {
                     ) {
                         showFilterSheet()
                     }
+                    .accessibilityValue(filter.isActive(for: month) ? Text("Active") : Text(verbatim: ""))
                     .sheet(isPresented: $isShowingFilterSheet) {
                         FilterSheetView(
                             dateLimits: filterDateLimits,
