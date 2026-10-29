@@ -35,6 +35,6 @@ enum ExternalLinks {
     static let developerWebsite = URL(string: "https://carbo-estaque.fr")!
     static let privacyPolicy = URL(string: "https://carbo-estaque.fr/trente/privacy")!
     static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
-    static let developerLinkedIn = URL(string: "https://www.linkedin.com/in/louiscarbo")!
+    static let developerLinkedIn = URL(string: "https://www.linkedin.com/in/louis-carbo-estaque/")!
     static let developerGitHub = URL(string: "https://github.com/louiscarbo")!
 }

@@ -21,7 +21,11 @@ struct HelpAboutSection: View {
     var body: some View {
         Section {
             NavigationLink {
-                FAQView(items: faqItems)
+                FAQView(
+                    items: faqItems,
+                    contactURL: contactURL,
+                    contactAddress: contactAddress
+                )
             } label: {
                 Label("Frequently Asked Questions", systemImage: "questionmark.circle")
             }
