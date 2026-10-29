@@ -81,6 +81,7 @@ struct NotesImageView: View {
                             prompt: Text("Add your notes here."),
                             axis: .vertical
                         )
+                        .accessibilityLabel(Text("Transaction Notes"))
                         .focused(focusedField, equals: .notes)
                         .lineLimit(5, reservesSpace: true)
                         .fixedSize(horizontal: false, vertical: true)

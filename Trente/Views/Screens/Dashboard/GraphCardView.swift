@@ -67,12 +67,27 @@ struct GraphCardView: View {
         }
         .buttonStyle(PressableCardButtonStyle())
         .sensoryFeedback(.selection, trigger: showRemaining)
+        .accessibilityLabel(Text(scope.name))
+        .accessibilityValue(
+            figures.accessibilityDescription(currencyCode: currency.isoCode, showingRemaining: showRemaining)
+        )
+        .accessibilityHint(showRemaining ? Text("Shows what you spent") : Text("Shows what's left"))
     }
 }
 
 private extension BudgetFigures {
     func amount(showingRemaining: Bool) -> Double {
         showingRemaining ? remaining : spent
+    }
+
+    func accessibilityDescription(currencyCode: String, showingRemaining: Bool) -> String {
+        let amount = amount(showingRemaining: showingRemaining).formatted(.amount(currencyCode))
+        let total = income.formatted(.budget(currencyCode))
+        let description = showingRemaining
+            ? String(localized: "\(amount) left of \(total)")
+            : String(localized: "\(amount) spent of \(total)")
+        guard isOverspent else { return description }
+        return String(localized: "Over Budget") + ", " + description
     }
 }
 
@@ -142,6 +157,9 @@ struct BudgetGaugeView: View {
                 highlightsRemaining: showRemaining
             )
         )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(scope.name))
+        .accessibilityValue(figures.accessibilityDescription(currencyCode: currencyCode, showingRemaining: showRemaining))
     }
 
     @ViewBuilder

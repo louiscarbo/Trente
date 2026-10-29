@@ -19,6 +19,7 @@ struct CurrencyTextField: View {
             text: $amountText,
             prompt: Text(0, format: .amount(currency.isoCode))
         )
+        .accessibilityLabel(Text("Amount"))
         #if os(iOS)
         .keyboardType(.decimalPad)
         #endif

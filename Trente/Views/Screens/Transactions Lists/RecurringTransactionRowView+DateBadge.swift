@@ -24,6 +24,8 @@ extension RecurringTransactionRowView {
                     .foregroundStyle(isOverdue ? Color.orange : Color.secondary)
             }
             .frame(width: 36)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text(date, format: .dateTime.day().month(.wide)))
         }
     }
 }
