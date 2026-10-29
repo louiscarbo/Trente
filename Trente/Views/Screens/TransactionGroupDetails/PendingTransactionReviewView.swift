@@ -61,7 +61,7 @@ struct PendingTransactionReviewView: View {
                 )
                 if !isTrentePlusSubscribed {
                     AllowanceNote(
-                        loggedCount: applePayLogCount,
+                        loggedCount: min(applePayLogCount, WalletIntakeAllowance.freeMonthlyLimit),
                         limit: WalletIntakeAllowance.freeMonthlyLimit
                     )
                 }
