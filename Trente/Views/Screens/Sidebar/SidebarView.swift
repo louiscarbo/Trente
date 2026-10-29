@@ -34,6 +34,7 @@ struct SidebarView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .padding(.horizontal)
+                        .accessibilityAddTraits(.isHeader)
 
                     MonthSummaryCard(
                         name: currentMonth.name,
@@ -57,6 +58,7 @@ struct SidebarView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .padding(.horizontal)
+                        .accessibilityAddTraits(.isHeader)
                     RecurringTransactionsRowView(
                         activeCount: recurringRules.count { !$0.hasEnded },
                         isSelected: selection == .recurring
@@ -71,6 +73,7 @@ struct SidebarView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .padding(.horizontal)
+                        .accessibilityAddTraits(.isHeader)
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(archivedMonths) { month in
                             ArchivedMonthRow(
