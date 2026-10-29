@@ -120,6 +120,7 @@ struct IncomeRepartitionComponent: View {
                 .strokeBorder(.pink.darken(0.1), lineWidth: 3)
         }
         .glassEffect(.regular.interactive(false), in: .capsule)
+        .accessibilityElement(children: .combine)
         .onPreferenceChange(HeightKey.self) { h in
             remainingMeasuredHeight = h
         }
@@ -253,6 +254,18 @@ struct BudgetCategorySliderRow: View {
                         break
                     }
                 }
+                .accessibilityActions {
+                    if isEnabled && remainingAmount > 0 {
+                        Button("Add what's left") {
+                            setValueForAccessibility((repartition[category] ?? 0) + remainingAmount)
+                        }
+                    }
+                    if isEnabled && (repartition[category] ?? 0) > 0 {
+                        Button("Set to zero") {
+                            setValueForAccessibility(0)
+                        }
+                    }
+                }
 
                 if isEnabled {
                     Button(action: increaseAction, label: {
@@ -288,7 +301,9 @@ struct BudgetCategorySliderRow: View {
     private var accessibilityValue: String {
         let value = repartition[category] ?? 0
         let share = amountToSplit > 0 ? Double(value) / Double(amountToSplit) : 0
-        return "\(formattedAmount(value)), \(share.formatted(.percent.precision(.fractionLength(0))))"
+        let valueDescription = "\(formattedAmount(value)), \(share.formatted(.percent.precision(.fractionLength(0))))"
+        guard isEnabled, remainingAmount > 0 else { return valueDescription }
+        return valueDescription + ". " + String(localized: "\(formattedAmount(remainingAmount)) left to split")
     }
 
     private func formattedAmount(_ cents: Int) -> String {
