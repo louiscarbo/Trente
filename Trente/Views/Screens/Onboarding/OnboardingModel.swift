@@ -23,6 +23,7 @@ final class OnboardingModel {
     private(set) var currentStep: OnboardingStep
     private(set) var direction: OnboardingDirection = .forward
     private(set) var savedMonth: Month?
+    private(set) var hasAddedIncome = false
     var draft: MonthDraft
     var isRepartitionComplete = false
 
@@ -93,8 +94,50 @@ final class OnboardingModel {
         }
     }
 
+    func addIncome(in context: ModelContext, now: Date = .now) throws {
+        guard !hasAddedIncome, let month = savedMonth else { return }
+        let repartition = month.idealRepartition.filter { $0.value > 0 }
+        guard !repartition.isEmpty else { return }
+
+        let monthStartDate = month.dateInterval.start
+        let rule = RecurringTransactionRule(
+            title: String(localized: "Income"),
+            frequency: .monthly,
+            startDate: Self.incomeStartDate(afterMonthStartingOn: monthStartDate, today: now),
+            repartition: repartition,
+            createdAt: now
+        )
+        context.insert(rule)
+        RecurringTransactionService.shared.insertTransaction(
+            for: RecurringTransactionOccurrence(rule: rule, date: monthStartDate, month: month),
+            in: context,
+            addedDate: monthStartDate
+        )
+        do {
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
+        hasAddedIncome = true
+    }
+
     private var currentIndex: Int {
         steps.firstIndex(of: currentStep) ?? 0
+    }
+
+    static func incomeStartDate(
+        afterMonthStartingOn monthStartDate: Date,
+        today: Date,
+        calendar: Calendar = .current
+    ) -> Date {
+        let earliestDate = calendar.startOfDay(for: today)
+        var startDate = calendar.startOfDay(for: monthStartDate)
+        repeat {
+            guard let nextStartDate = calendar.date(byAdding: .month, value: 1, to: startDate) else { break }
+            startDate = nextStartDate
+        } while startDate < earliestDate
+        return startDate
     }
 
     static func defaultDraft(locale: Locale, startDate: Date) -> MonthDraft {

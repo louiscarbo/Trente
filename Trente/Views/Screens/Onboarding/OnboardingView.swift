@@ -19,6 +19,7 @@ struct OnboardingView: View {
     @Environment(\.openURL) private var openURL
     @State private var model = OnboardingModel(steps: OnboardingStep.availableSteps)
     @State private var saveErrorMessage: String?
+    @State private var incomeErrorMessage: String?
     @State private var notificationPermission = NotificationPermissionState()
     @State private var isShowingPaywall = false
     @State private var hasOpenedShortcut = false
@@ -42,6 +43,12 @@ struct OnboardingView: View {
         .alert("We couldn't save your month", item: $saveErrorMessage) { _ in
             Button("Retry", action: saveMonthAndContinue)
             Button("Cancel", role: .cancel) {}
+        } message: { message in
+            Text(message)
+        }
+        .alert("We couldn't add your income", item: $incomeErrorMessage) { _ in
+            Button("Retry", action: startTracking)
+            Button("Cancel", role: .cancel) { isShowingPaywall = true }
         } message: { message in
             Text(message)
         }
@@ -114,7 +121,7 @@ struct OnboardingView: View {
                 onContinue: goForward
             )
         case .allSet:
-            AllSetStepView(month: model.savedMonth) { isShowingPaywall = true }
+            AllSetStepView(month: model.savedMonth, onStartTracking: startTracking)
         }
     }
 
@@ -177,6 +184,15 @@ struct OnboardingView: View {
             goForward()
         } catch {
             saveErrorMessage = error.localizedDescription
+        }
+    }
+
+    private func startTracking() {
+        do {
+            try model.addIncome(in: modelContext)
+            isShowingPaywall = true
+        } catch {
+            incomeErrorMessage = error.localizedDescription
         }
     }
 
