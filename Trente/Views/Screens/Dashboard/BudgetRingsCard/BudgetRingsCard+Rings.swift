@@ -135,13 +135,14 @@ extension BudgetRingsCard {
                     }
                 }
                 .font(.title.bold())
-                .monospacedDigit()
                 .foregroundStyle(isOverspent ? .red : .primary)
 
                 Text(centerCaption)
                     .font(.footnote.weight(.semibold))
                     .foregroundStyle(showsCaptionAsAlert ? .red : .secondary)
                     .contentTransition(.opacity)
+                    .textCase(.lowercase)
+                    .frame(minHeight: 18)
             }
             .lineLimit(1)
             .minimumScaleFactor(0.6)
