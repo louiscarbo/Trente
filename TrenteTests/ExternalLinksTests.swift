@@ -16,10 +16,10 @@ struct ExternalLinksTests {
         #expect(ExternalLinks.developerWebsite.absoluteString == "https://carbo-estaque.fr")
     }
 
-    @Test("The privacy policy lives on the developer website")
+    @Test("The privacy policy lives on trente.app")
     func privacyPolicyHost() {
-        #expect(ExternalLinks.privacyPolicy.host() == ExternalLinks.developerWebsite.host())
-        #expect(ExternalLinks.privacyPolicy.path() == "/trente/privacy")
+        #expect(ExternalLinks.privacyPolicy.host() == "trente.app")
+        #expect(ExternalLinks.privacyPolicy.path() == "/privacy/")
     }
 
     @Test("The terms of use are Apple's standard license agreement")
