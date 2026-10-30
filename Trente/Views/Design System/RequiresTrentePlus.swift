@@ -33,9 +33,11 @@ struct RequiresTrentePlus: ViewModifier {
         Button {
             isShowingPaywall = true
         } label: {
-            Label(message ?? "Trente+", systemImage: "lock.fill")
-                .font(.subheadline)
-                .multilineTextAlignment(.center)
+            HStack(alignment: .firstTextBaseline, spacing: 6) {
+                Image(systemName: "lock.fill")
+                Text(message ?? "Trente+")
+            }
+            .font(.subheadline)
         }
         .buttonStyle(TrentePrimaryButtonStyle(narrow: true, hugsLabel: true))
         .accessibilityLabel(message ?? "Requires Trente+")
