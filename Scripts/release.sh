@@ -3,7 +3,7 @@ set -e
 
 version="$1"
 if ! echo "$version" | grep -Eq '^[0-9]+\.[0-9]+(\.[0-9]+)?$'; then
-    echo "usage: scripts/release.sh <version>   e.g. scripts/release.sh 1.0.1"
+    echo "usage: Scripts/release.sh <version>   e.g. Scripts/release.sh 1.0.1"
     exit 1
 fi
 
