@@ -22,6 +22,20 @@ struct BudgetIntentServiceTests {
         context.insert(TransactionEntry(amountCents: cents, category: category, group: group))
     }
 
+    private func insertAutomaticRule(in context: ModelContext) -> RecurringTransactionRule {
+        let startDate = Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 2))!
+        let rule = RecurringTransactionRule(
+            title: "Rent",
+            frequency: .monthly,
+            startDate: startDate,
+            autoConfirm: true,
+            repartition: [.needs: -800_00],
+            createdAt: startDate
+        )
+        context.insert(rule)
+        return rule
+    }
+
     @Test(
         "Turns a spoken amount into positive cents",
         arguments: [
@@ -127,6 +141,45 @@ struct BudgetIntentServiceTests {
         #expect(wants.figures.isOverspent)
         #expect(total.figures.remaining == 550)
         #expect(total.monthName == month.name)
+    }
+
+    @Test("Remaining counts due automatic transactions without recording them")
+    func remainingIncludesDueAutomaticTransactions() throws {
+        let context = try makeContext()
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        addIncome(1000_00, to: .needs, in: month, context: context)
+        let rule = insertAutomaticRule(in: context)
+        try context.save()
+
+        let needs = try service.remaining(
+            in: .category(.needs),
+            context: context,
+            now: now,
+            isTrentePlusSubscribed: true
+        )
+
+        #expect(needs.figures.remaining == 200)
+        #expect(rule.lastAutoConfirmedDate == nil)
+        #expect(month.transactionGroups.count == 1)
+    }
+
+    @Test("Remaining leaves out automatic transactions without Trente+")
+    func remainingSkipsAutomaticTransactionsWithoutTrentePlus() throws {
+        let context = try makeContext()
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        addIncome(1000_00, to: .needs, in: month, context: context)
+        let rule = insertAutomaticRule(in: context)
+        try context.save()
+
+        let needs = try service.remaining(
+            in: .category(.needs),
+            context: context,
+            now: now,
+            isTrentePlusSubscribed: false
+        )
+
+        #expect(needs.figures.remaining == 1000)
+        #expect(rule.lastAutoConfirmedDate == nil)
     }
 
     @Test("Category enum keeps the raw values stored in data and widget configurations")

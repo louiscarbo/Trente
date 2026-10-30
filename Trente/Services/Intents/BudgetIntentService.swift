@@ -40,7 +40,7 @@ struct AddedExpense: Equatable {
 @MainActor
 struct BudgetIntentService {
     func currentMonth(in context: ModelContext, now: Date = .now) throws -> Month {
-        try CatchUpService.shared.catchUp(in: context, now: now)
+        try MonthService.shared.createMissingMonths(in: context, now: now)
         let month = try MonthService.shared.month(containing: now, in: context) ?? MonthService.shared.latestMonth(in: context)
         guard let month else {
             throw BudgetIntentError.noMonth
@@ -53,7 +53,8 @@ struct BudgetIntentService {
         title: String,
         category: BudgetCategory,
         in context: ModelContext,
-        now: Date = .now
+        now: Date = .now,
+        isTrentePlusSubscribed: Bool = TrentePlusEntitlement.cached()
     ) throws -> AddedExpense {
         guard let cents = Self.cents(from: amount) else {
             throw BudgetIntentError.invalidAmount
@@ -74,12 +75,29 @@ struct BudgetIntentService {
 
         return AddedExpense(
             amountCents: cents,
-            remaining: remaining(in: .category(category), of: month)
+            remaining: try remaining(
+                in: .category(category),
+                of: month,
+                context: context,
+                now: now,
+                isTrentePlusSubscribed: isTrentePlusSubscribed
+            )
         )
     }
 
-    func remaining(in scope: BudgetScope, context: ModelContext, now: Date = .now) throws -> RemainingBudget {
-        remaining(in: scope, of: try currentMonth(in: context, now: now))
+    func remaining(
+        in scope: BudgetScope,
+        context: ModelContext,
+        now: Date = .now,
+        isTrentePlusSubscribed: Bool = TrentePlusEntitlement.cached()
+    ) throws -> RemainingBudget {
+        try remaining(
+            in: scope,
+            of: try currentMonth(in: context, now: now),
+            context: context,
+            now: now,
+            isTrentePlusSubscribed: isTrentePlusSubscribed
+        )
     }
 
     static func cents(from amount: Decimal) -> Int? {
@@ -92,12 +110,32 @@ struct BudgetIntentService {
         return value > 0 ? value : nil
     }
 
-    private func remaining(in scope: BudgetScope, of month: Month) -> RemainingBudget {
-        RemainingBudget(
+    private func remaining(
+        in scope: BudgetScope,
+        of month: Month,
+        context: ModelContext,
+        now: Date,
+        isTrentePlusSubscribed: Bool
+    ) throws -> RemainingBudget {
+        let dueOccurrences = isTrentePlusSubscribed
+            ? try dueAutomaticOccurrences(in: month, context: context, now: now)
+            : []
+        return RemainingBudget(
             scope: scope,
-            figures: month.figures(in: scope),
+            figures: month.figures(in: scope, including: dueOccurrences),
             currencyCode: month.currency.isoCode,
             monthName: month.name
         )
+    }
+
+    private func dueAutomaticOccurrences(
+        in month: Month,
+        context: ModelContext,
+        now: Date
+    ) throws -> [RecurringTransactionOccurrence] {
+        let rules = try context.fetch(
+            FetchDescriptor<RecurringTransactionRule>(predicate: #Predicate { $0.autoConfirm == true })
+        )
+        return rules.flatMap { $0.dueAutomaticOccurrences(in: month, by: now) }
     }
 }
