@@ -100,6 +100,21 @@ fun TrenteCard(
     }
 }
 
+/** The bar under a sheet's buttons: top corners rounded, a 3dp rim, like `.bottomBarBackground()`. */
+@Composable
+fun BottomBarBackground(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+    val shape = androidx.compose.foundation.shape.RoundedCornerShape(topStart = Dimens.radiusLarge, topEnd = Dimens.radiusLarge)
+    Surface(
+        modifier = modifier.fillMaxWidth(),
+        shape = shape,
+        color = MaterialTheme.colorScheme.surfaceContainer,
+        border = BorderStroke(Dimens.cardBorder, MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)),
+        shadowElevation = 2.dp
+    ) {
+        Column(content = content)
+    }
+}
+
 /** A rounded background for list rows, like `TrenteListBackgroundView`. */
 @Composable
 fun TrenteListBackground(modifier: Modifier = Modifier, selected: Boolean = false, content: @Composable ColumnScope.() -> Unit) {

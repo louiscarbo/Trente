@@ -65,6 +65,7 @@ import app.trente.data.AndroidImagePreparer
 import app.trente.ui.LocalAppContainer
 import app.trente.ui.LocalShowPaywall
 import app.trente.ui.components.AttachmentThumbnail
+import app.trente.ui.components.BottomBarBackground
 import app.trente.ui.components.CloseStyle
 import app.trente.ui.components.CurrencyTextField
 import app.trente.ui.components.DateField
@@ -123,20 +124,22 @@ fun NewTransactionScreen(monthId: UUID, onClose: () -> Unit) {
             )
         },
         bottomBar = {
-            Row(
-                Modifier.fillMaxWidth().navigationBarsPadding().imePadding().padding(horizontal = 16.dp, vertical = 12.dp),
-                horizontalArrangement = Arrangement.spacedBy(20.dp)
-            ) {
-                if (viewModel.showPreviousButton) {
-                    TrenteSecondaryButton(text = localized("Previous"), narrow = true, onClick = { mutate { previousStep() } }, modifier = Modifier.weight(1f))
+            BottomBarBackground(Modifier.imePadding()) {
+                Row(
+                    Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)
+                ) {
+                    if (viewModel.showPreviousButton) {
+                        TrenteSecondaryButton(text = localized("Previous"), narrow = true, onClick = { mutate { previousStep() } }, modifier = Modifier.weight(1f))
+                    }
+                    TrentePrimaryButton(
+                        text = if (viewModel.isLastStep) localized("Create") else localized("Next"),
+                        narrow = true,
+                        enabled = viewModel.canAdvance,
+                        onClick = { if (viewModel.isLastStep) create() else mutate { nextStep() } },
+                        modifier = Modifier.weight(1f)
+                    )
                 }
-                TrentePrimaryButton(
-                    text = if (viewModel.isLastStep) localized("Create") else localized("Next"),
-                    narrow = true,
-                    enabled = viewModel.canAdvance,
-                    onClick = { if (viewModel.isLastStep) create() else mutate { nextStep() } },
-                    modifier = Modifier.weight(1f)
-                )
             }
         }
     ) { padding ->

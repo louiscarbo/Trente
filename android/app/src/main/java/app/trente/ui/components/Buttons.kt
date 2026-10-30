@@ -57,10 +57,13 @@ fun TrentePrimaryButton(
         else -> Color(0xFF1C1C1E)
     }
     val content = if (destructive || !isDark) Color.White else Color.Black
+    // The inner rim of the iOS capsule: black on light, white on dark.
+    val rim = (if (isDark) Color.White else Color.Black).copy(alpha = if (enabled) 0.6f else 0.3f)
     Button(
         onClick = onClick,
         enabled = enabled,
         shape = CircleShape,
+        border = BorderStroke(3.dp, rim),
         modifier = modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
             containerColor = container,

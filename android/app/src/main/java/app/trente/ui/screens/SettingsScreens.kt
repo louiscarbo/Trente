@@ -101,6 +101,7 @@ import app.trente.notifications.notificationSettingsIntent
 import app.trente.ui.LocalAppContainer
 import app.trente.ui.LocalShowPaywall
 import app.trente.ui.Routes
+import app.trente.ui.components.BottomBarBackground
 import app.trente.ui.components.CloseStyle
 import app.trente.ui.components.ExportButton
 import app.trente.ui.components.ExternalLinkRow
@@ -471,13 +472,15 @@ fun TransactionExportScreen(state: ExportSelectionState, onBack: () -> Unit, onS
     Scaffold(
         topBar = { TrenteTopBar(title = localized("Export Transactions"), onBack = onBack) },
         bottomBar = {
-            Box(Modifier.navigationBarsPadding().padding(16.dp)) {
-                ExportButton(
+            BottomBarBackground {
+                Box(Modifier.navigationBarsPadding().padding(16.dp)) {
+                    ExportButton(
                     title = pluralized("Export ^[%lld Transaction](inflect: true)", selection.transactionCount),
-                    file = file,
-                    store = store,
-                    enabled = selection.transactionCount > 0
-                )
+                        file = file,
+                        store = store,
+                        enabled = selection.transactionCount > 0
+                    )
+                }
             }
         }
     ) { padding ->
