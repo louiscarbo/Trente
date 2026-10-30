@@ -13,6 +13,8 @@ struct AppNavigationView: View {
     @Environment(\.openWindow) private var openWindow
     #endif
 
+    @Environment(\.modelContext) private var modelContext
+
     @Binding var pendingDeepLink: DeepLink?
 
     @Query(
@@ -129,8 +131,11 @@ struct AppNavigationView: View {
     }
 
     private func openNewExpenseInCurrentMonth() {
-        guard let month = months.first(where: { $0.contains(.now) }) ?? months.first else { return }
-        openDeepLink(.newTransaction(monthID: month.id))
+        try? MonthService.shared.createMissingMonths(in: modelContext)
+        let currentMonth = (try? MonthService.shared.month(containing: .now, in: modelContext)) ?? months.first
+        guard let currentMonth else { return }
+        show(.month(currentMonth))
+        presentNewTransaction(for: currentMonth)
     }
 
     private func presentNewTransaction(for month: Month) {
