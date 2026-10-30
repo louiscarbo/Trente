@@ -24,6 +24,7 @@ extension BudgetRingsCard {
             .font(.footnote)
             .lineLimit(1)
             .minimumScaleFactor(0.8)
+            .frame(minHeight: 18)
         }
     }
 }
