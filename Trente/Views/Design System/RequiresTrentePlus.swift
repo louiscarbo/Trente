@@ -33,7 +33,7 @@ struct RequiresTrentePlus: ViewModifier {
         Button {
             isShowingPaywall = true
         } label: {
-            HStack(alignment: .firstTextBaseline, spacing: 6) {
+            HStack(spacing: 6) {
                 Image(systemName: "lock.fill")
                 Text(message ?? "Trente+")
             }
