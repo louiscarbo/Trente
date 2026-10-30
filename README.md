@@ -28,7 +28,7 @@ Trente is free. The optional Trente+ subscription adds automatic recurring trans
 
 ## Privacy
 
-Trente collects no data. Your budget stays on your devices and in your iCloud account. Read the [privacy policy](https://carbo-estaque.fr/trente/privacy).
+Trente collects no data. Your budget stays on your devices and in your iCloud account. Read the [privacy policy](https://trente.app/privacy/).
 
 ## Building
 

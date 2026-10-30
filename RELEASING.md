@@ -24,4 +24,4 @@ develop ──► Scripts/release.sh 1.0.1 ──► prod + tag v1.0.1 ──►
 
 - Privacy nutrition label: *Data Not Collected* (matches `PrivacyInfo.xcprivacy`).
 - Subscriptions `Trente+` monthly and yearly approved with the first version.
-- Privacy policy URL live (carbo-estaque.fr/trente/privacy).
+- Privacy policy URL live (trente.app/privacy/).
