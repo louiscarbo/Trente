@@ -145,6 +145,7 @@
 				"Views/Design System/Custom Styles/TrenteSecondaryButtonStyle.swift",
 				"Views/Design System/Custom Styles/TrenteToggleStyle.swift",
 				"Views/Design System/DesignSystem.swift",
+				"Views/Design System/SurfaceStyle.swift",
 				"Views/Screens/Dashboard/BudgetScope+Display.swift",
 				Views/Screens/Dashboard/GraphCardView.swift,
 				"Views/Screens/Transactions Lists/TransactionGroupRowContent.swift",
