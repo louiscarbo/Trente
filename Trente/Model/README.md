@@ -10,6 +10,8 @@ The transaction system is composed of three stored models, `TransactionGroup`, `
 
 A `TransactionEntry` represents the most granular part of a transaction. It holds a specific amount of money that is either an expense or allocated to a specific budget category in the case of an income. Each `TransactionEntry` is associated with a `BudgetCategory`.
 
+`amountCents` always counts hundredths of the main unit, even for currencies without a minor unit (JPY, KRW, CLP, XPF): 1,200 yen is stored as `120000`. `Currency.fractionDigits` keeps those amounts whole when they're typed and shown.
+
 ### `TransactionGroup`
 
 A `TransactionGroup` bundles together one or more `TransactionEntry` objects that belong to the same transaction. It contains shared information like the transaction's title, date, and any attached notes or images.

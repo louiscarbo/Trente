@@ -1,0 +1,93 @@
+//
+//  CurrencyFractionDigitsTests.swift
+//  TrenteTests
+//
+//  Created by Louis Carbo Estaque on 30/10/2026.
+//
+
+import Testing
+import Foundation
+#if canImport(AppKit)
+import AppKit
+#endif
+@testable import Trente
+
+struct CurrencyFractionDigitsTests {
+    private let americanEnglish = Locale(identifier: "en_US")
+
+    @Test("The win-back currencies are available", arguments: ["CLP", "CRC", "MYR", "XPF"])
+    func availableCurrency(isoCode: String) {
+        #expect(Currencies.currency(for: isoCode) != nil)
+    }
+
+    @MainActor
+    @Test(
+        "Onboarding starts in the currency of the region",
+        arguments: [("es_CL", "CLP"), ("es_CR", "CRC"), ("ms_MY", "MYR"), ("fr_PF", "XPF")]
+    )
+    func regionDefault(localeIdentifier: String, isoCode: String) {
+        #expect(OnboardingModel.defaultCurrency(for: Locale(identifier: localeIdentifier)).isoCode == isoCode)
+    }
+
+    @Test("Fraction digits agree with the system for every available currency")
+    func fractionDigitsMatchSystem() {
+        for currency in Currencies.availableCurrencies {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.currencyCode = currency.isoCode
+            #expect(currency.fractionDigits == formatter.maximumFractionDigits, "\(currency.isoCode)")
+        }
+    }
+
+    @Test("Currencies without a minor unit show whole amounts", arguments: ["CLP", "JPY", "KRW", "XPF"])
+    func wholeAmounts(isoCode: String) throws {
+        let currency = try #require(Currencies.currency(for: isoCode))
+
+        #expect(currency.fractionDigits == 0)
+        #expect(currency.roundFormatter.maximumFractionDigits == 0)
+        #expect(!1_234.56.formatted(.amount(isoCode).locale(americanEnglish)).contains("."))
+    }
+
+    @Test("Currencies with a minor unit keep two decimals", arguments: ["CRC", "MYR", "EUR", "USD"])
+    func decimalAmounts(isoCode: String) throws {
+        let currency = try #require(Currencies.currency(for: isoCode))
+
+        #expect(currency.fractionDigits == 2)
+        #expect(currency.roundFormatter.maximumFractionDigits == 2)
+        #expect(1_234.56.formatted(.amount(isoCode).locale(americanEnglish)).hasSuffix("1,234.56"))
+    }
+
+    @Test(
+        "Amount text with a decimal separator is rejected when the currency has no minor unit",
+        arguments: ["12.", "12.5", ".5"]
+    )
+    func rejectsDecimalsWithoutMinorUnit(text: String) {
+        #expect(!CurrencyTextField.isValidAmountText(text, decimalSeparator: ".", fractionDigits: 0))
+    }
+
+    @Test("Whole amount text is accepted for every currency", arguments: [0, 2])
+    func acceptsWholeAmounts(fractionDigits: Int) {
+        #expect(CurrencyTextField.isValidAmountText("12500", decimalSeparator: ".", fractionDigits: fractionDigits))
+        #expect(CurrencyTextField.isValidAmountText("", decimalSeparator: ".", fractionDigits: fractionDigits))
+    }
+
+    @Test(
+        "Amount text keeps at most two decimals",
+        arguments: [("12.", true), ("12.5", true), ("12.50", true), ("12.505", false), ("1.2.3", false)]
+    )
+    func limitsDecimals(text: String, isValid: Bool) {
+        #expect(CurrencyTextField.isValidAmountText(text, decimalSeparator: ".", fractionDigits: 2) == isValid)
+    }
+
+    #if canImport(AppKit)
+    @Test("Every currency symbol exists in all its variants")
+    func symbolsExist() {
+        for currency in Currencies.availableCurrencies {
+            let names = [currency.sfSymbolName, currency.sfSymbolGaugeName, currency.sfSymbolRecurrenceName].compactMap(\.self)
+            for name in names {
+                #expect(NSImage(systemSymbolName: name, accessibilityDescription: nil) != nil, "\(name)")
+            }
+        }
+    }
+    #endif
+}

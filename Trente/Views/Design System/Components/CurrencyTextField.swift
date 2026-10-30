@@ -21,7 +21,7 @@ struct CurrencyTextField: View {
         )
         .accessibilityLabel(Text("Amount"))
         #if os(iOS)
-        .keyboardType(.decimalPad)
+        .keyboardType(currency.fractionDigits == 0 ? .numberPad : .decimalPad)
         #endif
         .onChange(of: amountText) { oldValue, newValue in
             processAmountTextChange(newValue: newValue, oldValue: oldValue)
@@ -35,6 +35,15 @@ struct CurrencyTextField: View {
                 amountText = expectedText
             }
         }
+        .onChange(of: currency.fractionDigits) {
+            updateText(from: amountCents)
+        }
+    }
+
+    static func isValidAmountText(_ unsignedText: String, decimalSeparator: String, fractionDigits: Int) -> Bool {
+        let parts = unsignedText.split(separator: decimalSeparator, omittingEmptySubsequences: false)
+        guard parts.count > 1 else { return true }
+        return parts.count == 2 && fractionDigits > 0 && parts[1].count <= fractionDigits
     }
     
     /// Creates the correct string representation (with sign) from a cents value.
@@ -48,7 +57,7 @@ struct CurrencyTextField: View {
         formatter.numberStyle = .decimal
         formatter.locale = Locale.current
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
+        formatter.maximumFractionDigits = currency.fractionDigits
         formatter.groupingSeparator = ""
         
         let unsignedText = formatter.string(from: NSNumber(value: absoluteValue)) ?? ""
@@ -83,19 +92,9 @@ struct CurrencyTextField: View {
         let unsignedText = newValue.trimmingCharacters(in: .init(charactersIn: "+-"))
         let decimalSep = Locale.current.decimalSeparator ?? "."
         
-        // Validation: prevent more than one decimal separator.
-        if unsignedText.count(where: { String($0) == decimalSep }) > 1 {
+        guard Self.isValidAmountText(unsignedText, decimalSeparator: decimalSep, fractionDigits: currency.fractionDigits) else {
             amountText = oldValue
             return
-        }
-        
-        // Validation: enforce max two decimal places.
-        if let sepIndex = unsignedText.firstIndex(of: Character(decimalSep)) {
-            let fraction = unsignedText[unsignedText.index(after: sepIndex)...]
-            if fraction.count > 2 {
-                amountText = oldValue
-                return
-            }
         }
         
         // Calculate the new absolute value in cents.
