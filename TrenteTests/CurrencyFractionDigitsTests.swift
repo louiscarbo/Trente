@@ -79,6 +79,41 @@ struct CurrencyFractionDigitsTests {
         #expect(CurrencyTextField.isValidAmountText(text, decimalSeparator: ".", fractionDigits: 2) == isValid)
     }
 
+    @Test("A stored amount with hidden decimals shows as a whole number", arguments: [(150_000_50, "150000"), (-150_000_50, "-150000")])
+    func roundedDisplay(cents: Int, expectedText: String) {
+        #expect(CurrencyTextField.amountText(fromCents: cents, fractionDigits: 0, locale: americanEnglish) == expectedText)
+    }
+
+    @Test(
+        "Showing an amount never changes it",
+        arguments: [(150_000_50, 0), (-150_000_50, 0), (2_500_00, 0), (12_50, 2), (-12_34, 2), (0, 2)]
+    )
+    func displayedTextChangesNothing(cents: Int, fractionDigits: Int) {
+        let text = CurrencyTextField.amountText(fromCents: cents, fractionDigits: fractionDigits, locale: americanEnglish)
+
+        #expect(CurrencyTextField.editedCents(from: text, currentCents: cents, fractionDigits: fractionDigits, locale: americanEnglish) == nil)
+    }
+
+    @Test(
+        "Typing a different amount replaces the stored one and keeps its sign",
+        arguments: [
+            ("150001", 150_000_50, 0, 150_001_00),
+            ("", 150_000_50, 0, 0),
+            ("12.5", 10_00, 2, 12_50),
+            ("12", -12_50, 2, -12_00)
+        ]
+    )
+    func typedTextChangesAmount(text: String, currentCents: Int, fractionDigits: Int, expectedCents: Int) {
+        let editedCents = CurrencyTextField.editedCents(
+            from: text,
+            currentCents: currentCents,
+            fractionDigits: fractionDigits,
+            locale: americanEnglish
+        )
+
+        #expect(editedCents == expectedCents)
+    }
+
     #if canImport(AppKit)
     @Test("Every currency symbol exists in all its variants")
     func symbolsExist() {

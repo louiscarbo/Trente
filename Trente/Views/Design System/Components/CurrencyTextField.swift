@@ -46,8 +46,7 @@ struct CurrencyTextField: View {
         return parts.count == 2 && fractionDigits > 0 && parts[1].count <= fractionDigits
     }
     
-    /// Creates the correct string representation (with sign) from a cents value.
-    private func createText(from cents: Int) -> String {
+    static func amountText(fromCents cents: Int, fractionDigits: Int, locale: Locale = .current) -> String {
         guard cents != 0 else { return "" }
         
         let isNegative = cents < 0
@@ -55,14 +54,24 @@ struct CurrencyTextField: View {
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.locale = Locale.current
+        formatter.locale = locale
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = currency.fractionDigits
+        formatter.maximumFractionDigits = fractionDigits
         formatter.groupingSeparator = ""
         
         let unsignedText = formatter.string(from: NSNumber(value: absoluteValue)) ?? ""
         
         return isNegative ? "-" + unsignedText : unsignedText
+    }
+
+    static func editedCents(from text: String, currentCents: Int, fractionDigits: Int, locale: Locale = .current) -> Int? {
+        guard text != amountText(fromCents: currentCents, fractionDigits: fractionDigits, locale: locale) else { return nil }
+        let absoluteCents = textToAbsCents(text, locale: locale)
+        return currentCents < 0 ? -absoluteCents : absoluteCents
+    }
+
+    private func createText(from cents: Int) -> String {
+        Self.amountText(fromCents: cents, fractionDigits: currency.fractionDigits)
     }
     
     /// A convenience wrapper for `createText` to update the state.
@@ -71,10 +80,10 @@ struct CurrencyTextField: View {
     }
     
     /// Converts a string (ignoring signs) from the text field into an integer of absolute cents.
-    private func textToAbsCents(_ text: String) -> Int {
+    private static func textToAbsCents(_ text: String, locale: Locale) -> Int {
         let unsignedText = text.trimmingCharacters(in: .init(charactersIn: "+-"))
         let formatter = NumberFormatter()
-        formatter.locale = .current
+        formatter.locale = locale
         formatter.numberStyle = .decimal
         guard let number = formatter.number(from: unsignedText) else { return 0 }
 
@@ -97,14 +106,8 @@ struct CurrencyTextField: View {
             return
         }
         
-        // Calculate the new absolute value in cents.
-        let absCents = textToAbsCents(newValue)
-        
-        // Update the binding, preserving the original sign.
-        if amountCents < 0 {
-            amountCents = -absCents
-        } else {
-            amountCents = absCents
+        if let editedCents = Self.editedCents(from: newValue, currentCents: amountCents, fractionDigits: currency.fractionDigits) {
+            amountCents = editedCents
         }
     }
 }
