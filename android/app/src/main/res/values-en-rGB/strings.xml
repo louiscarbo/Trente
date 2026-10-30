@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="a_month_starts_on_the_date_of_your_choice_and_la">A month starts on the date of your choice and lasts one month, for example from 25 October to 24 November, to match your payday.</string>
+    <string name="an_optional_monthly_or_yearly_subscription_that">An optional monthly or yearly subscription that unlocks new features in Trente. Open Trente\'s Settings to learn more.\nTrente+ is also a way to support me as an independent developer.\nManage or cancel your subscription at any time from your Apple Account.</string>
+    <string name="customize_how_trente_looks_on_your_home_screen">Customise how Trente looks on your Home Screen.</string>
+    <string name="dining_out_entertainment">Eating out, entertainment...</string>
+    <string name="gray">Grey</string>
+    <string name="popularized_by_elizabeth_warren_and_amelia_warre">Popularised by Elizabeth Warren and Amelia Warren Tyagi.</string>
+    <string name="savings_debt_retirement">Savings, debt, pension...</string>
+    <string name="sign_in_to_icloud_in_the_settings_app_to_keep_yo">Sign in to iCloud in the Settings app to keep your months and transactions on all your devices. You can export them as a spreadsheet at any time.</string>
+    <string name="split_your_take_home_income_into_needs_wants_and">Split your take-home pay into Needs, Wants and Savings and Debts. Trente sorts every transaction into one of them.</string>
+    <string name="think_of_it_as_the_money_you_re_free_to_spend_ea">Think of it as the money you\'re free to spend each month, after tax.</string>
+    <string name="you_haven_t_opened_trente_since_so_reminders_are">You haven\'t opened Trente since %1$s, so reminders are paused. Open the app at any time to turn them back on.</string>
+    <string name="your_months_and_transactions_sync_through_your_i">Your months and transactions sync through your iCloud account on all your devices. Trente has no account and no server. You can export them as a spreadsheet at any time.</string>
+</resources>
