@@ -79,7 +79,7 @@ struct TransactionListView: View {
                     .accessibilityElement(children: .combine)
                 }
             }
-            .navigationTitle("Transactions")
+            .navigationTitle(showRecurring ? "Expected This Month" : "Transactions")
             .searchable(text: $filter.searchText, prompt: "Search by title, amount, date, category…")
             .toolbar {
                 #if os(iOS)
