@@ -83,6 +83,22 @@
           "adHocOffers" : [
 
           ],
+          "billingPlans" : [
+            {
+              "billingPlanType" : "BILLED_UPFRONT",
+              "commitmentDisplayPrice" : "24.99",
+              "displayPrice" : "24.99",
+              "internalID" : "7C1D2A40",
+              "isEnabled" : true
+            },
+            {
+              "billingPlanType" : "MONTHLY",
+              "commitmentDisplayPrice" : "27.48",
+              "displayPrice" : "2.29",
+              "internalID" : "7C1D2A41",
+              "isEnabled" : true
+            }
+          ],
           "codeOffers" : [
 
           ],
@@ -91,6 +107,22 @@
           "groupNumber" : 1,
           "internalID" : "6745130541",
           "introductoryOffer" : null,
+          "introductoryOffers" : [
+            {
+              "billingPlanType" : "BILLED_UPFRONT",
+              "internalID" : "7C1D2A42",
+              "numberOfPeriods" : 1,
+              "paymentMode" : "free",
+              "subscriptionPeriod" : "P2W"
+            },
+            {
+              "billingPlanType" : "MONTHLY",
+              "internalID" : "7C1D2A43",
+              "numberOfPeriods" : 1,
+              "paymentMode" : "free",
+              "subscriptionPeriod" : "P2W"
+            }
+          ],
           "localizations" : [
 
           ],
@@ -114,7 +146,12 @@
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6745130448",
-          "introductoryOffer" : null,
+          "introductoryOffer" : {
+            "internalID" : "7C1D2A44",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P2W"
+          },
           "localizations" : [
 
           ],
