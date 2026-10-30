@@ -16,7 +16,7 @@ struct SubscriptionView: View {
             MarketingHeader()
         }
         .subscriptionStoreControlStyle(.compactPicker)
-        .storeButton(.visible, for: .cancellation, .restorePurchases, .policies)
+        .storeButton(.visible, for: .cancellation, .restorePurchases, .policies, .redeemCode)
         .subscriptionStorePolicyDestination(url: ExternalLinks.privacyPolicy, for: .privacyPolicy)
         .subscriptionStorePolicyDestination(url: ExternalLinks.termsOfUse, for: .termsOfService)
         .onInAppPurchaseCompletion { _, result in
