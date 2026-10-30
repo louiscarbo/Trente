@@ -27,6 +27,14 @@ struct MonthDraft: Equatable {
         self.idealRepartition = idealRepartition
     }
 
+    mutating func changeIdealBudget(to newBudgetCents: Int) {
+        if newBudgetCents < idealBudgetCents {
+            idealRepartition = Dictionary(
+                uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
+        }
+        idealBudgetCents = newBudgetCents
+    }
+
     func apply(to month: Month) {
         month.startDate = startDate
         month.currency = currency
