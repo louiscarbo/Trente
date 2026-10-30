@@ -16,6 +16,7 @@ enum SidebarSelection: Hashable {
 struct SidebarView: View {
     let months: [Month]
     @Binding var selection: SidebarSelection?
+    let showsSelection: Bool
 
     @Query private var recurringRules: [RecurringTransactionRule]
 
@@ -42,7 +43,7 @@ struct SidebarView: View {
                         spent: currentMonth.spentAmount(in: .all),
                         currencyCode: currentMonth.currency.isoCode,
                         isOverspent: currentMonth.overSpent,
-                        isSelected: selectedMonth.wrappedValue == currentMonth
+                        isSelected: showsSelection && selectedMonth.wrappedValue == currentMonth
                     ) {
                         withAnimation(.easeOut) {
                             selectedMonth.wrappedValue = currentMonth
@@ -61,7 +62,7 @@ struct SidebarView: View {
                         .accessibilityAddTraits(.isHeader)
                     RecurringTransactionsRowView(
                         activeCount: recurringRules.count { !$0.hasEnded },
-                        isSelected: selection == .recurring
+                        isSelected: showsSelection && selection == .recurring
                     ) {
                         selection = .recurring
                     }
@@ -79,7 +80,7 @@ struct SidebarView: View {
                             ArchivedMonthRow(
                                 name: month.name,
                                 isOverspent: month.overSpent,
-                                isSelected: selectedMonth.wrappedValue == month,
+                                isSelected: showsSelection && selectedMonth.wrappedValue == month,
                                 isFirst: month == archivedMonths.first,
                                 isLast: month == archivedMonths.last
                             ) {

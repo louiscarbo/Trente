@@ -11,6 +11,8 @@ import SwiftData
 struct AppNavigationView: View {
     #if os(macOS)
     @Environment(\.openWindow) private var openWindow
+    #else
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
     @Binding var pendingDeepLink: DeepLink?
@@ -31,7 +33,11 @@ struct AppNavigationView: View {
 
     var body: some View {
         NavigationSplitView(preferredCompactColumn: $preferredCompactColumn) {
-            SidebarView(months: months, selection: sidebarSelection)
+            SidebarView(
+                months: months,
+                selection: sidebarSelection,
+                showsSelection: showsSidebarSelection
+            )
         } detail: {
             NavigationStack {
                 if months.isEmpty {
@@ -95,6 +101,14 @@ struct AppNavigationView: View {
             isShowingLatestMonth: isShowingLatestMonth,
             isPresentingSheet: isPresentingSheet
         )
+    }
+
+    private var showsSidebarSelection: Bool {
+        #if os(macOS)
+        true
+        #else
+        horizontalSizeClass != .compact
+        #endif
     }
 
     private var isShowingLatestMonth: Bool {
