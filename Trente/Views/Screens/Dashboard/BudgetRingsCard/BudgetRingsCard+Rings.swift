@@ -17,9 +17,11 @@ extension BudgetRingsCard {
         var showsCaptionAsAlert = false
         var maximumDiameter: CGFloat = 280
 
-        private static let segmentInnerRatio = 0.51
-        private static let segmentOuterRatio = 0.873
-        private static let labelRatio = 0.69
+        private static let designDiameter = 220.0
+        private static let planInnerRatio = 208 / designDiameter
+        private static let segmentInnerRatio = 112 / designDiameter
+        private static let segmentOuterRatio = 192 / designDiameter
+        private static let labelRatio = 152 / designDiameter
         private static let minimumLabelledShare = 0.072
 
         var body: some View {
@@ -35,19 +37,22 @@ extension BudgetRingsCard {
         }
 
         private func chart(diameter: CGFloat) -> some View {
-            ZStack {
+            let scale = diameter / Self.designDiameter
+            return ZStack {
                 ring(
                     of: plan,
-                    innerRatio: 0.945,
+                    innerRatio: Self.planInnerRatio,
                     outerRatio: 1,
-                    cornerRadius: 3,
+                    gap: 4 * scale,
+                    cornerRadius: 3 * scale,
                     isPlan: true
                 )
                 ring(
                     of: segments,
                     innerRatio: Self.segmentInnerRatio,
                     outerRatio: Self.segmentOuterRatio,
-                    cornerRadius: 10,
+                    gap: 4 * scale,
+                    cornerRadius: 10 * scale,
                     isPlan: false
                 )
                 shareLabels(diameter: diameter)
@@ -70,6 +75,7 @@ extension BudgetRingsCard {
             of slices: [BudgetRings.Slice],
             innerRatio: Double,
             outerRatio: Double,
+            gap: Double,
             cornerRadius: Double,
             isPlan: Bool
         ) -> some View {
@@ -77,6 +83,7 @@ extension BudgetRingsCard {
                 let track = RingSegment(startDegrees: 0, endDegrees: 360, innerRatio: innerRatio, outerRatio: outerRatio)
                 track.fill(Color.gray)
                     .overlay { track.strokeBorder(Color.gray.darken(0.1), lineWidth: isPlan ? 0 : 3) }
+                    .compositingGroup()
                     .opacity(0.18)
             } else {
                 ZStack {
@@ -86,7 +93,7 @@ extension BudgetRingsCard {
                             endDegrees: arc.endDegrees,
                             innerRatio: innerRatio,
                             outerRatio: outerRatio,
-                            gap: 4,
+                            gap: gap,
                             cornerRadius: cornerRadius
                         )
                         let style = SliceStyle(kind: arc.slice.kind, isPlan: isPlan)
@@ -96,6 +103,7 @@ extension BudgetRingsCard {
                                     shape.strokeBorder(border, lineWidth: 3)
                                 }
                             }
+                            .compositingGroup()
                             .opacity(style.opacity)
                     }
                 }
