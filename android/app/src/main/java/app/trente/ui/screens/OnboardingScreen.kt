@@ -1,5 +1,6 @@
 package app.trente.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -38,7 +39,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -47,6 +47,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -66,6 +67,7 @@ import app.trente.core.support.NotificationPermissionStatus
 import app.trente.core.support.localized
 import app.trente.notifications.notificationSettingsIntent
 import app.trente.ui.LocalAppContainer
+import app.trente.ui.Observed
 import app.trente.ui.components.CategoryDot
 import app.trente.ui.components.CurrencyTextField
 import app.trente.ui.components.DateField
@@ -92,27 +94,22 @@ fun OnboardingScreen(isFirstLaunch: Boolean, onFinish: () -> Unit) {
     val store = rememberStore() ?: return
     val container = LocalAppContainer.current
     val scope = rememberCoroutineScope()
-    val model = remember { OnboardingModel(steps = OnboardingStep.entries) }
-    var tick by remember { mutableIntStateOf(0) }
-    @Suppress("UNUSED_EXPRESSION") tick
-    fun mutate(block: OnboardingModel.() -> Unit) {
-        model.block()
-        tick += 1
-    }
+    val onboarding = remember { Observed(OnboardingModel(steps = OnboardingStep.entries)) }
+    fun mutate(block: OnboardingModel.() -> Unit) = onboarding.mutate(block)
     var saveError by remember { mutableStateOf<String?>(null) }
     var incomeError by remember { mutableStateOf<String?>(null) }
     var isShowingPaywall by remember { mutableStateOf(false) }
     var permissionStatus by remember { mutableStateOf(NotificationPermissionStatus.NOT_DETERMINED) }
     LaunchedEffect(Unit) { permissionStatus = container.notificationPermission.status() }
 
-    fun goForward() {
-        if (model.isLastStep) onFinish() else mutate { goForward() }
+    fun advance() {
+        if (onboarding.value.isLastStep) onFinish() else mutate { goForward() }
     }
 
     fun saveMonthAndContinue() {
         try {
             mutate { saveMonth(store, reusingExistingMonth = isFirstLaunch) }
-            goForward()
+            advance()
         } catch (exception: Exception) {
             saveError = exception.localizedMessage ?: exception.toString()
         }
@@ -128,23 +125,27 @@ fun OnboardingScreen(isFirstLaunch: Boolean, onFinish: () -> Unit) {
     }
 
     if (isShowingPaywall) {
-        TrentePlusScreen(onClose = { isShowingPaywall = false; onFinish() })
+        val closePaywall = { isShowingPaywall = false; onFinish() }
+        BackHandler(onBack = closePaywall)
+        TrentePlusScreen(onClose = closePaywall)
         return
     }
 
+    BackHandler(enabled = onboarding.value.canGoBack) { mutate { goBack() } }
+
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
         Box(Modifier.fillMaxWidth().height(48.dp).padding(horizontal = 16.dp), contentAlignment = Alignment.Center) {
-            PageIndicator(pageCount = model.steps.size, currentPage = model.steps.indexOf(model.currentStep), onSelect = {})
-            if (model.canGoBack) {
+            PageIndicator(pageCount = onboarding.value.steps.size, currentPage = onboarding.value.steps.indexOf(onboarding.value.currentStep), onSelect = {})
+            if (onboarding.value.canGoBack) {
                 IconButton(onClick = { mutate { goBack() } }, modifier = Modifier.align(Alignment.CenterStart)) {
                     Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = localized("Back"))
                 }
             }
         }
         AnimatedContent(
-            targetState = model.currentStep,
+            targetState = onboarding.value.currentStep,
             transitionSpec = {
-                val forward = model.direction == OnboardingDirection.FORWARD
+                val forward = onboarding.value.direction == OnboardingDirection.FORWARD
                 slideInHorizontally { if (forward) it else -it } togetherWith slideOutHorizontally { if (forward) -it else it }
             },
             label = "onboardingStep"
@@ -154,24 +155,25 @@ fun OnboardingScreen(isFirstLaunch: Boolean, onFinish: () -> Unit) {
                     title = localized("Take control of your budget."),
                     subtitle = localized("Trente splits your budget into Needs, Wants and Savings, so you always know what's left this month."),
                     isHero = true,
-                    actions = { TrentePrimaryButton(text = localized("Get Started"), onClick = ::goForward) }
+                    actions = { TrentePrimaryButton(text = localized("Get Started"), onClick = ::advance) }
                 ) {
-                    CategoryTreemap(percentages = OnboardingModel.suggestedPercentages, modifier = Modifier.fillMaxWidth().height(320.dp))
+                    val height = (LocalConfiguration.current.screenHeightDp * 0.55f).dp.coerceAtLeast(420.dp)
+                    CategoryTreemap(percentages = OnboardingModel.suggestedPercentages, modifier = Modifier.fillMaxWidth().height(height))
                 }
                 OnboardingStep.BUDGET -> StepLayout(
                     title = localized("Your monthly budget"),
                     subtitle = localized("Think of it as the money you're free to spend each month, once taxes are taken care of."),
-                    actions = { TrentePrimaryButton(text = localized("Continue"), enabled = model.canContinue, onClick = ::goForward) }
+                    actions = { TrentePrimaryButton(text = localized("Continue"), enabled = onboarding.value.canContinue, onClick = ::advance) }
                 ) {
                     TrenteCard(label = localized("Month Details"), icon = Icons.Default.CalendarMonth) {
-                        DateField(label = localized("Start Date"), date = model.draft.startDate, onDateChange = { date -> mutate { draft.startDate = date } })
-                        MonthCurrencyPicker(currencyCode = model.draft.currency.isoCode, onCurrencyChange = { currency -> mutate { draft.currency = currency } })
+                        DateField(label = localized("Start Date"), date = onboarding.value.draft.startDate, onDateChange = { date -> mutate { draft.startDate = date } })
+                        MonthCurrencyPicker(currencyCode = onboarding.value.draft.currency.isoCode, onCurrencyChange = { currency -> mutate { draft.currency = currency } })
                     }
                     TrenteCard(label = localized("Ideal Budget"), icon = Icons.Default.Speed) {
                         CurrencyTextField(
-                            amountCents = model.budgetCents,
+                            amountCents = onboarding.value.budgetCents,
                             onAmountChange = { cents -> mutate { budgetCents = cents } },
-                            currencyCode = model.draft.currency.isoCode,
+                            currencyCode = onboarding.value.draft.currency.isoCode,
                             textStyle = TrenteType.title,
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -188,19 +190,19 @@ fun OnboardingScreen(isFirstLaunch: Boolean, onFinish: () -> Unit) {
                 OnboardingStep.SPLIT -> StepLayout(
                     title = localized("Split your budget"),
                     subtitle = localized("We start you on the 50/30/20 rule. Adjust it until it fits your life, you can change it every month."),
-                    actions = { TrentePrimaryButton(text = localized("Continue"), enabled = model.isRepartitionComplete, onClick = ::saveMonthAndContinue) }
+                    actions = { TrentePrimaryButton(text = localized("Continue"), enabled = onboarding.value.isRepartitionComplete, onClick = ::saveMonthAndContinue) }
                 ) {
                     TrenteCard(label = localized("Ideal Budget"), icon = Icons.Default.Speed) {
                         Text(
-                            app.trente.core.support.MoneyFormat.budget(model.budgetCents / 100.0, model.draft.currency.isoCode),
+                            app.trente.core.support.MoneyFormat.budget(onboarding.value.budgetCents / 100.0, onboarding.value.draft.currency.isoCode),
                             style = TrenteType.title,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.fillMaxWidth()
                         )
                         IncomeRepartitionComponent(
-                            repartition = model.draft.idealRepartition,
-                            amountToSplit = model.budgetCents,
-                            currencyCode = model.draft.currency.isoCode,
+                            repartition = onboarding.value.draft.idealRepartition,
+                            amountToSplit = onboarding.value.budgetCents,
+                            currencyCode = onboarding.value.draft.currency.isoCode,
                             onRepartitionChange = { repartition -> mutate { draft.idealRepartition = repartition } },
                             onCompleteChange = { complete -> mutate { isRepartitionComplete = complete } }
                         )
@@ -218,16 +220,16 @@ fun OnboardingScreen(isFirstLaunch: Boolean, onFinish: () -> Unit) {
                     }
                 }
                 OnboardingStep.NOTIFICATIONS -> NotificationsStep(
-                    currency = model.draft.currency,
+                    currency = onboarding.value.draft.currency,
                     status = permissionStatus,
                     onEnable = {
                         scope.launch {
                             permissionStatus = container.notificationPermission.requestIfNeeded()
-                            if (model.currentStep == OnboardingStep.NOTIFICATIONS) goForward()
+                            if (onboarding.value.currentStep == OnboardingStep.NOTIFICATIONS) advance()
                         }
                     },
                     onOpenSettings = { context -> context.startActivity(notificationSettingsIntent(context)) },
-                    onContinue = ::goForward
+                    onContinue = ::advance
                 )
                 OnboardingStep.ALL_SET -> StepLayout(
                     title = localized("You're all set!"),
@@ -236,7 +238,7 @@ fun OnboardingScreen(isFirstLaunch: Boolean, onFinish: () -> Unit) {
                     header = { Sticker(R.drawable.sticker_rocket, rotation = 0f, modifier = Modifier.width(170.dp)) },
                     actions = { TrentePrimaryButton(text = localized("Start Tracking"), onClick = ::startTracking) }
                 ) {
-                    model.savedMonth?.let { month ->
+                    onboarding.value.savedMonth?.let { month ->
                         MonthSummaryCard(
                             name = month.name,
                             remaining = month.remainingAmount,
@@ -265,9 +267,9 @@ private fun StepLayout(
     actions: @Composable () -> Unit,
     content: @Composable () -> Unit
 ) {
-    Column(Modifier.fillMaxSize()) {
+    Column(Modifier.fillMaxSize().imePadding()) {
         Column(
-            Modifier.weight(1f).verticalScroll(rememberScrollState()).imePadding().padding(horizontal = 16.dp),
+            Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(18.dp),
             horizontalAlignment = if (centered) Alignment.CenterHorizontally else Alignment.Start
         ) {
