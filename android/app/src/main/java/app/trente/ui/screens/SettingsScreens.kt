@@ -1,9 +1,7 @@
 package app.trente.ui.screens
 
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -75,6 +73,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import app.trente.AppIcon
 import app.trente.BuildConfig
 import app.trente.R
 import app.trente.core.model.BudgetCategory
@@ -143,45 +142,6 @@ fun appInfo(context: Context): AppInfo = AppInfo(
     systemVersion = android.os.Build.VERSION.RELEASE ?: "?"
 )
 
-/** The alternate launcher icons, flipped through activity aliases. */
-enum class AppIcon(val alias: String, val title: String, val preview: Int) {
-    GREEN("Green", "Green", R.mipmap.ic_launcher_green),
-    MINT("Mint", "Mint", R.mipmap.ic_launcher_mint),
-    TEAL("Teal", "Teal", R.mipmap.ic_launcher_teal),
-    BLUE("Blue", "Blue", R.mipmap.ic_launcher_blue),
-    MIDNIGHT("Midnight", "Midnight", R.mipmap.ic_launcher_midnight),
-    PURPLE("Purple", "Purple", R.mipmap.ic_launcher_purple),
-    PINK("Pink", "Pink", R.mipmap.ic_launcher_pink),
-    RED("Red", "Red", R.mipmap.ic_launcher_red),
-    ORANGE("Orange", "Orange", R.mipmap.ic_launcher_orange),
-    YELLOW("Yellow", "Yellow", R.mipmap.ic_launcher_yellow),
-    GREY("Grey", "Gray", R.mipmap.ic_launcher_grey),
-    BLACK("Black", "Black", R.mipmap.ic_launcher_black);
-
-    fun component(context: Context) = ComponentName(context, "app.trente.icon.$alias")
-
-    companion object {
-        fun current(context: Context): AppIcon {
-            val manager = context.packageManager
-            return entries.firstOrNull { icon ->
-                val state = manager.getComponentEnabledSetting(icon.component(context))
-                state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED || (state == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT && icon == GREEN)
-            } ?: GREEN
-        }
-
-        fun apply(context: Context, icon: AppIcon) {
-            val manager = context.packageManager
-            entries.forEach { candidate ->
-                manager.setComponentEnabledSetting(
-                    candidate.component(context),
-                    if (candidate == icon) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                    PackageManager.DONT_KILL_APP
-                )
-            }
-        }
-    }
-}
-
 @Composable
 private fun SettingsRow(title: String, icon: androidx.compose.ui.graphics.vector.ImageVector, value: String? = null, onClick: () -> Unit) {
     Row(Modifier.fillMaxWidth().clickable(onClick = onClick).padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -212,7 +172,7 @@ fun SettingsScreen(onClose: () -> Unit, onOpen: (String) -> Unit, onReplayOnboar
     val showPaywall = LocalShowPaywall.current
     var permissionStatus by remember { mutableStateOf<NotificationPermissionStatus?>(null) }
     LaunchedEffect(Unit) { permissionStatus = container.notificationPermission.status() }
-    var currentIcon by remember { mutableStateOf(AppIcon.current(context)) }
+    var currentIcon by remember { mutableStateOf(AppIcon.current(context, container.preferences)) }
 
     Scaffold(topBar = { TrenteTopBar(title = localized("Settings"), onBack = onClose, closeStyle = CloseStyle.CLOSE) }) { padding ->
         LazyColumn(contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = padding.calculateTopPadding() + 8.dp, bottom = 32.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -254,7 +214,7 @@ fun SettingsScreen(onClose: () -> Unit, onOpen: (String) -> Unit, onReplayOnboar
                                 val isSelected = icon == currentIcon
                                 Column(
                                     Modifier.width(76.dp).clickable {
-                                        AppIcon.apply(context, icon)
+                                        AppIcon.select(icon, container.preferences)
                                         currentIcon = icon
                                     },
                                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -589,7 +549,7 @@ fun FAQScreen(onBack: () -> Unit) {
                 item { FeaturedCard() }
             }
             if (isSearching && results.isEmpty()) {
-                item { Text(localized("No Matching Transactions").replace("Transactions", ""), style = TrenteType.subheadline, color = TrenteColors.secondaryText, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(24.dp)) }
+                item { Text(localized("No Results"), style = TrenteType.subheadline, color = TrenteColors.secondaryText, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(24.dp)) }
             }
             sections.forEach { section ->
                 item { SectionTitle(localized(section.topic.title)) }
