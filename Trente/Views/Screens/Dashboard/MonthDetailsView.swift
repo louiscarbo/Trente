@@ -36,27 +36,37 @@ struct MonthDetailsView: View {
     private var isSaveDisabled: Bool { draft.idealBudgetCents <= 0 || !isRepartitionComplete }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: .medium) {
-                MonthDetailsComponent(
-                    month: $draft,
-                    isRepartitionComplete: $isRepartitionComplete,
-                    isAmountFocused: $isAmountFocused
-                )
-                .id(resetDraft)
-                ExportSection(
-                    file: exportFile,
-                    isEmpty: original.transactionGroups.isEmpty
-                )
-                DeleteSectionBox(
-                    title: String(localized: "Delete Month"),
-                    message: String(localized: "This action cannot be undone. All transactions associated with this month will also be deleted."),
-                    onDelete: deleteMonth
-                )
+        WidthThresholdReader(widthThreshold: 730) { proxy in
+            let sectionsLayout = makeSectionsLayout(isCompact: proxy.isCompact)
+
+            ScrollView {
+                sectionsLayout {
+                    MonthDetailsComponent(
+                        month: $draft,
+                        isRepartitionComplete: $isRepartitionComplete,
+                        isAmountFocused: $isAmountFocused
+                    )
+                    .id(resetDraft)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity)
+                    VStack(spacing: .grid) {
+                        ExportSection(
+                            file: exportFile,
+                            isEmpty: original.transactionGroups.isEmpty
+                        )
+                        DeleteSectionBox(
+                            title: String(localized: "Delete Month"),
+                            message: String(localized: "This action cannot be undone. All transactions associated with this month will also be deleted."),
+                            onDelete: deleteMonth
+                        )
+                    }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity)
+                }
+                .padding(.all, proxy.isCompact ? nil : 26.0)
             }
-            .padding()
+            .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
         }
-        .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
         .toolbar {
             if isEditing {
                 CancelToolbarItem(systemImage: "arrow.uturn.backward", action: cancelEditing)
@@ -76,6 +86,13 @@ struct MonthDetailsView: View {
         } message: { failure in
             Text(failure.message)
         }
+    }
+
+    private func makeSectionsLayout(isCompact: Bool) -> AnyLayout {
+        let spacing = DesignSystem.Spacing.grid.rawValue
+        return isCompact
+            ? AnyLayout(VStackLayout(spacing: spacing))
+            : AnyLayout(HStackLayout(alignment: .top, spacing: spacing))
     }
 
     private var exportFile: TransactionsCSVFile {
