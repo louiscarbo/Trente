@@ -20,8 +20,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import app.trente.core.support.MoneyFormat
 import app.trente.core.support.localized
@@ -46,17 +49,22 @@ fun CurrencyTextField(
     focusRequester: FocusRequester? = null
 ) {
     val separator = remember { DecimalFormatSymbols.getInstance(Locale.getDefault()).decimalSeparator }
-    var text by remember { mutableStateOf(formatCents(amountCents, separator)) }
+    var field by remember { mutableStateOf(endOfText(formatCents(amountCents, separator))) }
 
     LaunchedEffect(amountCents) {
-        if (parseCents(text, separator) != abs(amountCents) || (amountCents < 0 && !text.startsWith("-"))) {
-            text = formatCents(amountCents, separator)
+        val text = field.text
+        field = when {
+            parseCents(text, separator) != abs(amountCents) -> endOfText(formatCents(amountCents, separator))
+            amountCents == 0 && text == "-" -> endOfText("")
+            amountCents < 0 && !text.startsWith("-") -> field.withSignOffset("-$text", 1)
+            amountCents > 0 && text.startsWith("-") -> field.withSignOffset(text.removePrefix("-"), -1)
+            else -> field
         }
     }
 
     val color = LocalContentColor.current
     Box(modifier, contentAlignment = Alignment.Center) {
-        if (text.isEmpty()) {
+        if (field.text.isEmpty()) {
             Text(
                 MoneyFormat.amount(0.0, currencyCode),
                 style = textStyle,
@@ -66,18 +74,22 @@ fun CurrencyTextField(
             )
         }
         BasicTextField(
-            value = text,
-            onValueChange = { newText ->
+            value = field,
+            onValueChange = { newField ->
+                val newText = newField.text
                 if (!isAcceptable(newText, separator)) return@BasicTextField
-                text = newText
-                val cents = parseCents(newText, separator)
-                onAmountChange(if (amountCents < 0 || newText.startsWith("-")) -cents else cents)
+                val hasNewText = newText != field.text
+                field = newField
+                if (hasNewText) {
+                    val cents = parseCents(newText, separator)
+                    onAmountChange(if (amountCents < 0 || newText.startsWith("-")) -cents else cents)
+                }
             },
             enabled = enabled,
             singleLine = true,
             textStyle = textStyle.copy(color = color, textAlign = textAlign),
             cursorBrush = SolidColor(color),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal, imeAction = ImeAction.Done),
             modifier = Modifier
                 .fillMaxWidthIf(textAlign == TextAlign.Center)
                 .let { if (focusRequester != null) it.focusRequester(focusRequester) else it }
@@ -87,6 +99,11 @@ fun CurrencyTextField(
 }
 
 private fun Modifier.fillMaxWidthIf(condition: Boolean): Modifier = if (condition) this.fillMaxWidth() else this
+
+private fun endOfText(text: String) = TextFieldValue(text, TextRange(text.length))
+
+private fun TextFieldValue.withSignOffset(text: String, offset: Int) =
+    TextFieldValue(text, TextRange((selection.start + offset).coerceIn(0, text.length), (selection.end + offset).coerceIn(0, text.length)))
 
 private fun isAcceptable(text: String, separator: Char): Boolean {
     val body = text.removePrefix("-")
@@ -111,10 +128,6 @@ private fun formatCents(cents: Int, separator: Char): String {
     val magnitude = abs(cents)
     val units = magnitude / 100
     val fraction = magnitude % 100
-    val fractionText = when {
-        fraction == 0 -> ""
-        fraction % 10 == 0 -> "$separator${fraction / 10}"
-        else -> "$separator${fraction.toString().padStart(2, '0')}"
-    }
+    val fractionText = if (fraction == 0) "" else "$separator${fraction.toString().padStart(2, '0')}"
     return (if (cents < 0) "-" else "") + units + fractionText
 }
