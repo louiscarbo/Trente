@@ -13,6 +13,8 @@ struct RequiresTrentePlus: ViewModifier {
     @Environment(\.isTrentePlusSubscribed) private var isSubscribed
     @State private var isShowingPaywall = false
 
+    private let tagShape = RoundedRectangle(cornerRadius: .large)
+
     private var isLocked: Bool { isRequired && !isSubscribed }
 
     func body(content: Content) -> some View {
@@ -33,25 +35,35 @@ struct RequiresTrentePlus: ViewModifier {
         Button {
             isShowingPaywall = true
         } label: {
-            HStack(spacing: 6) {
-                Image(systemName: "lock.fill")
-                Text(message ?? "Trente+")
-            }
-            .font(.subheadline)
+            tag
+                .padding(.horizontal, DesignSystem.Spacing.medium.rawValue)
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: message == nil ? .trailing : .center
+                )
+                .contentShape(.rect)
         }
-        .buttonStyle(TrentePrimaryButtonStyle(narrow: true, hugsLabel: true))
+        .buttonStyle(.plain)
         .accessibilityLabel(message ?? "Requires Trente+")
-        .fixedSize(horizontal: false, vertical: true)
-        .padding(.horizontal, DesignSystem.Spacing.medium.rawValue)
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: message == nil ? .trailing : .center
-        )
-        .contentShape(.rect)
-        .onTapGesture {
-            isShowingPaywall = true
+    }
+
+    private var tag: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "lock.fill")
+            Text(message ?? "Trente+")
         }
+        .font(.caption.bold())
+        .foregroundStyle(.primary)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(.regularMaterial, in: tagShape)
+        .overlay {
+            tagShape
+                .inset(by: 1)
+                .stroke(.primary.opacity(0.2), lineWidth: 2)
+        }
+        .fixedSize(horizontal: false, vertical: true)
     }
 }
 
