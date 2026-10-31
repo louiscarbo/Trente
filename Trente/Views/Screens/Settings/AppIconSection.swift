@@ -13,7 +13,7 @@ struct AppIconSection: View {
     var body: some View {
         Section {
             AppIconPicker(selection: $selection)
-                .requiresTrentePlus(message: "Included with Trente+")
+                .requiresTrentePlus(message: "More icons with Trente+")
                 .listRowInsets(EdgeInsets())
         } header: {
             Text("App Icon")
