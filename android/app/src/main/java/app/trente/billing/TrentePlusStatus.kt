@@ -106,11 +106,16 @@ class TrentePlusStatus(
 
             override fun onBillingServiceDisconnected() {
                 mutableIsAvailable.value = false
+                initialRefresh.complete(Unit)
             }
         })
     }
 
     suspend fun refresh() {
+        if (!client.isReady) {
+            connect()
+            return
+        }
         try {
             val purchases = withContext(Dispatchers.IO) {
                 client.queryPurchasesAsync(
@@ -137,7 +142,11 @@ class TrentePlusStatus(
         val result = withContext(Dispatchers.IO) {
             client.queryProductDetails(QueryProductDetailsParams.newBuilder().setProductList(listOf(product)).build())
         }
-        val details = result.productDetailsList?.firstOrNull() ?: return
+        val details = result.productDetailsList?.firstOrNull()
+        if (details == null) {
+            mutableIsAvailable.value = false
+            return
+        }
         productDetails = details
         mutablePlans.value = details.subscriptionOfferDetails.orEmpty().map { offer ->
             val phase = offer.pricingPhases.pricingPhaseList.last()

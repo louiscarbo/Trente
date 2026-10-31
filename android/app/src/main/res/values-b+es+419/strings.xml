@@ -48,7 +48,8 @@
     <string name="amount_highest_first">Importe, de mayor a menor</string>
     <string name="amount_lowest_first">Importe, de menor a mayor</string>
     <string name="an_error_occurred">Ocurrió un error</string>
-    <string name="an_optional_monthly_or_yearly_subscription_that">Una suscripción mensual o anual, opcional, que desbloquea nuevas funciones en Trente. Abre la configuración de Trente para saber más.\nTrente+ también es una forma de apoyarme como desarrollador independiente.\nAdministra o cancela tu suscripción cuando quieras desde tu cuenta de Apple.</string>
+    <string name="an_optional_monthly_or_yearly_subscription_that">Una suscripción mensual o anual, opcional, que desbloquea nuevas funciones en Trente. Abre la configuración de Trente para saber más.\nTrente+ también es una forma de apoyarme como desarrollador independiente.\nAdministra o cancela tu suscripción cuando quieras desde Google Play.</string>
+    <string name="an_optional_monthly_or_yearly_subscription_that_bb0d7f">Una suscripción mensual o anual, opcional, que desbloquea nuevas funciones en Trente. Abre la configuración de Trente para saber más.\nTrente+ también es una forma de apoyarme como desarrollador independiente.\nAdministra o cancela tu suscripción cuando quieras desde tu cuenta de Apple.</string>
     <string name="app_icon">Ícono de la app</string>
     <string name="app_icons">Íconos de la app</string>
     <string name="apple_pay">Apple Pay</string>
@@ -143,6 +144,7 @@
     <string name="get_the_shortcut">Obtener el atajo</string>
     <string name="github">GitHub</string>
     <string name="give_a_title_to_your_transaction">Pon un título a tu transacción</string>
+    <string name="google_play_isn_t_available_on_this_device">Google Play no está disponible en este dispositivo.</string>
     <string name="gray">Gris</string>
     <string name="green">Verde</string>
     <string name="help_about">Ayuda e información</string>
@@ -176,6 +178,7 @@
     <string name="left_to_spend">Disponible para gastar</string>
     <string name="let_trente_do_the_typing_and_unlock_new_features">Trente+ lleva las cuentas por ti y te da acceso a nuevas funciones.</string>
     <string name="linkedin">LinkedIn</string>
+    <string name="loading_plans">Cargando planes…</string>
     <string name="log_apple_pay_purchases_automatically">Registra tus compras con Apple Pay automáticamente</string>
     <string name="log_every_apple_pay_purchase_not_just_10_a_month">Registra cada compra con Apple Pay, no solo 10 al mes.</string>
     <string name="manage_subscription">Administrar suscripción</string>
@@ -202,6 +205,7 @@
     <string name="next">Siguiente</string>
     <string name="no_matching_transactions">No hay transacciones que coincidan</string>
     <string name="no_recurring_transactions">No hay transacciones recurrentes</string>
+    <string name="no_results">Sin resultados</string>
     <string name="no_currencies_available_to_create_a_new_month">No hay monedas disponibles para crear un nuevo mes.</string>
     <string name="no_month_available">No hay ningún mes disponible</string>
     <string name="no_month_yet">Aún no hay ningún mes</string>
@@ -241,6 +245,7 @@
     <string name="privacy_policy">Política de privacidad</string>
     <string name="purple">Morado</string>
     <string name="recurring">RECURRENTES</string>
+    <string name="rate_on_google_play">Calificar en Google Play</string>
     <string name="rate_on_the_app_store">Calificar en el App Store</string>
     <string name="received">Recibido</string>
     <string name="recurrence_details">Detalles de la recurrencia</string>
@@ -261,6 +266,7 @@
     <string name="requires_trente">Requiere Trente+</string>
     <string name="reset">Restablecer</string>
     <string name="reset_filters">Restablecer filtros</string>
+    <string name="restore_purchases">Restaurar compras</string>
     <string name="retry">Reintentar</string>
     <string name="salary">Sueldo</string>
     <string name="save">Guardar</string>
@@ -325,6 +331,7 @@
     <string name="stop_failed">No se pudo detener</string>
     <string name="stop_future_transactions">Detener las próximas transacciones</string>
     <string name="stop_future_transactions_4d9d40">¿Detener las próximas transacciones de “%1$s”?</string>
+    <string name="subscribe">Suscribirse</string>
     <string name="subscribe_to_trente_to_unlock">Suscríbete a Trente+ para desbloquear</string>
     <string name="sum_of_displayed_transactions">Suma de las transacciones mostradas</string>
     <string name="supermarket">Supermercado</string>
@@ -357,6 +364,7 @@
     <string name="to">Hasta</string>
     <string name="to_export_several_months_or_choose_what_to_inclu">Para exportar varios meses o elegir qué incluir, ve a Configuración › Exportar transacciones.</string>
     <string name="total">Total</string>
+    <string name="touch_and_hold_the_widget_then_tap_the_settings">Mantén presionado el widget y toca «Configuración». Así podrás cambiar la categoría del widget.</string>
     <string name="touch_and_hold_the_widget_then_tap_edit_widget_y">Mantén presionado el widget y toca «Editar widget». Así podrás cambiar la categoría del widget.</string>
     <string name="transaction">Transacción</string>
     <string name="transaction_notes">Notas de la transacción</string>
@@ -424,11 +432,13 @@
     <string name="you_ve_used_your_lld_free_apple_pay_logs_this_mo">Usaste tus %1$d registros gratuitos de Apple Pay de este mes. Obtén Trente+ para registrar sin límites y de forma automática.</string>
     <string name="your_data">Tus datos</string>
     <string name="your_budget_couldn_t_be_opened">No se pudo abrir tu presupuesto</string>
-    <string name="your_data_belongs_to_you_and_trente_never_has_ac">Tus datos te pertenecen y Trente nunca tiene acceso a ellos.\nSe guardan en tus dispositivos y en tu cuenta de iCloud si activas iCloud para Trente.\nTrente no tiene cuentas ni servidores, y nunca se conecta a tu banco.\nPara borrar tus datos, desactiva la sincronización de iCloud para Trente en la Configuración del dispositivo y luego elimina la app.</string>
+    <string name="your_data_belongs_to_you_and_trente_never_has_ac">Tus datos te pertenecen y Trente nunca tiene acceso a ellos.\nSe guardan solo en tu dispositivo.\nTrente no tiene cuentas ni servidores, y nunca se conecta a tu banco.\nPara borrar tus datos, elimina la app.</string>
+    <string name="your_data_belongs_to_you_and_trente_never_has_ac_aa44f4">Tus datos te pertenecen y Trente nunca tiene acceso a ellos.\nSe guardan en tus dispositivos y en tu cuenta de iCloud si activas iCloud para Trente.\nTrente no tiene cuentas ni servidores, y nunca se conecta a tu banco.\nPara borrar tus datos, desactiva la sincronización de iCloud para Trente en la Configuración del dispositivo y luego elimina la app.</string>
     <string name="your_data_has_not_been_deleted_try_updating_tren">Tus datos no se han eliminado. Intenta actualizar Trente y comparte los detalles del error si el problema continúa.</string>
     <string name="your_first_month_starts_today_log_expenses_as_yo">Tu primer mes empieza hoy. Registra tus gastos sobre la marcha y Trente te mostrará lo que te queda.</string>
     <string name="your_icloud_storage_is_full_so_new_changes_stay">Tu almacenamiento de iCloud está lleno, así que los cambios nuevos se quedan en este dispositivo. Libera espacio en la app Configuración para volver a sincronizar.</string>
     <string name="your_monthly_budget">Tu presupuesto mensual</string>
+    <string name="your_months_and_transactions_stay_on_this_device">Tus meses y transacciones se quedan en este dispositivo. Trente no tiene cuentas ni servidores. Puedes exportarlos como hoja de cálculo cuando quieras.</string>
     <string name="your_months_and_transactions_sync_through_your_i">Tus meses y transacciones se sincronizan con tu cuenta de iCloud en todos tus dispositivos. Trente no tiene cuentas ni servidores. Puedes exportarlos como hoja de cálculo cuando quieras.</string>
     <string name="your_new_month_is_ready_with_the_same_budget_as">Tu nuevo mes está listo, con el mismo presupuesto que el mes pasado. Abre Trente para verlo.</string>
     <string name="zoom_in">Ampliar</string>
