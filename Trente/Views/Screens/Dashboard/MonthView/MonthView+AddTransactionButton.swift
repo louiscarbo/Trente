@@ -17,7 +17,7 @@ extension Month {
 extension MonthView {
     struct AddTransactionButton: View {
         let context: NewTransactionContext
-        var wide: Bool = false
+        var slotWidth: CGFloat?
 
         @State private var isShowingNewTransactionSheet: Bool = false
         @Environment(\.openWindow) private var openWindow
@@ -37,7 +37,7 @@ extension MonthView {
             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .padding(.horizontal)
             .padding(.top)
-            .frame(width: wide ? 400 : nil)
+            .frame(width: slotWidth)
             #if os(macOS)
             .padding(.bottom)
             #else

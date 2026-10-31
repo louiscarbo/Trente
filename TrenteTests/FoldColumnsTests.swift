@@ -41,6 +41,13 @@ struct FoldColumnsTests {
         #expect(duoUsableWidth - MonthView.FoldColumns.trailingMargin - columns.trailingWidth == duoFold.maxX)
     }
 
+    @Test("Add Transaction's slot lines the button up with the right column")
+    func addButtonSlot() throws {
+        let columns = try #require(MonthView.FoldColumns.around(fold: duoFold, containerWidth: duoUsableWidth))
+
+        #expect(columns.addButtonSlotWidth == 387)
+    }
+
     @Test("A horizontal fold, as in portrait, leaves the layout alone")
     func horizontalFold() {
         let fold = CGRect(x: 0, y: 456, width: 669, height: 40)

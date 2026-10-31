@@ -17,6 +17,10 @@ extension MonthView {
         let trailingWidth: CGFloat
         let spacing: CGFloat
 
+        var addButtonSlotWidth: CGFloat {
+            trailingWidth + 2 * Self.trailingMargin
+        }
+
         static func around(fold: CGRect, containerWidth: CGFloat) -> FoldColumns? {
             guard fold.height > fold.width else { return nil }
             let leadingWidth = fold.minX - leadingMargin

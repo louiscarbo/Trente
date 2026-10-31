@@ -77,8 +77,8 @@ extension MonthView {
                 }
                 .padding(gridInsets)
             }
-            .safeAreaInset(edge: .bottom) {
-                AddTransactionButton(context: month.newTransactionContext, wide: true)
+            .safeAreaInset(edge: .bottom, alignment: foldColumns == nil ? .center : .trailing) {
+                AddTransactionButton(context: month.newTransactionContext, slotWidth: foldColumns?.addButtonSlotWidth ?? 400)
             }
             #if os(iOS)
             .onGeometryChange(for: FoldColumns?.self) { proxy in
