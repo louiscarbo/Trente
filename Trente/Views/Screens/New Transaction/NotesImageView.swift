@@ -89,7 +89,7 @@ struct NotesImageView: View {
                     }
                     .groupBoxStyle(TrenteGroupBoxStyle())
                 }
-                .requiresTrentePlus(.section(prompt: "Add notes and images with Trente+"))
+                .requiresTrentePlus(message: "Add notes and images with Trente+")
                 .padding()
                 .padding(.top, 30)
             }
