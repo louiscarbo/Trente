@@ -1,5 +1,7 @@
 package app.trente.core.support
 
+import java.util.Locale
+
 object ExternalLinks {
     const val writeReview = "https://play.google.com/store/apps/details?id=app.trente"
     const val manageSubscriptions = "https://play.google.com/store/account/subscriptions"
@@ -7,10 +9,29 @@ object ExternalLinks {
     const val piggySavingsIcon = "https://thenounproject.com/icon/piggy-savings-5860187/"
     const val financialStartupIcon = "https://thenounproject.com/icon/financial-startup-5860236/"
     const val developerWebsite = "https://carbo-estaque.fr"
-    const val privacyPolicy = "https://carbo-estaque.fr/trente/privacy"
     const val termsOfUse = "https://play.google.com/about/play-terms/"
     const val developerLinkedIn = "https://www.linkedin.com/in/louis-carbo-estaque/"
     const val developerGitHub = "https://github.com/louiscarbo"
+
+    private val privacyPolicyPages = mapOf(
+        "en" to "privacy/",
+        "en-GB" to "en-gb/privacy/",
+        "de" to "de/datenschutz/",
+        "es" to "es/privacidad/",
+        "es-419" to "es-419/privacidad/",
+        "fr" to "fr/confidentialite/",
+        "it" to "it/privacy/",
+        "ko" to "ko/privacy/",
+        "pt-BR" to "pt-br/privacidade/",
+        "pt-PT" to "pt-pt/privacidade/"
+    )
+
+    val privacyPolicy: String get() = privacyPolicy(Locale.getDefault())
+
+    fun privacyPolicy(locale: Locale): String {
+        val page = privacyPolicyPages[locale.toLanguageTag()] ?: privacyPolicyPages[locale.language] ?: "privacy/"
+        return "https://trente.app/$page"
+    }
 }
 
 data class AppInfo(
@@ -32,7 +53,7 @@ data class AppInfo(
 }
 
 object SupportMail {
-    const val ADDRESS = "trente@carbo-estaque.fr"
+    const val ADDRESS = "louis@trente.app"
 
     // `urlQueryAllowed` minus the characters with a meaning inside a query.
     private const val ALLOWED = "!$'()*,-./:;@_~"
