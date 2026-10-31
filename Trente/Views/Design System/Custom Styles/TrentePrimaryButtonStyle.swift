@@ -11,11 +11,10 @@ struct TrentePrimaryButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled: Bool
 
     var narrow: Bool = false
-    var hugsLabel: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .trentePrimaryCapsule(narrow: narrow, hugsLabel: hugsLabel, isPressed: configuration.isPressed)
+            .trentePrimaryCapsule(narrow: narrow, isPressed: configuration.isPressed)
             .glassEffect(.regular.interactive(isEnabled), in: .capsule)
     }
 }
@@ -26,7 +25,6 @@ struct TrentePrimaryCapsule: ViewModifier {
     private var lightMode: Bool { colorScheme == .light }
 
     var narrow: Bool
-    var hugsLabel: Bool
     var isPressed: Bool
     var solidFill: Bool
 
@@ -41,8 +39,7 @@ struct TrentePrimaryCapsule: ViewModifier {
             .opacity(isEnabled ? 1 : 0.5)
             .font(narrow ? .title3 : .title2)
             .padding(.vertical, narrow ? 5 : 16)
-            .padding(.horizontal, hugsLabel ? 16 : 0)
-            .frame(maxWidth: hugsLabel ? nil : .infinity)
+            .frame(maxWidth: .infinity)
             .background {
                 fill
                     .overlay {
@@ -84,20 +81,8 @@ struct TrentePrimaryCapsule: ViewModifier {
 }
 
 extension View {
-    func trentePrimaryCapsule(
-        narrow: Bool = false,
-        hugsLabel: Bool = false,
-        isPressed: Bool = false,
-        solidFill: Bool = false
-    ) -> some View {
-        modifier(
-            TrentePrimaryCapsule(
-                narrow: narrow,
-                hugsLabel: hugsLabel,
-                isPressed: isPressed,
-                solidFill: solidFill
-            )
-        )
+    func trentePrimaryCapsule(narrow: Bool = false, isPressed: Bool = false, solidFill: Bool = false) -> some View {
+        modifier(TrentePrimaryCapsule(narrow: narrow, isPressed: isPressed, solidFill: solidFill))
     }
 }
 
