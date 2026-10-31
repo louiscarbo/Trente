@@ -18,9 +18,19 @@ extension MonthView {
 
         // View State
         @State private var carouselPage: CarouselPage?
+        @State private var foldColumns: FoldColumns?
 
         private enum CarouselPage: Int, CaseIterable {
             case gauges, dailySpending
+        }
+
+        private var gridInsets: EdgeInsets {
+            EdgeInsets(
+                top: 26,
+                leading: foldColumns == nil ? 26 : FoldColumns.leadingMargin,
+                bottom: 26,
+                trailing: foldColumns == nil ? 26 : FoldColumns.trailingMargin
+            )
         }
 
         @ViewBuilder
@@ -33,9 +43,13 @@ extension MonthView {
 
         var body: some View {
             ScrollView {
-                Grid(horizontalSpacing: .grid, verticalSpacing: .grid) {
+                Grid(
+                    horizontalSpacing: foldColumns?.spacing ?? DesignSystem.Spacing.grid.rawValue,
+                    verticalSpacing: DesignSystem.Spacing.grid.rawValue
+                ) {
                     GridRow {
                         BudgetRingsCard(rings: BudgetRings(month: month))
+                            .frame(width: foldColumns?.leadingWidth)
                         LatestTransactions(
                             transactions: month.latestTransactions,
                             hasTransactions: hasTransactions,
@@ -44,11 +58,13 @@ extension MonthView {
                             TransactionListView(month: month, showRecurring: false)
                         }
                         .frame(idealWidth: 400)
+                        .frame(width: foldColumns?.trailingWidth)
                     }
                     GridRow {
                         CardCarousel(selection: $carouselPage) { page in
                             card(for: page)
                         }
+                        .frame(width: foldColumns?.leadingWidth)
                         UpcomingRecurring(
                             upcomingOccurrences: upcomingOccurrences,
                             recurringTransactionsCount: recurringTransactionsCount,
@@ -56,13 +72,25 @@ extension MonthView {
                         ) {
                             TransactionListView(month: month, showRecurring: true)
                         }
+                        .frame(width: foldColumns?.trailingWidth)
                     }
                 }
-                .padding(26)
+                .padding(gridInsets)
             }
             .safeAreaInset(edge: .bottom) {
                 AddTransactionButton(context: month.newTransactionContext, wide: true)
             }
+            #if os(iOS)
+            .onGeometryChange(for: FoldColumns?.self) { proxy in
+                guard #available(iOS 27.1, *),
+                      let fold = proxy.reservedRegions(kind: .division).first(where: \.isActive) else {
+                    return nil
+                }
+                return FoldColumns.around(fold: fold.frame, containerWidth: proxy.size.width)
+            } action: { columns in
+                foldColumns = columns
+            }
+            #endif
         }
     }
 }
