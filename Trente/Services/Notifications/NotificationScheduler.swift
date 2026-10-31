@@ -57,7 +57,7 @@ final class NotificationScheduler {
             isEnabled: preferences.announcesNewMonths,
             reminderTime: reminderTime
         )
-        let inactivityPlanner = InactivityNotificationPlanner(reminderTime: reminderTime)
+        let inactivityPlanner = InactivityNotificationPlanner(reminderTime: reminderTime, device: .current)
         let lastAppOpen = InactivityNotificationPlanner.storedLastAppOpen() ?? .now
         guard let recurring = try? recurringNotifications(in: context, planner: recurringPlanner),
               let newMonths = try? newMonthNotifications(in: context, planner: newMonthPlanner)

@@ -18,8 +18,24 @@ enum NotificationText {
         String(localized: "Reminders paused")
     }
 
-    static func goodbyeBody(lastAppOpen: Date) -> String {
+    static func goodbyeBody(lastAppOpen: Date, device: ReminderDevice) -> String {
         let lastOpenDay = lastAppOpen.formatted(.dateTime.day().month(.wide))
-        return String(localized: "You haven't opened Trente since \(lastOpenDay), so reminders are paused. Open the app anytime to turn them back on.")
+        switch device {
+        case .iPhone:
+            return String(localized: """
+            You haven't opened Trente on this iPhone since \(lastOpenDay), so reminders here are paused. \
+            Open the app anytime to turn them back on.
+            """)
+        case .iPad:
+            return String(localized: """
+            You haven't opened Trente on this iPad since \(lastOpenDay), so reminders here are paused. \
+            Open the app anytime to turn them back on.
+            """)
+        case .mac:
+            return String(localized: """
+            You haven't opened Trente on this Mac since \(lastOpenDay), so reminders here are paused. \
+            Open the app anytime to turn them back on.
+            """)
+        }
     }
 }
