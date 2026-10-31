@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.CheckCircle
@@ -106,15 +107,17 @@ fun BudgetRingsCard(rings: BudgetRings, modifier: Modifier = Modifier) {
         iconTint = if (isOverspentLens) TrenteColors.red else MaterialTheme.colorScheme.onSurface,
         trailing = { if (canSwitch) Icon(Icons.Default.UnfoldMore, contentDescription = null, tint = TrenteColors.secondaryText, modifier = Modifier.size(16.dp)) }
     ) {
-        BudgetRingsView(
-            segments = rings.segments(effectiveLens),
-            plan = rings.plan(effectiveLens),
-            centerShare = rings.centerShare(effectiveLens),
-            centerCaption = caption,
-            isOverspent = isOverspentLens,
-            showsCaptionAsAlert = isOverspentLens,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
-        )
+        Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            BudgetRingsView(
+                segments = rings.segments(effectiveLens),
+                plan = rings.plan(effectiveLens),
+                centerShare = rings.centerShare(effectiveLens),
+                centerCaption = caption,
+                isOverspent = isOverspentLens,
+                showsCaptionAsAlert = isOverspentLens,
+                modifier = Modifier.widthIn(max = 280.dp).fillMaxWidth()
+            )
+        }
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             BudgetCategory.entries.forEach { category ->
                 Row(Modifier.padding(horizontal = 8.dp), verticalAlignment = Alignment.CenterVertically) {
