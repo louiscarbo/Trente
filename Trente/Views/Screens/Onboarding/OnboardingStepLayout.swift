@@ -79,6 +79,7 @@ struct OnboardingStepLayout<Primary: View, Secondary: View, Actions: View>: View
                     actions()
                 }
                 .padding([.horizontal, .bottom])
+                .padding(.top, DesignSystem.Spacing.medium.rawValue)
             }
         }
     }
