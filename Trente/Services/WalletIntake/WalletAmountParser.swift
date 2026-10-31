@@ -9,8 +9,9 @@ import Foundation
 
 enum WalletAmountParser {
     static func cents(from text: String) -> Int? {
-        let relevant = text.filter { $0.isASCII && ($0.isNumber || $0 == "." || $0 == ",") }
-        guard relevant.contains(where: \.isNumber) else { return nil }
+        let characters = text.filter { $0.isASCII && ($0.isNumber || $0 == "." || $0 == ",") }
+        guard let lastDigit = characters.lastIndex(where: \.isNumber) else { return nil }
+        let relevant = String(characters[...lastDigit])
 
         let wholePart: String
         let fractionPart: String
