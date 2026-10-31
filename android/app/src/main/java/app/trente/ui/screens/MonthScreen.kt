@@ -60,6 +60,8 @@ fun MonthScreen(
         return
     }
     val rings = remember(version) { BudgetRings(month) }
+    val gauges = remember(version) { budgetGaugeScopes.map { it to month.figures(it) } }
+    val latest = remember(version) { month.latestTransactions.take(3) }
     val spending = remember(version) { DailySpending(month) }
     val upcoming = remember(version) { RecurringTransactionService.pendingOccurrences(store.rules, month) }
     val hasRules = remember(version) { store.rules.isNotEmpty() }
@@ -96,15 +98,14 @@ fun MonthScreen(
                 CardCarousel(state = pagerState) { page ->
                     when (page) {
                         0 -> BudgetRingsCard(rings = rings)
-                        1 -> BudgetGaugesCard(month = month)
+                        1 -> BudgetGaugesCard(gauges = gauges, currencyCode = month.currency.isoCode)
                         else -> DailySpendingCard(spending = spending, currencyCode = month.currency.isoCode)
                     }
                 }
             }
             item {
                 LatestTransactionsCard(
-                    month = month,
-                    count = 3,
+                    latest = latest,
                     hasAnyTransaction = hasAnyTransaction,
                     onSeeAll = { onOpenTransactions(false) },
                     onOpen = { onOpenTransaction(it.id, false) },

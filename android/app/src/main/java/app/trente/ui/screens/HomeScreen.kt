@@ -42,7 +42,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import app.trente.core.model.Month
 import app.trente.core.support.MoneyFormat
 import app.trente.core.support.localized
 import app.trente.ui.LocalAppContainer
@@ -127,7 +126,7 @@ fun HomeScreen(
                 item {
                     TrenteListBackground {
                         months.drop(1).forEachIndexed { index, month ->
-                            ArchivedMonthRow(month = month, onSelect = { onOpenMonth(month.id) })
+                            ArchivedMonthRow(name = month.name, isOverspent = month.overSpent, onSelect = { onOpenMonth(month.id) })
                             if (index < months.size - 2) HorizontalDivider(Modifier.padding(horizontal = 16.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
                         }
                     }
@@ -143,11 +142,11 @@ private fun SectionHeader(text: String) {
 }
 
 @Composable
-private fun ArchivedMonthRow(month: Month, onSelect: () -> Unit) {
+private fun ArchivedMonthRow(name: String, isOverspent: Boolean, onSelect: () -> Unit) {
     Row(Modifier.fillMaxWidth().clickable(onClick = onSelect).padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text(month.name, style = TrenteType.body, modifier = Modifier.weight(1f))
+        Text(name, style = TrenteType.body, modifier = Modifier.weight(1f))
         Text(
-            if (month.overSpent) localized("Over Budget") else localized("Under Budget"),
+            if (isOverspent) localized("Over Budget") else localized("Under Budget"),
             style = TrenteType.subheadline,
             color = TrenteColors.secondaryText
         )
