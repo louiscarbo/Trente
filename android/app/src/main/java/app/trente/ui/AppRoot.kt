@@ -1,5 +1,6 @@
 package app.trente.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -13,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -56,7 +58,6 @@ object Routes {
     const val FAQ = "settings/faq"
     const val ABOUT = "settings/about"
     const val CREDITS = "settings/credits"
-    const val TRENTE_PLUS = "trentePlus"
 
     fun month(id: UUID) = "month/$id"
     fun monthDetails(id: UUID) = "month/$id/details"
@@ -114,15 +115,22 @@ fun AppRoot(pendingDeepLink: DeepLink?, onDeepLinkHandled: () -> Unit) {
             onDeepLinkHandled()
         }
 
-        CompositionLocalProvider(LocalShowPaywall provides { navController.navigate(Routes.TRENTE_PLUS) }) {
-            TrenteNavHost(
-                navController,
-                exportState,
-                onReplayOnboarding = {
-                    isFirstLaunch = false
-                    isShowingOnboarding = true
-                }
-            )
+        var isShowingPaywall by rememberSaveable { mutableStateOf(false) }
+        CompositionLocalProvider(LocalShowPaywall provides { isShowingPaywall = true }) {
+            Box(if (isShowingPaywall) Modifier.fillMaxSize().clearAndSetSemantics {} else Modifier.fillMaxSize()) {
+                TrenteNavHost(
+                    navController,
+                    exportState,
+                    onReplayOnboarding = {
+                        isFirstLaunch = false
+                        isShowingOnboarding = true
+                    }
+                )
+            }
+        }
+        if (isShowingPaywall) {
+            BackHandler { isShowingPaywall = false }
+            TrentePlusScreen(onClose = { isShowingPaywall = false })
         }
     }
 }
@@ -224,6 +232,5 @@ private fun TrenteNavHost(navController: NavHostController, exportState: ExportS
         composable(Routes.FAQ) { entry -> FAQScreen(onBack = { popIfCurrent(entry) }) }
         composable(Routes.ABOUT) { entry -> AboutDeveloperScreen(onBack = { popIfCurrent(entry) }) }
         composable(Routes.CREDITS) { entry -> CreditsScreen(onBack = { popIfCurrent(entry) }) }
-        composable(Routes.TRENTE_PLUS) { entry -> TrentePlusScreen(onClose = { popIfCurrent(entry) }) }
     }
 }
