@@ -72,6 +72,10 @@ class AppContainer(private val application: Application) {
                     catchUp()
                 }
             }
+
+            override fun onStop(owner: LifecycleOwner) {
+                AppIcon.applyPending(application, preferences)
+            }
         })
         scope.launch {
             trentePlus.isSubscribed.collect {
