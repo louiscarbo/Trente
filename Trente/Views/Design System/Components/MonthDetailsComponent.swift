@@ -13,7 +13,7 @@ struct MonthDetailsComponent: View {
     var isAmountFocused: FocusState<Bool>.Binding
 
     var body: some View {
-        VStack(spacing: .medium) {
+        VStack(spacing: .grid) {
             GroupBox(label: Label("Month Details", systemImage: "calendar")) {
                 VStack(spacing: .medium) {
                     MonthStartDatePicker(startDate: $month.startDate)

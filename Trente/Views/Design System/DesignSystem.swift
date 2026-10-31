@@ -22,5 +22,8 @@ enum DesignSystem {
         
         /// 18
         case large = 18
+        
+        /// 20
+        case grid = 20
     }
 }

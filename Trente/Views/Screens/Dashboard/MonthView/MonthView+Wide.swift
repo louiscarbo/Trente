@@ -33,7 +33,7 @@ extension MonthView {
 
         var body: some View {
             ScrollView {
-                Grid(horizontalSpacing: 20, verticalSpacing: 20) {
+                Grid(horizontalSpacing: .grid, verticalSpacing: .grid) {
                     GridRow {
                         BudgetRingsCard(rings: BudgetRings(month: month))
                         LatestTransactions(
