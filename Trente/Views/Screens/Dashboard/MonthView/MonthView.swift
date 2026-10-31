@@ -11,6 +11,7 @@ import SwiftData
 struct MonthView: View {
     // Data
     let month: Month
+    let onLeave: () -> Void
     @Query private var recurringRules: [RecurringTransactionRule]
     @Query(MonthView.anyTransactionGroupDescriptor) private var anyTransactionGroup: [TransactionGroup]
 
@@ -51,7 +52,7 @@ struct MonthView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     NavigationLink {
-                        MonthDetailsView(month: month)
+                        MonthDetailsView(month: month, onLeave: onLeave)
                     } label: {
                         Label("Edit Month", systemImage: "pencil")
                     }

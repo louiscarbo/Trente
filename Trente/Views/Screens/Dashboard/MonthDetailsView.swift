@@ -11,8 +11,10 @@ import SwiftData
 struct MonthDetailsView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.transactionActions) private var transactionActions
 
     let original: Month
+    let onLeave: () -> Void
     @State private var draft: MonthDraft
 
     @State private var isRepartitionComplete: Bool = false
@@ -21,13 +23,15 @@ struct MonthDetailsView: View {
     @State private var failure: Failure?
 
     @State private var resetDraft: Bool = false
+    @State private var isDeleting = false
 
     @AppStorage(TransactionCSVFormat.includesNotesKey) private var exportIncludesNotes = true
     @AppStorage(TransactionCSVFormat.includesImagesKey) private var exportIncludesImages = true
     @Query private var groupsWithImages: [TransactionGroup]
 
-    init(month: Month) {
+    init(month: Month, onLeave: @escaping () -> Void) {
         self.original = month
+        self.onLeave = onLeave
         _draft = State(initialValue: .init(from: month))
         _groupsWithImages = Query(TransactionExportRow.groupsWithImagesDescriptor(inMonth: month.id))
     }
@@ -86,6 +90,7 @@ struct MonthDetailsView: View {
         } message: { failure in
             Text(failure.message)
         }
+        .onDisappear(perform: deleteAfterLeaving)
     }
 
     private func makeSectionsLayout(isCompact: Bool) -> AnyLayout {
@@ -118,13 +123,14 @@ struct MonthDetailsView: View {
     }
 
     private func deleteMonth() {
-        MonthService.shared.delete(month: original, in: modelContext)
-        do {
-            try modelContext.save()
-            dismiss()
-        } catch {
-            failure = Failure(message: error.localizedDescription, retry: deleteMonth)
-        }
+        isDeleting = true
+        onLeave()
+        dismiss()
+    }
+
+    private func deleteAfterLeaving() {
+        guard isDeleting else { return }
+        transactionActions.delete(original, in: modelContext)
     }
 
     private func cancelEditing() {
@@ -142,6 +148,6 @@ private extension MonthDetailsView {
 
 #Preview {
     NavigationStack {
-        MonthDetailsView(month: .sample(monthsAgo: 1))
+        MonthDetailsView(month: .sample(monthsAgo: 1)) {}
     }
 }

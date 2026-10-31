@@ -18,6 +18,13 @@ struct TransactionActions {
         }
     }
 
+    func delete(_ month: Month, in context: ModelContext) {
+        perform {
+            MonthService.shared.delete(month: month, in: context)
+            try context.save()
+        }
+    }
+
     func delete(_ rule: RecurringTransactionRule, in context: ModelContext) {
         perform {
             RecurringTransactionService.shared.delete(rule: rule, in: context)
