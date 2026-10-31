@@ -85,7 +85,7 @@ fun TrentePlusScreen(onClose: () -> Unit) {
                 } else {
                     val plan = selectedPlan
                     TrentePrimaryButton(
-                        text = if (plan != null) "${localized("See Plans")} · ${plan.formattedPrice}" else localized("See Plans"),
+                        text = if (plan != null) "${localized("Subscribe")} · ${plan.formattedPrice}" else localized("Subscribe"),
                         enabled = plan != null && isAvailable,
                         onClick = { (context as? Activity)?.let { activity -> plan?.let { status.subscribe(activity, it) } } }
                     )

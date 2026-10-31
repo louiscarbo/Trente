@@ -51,7 +51,8 @@
     <string name="amount_highest_first">Amount, highest first</string>
     <string name="amount_lowest_first">Amount, lowest first</string>
     <string name="an_error_occurred">An error occurred</string>
-    <string name="an_optional_monthly_or_yearly_subscription_that">An optional monthly or yearly subscription that unlocks new features in Trente. Open Trente\'s Settings to learn more.\nTrente+ is also a way to support me as an independent developer.\nManage or cancel your subscription anytime from your Apple Account.</string>
+    <string name="an_optional_monthly_or_yearly_subscription_that">An optional monthly or yearly subscription that unlocks new features in Trente. Open Trente\'s Settings to learn more.\nTrente+ is also a way to support me as an independent developer.\nManage or cancel your subscription anytime from Google Play.</string>
+    <string name="an_optional_monthly_or_yearly_subscription_that_bb0d7f">An optional monthly or yearly subscription that unlocks new features in Trente. Open Trente\'s Settings to learn more.\nTrente+ is also a way to support me as an independent developer.\nManage or cancel your subscription anytime from your Apple Account.</string>
     <string name="app_icon">App Icon</string>
     <string name="app_icons">App icons</string>
     <string name="apple_pay">Apple Pay</string>
@@ -146,6 +147,7 @@
     <string name="get_the_shortcut">Get the Shortcut</string>
     <string name="github">GitHub</string>
     <string name="give_a_title_to_your_transaction">Give a title to your transaction</string>
+    <string name="google_play_isn_t_available_on_this_device">Google Play isn\'t available on this device.</string>
     <string name="gray">Gray</string>
     <string name="green">Green</string>
     <string name="help_about">Help &amp; About</string>
@@ -179,6 +181,7 @@
     <string name="left_to_spend">Left to Spend</string>
     <string name="let_trente_do_the_typing_and_unlock_new_features">Let Trente+ do the typing, and unlock new features.</string>
     <string name="linkedin">LinkedIn</string>
+    <string name="loading_plans">Loading plans…</string>
     <string name="log_apple_pay_purchases_automatically">Log Apple Pay purchases automatically</string>
     <string name="log_every_apple_pay_purchase_not_just_10_a_month">Log every Apple Pay purchase, not just 10 a month.</string>
     <string name="manage_subscription">Manage Subscription</string>
@@ -205,6 +208,7 @@
     <string name="next">Next</string>
     <string name="no_matching_transactions">No Matching Transactions</string>
     <string name="no_recurring_transactions">No Recurring Transactions</string>
+    <string name="no_results">No Results</string>
     <string name="no_currencies_available_to_create_a_new_month">No currencies available to create a new month.</string>
     <string name="no_month_available">No month available</string>
     <string name="no_month_yet">No month yet</string>
@@ -244,6 +248,7 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="purple">Purple</string>
     <string name="recurring">RECURRING</string>
+    <string name="rate_on_google_play">Rate on Google Play</string>
     <string name="rate_on_the_app_store">Rate on the App Store</string>
     <string name="received">Received</string>
     <string name="recurrence_details">Recurrence Details</string>
@@ -264,6 +269,7 @@
     <string name="requires_trente">Requires Trente+</string>
     <string name="reset">Reset</string>
     <string name="reset_filters">Reset Filters</string>
+    <string name="restore_purchases">Restore Purchases</string>
     <string name="retry">Retry</string>
     <string name="salary">Salary</string>
     <string name="save">Save</string>
@@ -328,6 +334,7 @@
     <string name="stop_failed">Stop Failed</string>
     <string name="stop_future_transactions">Stop Future Transactions</string>
     <string name="stop_future_transactions_4d9d40">Stop future %1$s transactions?</string>
+    <string name="subscribe">Subscribe</string>
     <string name="subscribe_to_trente_to_unlock">Subscribe to Trente+ to unlock</string>
     <string name="sum_of_displayed_transactions">Sum of displayed transactions</string>
     <string name="supermarket">Supermarket</string>
@@ -360,6 +367,7 @@
     <string name="to">To</string>
     <string name="to_export_several_months_or_choose_what_to_inclu">To export several months or choose what to include, go to Settings › Export Transactions.</string>
     <string name="total">Total</string>
+    <string name="touch_and_hold_the_widget_then_tap_the_settings">Touch and hold the widget, then tap the settings button. You can then change the widget\'s category.</string>
     <string name="touch_and_hold_the_widget_then_tap_edit_widget_y">Touch and hold the widget, then tap “Edit Widget”. You can then change the widget\'s category.</string>
     <string name="transaction">Transaction</string>
     <string name="transaction_notes">Transaction Notes</string>
@@ -428,11 +436,13 @@
     <string name="you_ve_used_your_lld_free_apple_pay_logs_this_mo">You\'ve used your %1$d free Apple Pay logs this month. Get Trente+ for unlimited automatic logging.</string>
     <string name="your_data">Your Data</string>
     <string name="your_budget_couldn_t_be_opened">Your budget couldn\'t be opened</string>
-    <string name="your_data_belongs_to_you_and_trente_never_has_ac">Your data belongs to you, and Trente never has access to it.\nIt\'s stored on your devices, and in your iCloud account if you turn on iCloud for Trente.\nTrente has no account and no server, and never connects to your bank.\nTo delete your data, turn off iCloud sync for Trente in your device\'s Settings, then delete the app.</string>
+    <string name="your_data_belongs_to_you_and_trente_never_has_ac">Your data belongs to you, and Trente never has access to it.\nIt\'s stored on your device only.\nTrente has no account and no server, and never connects to your bank.\nTo delete your data, delete the app.</string>
+    <string name="your_data_belongs_to_you_and_trente_never_has_ac_aa44f4">Your data belongs to you, and Trente never has access to it.\nIt\'s stored on your devices, and in your iCloud account if you turn on iCloud for Trente.\nTrente has no account and no server, and never connects to your bank.\nTo delete your data, turn off iCloud sync for Trente in your device\'s Settings, then delete the app.</string>
     <string name="your_data_has_not_been_deleted_try_updating_tren">Your data has not been deleted. Try updating Trente, and share the error details if the problem persists.</string>
     <string name="your_first_month_starts_today_log_expenses_as_yo">Your first month starts today. Log expenses as you go and Trente shows you what\'s left.</string>
     <string name="your_icloud_storage_is_full_so_new_changes_stay">Your iCloud storage is full, so new changes stay on this device. Free up space in the Settings app to sync again.</string>
     <string name="your_monthly_budget">Your monthly budget</string>
+    <string name="your_months_and_transactions_stay_on_this_device">Your months and transactions stay on this device. Trente has no account and no server. You can export them as a spreadsheet anytime.</string>
     <string name="your_months_and_transactions_sync_through_your_i">Your months and transactions sync through your iCloud account on all your devices. Trente has no account and no server. You can export them as a spreadsheet anytime.</string>
     <string name="your_new_month_is_ready_with_the_same_budget_as">Your new month is ready, with the same budget as last month. Open Trente to see it.</string>
     <string name="zoom_in">Zoom in</string>

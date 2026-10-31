@@ -3,6 +3,8 @@
 
 Usage: python3 -I scripts/convert_strings.py ../Trente/Localizable.xcstrings app/src/main
 
+Sentences that exist only on Android live in scripts/android_strings.json and are merged in.
+
 The English sentence stays the key the code uses (`localized("Needs")`); this script writes one
 `strings.xml` per locale plus `StringKeys.kt`, which maps each key to its resource id.
 """
@@ -118,6 +120,10 @@ def main():
         catalog = json.load(handle)
     strings = catalog["strings"]
     source_language = catalog.get("sourceLanguage", "en")
+
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "android_strings.json"), encoding="utf-8") as handle:
+        for key, translations in json.load(handle).items():
+            strings[key] = {"localizations": {language: {"stringUnit": {"value": value}} for language, value in translations.items()}}
 
     used = set()
     names = {}

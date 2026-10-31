@@ -47,7 +47,8 @@
     <string name="amount_highest_first">금액, 높은 순</string>
     <string name="amount_lowest_first">금액, 낮은 순</string>
     <string name="an_error_occurred">오류가 발생했어요</string>
-    <string name="an_optional_monthly_or_yearly_subscription_that">Trente의 새로운 기능을 열어 주는 선택형 월간 또는 연간 구독이에요. 자세한 내용은 Trente 설정에서 확인하세요.\nTrente+는 개인 개발자인 저를 응원하는 방법이기도 해요.\nApple 계정에서 언제든지 구독을 관리하거나 취소할 수 있어요.</string>
+    <string name="an_optional_monthly_or_yearly_subscription_that">Trente의 새로운 기능을 열어 주는 선택형 월간 또는 연간 구독이에요. 자세한 내용은 Trente 설정에서 확인하세요.\nTrente+는 개인 개발자인 저를 응원하는 방법이기도 해요.\nGoogle Play에서 언제든지 구독을 관리하거나 취소할 수 있어요.</string>
+    <string name="an_optional_monthly_or_yearly_subscription_that_bb0d7f">Trente의 새로운 기능을 열어 주는 선택형 월간 또는 연간 구독이에요. 자세한 내용은 Trente 설정에서 확인하세요.\nTrente+는 개인 개발자인 저를 응원하는 방법이기도 해요.\nApple 계정에서 언제든지 구독을 관리하거나 취소할 수 있어요.</string>
     <string name="app_icon">앱 아이콘</string>
     <string name="app_icons">앱 아이콘</string>
     <string name="apple_pay">Apple Pay</string>
@@ -141,6 +142,7 @@
     <string name="get_the_shortcut">단축어 받기</string>
     <string name="github">GitHub</string>
     <string name="give_a_title_to_your_transaction">거래에 제목을 입력하세요</string>
+    <string name="google_play_isn_t_available_on_this_device">이 기기에서는 Google Play를 사용할 수 없어요.</string>
     <string name="gray">그레이</string>
     <string name="green">그린</string>
     <string name="help_about">도움말 및 정보</string>
@@ -174,6 +176,7 @@
     <string name="left_to_spend">남은 예산</string>
     <string name="let_trente_do_the_typing_and_unlock_new_features">Trente+가 대신 기록하고, 새로운 기능도 열어 드려요.</string>
     <string name="linkedin">LinkedIn</string>
+    <string name="loading_plans">플랜을 불러오는 중…</string>
     <string name="log_apple_pay_purchases_automatically">Apple Pay 구매를 자동으로 기록하세요</string>
     <string name="log_every_apple_pay_purchase_not_just_10_a_month">한 달에 10건이 아닌 모든 Apple Pay 결제를 기록하세요.</string>
     <string name="manage_subscription">구독 관리</string>
@@ -200,6 +203,7 @@
     <string name="next">다음</string>
     <string name="no_matching_transactions">일치하는 거래 없음</string>
     <string name="no_recurring_transactions">반복 거래 없음</string>
+    <string name="no_results">결과 없음</string>
     <string name="no_currencies_available_to_create_a_new_month">새로운 달을 만들 수 있는 통화가 없어요.</string>
     <string name="no_month_available">사용 가능한 달이 없어요</string>
     <string name="no_month_yet">아직 달이 없어요</string>
@@ -238,6 +242,7 @@
     <string name="privacy_policy">개인정보 처리방침</string>
     <string name="purple">퍼플</string>
     <string name="recurring">반복</string>
+    <string name="rate_on_google_play">Google Play에서 평가하기</string>
     <string name="rate_on_the_app_store">App Store에서 평가하기</string>
     <string name="received">수령 완료</string>
     <string name="recurrence_details">반복 세부 정보</string>
@@ -258,6 +263,7 @@
     <string name="requires_trente">Trente+ 필요</string>
     <string name="reset">재설정</string>
     <string name="reset_filters">필터 재설정</string>
+    <string name="restore_purchases">구매 복원</string>
     <string name="retry">다시 시도</string>
     <string name="salary">월급</string>
     <string name="save">저장</string>
@@ -318,6 +324,7 @@
     <string name="stop_failed">중단 실패</string>
     <string name="stop_future_transactions">앞으로의 거래 중단</string>
     <string name="stop_future_transactions_4d9d40">앞으로의 “%1$s” 거래를 중단할까요?</string>
+    <string name="subscribe">구독하기</string>
     <string name="sum_of_displayed_transactions">표시된 거래 합계</string>
     <string name="supermarket">마트</string>
     <string name="support_an_indie_developer">개인 개발자를 응원하세요</string>
@@ -349,6 +356,7 @@
     <string name="to">종료</string>
     <string name="to_export_several_months_or_choose_what_to_inclu">여러 달을 내보내거나 포함할 항목을 선택하려면 설정 › 거래 내보내기로 이동하세요.</string>
     <string name="total">합계</string>
+    <string name="touch_and_hold_the_widget_then_tap_the_settings">위젯을 길게 누른 다음 ‘설정’을 탭하세요. 그러면 위젯의 카테고리를 바꿀 수 있어요.</string>
     <string name="touch_and_hold_the_widget_then_tap_edit_widget_y">위젯을 길게 누른 다음 ‘위젯 편집’을 탭하세요. 그러면 위젯의 카테고리를 바꿀 수 있어요.</string>
     <string name="transaction">거래</string>
     <string name="transaction_notes">거래 메모</string>
@@ -412,11 +420,13 @@
     <string name="you_ve_used_your_lld_free_apple_pay_logs_this_mo">이번 달 무료 Apple Pay 기록 %1$d개를 모두 사용했어요. Trente+로 무제한 자동 기록을 이용하세요.</string>
     <string name="your_data">내 데이터</string>
     <string name="your_budget_couldn_t_be_opened">예산을 열 수 없어요</string>
-    <string name="your_data_belongs_to_you_and_trente_never_has_ac">데이터는 사용자의 것이며 Trente는 절대 접근하지 않아요.\n데이터는 기기에 저장되고, Trente에 iCloud를 켜면 iCloud 계정에도 저장돼요.\nTrente에는 계정도 서버도 없고, 은행에 연결하지도 않아요.\n데이터를 삭제하려면 기기 설정에서 Trente의 iCloud 동기화를 끈 다음 앱을 삭제하세요.</string>
+    <string name="your_data_belongs_to_you_and_trente_never_has_ac">데이터는 사용자의 것이며 Trente는 절대 접근하지 않아요.\n데이터는 기기에만 저장돼요.\nTrente에는 계정도 서버도 없고, 은행에 연결하지도 않아요.\n데이터를 삭제하려면 앱을 삭제하세요.</string>
+    <string name="your_data_belongs_to_you_and_trente_never_has_ac_aa44f4">데이터는 사용자의 것이며 Trente는 절대 접근하지 않아요.\n데이터는 기기에 저장되고, Trente에 iCloud를 켜면 iCloud 계정에도 저장돼요.\nTrente에는 계정도 서버도 없고, 은행에 연결하지도 않아요.\n데이터를 삭제하려면 기기 설정에서 Trente의 iCloud 동기화를 끈 다음 앱을 삭제하세요.</string>
     <string name="your_data_has_not_been_deleted_try_updating_tren">데이터는 삭제되지 않았어요. Trente를 업데이트해 보고, 문제가 계속되면 오류 세부 정보를 공유해 주세요.</string>
     <string name="your_first_month_starts_today_log_expenses_as_yo">첫 달이 오늘 시작돼요. 지출을 그때그때 기록하면 Trente가 남은 금액을 보여 줘요.</string>
     <string name="your_icloud_storage_is_full_so_new_changes_stay">iCloud 저장 공간이 가득 차서 새로운 변경 사항은 이 기기에만 저장돼요. 설정 앱에서 공간을 확보하면 다시 동기화돼요.</string>
     <string name="your_monthly_budget">나의 월 예산</string>
+    <string name="your_months_and_transactions_stay_on_this_device">달과 거래는 이 기기에만 저장돼요. Trente에는 계정도 서버도 없어요. 언제든지 스프레드시트로 내보낼 수 있어요.</string>
     <string name="your_months_and_transactions_sync_through_your_i">달과 거래는 iCloud 계정을 통해 모든 기기에서 동기화돼요. Trente에는 계정도 서버도 없어요. 언제든지 스프레드시트로 내보낼 수 있어요.</string>
     <string name="your_new_month_is_ready_with_the_same_budget_as">새로운 달이 준비됐어요. 지난달과 같은 예산이에요. Trente를 열어 확인하세요.</string>
     <string name="zoom_in">확대</string>

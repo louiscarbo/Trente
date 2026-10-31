@@ -1,0 +1,104 @@
+{
+  "An optional monthly or yearly subscription that unlocks new features in Trente. Open Trente's Settings to learn more.\nTrente+ is also a way to support me as an independent developer.\nManage or cancel your subscription anytime from Google Play.": {
+    "de": "Ein optionales Monats- oder Jahresabo, das neue Funktionen in Trente freischaltet. Mehr dazu in den Einstellungen von Trente.\nMit Trente+ unterstützt du mich außerdem als unabhängigen Entwickler.\nDu kannst dein Abo jederzeit bei Google Play verwalten oder kündigen.",
+    "en-GB": "An optional monthly or yearly subscription that unlocks new features in Trente. Open Trente's Settings to learn more.\nTrente+ is also a way to support me as an independent developer.\nManage or cancel your subscription at any time from Google Play.",
+    "es": "Una suscripción mensual o anual, opcional, que desbloquea nuevas funciones en Trente. Abre los ajustes de Trente para saber más.\nTrente+ también es una forma de apoyarme como desarrollador independiente.\nGestiona o cancela tu suscripción cuando quieras desde Google Play.",
+    "es-419": "Una suscripción mensual o anual, opcional, que desbloquea nuevas funciones en Trente. Abre la configuración de Trente para saber más.\nTrente+ también es una forma de apoyarme como desarrollador independiente.\nAdministra o cancela tu suscripción cuando quieras desde Google Play.",
+    "fr": "Un abonnement mensuel ou annuel, facultatif, qui vous permet de débloquer de nouvelles fonctionnalités pour Trente. Ouvrez les réglages de Trente pour en savoir plus.\nTrente+ permet également de me soutenir en tant que développeur indépendant.\nGérez votre abonnement ou résiliez-le à tout moment depuis Google Play.",
+    "it": "Un abbonamento mensile o annuale facoltativo che sblocca nuove funzioni in Trente. Apri le impostazioni di Trente per saperne di più.\nTrente+ è anche un modo per sostenermi come sviluppatore indipendente.\nGestisci o annulla l’abbonamento quando vuoi da Google Play.",
+    "ko": "Trente의 새로운 기능을 열어 주는 선택형 월간 또는 연간 구독이에요. 자세한 내용은 Trente 설정에서 확인하세요.\nTrente+는 개인 개발자인 저를 응원하는 방법이기도 해요.\nGoogle Play에서 언제든지 구독을 관리하거나 취소할 수 있어요.",
+    "pt-BR": "Uma assinatura mensal ou anual, opcional, que libera novos recursos no Trente. Abra os ajustes do Trente para saber mais.\nO Trente+ também é uma forma de me apoiar como desenvolvedor independente.\nGerencie ou cancele sua assinatura quando quiser no Google Play.",
+    "pt-PT": "Uma subscrição mensal ou anual, opcional, que desbloqueia novas funcionalidades no Trente. Abra as definições do Trente para saber mais.\nO Trente+ é também uma forma de me apoiar como programador independente.\nPode gerir ou cancelar a subscrição a qualquer momento no Google Play."
+  },
+  "Google Play isn't available on this device.": {
+    "de": "Google Play ist auf diesem Gerät nicht verfügbar.",
+    "es": "Google Play no está disponible en este dispositivo.",
+    "es-419": "Google Play no está disponible en este dispositivo.",
+    "fr": "Google Play n’est pas disponible sur cet appareil.",
+    "it": "Google Play non è disponibile su questo dispositivo.",
+    "ko": "이 기기에서는 Google Play를 사용할 수 없어요.",
+    "pt-BR": "O Google Play não está disponível neste dispositivo.",
+    "pt-PT": "O Google Play não está disponível neste dispositivo."
+  },
+  "Loading plans…": {
+    "de": "Abos werden geladen…",
+    "es": "Cargando planes…",
+    "es-419": "Cargando planes…",
+    "fr": "Chargement des formules…",
+    "it": "Caricamento dei piani…",
+    "ko": "플랜을 불러오는 중…",
+    "pt-BR": "Carregando planos…",
+    "pt-PT": "A carregar planos…"
+  },
+  "No Results": {
+    "de": "Keine Ergebnisse",
+    "es": "Sin resultados",
+    "es-419": "Sin resultados",
+    "fr": "Aucun résultat",
+    "it": "Nessun risultato",
+    "ko": "결과 없음",
+    "pt-BR": "Nenhum resultado",
+    "pt-PT": "Sem resultados"
+  },
+  "Rate on Google Play": {
+    "de": "Bei Google Play bewerten",
+    "es": "Valorar en Google Play",
+    "es-419": "Calificar en Google Play",
+    "fr": "Noter sur Google Play",
+    "it": "Valuta su Google Play",
+    "ko": "Google Play에서 평가하기",
+    "pt-BR": "Avaliar no Google Play",
+    "pt-PT": "Avaliar no Google Play"
+  },
+  "Restore Purchases": {
+    "de": "Käufe wiederherstellen",
+    "es": "Restaurar compras",
+    "es-419": "Restaurar compras",
+    "fr": "Restaurer les achats",
+    "it": "Ripristina acquisti",
+    "ko": "구매 복원",
+    "pt-BR": "Restaurar compras",
+    "pt-PT": "Restaurar compras"
+  },
+  "Subscribe": {
+    "de": "Abonnieren",
+    "es": "Suscribirse",
+    "es-419": "Suscribirse",
+    "fr": "S’abonner",
+    "it": "Abbonati",
+    "ko": "구독하기",
+    "pt-BR": "Assinar",
+    "pt-PT": "Subscrever"
+  },
+  "Touch and hold the widget, then tap the settings button. You can then change the widget's category.": {
+    "de": "Lege den Finger auf das Widget und tippe dann auf „Einstellungen“. Dort kannst du die Kategorie ändern.",
+    "es": "Mantén pulsado el widget y toca «Ajustes». Así podrás cambiar la categoría del widget.",
+    "es-419": "Mantén presionado el widget y toca «Configuración». Así podrás cambiar la categoría del widget.",
+    "fr": "Restez appuyé longtemps sur le widget, puis touchez « Paramètres ». Vous pourrez alors changer la catégorie du widget.",
+    "it": "Tocca e tieni premuto il widget, poi tocca «Impostazioni». Potrai così cambiare la categoria del widget.",
+    "ko": "위젯을 길게 누른 다음 ‘설정’을 탭하세요. 그러면 위젯의 카테고리를 바꿀 수 있어요.",
+    "pt-BR": "Toque e segure o widget e depois toque em “Configurações”. Assim você pode mudar a categoria do widget.",
+    "pt-PT": "Mantenha o widget premido e depois toque em «Definições». Assim pode alterar a categoria do widget."
+  },
+  "Your data belongs to you, and Trente never has access to it.\nIt's stored on your device only.\nTrente has no account and no server, and never connects to your bank.\nTo delete your data, delete the app.": {
+    "de": "Deine Daten gehören dir, und Trente hat nie Zugriff darauf.\nSie werden nur auf deinem Gerät gespeichert.\nTrente hat kein Konto und keinen Server und verbindet sich nie mit deiner Bank.\nUm deine Daten zu löschen, lösche die App.",
+    "es": "Tus datos te pertenecen y Trente nunca tiene acceso a ellos.\nSe guardan solo en tu dispositivo.\nTrente no tiene cuentas ni servidores, y nunca se conecta a tu banco.\nPara borrar tus datos, elimina la app.",
+    "es-419": "Tus datos te pertenecen y Trente nunca tiene acceso a ellos.\nSe guardan solo en tu dispositivo.\nTrente no tiene cuentas ni servidores, y nunca se conecta a tu banco.\nPara borrar tus datos, elimina la app.",
+    "fr": "Vos données vous appartiennent, et Trente n’y a jamais accès.\nElles sont stockées uniquement sur votre appareil.\nTrente n’a ni compte ni serveur, et ne se connecte jamais à votre banque.\nPour supprimer vos données, supprimez l’application.",
+    "it": "I tuoi dati ti appartengono e Trente non vi ha mai accesso.\nSono archiviati solo sul tuo dispositivo.\nTrente non ha account né server e non si collega mai alla tua banca.\nPer eliminare i tuoi dati, elimina l’app.",
+    "ko": "데이터는 사용자의 것이며 Trente는 절대 접근하지 않아요.\n데이터는 기기에만 저장돼요.\nTrente에는 계정도 서버도 없고, 은행에 연결하지도 않아요.\n데이터를 삭제하려면 앱을 삭제하세요.",
+    "pt-BR": "Seus dados pertencem a você, e o Trente nunca tem acesso a eles.\nEles ficam armazenados apenas no seu dispositivo.\nO Trente não tem conta nem servidor e nunca se conecta ao seu banco.\nPara apagar seus dados, apague o app.",
+    "pt-PT": "Os seus dados pertencem-lhe e o Trente nunca tem acesso a eles.\nSão guardados apenas no seu dispositivo.\nO Trente não tem conta nem servidor e nunca se liga ao seu banco.\nPara apagar os seus dados, apague a app."
+  },
+  "Your months and transactions stay on this device. Trente has no account and no server. You can export them as a spreadsheet anytime.": {
+    "de": "Deine Monate und Transaktionen bleiben auf diesem Gerät. Trente hat kein Konto und keinen Server. Du kannst sie jederzeit als Tabelle exportieren.",
+    "en-GB": "Your months and transactions stay on this device. Trente has no account and no server. You can export them as a spreadsheet at any time.",
+    "es": "Tus meses y transacciones se quedan en este dispositivo. Trente no tiene cuentas ni servidores. Puedes exportarlos como hoja de cálculo cuando quieras.",
+    "es-419": "Tus meses y transacciones se quedan en este dispositivo. Trente no tiene cuentas ni servidores. Puedes exportarlos como hoja de cálculo cuando quieras.",
+    "fr": "Vos mois et vos transactions restent sur cet appareil. Trente n’a ni compte ni serveur. Vous pouvez les exporter en feuille de calcul à tout moment.",
+    "it": "I tuoi mesi e le tue transazioni restano su questo dispositivo. Trente non ha account né server. Puoi esportarli come foglio di calcolo in qualsiasi momento.",
+    "ko": "달과 거래는 이 기기에만 저장돼요. Trente에는 계정도 서버도 없어요. 언제든지 스프레드시트로 내보낼 수 있어요.",
+    "pt-BR": "Seus meses e transações ficam neste dispositivo. O Trente não tem conta nem servidor. Você pode exportá-los como planilha a qualquer momento.",
+    "pt-PT": "Os seus meses e transações ficam neste dispositivo. O Trente não tem conta nem servidor. Pode exportá-los como folha de cálculo a qualquer momento."
+  }
+}
