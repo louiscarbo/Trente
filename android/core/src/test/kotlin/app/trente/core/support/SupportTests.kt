@@ -394,8 +394,17 @@ class ExternalLinksTests {
 
     @Test
     fun privacyPolicyHost() {
-        assertTrue(ExternalLinks.privacyPolicy.startsWith(ExternalLinks.developerWebsite + "/"))
-        assertTrue(ExternalLinks.privacyPolicy.endsWith("/trente/privacy"))
+        assertTrue(ExternalLinks.privacyPolicy.startsWith("https://trente.app/"))
+    }
+
+    @Test
+    fun privacyPolicyFollowsTheLanguage() {
+        assertEquals("https://trente.app/privacy/", ExternalLinks.privacyPolicy(java.util.Locale.US))
+        assertEquals("https://trente.app/en-gb/privacy/", ExternalLinks.privacyPolicy(java.util.Locale.UK))
+        assertEquals("https://trente.app/fr/confidentialite/", ExternalLinks.privacyPolicy(java.util.Locale.FRANCE))
+        assertEquals("https://trente.app/pt-br/privacidade/", ExternalLinks.privacyPolicy(java.util.Locale.forLanguageTag("pt-BR")))
+        assertEquals("https://trente.app/es-419/privacidad/", ExternalLinks.privacyPolicy(java.util.Locale.forLanguageTag("es-419")))
+        assertEquals("https://trente.app/privacy/", ExternalLinks.privacyPolicy(java.util.Locale.JAPAN))
     }
 
     @Test
