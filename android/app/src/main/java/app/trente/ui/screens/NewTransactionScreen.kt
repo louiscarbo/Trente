@@ -1,5 +1,6 @@
 package app.trente.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddPhotoAlternate
@@ -38,7 +40,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -51,6 +52,8 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,6 +67,7 @@ import app.trente.core.support.localized
 import app.trente.data.AndroidImagePreparer
 import app.trente.ui.LocalAppContainer
 import app.trente.ui.LocalShowPaywall
+import app.trente.ui.Observed
 import app.trente.ui.components.AttachmentThumbnail
 import app.trente.ui.components.BottomBarBackground
 import app.trente.ui.components.CloseStyle
@@ -87,39 +91,33 @@ import app.trente.ui.theme.TrenteColors
 import app.trente.ui.theme.TrenteType
 import java.time.Instant
 import java.util.UUID
+import kotlinx.coroutines.launch
 
 /** The add-transaction wizard: amount and category, title, split, notes and image, recurrence; like `NewTransactionView`. */
 @Composable
 fun NewTransactionScreen(monthId: UUID, onClose: () -> Unit) {
     val store = rememberStore() ?: return
     val container = LocalAppContainer.current
-    val scope = rememberCoroutineScope()
     val month = remember(monthId) { store.month(monthId) }
     if (month == null) {
         LaunchedEffect(Unit) { onClose() }
         return
     }
-    val viewModel = remember { NewTransactionViewModel(scope, container.notificationPermission, AndroidImagePreparer) }
-    var tick by remember { mutableIntStateOf(0) }
-    fun mutate(block: NewTransactionViewModel.() -> Unit) {
-        viewModel.block()
-        tick += 1
-    }
-    @Suppress("UNUSED_EXPRESSION") tick
-    val request = viewModel.request
+    val model = remember { Observed(NewTransactionViewModel(container.scope, container.notificationPermission, AndroidImagePreparer)) }
     val currencyCode = month.currency.isoCode
     var showsError by remember { mutableStateOf(false) }
-    val isLoadingImage = viewModel.isLoadingImage
 
     fun create() {
-        if (viewModel.createTransaction(month, store)) onClose() else showsError = true
+        if (model.value.createTransaction(month, store)) onClose() else showsError = true
     }
+
+    BackHandler(enabled = model.value.showPreviousButton) { model.mutate { previousStep() } }
 
     Scaffold(
         topBar = {
             TrenteTopBar(
                 title = localized("New Transaction"),
-                onBack = if (viewModel.step == NewTransactionStep.AMOUNT_CATEGORY) onClose else null,
+                onBack = if (model.value.step == NewTransactionStep.AMOUNT_CATEGORY) onClose else null,
                 closeStyle = CloseStyle.CLOSE
             )
         },
@@ -129,14 +127,14 @@ fun NewTransactionScreen(monthId: UUID, onClose: () -> Unit) {
                     Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 12.dp),
                     horizontalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
-                    if (viewModel.showPreviousButton) {
-                        TrenteSecondaryButton(text = localized("Previous"), narrow = true, onClick = { mutate { previousStep() } }, modifier = Modifier.weight(1f))
+                    if (model.value.showPreviousButton) {
+                        TrenteSecondaryButton(text = localized("Previous"), narrow = true, onClick = { model.mutate { previousStep() } }, modifier = Modifier.weight(1f))
                     }
                     TrentePrimaryButton(
-                        text = if (viewModel.isLastStep) localized("Create") else localized("Next"),
+                        text = if (model.value.isLastStep) localized("Create") else localized("Next"),
                         narrow = true,
-                        enabled = viewModel.canAdvance,
-                        onClick = { if (viewModel.isLastStep) create() else mutate { nextStep() } },
+                        enabled = model.value.canAdvance,
+                        onClick = { if (model.value.isLastStep) create() else model.mutate { nextStep() } },
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -144,23 +142,12 @@ fun NewTransactionScreen(monthId: UUID, onClose: () -> Unit) {
         }
     ) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
-            when (viewModel.step) {
-                NewTransactionStep.AMOUNT_CATEGORY -> AmountCategoryStep(viewModel, currencyCode, ::mutate)
-                NewTransactionStep.TITLE -> TitleStep(viewModel, ::mutate)
-                NewTransactionStep.REPARTITION -> Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp)) {
-                    TrenteCard(label = localized("Income Repartition"), icon = Icons.Default.PieChart) {
-                        Text(localized("How would you like to split this income?"), style = TrenteType.body)
-                        IncomeRepartitionComponent(
-                            repartition = request.repartition,
-                            amountToSplit = request.amountCents,
-                            currencyCode = currencyCode,
-                            onRepartitionChange = { mutate { request.repartition = it } },
-                            onCompleteChange = { mutate { isRepartitionComplete = it } }
-                        )
-                    }
-                }
-                NewTransactionStep.NOTES_IMAGE -> NotesImageStep(viewModel, isLoadingImage, ::mutate)
-                NewTransactionStep.RECURRENCE -> RecurrenceStep(viewModel, ::mutate)
+            when (model.value.step) {
+                NewTransactionStep.AMOUNT_CATEGORY -> AmountCategoryStep(model, currencyCode)
+                NewTransactionStep.TITLE -> TitleStep(model)
+                NewTransactionStep.REPARTITION -> RepartitionStep(model, currencyCode)
+                NewTransactionStep.NOTES_IMAGE -> NotesImageStep(model)
+                NewTransactionStep.RECURRENCE -> RecurrenceStep(model)
             }
         }
     }
@@ -171,12 +158,29 @@ fun NewTransactionScreen(monthId: UUID, onClose: () -> Unit) {
             retry = { showsError = false; create() }
         )
     }
-    ErrorAlert(message = viewModel.imageLoadingError, onDismiss = { mutate { imageLoadingError = null } }, title = localized("Error Loading Image"))
+    ErrorAlert(message = model.value.imageLoadingError, onDismiss = { model.mutate { imageLoadingError = null } }, title = localized("Error Loading Image"))
 }
 
 @Composable
-private fun AmountCategoryStep(viewModel: NewTransactionViewModel, currencyCode: String, mutate: (NewTransactionViewModel.() -> Unit) -> Unit) {
-    val request = viewModel.request
+private fun RepartitionStep(model: Observed<NewTransactionViewModel>, currencyCode: String) {
+    val request = model.value.request
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp)) {
+        TrenteCard(label = localized("Income Repartition"), icon = Icons.Default.PieChart) {
+            Text(localized("How would you like to split this income?"), style = TrenteType.body)
+            IncomeRepartitionComponent(
+                repartition = request.repartition,
+                amountToSplit = request.amountCents,
+                currencyCode = currencyCode,
+                onRepartitionChange = { model.mutate { request.repartition = it } },
+                onCompleteChange = { model.mutate { isRepartitionComplete = it } }
+            )
+        }
+    }
+}
+
+@Composable
+private fun AmountCategoryStep(model: Observed<NewTransactionViewModel>, currencyCode: String) {
+    val request = model.value.request
     val focusRequester = remember { FocusRequester() }
     LaunchedEffect(Unit) {
         kotlinx.coroutines.delay(600)
@@ -201,7 +205,7 @@ private fun AmountCategoryStep(viewModel: NewTransactionViewModel, currencyCode:
                 BudgetCategory.entries.forEachIndexed { index, category ->
                     SegmentedButton(
                         selected = request.selectedCategory == category,
-                        onClick = { mutate { request.selectedCategory = category } },
+                        onClick = { model.mutate { request.selectedCategory = category } },
                         shape = SegmentedButtonDefaults.itemShape(index, BudgetCategory.entries.size)
                     ) { Text(category.shortName) }
                 }
@@ -210,14 +214,14 @@ private fun AmountCategoryStep(viewModel: NewTransactionViewModel, currencyCode:
         Spacer(Modifier.weight(1f))
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
             listOf(TransactionType.EXPENSE to localized("Expense"), TransactionType.INCOME to localized("Income")).forEachIndexed { index, (type, title) ->
-                SegmentedButton(selected = request.type == type, onClick = { mutate { request.type = type } }, shape = SegmentedButtonDefaults.itemShape(index, 2)) {
+                SegmentedButton(selected = request.type == type, onClick = { model.mutate { request.type = type } }, shape = SegmentedButtonDefaults.itemShape(index, 2)) {
                     Text(title)
                 }
             }
         }
         CurrencyTextField(
             amountCents = request.amountCents,
-            onAmountChange = { mutate { request.amountCents = it } },
+            onAmountChange = { model.mutate { request.amountCents = it } },
             currencyCode = currencyCode,
             textStyle = TrenteType.largeTitle.copy(fontSize = 56.sp, lineHeight = 64.sp),
             textAlign = TextAlign.Center,
@@ -225,15 +229,15 @@ private fun AmountCategoryStep(viewModel: NewTransactionViewModel, currencyCode:
             modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp)
         )
         Spacer(Modifier.weight(1f))
-        TrenteToggle(checked = request.isRecurrent, onCheckedChange = { mutate { request.isRecurrent = it } }) {
+        TrenteToggle(checked = request.isRecurrent, onCheckedChange = { model.mutate { request.isRecurrent = it } }) {
             Text(localized("Recurring transaction"), style = TrenteType.headline)
         }
     }
 }
 
 @Composable
-private fun TitleStep(viewModel: NewTransactionViewModel, mutate: (NewTransactionViewModel.() -> Unit) -> Unit) {
-    val request = viewModel.request
+private fun TitleStep(model: Observed<NewTransactionViewModel>) {
+    val request = model.value.request
     val focusRequester = remember { FocusRequester() }
     LaunchedEffect(Unit) { try { focusRequester.requestFocus() } catch (exception: Exception) { } }
     val color = LocalContentColor.current
@@ -250,10 +254,11 @@ private fun TitleStep(viewModel: NewTransactionViewModel, mutate: (NewTransactio
             }
             BasicTextField(
                 value = request.title,
-                onValueChange = { mutate { request.title = it } },
+                onValueChange = { model.mutate { request.title = it } },
                 textStyle = TrenteType.largeTitle.copy(fontSize = 40.sp, lineHeight = 48.sp, color = color, textAlign = TextAlign.Center),
                 cursorBrush = SolidColor(color),
                 maxLines = 3,
+                keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences, imeAction = ImeAction.Done),
                 modifier = Modifier.fillMaxWidth().focusRequester(focusRequester)
             )
         }
@@ -262,14 +267,20 @@ private fun TitleStep(viewModel: NewTransactionViewModel, mutate: (NewTransactio
 }
 
 @Composable
-private fun NotesImageStep(viewModel: NewTransactionViewModel, isLoadingImage: Boolean, mutate: (NewTransactionViewModel.() -> Unit) -> Unit) {
-    val request = viewModel.request
+private fun NotesImageStep(model: Observed<NewTransactionViewModel>) {
+    val request = model.value.request
+    val isLoadingImage = model.value.isLoadingImage
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val isSubscribed = isTrentePlusSubscribed()
     val showPaywall = LocalShowPaywall.current
     val picker = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) {
-            mutate { loadImage { AndroidImagePreparer.read(context, uri) } }
+            model.mutate { loadImage { AndroidImagePreparer.read(context, uri) } }
+            scope.launch {
+                model.value.imageLoader.currentLoad?.join()
+                model.refresh()
+            }
         }
     }
     val image = rememberImageBitmap(request.imageData)
@@ -288,15 +299,15 @@ private fun NotesImageStep(viewModel: NewTransactionViewModel, isLoadingImage: B
                 })
             }
             TrenteCard(label = localized("Transaction Notes"), icon = Icons.Default.Notes) {
-                NotesField(text = request.notes, onTextChange = { mutate { request.notes = it } }, isEditing = true, boxed = false)
+                NotesField(text = request.notes, onTextChange = { model.mutate { request.notes = it } }, isEditing = true, boxed = false)
             }
         }
     }
 }
 
 @Composable
-private fun RecurrenceStep(viewModel: NewTransactionViewModel, mutate: (NewTransactionViewModel.() -> Unit) -> Unit) {
-    val request = viewModel.request
+private fun RecurrenceStep(model: Observed<NewTransactionViewModel>) {
+    val request = model.value.request
     val calendar = TrenteCalendar.current
     val today = calendar.startOfDay(Instant.now())
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp)) {
@@ -305,26 +316,26 @@ private fun RecurrenceStep(viewModel: NewTransactionViewModel, mutate: (NewTrans
                 title = localized("Frequency"),
                 selection = request.recurrenceFrequency,
                 options = RecurrenceFrequency.entries,
-                onSelect = { mutate { request.recurrenceFrequency = it } },
+                onSelect = { model.mutate { request.recurrenceFrequency = it } },
                 optionTitle = { it.displayName }
             )
-            DateField(label = localized("Start Date"), date = request.recurrenceStartDate, onDateChange = { mutate { request.recurrenceStartDate = it } }, minDate = today)
+            DateField(label = localized("Start Date"), date = request.recurrenceStartDate, onDateChange = { model.mutate { request.recurrenceStartDate = it } }, minDate = today)
             val endDate = request.recurrenceEndDate
             if (endDate != null) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     DateField(
                         label = localized("End Date"),
                         date = endDate,
-                        onDateChange = { mutate { request.recurrenceEndDate = it } },
+                        onDateChange = { model.mutate { request.recurrenceEndDate = it } },
                         minDate = calendar.plusDays(request.recurrenceStartDate, 7),
                         modifier = Modifier.weight(1f)
                     )
-                    IconButton(onClick = { mutate { request.recurrenceEndDate = null } }) {
+                    IconButton(onClick = { model.mutate { request.recurrenceEndDate = null } }) {
                         Icon(Icons.Default.Cancel, contentDescription = localized("Remove End Date"))
                     }
                 }
             } else {
-                TrentePrimaryButton(text = localized("Add an End Date"), narrow = true, onClick = { mutate { request.recurrenceEndDate = request.recurrenceStartDate } })
+                TrentePrimaryButton(text = localized("Add an End Date"), narrow = true, onClick = { model.mutate { request.recurrenceEndDate = request.recurrenceStartDate } })
             }
         }
     }

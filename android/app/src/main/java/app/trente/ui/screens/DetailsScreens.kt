@@ -1,5 +1,6 @@
 package app.trente.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -42,7 +43,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -63,6 +63,7 @@ import app.trente.core.services.TransactionService
 import app.trente.core.support.localized
 import app.trente.data.AndroidImagePreparer
 import app.trente.ui.LocalShowPaywall
+import app.trente.ui.Observed
 import app.trente.ui.components.AttachmentThumbnail
 import app.trente.ui.components.CloseStyle
 import app.trente.ui.components.CurrencyTextField
@@ -110,6 +111,8 @@ fun DetailEditScaffold(
     onClearDeleteError: () -> Unit,
     content: @Composable () -> Unit
 ) {
+    BackHandler(enabled = isEditing, onBack = onCancel)
+
     Scaffold(
         topBar = {
             TrenteTopBar(
@@ -157,22 +160,24 @@ fun TransactionGroupDetailsScreen(groupId: UUID, startInEditMode: Boolean, onClo
         LaunchedEffect(Unit) { onClose() }
         return
     }
-    var isEditing by remember { mutableStateOf(startInEditMode) }
-    var draft by remember(group, isEditing) { mutableStateOf(TransactionGroupDraft.from(group)) }
+    val savedDraft = remember(group, version) { TransactionGroupDraft.from(group) }
+    var editingDraft by remember { mutableStateOf(if (startInEditMode) TransactionGroupDraft.from(group) else null) }
+    val isEditing = editingDraft != null
+    val draft = editingDraft ?: savedDraft
     var isRepartitionComplete by remember { mutableStateOf(true) }
     var validationErrors by remember { mutableStateOf(emptyList<String>()) }
     var deleteError by remember { mutableStateOf<String?>(null) }
     var saveError by remember { mutableStateOf<String?>(null) }
     val currencyCode = group.currency.isoCode
     fun edit(block: TransactionGroupDraft.() -> Unit) {
-        draft = draft.copy().apply(block)
+        editingDraft = (editingDraft ?: savedDraft).copy().apply(block)
     }
 
     DetailEditScaffold(
         title = group.title,
         isEditing = isEditing,
-        onBeginEdit = { isEditing = true },
-        onCancel = { isEditing = false },
+        onBeginEdit = { editingDraft = TransactionGroupDraft.from(group) },
+        onCancel = { editingDraft = null },
         onDone = {
             draft.fillMissingAmountToSplit()
             val issues = draft.validate()
@@ -182,7 +187,7 @@ fun TransactionGroupDetailsScreen(groupId: UUID, startInEditMode: Boolean, onClo
                 try {
                     draft.apply(group, store)
                     store.save()
-                    isEditing = false
+                    editingDraft = null
                 } catch (exception: Exception) {
                     saveError = localized("Failed to save changes: %@", exception.localizedMessage ?: exception.toString())
                 }
@@ -210,7 +215,7 @@ fun TransactionGroupDetailsScreen(groupId: UUID, startInEditMode: Boolean, onClo
             isEditing = isEditing,
             showsExpenseRow = group.type == TransactionType.EXPENSE,
             currencyCode = currencyCode,
-            onEdit = ::edit
+            onEdit = { block -> edit(block) }
         )
         if (group.type == TransactionType.INCOME) {
             TrenteCard(label = localized("Income Repartition"), icon = Icons.Default.PieChart) {
@@ -241,23 +246,23 @@ fun EditableTransactionHeader(
     val scope = rememberCoroutineScope()
     val isSubscribed = isTrentePlusSubscribed()
     val showPaywall = LocalShowPaywall.current
-    val loader = remember { ImageAttachmentLoader(scope, AndroidImagePreparer) }
-    var loaderTick by remember { mutableIntStateOf(0) }
+    val loader = remember { Observed(ImageAttachmentLoader(scope, AndroidImagePreparer)) }
     var isConfirmingImageDelete by remember { mutableStateOf(false) }
     val picker = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) {
-            loader.load({ AndroidImagePreparer.read(context, uri) }) { data -> onEdit { imageAttachmentData = data } }
-            loaderTick += 1
-            scope.launch { loader.currentLoad?.join(); loaderTick += 1 }
+            loader.mutate { load({ AndroidImagePreparer.read(context, uri) }) { data -> onEdit { imageAttachmentData = data } } }
+            scope.launch {
+                loader.value.currentLoad?.join()
+                loader.refresh()
+            }
         }
     }
-    @Suppress("UNUSED_EXPRESSION") loaderTick
     val image = rememberImageBitmap(draft.imageAttachmentData)
 
     TrenteCard(withPadding = false) {
         Box(Modifier.fillMaxWidth()) {
             when {
-                loader.isLoading -> Box(Modifier.fillMaxWidth().height(200.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
+                loader.value.isLoading -> Box(Modifier.fillMaxWidth().height(200.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
                 image != null -> AttachmentThumbnail(
                     image = image,
                     modifier = Modifier.fillMaxWidth().height(200.dp).clip(RoundedCornerShape(topStart = 26.dp, topEnd = 26.dp))
@@ -302,7 +307,7 @@ fun EditableTransactionHeader(
     if (isConfirmingImageDelete) {
         DeleteConfirmationDialog(onDismiss = { isConfirmingImageDelete = false }, onDelete = { isConfirmingImageDelete = false; onEdit { imageAttachmentData = null } })
     }
-    ErrorAlert(message = loader.error, onDismiss = { loader.error = null; loaderTick += 1 }, title = localized("Error Loading Image"))
+    ErrorAlert(message = loader.value.error, onDismiss = { loader.mutate { error = null } }, title = localized("Error Loading Image"))
 }
 
 /** View or edit a recurring rule, stop or delete it, like `RecurringTransactionRuleDetailsView`. */
@@ -319,14 +324,12 @@ fun RecurringRuleDetailsScreen(ruleId: UUID, onClose: () -> Unit) {
     val isSubscribed = isTrentePlusSubscribed()
     val showPaywall = LocalShowPaywall.current
     val calendar = TrenteCalendar.current
-    var isEditing by remember { mutableStateOf(false) }
-    val draft = remember(rule, isEditing, version) { RecurringTransactionRuleDraft.from(rule) }
-    var tick by remember { mutableIntStateOf(0) }
-    @Suppress("UNUSED_EXPRESSION") tick
-    fun edit(block: RecurringTransactionRuleDraft.() -> Unit) {
-        draft.block()
-        tick += 1
-    }
+    val savedDraft = remember(rule, version) { Observed(RecurringTransactionRuleDraft.from(rule)) }
+    var editingDraft by remember { mutableStateOf<Observed<RecurringTransactionRuleDraft>?>(null) }
+    val isEditing = editingDraft != null
+    val observedDraft = editingDraft ?: savedDraft
+    val draft = observedDraft.value
+    fun edit(block: RecurringTransactionRuleDraft.() -> Unit) = observedDraft.mutate(block)
     var isRepartitionComplete by remember { mutableStateOf(true) }
     var validationErrors by remember { mutableStateOf(emptyList<String>()) }
     var deleteError by remember { mutableStateOf<String?>(null) }
@@ -339,8 +342,8 @@ fun RecurringRuleDetailsScreen(ruleId: UUID, onClose: () -> Unit) {
     DetailEditScaffold(
         title = rule.title,
         isEditing = isEditing,
-        onBeginEdit = { isEditing = true },
-        onCancel = { isEditing = false },
+        onBeginEdit = { editingDraft = Observed(RecurringTransactionRuleDraft.from(rule)) },
+        onCancel = { editingDraft = null },
         onDone = {
             val issues = draft.validate()
             if (issues.isNotEmpty()) {
@@ -349,7 +352,7 @@ fun RecurringRuleDetailsScreen(ruleId: UUID, onClose: () -> Unit) {
                 try {
                     draft.apply(rule)
                     store.save()
-                    isEditing = false
+                    editingDraft = null
                 } catch (exception: Exception) {
                     saveError = localized("Failed to save changes: %@", exception.localizedMessage ?: exception.toString())
                 }
