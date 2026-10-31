@@ -10,8 +10,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -68,25 +71,24 @@ object Routes {
 fun AppRoot(pendingDeepLink: DeepLink?, onDeepLinkHandled: () -> Unit) {
     val container = LocalAppContainer.current
     val store = rememberStore()
-    val version = dataVersion()
-    var hasCompletedOnboarding by remember { mutableStateOf(container.preferences.getBoolean(OnboardingGate.COMPLETED_KEY) ?: false) }
-    var isReplayingOnboarding by remember { mutableStateOf(false) }
 
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         if (store == null) {
             Box(Modifier.fillMaxSize())
             return@Surface
         }
-        val showsOnboarding = remember(version, hasCompletedOnboarding, isReplayingOnboarding) {
-            OnboardingGate.shouldShow(hasCompletedOnboarding, store.months.size, isReplayingOnboarding)
+        var isShowingOnboarding by rememberSaveable {
+            val hasCompleted = container.preferences.getBoolean(OnboardingGate.COMPLETED_KEY) ?: false
+            mutableStateOf(OnboardingGate.shouldShow(hasCompleted, store.months.size, isForced = false))
         }
-        if (showsOnboarding) {
+        var isFirstLaunch by rememberSaveable { mutableStateOf(isShowingOnboarding) }
+        if (isShowingOnboarding) {
+            LaunchedEffect(pendingDeepLink) { if (pendingDeepLink != null) onDeepLinkHandled() }
             OnboardingScreen(
-                isFirstLaunch = !isReplayingOnboarding,
+                isFirstLaunch = isFirstLaunch,
                 onFinish = {
                     container.preferences.putBoolean(OnboardingGate.COMPLETED_KEY, true)
-                    hasCompletedOnboarding = true
-                    isReplayingOnboarding = false
+                    isShowingOnboarding = false
                 }
             )
             return@Surface
@@ -94,8 +96,11 @@ fun AppRoot(pendingDeepLink: DeepLink?, onDeepLinkHandled: () -> Unit) {
 
         val navController = rememberNavController()
         val exportState = remember { ExportSelectionState() }
+        var hasOpenedLatestMonth by rememberSaveable { mutableStateOf(false) }
 
         LaunchedEffect(Unit) {
+            if (hasOpenedLatestMonth) return@LaunchedEffect
+            hasOpenedLatestMonth = true
             MonthService.latestMonth(store)?.let { navController.navigate(Routes.month(it.id)) }
         }
 
@@ -110,14 +115,25 @@ fun AppRoot(pendingDeepLink: DeepLink?, onDeepLinkHandled: () -> Unit) {
         }
 
         CompositionLocalProvider(LocalShowPaywall provides { navController.navigate(Routes.TRENTE_PLUS) }) {
-            TrenteNavHost(navController, exportState, onReplayOnboarding = { isReplayingOnboarding = true })
+            TrenteNavHost(
+                navController,
+                exportState,
+                onReplayOnboarding = {
+                    isFirstLaunch = false
+                    isShowingOnboarding = true
+                }
+            )
         }
     }
 }
 
 @Composable
 private fun TrenteNavHost(navController: NavHostController, exportState: ExportSelectionState, onReplayOnboarding: () -> Unit) {
-    fun uuid(entry: androidx.navigation.NavBackStackEntry, key: String): UUID = UUID.fromString(entry.arguments?.getString(key))
+    fun uuid(entry: NavBackStackEntry, key: String): UUID = UUID.fromString(entry.arguments?.getString(key))
+
+    fun popIfCurrent(entry: NavBackStackEntry) {
+        if (entry.lifecycle.currentState == Lifecycle.State.RESUMED) navController.popBackStack()
+    }
 
     NavHost(navController = navController, startDestination = Routes.HOME) {
         composable(Routes.HOME) {
@@ -132,7 +148,7 @@ private fun TrenteNavHost(navController: NavHostController, exportState: ExportS
             val monthId = uuid(entry, "monthId")
             MonthScreen(
                 monthId = monthId,
-                onBack = { navController.popBackStack() },
+                onBack = { popIfCurrent(entry) },
                 onEditMonth = { navController.navigate(Routes.monthDetails(monthId)) },
                 onOpenTransactions = { recurring -> navController.navigate(Routes.transactions(monthId, recurring)) },
                 onAddTransaction = { navController.navigate(Routes.newTransaction(monthId)) },
@@ -143,7 +159,7 @@ private fun TrenteNavHost(navController: NavHostController, exportState: ExportS
         composable("month/{monthId}/details", arguments = listOf(navArgument("monthId") { type = NavType.StringType })) { entry ->
             MonthDetailsScreen(
                 monthId = uuid(entry, "monthId"),
-                onBack = { navController.popBackStack() },
+                onBack = { popIfCurrent(entry) },
                 onDeleted = { navController.popBackStack(Routes.HOME, inclusive = false) }
             )
         }
@@ -157,23 +173,23 @@ private fun TrenteNavHost(navController: NavHostController, exportState: ExportS
             TransactionListScreen(
                 monthId = uuid(entry, "monthId"),
                 showRecurring = entry.arguments?.getBoolean("recurring") ?: false,
-                onBack = { navController.popBackStack() },
+                onBack = { popIfCurrent(entry) },
                 onOpenTransaction = { id, edit -> navController.navigate(Routes.transaction(id, edit)) },
                 onOpenRule = { navController.navigate(Routes.rule(it)) }
             )
         }
-        composable(Routes.RECURRING) {
+        composable(Routes.RECURRING) { entry ->
             RecurringTransactionsListScreen(
-                onBack = { navController.popBackStack() },
+                onBack = { popIfCurrent(entry) },
                 onOpenRule = { navController.navigate(Routes.rule(it)) }
             )
         }
         composable("newTransaction/{monthId}", arguments = listOf(navArgument("monthId") { type = NavType.StringType })) { entry ->
-            NewTransactionScreen(monthId = uuid(entry, "monthId"), onClose = { navController.popBackStack() })
+            NewTransactionScreen(monthId = uuid(entry, "monthId"), onClose = { popIfCurrent(entry) })
         }
-        composable(Routes.NEW_MONTH) {
+        composable(Routes.NEW_MONTH) { entry ->
             NewMonthScreen(
-                onClose = { navController.popBackStack() },
+                onClose = { popIfCurrent(entry) },
                 onCreated = { navController.navigate(Routes.month(it)) { popUpTo(Routes.HOME) } }
             )
         }
@@ -187,27 +203,27 @@ private fun TrenteNavHost(navController: NavHostController, exportState: ExportS
             TransactionGroupDetailsScreen(
                 groupId = uuid(entry, "groupId"),
                 startInEditMode = entry.arguments?.getBoolean("edit") ?: false,
-                onClose = { navController.popBackStack() }
+                onClose = { popIfCurrent(entry) }
             )
         }
         composable("rule/{ruleId}", arguments = listOf(navArgument("ruleId") { type = NavType.StringType })) { entry ->
-            RecurringRuleDetailsScreen(ruleId = uuid(entry, "ruleId"), onClose = { navController.popBackStack() })
+            RecurringRuleDetailsScreen(ruleId = uuid(entry, "ruleId"), onClose = { popIfCurrent(entry) })
         }
-        composable(Routes.SETTINGS) {
+        composable(Routes.SETTINGS) { entry ->
             SettingsScreen(
-                onClose = { navController.popBackStack() },
+                onClose = { popIfCurrent(entry) },
                 onOpen = { navController.navigate(it) },
                 onReplayOnboarding = onReplayOnboarding
             )
         }
-        composable(Routes.NOTIFICATIONS) { NotificationSettingsScreen(onBack = { navController.popBackStack() }) }
-        composable(Routes.EXPORT) {
-            TransactionExportScreen(state = exportState, onBack = { navController.popBackStack() }, onSelectMonths = { navController.navigate(Routes.EXPORT_MONTHS) })
+        composable(Routes.NOTIFICATIONS) { entry -> NotificationSettingsScreen(onBack = { popIfCurrent(entry) }) }
+        composable(Routes.EXPORT) { entry ->
+            TransactionExportScreen(state = exportState, onBack = { popIfCurrent(entry) }, onSelectMonths = { navController.navigate(Routes.EXPORT_MONTHS) })
         }
-        composable(Routes.EXPORT_MONTHS) { ExportMonthSelectionScreen(state = exportState, onBack = { navController.popBackStack() }) }
-        composable(Routes.FAQ) { FAQScreen(onBack = { navController.popBackStack() }) }
-        composable(Routes.ABOUT) { AboutDeveloperScreen(onBack = { navController.popBackStack() }) }
-        composable(Routes.CREDITS) { CreditsScreen(onBack = { navController.popBackStack() }) }
-        composable(Routes.TRENTE_PLUS) { TrentePlusScreen(onClose = { navController.popBackStack() }) }
+        composable(Routes.EXPORT_MONTHS) { entry -> ExportMonthSelectionScreen(state = exportState, onBack = { popIfCurrent(entry) }) }
+        composable(Routes.FAQ) { entry -> FAQScreen(onBack = { popIfCurrent(entry) }) }
+        composable(Routes.ABOUT) { entry -> AboutDeveloperScreen(onBack = { popIfCurrent(entry) }) }
+        composable(Routes.CREDITS) { entry -> CreditsScreen(onBack = { popIfCurrent(entry) }) }
+        composable(Routes.TRENTE_PLUS) { entry -> TrentePlusScreen(onClose = { popIfCurrent(entry) }) }
     }
 }

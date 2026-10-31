@@ -1,5 +1,6 @@
 package app.trente.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -98,12 +99,14 @@ fun MonthDetailsScreen(monthId: UUID, onBack: () -> Unit, onDeleted: () -> Unit)
         LaunchedEffect(Unit) { onBack() }
         return
     }
-    val original = remember(month) { MonthDraft.from(month) }
-    var draft by remember(month) { mutableStateOf(original) }
+    val original = remember(month, version) { MonthDraft.from(month) }
+    var draft by remember(original) { mutableStateOf(original) }
     var isRepartitionComplete by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     val hasChanges = draft != original
     val canSave = draft.idealBudgetCents > 0 && isRepartitionComplete
+
+    BackHandler(enabled = hasChanges) { draft = original }
 
     fun save() {
         try {

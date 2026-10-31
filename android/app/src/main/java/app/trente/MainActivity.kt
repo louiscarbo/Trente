@@ -2,6 +2,7 @@ package app.trente
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -32,6 +33,9 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        if (resources.configuration.smallestScreenWidthDp < TABLET_WIDTH_DP) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         val container = appContainer
         container.notificationCenter.requester = {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -65,5 +69,9 @@ class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         appContainer.notificationScheduler.scheduleSoon()
+    }
+
+    private companion object {
+        const val TABLET_WIDTH_DP = 600
     }
 }
