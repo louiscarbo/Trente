@@ -22276,60 +22276,176 @@
         }
       }
     },
-    "You haven't opened Trente since %@, so reminders are paused. Open the app anytime to turn them back on." : {
+    "You haven't opened Trente on this iPad since %@, so reminders here are paused. Open the app anytime to turn them back on." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Du hast Trente seit dem %@ nicht geöffnet, deshalb sind die Erinnerungen pausiert. Öffne die App jederzeit, um sie wieder zu aktivieren."
+            "value" : "Du hast Trente auf diesem iPad seit dem %@ nicht geöffnet, deshalb sind die Erinnerungen hier pausiert. Öffne die App jederzeit, um sie wieder zu aktivieren."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You haven't opened Trente since %@, so reminders are paused. Open the app at any time to turn them back on."
+            "value" : "You haven't opened Trente on this iPad since %@, so reminders here are paused. Open the app at any time to turn them back on."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No has abierto Trente desde el %@, así que los recordatorios están en pausa. Abre la app cuando quieras para reactivarlos."
+            "value" : "No has abierto Trente en este iPad desde el %@, así que los recordatorios aquí están en pausa. Abre la app cuando quieras para reactivarlos."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No abres Trente desde el %@, así que los recordatorios están en pausa. Abre la app cuando quieras para reactivarlos."
+            "value" : "No abres Trente en este iPad desde el %@, así que los recordatorios aquí están en pausa. Abre la app cuando quieras para reactivarlos."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vous n’avez pas ouvert Trente depuis le %@, les rappels sont donc en pause. Ouvrez l’app à tout moment pour les réactiver."
+            "value" : "Vous n’avez pas ouvert Trente sur cet iPad depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Non apri Trente dal %@, quindi i promemoria sono in pausa. Apri l’app quando vuoi per riattivarli."
+            "value" : "Non apri Trente su questo iPad dal %@, quindi i promemoria qui sono in pausa. Apri l’app quando vuoi per riattivarli."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ 이후 Trente를 열지 않아 리마인더가 일시 중지됐어요. 언제든지 앱을 열면 다시 켜져요."
+            "value" : "%@ 이후 이 iPad에서 Trente를 열지 않아 이 기기의 리마인더가 일시 중지됐어요. 언제든지 앱을 열면 다시 켜져요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Você não abre o Trente desde %@, então os lembretes estão pausados. Abra o app quando quiser para reativá-los."
+            "value" : "Você não abre o Trente neste iPad desde %@, então os lembretes aqui estão pausados. Abra o app quando quiser para reativá-los."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não abre o Trente desde %@, por isso os lembretes estão em pausa. Abra a app quando quiser para os reativar."
+            "value" : "Não abre o Trente neste iPad desde %@, por isso os lembretes aqui estão em pausa. Abra a app quando quiser para os reativar."
+          }
+        }
+      }
+    },
+    "You haven't opened Trente on this iPhone since %@, so reminders here are paused. Open the app anytime to turn them back on." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast Trente auf diesem iPhone seit dem %@ nicht geöffnet, deshalb sind die Erinnerungen hier pausiert. Öffne die App jederzeit, um sie wieder zu aktivieren."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You haven't opened Trente on this iPhone since %@, so reminders here are paused. Open the app at any time to turn them back on."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No has abierto Trente en este iPhone desde el %@, así que los recordatorios aquí están en pausa. Abre la app cuando quieras para reactivarlos."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No abres Trente en este iPhone desde el %@, así que los recordatorios aquí están en pausa. Abre la app cuando quieras para reactivarlos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas ouvert Trente sur cet iPhone depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non apri Trente su questo iPhone dal %@, quindi i promemoria qui sono in pausa. Apri l’app quando vuoi per riattivarli."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 이후 이 iPhone에서 Trente를 열지 않아 이 기기의 리마인더가 일시 중지됐어요. 언제든지 앱을 열면 다시 켜져요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você não abre o Trente neste iPhone desde %@, então os lembretes aqui estão pausados. Abra o app quando quiser para reativá-los."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não abre o Trente neste iPhone desde %@, por isso os lembretes aqui estão em pausa. Abra a app quando quiser para os reativar."
+          }
+        }
+      }
+    },
+    "You haven't opened Trente on this Mac since %@, so reminders here are paused. Open the app anytime to turn them back on." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast Trente auf diesem Mac seit dem %@ nicht geöffnet, deshalb sind die Erinnerungen hier pausiert. Öffne die App jederzeit, um sie wieder zu aktivieren."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You haven't opened Trente on this Mac since %@, so reminders here are paused. Open the app at any time to turn them back on."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No has abierto Trente en este Mac desde el %@, así que los recordatorios aquí están en pausa. Abre la app cuando quieras para reactivarlos."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No abres Trente en esta Mac desde el %@, así que los recordatorios aquí están en pausa. Abre la app cuando quieras para reactivarlos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas ouvert Trente sur ce Mac depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non apri Trente su questo Mac dal %@, quindi i promemoria qui sono in pausa. Apri l’app quando vuoi per riattivarli."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 이후 이 Mac에서 Trente를 열지 않아 이 기기의 리마인더가 일시 중지됐어요. 언제든지 앱을 열면 다시 켜져요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você não abre o Trente neste Mac desde %@, então os lembretes aqui estão pausados. Abra o app quando quiser para reativá-los."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não abre o Trente neste Mac desde %@, por isso os lembretes aqui estão em pausa. Abra a app quando quiser para os reativar."
           }
         }
       }

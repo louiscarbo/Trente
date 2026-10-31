@@ -14,6 +14,7 @@ struct InactivityNotificationPlanner {
     static let lastAppOpenKey = "notifications.lastAppOpen"
 
     var reminderTime = ReminderTime.standard
+    let device: ReminderDevice
     var calendar: Calendar = .current
 
     static func storedLastAppOpen(in defaults: UserDefaults = .standard) -> Date? {
@@ -35,14 +36,14 @@ struct InactivityNotificationPlanner {
     func notifications(keeping reminders: [ScheduledNotification], lastAppOpen: Date) -> [ScheduledNotification] {
         guard let goodbyeDate = goodbyeDate(lastAppOpen: lastAppOpen) else { return reminders }
         let keptReminders = reminders.filter { reminder in reminder.fireDate < goodbyeDate }
-        return keptReminders + [Self.goodbye(on: goodbyeDate, lastAppOpen: lastAppOpen)]
+        return keptReminders + [Self.goodbye(on: goodbyeDate, lastAppOpen: lastAppOpen, device: device)]
     }
 
-    static func goodbye(on fireDate: Date, lastAppOpen: Date) -> ScheduledNotification {
+    static func goodbye(on fireDate: Date, lastAppOpen: Date, device: ReminderDevice) -> ScheduledNotification {
         ScheduledNotification(
             identifier: goodbyeIdentifier,
             title: NotificationText.goodbyeTitle,
-            body: NotificationText.goodbyeBody(lastAppOpen: lastAppOpen),
+            body: NotificationText.goodbyeBody(lastAppOpen: lastAppOpen, device: device),
             fireDate: fireDate,
             threadIdentifier: threadIdentifier
         )

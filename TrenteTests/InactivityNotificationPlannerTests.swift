@@ -17,7 +17,7 @@ struct InactivityNotificationPlannerTests {
     }()
 
     private var planner: InactivityNotificationPlanner {
-        InactivityNotificationPlanner(calendar: calendar)
+        InactivityNotificationPlanner(device: .iPhone, calendar: calendar)
     }
 
     private func day(_ year: Int, _ month: Int, _ day: Int, hour: Int = 0, minute: Int = 0) -> Date {
@@ -45,7 +45,7 @@ struct InactivityNotificationPlannerTests {
 
     @Test("The goodbye uses the chosen reminder time")
     func goodbyeUsesReminderTime() {
-        let planner = InactivityNotificationPlanner(reminderTime: ReminderTime(hour: 18, minute: 30), calendar: calendar)
+        let planner = InactivityNotificationPlanner(reminderTime: ReminderTime(hour: 18, minute: 30), device: .iPhone, calendar: calendar)
 
         #expect(planner.goodbyeDate(lastAppOpen: day(2026, 10, 27, hour: 8)) == day(2026, 11, 3, hour: 18, minute: 30))
     }
@@ -94,14 +94,40 @@ struct InactivityNotificationPlannerTests {
     @Test("The goodbye mentions the last time the app was opened")
     func goodbyeContent() {
         let lastAppOpen = day(2026, 10, 27, hour: 12)
-        let goodbye = InactivityNotificationPlanner.goodbye(on: day(2026, 11, 3, hour: 9), lastAppOpen: lastAppOpen)
+        let goodbye = InactivityNotificationPlanner.goodbye(on: day(2026, 11, 3, hour: 9), lastAppOpen: lastAppOpen, device: .iPad)
 
         #expect(goodbye.title == NotificationText.goodbyeTitle)
-        #expect(goodbye.body == NotificationText.goodbyeBody(lastAppOpen: lastAppOpen))
+        #expect(goodbye.body == NotificationText.goodbyeBody(lastAppOpen: lastAppOpen, device: .iPad))
         #expect(goodbye.body.contains(lastAppOpen.formatted(.dateTime.day().month(.wide))))
         #expect(goodbye.categoryIdentifier == nil)
         #expect(!goodbye.identifier.hasPrefix(RecurringNotificationPlanner.identifierPrefix))
     }
+
+    @Test(
+        "The goodbye names the device it rings on, and only that one",
+        arguments: [
+            (ReminderDevice.iPhone, "iPhone"),
+            (ReminderDevice.iPad, "iPad"),
+            (ReminderDevice.mac, "Mac")
+        ]
+    )
+    func goodbyeNamesDevice(device: ReminderDevice, deviceName: String) throws {
+        let planner = InactivityNotificationPlanner(device: device, calendar: calendar)
+        let otherDeviceNames = ["iPhone", "iPad", "Mac"].filter { name in name != deviceName }
+
+        let goodbye = try #require(planner.notifications(keeping: [], lastAppOpen: day(2026, 10, 27)).last)
+
+        #expect(goodbye.body.contains(deviceName))
+        #expect(otherDeviceNames.allSatisfy { name in !goodbye.body.contains(name) })
+    }
+
+    #if os(macOS)
+    @MainActor
+    @Test("The Mac app calls itself a Mac")
+    func currentDeviceOnMac() {
+        #expect(ReminderDevice.current == .mac)
+    }
+    #endif
 
     @Test("The last app open is stored and read back")
     func lastAppOpenRoundTrip() {
