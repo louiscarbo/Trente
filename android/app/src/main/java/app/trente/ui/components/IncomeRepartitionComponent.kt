@@ -218,7 +218,7 @@ fun RepartitionSlider(
             },
         contentAlignment = Alignment.Center
     ) {
-        Box(Modifier.fillMaxWidth(fraction.coerceIn(0f, 1f)).fillMaxHeight().background(color))
+        Box(Modifier.align(Alignment.CenterStart).fillMaxWidth(fraction.coerceIn(0f, 1f)).fillMaxHeight().background(color))
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text("$categoryName - ${(proportion * 100).toInt()}%", style = TrenteType.subheadline.copy(fontWeight = FontWeight.Bold), color = textColor)
             Text(MoneyFormat.budget(value / 100.0, currencyCode), style = TrenteType.title3, color = textColor)

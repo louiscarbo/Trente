@@ -245,6 +245,10 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawRingSector(
     sweepAngle: Float,
     color: Color
 ) {
+    if (sweepAngle >= 360f) {
+        drawCircle(color, radius = (innerRadius + outerRadius) / 2, center = center, style = Stroke(width = outerRadius - innerRadius))
+        return
+    }
     val path = Path().apply {
         arcTo(
             rect = androidx.compose.ui.geometry.Rect(center - Offset(outerRadius, outerRadius), Size(outerRadius * 2, outerRadius * 2)),
