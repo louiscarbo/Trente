@@ -26,3 +26,19 @@ extension VStack {
         )
     }
 }
+
+extension Grid {
+    init (
+        alignment: Alignment = .center,
+        horizontalSpacing: DesignSystem.Spacing,
+        verticalSpacing: DesignSystem.Spacing,
+        @ContentBuilder content: () -> Content
+    ) {
+        self.init(
+            alignment: alignment,
+            horizontalSpacing: horizontalSpacing.rawValue,
+            verticalSpacing: verticalSpacing.rawValue,
+            content: content
+        )
+    }
+}
