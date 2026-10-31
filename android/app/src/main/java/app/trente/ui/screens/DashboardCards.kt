@@ -45,8 +45,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.trente.core.model.BudgetCategory
+import app.trente.core.model.BudgetFigures
 import app.trente.core.model.BudgetScope
-import app.trente.core.model.Month
 import app.trente.core.model.RecurringTransactionOccurrence
 import app.trente.core.model.TransactionGroup
 import app.trente.core.model.TrenteCalendar
@@ -130,15 +130,21 @@ fun BudgetRingsCard(rings: BudgetRings, modifier: Modifier = Modifier) {
     }
 }
 
+val budgetGaugeScopes: List<BudgetScope> = listOf(
+    BudgetScope.All,
+    BudgetScope.Category(BudgetCategory.NEEDS),
+    BudgetScope.Category(BudgetCategory.WANTS),
+    BudgetScope.Category(BudgetCategory.SAVINGS_AND_DEBTS)
+)
+
 /** Four gauges: the total and each category, like `BudgetGauges`. */
 @Composable
-fun BudgetGaugesCard(month: Month, modifier: Modifier = Modifier) {
-    val scopes = listOf(BudgetScope.All, BudgetScope.Category(BudgetCategory.NEEDS), BudgetScope.Category(BudgetCategory.WANTS), BudgetScope.Category(BudgetCategory.SAVINGS_AND_DEBTS))
+fun BudgetGaugesCard(gauges: List<Pair<BudgetScope, BudgetFigures>>, currencyCode: String, modifier: Modifier = Modifier) {
     Column(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        scopes.chunked(2).forEach { row ->
+        gauges.chunked(2).forEach { row ->
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                row.forEach { scope ->
-                    GraphCard(month = month, scope = scope, modifier = Modifier.weight(1f))
+                row.forEach { (scope, figures) ->
+                    GraphCard(scope = scope, figures = figures, currencyCode = currencyCode, modifier = Modifier.weight(1f))
                 }
             }
         }
@@ -146,10 +152,8 @@ fun BudgetGaugesCard(month: Month, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun GraphCard(month: Month, scope: BudgetScope, modifier: Modifier = Modifier) {
+private fun GraphCard(scope: BudgetScope, figures: BudgetFigures, currencyCode: String, modifier: Modifier = Modifier) {
     var showRemaining by remember { mutableStateOf(false) }
-    val figures = month.figures(scope)
-    val currencyCode = month.currency.isoCode
     val isOverspent = figures.isOverspent
     val displayed = if (showRemaining) figures.remaining else figures.spent
     TrenteCard(
@@ -277,8 +281,7 @@ fun DailySpendingCard(spending: DailySpending, currencyCode: String, modifier: M
 /** "Latest Transactions", like `MonthView+LatestTransactions`. */
 @Composable
 fun LatestTransactionsCard(
-    month: Month,
-    count: Int,
+    latest: List<TransactionGroup>,
     hasAnyTransaction: Boolean,
     onSeeAll: () -> Unit,
     onOpen: (TransactionGroup) -> Unit,
@@ -286,7 +289,6 @@ fun LatestTransactionsCard(
     onDelete: (TransactionGroup) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val latest = month.latestTransactions.take(count)
     TrenteCard(modifier = modifier, label = localized("Latest Transactions"), icon = Icons.Default.History) {
         latest.forEachIndexed { index, group ->
             TransactionGroupRow(group = group, onOpen = { onOpen(group) }, onEdit = { onEdit(group) }, onDelete = { onDelete(group) })
