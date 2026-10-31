@@ -16,10 +16,12 @@ struct RequiresTrentePlus: ViewModifier {
     private let tagShape = RoundedRectangle(cornerRadius: .large)
 
     private var isLocked: Bool { isRequired && !isSubscribed }
+    private var contentBlurRadius: CGFloat { isLocked && message != nil ? 2 : 0 }
 
     func body(content: Content) -> some View {
         content
             .disabled(isLocked)
+            .blur(radius: contentBlurRadius)
             .opacity(isLocked ? 0.4 : 1)
             .overlay {
                 if isLocked {
