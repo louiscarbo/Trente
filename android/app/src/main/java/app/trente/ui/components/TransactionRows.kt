@@ -45,31 +45,9 @@ import app.trente.ui.theme.color
 import java.time.format.TextStyle
 import java.util.Locale
 
-/** A transaction: a summary row for a split income, an entry row otherwise, like `TransactionGroupRowContent`. */
 @Composable
-fun TransactionGroupRowContent(group: TransactionGroup, modifier: Modifier = Modifier, expanded: Boolean = false) {
-    val currencyCode = group.currency.isoCode
-    when {
-        group.entries.size > 1 -> Column(modifier) {
-            SummaryRow(title = group.title, amountText = MoneyFormat.amount(group.totalAmount, currencyCode), expanded = expanded)
-            if (expanded) {
-                group.entries.forEach { entry ->
-                    EntryRowContent(title = null, category = entry.category, amountText = MoneyFormat.amount(entry.amount, currencyCode), modifier = Modifier.padding(start = 24.dp, top = 6.dp))
-                }
-            }
-        }
-        group.entries.size == 1 -> EntryRowContent(
-            title = group.title,
-            category = group.entries.first().category,
-            amountText = MoneyFormat.amount(group.totalAmount, currencyCode),
-            modifier = modifier
-        )
-    }
-}
-
-@Composable
-private fun SummaryRow(title: String, amountText: String, expanded: Boolean) {
-    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+private fun SummaryRow(title: String, amountText: String, expanded: Boolean, modifier: Modifier = Modifier) {
+    Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         CategoryDot(TrenteColors.red)
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
@@ -113,18 +91,38 @@ fun TransactionGroupRow(
     var isMenuOpen by remember { mutableStateOf(false) }
     var isConfirmingDelete by remember { mutableStateOf(false) }
     var isExpanded by remember { mutableStateOf(false) }
+    val currencyCode = group.currency.isoCode
+    fun Modifier.openable(onTap: () -> Unit) = fillMaxWidth().combinedClickable(onClick = onTap, onLongClick = { isMenuOpen = true })
     Box(modifier) {
-        TransactionGroupRowContent(
-            group = group,
-            expanded = isExpanded,
-            modifier = Modifier
-                .fillMaxWidth()
-                .combinedClickable(
-                    onClick = { if (group.entries.size > 1) isExpanded = !isExpanded else onOpen() },
-                    onLongClick = { isMenuOpen = true }
+        if (group.entries.size > 1) {
+            Column {
+                SummaryRow(
+                    title = group.title,
+                    amountText = MoneyFormat.amount(group.totalAmount, currencyCode),
+                    expanded = isExpanded,
+                    modifier = Modifier.openable { isExpanded = !isExpanded }.padding(vertical = 10.dp)
                 )
-                .padding(vertical = 10.dp)
-        )
+                if (isExpanded) {
+                    group.entries.forEach { entry ->
+                        EntryRowContent(
+                            title = null,
+                            category = entry.category,
+                            amountText = MoneyFormat.amount(entry.amount, currencyCode),
+                            modifier = Modifier.openable(onOpen).padding(start = 24.dp, top = 6.dp, bottom = 6.dp)
+                        )
+                    }
+                }
+            }
+        } else {
+            group.entries.firstOrNull()?.let { entry ->
+                EntryRowContent(
+                    title = group.title,
+                    category = entry.category,
+                    amountText = MoneyFormat.amount(group.totalAmount, currencyCode),
+                    modifier = Modifier.openable(onOpen).padding(vertical = 10.dp)
+                )
+            }
+        }
         DropdownMenu(expanded = isMenuOpen, onDismissRequest = { isMenuOpen = false }) {
             DropdownMenuItem(text = { Text(localized("Edit")) }, leadingIcon = { Icon(Icons.Default.Edit, null) }, onClick = { isMenuOpen = false; onEdit() })
             DropdownMenuItem(
