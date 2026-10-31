@@ -33,7 +33,27 @@ enum ExternalLinks {
     static let piggySavingsIcon = URL(string: "https://thenounproject.com/icon/piggy-savings-5860187/")!
     static let financialStartupIcon = URL(string: "https://thenounproject.com/icon/financial-startup-5860236/")!
     static let developerWebsite = URL(string: "https://carbo-estaque.fr")!
-    static let privacyPolicy = URL(string: "https://trente.app/privacy/")!
+    private static let privacyPolicyPages = [
+        "en": "privacy/",
+        "en-GB": "en-gb/privacy/",
+        "de": "de/datenschutz/",
+        "es": "es/privacidad/",
+        "es-419": "es-419/privacidad/",
+        "fr": "fr/confidentialite/",
+        "it": "it/privacy/",
+        "ko": "ko/privacy/",
+        "pt-BR": "pt-br/privacidade/",
+        "pt-PT": "pt-pt/privacidade/"
+    ]
+
+    static var privacyPolicy: URL {
+        privacyPolicy(localization: Bundle.main.preferredLocalizations.first ?? "en")
+    }
+
+    static func privacyPolicy(localization: String) -> URL {
+        URL(string: "https://trente.app/\(privacyPolicyPages[localization, default: "privacy/"])")!
+    }
+
     static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
     static let developerLinkedIn = URL(string: "https://www.linkedin.com/in/louis-carbo-estaque/")!
     static let developerGitHub = URL(string: "https://github.com/louiscarbo")!
