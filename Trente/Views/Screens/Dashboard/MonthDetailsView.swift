@@ -49,7 +49,7 @@ struct MonthDetailsView: View {
                     .id(resetDraft)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity)
-                    VStack(spacing: .medium) {
+                    VStack(spacing: .grid) {
                         ExportSection(
                             file: exportFile,
                             isEmpty: original.transactionGroups.isEmpty
@@ -63,7 +63,7 @@ struct MonthDetailsView: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity)
                 }
-                .padding()
+                .padding(.all, proxy.isCompact ? nil : 26.0)
             }
             .keyboardDismissButton(isVisible: isAmountFocused) { isAmountFocused = false }
         }
@@ -89,7 +89,7 @@ struct MonthDetailsView: View {
     }
 
     private func makeSectionsLayout(isCompact: Bool) -> AnyLayout {
-        let spacing = DesignSystem.Spacing.medium.rawValue
+        let spacing = DesignSystem.Spacing.grid.rawValue
         return isCompact
             ? AnyLayout(VStackLayout(spacing: spacing))
             : AnyLayout(HStackLayout(alignment: .top, spacing: spacing))
