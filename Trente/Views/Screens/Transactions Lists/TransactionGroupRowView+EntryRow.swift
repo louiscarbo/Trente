@@ -23,8 +23,8 @@ extension TransactionGroupRowView {
                     currencyCode: currencyCode,
                     title: title
                 )
+                .contentShape(.rect)
             }
-            .contentShape(.rect)
             .buttonStyle(.plain)
         }
     }
