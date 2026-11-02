@@ -23,7 +23,7 @@ extension Currency {
 }
 
 extension Currency {
-    private static let isoCodesWithoutMinorUnit: Set<String> = ["CLP", "JPY", "KRW", "XPF"]
+    private static let isoCodesWithoutMinorUnit: Set<String> = ["CLP", "COP", "JPY", "KRW", "PYG", "XAF", "XOF", "XPF"]
 
     var fractionDigits: Int {
         Currency.isoCodesWithoutMinorUnit.contains(isoCode) ? 0 : 2
@@ -102,11 +102,39 @@ struct Currencies {
         Currency(isoCode: "CLP", symbol: "CL$", sfSymbolName: "dollarsign",              localizedName: "Chilean Peso"),
         Currency(isoCode: "CRC", symbol: "₡",   sfSymbolName: "coloncurrencysign",       localizedName: "Costa Rican Colón"),
         Currency(isoCode: "MYR", symbol: "RM",  sfSymbolName: "malaysianringgitsign",    localizedName: "Malaysian Ringgit"),
-        Currency(isoCode: "XPF", symbol: "F",   sfSymbolName: "francsign",               localizedName: "CFP Franc")
+        Currency(isoCode: "XPF", symbol: "F",   sfSymbolName: "francsign",               localizedName: "CFP Franc"),
+        Currency(isoCode: "ARS", symbol: "AR$", sfSymbolName: "dollarsign",              localizedName: "Argentine Peso"),
+        Currency(isoCode: "COP", symbol: "CO$", sfSymbolName: "dollarsign",              localizedName: "Colombian Peso"),
+        Currency(isoCode: "PEN", symbol: "S/",  sfSymbolName: "peruviansolessign",       localizedName: "Peruvian Sol"),
+        Currency(isoCode: "UYU", symbol: "$U",  sfSymbolName: "dollarsign",              localizedName: "Uruguayan Peso"),
+        Currency(isoCode: "DOP", symbol: "RD$", sfSymbolName: "dollarsign",              localizedName: "Dominican Peso"),
+        Currency(isoCode: "GTQ", symbol: "Q",   sfSymbolName: nil,                       localizedName: "Guatemalan Quetzal"),
+        Currency(isoCode: "BOB", symbol: "Bs",  sfSymbolName: nil,                       localizedName: "Bolivian Boliviano"),
+        Currency(isoCode: "PYG", symbol: "₲",   sfSymbolName: "guaranisign",             localizedName: "Paraguayan Guarani"),
+        Currency(isoCode: "HNL", symbol: "L",   sfSymbolName: nil,                       localizedName: "Honduran Lempira"),
+        Currency(isoCode: "NIO", symbol: "C$",  sfSymbolName: "dollarsign",              localizedName: "Nicaraguan Córdoba"),
+        Currency(isoCode: "VES", symbol: "Bs.", sfSymbolName: nil,                       localizedName: "Venezuelan Bolívar"),
+        Currency(isoCode: "XOF", symbol: "CFA", sfSymbolName: "francsign",               localizedName: "West African CFA Franc"),
+        Currency(isoCode: "XAF", symbol: "CFA", sfSymbolName: "francsign",               localizedName: "Central African CFA Franc"),
+        Currency(isoCode: "MAD", symbol: "DH",  sfSymbolName: nil,                       localizedName: "Moroccan Dirham"),
+        Currency(isoCode: "AOA", symbol: "Kz",  sfSymbolName: nil,                       localizedName: "Angolan Kwanza"),
+        Currency(isoCode: "MZN", symbol: "MT",  sfSymbolName: nil,                       localizedName: "Mozambican Metical"),
+        Currency(isoCode: "NGN", symbol: "₦",   sfSymbolName: "nairasign",               localizedName: "Nigerian Naira"),
+        Currency(isoCode: "PHP", symbol: "₱",   sfSymbolName: "pesosign",                localizedName: "Philippine Peso")
     ]
 
+    private static let isoCodeAliases = ["VED": "VES"]
+
     static func currency(for isoCode: String) -> Currency? {
-        availableCurrencies.first { $0.isoCode == isoCode }
+        let canonicalIsoCode = isoCodeAliases[isoCode] ?? isoCode
+        return availableCurrencies.first { $0.isoCode == canonicalIsoCode }
+    }
+
+    static func matching(_ searchText: String) -> [Currency] {
+        let query = searchText.trimmingCharacters(in: .whitespaces)
+        return availableCurrencies
+            .filter { query.isEmpty || $0.displayName.localizedStandardContains(query) || $0.isoCode.localizedStandardContains(query) }
+            .sorted { $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending }
     }
 }
 // swiftlint:enable comma
