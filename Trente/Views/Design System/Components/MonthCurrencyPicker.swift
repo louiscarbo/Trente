@@ -10,13 +10,23 @@ import SwiftUI
 struct MonthCurrencyPicker: View {
     @Binding var currency: Currency
 
+    @State private var isShowingCurrencies = false
+
     var body: some View {
-        LabeledPicker(
-            title: "Currency",
-            selection: $currency,
-            options: Currencies.availableCurrencies.sorted(by: { $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending })
-        ) { currency in
-            Label(currency.displayName, systemImage: currency.sfSymbolName ?? "xmark")
+        LabeledContent("Currency") {
+            Button {
+                isShowingCurrencies = true
+            } label: {
+                Label(currency.displayName, systemImage: currency.sfSymbolName ?? "banknote")
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .buttonStyle(.bordered)
+            .tint(.secondary)
+        }
+        .sheet(isPresented: $isShowingCurrencies) {
+            CurrencyPickerSheet(selection: $currency)
         }
     }
 }
