@@ -11,7 +11,26 @@ struct CardCarousel<Page: CaseIterable & Hashable, Card: View>: View where Page.
     var safeAreaPadding = false
     @ViewBuilder var card: (Page) -> Card
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     var body: some View {
+        if dynamicTypeSize.isAccessibilitySize {
+            stacked
+        } else {
+            carousel
+        }
+    }
+
+    private var stacked: some View {
+        VStack(spacing: spacing) {
+            ForEach(Page.allCases, id: \.self) { page in
+                card(page)
+            }
+        }
+        .padding(safeAreaPadding ? .horizontal : [])
+    }
+
+    private var carousel: some View {
         VStack(spacing: 8) {
             ScrollView(.horizontal) {
                 HStack(spacing: spacing) {
