@@ -12,6 +12,7 @@ import AppKit
 #endif
 @testable import Trente
 
+@MainActor
 struct CurrencyFractionDigitsTests {
     private let americanEnglish = Locale(identifier: "en_US")
 
@@ -20,7 +21,6 @@ struct CurrencyFractionDigitsTests {
         #expect(Currencies.currency(for: isoCode) != nil)
     }
 
-    @MainActor
     @Test(
         "Onboarding starts in the currency of the region",
         arguments: [("es_CL", "CLP"), ("es_CR", "CRC"), ("ms_MY", "MYR"), ("fr_PF", "XPF")]
