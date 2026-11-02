@@ -11,6 +11,11 @@ import SwiftData
 enum SidebarSelection: Hashable {
     case month(Month)
     case recurring
+
+    func leaving(_ deletedMonths: [Month], for latestMonth: Month?) -> SidebarSelection? {
+        guard case .month(let month) = self, deletedMonths.contains(month) else { return self }
+        return latestMonth.map(SidebarSelection.month)
+    }
 }
 
 struct SidebarView: View {

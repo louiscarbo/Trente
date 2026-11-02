@@ -56,7 +56,7 @@ struct AppNavigationView: View {
                     }
                 }
             }
-            .id(selection)
+            .id(showsSidebarSelection ? selection : nil)
         }
         .onAppear {
             guard selection == nil, let latestMonth = months.first else { return }
@@ -149,8 +149,10 @@ struct AppNavigationView: View {
     private func destinationView(for destination: SidebarSelection) -> some View {
         switch destination {
         case .month(let month):
-            MonthView(month: month)
-                .id(month)
+            MonthView(month: month) {
+                leave(month)
+            }
+            .id(month)
         case .recurring:
             if let currency = months.first?.currency {
                 RecurringTransactionsListView(currency: currency)
@@ -166,6 +168,10 @@ struct AppNavigationView: View {
                 show(newSelection)
             }
         )
+    }
+
+    private func leave(_ deletedMonth: Month) {
+        selection = selection?.leaving([deletedMonth], for: months.first { $0 != deletedMonth })
     }
 
     private func show(_ destination: SidebarSelection) {
