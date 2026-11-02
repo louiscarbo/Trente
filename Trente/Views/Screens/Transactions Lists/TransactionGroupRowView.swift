@@ -34,11 +34,12 @@ struct TransactionGroupRowView: View {
             presentedDetails = .reading
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-            Button(role: .destructive) {
+            Button {
                 groupToDelete = transactionGroup
             } label: {
                 Label("Delete", systemImage: "trash")
             }
+            .tint(.red)
             Button {
                 presentedDetails = .editing
             } label: {
