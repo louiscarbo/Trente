@@ -23,6 +23,14 @@ extension Currency {
 }
 
 extension Currency {
+    private static let isoCodesWithoutMinorUnit: Set<String> = ["CLP", "JPY", "KRW", "XPF"]
+
+    var fractionDigits: Int {
+        Currency.isoCodesWithoutMinorUnit.contains(isoCode) ? 0 : 2
+    }
+}
+
+extension Currency {
     nonisolated(unsafe) private static var formatterCache: [String: NumberFormatter] = [:]
     private static let cacheLock = NSLock()
     
@@ -39,7 +47,7 @@ extension Currency {
         formatter.currencyCode = isoCode
         formatter.locale = .autoupdatingCurrent
         formatter.currencySymbol = narrowSymbol
-        formatter.maximumFractionDigits = 2
+        formatter.maximumFractionDigits = fractionDigits
         
         Currency.formatterCache[isoCode] = formatter
         return formatter
@@ -90,7 +98,11 @@ struct Currencies {
         Currency(isoCode: "TWD", symbol: "NT$", sfSymbolName: "dollarsign",              localizedName: "New Taiwan Dollar"),
         Currency(isoCode: "ZAR", symbol: "R",   sfSymbolName: nil,                       localizedName: "South African Rand"),
         Currency(isoCode: "BRL", symbol: "R$",  sfSymbolName: "brazilianrealsign",       localizedName: "Brazilian Real"),
-        Currency(isoCode: "DKK", symbol: "kr",  sfSymbolName: "danishkronesign",         localizedName: "Danish Krone")
+        Currency(isoCode: "DKK", symbol: "kr",  sfSymbolName: "danishkronesign",         localizedName: "Danish Krone"),
+        Currency(isoCode: "CLP", symbol: "CL$", sfSymbolName: "dollarsign",              localizedName: "Chilean Peso"),
+        Currency(isoCode: "CRC", symbol: "₡",   sfSymbolName: "coloncurrencysign",       localizedName: "Costa Rican Colón"),
+        Currency(isoCode: "MYR", symbol: "RM",  sfSymbolName: "malaysianringgitsign",    localizedName: "Malaysian Ringgit"),
+        Currency(isoCode: "XPF", symbol: "F",   sfSymbolName: "francsign",               localizedName: "CFP Franc")
     ]
 
     static func currency(for isoCode: String) -> Currency? {
