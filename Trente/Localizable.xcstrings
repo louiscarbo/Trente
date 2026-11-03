@@ -6,6 +6,12 @@
     },
     "    You haven't started tracking your budget yet. Start tracking your budget with Trente by opening the app!" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "    Du er ikke begyndt at holde styr på dit budget endnu. Åbn Trente for at komme i gang!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -82,6 +88,12 @@
     },
     "%@ left of %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ tilbage af %2$@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -164,6 +176,12 @@
     },
     "%@ spent of %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ brugt af %2$@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -246,6 +264,12 @@
     },
     "%@ left to split" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ tilbage at fordele"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -322,6 +346,12 @@
     },
     "%lld of %lld free Apple Pay logs this month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld af %2$lld gratis Apple Pay-registreringer denne måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -407,6 +437,12 @@
     },
     "- %@ Remaining" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "- %@ tilbage"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +519,12 @@
     },
     "A month starts on the date of your choice and lasts one month, for example from October 25 to November 24, to match your payday." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En måned starter på den dato, du vælger, og varer en måned, for eksempel fra den 25. oktober til den 24. november, så den passer med din lønningsdag."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -565,6 +607,12 @@
     },
     "A simple way to split your take-home income: about 50% for needs (rent, groceries, bills), 30% for wants (dining out, fun) and 20% for savings and paying off debt. Trente sorts every transaction into one of these three categories. You can choose your own split for each month." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En enkel måde at fordele din indkomst efter skat på: omkring 50 % til behov (husleje, dagligvarer, regninger), 30 % til ønsker (restaurantbesøg, fritid) og 20 % til opsparing og afdrag på gæld. Trente placerer hver transaktion i en af de tre kategorier. Du kan selv vælge din fordeling for hver måned."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -641,6 +689,12 @@
     },
     "Add a receipt, a photo or a note to your transactions." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Føj en kvittering, et foto eller en note til dine transaktioner."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -717,6 +771,12 @@
     },
     "Amount, highest first" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløb, højeste først"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -793,6 +853,12 @@
     },
     "Amount, lowest first" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløb, laveste først"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -869,6 +935,12 @@
     },
     "An optional monthly or yearly subscription that unlocks new features in Trente. Open Trente's Settings to learn more.\nTrente+ is also a way to support me as an independent developer.\nManage or cancel your subscription anytime from your Apple Account." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et valgfrit månedligt eller årligt abonnement, der giver adgang til nye funktioner i Trente. Åbn indstillingerne i Trente for at læse mere.\nMed Trente+ støtter du også mig som uafhængig udvikler.\nDu kan altid administrere eller opsige dit abonnement via din Apple-konto."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -951,6 +1023,12 @@
     },
     "Apple Pay limit reached" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay-grænsen er nået"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1027,6 +1105,12 @@
     },
     "Bakery" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bager"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1103,6 +1187,12 @@
     },
     "Can't find your answer?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan du ikke finde svaret?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1179,6 +1269,12 @@
     },
     "Connect Trente to Apple Pay" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forbind Trente med Apple Pay"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1255,6 +1351,12 @@
     },
     "Customize how Trente looks on your Home Screen." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilpas, hvordan Trente ser ud på din hjemmeskærm."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1337,6 +1439,12 @@
     },
     "Date, newest first" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dato, nyeste først"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1413,6 +1521,12 @@
     },
     "Date, oldest first" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dato, ældste først"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1489,6 +1603,12 @@
     },
     "Day" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dag"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1565,6 +1685,12 @@
     },
     "Email the developer. I reply to every message!" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv til udvikleren. Jeg svarer på alle beskeder!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1641,6 +1767,12 @@
     },
     "How do I change the category shown in the “Category Recap” widget?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan ændrer jeg kategorien i widgetten ”Kategorioverblik”?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1717,6 +1849,12 @@
     },
     "How do I split an income across categories?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan fordeler jeg en indtægt på kategorierne?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1793,6 +1931,12 @@
     },
     "In the menu at the bottom of the screen, tap the **Automation** category, then scroll down to the **Wallet** row. Tap **Wallet – When I tap a Wallet card**." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryk på kategorien **Automatisering** i menuen nederst på skærmen, og rul ned til rækken **Wallet**. Tryk på **Wallet – Når et Wallet-kort indlæses**."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1869,6 +2013,12 @@
     },
     "Included with Trente+" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inkluderet i Trente+"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1945,6 +2095,12 @@
     },
     "Let Trente+ do the typing, and unlock new features." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lad Trente+ klare tastearbejdet, og få adgang til nye funktioner."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2021,6 +2177,12 @@
     },
     "Log every Apple Pay purchase, not just 10 a month." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrer alle Apple Pay-køb, ikke kun 10 om måneden."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2097,6 +2259,12 @@
     },
     "Rent, salary, subscriptions: added automatically, without you having to think about it." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Husleje, løn, abonnementer: tilføjes automatisk, uden at du skal tænke over det."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2173,6 +2341,12 @@
     },
     "Shows one week at a time" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser én uge ad gangen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2249,6 +2423,12 @@
     },
     "Shows the whole month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser hele måneden"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2325,6 +2505,12 @@
     },
     "Shows what you spent" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser, hvad du har brugt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2401,6 +2587,12 @@
     },
     "Shows what's left" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser, hvad der er tilbage"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2477,6 +2669,12 @@
     },
     "Tap **Get the Shortcut** below and add **Trente & Wallet** to your shortcuts." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryk på **Hent genvejen** nedenfor, og føj **Trente & Wallet** til dine genveje."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2553,6 +2751,12 @@
     },
     "Tap the **Trente & Wallet** shortcut you just added, then tap **Edit**." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryk på genvejen **Trente & Wallet**, som du lige har tilføjet, og tryk derefter på **Rediger**."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2629,6 +2833,12 @@
     },
     "The amount left is the income you've logged this month, minus your expenses.\nIf your month shows no amount left, start by adding an income: tap “Add Transaction”." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det beløb, der er tilbage, er de indtægter, du har registreret denne måned, minus dine udgifter.\nViser din måned ikke noget beløb, så start med at tilføje en indtægt: Tryk på ”Tilføj transaktion”."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2705,6 +2915,12 @@
     },
     "Title, A to Z" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel, A til Å"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2781,6 +2997,12 @@
     },
     "Title, Z to A" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel, Å til A"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2857,6 +3079,12 @@
     },
     "No Matching Transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen transaktioner fundet"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2933,6 +3161,12 @@
     },
     "No transactions match these filters." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen transaktioner passer til disse filtre."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3009,6 +3243,12 @@
     },
     "Reset" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nulstil"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3085,6 +3325,12 @@
     },
     "Reset Filters" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nulstil filtre"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3161,6 +3407,12 @@
     },
     "Automatic recurring transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatiske faste transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3237,6 +3489,12 @@
     },
     "Black" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3313,6 +3571,12 @@
     },
     "Left to Spend" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbage at bruge"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3389,6 +3653,12 @@
     },
     "Mint" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mintgrøn"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3465,6 +3735,12 @@
     },
     "Over" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3541,6 +3817,12 @@
     },
     "Overspent" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget overskredet"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3617,6 +3899,12 @@
     },
     "Paused without Trente+. Until you subscribe again, you'll be asked to confirm %@." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "På pause uden Trente+. Indtil du abonnerer igen, skal du selv bekræfte %@."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3693,6 +3981,12 @@
     },
     "Purple" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lilla"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3769,6 +4063,12 @@
     },
     "Red" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rød"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3845,6 +4145,12 @@
     },
     "Spending Split" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fordeling af udgifter"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3921,6 +4227,12 @@
     },
     "Teal" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blågrøn"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3997,6 +4309,12 @@
     },
     "Touch and hold the widget, then tap “Edit Widget”. You can then change the widget's category." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold en finger på widgetten, og tryk derefter på ”Rediger widget”. Så kan du ændre widgettens kategori."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4073,6 +4391,12 @@
     },
     "Transactions that come back every week, month or year, like rent or a salary.\nTrente reminds you to confirm the transaction on the day it's due.\nTrente+ subscribers can turn on automatic confirmation for recurring transactions." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaktioner, der kommer igen hver uge, hver måned eller hvert år, som husleje eller løn.\nTrente minder dig om at bekræfte transaktionen på den dag, den er planlagt.\nMed Trente+ kan du slå automatisk bekræftelse af faste transaktioner til."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4152,6 +4476,12 @@
     },
     "Trente is designed and maintained entirely by one person." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente er udelukkende designet og vedligeholdt af én person."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4228,6 +4558,12 @@
     },
     "Trente+ subscribers can turn on automatic confirmation for recurring transactions. You then no longer need to open Trente to add the transaction to your budget. It's handy for regular transactions you can count on, like a salary." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med Trente+ kan du slå automatisk bekræftelse af faste transaktioner til. Så behøver du ikke længere at åbne Trente for at føje transaktionen til dit budget. Det kan være praktisk ved regelmæssige transaktioner, du kan regne med, for eksempel en løn."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4304,6 +4640,12 @@
     },
     "Unlimited Apple Pay logging" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubegrænset Apple Pay-registrering"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4380,6 +4722,12 @@
     },
     "What does the “Automatic” option do?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvad gør indstillingen ”Automatisk”?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4456,6 +4804,12 @@
     },
     "When you add an income, choose how much goes to Needs, Wants and Savings and Debts. An expense always goes into a single category." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når du tilføjer en indtægt, vælger du, hvor meget der går til Behov, Ønsker og Opsparing og gæld. En udgift hører altid til én kategori."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4532,6 +4886,12 @@
     },
     "Why doesn't my month show any amount left?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvorfor viser min måned ikke, hvad der er tilbage?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4608,6 +4968,12 @@
     },
     "Creative Commons Attribution 3.0" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Attribution 3.0"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4684,6 +5050,12 @@
     },
     "From Noun Project, licensed under CC BY 3.0. Adapted for the app icon and the pig sticker." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fra Noun Project, under licensen CC BY 3.0. Tilpasset til appsymbolet og klistermærket med grisen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4760,6 +5132,12 @@
     },
     "From Noun Project, licensed under CC BY 3.0. Used for the rocket sticker." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fra Noun Project, under licensen CC BY 3.0. Brugt til klistermærket med raketten."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4836,6 +5214,12 @@
     },
     "The license of both illustrations." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licensen til begge illustrationer."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4912,6 +5296,12 @@
     },
     "Yellow" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gul"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4988,6 +5378,12 @@
     },
     "Yes. From Trente's Settings, you can add the shortcut that connects Trente to Apple Pay. Follow the instructions in Trente's Settings.\nAfter each purchase, tap the notification, add the category and save. No transaction is added without your confirmation.\nWithout a subscription, Apple Pay logging is limited to 10 expenses a month. Trente+ subscribers can add as many transactions as they like." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ja. I indstillingerne i Trente kan du tilføje den genvej, der forbinder Trente med Apple Pay. Følg vejledningen i indstillingerne i Trente.\nEfter hvert køb trykker du på notifikationen, tilføjer kategorien og gemmer. Der tilføjes ingen transaktion, uden at du har bekræftet den.\nUden abonnement er Apple Pay-registrering begrænset til 10 udgifter om måneden. Med Trente+ kan du tilføje så mange transaktioner, du vil."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5064,6 +5460,12 @@
     },
     "You have access to all Trente+ benefits. Thanks for subscribing!" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har adgang til alle fordele ved Trente+. Tak for dit abonnement!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5140,6 +5542,12 @@
     },
     "You should see two blocks in your automation. You're all set: Trente will receive your next Apple Pay purchases!" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du skulle gerne se to blokke i din automatisering. Så er du klar: Trente modtager dine næste Apple Pay-køb!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5216,6 +5624,12 @@
     },
     "You've used your %lld free Apple Pay logs this month. Get Trente+ for unlimited automatic logging." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har brugt dine %lld gratis Apple Pay-registreringer denne måned. Med Trente+ er den automatiske registrering ubegrænset."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5292,6 +5706,12 @@
     },
     "Your data belongs to you, and Trente never has access to it.\nIt's stored on your devices, and in your iCloud account if you turn on iCloud for Trente.\nTrente has no account and no server, and never connects to your bank.\nTo delete your data, turn off iCloud sync for Trente in your device's Settings, then delete the app." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dine data tilhører dig, og Trente har aldrig adgang til dem.\nDe gemmes på dine enheder og på din iCloud-konto, hvis du slår iCloud til for Trente.\nTrente har hverken konto eller server og forbinder sig aldrig til din bank.\nVil du slette dine data, skal du slå iCloud-synkronisering fra for Trente i enhedens Indstillinger og derefter slette appen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5368,6 +5788,12 @@
     },
     "“Financial Startup” by Vectors Market" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "”Financial Startup” af Vectors Market"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5444,6 +5870,12 @@
     },
     "Add what's left" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj resten"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5520,6 +5952,12 @@
     },
     "Set to zero" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sæt til nul"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5596,6 +6034,12 @@
     },
     "“Piggy Savings” by Vectors Market" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "”Piggy Savings” af Vectors Market"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5672,6 +6116,12 @@
     },
     "%@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5748,6 +6198,12 @@
     },
     "%@ - %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5830,6 +6286,12 @@
     },
     "%@ · %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5912,6 +6374,12 @@
     },
     "%@ · %lld%%" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld %%"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5994,6 +6462,12 @@
     },
     "%@ %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6076,6 +6550,12 @@
     },
     "%@ Remaining" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ tilbage"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6152,6 +6632,12 @@
     },
     "%@ starts today" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ starter i dag"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6228,6 +6714,12 @@
     },
     "%@ won't appear after today. Transactions already recorded stay." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ vises ikke efter i dag. Transaktioner, der allerede er registreret, bliver liggende."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6304,6 +6796,12 @@
     },
     "%@, %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6389,6 +6887,24 @@
     },
     "%lld active" : {
       "localizations" : {
+        "da" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktiv"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktive"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -6585,6 +7101,24 @@
     },
     "^[%lld Month](inflect: true)" : {
       "localizations" : {
+        "da" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld måned"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld måneder"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -6781,6 +7315,24 @@
     },
     "^[%lld transaction](inflect: true)" : {
       "localizations" : {
+        "da" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld transaktion"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld transaktioner"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -6980,6 +7532,12 @@
     },
     "About the Developer" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Om udvikleren"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7056,6 +7614,12 @@
     },
     "Active" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktive"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7132,6 +7696,12 @@
     },
     "Add an End Date" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj en slutdato"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7208,6 +7778,12 @@
     },
     "Add category" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj kategori"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7284,6 +7860,12 @@
     },
     "Add Image" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj billede"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7383,6 +7965,12 @@
     },
     "Add notes and images with Trente+" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj noter og billeder med Trente+"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7459,6 +8047,12 @@
     },
     "Add the Trente shortcut, then create one automation. Every card payment then shows up in Trente, ready to review." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj Trente-genvejen, og opret en automatisering. Derefter dukker hver kortbetaling op i Trente, klar til at blive gennemgået."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7535,6 +8129,12 @@
     },
     "Add Transaction" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7611,6 +8211,12 @@
     },
     "Add your first Recurring Transaction by tapping 'Add Transaction'." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj din første faste transaktion ved at trykke på ”Tilføj transaktion”."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7687,6 +8293,12 @@
     },
     "Add your first transaction by tapping 'Add Transaction'." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj din første transaktion ved at trykke på ”Tilføj transaktion”."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7763,6 +8375,12 @@
     },
     "Add your first transaction for this month by tapping 'Add Transaction'." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj din første transaktion for denne måned ved at trykke på ”Tilføj transaktion”."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7839,6 +8457,12 @@
     },
     "Add your first transactions by tapping 'New Transaction'." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj dine første transaktioner ved at trykke på ”Ny transaktion”."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7915,6 +8539,12 @@
     },
     "Add your notes here." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv dine noter her."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7991,6 +8621,12 @@
     },
     "Added automatically." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføjet automatisk."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8067,6 +8703,12 @@
     },
     "After Each Purchase" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efter hvert køb"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8143,6 +8785,12 @@
     },
     "All Months" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle måneder"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8219,6 +8867,12 @@
     },
     "All Your Worth (2005)" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Your Worth (2005)"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8295,6 +8949,12 @@
     },
     "Amount" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløb"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8371,6 +9031,12 @@
     },
     "Amount must be less than 0." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløbet skal være mindre end 0."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8447,6 +9113,12 @@
     },
     "Amount to split" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløb at fordele"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8523,6 +9195,12 @@
     },
     "An error occurred" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der opstod en fejl"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8599,6 +9277,12 @@
     },
     "App Icon" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appsymbol"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8675,6 +9359,12 @@
     },
     "App icons" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appsymboler"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8751,6 +9441,12 @@
     },
     "Apple Pay" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8827,6 +9523,12 @@
     },
     "ARCHIVED MONTHS" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ARKIVEREDE MÅNEDER"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8903,6 +9605,12 @@
     },
     "Are you sure?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er du sikker?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8979,6 +9687,12 @@
     },
     "At least one category must have a non-zero amount." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindst én kategori skal have et beløb over 0."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9055,6 +9769,12 @@
     },
     "Automatic" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisk"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9131,6 +9851,12 @@
     },
     "Back" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbage"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9207,6 +9933,12 @@
     },
     "Blue" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blå"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9283,6 +10015,12 @@
     },
     "Budget Basics" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grundlæggende om budget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9359,6 +10097,12 @@
     },
     "Budget Category" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budgetkategori"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9435,6 +10179,12 @@
     },
     "Can Trente log my Apple Pay purchases?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan Trente registrere mine Apple Pay-køb?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9511,6 +10261,12 @@
     },
     "Cancel" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuller"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9587,6 +10343,12 @@
     },
     "Cannot Save" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan ikke gemme"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9663,6 +10425,12 @@
     },
     "Categories" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorier"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9739,6 +10507,12 @@
     },
     "Category" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9815,6 +10589,12 @@
     },
     "Category Recap" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorioverblik"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9891,6 +10671,12 @@
     },
     "Change Image" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skift billede"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9967,6 +10753,12 @@
     },
     "Change or stop this schedule" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger eller stop denne gentagelse"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10043,6 +10835,12 @@
     },
     "Close" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luk"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10119,6 +10917,12 @@
     },
     "Clothes" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tøj"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10195,6 +10999,12 @@
     },
     "Continue" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsæt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10271,6 +11081,12 @@
     },
     "Copy Address" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopier adresse"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10347,6 +11163,12 @@
     },
     "Couldn't Open Mail" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mail kunne ikke åbnes"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10423,6 +11245,12 @@
     },
     "Create" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opret"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10499,6 +11327,12 @@
     },
     "Create a month to log this transaction." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opret en måned for at registrere denne transaktion."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10575,6 +11409,12 @@
     },
     "Credits" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anerkendelser"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10651,6 +11491,12 @@
     },
     "Currency" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valuta"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10727,6 +11573,12 @@
     },
     "CURRENT MONTH" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AKTUEL MÅNED"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10803,6 +11655,12 @@
     },
     "Daily Spending" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dagligt forbrug"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10879,6 +11737,12 @@
     },
     "Date" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dato"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10955,6 +11819,12 @@
     },
     "Dates" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datoer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11031,6 +11901,12 @@
     },
     "Decrease %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindsk %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11107,6 +11983,12 @@
     },
     "Delete" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slet"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11183,6 +12065,12 @@
     },
     "Delete Failed" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke slette"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11259,6 +12147,12 @@
     },
     "Delete Image" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slet billede"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11335,6 +12229,12 @@
     },
     "Delete Month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slet måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11411,6 +12311,12 @@
     },
     "Delete Recurring Transaction" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slet fast transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11487,6 +12393,12 @@
     },
     "Delete Transaction" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slet transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11563,6 +12475,12 @@
     },
     "Deselect All" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fravælg alle"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11639,6 +12557,12 @@
     },
     "Dining out, entertainment..." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurantbesøg, fritid…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11744,6 +12668,12 @@
     },
     "Done" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11820,6 +12750,12 @@
     },
     "Due %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfalder den %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11896,6 +12832,12 @@
     },
     "Due today" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfalder i dag"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11972,6 +12914,12 @@
     },
     "Due today. Open Trente to mark it as paid." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfalder i dag. Åbn Trente for at markere den som betalt."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12048,6 +12996,12 @@
     },
     "Edit" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12124,6 +13078,12 @@
     },
     "Edit Month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12200,6 +13160,12 @@
     },
     "Editing" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redigering"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12276,6 +13242,12 @@
     },
     "End Date" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slutdato"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12352,6 +13324,12 @@
     },
     "End date must be at least 7 days after start date." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slutdatoen skal ligge mindst 7 dage efter startdatoen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12428,6 +13406,12 @@
     },
     "Ended" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afsluttede"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12504,6 +13488,12 @@
     },
     "Ended on %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sluttede den %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12580,6 +13570,12 @@
     },
     "Error Loading Image" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Billedet kunne ikke indlæses"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12656,6 +13652,12 @@
     },
     "Every %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hver %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12732,6 +13734,12 @@
     },
     "Every month on the %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hver måned den %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12808,6 +13816,12 @@
     },
     "Expected This Month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forventet denne måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12884,6 +13898,12 @@
     },
     "Expected today. Open Trente to mark it as received." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forventes i dag. Åbn Trente for at markere den som modtaget."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12960,6 +13980,12 @@
     },
     "Expense" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udgift"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13036,6 +14062,24 @@
     },
     "Export ^[%lld Transaction](inflect: true)" : {
       "localizations" : {
+        "da" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Eksporter %lld transaktion"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Eksporter %lld transaktioner"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -13232,6 +14276,12 @@
     },
     "Export Failed" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke eksportere"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13308,6 +14358,12 @@
     },
     "Export Month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksporter måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13384,6 +14440,12 @@
     },
     "Export Transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksporter transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13460,6 +14522,12 @@
     },
     "Export…" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksporter…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13536,6 +14604,12 @@
     },
     "Failed to save changes: %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ændringerne kunne ikke gemmes: %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13612,6 +14686,12 @@
     },
     "Features and Data" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funktioner og data"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13688,6 +14768,12 @@
     },
     "File" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fil"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13764,6 +14850,12 @@
     },
     "Filter" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13840,6 +14932,12 @@
     },
     "Find Me Online" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find mig online"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13916,6 +15014,12 @@
     },
     "Frequency" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyppighed"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13992,6 +15096,12 @@
     },
     "Frequently Asked Questions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ofte stillede spørgsmål"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14068,6 +15178,12 @@
     },
     "From" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fra"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14144,6 +15260,12 @@
     },
     "Get a reminder when a new month starts and when a recurring transaction is due, and a notification after each Apple Pay purchase." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Få en påmindelse, når en ny måned starter, og når en fast transaktion forfalder, og en notifikation efter hvert Apple Pay-køb."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14220,6 +15342,12 @@
     },
     "Get a reminder when a new month starts and when a recurring transaction is due." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Få en påmindelse, når en ny måned starter, og når en fast transaktion forfalder."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14296,6 +15424,12 @@
     },
     "Get Started" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kom i gang"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14372,6 +15506,12 @@
     },
     "Get the Shortcut" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hent genvejen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14448,6 +15588,12 @@
     },
     "GitHub" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14524,6 +15670,12 @@
     },
     "Give a title to your transaction" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giv din transaktion en titel"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14600,6 +15752,12 @@
     },
     "Gray" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grå"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14682,6 +15840,12 @@
     },
     "Green" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grøn"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14758,6 +15922,12 @@
     },
     "Help & About" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hjælp og info"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14834,6 +16004,12 @@
     },
     "Hi, I'm Louis 👋" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hej, jeg hedder Louis 👋"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14910,6 +16086,12 @@
     },
     "How do months work in Trente?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan fungerer måneder i Trente?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14986,6 +16168,12 @@
     },
     "How would you like to split this income?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan vil du fordele denne indtægt?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15062,6 +16250,12 @@
     },
     "I'm a French 🇫🇷 developer who loves building apps. Trente is the app I wished I had to follow the 50/30/20 rule. Every suggestion helps, so feel free to write to me!" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeg er en fransk 🇫🇷 udvikler, der elsker at lave apps. Trente er den app, jeg selv manglede for at følge 50/30/20-reglen. Alle forslag hjælper, så skriv endelig til mig!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15138,6 +16332,12 @@
     },
     "iCloud isn't available for Trente. Check that iCloud is turned on for Trente in the Settings app." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud er ikke tilgængelig for Trente. Tjek, at iCloud er slået til for Trente i appen Indstillinger."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15214,6 +16414,12 @@
     },
     "iCloud Sync" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud-synkronisering"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15290,6 +16496,12 @@
     },
     "Ideal Budget" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideelt budget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15366,6 +16578,12 @@
     },
     "Illustrations" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illustrationer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15442,6 +16660,12 @@
     },
     "Images are saved next to the spreadsheet in a .zip file." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Billederne gemmes sammen med regnearket i en .zip-fil."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15518,6 +16742,12 @@
     },
     "In the Shortcuts app" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I appen Genveje"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15594,6 +16824,12 @@
     },
     "Include Images" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medtag billeder"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15670,6 +16906,12 @@
     },
     "Include Notes" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medtag noter"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15746,6 +16988,12 @@
     },
     "Income" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indtægt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15822,6 +17070,12 @@
     },
     "Income Repartition" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fordeling af indtægt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15898,6 +17152,12 @@
     },
     "Income repartition total must be greater than 0." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summen af fordelingen skal være større end 0."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15974,6 +17234,12 @@
     },
     "Income varies?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svinger din indtægt?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16050,6 +17316,12 @@
     },
     "Income/Expense" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indtægt/udgift"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16126,6 +17398,12 @@
     },
     "Increase %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Øg %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16202,6 +17480,12 @@
     },
     "It won't be added in %@. Next years aren't affected. You can't undo this." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den bliver ikke tilføjet i %@. De kommende år berøres ikke. Det kan ikke fortrydes."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16278,6 +17562,12 @@
     },
     "It won't be added that week. Next weeks aren't affected. You can't undo this." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den bliver ikke tilføjet i den uge. De kommende uger berøres ikke. Det kan ikke fortrydes."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16354,6 +17644,12 @@
     },
     "It won't be added to %@. Next months aren't affected. You can't undo this." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den bliver ikke tilføjet i %@. De kommende måneder berøres ikke. Det kan ikke fortrydes."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16430,6 +17726,12 @@
     },
     "It's added to this month's transactions." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den føjes til denne måneds transaktioner."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16506,6 +17808,12 @@
     },
     "Last 7 Days" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seneste 7 dage"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16582,6 +17890,12 @@
     },
     "Latest Transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seneste transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16658,6 +17972,12 @@
     },
     "Left" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbage"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16734,6 +18054,12 @@
     },
     "LinkedIn" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LinkedIn"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16810,6 +18136,12 @@
     },
     "Log Apple Pay purchases automatically" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrer Apple Pay-køb automatisk"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16886,6 +18218,12 @@
     },
     "Manage Subscription" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Administrer abonnement"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16962,6 +18300,12 @@
     },
     "Mark %@ as paid?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marker %@ som betalt?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17038,6 +18382,12 @@
     },
     "Mark %@ as received?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marker %@ som modtaget?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17114,6 +18464,12 @@
     },
     "Mark as Paid" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marker som betalt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17190,6 +18546,12 @@
     },
     "Mark as paid automatically" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marker automatisk som betalt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17266,6 +18628,12 @@
     },
     "Mark as Received" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marker som modtaget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17342,6 +18710,12 @@
     },
     "Mark as received automatically" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marker automatisk som modtaget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17418,6 +18792,12 @@
     },
     "Max" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maks."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17494,6 +18874,12 @@
     },
     "Midnight" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Midnat"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17570,6 +18956,12 @@
     },
     "Min" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Min."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17646,6 +19038,12 @@
     },
     "Month Details" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månedsdetaljer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17722,6 +19120,12 @@
     },
     "Month Recap" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månedsoverblik"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17798,6 +19202,12 @@
     },
     "Monthly" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månedlig"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17874,6 +19284,12 @@
     },
     "Months" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Måneder"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17950,6 +19366,12 @@
     },
     "More icons with Trente+" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flere symboler med Trente+"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18026,6 +19448,12 @@
     },
     "Needs" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behov"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18102,6 +19530,12 @@
     },
     "Never miss an expense" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glem aldrig en udgift"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18178,6 +19612,12 @@
     },
     "New Month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18254,6 +19694,12 @@
     },
     "New to Trente?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny i Trente?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18330,6 +19776,12 @@
     },
     "New Transaction" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18406,6 +19858,12 @@
     },
     "New Wallet Expense" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny Apple Pay-udgift"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18482,6 +19940,12 @@
     },
     "Next" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Næste"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18558,6 +20022,12 @@
     },
     "No currencies available to create a new month." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der er ingen tilgængelige valutaer til at oprette en ny måned."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18634,6 +20104,12 @@
     },
     "No month available" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen måned tilgængelig"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18710,6 +20186,12 @@
     },
     "No month yet" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen måned endnu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18786,6 +20268,12 @@
     },
     "No months available" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen måneder tilgængelige"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18862,6 +20350,12 @@
     },
     "No Recurring Transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen faste transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18938,6 +20432,12 @@
     },
     "No spending recorded yet." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen udgifter registreret endnu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19014,6 +20514,12 @@
     },
     "Not Implemented Yet." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke tilgængelig endnu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19090,6 +20596,12 @@
     },
     "Not Now" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke nu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19166,6 +20678,12 @@
     },
     "Not Syncing" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkroniserer ikke"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19242,6 +20760,12 @@
     },
     "Notes and images" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noter og billeder"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19318,6 +20842,12 @@
     },
     "Nothing else expected this month." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der forventes ikke mere denne måned."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19394,6 +20924,12 @@
     },
     "Notification Settings" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifikationsindstillinger"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19470,6 +21006,12 @@
     },
     "Notifications" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifikationer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19546,6 +21088,12 @@
     },
     "now" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19622,6 +21170,12 @@
     },
     "Off" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fra"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19698,6 +21252,12 @@
     },
     "OK" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19774,6 +21334,12 @@
     },
     "On" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Til"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19850,6 +21416,12 @@
     },
     "On the due date, %@ is added to that month's transactions." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "På forfaldsdagen føjes %@ til månedens transaktioner."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19949,6 +21521,12 @@
     },
     "Open Settings" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn Indstillinger"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20025,6 +21603,12 @@
     },
     "Open Shortcut Again" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn genvejen igen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20101,6 +21685,12 @@
     },
     "Orange" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orange"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20177,6 +21767,12 @@
     },
     "Over Budget" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over budget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20253,6 +21849,12 @@
     },
     "Overdue" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfalden"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20329,6 +21931,12 @@
     },
     "Overdue since %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfalden siden den %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20405,6 +22013,12 @@
     },
     "Page %lld of %lld" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Side %1$lld af %2$lld"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20487,6 +22101,12 @@
     },
     "Paid" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betalt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20563,6 +22183,12 @@
     },
     "Photo" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20639,6 +22265,12 @@
     },
     "Pink" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lyserød"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20715,6 +22347,12 @@
     },
     "Please open this window from a month dashboard." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn dette vindue fra en måneds oversigt."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20791,6 +22429,12 @@
     },
     "Popularized by Elizabeth Warren and Amelia Warren Tyagi." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjort kendt af Elizabeth Warren og Amelia Warren Tyagi."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20873,6 +22517,12 @@
     },
     "Prepares an expense from a Wallet payment so you can review it in Trente." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forbereder en udgift ud fra en Wallet-betaling, så du kan gennemgå den i Trente."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20949,6 +22599,12 @@
     },
     "Preparing New Month..." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forbereder ny måned…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21025,6 +22681,12 @@
     },
     "Previous" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forrige"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21101,6 +22763,12 @@
     },
     "Privacy Policy" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privatlivspolitik"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21177,6 +22845,12 @@
     },
     "Rate on the App Store" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedøm i App Store"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21253,6 +22927,12 @@
     },
     "Received" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modtaget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21329,6 +23009,12 @@
     },
     "Recurrence Details" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detaljer om gentagelse"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21405,6 +23091,12 @@
     },
     "RECURRING" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FASTE"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21481,6 +23173,12 @@
     },
     "Recurring transaction" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21557,6 +23255,12 @@
     },
     "Recurring transaction title" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel på fast transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21633,6 +23337,12 @@
     },
     "Recurring Transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faste transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21709,6 +23419,12 @@
     },
     "Remaining" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbage"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21785,6 +23501,12 @@
     },
     "Reminder Time" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidspunkt for påmindelse"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21861,6 +23583,12 @@
     },
     "Reminders" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påmindelser"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21937,6 +23665,12 @@
     },
     "Reminders paused" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påmindelser på pause"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22013,6 +23747,12 @@
     },
     "Remove End Date" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern slutdato"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22089,6 +23829,12 @@
     },
     "Rent" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Husleje"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22165,6 +23911,12 @@
     },
     "Rent, groceries, bills..." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Husleje, dagligvarer, regninger…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22241,6 +23993,12 @@
     },
     "Repartition" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fordeling"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22317,6 +24075,12 @@
     },
     "Repartition total does not match the amount to split." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summen af fordelingen stemmer ikke med det beløb, der skal fordeles."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22393,6 +24157,12 @@
     },
     "Requires Trente+" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kræver Trente+"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22469,6 +24239,12 @@
     },
     "Retry" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prøv igen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22545,6 +24321,12 @@
     },
     "Salary" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Løn"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22621,6 +24403,12 @@
     },
     "Save" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gem"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22697,6 +24485,12 @@
     },
     "Save this month's transactions and their images in a .zip file, with a spreadsheet (.csv) that opens in Numbers, Excel or Google Sheets." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gem denne måneds transaktioner og deres billeder i en .zip-fil med et regneark (.csv), der kan åbnes i Numbers, Excel eller Google Sheets."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22773,6 +24567,12 @@
     },
     "Save this month's transactions as a spreadsheet file (.csv) that opens in Numbers, Excel or Google Sheets." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gem denne måneds transaktioner som en regnearksfil (.csv), der kan åbnes i Numbers, Excel eller Google Sheets."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22849,6 +24649,12 @@
     },
     "Savings" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opsparing"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22925,6 +24731,12 @@
     },
     "Savings and Debts" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opsparing og gæld"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23001,6 +24813,12 @@
     },
     "Savings, debt, retirement..." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opsparing, gæld, pension…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23083,6 +24901,12 @@
     },
     "Schedule" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gentagelse"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23159,6 +24983,12 @@
     },
     "Search by title, amount, date, category…" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søg efter titel, beløb, dato, kategori…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23235,6 +25065,12 @@
     },
     "Search currencies" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søg efter valuta"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23311,6 +25147,12 @@
     },
     "Search questions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søg i spørgsmål"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23387,6 +25229,12 @@
     },
     "See all expected" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se alle forventede"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23463,6 +25311,12 @@
     },
     "See all transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se alle transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23539,6 +25393,12 @@
     },
     "See Plans" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se abonnementer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23615,6 +25475,12 @@
     },
     "See your remaining budget for the current month in a specific category, or for all categories in the medium widget.\n\nTo select a category, hold the widget." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se, hvad der er tilbage af budgettet i den aktuelle måned i en bestemt kategori eller for alle kategorier i den mellemstore widget.\n\nHold en finger på widgetten for at vælge en kategori."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23691,6 +25557,12 @@
     },
     "See your remaining budget for the current month, as well as your spending on larger widgets.\nQuickly see how you're doing, and easily log new transactions.\n\nSee examples below." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se, hvad der er tilbage af budgettet i den aktuelle måned, og se dine udgifter på større widgets.\nSe hurtigt, hvordan det går, og registrer nemt nye transaktioner.\n\nSe eksempler nedenfor."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23767,6 +25639,12 @@
     },
     "Select a category for the expense." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vælg en kategori til udgiften."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23843,6 +25721,12 @@
     },
     "Select a category for the widget." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vælg en kategori til widgetten."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23919,6 +25803,12 @@
     },
     "Select a category for this transaction." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vælg en kategori til denne transaktion."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23995,6 +25885,12 @@
     },
     "Select a month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vælg en måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24071,6 +25967,12 @@
     },
     "Select All" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vælg alle"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24147,6 +26049,12 @@
     },
     "Select Category" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vælg kategori"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24223,6 +26131,12 @@
     },
     "Send Feedback" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send feedback"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24299,6 +26213,12 @@
     },
     "Send Me an Email" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send mig en e-mail"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24375,6 +26295,12 @@
     },
     "Set Up Later" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indstil senere"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24451,6 +26377,12 @@
     },
     "Settings" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indstillinger"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24527,6 +26459,12 @@
     },
     "Share error details" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Del fejloplysninger"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24603,6 +26541,12 @@
     },
     "Show Image" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis billede"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24679,6 +26623,12 @@
     },
     "Sign in to iCloud in the Settings app to keep your months and transactions on all your devices. You can export them as a spreadsheet anytime." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log ind på iCloud i appen Indstillinger for at have dine måneder og transaktioner på alle dine enheder. Du kan altid eksportere dem som et regneark."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24761,6 +26711,12 @@
     },
     "Skip" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring over"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24837,6 +26793,12 @@
     },
     "Skip “%@” for %@?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring ”%1$@” over i %2$@?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24919,6 +26881,12 @@
     },
     "Skip “%@” in %@?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring ”%1$@” over i %2$@?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24995,6 +26963,12 @@
     },
     "Skip “%@” on %@?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring ”%1$@” over den %2$@?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25146,6 +27120,12 @@
     },
     "Skip for %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring over i %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25222,6 +27202,12 @@
     },
     "Skip in %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring over i %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25298,6 +27284,12 @@
     },
     "Skip on %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring over den %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25374,6 +27366,12 @@
     },
     "Skip This Month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring denne måned over"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25450,6 +27448,12 @@
     },
     "Skip This Week" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring denne uge over"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25526,6 +27530,12 @@
     },
     "Skip This Year" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring dette år over"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25602,6 +27612,12 @@
     },
     "Sort" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorter"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25678,6 +27694,12 @@
     },
     "Sort by" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorter efter"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25754,6 +27776,12 @@
     },
     "Spent" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brugt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25830,6 +27858,12 @@
     },
     "Split your budget" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fordel dit budget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25906,6 +27940,12 @@
     },
     "Split your take-home income into Needs, Wants and Savings and Debts. Trente sorts every transaction into one of them." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Del din indkomst efter skat op i Behov, Ønsker og Opsparing og gæld. Trente placerer hver transaktion i en af dem."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26011,6 +28051,12 @@
     },
     "Start a New Month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start en ny måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26087,6 +28133,12 @@
     },
     "Start Date" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startdato"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26163,6 +28215,12 @@
     },
     "Start date cannot be in the past." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startdatoen må ikke ligge i fortiden."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26239,6 +28297,12 @@
     },
     "Start Tracking" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start budgettet"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26315,6 +28379,12 @@
     },
     "Start tracking your budget with Trente by opening the app!" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åbn appen for at begynde at holde styr på dit budget med Trente!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26391,6 +28461,12 @@
     },
     "Start tracking your budget." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begynd at holde styr på dit budget."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26467,6 +28543,12 @@
     },
     "Status" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26543,6 +28625,12 @@
     },
     "Step %lld of %lld" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trin %1$lld af %2$lld"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26625,6 +28713,12 @@
     },
     "Stop Failed" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke stoppe"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26701,6 +28795,12 @@
     },
     "Stop future %@ transactions?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop kommende transaktioner for ”%@”?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26777,6 +28877,12 @@
     },
     "Stop Future Transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop kommende transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26876,6 +28982,12 @@
     },
     "Sum of displayed transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sum af viste transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26952,6 +29064,12 @@
     },
     "Supermarket" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supermarked"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27028,6 +29146,12 @@
     },
     "Support an indie developer" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Støt en uafhængig udvikler"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27104,6 +29228,12 @@
     },
     "Synced %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkroniseret %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27180,6 +29310,12 @@
     },
     "Take control of your budget." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Få styr på dit budget."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27256,6 +29392,12 @@
     },
     "Tap here to log it in Trente" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryk her for at registrere den i Trente"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27332,6 +29474,12 @@
     },
     "Terms of Use" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brugsvilkår"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27408,6 +29556,12 @@
     },
     "TestFlight Testers" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight-testere"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27484,6 +29638,12 @@
     },
     "Thanks" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tak"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27560,6 +29720,12 @@
     },
     "Thanks to everyone who tested Trente on TestFlight." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tak til alle, der har testet Trente på TestFlight."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27636,6 +29802,12 @@
     },
     "The 50/30/20 Rule" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50/30/20-reglen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27712,6 +29884,12 @@
     },
     "The 50/30/20 rule in 30 seconds" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50/30/20-reglen på 30 sekunder"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27788,6 +29966,12 @@
     },
     "The image could not be loaded. Please try again." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Billedet kunne ikke indlæses. Prøv igen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27864,6 +30048,12 @@
     },
     "These come from your Apple Pay automation in the Shortcuts app. To stop them, turn off or delete that automation." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De kommer fra din Apple Pay-automatisering i appen Genveje. Vil du stoppe dem, skal du slå automatiseringen fra eller slette den."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27940,6 +30130,12 @@
     },
     "Think of it as the money you're free to spend each month, once taxes are taken care of." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det er de penge, du frit kan bruge hver måned, når skatten er betalt."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28022,6 +30218,12 @@
     },
     "This action cannot be undone." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne handling kan ikke fortrydes."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28098,6 +30300,12 @@
     },
     "This action cannot be undone. All transactions associated with this month will also be deleted." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne handling kan ikke fortrydes. Alle transaktioner i denne måned bliver også slettet."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28174,6 +30382,12 @@
     },
     "This Month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne måned"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28250,6 +30464,12 @@
     },
     "This month has no transactions to export yet." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne måned har endnu ingen transaktioner at eksportere."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28326,6 +30546,12 @@
     },
     "Title" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28402,6 +30628,12 @@
     },
     "Title cannot be empty." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titlen må ikke være tom."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28478,6 +30710,12 @@
     },
     "To" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Til"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28554,6 +30792,12 @@
     },
     "To export several months or choose what to include, go to Settings › Export Transactions." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gå til Indstillinger › Eksporter transaktioner for at eksportere flere måneder eller vælge indholdet."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28630,6 +30874,12 @@
     },
     "Total" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I alt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28706,6 +30956,12 @@
     },
     "Transaction" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28782,6 +31038,12 @@
     },
     "Transaction Notes" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noter til transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28858,6 +31120,12 @@
     },
     "Transaction title" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel på transaktion"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28934,6 +31202,12 @@
     },
     "Transactions" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaktioner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29010,6 +31284,12 @@
     },
     "Trente" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29086,6 +31366,12 @@
     },
     "Trente %@" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29162,6 +31448,12 @@
     },
     "Trente All Months" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente alle måneder"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29238,6 +31530,12 @@
     },
     "Trente Feedback" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback om Trente"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29314,6 +31612,12 @@
     },
     "Trente Help" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hjælp til Trente"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29390,6 +31694,12 @@
     },
     "Trente is the successor of TrenteVingt (2023)." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente er efterfølgeren til TrenteVingt (2023)."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29466,6 +31776,12 @@
     },
     "Trente only receives the merchant name and the amount. Never your card details." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente modtager kun butikkens navn og beløbet. Aldrig dine kortoplysninger."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29542,6 +31858,12 @@
     },
     "Trente reminds you at this time when a new month starts and when a recurring transaction is due." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente minder dig om det på dette tidspunkt, når en ny måned starter, og når en fast transaktion forfalder."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29641,6 +31963,12 @@
     },
     "Trente reminds you at this time when a new month starts." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente minder dig om det på dette tidspunkt, når en ny måned starter."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29717,6 +32045,12 @@
     },
     "Trente reminds you at this time when a recurring transaction is due." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente minder dig om det på dette tidspunkt, når en fast transaktion forfalder."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29793,6 +32127,12 @@
     },
     "Trente splits your budget into Needs, Wants and Savings, so you always know what's left this month." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente deler dit budget op i Behov, Ønsker og Opsparing, så du altid ved, hvad der er tilbage denne måned."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29892,6 +32232,12 @@
     },
     "Trente tells you when a new month starts and when a recurring payment like rent is due, so you can mark it as paid right from the notification." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente giver dig besked, når en ny måned starter, og når en fast betaling som husleje forfalder, så du kan markere den som betalt direkte fra notifikationen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29968,6 +32314,12 @@
     },
     "Trente tells you when a new month starts and when a recurring payment like rent is due. Once Apple Pay is set up, it also sends you a notification after each purchase so you can log it in one go." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente giver dig besked, når en ny måned starter, og når en fast betaling som husleje forfalder. Når Apple Pay er sat op, får du også en notifikation efter hvert køb, så du kan registrere det med det samme."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30067,6 +32419,12 @@
     },
     "Trente+" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30143,6 +32501,12 @@
     },
     "TrenteVingt" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteVingt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30219,6 +32583,12 @@
     },
     "Turn on \"Recurring transaction\" when you add a transaction." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå ”Fast transaktion” til, når du tilføjer en transaktion."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30295,6 +32665,12 @@
     },
     "Turn on a reminder to choose when Trente notifies you." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå en påmindelse til for at vælge, hvornår Trente giver dig besked."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30371,6 +32747,12 @@
     },
     "Turn On Notifications" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå notifikationer til"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30447,6 +32829,12 @@
     },
     "Type" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30523,6 +32911,12 @@
     },
     "Under Budget" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inden for budget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30599,6 +32993,12 @@
     },
     "Use your best estimate. Log extra income as it comes in, and adjust next month's budget." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brug dit bedste skøn. Registrer ekstra indtægt, når den kommer, og tilpas næste måneds budget."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30675,6 +33075,12 @@
     },
     "Wants" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ønsker"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30751,6 +33157,12 @@
     },
     "We couldn't create the month. Please try again." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Måneden kunne ikke oprettes. Prøv igen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30827,6 +33239,12 @@
     },
     "We couldn't create the transaction. Please try again." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaktionen kunne ikke oprettes. Prøv igen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30903,6 +33321,12 @@
     },
     "We couldn't add your income" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din indtægt kunne ikke tilføjes"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30979,6 +33403,12 @@
     },
     "We couldn't save your month" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din måned kunne ikke gemmes"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31055,6 +33485,54 @@
     },
     "We found your data in iCloud: ^[%lld month](inflect: true) and ^[%lld transaction](inflect: true). It's all here, ready to pick up where you left off." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi har fundet dine data i iCloud: %#@months@ og %#@transactions@. Det hele ligger klar, så du kan fortsætte, hvor du slap."
+          },
+          "substitutions" : {
+            "months" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg måned"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg måneder"
+                    }
+                  }
+                }
+              }
+            },
+            "transactions" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg transaktion"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg transaktioner"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31557,6 +34035,12 @@
     },
     "We start you on the 50/30/20 rule. Adjust it until it fits your life, you can change it every month." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi starter med 50/30/20-reglen. Tilpas den, så den passer til dit liv. Du kan ændre den hver måned."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31633,6 +34117,12 @@
     },
     "Website" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Websted"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31709,6 +34199,12 @@
     },
     "Weekly" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugentlig"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31785,6 +34281,12 @@
     },
     "Welcome back!" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velkommen tilbage!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31861,6 +34363,12 @@
     },
     "What are recurring transactions?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvad er faste transaktioner?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31937,6 +34445,12 @@
     },
     "What is the 50/30/20 rule?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvad er 50/30/20-reglen?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32013,6 +34527,12 @@
     },
     "What is Trente+?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvad er Trente+?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32089,6 +34609,12 @@
     },
     "What to Export" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvad vil du eksportere?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32165,6 +34691,12 @@
     },
     "Where is my data stored?" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvor gemmes mine data?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32264,6 +34796,12 @@
     },
     "Yearly" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Årlig"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32340,6 +34878,12 @@
     },
     "You can write to %@ from any email app." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kan skrive til %@ fra enhver e-mailapp."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32416,6 +34960,12 @@
     },
     "You haven't opened Trente on this iPad since %@, so reminders here are paused. Open the app anytime to turn them back on." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke åbnet Trente på denne iPad siden den %@, så påmindelserne her er sat på pause. Åbn appen når som helst for at slå dem til igen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32498,6 +35048,12 @@
     },
     "You haven't opened Trente on this iPhone since %@, so reminders here are paused. Open the app anytime to turn them back on." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke åbnet Trente på denne iPhone siden den %@, så påmindelserne her er sat på pause. Åbn appen når som helst for at slå dem til igen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32580,6 +35136,12 @@
     },
     "You haven't opened Trente on this Mac since %@, so reminders here are paused. Open the app anytime to turn them back on." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke åbnet Trente på denne Mac siden den %@, så påmindelserne her er sat på pause. Åbn appen når som helst for at slå dem til igen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32662,6 +35224,12 @@
     },
     "You will select categories for this income in the next steps." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du vælger kategorier for denne indtægt i de næste trin."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32738,6 +35306,12 @@
     },
     "You're all set!" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Så er du klar!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32814,6 +35388,12 @@
     },
     "Your budget couldn't be opened" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dit budget kunne ikke åbnes"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32890,6 +35470,12 @@
     },
     "Your Data" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dine data"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32966,6 +35552,12 @@
     },
     "Your data has not been deleted. Try updating Trente, and share the error details if the problem persists." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dine data er ikke blevet slettet. Prøv at opdatere Trente, og del fejloplysningerne, hvis problemet fortsætter."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33042,6 +35634,12 @@
     },
     "Your first month starts today. Log expenses as you go and Trente shows you what's left." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din første måned starter i dag. Registrer dine udgifter løbende, så viser Trente, hvad der er tilbage."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33118,6 +35716,12 @@
     },
     "Your iCloud storage is full, so new changes stay on this device. Free up space in the Settings app to sync again." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din iCloud-lagringsplads er fuld, så nye ændringer bliver på denne enhed. Frigør plads i appen Indstillinger for at synkronisere igen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33194,6 +35798,12 @@
     },
     "Your monthly budget" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dit månedsbudget"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33270,6 +35880,12 @@
     },
     "Your months and transactions sync through your iCloud account on all your devices. Trente has no account and no server. You can export them as a spreadsheet anytime." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dine måneder og transaktioner synkroniseres via din iCloud-konto på alle dine enheder. Trente har hverken konto eller server. Du kan altid eksportere dem som et regneark."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33352,6 +35968,12 @@
     },
     "Your new month is ready, with the same budget as last month. Open Trente to see it." : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din nye måned er klar, med samme budget som sidste måned. Åbn Trente for at se den."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33428,6 +36050,12 @@
     },
     "Zoom in" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom ind"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33504,6 +36132,12 @@
     },
     "Zoom out" : {
       "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom ud"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
