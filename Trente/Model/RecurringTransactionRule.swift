@@ -103,7 +103,7 @@ extension RecurringTransactionRule {
 }
 
 extension Int {
-    private static let ordinalDayLanguages: Set<String> = ["en", "de"]
+    private static let ordinalDayLanguages: Set<String> = ["en", "de", "sv", "da", "nb"]
 
     func dayOfMonthString(localization: String = Bundle.main.preferredLocalizations.first ?? "en") -> String {
         let locale = Locale(identifier: localization)
