@@ -35,20 +35,25 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
 
     nonisolated func userNotificationCenter(
         _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse
-    ) async {
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         let userInfo = response.notification.request.content.userInfo
         let pendingTransactionID = (userInfo[WalletNotificationService.pendingTransactionIDKey] as? String)
             .flatMap(UUID.init(uuidString:))
         let opensPaywall = userInfo[WalletNotificationService.opensPaywallKey] as? Bool == true
         let recurringAction = RecurringNotificationAction(rawValue: response.actionIdentifier)
         let recurringPayload = RecurringNotificationPayload(userInfo: userInfo)
-        await respond(
-            to: recurringAction,
-            payload: recurringPayload,
-            pendingTransactionID: pendingTransactionID,
-            opensPaywall: opensPaywall
-        )
+        nonisolated(unsafe) let completeOnMainThread = completionHandler
+        Task { @MainActor in
+            respond(
+                to: recurringAction,
+                payload: recurringPayload,
+                pendingTransactionID: pendingTransactionID,
+                opensPaywall: opensPaywall
+            )
+            completeOnMainThread()
+        }
     }
 
     private func respond(
