@@ -16600,6 +16600,28 @@
         }
       }
     },
+    "Delete %lld Months" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Delete %lld Month"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Delete %lld Months"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Delete %lld Recurring Transactions" : {
       "localizations" : {
         "en" : {
@@ -26792,6 +26814,7 @@
         }
       }
     },
+    "Other months" : {},
     "Over Budget" : {
       "localizations" : {
         "da" : {
@@ -35670,6 +35693,7 @@
         }
       }
     },
+    "Their notes and images go too." : {},
     "These come from your Apple Pay automation in the Shortcuts app. To stop them, turn off or delete that automation." : {
       "localizations" : {
         "da" : {

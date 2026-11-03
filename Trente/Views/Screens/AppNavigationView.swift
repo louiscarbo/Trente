@@ -24,6 +24,7 @@ struct AppNavigationView: View {
     ) private var months: [Month]
 
     @State private var selection: SidebarSelection?
+    @State private var deleteAfterLeaving: (() -> Void)?
     @State private var preferredCompactColumn: NavigationSplitViewColumn = .sidebar
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
     @State private var paywallRouter = PaywallRouter.shared
@@ -36,7 +37,8 @@ struct AppNavigationView: View {
             SidebarView(
                 months: months,
                 selection: sidebarSelection,
-                showsSelection: showsSidebarSelection
+                showsSelection: showsSidebarSelection,
+                onDeleteMonths: delete
             )
         } detail: {
             NavigationStack {
@@ -150,9 +152,13 @@ struct AppNavigationView: View {
         switch destination {
         case .month(let month):
             MonthView(month: month) {
-                leave(month)
+                leave([month])
             }
             .id(month)
+            .onDisappear {
+                deleteAfterLeaving?()
+                deleteAfterLeaving = nil
+            }
         case .recurring:
             if let currency = months.first?.currency {
                 RecurringTransactionsListView(currency: currency)
@@ -170,8 +176,18 @@ struct AppNavigationView: View {
         )
     }
 
-    private func leave(_ deletedMonth: Month) {
-        selection = selection?.leaving([deletedMonth], for: months.first { $0 != deletedMonth })
+    private func leave(_ deletedMonths: [Month]) {
+        selection = selection?.leaving(deletedMonths, for: months.first { !deletedMonths.contains($0) })
+    }
+
+    private func delete(_ deletedMonths: [Month], with deleteMonths: @escaping () -> Void) {
+        guard showsSidebarSelection, case .month(let shownMonth) = selection, deletedMonths.contains(shownMonth) else {
+            leave(deletedMonths)
+            deleteMonths()
+            return
+        }
+        deleteAfterLeaving = deleteMonths
+        leave(deletedMonths)
     }
 
     private func show(_ destination: SidebarSelection) {

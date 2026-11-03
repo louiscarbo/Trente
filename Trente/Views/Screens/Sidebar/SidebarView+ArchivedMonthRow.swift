@@ -14,6 +14,7 @@ extension SidebarView {
         let isSelected: Bool
         let isFirst: Bool
         let isLast: Bool
+        var isChecked: Bool?
         let onSelect: () -> Void
 
         private var rowShape: UnevenRoundedRectangle {
@@ -29,12 +30,20 @@ extension SidebarView {
         var body: some View {
             Button(action: onSelect) {
                 HStack {
+                    if let isChecked {
+                        Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
+                            .imageScale(.large)
+                            .foregroundStyle(isChecked ? Color.accentColor : Color.secondary)
+                            .accessibilityHidden(true)
+                    }
                     Text(name)
                     Spacer()
                     Text(isOverspent ? "Over Budget" : "Under Budget")
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(Color.secondary)
-                        .accessibilityHidden(true)
+                    if isChecked == nil {
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(Color.secondary)
+                            .accessibilityHidden(true)
+                    }
                 }
                 .padding()
             }
@@ -45,7 +54,7 @@ extension SidebarView {
                         .stroke(.primary.opacity(0.5), lineWidth: 3)
                 }
             }
-            .accessibilityAddTraits(isSelected ? .isSelected : [])
+            .accessibilityAddTraits(isSelected || isChecked == true ? .isSelected : [])
 
             if !isLast {
                 Divider()

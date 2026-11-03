@@ -19,11 +19,17 @@ enum SidebarSelection: Hashable {
 }
 
 struct SidebarView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.transactionActions) private var transactionActions
+
     let months: [Month]
     @Binding var selection: SidebarSelection?
     let showsSelection: Bool
+    let onDeleteMonths: ([Month], @escaping () -> Void) -> Void
 
     @Query private var recurringRules: [RecurringTransactionRule]
+
+    @State private var monthSelection = RowSelection<Month.ID>()
 
     #if os(iOS)
     @State private var isShowingSettings = false
@@ -54,10 +60,12 @@ struct SidebarView: View {
                             selectedMonth.wrappedValue = currentMonth
                         }
                     }
+                    .inactive(isSelectingMonths)
                 }
 
                 NewMonthButton()
                     .padding(.vertical)
+                    .inactive(isSelectingMonths)
 
                 if !months.isEmpty {
                     Text("RECURRING")
@@ -71,26 +79,46 @@ struct SidebarView: View {
                     ) {
                         selection = .recurring
                     }
+                    .inactive(isSelectingMonths)
                     .padding(.bottom)
                 }
 
                 if months.count > 1 {
-                    Text("ARCHIVED MONTHS")
+                    HStack {
+                        Text("ARCHIVED MONTHS")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .accessibilityAddTraits(.isHeader)
+                        Spacer()
+                        Button(isSelectingMonths ? "Done" : "Select") {
+                            withAnimation {
+                                if isSelectingMonths {
+                                    monthSelection.end()
+                                } else {
+                                    monthSelection.begin()
+                                }
+                            }
+                        }
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .padding(.horizontal)
-                        .accessibilityAddTraits(.isHeader)
+                        .buttonStyle(.borderless)
+                    }
+                    .padding(.horizontal)
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(archivedMonths) { month in
                             ArchivedMonthRow(
                                 name: month.name,
                                 isOverspent: month.overSpent,
-                                isSelected: showsSelection && selectedMonth.wrappedValue == month,
+                                isSelected: showsSelection && !isSelectingMonths && selectedMonth.wrappedValue == month,
                                 isFirst: month == archivedMonths.first,
-                                isLast: month == archivedMonths.last
+                                isLast: month == archivedMonths.last,
+                                isChecked: isSelectingMonths ? monthSelection.selectedIDs.contains(month.id) : nil
                             ) {
-                                withAnimation {
-                                    selectedMonth.wrappedValue = month
+                                if isSelectingMonths {
+                                    monthSelection.toggle(month.id)
+                                } else {
+                                    withAnimation {
+                                        selectedMonth.wrappedValue = month
+                                    }
                                 }
                             }
                         }
@@ -110,6 +138,13 @@ struct SidebarView: View {
             #endif
             .padding()
         }
+        .batchDeleteBar(
+            isShown: isSelectingMonths,
+            selectedCount: selectedMonths.count,
+            deleteTitle: String(localized: "Delete \(selectedMonths.count) Months"),
+            reviewSections: monthReviewSections,
+            onDelete: deleteSelectedMonths
+        )
         #if os(macOS)
         .navigationSplitViewColumnWidth(min: 200, ideal: 300, max: 350)
         #endif
@@ -149,6 +184,38 @@ struct SidebarView: View {
         months.dropFirst()
     }
 
+    private var isSelectingMonths: Bool {
+        monthSelection.isActive && !archivedMonths.isEmpty
+    }
+
+    private var selectedMonths: [Month] {
+        monthSelection.selected(in: Array(archivedMonths))
+    }
+
+    private func monthReviewSections() -> [BatchDeleteReviewSheet.Section] {
+        [
+            .willBeDeleted(
+                selectedMonths.map { month in .init(title: month.name, transactionCount: month.transactionGroups.count) },
+                note: String(localized: "Their notes and images go too.")
+            ),
+            .stays([
+                .init(title: String(localized: "Recurring Transactions"), detail: "\(recurringRules.count { !$0.hasEnded })"),
+                .init(title: String(localized: "Other months"), detail: "\(months.count - selectedMonths.count)")
+            ])
+        ]
+    }
+
+    private func deleteSelectedMonths() {
+        let monthsToDelete = selectedMonths
+        onDeleteMonths(monthsToDelete) {
+            transactionActions.deleteBatch {
+                try BatchDeleteService.shared.delete(months: monthsToDelete, in: modelContext)
+            } onSuccess: {
+                monthSelection.end()
+            }
+        }
+    }
+
     private var selectedMonth: Binding<Month?> {
         Binding(
             get: {
@@ -157,5 +224,12 @@ struct SidebarView: View {
             },
             set: { selection = $0.map(SidebarSelection.month) }
         )
+    }
+}
+
+private extension View {
+    func inactive(_ isInactive: Bool) -> some View {
+        disabled(isInactive)
+            .opacity(isInactive ? 0.4 : 1)
     }
 }
