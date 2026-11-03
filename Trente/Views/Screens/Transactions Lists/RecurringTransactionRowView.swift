@@ -31,40 +31,22 @@ struct RecurringTransactionRowView: View {
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .swipeActions(edge: .leading) {
-            Button {
+        .rowActions(
+            leading: RowAction(
+                title: occurrence.isIncome ? String(localized: "Received") : String(localized: "Paid"),
+                systemImage: "checkmark.circle",
+                tint: .green
+            ) {
                 showConfirmConfirmation = true
-            } label: {
-                Label(
-                    occurrence.isIncome ? String(localized: "Received") : String(localized: "Paid"),
-                    systemImage: "checkmark.circle"
-                )
-            }
-            .tint(.green)
-        }
-        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-            Button {
+            },
+            trailing: RowAction(
+                title: String(localized: "Skip"),
+                systemImage: "forward.end",
+                tint: .gray
+            ) {
                 showSkipConfirmation = true
-            } label: {
-                Label("Skip", systemImage: "forward.end")
             }
-            .tint(.gray)
-        }
-        .contextMenu {
-            Button {
-                showConfirmConfirmation = true
-            } label: {
-                Label(
-                    occurrence.isIncome ? String(localized: "Received") : String(localized: "Paid"),
-                    systemImage: "checkmark.circle"
-                )
-            }
-            Button {
-                showSkipConfirmation = true
-            } label: {
-                Label("Skip", systemImage: "forward.end")
-            }
-        }
+        )
         .confirmationDialog(
             confirmConfirmationTitle,
             isPresented: $showConfirmConfirmation,
@@ -85,7 +67,6 @@ struct RecurringTransactionRowView: View {
         ) {
             transactionActions.skip(occurrence, in: modelContext)
         }
-        .clipShape(Rectangle().inset(by: -3))
     }
 
     private var confirmConfirmationTitle: String {
