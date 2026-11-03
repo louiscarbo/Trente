@@ -401,6 +401,12 @@
 				"pt-PT",
 				"en-GB",
 				"es-419",
+				ja,
+				el,
+				sv,
+				da,
+				nb,
+				"fr-CA",
 			);
 			mainGroup = 7B2847442DAFE05300EEF97C;
 			minimizedProjectReferenceProxies = 1;
