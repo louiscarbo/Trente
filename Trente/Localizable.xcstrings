@@ -12,6 +12,12 @@
             "value" : "    Du hast noch nicht begonnen, dein Budget zu verfolgen. Öffne die Trente-App, um loszulegen!"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "    Δεν έχετε ξεκινήσει ακόμα να παρακολουθείτε τον προϋπολογισμό σας. Ανοίξτε το Trente για να ξεκινήσετε!"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68,6 +74,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ von %2$@ übrig"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απομένουν %1$@ από %2$@"
           }
         },
         "en" : {
@@ -134,6 +146,12 @@
             "value" : "%1$@ von %2$@ ausgegeben"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ξοδεύτηκαν %1$@ από %2$@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -198,6 +216,12 @@
             "value" : "Noch %@ aufzuteilen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Έχετε ακόμα %@ να μοιράσετε"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -254,6 +278,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld von %2$lld kostenlosen Apple Pay-Erfassungen diesen Monat"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld από %2$lld δωρεάν καταγραφές Apple Pay αυτόν τον μήνα"
           }
         },
         "en" : {
@@ -323,6 +353,12 @@
             "value" : "- %@ übrig"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "- %@ απομένουν"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -379,6 +415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ein Monat beginnt an einem Datum deiner Wahl und dauert einen Monat, zum Beispiel vom 25. Oktober bis 24. November, passend zu deinem Gehaltseingang."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ένας μήνας ξεκινά την ημερομηνία που επιλέγετε και διαρκεί έναν μήνα, για παράδειγμα από τις 25 Οκτωβρίου έως τις 24 Νοεμβρίου, για να ακολουθεί τον ρυθμό του μισθού σας."
           }
         },
         "en-GB" : {
@@ -445,6 +487,12 @@
             "value" : "Eine einfache Art, dein Nettoeinkommen aufzuteilen: etwa 50 % für Bedürfnisse (Miete, Lebensmittel, Rechnungen), 30 % für Wünsche (Restaurants, Freizeit) und 20 % für Sparen und Schuldenabbau. Trente ordnet jede Transaktion einer dieser drei Kategorien zu. Du kannst für jeden Monat deine eigene Aufteilung wählen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ένας απλός τρόπος να μοιράσετε το καθαρό σας εισόδημα: περίπου 50% για τις ανάγκες (ενοίκιο, σούπερ μάρκετ, λογαριασμοί), 30% για τις επιθυμίες (φαγητό έξω, διασκέδαση) και 20% για την αποταμίευση και την αποπληρωμή χρεών. Το Trente κατατάσσει κάθε συναλλαγή σε μία από αυτές τις τρεις κατηγορίες. Μπορείτε να επιλέξετε τη δική σας κατανομή για κάθε μήνα."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -501,6 +549,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Füge deinen Transaktionen einen Beleg, ein Foto oder eine Notiz hinzu."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέστε μια απόδειξη, μια φωτογραφία ή μια σημείωση στις συναλλαγές σας."
           }
         },
         "es" : {
@@ -561,6 +615,12 @@
             "value" : "Betrag, höchster zuerst"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ποσό, από το μεγαλύτερο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -619,6 +679,12 @@
             "value" : "Betrag, niedrigster zuerst"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ποσό, από το μικρότερο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -675,6 +741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ein optionales Monats- oder Jahresabo, das neue Funktionen in Trente freischaltet. Mehr dazu in den Einstellungen von Trente.\nMit Trente+ unterstützt du mich außerdem als unabhängigen Entwickler.\nDu kannst dein Abo jederzeit in deinem Apple Account verwalten oder kündigen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μια προαιρετική μηνιαία ή ετήσια συνδρομή που ξεκλειδώνει νέες δυνατότητες στο Trente. Ανοίξτε τις Ρυθμίσεις του Trente για να μάθετε περισσότερα.\nΤο Trente+ είναι επίσης ένας τρόπος να με στηρίξετε ως ανεξάρτητο προγραμματιστή.\nΔιαχειριστείτε ή ακυρώστε τη συνδρομή σας όποτε θέλετε από τον Λογαριασμό σας Apple."
           }
         },
         "en-GB" : {
@@ -741,6 +813,12 @@
             "value" : "Apple Pay-Limit erreicht"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Φτάσατε το όριο του Apple Pay"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -797,6 +875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bäckerei"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Φούρνος"
           }
         },
         "es" : {
@@ -857,6 +941,12 @@
             "value" : "Keine Antwort gefunden?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν βρίσκετε την απάντηση;"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -915,6 +1005,12 @@
             "value" : "Trente mit Apple Pay verbinden"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σύνδεση του Trente με το Apple Pay"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -971,6 +1067,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passe das Aussehen von Trente auf deinem Home-Bildschirm an."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσαρμόστε την εμφάνιση του Trente στην οθόνη Αφετηρίας σας."
           }
         },
         "en-GB" : {
@@ -1037,6 +1139,12 @@
             "value" : "Datum, neueste zuerst"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ημερομηνία, από τη νεότερη"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1093,6 +1201,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Datum, älteste zuerst"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ημερομηνία, από την παλαιότερη"
           }
         },
         "es" : {
@@ -1153,6 +1267,12 @@
             "value" : "Tag"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ημέρα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1209,6 +1329,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schreib dem Entwickler eine E-Mail. Ich antworte auf jede Nachricht!"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Στείλτε email στον προγραμματιστή. Απαντώ σε κάθε μήνυμα!"
           }
         },
         "es" : {
@@ -1269,6 +1395,12 @@
             "value" : "Wie ändere ich die Kategorie im Widget „Kategorieübersicht“?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πώς αλλάζω την κατηγορία που εμφανίζεται στο widget «Σύνοψη κατηγορίας»;"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1325,6 +1457,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wie teile ich ein Einkommen auf die Kategorien auf?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πώς μοιράζω ένα έσοδο στις κατηγορίες;"
           }
         },
         "es" : {
@@ -1385,6 +1523,12 @@
             "value" : "Tippe im Menü unten auf dem Bildschirm auf die Kategorie **Automation** und scrolle dann zur Zeile **Wallet**. Tippe auf die Zeile **Wallet – Wenn ich eine Wallet-Karte verwende**."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Στο μενού στο κάτω μέρος της οθόνης, αγγίξτε την κατηγορία **Αυτοματοποίηση** και μετά κατεβείτε μέχρι τη σειρά **Πορτοφόλι**. Αγγίξτε **Πορτοφόλι – Όταν αγγίζω μια κάρτα Πορτοφολιού**."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1441,6 +1585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enthalten in Trente+"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Περιλαμβάνεται στο Trente+"
           }
         },
         "es" : {
@@ -1501,6 +1651,12 @@
             "value" : "Trente+ führt für dich Buch und schaltet neue Funktionen frei."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αφήστε το Trente+ να γράφει για εσάς και ξεκλειδώστε νέες δυνατότητες."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1557,6 +1713,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erfasse jede Apple Pay-Zahlung, nicht nur 10 pro Monat."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Καταγράψτε κάθε αγορά με Apple Pay, όχι μόνο 10 τον μήνα."
           }
         },
         "es" : {
@@ -1617,6 +1779,12 @@
             "value" : "Miete, Gehalt, Abos: automatisch hinzugefügt, ohne dass du daran denken musst."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ενοίκιο, μισθός, συνδρομές: προστίθενται αυτόματα, χωρίς να χρειάζεται να το σκέφτεστε."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1673,6 +1841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeigt jeweils eine Woche"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εμφανίζει μία εβδομάδα κάθε φορά"
           }
         },
         "es" : {
@@ -1733,6 +1907,12 @@
             "value" : "Zeigt den ganzen Monat"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εμφανίζει ολόκληρο τον μήνα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1789,6 +1969,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeigt, was du ausgegeben hast"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εμφανίζει τι ξοδέψατε"
           }
         },
         "es" : {
@@ -1849,6 +2035,12 @@
             "value" : "Zeigt, was übrig ist"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εμφανίζει τι απομένει"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1905,6 +2097,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tippe unten auf **Kurzbefehl laden** und füge **Trente & Wallet** zu deinen Kurzbefehlen hinzu."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αγγίξτε **Λήψη συντόμευσης** παρακάτω και προσθέστε το **Trente & Wallet** στις συντομεύσεις σας."
           }
         },
         "es" : {
@@ -1965,6 +2163,12 @@
             "value" : "Tippe auf den Kurzbefehl **Trente & Wallet**, den du gerade hinzugefügt hast, und dann auf **Bearbeiten**."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αγγίξτε τη συντόμευση **Trente & Wallet** που μόλις προσθέσατε και μετά αγγίξτε **Επεξεργασία**."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2021,6 +2225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Der übrige Betrag ist das Einkommen, das du diesen Monat erfasst hast, minus deine Ausgaben.\nWenn dein Monat keinen übrigen Betrag anzeigt, füge zuerst ein Einkommen hinzu: Tippe auf „Transaktion hinzufügen“."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το ποσό που απομένει είναι τα έσοδα που καταγράψατε αυτόν τον μήνα μείον τα έξοδά σας.\nΑν ο μήνας σας δεν δείχνει κανένα ποσό να απομένει, ξεκινήστε προσθέτοντας ένα έσοδο: αγγίξτε «Προσθήκη συναλλαγής»."
           }
         },
         "es" : {
@@ -2081,6 +2291,12 @@
             "value" : "Titel, A bis Z"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τίτλος, Α έως Ω"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2137,6 +2353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titel, Z bis A"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τίτλος, Ω έως Α"
           }
         },
         "es" : {
@@ -2197,6 +2419,12 @@
             "value" : "Keine passenden Transaktionen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Καμία αντίστοιχη συναλλαγή"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2253,6 +2481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine Transaktion passt zu diesen Filtern."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Καμία συναλλαγή δεν ταιριάζει με αυτά τα φίλτρα."
           }
         },
         "es" : {
@@ -2313,6 +2547,12 @@
             "value" : "Zurücksetzen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επαναφορά"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2369,6 +2609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filter zurücksetzen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επαναφορά φίλτρων"
           }
         },
         "es" : {
@@ -2429,6 +2675,12 @@
             "value" : "Automatische wiederkehrende Transaktionen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτόματες επαναλαμβανόμενες συναλλαγές"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2485,6 +2737,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schwarz"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μαύρο"
           }
         },
         "es" : {
@@ -2545,6 +2803,12 @@
             "value" : "Noch verfügbar"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απομένει για έξοδα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2601,6 +2865,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mint"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μέντα"
           }
         },
         "es" : {
@@ -2661,6 +2931,12 @@
             "value" : "Zu viel"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παραπάνω"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2717,6 +2993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Budget überschritten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Υπέρβαση"
           }
         },
         "es" : {
@@ -2777,6 +3059,12 @@
             "value" : "Pausiert ohne Trente+. Bis du wieder abonnierst, bestätigst du %@ selbst."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σε παύση χωρίς το Trente+. Μέχρι να εγγραφείτε ξανά, το Trente θα σας ζητά να επιβεβαιώνετε τη συναλλαγή «%@»."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2833,6 +3121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lila"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μοβ"
           }
         },
         "es" : {
@@ -2893,6 +3187,12 @@
             "value" : "Rot"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κόκκινο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2949,6 +3249,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ausgabenverteilung"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κατανομή εξόδων"
           }
         },
         "es" : {
@@ -3009,6 +3315,12 @@
             "value" : "Blaugrün"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Γαλαζοπράσινο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3067,6 +3379,12 @@
             "value" : "Lege den Finger auf das Widget und tippe dann auf „Widget bearbeiten“. Dort kannst du die Kategorie ändern."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αγγίξτε παρατεταμένα το widget και μετά αγγίξτε «Επεξεργασία widget». Στη συνέχεια μπορείτε να αλλάξετε την κατηγορία του."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3123,6 +3441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transaktionen, die jede Woche, jeden Monat oder jedes Jahr wiederkommen, wie Miete oder Gehalt.\nTrente erinnert dich am Fälligkeitstag daran, die Transaktion zu bestätigen.\nMit Trente+ kannst du die automatische Bestätigung wiederkehrender Transaktionen aktivieren."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συναλλαγές που επαναλαμβάνονται κάθε εβδομάδα, κάθε μήνα ή κάθε χρόνο, όπως ένα ενοίκιο ή ένας μισθός.\nΤο Trente σάς υπενθυμίζει να επιβεβαιώσετε τη συναλλαγή την ημέρα που προβλέπεται.\nΟι συνδρομητές του Trente+ μπορούν να ενεργοποιήσουν την αυτόματη επιβεβαίωση των επαναλαμβανόμενων συναλλαγών."
           }
         },
         "es" : {
@@ -3186,6 +3510,12 @@
             "value" : "Trente wird komplett von einer einzigen Person gestaltet und gepflegt."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente το σχεδιάζει και το συντηρεί εξ ολοκλήρου ένας άνθρωπος."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3242,6 +3572,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mit Trente+ kannst du die automatische Bestätigung wiederkehrender Transaktionen aktivieren. Dann musst du Trente nicht mehr öffnen, um die Transaktion deinem Budget hinzuzufügen. Praktisch für regelmäßige Transaktionen, auf die du dich verlassen kannst, wie ein Gehalt."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Οι συνδρομητές του Trente+ μπορούν να ενεργοποιήσουν την αυτόματη επιβεβαίωση των επαναλαμβανόμενων συναλλαγών. Έτσι δεν χρειάζεται πλέον να ανοίγετε το Trente για να προσθέσετε τη συναλλαγή στον προϋπολογισμό σας. Βολεύει για τακτικές συναλλαγές που είναι σίγουρες, όπως ένας μισθός."
           }
         },
         "es" : {
@@ -3302,6 +3638,12 @@
             "value" : "Unbegrenzte Apple Pay-Erfassung"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απεριόριστη καταγραφή Apple Pay"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3358,6 +3700,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Was bewirkt die Option „Automatisch“?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τι κάνει η επιλογή «Αυτόματα»;"
           }
         },
         "es" : {
@@ -3418,6 +3766,12 @@
             "value" : "Wenn du ein Einkommen hinzufügst, wählst du, wie viel in Bedürfnisse, Wünsche und Sparen & Schulden fließt. Eine Ausgabe gehört immer zu genau einer Kategorie."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όταν προσθέτετε ένα έσοδο, επιλέγετε πόσα πάνε στις κατηγορίες Ανάγκες, Επιθυμίες και Αποταμίευση και χρέη. Ένα έξοδο πάει πάντα σε μία μόνο κατηγορία."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3474,6 +3828,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Warum zeigt mein Monat keinen übrigen Betrag an?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Γιατί ο μήνας μου δεν δείχνει κανένα ποσό να απομένει;"
           }
         },
         "es" : {
@@ -3534,6 +3894,12 @@
             "value" : "Creative Commons Namensnennung 3.0"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Attribution 3.0"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3590,6 +3956,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Von Noun Project, lizenziert unter CC BY 3.0. Angepasst für das App-Symbol und den Schweinchen-Sticker."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Από το Noun Project, με άδεια CC BY 3.0. Προσαρμοσμένο για το εικονίδιο της εφαρμογής και το αυτοκόλλητο με το γουρουνάκι."
           }
         },
         "es" : {
@@ -3650,6 +4022,12 @@
             "value" : "Von Noun Project, lizenziert unter CC BY 3.0. Verwendet für den Raketen-Sticker."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Από το Noun Project, με άδεια CC BY 3.0. Χρησιμοποιείται στο αυτοκόλλητο με τον πύραυλο."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3706,6 +4084,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die Lizenz beider Illustrationen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η άδεια και των δύο εικονογραφήσεων."
           }
         },
         "es" : {
@@ -3766,6 +4150,12 @@
             "value" : "Gelb"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κίτρινο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3822,6 +4212,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ja. In den Einstellungen von Trente kannst du den Kurzbefehl hinzufügen, der Trente mit Apple Pay verbindet. Folge den Anweisungen in den Einstellungen von Trente.\nTippe nach jedem Kauf auf die Mitteilung, wähle die Kategorie und sichere. Ohne deine Bestätigung wird keine Transaktion hinzugefügt.\nOhne Abo ist die Apple Pay-Erfassung auf 10 Ausgaben pro Monat begrenzt. Mit Trente+ kannst du so viele Transaktionen hinzufügen, wie du möchtest."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ναι. Από τις Ρυθμίσεις του Trente, μπορείτε να προσθέσετε τη συντόμευση που συνδέει το Trente με το Apple Pay. Ακολουθήστε τις οδηγίες στις Ρυθμίσεις του Trente.\nΜετά από κάθε αγορά, αγγίξτε τη γνωστοποίηση, προσθέστε την κατηγορία και αποθηκεύστε. Καμία συναλλαγή δεν προστίθεται χωρίς την επιβεβαίωσή σας.\nΧωρίς συνδρομή, η καταγραφή Apple Pay περιορίζεται σε 10 έξοδα τον μήνα. Οι συνδρομητές του Trente+ μπορούν να προσθέτουν όσες συναλλαγές θέλουν."
           }
         },
         "es" : {
@@ -3882,6 +4278,12 @@
             "value" : "Du hast Zugriff auf alle Trente+-Vorteile. Danke für dein Abo!"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Έχετε πρόσβαση σε όλα τα πλεονεκτήματα του Trente+. Ευχαριστώ για τη συνδρομή σας!"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3938,6 +4340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du solltest zwei Blöcke in deiner Automation sehen. Fertig: Trente erhält ab jetzt deine Apple Pay-Zahlungen!"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Θα πρέπει να βλέπετε δύο μπλοκ στην αυτοματοποίησή σας. Έτοιμο: το Trente θα λαμβάνει τις επόμενες αγορές σας με Apple Pay!"
           }
         },
         "es" : {
@@ -3998,6 +4406,12 @@
             "value" : "Du hast deine %lld kostenlosen Apple Pay-Erfassungen für diesen Monat aufgebraucht. Mit Trente+ erfasst du alle Zahlungen automatisch und unbegrenzt."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρησιμοποιήσατε και τις %lld δωρεάν καταγραφές Apple Pay αυτού του μήνα. Αποκτήστε το Trente+ για απεριόριστη αυτόματη καταγραφή."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4054,6 +4468,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deine Daten gehören dir, und Trente hat nie Zugriff darauf.\nSie werden auf deinen Geräten gespeichert und in deinem iCloud-Account, wenn du iCloud für Trente aktivierst.\nTrente hat kein Konto und keinen Server und verbindet sich nie mit deiner Bank.\nUm deine Daten zu löschen, deaktiviere die iCloud-Synchronisierung für Trente in den Einstellungen deines Geräts und lösche dann die App."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τα δεδομένα σας ανήκουν σε εσάς και το Trente δεν έχει ποτέ πρόσβαση σε αυτά.\nΑποθηκεύονται στις συσκευές σας και στον λογαριασμό σας iCloud, αν ενεργοποιήσετε το iCloud για το Trente.\nΤο Trente δεν έχει ούτε λογαριασμό ούτε διακομιστή και δεν συνδέεται ποτέ με την τράπεζά σας.\nΓια να διαγράψετε τα δεδομένα σας, απενεργοποιήστε τον συγχρονισμό iCloud για το Trente στις Ρυθμίσεις της συσκευής και μετά διαγράψτε την εφαρμογή."
           }
         },
         "es" : {
@@ -4114,6 +4534,12 @@
             "value" : "„Financial Startup“ von Vectors Market"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Financial Startup» από Vectors Market"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4170,6 +4596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rest hinzufügen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθήκη υπολοίπου"
           }
         },
         "es" : {
@@ -4230,6 +4662,12 @@
             "value" : "Auf null setzen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μηδενισμός"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4286,6 +4724,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "„Piggy Savings“ von Vectors Market"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Piggy Savings» από Vectors Market"
           }
         },
         "es" : {
@@ -4346,6 +4790,12 @@
             "value" : "%@"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4399,6 +4849,12 @@
     "%@ - %@" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ - %2$@"
@@ -4468,6 +4924,12 @@
             "value" : "%1$@ · %2$@"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -4532,6 +4994,12 @@
             "value" : "%1$@ · %2$lld %%"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld%%"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -4591,6 +5059,12 @@
     "%@ %@" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ %2$@"
@@ -4660,6 +5134,12 @@
             "value" : "%@ übrig"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ απομένουν"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4716,6 +5196,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ beginnt heute"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ξεκινά σήμερα: %@"
           }
         },
         "es" : {
@@ -4776,6 +5262,12 @@
             "value" : "%@ erscheint ab morgen nicht mehr. Bereits erfasste Transaktionen bleiben erhalten."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το «%@» δεν θα εμφανίζεται μετά τη σημερινή ημέρα. Οι συναλλαγές που έχουν ήδη καταγραφεί παραμένουν."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4829,6 +5321,12 @@
     "%@, %@" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, %2$@"
@@ -4908,6 +5406,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld aktiv"
+                }
+              }
+            }
+          }
+        },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld ενεργή"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld ενεργές"
                 }
               }
             }
@@ -5067,6 +5583,24 @@
             }
           }
         },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld μήνας"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld μήνες"
+                }
+              }
+            }
+          }
+        },
         "es" : {
           "variations" : {
             "plural" : {
@@ -5221,6 +5755,24 @@
             }
           }
         },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld συναλλαγή"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld συναλλαγές"
+                }
+              }
+            }
+          }
+        },
         "es" : {
           "variations" : {
             "plural" : {
@@ -5366,6 +5918,12 @@
             "value" : "Über den Entwickler"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σχετικά με τον προγραμματιστή"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5422,6 +5980,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktiv"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ενεργές"
           }
         },
         "es" : {
@@ -5482,6 +6046,12 @@
             "value" : "Enddatum hinzufügen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθήκη ημερομηνίας λήξης"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5540,6 +6110,12 @@
             "value" : "Kategorie hinzufügen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθήκη κατηγορίας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5596,6 +6172,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bild hinzufügen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθήκη εικόνας"
           }
         },
         "es" : {
@@ -5679,6 +6261,12 @@
             "value" : "Notizen und Bilder mit Trente+ hinzufügen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέστε σημειώσεις και εικόνες με το Trente+"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5735,6 +6323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Füge den Trente-Kurzbefehl hinzu und erstelle eine Automation. Danach erscheint jede Kartenzahlung in Trente, bereit zur Prüfung."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέστε τη συντόμευση του Trente και μετά δημιουργήστε μία αυτοματοποίηση. Από εκεί και πέρα, κάθε πληρωμή με κάρτα εμφανίζεται στο Trente, έτοιμη για έλεγχο."
           }
         },
         "es" : {
@@ -5795,6 +6389,12 @@
             "value" : "Transaktion hinzufügen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθήκη συναλλαγής"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5851,6 +6451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Füge deine erste wiederkehrende Transaktion hinzu, indem du auf „Transaktion hinzufügen“ tippst."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέστε την πρώτη σας επαναλαμβανόμενη συναλλαγή αγγίζοντας «Προσθήκη συναλλαγής»."
           }
         },
         "es" : {
@@ -5911,6 +6517,12 @@
             "value" : "Füge deine erste Transaktion hinzu, indem du auf „Transaktion hinzufügen“ tippst."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέστε την πρώτη σας συναλλαγή αγγίζοντας «Προσθήκη συναλλαγής»."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5967,6 +6579,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Füge deine erste Transaktion für diesen Monat hinzu, indem du auf „Transaktion hinzufügen“ tippst."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέστε την πρώτη συναλλαγή του μήνα αγγίζοντας «Προσθήκη συναλλαγής»."
           }
         },
         "es" : {
@@ -6027,6 +6645,12 @@
             "value" : "Füge deine ersten Transaktionen hinzu, indem du auf „Neue Transaktion“ tippst."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέστε τις πρώτες σας συναλλαγές αγγίζοντας «Νέα συναλλαγή»."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6083,6 +6707,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Füge hier deine Notizen hinzu."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέστε εδώ τις σημειώσεις σας."
           }
         },
         "es" : {
@@ -6143,6 +6773,12 @@
             "value" : "Automatisch hinzugefügt."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προστέθηκε αυτόματα."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6199,6 +6835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nach jedem Kauf"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μετά από κάθε αγορά"
           }
         },
         "es" : {
@@ -6259,6 +6901,12 @@
             "value" : "Alle Monate"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όλοι οι μήνες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6312,6 +6960,12 @@
     "All Your Worth (2005)" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Your Worth (2005)"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "All Your Worth (2005)"
@@ -6375,6 +7029,12 @@
             "value" : "Betrag"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ποσό"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6431,6 +7091,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Der Betrag muss kleiner als 0 sein."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το ποσό πρέπει να είναι μικρότερο από 0."
           }
         },
         "es" : {
@@ -6491,6 +7157,12 @@
             "value" : "Aufzuteilender Betrag"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ποσό προς κατανομή"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6547,6 +7219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ein Fehler ist aufgetreten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παρουσιάστηκε σφάλμα"
           }
         },
         "es" : {
@@ -6607,6 +7285,12 @@
             "value" : "App-Symbol"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εικονίδιο εφαρμογής"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6665,6 +7349,12 @@
             "value" : "App-Symbole"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εικονίδια εφαρμογής"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6718,6 +7408,12 @@
     "Apple Pay" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Pay"
@@ -6781,6 +7477,12 @@
             "value" : "ARCHIVIERTE MONATE"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αρχειοθετημένοι μήνες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6837,6 +7539,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bist du sicher?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Θέλετε σίγουρα να συνεχίσετε;"
           }
         },
         "es" : {
@@ -6897,6 +7605,12 @@
             "value" : "Mindestens eine Kategorie muss einen Betrag ungleich null haben."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τουλάχιστον μία κατηγορία πρέπει να έχει ποσό διαφορετικό από το μηδέν."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6953,6 +7667,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatisch"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτόματα"
           }
         },
         "es" : {
@@ -7013,6 +7733,12 @@
             "value" : "Zurück"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πίσω"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7069,6 +7795,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blau"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μπλε"
           }
         },
         "es" : {
@@ -7129,6 +7861,12 @@
             "value" : "Budget-Grundlagen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Βασικά του προϋπολογισμού"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7185,6 +7923,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Budgetkategorie"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κατηγορία προϋπολογισμού"
           }
         },
         "es" : {
@@ -7245,6 +7989,12 @@
             "value" : "Kann Trente meine Apple Pay-Käufe erfassen?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μπορεί το Trente να καταγράφει τις αγορές μου με Apple Pay;"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7301,6 +8051,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abbrechen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ακύρωση"
           }
         },
         "es" : {
@@ -7361,6 +8117,12 @@
             "value" : "Sichern nicht möglich"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αδυναμία αποθήκευσης"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7417,6 +8179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kategorien"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κατηγορίες"
           }
         },
         "es" : {
@@ -7477,6 +8245,12 @@
             "value" : "Kategorie"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κατηγορία"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7533,6 +8307,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kategorieübersicht"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σύνοψη κατηγορίας"
           }
         },
         "es" : {
@@ -7593,6 +8373,12 @@
             "value" : "Bild ändern"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αλλαγή εικόνας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7649,6 +8435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diese Wiederholung ändern oder beenden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αλλαγή ή διακοπή της επανάληψης"
           }
         },
         "es" : {
@@ -7709,6 +8501,12 @@
             "value" : "Schließen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κλείσιμο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7765,6 +8563,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kleidung"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ρούχα"
           }
         },
         "es" : {
@@ -7825,6 +8629,12 @@
             "value" : "Weiter"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συνέχεια"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7881,6 +8691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adresse kopieren"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αντιγραφή διεύθυνσης"
           }
         },
         "es" : {
@@ -7941,6 +8757,12 @@
             "value" : "Mail konnte nicht geöffnet werden"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ήταν δυνατό το άνοιγμα του Mail"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7997,6 +8819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erstellen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δημιουργία"
           }
         },
         "es" : {
@@ -8057,6 +8885,12 @@
             "value" : "Erstelle einen Monat, um diese Transaktion zu erfassen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δημιουργήστε έναν μήνα για να καταγράψετε αυτή τη συναλλαγή."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8113,6 +8947,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Credits"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συντελεστές"
           }
         },
         "es" : {
@@ -8173,6 +9013,12 @@
             "value" : "Währung"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Νόμισμα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8229,6 +9075,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AKTUELLER MONAT"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τρέχων μήνας"
           }
         },
         "es" : {
@@ -8289,6 +9141,12 @@
             "value" : "Tägliche Ausgaben"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ημερήσια έξοδα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8345,6 +9203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Datum"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ημερομηνία"
           }
         },
         "es" : {
@@ -8405,6 +9269,12 @@
             "value" : "Zeitraum"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ημερομηνίες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8461,6 +9331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ verringern"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μείωση: %@"
           }
         },
         "es" : {
@@ -8521,6 +9397,12 @@
             "value" : "Löschen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγραφή"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8577,6 +9459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Löschen fehlgeschlagen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η διαγραφή απέτυχε"
           }
         },
         "es" : {
@@ -8637,6 +9525,12 @@
             "value" : "Bild löschen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγραφή εικόνας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8693,6 +9587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Monat löschen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγραφή μήνα"
           }
         },
         "es" : {
@@ -8753,6 +9653,12 @@
             "value" : "Wiederkehrende Transaktion löschen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγραφή επαναλαμβανόμενης συναλλαγής"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8809,6 +9715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transaktion löschen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγραφή συναλλαγής"
           }
         },
         "es" : {
@@ -8869,6 +9781,12 @@
             "value" : "Auswahl aufheben"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποεπιλογή όλων"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8925,6 +9843,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restaurant, Hobbys ..."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Φαγητό έξω, διασκέδαση..."
           }
         },
         "en-GB" : {
@@ -9014,6 +9938,12 @@
             "value" : "Fertig"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τέλος"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9070,6 +10000,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fällig am %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λήγει: %@"
           }
         },
         "es" : {
@@ -9130,6 +10066,12 @@
             "value" : "Heute fällig"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λήγει σήμερα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9186,6 +10128,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Heute fällig. Öffne Trente, um sie als bezahlt zu markieren."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λήγει σήμερα. Ανοίξτε το Trente για να το επισημάνετε ως πληρωμένο."
           }
         },
         "es" : {
@@ -9246,6 +10194,12 @@
             "value" : "Bearbeiten"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επεξεργασία"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9302,6 +10256,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Monat bearbeiten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επεξεργασία μήνα"
           }
         },
         "es" : {
@@ -9362,6 +10322,12 @@
             "value" : "Bearbeiten"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επεξεργασία"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9418,6 +10384,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enddatum"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ημερομηνία λήξης"
           }
         },
         "es" : {
@@ -9478,6 +10450,12 @@
             "value" : "Das Enddatum muss mindestens 7 Tage nach dem Startdatum liegen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η ημερομηνία λήξης πρέπει να είναι τουλάχιστον 7 ημέρες μετά την ημερομηνία έναρξης."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9534,6 +10512,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beendet"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ολοκληρωμένες"
           }
         },
         "es" : {
@@ -9594,6 +10578,12 @@
             "value" : "Beendet am %@"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ολοκληρώθηκε: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9650,6 +10640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fehler beim Laden des Bildes"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σφάλμα φόρτωσης εικόνας"
           }
         },
         "es" : {
@@ -9710,6 +10706,12 @@
             "value" : "Jeden %@"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κάθε %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9766,6 +10768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jeden Monat am %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κάθε μήνα στις %@"
           }
         },
         "es" : {
@@ -9826,6 +10834,12 @@
             "value" : "Diesen Monat erwartet"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τι αναμένεται"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9884,6 +10898,12 @@
             "value" : "Heute erwartet. Öffne Trente, um sie als erhalten zu markieren."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αναμένεται σήμερα. Ανοίξτε το Trente για να το επισημάνετε ως εισπραγμένο."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9940,6 +10960,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ausgabe"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Έξοδο"
           }
         },
         "es" : {
@@ -10007,6 +11033,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld Transaktionen exportieren"
+                }
+              }
+            }
+          }
+        },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Εξαγωγή %lld συναλλαγής"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Εξαγωγή %lld συναλλαγών"
                 }
               }
             }
@@ -10154,6 +11198,12 @@
             "value" : "Export fehlgeschlagen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η εξαγωγή απέτυχε"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10210,6 +11260,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Monat exportieren"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εξαγωγή μήνα"
           }
         },
         "es" : {
@@ -10270,6 +11326,12 @@
             "value" : "Transaktionen exportieren"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εξαγωγή συναλλαγών"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10326,6 +11388,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exportieren …"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εξαγωγή…"
           }
         },
         "es" : {
@@ -10386,6 +11454,12 @@
             "value" : "Änderungen konnten nicht gesichert werden: %@"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ήταν δυνατή η αποθήκευση των αλλαγών: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10442,6 +11516,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Funktionen und Daten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δυνατότητες και δεδομένα"
           }
         },
         "es" : {
@@ -10502,6 +11582,12 @@
             "value" : "Datei"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αρχείο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10558,6 +11644,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtern"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Φιλτράρισμα"
           }
         },
         "es" : {
@@ -10618,6 +11710,12 @@
             "value" : "Finde mich online"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Βρείτε με στο διαδίκτυο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10674,6 +11772,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Häufigkeit"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συχνότητα"
           }
         },
         "es" : {
@@ -10734,6 +11838,12 @@
             "value" : "Häufige Fragen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συχνές ερωτήσεις"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10790,6 +11900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Von"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Από"
           }
         },
         "es" : {
@@ -10850,6 +11966,12 @@
             "value" : "Erhalte eine Erinnerung, wenn ein neuer Monat beginnt und eine wiederkehrende Transaktion fällig ist, sowie eine Mitteilung nach jedem Apple Pay-Kauf."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λάβετε μια υπενθύμιση όταν ξεκινά νέος μήνας και όταν λήγει μια επαναλαμβανόμενη συναλλαγή, και μια γνωστοποίηση μετά από κάθε αγορά με Apple Pay."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10906,6 +12028,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erhalte eine Erinnerung, wenn ein neuer Monat beginnt und eine wiederkehrende Transaktion fällig ist."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λάβετε μια υπενθύμιση όταν ξεκινά νέος μήνας και όταν λήγει μια επαναλαμβανόμενη συναλλαγή."
           }
         },
         "es" : {
@@ -10966,6 +12094,12 @@
             "value" : "Los geht’s"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ξεκινήστε"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11024,6 +12158,12 @@
             "value" : "Kurzbefehl laden"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λήψη συντόμευσης"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11077,6 +12217,12 @@
     "GitHub" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub"
@@ -11140,6 +12286,12 @@
             "value" : "Gib deiner Transaktion einen Titel"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δώστε έναν τίτλο στη συναλλαγή σας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11196,6 +12348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grau"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Γκρι"
           }
         },
         "en-GB" : {
@@ -11262,6 +12420,12 @@
             "value" : "Grün"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πράσινο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11318,6 +12482,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hilfe & Info"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Βοήθεια και πληροφορίες"
           }
         },
         "es" : {
@@ -11378,6 +12548,12 @@
             "value" : "Hallo, ich bin Louis 👋"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Γεια σας, είμαι ο Louis 👋"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11434,6 +12610,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wie funktionieren Monate in Trente?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πώς λειτουργούν οι μήνες στο Trente;"
           }
         },
         "es" : {
@@ -11494,6 +12676,12 @@
             "value" : "Wie möchtest du diese Einnahme aufteilen?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πώς θέλετε να μοιράσετε αυτό το έσοδο;"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11550,6 +12738,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ich bin ein französischer 🇫🇷 Entwickler und liebe es, Apps zu bauen. Trente ist die App, die ich mir gewünscht hätte, um der 50/30/20-Regel zu folgen. Jeder Vorschlag hilft, also schreib mir gerne!"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Είμαι Γάλλος 🇫🇷 προγραμματιστής και μου αρέσει να φτιάχνω εφαρμογές. Το Trente είναι η εφαρμογή που ήθελα να έχω για να ακολουθώ τον κανόνα 50/30/20. Κάθε πρόταση βοηθά, οπότε γράψτε μου όποτε θέλετε!"
           }
         },
         "es" : {
@@ -11610,6 +12804,12 @@
             "value" : "iCloud ist für Trente nicht verfügbar. Prüfe, ob iCloud für Trente in der App „Einstellungen“ aktiviert ist."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το iCloud δεν είναι διαθέσιμο για το Trente. Βεβαιωθείτε ότι το iCloud είναι ενεργοποιημένο για το Trente στην εφαρμογή Ρυθμίσεις."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11666,6 +12866,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud-Synchronisierung"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συγχρονισμός iCloud"
           }
         },
         "es" : {
@@ -11726,6 +12932,12 @@
             "value" : "Idealbudget"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ιδανικός προϋπολογισμός"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11782,6 +12994,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Illustrationen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εικονογραφήσεις"
           }
         },
         "es" : {
@@ -11842,6 +13060,12 @@
             "value" : "Bilder werden zusammen mit der Tabelle in einer .zip-Datei gesichert."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Οι εικόνες αποθηκεύονται μαζί με το υπολογιστικό φύλλο σε ένα αρχείο .zip."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11898,6 +13122,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "In der App „Kurzbefehle“"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Στην εφαρμογή Συντομεύσεις"
           }
         },
         "es" : {
@@ -11958,6 +13188,12 @@
             "value" : "Bilder einschließen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συμπερίληψη εικόνων"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12014,6 +13250,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notizen einschließen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συμπερίληψη σημειώσεων"
           }
         },
         "es" : {
@@ -12074,6 +13316,12 @@
             "value" : "Einnahme"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Έσοδο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12130,6 +13378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aufteilung der Einnahme"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κατανομή εσόδου"
           }
         },
         "es" : {
@@ -12190,6 +13444,12 @@
             "value" : "Die Summe der Aufteilung muss größer als 0 sein."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το σύνολο της κατανομής του εσόδου πρέπει να είναι μεγαλύτερο από 0."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12246,6 +13506,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schwankendes Einkommen?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τα έσοδά σας αλλάζουν;"
           }
         },
         "es" : {
@@ -12306,6 +13572,12 @@
             "value" : "Einnahme/Ausgabe"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Έσοδο/Έξοδο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12362,6 +13634,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ erhöhen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αύξηση: %@"
           }
         },
         "es" : {
@@ -12422,6 +13700,12 @@
             "value" : "Sie wird im Jahr %@ nicht hinzugefügt. Die folgenden Jahre sind nicht betroffen. Das kann nicht widerrufen werden."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν θα προστεθεί το %@. Τα επόμενα χρόνια δεν επηρεάζονται. Δεν μπορείτε να το αναιρέσετε."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12478,6 +13762,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sie wird in dieser Woche nicht hinzugefügt. Die folgenden Wochen sind nicht betroffen. Das kann nicht widerrufen werden."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν θα προστεθεί εκείνη την εβδομάδα. Οι επόμενες εβδομάδες δεν επηρεάζονται. Δεν μπορείτε να το αναιρέσετε."
           }
         },
         "es" : {
@@ -12538,6 +13828,12 @@
             "value" : "Sie wird im %@ nicht hinzugefügt. Die folgenden Monate sind nicht betroffen. Das kann nicht widerrufen werden."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν θα προστεθεί στον μήνα %@. Οι επόμενοι μήνες δεν επηρεάζονται. Δεν μπορείτε να το αναιρέσετε."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12594,6 +13890,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sie wird zu den Transaktionen dieses Monats hinzugefügt."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προστίθεται στις συναλλαγές αυτού του μήνα."
           }
         },
         "es" : {
@@ -12654,6 +13956,12 @@
             "value" : "Letzte 7 Tage"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τελευταίες 7 ημέρες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12710,6 +14018,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Neueste Transaktionen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πρόσφατες συναλλαγές"
           }
         },
         "es" : {
@@ -12770,6 +14084,12 @@
             "value" : "Übrig"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απομένει"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12823,6 +14143,12 @@
     "LinkedIn" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LinkedIn"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "LinkedIn"
@@ -12886,6 +14212,12 @@
             "value" : "Apple Pay-Käufe automatisch erfassen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Καταγράψτε αυτόματα τις αγορές με Apple Pay"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12942,6 +14274,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abo verwalten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαχείριση συνδρομής"
           }
         },
         "es" : {
@@ -13002,6 +14340,12 @@
             "value" : "%@ als bezahlt markieren?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Να επισημανθεί το «%@» ως πληρωμένο;"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13058,6 +14402,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ als erhalten markieren?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Να επισημανθεί το «%@» ως εισπραγμένο;"
           }
         },
         "es" : {
@@ -13118,6 +14468,12 @@
             "value" : "Als bezahlt markieren"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επισήμανση ως πληρωμένο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13174,6 +14530,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatisch als bezahlt markieren"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτόματη επισήμανση ως πληρωμένο"
           }
         },
         "es" : {
@@ -13234,6 +14596,12 @@
             "value" : "Als erhalten markieren"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επισήμανση ως εισπραγμένο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13290,6 +14658,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatisch als erhalten markieren"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτόματη επισήμανση ως εισπραγμένο"
           }
         },
         "es" : {
@@ -13350,6 +14724,12 @@
             "value" : "Max"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μέγ."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13406,6 +14786,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mitternacht"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μεσάνυχτα"
           }
         },
         "es" : {
@@ -13466,6 +14852,12 @@
             "value" : "Min"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ελάχ."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13522,6 +14914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Monatsdetails"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λεπτομέρειες μήνα"
           }
         },
         "es" : {
@@ -13582,6 +14980,12 @@
             "value" : "Monatsübersicht"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σύνοψη μήνα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13638,6 +15042,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Monatlich"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μηνιαία"
           }
         },
         "es" : {
@@ -13698,6 +15108,12 @@
             "value" : "Monate"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μήνες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13754,6 +15170,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mehr Symbole mit Trente+"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Περισσότερα εικονίδια με το Trente+"
           }
         },
         "es" : {
@@ -13814,6 +15236,12 @@
             "value" : "Bedürfnisse"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ανάγκες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13870,6 +15298,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verpasse keine Ausgabe mehr"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μη χάνετε κανένα έξοδο"
           }
         },
         "es" : {
@@ -13930,6 +15364,12 @@
             "value" : "Neuer Monat"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Νέος μήνας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13986,6 +15426,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Neu bei Trente?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πρώτη φορά στο Trente;"
           }
         },
         "es" : {
@@ -14046,6 +15492,12 @@
             "value" : "Neue Transaktion"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Νέα συναλλαγή"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14102,6 +15554,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Neue Apple Pay-Ausgabe"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Νέο έξοδο Apple Pay"
           }
         },
         "es" : {
@@ -14162,6 +15620,12 @@
             "value" : "Weiter"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επόμενο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14218,6 +15682,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine Währungen verfügbar, um einen neuen Monat zu erstellen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν υπάρχουν διαθέσιμα νομίσματα για τη δημιουργία νέου μήνα."
           }
         },
         "es" : {
@@ -14278,6 +15748,12 @@
             "value" : "Kein Monat verfügbar"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κανένας διαθέσιμος μήνας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14334,6 +15810,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noch kein Monat"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κανένας μήνας ακόμα"
           }
         },
         "es" : {
@@ -14394,6 +15876,12 @@
             "value" : "Keine Monate verfügbar"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κανένας διαθέσιμος μήνας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14450,6 +15938,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine wiederkehrenden Transaktionen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Καμία επαναλαμβανόμενη συναλλαγή"
           }
         },
         "es" : {
@@ -14510,6 +16004,12 @@
             "value" : "Noch keine Ausgaben erfasst."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν έχουν καταγραφεί έξοδα ακόμα."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14566,6 +16066,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noch nicht verfügbar."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν είναι ακόμα διαθέσιμο."
           }
         },
         "es" : {
@@ -14626,6 +16132,12 @@
             "value" : "Nicht jetzt"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όχι τώρα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14682,6 +16194,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine Synchronisierung"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χωρίς συγχρονισμό"
           }
         },
         "es" : {
@@ -14742,6 +16260,12 @@
             "value" : "Notizen und Bilder"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σημειώσεις και εικόνες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14798,6 +16322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diesen Monat wird nichts mehr erwartet."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν αναμένεται τίποτα άλλο αυτόν τον μήνα."
           }
         },
         "es" : {
@@ -14858,6 +16388,12 @@
             "value" : "Mitteilungseinstellungen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ρυθμίσεις γνωστοποιήσεων"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14914,6 +16450,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mitteilungen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Γνωστοποιήσεις"
           }
         },
         "es" : {
@@ -14974,6 +16516,12 @@
             "value" : "jetzt"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "τώρα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15032,6 +16580,12 @@
             "value" : "Aus"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ανενεργό"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15085,6 +16639,12 @@
     "OK" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -15148,6 +16708,12 @@
             "value" : "Ein"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ενεργό"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15204,6 +16770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Am Fälligkeitsdatum wird %@ zu den Transaktionen des Monats hinzugefügt."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Την ημέρα λήξης, το «%@» προστίθεται στις συναλλαγές εκείνου του μήνα."
           }
         },
         "es" : {
@@ -15287,6 +16859,12 @@
             "value" : "Einstellungen öffnen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Άνοιγμα Ρυθμίσεων"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15343,6 +16921,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kurzbefehl erneut öffnen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ανοίξτε ξανά τη συντόμευση"
           }
         },
         "es" : {
@@ -15403,6 +16987,12 @@
             "value" : "Orange"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πορτοκαλί"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15459,6 +17049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Über dem Budget"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Υπέρβαση ορίου"
           }
         },
         "es" : {
@@ -15519,6 +17115,12 @@
             "value" : "Überfällig"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Καθυστερεί"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15577,6 +17179,12 @@
             "value" : "Überfällig seit dem %@"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σε καθυστέρηση από τις %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15633,6 +17241,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seite %1$lld von %2$lld"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σελίδα %1$lld από %2$lld"
           }
         },
         "en" : {
@@ -15699,6 +17313,12 @@
             "value" : "Bezahlt"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πληρώθηκε"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15755,6 +17375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Foto"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Φωτογραφία"
           }
         },
         "es" : {
@@ -15815,6 +17441,12 @@
             "value" : "Rosa"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ροζ"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15873,6 +17505,12 @@
             "value" : "Öffne dieses Fenster über die Übersicht eines Monats."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ανοίξτε αυτό το παράθυρο από τον πίνακα ελέγχου ενός μήνα."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15929,6 +17567,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bekannt gemacht von Elizabeth Warren und Amelia Warren Tyagi."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τον έκαναν γνωστό η Elizabeth Warren και η Amelia Warren Tyagi."
           }
         },
         "en-GB" : {
@@ -15995,6 +17639,12 @@
             "value" : "Bereitet aus einer Wallet-Zahlung eine Ausgabe vor, die du in Trente prüfen kannst."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ετοιμάζει ένα έξοδο από μια πληρωμή στο Πορτοφόλι, για να το ελέγξετε στο Trente."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16051,6 +17701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Neuer Monat wird vorbereitet ..."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προετοιμασία νέου μήνα..."
           }
         },
         "es" : {
@@ -16111,6 +17767,12 @@
             "value" : "Zurück"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προηγούμενο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16167,6 +17829,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Datenschutzrichtlinie"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πολιτική απορρήτου"
           }
         },
         "es" : {
@@ -16227,6 +17895,12 @@
             "value" : "Im App Store bewerten"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Βαθμολόγηση στο App Store"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16283,6 +17957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erhalten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εισπράχθηκε"
           }
         },
         "es" : {
@@ -16343,6 +18023,12 @@
             "value" : "Details zur Wiederholung"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λεπτομέρειες επανάληψης"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16399,6 +18085,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "WIEDERKEHREND"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επαναλαμβανόμενες"
           }
         },
         "es" : {
@@ -16459,6 +18151,12 @@
             "value" : "Wiederkehrende Transaktion"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επαναλαμβανόμενη συναλλαγή"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16515,6 +18213,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titel der wiederkehrenden Transaktion"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τίτλος επαναλαμβανόμενης συναλλαγής"
           }
         },
         "es" : {
@@ -16575,6 +18279,12 @@
             "value" : "Wiederkehrende Transaktionen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επαναλαμβανόμενες συναλλαγές"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16631,6 +18341,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Übrig"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απομένει"
           }
         },
         "es" : {
@@ -16691,6 +18407,12 @@
             "value" : "Erinnerungszeit"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ώρα υπενθύμισης"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16747,6 +18469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erinnerungen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Υπενθυμίσεις"
           }
         },
         "es" : {
@@ -16807,6 +18535,12 @@
             "value" : "Erinnerungen pausiert"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Οι υπενθυμίσεις είναι σε παύση"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16863,6 +18597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enddatum entfernen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αφαίρεση ημερομηνίας λήξης"
           }
         },
         "es" : {
@@ -16923,6 +18663,12 @@
             "value" : "Miete"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ενοίκιο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16979,6 +18725,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Miete, Lebensmittel, Rechnungen ..."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ενοίκιο, σούπερ μάρκετ, λογαριασμοί..."
           }
         },
         "es" : {
@@ -17039,6 +18791,12 @@
             "value" : "Aufteilung"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κατανομή"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17095,6 +18853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die Summe der Aufteilung entspricht nicht dem aufzuteilenden Betrag."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το σύνολο της κατανομής δεν ταιριάζει με το ποσό προς κατανομή."
           }
         },
         "es" : {
@@ -17155,6 +18919,12 @@
             "value" : "Erfordert Trente+"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απαιτεί Trente+"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17211,6 +18981,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erneut versuchen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δοκιμάστε ξανά"
           }
         },
         "es" : {
@@ -17271,6 +19047,12 @@
             "value" : "Gehalt"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μισθός"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17327,6 +19109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sichern"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποθήκευση"
           }
         },
         "es" : {
@@ -17387,6 +19175,12 @@
             "value" : "Sichere die Transaktionen dieses Monats und ihre Bilder in einer .zip-Datei, mit einer Tabelle (.csv), die sich in Numbers, Excel oder Google Sheets öffnen lässt."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποθηκεύστε τις συναλλαγές αυτού του μήνα και τις εικόνες τους σε ένα αρχείο .zip, με ένα υπολογιστικό φύλλο (.csv) που ανοίγει σε Numbers, Excel ή Google Sheets."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17443,6 +19237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sichere die Transaktionen dieses Monats als Tabellendatei (.csv), die sich in Numbers, Excel oder Google Sheets öffnen lässt."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποθηκεύστε τις συναλλαγές αυτού του μήνα σε ένα υπολογιστικό φύλλο (.csv) που ανοίγει σε Numbers, Excel ή Google Sheets."
           }
         },
         "es" : {
@@ -17503,6 +19303,12 @@
             "value" : "Sparen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποταμίευση"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17561,6 +19367,12 @@
             "value" : "Sparen & Schulden"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποταμίευση και χρέη"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17617,6 +19429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rücklagen, Kredite, Rente ..."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποταμίευση, χρέη, σύνταξη..."
           }
         },
         "en-GB" : {
@@ -17683,6 +19501,12 @@
             "value" : "Wiederholung"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επανάληψη"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17739,6 +19563,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nach Titel, Betrag, Datum, Kategorie suchen …"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τίτλος, ποσό, ημέρα, κατηγορία…"
           }
         },
         "es" : {
@@ -17799,6 +19629,12 @@
             "value" : "Währungen suchen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αναζήτηση νομισμάτων"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17855,6 +19691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fragen durchsuchen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αναζήτηση ερωτήσεων"
           }
         },
         "es" : {
@@ -17915,6 +19757,12 @@
             "value" : "Alle erwarteten anzeigen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δείτε όλα όσα αναμένονται"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17971,6 +19819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle Transaktionen anzeigen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δείτε όλες τις συναλλαγές"
           }
         },
         "es" : {
@@ -18031,6 +19885,12 @@
             "value" : "Abos ansehen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δείτε τα προγράμματα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18087,6 +19947,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sieh dein verbleibendes Budget des aktuellen Monats für eine bestimmte Kategorie oder im mittleren Widget für alle Kategorien.\n\nHalte das Widget gedrückt, um eine Kategorie auszuwählen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δείτε τι απομένει από τον προϋπολογισμό του τρέχοντος μήνα σε μια κατηγορία ή, στο μεσαίο widget, σε όλες τις κατηγορίες.\n\nΓια να επιλέξετε κατηγορία, αγγίξτε παρατεταμένα το widget."
           }
         },
         "es" : {
@@ -18147,6 +20013,12 @@
             "value" : "Sieh dein verbleibendes Budget des aktuellen Monats und in größeren Widgets auch deine Ausgaben.\nBehalte den Überblick und erfasse schnell neue Transaktionen.\n\nSieh dir die Beispiele unten an."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δείτε τι απομένει από τον προϋπολογισμό του τρέχοντος μήνα και, στα μεγαλύτερα widget, τα έξοδά σας.\nΔείτε γρήγορα πώς πάτε και καταγράψτε εύκολα νέες συναλλαγές.\n\nΔείτε παραδείγματα παρακάτω."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18203,6 +20075,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle eine Kategorie für die Ausgabe."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιλέξτε κατηγορία για το έξοδο."
           }
         },
         "es" : {
@@ -18263,6 +20141,12 @@
             "value" : "Wähle eine Kategorie für das Widget."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιλέξτε κατηγορία για το widget."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18319,6 +20203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle eine Kategorie für diese Transaktion."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιλέξτε κατηγορία για αυτή τη συναλλαγή."
           }
         },
         "es" : {
@@ -18379,6 +20269,12 @@
             "value" : "Wähle einen Monat"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιλέξτε μήνα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18435,6 +20331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle auswählen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιλογή όλων"
           }
         },
         "es" : {
@@ -18495,6 +20397,12 @@
             "value" : "Kategorie wählen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιλογή κατηγορίας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18551,6 +20459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Feedback senden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποστολή σχολίων"
           }
         },
         "es" : {
@@ -18611,6 +20525,12 @@
             "value" : "Schreib mir eine E-Mail"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Στείλτε μου email"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18667,6 +20587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Später einrichten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ρύθμιση αργότερα"
           }
         },
         "es" : {
@@ -18727,6 +20653,12 @@
             "value" : "Einstellungen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ρυθμίσεις"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18783,6 +20715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fehlerdetails teilen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κοινή χρήση λεπτομερειών σφάλματος"
           }
         },
         "es" : {
@@ -18843,6 +20781,12 @@
             "value" : "Bild anzeigen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εμφάνιση εικόνας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18899,6 +20843,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Melde dich in der App „Einstellungen“ bei iCloud an, um deine Monate und Transaktionen auf all deinen Geräten zu haben. Du kannst sie jederzeit als Tabelle exportieren."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συνδεθείτε στο iCloud από την εφαρμογή Ρυθμίσεις για να έχετε τους μήνες και τις συναλλαγές σας σε όλες τις συσκευές σας. Μπορείτε να τα εξαγάγετε σε υπολογιστικό φύλλο όποτε θέλετε."
           }
         },
         "en-GB" : {
@@ -18965,6 +20915,12 @@
             "value" : "Überspringen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παράλειψη"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19021,6 +20977,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "„%1$@“ im %2$@ überspringen?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Να παραλειφθεί η συναλλαγή «%1$@» (%2$@);"
           }
         },
         "en" : {
@@ -19087,6 +21049,12 @@
             "value" : "„%1$@“ im Jahr %2$@ überspringen?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Να παραλειφθεί η συναλλαγή «%1$@» (%2$@);"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19143,6 +21111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "„%1$@“ am %2$@ überspringen?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Να παραλειφθεί η συναλλαγή «%1$@» (%2$@);"
           }
         },
         "en" : {
@@ -19278,6 +21252,12 @@
             "value" : "Im %@ überspringen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παράλειψη: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19334,6 +21314,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Im Jahr %@ überspringen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παράλειψη: %@"
           }
         },
         "es" : {
@@ -19394,6 +21380,12 @@
             "value" : "Am %@ überspringen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παράλειψη: %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19450,6 +21442,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diesen Monat überspringen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παράλειψη αυτόν τον μήνα"
           }
         },
         "es" : {
@@ -19510,6 +21508,12 @@
             "value" : "Diese Woche überspringen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παράλειψη αυτή την εβδομάδα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19566,6 +21570,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dieses Jahr überspringen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Παράλειψη φέτος"
           }
         },
         "es" : {
@@ -19626,6 +21636,12 @@
             "value" : "Sortieren"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ταξινόμηση"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19682,6 +21698,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sortieren nach"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ταξινόμηση κατά"
           }
         },
         "es" : {
@@ -19742,6 +21764,12 @@
             "value" : "Ausgegeben"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ξοδεύτηκε"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19800,6 +21828,12 @@
             "value" : "Teile dein Budget auf"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μοιράστε τον προϋπολογισμό σας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19856,6 +21890,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Teile dein Nettoeinkommen in Bedürfnisse, Wünsche sowie Sparen & Schulden auf. Trente ordnet jede Transaktion einer davon zu."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μοιράστε το καθαρό σας εισόδημα σε Ανάγκες, Επιθυμίες και Αποταμίευση και χρέη. Το Trente κατατάσσει κάθε συναλλαγή σε μία από αυτές τις κατηγορίες."
           }
         },
         "en-GB" : {
@@ -19945,6 +21985,12 @@
             "value" : "Neuen Monat beginnen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Έναρξη νέου μήνα"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20001,6 +22047,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Startdatum"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ημερομηνία έναρξης"
           }
         },
         "es" : {
@@ -20061,6 +22113,12 @@
             "value" : "Das Startdatum darf nicht in der Vergangenheit liegen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η ημερομηνία έναρξης δεν μπορεί να είναι στο παρελθόν."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20117,6 +22175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Loslegen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Έναρξη παρακολούθησης"
           }
         },
         "es" : {
@@ -20177,6 +22241,12 @@
             "value" : "Öffne die App, um dein Budget mit Trente zu verfolgen!"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ανοίξτε την εφαρμογή για να αρχίσετε να παρακολουθείτε τον προϋπολογισμό σας με το Trente!"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20233,6 +22303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Behalte dein Budget im Blick."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ξεκινήστε να παρακολουθείτε τον προϋπολογισμό σας."
           }
         },
         "es" : {
@@ -20293,6 +22369,12 @@
             "value" : "Status"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κατάσταση"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20349,6 +22431,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schritt %1$lld von %2$lld"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Βήμα %1$lld από %2$lld"
           }
         },
         "en" : {
@@ -20415,6 +22503,12 @@
             "value" : "Beenden fehlgeschlagen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η διακοπή απέτυχε"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20473,6 +22567,12 @@
             "value" : "Künftige Transaktionen „%@“ beenden?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διακοπή των επόμενων συναλλαγών «%@»;"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20529,6 +22629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Künftige Transaktionen beenden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διακοπή επόμενων συναλλαγών"
           }
         },
         "es" : {
@@ -20612,6 +22718,12 @@
             "value" : "Summe der angezeigten Transaktionen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Άθροισμα των εμφανιζόμενων συναλλαγών"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20668,6 +22780,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supermarkt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σούπερ μάρκετ"
           }
         },
         "es" : {
@@ -20728,6 +22846,12 @@
             "value" : "Unterstütze einen Indie-Entwickler"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Στηρίξτε έναν ανεξάρτητο προγραμματιστή"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20784,6 +22908,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Synchronisiert %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συγχρονίστηκε %@"
           }
         },
         "es" : {
@@ -20844,6 +22974,12 @@
             "value" : "Übernimm die Kontrolle über dein Budget."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πάρτε τον έλεγχο των χρημάτων σας."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20900,6 +23036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tippe hier, um sie in Trente zu erfassen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αγγίξτε εδώ για να το καταγράψετε στο Trente"
           }
         },
         "es" : {
@@ -20960,6 +23102,12 @@
             "value" : "Nutzungsbedingungen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όροι χρήσης"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21016,6 +23164,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TestFlight-Tester"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δοκιμαστές TestFlight"
           }
         },
         "es" : {
@@ -21076,6 +23230,12 @@
             "value" : "Danke"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ευχαριστίες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21132,6 +23292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Danke an alle, die Trente über TestFlight getestet haben."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ευχαριστώ όσους δοκίμασαν το Trente στο TestFlight."
           }
         },
         "es" : {
@@ -21192,6 +23358,12 @@
             "value" : "Die 50/30/20-Regel"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο κανόνας 50/30/20"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21248,6 +23420,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die 50/30/20-Regel in 30 Sekunden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο κανόνας 50/30/20 σε 30 δευτερόλεπτα"
           }
         },
         "es" : {
@@ -21308,6 +23486,12 @@
             "value" : "Das Bild konnte nicht geladen werden. Bitte versuche es erneut."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ήταν δυνατή η φόρτωση της εικόνας. Δοκιμάστε ξανά."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21366,6 +23550,12 @@
             "value" : "Diese kommen von deiner Apple Pay-Automation in der App „Kurzbefehle“. Um sie zu stoppen, deaktiviere oder lösche diese Automation."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προέρχονται από την αυτοματοποίηση Apple Pay στην εφαρμογή Συντομεύσεις. Για να τις σταματήσετε, απενεργοποιήστε ή διαγράψτε αυτή την αυτοματοποίηση."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21422,6 +23612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Das ist das Geld, über das du jeden Monat frei verfügen kannst, nachdem die Steuern bezahlt sind."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Είναι τα χρήματα που μπορείτε να διαθέσετε ελεύθερα κάθε μήνα, αφού κρατηθούν οι φόροι και οι εισφορές."
           }
         },
         "en-GB" : {
@@ -21488,6 +23684,12 @@
             "value" : "Diese Aktion kann nicht widerrufen werden."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21544,6 +23746,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diese Aktion kann nicht widerrufen werden. Alle Transaktionen dieses Monats werden ebenfalls gelöscht."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Θα διαγραφούν επίσης όλες οι συναλλαγές αυτού του μήνα."
           }
         },
         "es" : {
@@ -21604,6 +23812,12 @@
             "value" : "Dieser Monat"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτός ο μήνας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21660,6 +23874,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dieser Monat hat noch keine Transaktionen zum Exportieren."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτός ο μήνας δεν έχει ακόμα συναλλαγές για εξαγωγή."
           }
         },
         "es" : {
@@ -21720,6 +23940,12 @@
             "value" : "Titel"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τίτλος"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21776,6 +24002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Der Titel darf nicht leer sein."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο τίτλος δεν μπορεί να είναι κενός."
           }
         },
         "es" : {
@@ -21836,6 +24068,12 @@
             "value" : "Bis"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Έως"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21892,6 +24130,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Um mehrere Monate zu exportieren oder den Inhalt auszuwählen, gehe zu Einstellungen › Transaktionen exportieren."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Για να εξαγάγετε πολλούς μήνες ή να επιλέξετε τι θα συμπεριληφθεί, μεταβείτε στις Ρυθμίσεις › Εξαγωγή συναλλαγών."
           }
         },
         "es" : {
@@ -21952,6 +24196,12 @@
             "value" : "Gesamt"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σύνολο"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22008,6 +24258,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transaktion"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συναλλαγή"
           }
         },
         "es" : {
@@ -22068,6 +24324,12 @@
             "value" : "Notizen zur Transaktion"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σημειώσεις συναλλαγής"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22124,6 +24386,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titel der Transaktion"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τίτλος συναλλαγής"
           }
         },
         "es" : {
@@ -22184,6 +24452,12 @@
             "value" : "Transaktionen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Συναλλαγές"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22237,6 +24511,12 @@
     "Trente" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente"
@@ -22300,6 +24580,12 @@
             "value" : "Trente %@"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente %@"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22356,6 +24642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente Alle Monate"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente Όλοι οι μήνες"
           }
         },
         "es" : {
@@ -22416,6 +24708,12 @@
             "value" : "Feedback zu Trente"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σχόλια για το Trente"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22472,6 +24770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente-Hilfe"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Βοήθεια για το Trente"
           }
         },
         "es" : {
@@ -22532,6 +24836,12 @@
             "value" : "Trente ist der Nachfolger von TrenteVingt (2023)."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente είναι η συνέχεια του TrenteVingt (2023)."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22590,6 +24900,12 @@
             "value" : "Trente erhält nur den Namen des Händlers und den Betrag. Niemals deine Kartendaten."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente λαμβάνει μόνο το όνομα του εμπόρου και το ποσό. Ποτέ τα στοιχεία της κάρτας σας."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22646,6 +24962,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente erinnert dich zu dieser Uhrzeit, wenn ein neuer Monat beginnt und eine wiederkehrende Transaktion fällig ist."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente σάς ειδοποιεί αυτή την ώρα όταν ξεκινά νέος μήνας και όταν λήγει μια επαναλαμβανόμενη συναλλαγή."
           }
         },
         "es" : {
@@ -22729,6 +25051,12 @@
             "value" : "Trente erinnert dich zu dieser Uhrzeit, wenn ein neuer Monat beginnt."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente σάς ειδοποιεί αυτή την ώρα όταν ξεκινά νέος μήνας."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22787,6 +25115,12 @@
             "value" : "Trente erinnert dich zu dieser Uhrzeit, wenn eine wiederkehrende Transaktion fällig ist."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente σάς ειδοποιεί αυτή την ώρα όταν λήγει μια επαναλαμβανόμενη συναλλαγή."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22843,6 +25177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente teilt dein Budget in Bedürfnisse, Wünsche und Sparen auf, damit du immer weißt, was diesen Monat übrig ist."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente μοιράζει τον προϋπολογισμό σας σε Ανάγκες, Επιθυμίες και Αποταμίευση, για να ξέρετε πάντα τι απομένει αυτόν τον μήνα."
           }
         },
         "es" : {
@@ -22926,6 +25266,12 @@
             "value" : "Trente sagt dir Bescheid, wenn ein neuer Monat beginnt und eine wiederkehrende Zahlung wie die Miete fällig ist, damit du sie direkt in der Mitteilung als bezahlt markieren kannst."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente σάς ειδοποιεί όταν ξεκινά νέος μήνας και όταν λήγει μια επαναλαμβανόμενη πληρωμή, όπως το ενοίκιο, για να την επισημάνετε ως πληρωμένη απευθείας από τη γνωστοποίηση."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22982,6 +25328,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente sagt dir Bescheid, wenn ein neuer Monat beginnt und eine wiederkehrende Zahlung wie die Miete fällig ist. Sobald Apple Pay eingerichtet ist, bekommst du nach jedem Kauf eine Mitteilung, um ihn in einem Rutsch zu erfassen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente σάς ειδοποιεί όταν ξεκινά νέος μήνας και όταν λήγει μια επαναλαμβανόμενη πληρωμή, όπως το ενοίκιο. Μόλις ρυθμίσετε το Apple Pay, σας στέλνει και μια γνωστοποίηση μετά από κάθε αγορά, για να την καταγράψετε με μία κίνηση."
           }
         },
         "es" : {
@@ -23065,6 +25417,12 @@
             "value" : "Trente+"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23118,6 +25476,12 @@
     "TrenteVingt" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteVingt"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TrenteVingt"
@@ -23181,6 +25545,12 @@
             "value" : "Aktiviere „Wiederkehrende Transaktion“, wenn du eine Transaktion hinzufügst."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ενεργοποιήστε την «Επαναλαμβανόμενη συναλλαγή» όταν προσθέτετε μια συναλλαγή."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23237,6 +25607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktiviere eine Erinnerung, um festzulegen, wann Trente dich benachrichtigt."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ενεργοποιήστε μια υπενθύμιση για να επιλέξετε πότε θα σας ειδοποιεί το Trente."
           }
         },
         "es" : {
@@ -23297,6 +25673,12 @@
             "value" : "Mitteilungen aktivieren"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ενεργοποίηση γνωστοποιήσεων"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23353,6 +25735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Typ"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τύπος"
           }
         },
         "es" : {
@@ -23413,6 +25801,12 @@
             "value" : "Im Budget"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εντός ορίων"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23469,6 +25863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schätze so gut du kannst. Erfasse zusätzliche Einnahmen, sobald sie eingehen, und passe das Budget im nächsten Monat an."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κάντε την καλύτερη εκτίμησή σας. Καταγράψτε τα επιπλέον έσοδα όταν έρχονται και προσαρμόστε τον προϋπολογισμό του επόμενου μήνα."
           }
         },
         "es" : {
@@ -23529,6 +25929,12 @@
             "value" : "Wünsche"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιθυμίες"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23585,6 +25991,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Der Monat konnte nicht erstellt werden. Bitte versuche es erneut."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ήταν δυνατή η δημιουργία του μήνα. Δοκιμάστε ξανά."
           }
         },
         "es" : {
@@ -23645,6 +26057,12 @@
             "value" : "Die Transaktion konnte nicht erstellt werden. Bitte versuche es erneut."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ήταν δυνατή η δημιουργία της συναλλαγής. Δοκιμάστε ξανά."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23703,6 +26121,12 @@
             "value" : "Deine Einnahme konnte nicht hinzugefügt werden"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ήταν δυνατή η προσθήκη του εσόδου σας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23759,6 +26183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dein Monat konnte nicht gesichert werden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ήταν δυνατή η αποθήκευση του μήνα σας"
           }
         },
         "es" : {
@@ -23854,6 +26284,54 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg Transaktionen"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Βρέθηκαν τα δεδομένα σας στο iCloud: %#@months@ και %#@transactions@. Είναι όλα εδώ, έτοιμα να συνεχίσετε από εκεί που σταματήσατε."
+          },
+          "substitutions" : {
+            "months" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg μήνας"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg μήνες"
+                    }
+                  }
+                }
+              }
+            },
+            "transactions" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg συναλλαγή"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg συναλλαγές"
                     }
                   }
                 }
@@ -24219,6 +26697,12 @@
             "value" : "Wir starten mit der 50/30/20-Regel. Passe sie an dein Leben an – du kannst sie jeden Monat ändern."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ξεκινάτε με τον κανόνα 50/30/20. Προσαρμόστε τον ώστε να ταιριάζει στη ζωή σας. Μπορείτε να τον αλλάζετε κάθε μήνα."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24275,6 +26759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Website"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ιστότοπος"
           }
         },
         "es" : {
@@ -24335,6 +26825,12 @@
             "value" : "Wöchentlich"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εβδομαδιαία"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24391,6 +26887,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Willkommen zurück!"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Καλώς ήρθατε ξανά!"
           }
         },
         "es" : {
@@ -24451,6 +26953,12 @@
             "value" : "Was sind wiederkehrende Transaktionen?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τι είναι οι επαναλαμβανόμενες συναλλαγές;"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24507,6 +27015,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Was ist die 50/30/20-Regel?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τι είναι ο κανόνας 50/30/20;"
           }
         },
         "es" : {
@@ -24567,6 +27081,12 @@
             "value" : "Was ist Trente+?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τι είναι το Trente+;"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24625,6 +27145,12 @@
             "value" : "Was exportiert wird"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τι θα εξαχθεί"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24681,6 +27207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wo werden meine Daten gespeichert?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πού αποθηκεύονται τα δεδομένα μου;"
           }
         },
         "es" : {
@@ -24764,6 +27296,12 @@
             "value" : "Jährlich"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ετήσια"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24822,6 +27360,12 @@
             "value" : "Du kannst von jeder Mail-App aus an %@ schreiben."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μπορείτε να γράψετε στο %@ από οποιαδήποτε εφαρμογή email."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24878,6 +27422,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du hast Trente auf diesem iPad seit dem %@ nicht geöffnet, deshalb sind die Erinnerungen hier pausiert. Öffne die App jederzeit, um sie wieder zu aktivieren."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν έχετε ανοίξει το Trente σε αυτό το iPad από τις %@, γι’ αυτό οι υπενθυμίσεις εδώ είναι σε παύση. Ανοίξτε την εφαρμογή όποτε θέλετε για να τις ενεργοποιήσετε ξανά."
           }
         },
         "en-GB" : {
@@ -24944,6 +27494,12 @@
             "value" : "Du hast Trente auf diesem iPhone seit dem %@ nicht geöffnet, deshalb sind die Erinnerungen hier pausiert. Öffne die App jederzeit, um sie wieder zu aktivieren."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν έχετε ανοίξει το Trente σε αυτό το iPhone από τις %@, γι’ αυτό οι υπενθυμίσεις εδώ είναι σε παύση. Ανοίξτε την εφαρμογή όποτε θέλετε για να τις ενεργοποιήσετε ξανά."
+          }
+        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25006,6 +27562,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du hast Trente auf diesem Mac seit dem %@ nicht geöffnet, deshalb sind die Erinnerungen hier pausiert. Öffne die App jederzeit, um sie wieder zu aktivieren."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν έχετε ανοίξει το Trente σε αυτό το Mac από τις %@, γι’ αυτό οι υπενθυμίσεις εδώ είναι σε παύση. Ανοίξτε την εφαρμογή όποτε θέλετε για να τις ενεργοποιήσετε ξανά."
           }
         },
         "en-GB" : {
@@ -25072,6 +27634,12 @@
             "value" : "In den nächsten Schritten wählst du die Kategorien für diese Einnahme."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Θα επιλέξετε τις κατηγορίες για αυτό το έσοδο στα επόμενα βήματα."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25128,6 +27696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alles bereit!"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όλα έτοιμα!"
           }
         },
         "es" : {
@@ -25188,6 +27762,12 @@
             "value" : "Dein Budget konnte nicht geöffnet werden"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ήταν δυνατό το άνοιγμα του προϋπολογισμού σας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25244,6 +27824,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deine Daten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τα δεδομένα σας"
           }
         },
         "es" : {
@@ -25304,6 +27890,12 @@
             "value" : "Deine Daten wurden nicht gelöscht. Versuche, Trente zu aktualisieren, und teile die Fehlerdetails, falls das Problem weiterhin besteht."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τα δεδομένα σας δεν έχουν διαγραφεί. Δοκιμάστε να ενημερώσετε το Trente και κοινοποιήστε τις λεπτομέρειες του σφάλματος, αν το πρόβλημα παραμένει."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25360,6 +27952,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dein erster Monat beginnt heute. Erfasse deine Ausgaben laufend und Trente zeigt dir, was übrig ist."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο πρώτος σας μήνας ξεκινά σήμερα. Καταγράφετε τα έξοδά σας καθώς προκύπτουν και το Trente σάς δείχνει τι απομένει."
           }
         },
         "es" : {
@@ -25420,6 +28018,12 @@
             "value" : "Dein iCloud-Speicher ist voll, daher bleiben neue Änderungen auf diesem Gerät. Gib in der App „Einstellungen“ Speicherplatz frei, um wieder zu synchronisieren."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο χώρος αποθήκευσης iCloud είναι πλήρης, οπότε οι νέες αλλαγές μένουν σε αυτή τη συσκευή. Ελευθερώστε χώρο από την εφαρμογή Ρυθμίσεις για να συνεχιστεί ο συγχρονισμός."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25478,6 +28082,12 @@
             "value" : "Dein Monatsbudget"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο μηνιαίος προϋπολογισμός σας"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25534,6 +28144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deine Monate und Transaktionen werden über deinen iCloud-Account auf all deinen Geräten synchronisiert. Trente hat kein Konto und keinen Server. Du kannst sie jederzeit als Tabelle exportieren."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Οι μήνες και οι συναλλαγές σας συγχρονίζονται μέσω του λογαριασμού σας iCloud σε όλες τις συσκευές σας. Το Trente δεν έχει ούτε λογαριασμό ούτε διακομιστή. Μπορείτε να τα εξαγάγετε σε υπολογιστικό φύλλο όποτε θέλετε."
           }
         },
         "en-GB" : {
@@ -25600,6 +28216,12 @@
             "value" : "Dein neuer Monat ist bereit – mit demselben Budget wie im letzten Monat. Öffne Trente, um ihn anzusehen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο νέος σας μήνας είναι έτοιμος, με τον ίδιο προϋπολογισμό με τον προηγούμενο. Ανοίξτε το Trente για να τον δείτε."
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25658,6 +28280,12 @@
             "value" : "Vergrößern"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μεγέθυνση"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25714,6 +28342,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verkleinern"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σμίκρυνση"
           }
         },
         "es" : {
