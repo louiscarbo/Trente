@@ -16,4 +16,6 @@ Trente is an iOS and macOS budgeting application. It is designed to track user f
 - **Code Style:** We use SwiftLint. A `.swiftlint.yml` configuration is at the root. Follow the existing codebase conventions and let the linter guide formatting.
 - **Testing:** Add tests for new business logic in `TrenteTests/`. Run tests via Xcode (`Cmd+U`) or via `xcodebuild`.
 - **Building:** The project provides `Trente` and `Trente Dev` schemes.
+- **Simulators:** Use `Slim 1` to `Slim 4` (iPhone 17, iOS 27.0, slimmed with `simslim`), headless, up to four alongside one build. The test suite runs on them. Shut them down when done and keep them, because the first boot is the heaviest part. If one is missing, create it with `xcrun simctl create` and `simslim on <udid> --preserve-boot-state`.
+- **Stock simulators:** Use one, alone, only for what a slim simulator can't show: widgets, Live Activities, iCloud sync, StoreKit purchases, Shortcuts and App Intents, the document picker, store captures.
 - **Data Architecture:** Before modifying the transaction data logic, read the `Trente/Model/README.md` file carefully.
