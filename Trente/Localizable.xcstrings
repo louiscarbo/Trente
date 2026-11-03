@@ -1811,54 +1811,54 @@
         }
       }
     },
-    "The amount left is the income you've logged this month, minus your expenses.\nIf your month shows no amount left, start by adding an income: tap “New Transaction”." : {
+    "The amount left is the income you've logged this month, minus your expenses.\nIf your month shows no amount left, start by adding an income: tap “Add Transaction”." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der übrige Betrag ist das Einkommen, das du diesen Monat erfasst hast, minus deine Ausgaben.\nWenn dein Monat keinen übrigen Betrag anzeigt, füge zuerst ein Einkommen hinzu: Tippe auf „Neue Transaktion“."
+            "value" : "Der übrige Betrag ist das Einkommen, das du diesen Monat erfasst hast, minus deine Ausgaben.\nWenn dein Monat keinen übrigen Betrag anzeigt, füge zuerst ein Einkommen hinzu: Tippe auf „Transaktion hinzufügen“."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El importe restante son los ingresos que has registrado este mes, menos los gastos.\nSi el mes no muestra ningún importe restante, empieza añadiendo un ingreso: toca «Nueva transacción»."
+            "value" : "El importe restante son los ingresos que has registrado este mes, menos los gastos.\nSi el mes no muestra ningún importe restante, empieza añadiendo un ingreso: toca «Añadir transacción»."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El monto restante son los ingresos que registraste este mes, menos los gastos.\nSi el mes no muestra ningún monto restante, empieza agregando un ingreso: toca «Nueva transacción»."
+            "value" : "El monto restante son los ingresos que registraste este mes, menos los gastos.\nSi el mes no muestra ningún monto restante, empieza agregando un ingreso: toca «Agregar transacción»."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le montant restant correspond aux revenus que vous avez enregistrés ce mois-ci, moins les dépenses.\nSi le mois n’affiche aucun montant restant, commencez par ajouter un revenu en touchant « Nouvelle transaction »."
+            "value" : "Le montant restant correspond aux revenus que vous avez enregistrés ce mois-ci, moins les dépenses.\nSi le mois n’affiche aucun montant restant, commencez par ajouter un revenu en touchant « Ajouter une transaction »."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’importo rimanente corrisponde alle entrate che hai registrato questo mese, meno le spese.\nSe il mese non mostra alcun importo rimanente, inizia aggiungendo un’entrata: tocca «Nuova transazione»."
+            "value" : "L’importo rimanente corrisponde alle entrate che hai registrato questo mese, meno le spese.\nSe il mese non mostra alcun importo rimanente, inizia aggiungendo un’entrata: tocca «Aggiungi transazione»."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "남은 금액은 이번 달에 기록한 수입에서 지출을 뺀 금액이에요.\n남은 금액이 표시되지 않는다면 먼저 ‘새 거래’를 탭해 수입을 추가하세요."
+            "value" : "남은 금액은 이번 달에 기록한 수입에서 지출을 뺀 금액이에요.\n남은 금액이 표시되지 않는다면 먼저 ‘거래 추가’를 탭해 수입을 추가하세요."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O valor restante é a renda que você registrou neste mês, menos as despesas.\nSe o mês não mostrar nenhum valor restante, comece adicionando uma renda: toque em “Nova transação”."
+            "value" : "O valor restante é a renda que você registrou neste mês, menos as despesas.\nSe o mês não mostrar nenhum valor restante, comece adicionando uma renda: toque em “Adicionar transação”."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O valor restante corresponde aos rendimentos que registou este mês, menos as despesas.\nSe o mês não mostrar nenhum valor restante, comece por adicionar um rendimento: toque em «Nova transação»."
+            "value" : "O valor restante corresponde aos rendimentos que registou este mês, menos as despesas.\nSe o mês não mostrar nenhum valor restante, comece por adicionar um rendimento: toque em «Adicionar transação»."
           }
         }
       }

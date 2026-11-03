@@ -70,7 +70,7 @@ struct FAQItem: Identifiable, Equatable {
             question: "Why doesn't my month show any amount left?",
             answer: """
                 The amount left is the income you've logged this month, minus your expenses.
-                If your month shows no amount left, start by adding an income: tap “New Transaction”.
+                If your month shows no amount left, start by adding an income: tap “Add Transaction”.
                 """
         ),
         FAQItem(
