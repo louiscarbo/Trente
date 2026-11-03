@@ -27,17 +27,18 @@ extension FAQView {
                 bar
                 HStack(spacing: DesignSystem.Spacing.medium.rawValue) {
                     ForEach(BudgetCategory.allCases) { category in
-                        Label {
-                            Text("\(category.shortName) \(percentage(for: category))")
-                        } icon: {
+                        HStack(spacing: 5) {
                             Circle()
                                 .fill(category.color)
                                 .frame(width: 8, height: 8)
+                            Text("\(category.shortName) \(percentage(for: category))")
                         }
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
                     }
                 }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
                 Text("Split your take-home income into Needs, Wants and Savings and Debts. Trente sorts every transaction into one of them.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
