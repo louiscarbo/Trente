@@ -36,6 +36,12 @@
             "value" : "    Vous n’avez pas encore commencé à suivre votre budget. Ouvrez l’app Trente pour commencer !"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "    Vous n’avez pas encore commencé à suivre votre budget. Ouvrez l’app Trente pour commencer !"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -107,6 +113,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ restants sur %2$@"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ restants sur %2$@"
@@ -188,6 +200,12 @@
             "value" : "%1$@ dépensés sur %2$@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ dépensés sur %2$@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -253,6 +271,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encore %@ à répartir"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Encore %@ à répartir"
@@ -334,6 +358,12 @@
             "value" : "%1$lld enregistrements Apple Pay gratuits sur %2$lld ce mois-ci"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld enregistrements Apple Pay gratuits sur %2$lld ce mois-ci"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -402,6 +432,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "- %@ restants"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "- %@ restants"
@@ -483,6 +519,12 @@
             "value" : "Un mois commence à la date de votre choix et dure un mois, par exemple du 25 octobre au 24 novembre, pour suivre le rythme de votre salaire."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un mois commence à la date de votre choix et dure un mois, par exemple du 25 octobre au 24 novembre, pour suivre le rythme de votre salaire."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -551,6 +593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une façon simple de répartir votre revenu net : environ 50 % pour les besoins (loyer, courses, factures), 30 % pour les envies (restaurants, loisirs) et 20 % pour l’épargne et le remboursement des dettes. Trente classe chaque transaction dans l’une de ces trois catégories. Vous pouvez choisir votre propre répartition pour chaque mois."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une façon simple de répartir votre revenu net : environ 50 % pour les besoins (loyer, épicerie, factures), 30 % pour les envies (restaurants, loisirs) et 20 % pour l’épargne et le remboursement des dettes. Trente classe chaque transaction dans l’une de ces trois catégories. Vous pouvez choisir votre propre répartition pour chaque mois."
           }
         },
         "it" : {
@@ -623,6 +671,12 @@
             "value" : "Ajoutez un ticket de caisse, une photo ou une note à vos transactions."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez un reçu, une photo ou une note à vos transactions."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +747,12 @@
             "value" : "Montant, du plus grand au plus petit"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montant, du plus grand au plus petit"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -758,6 +818,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montant, du plus petit au plus grand"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Montant, du plus petit au plus grand"
@@ -839,6 +905,12 @@
             "value" : "Un abonnement mensuel ou annuel, facultatif, qui vous permet de débloquer de nouvelles fonctionnalités pour Trente. Ouvrez les réglages de Trente pour en savoir plus.\nTrente+ permet également de me soutenir en tant que développeur indépendant.\nGérez votre abonnement ou résiliez-le à tout moment depuis votre compte Apple."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un abonnement mensuel ou annuel, facultatif, qui vous permet de débloquer de nouvelles fonctionnalités pour Trente. Ouvrez les réglages de Trente pour en savoir plus.\nTrente+ permet également de me soutenir en tant que développeur indépendant.\nGérez votre abonnement ou annulez-le à tout moment depuis votre compte Apple."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -904,6 +976,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limite Apple Pay atteinte"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Limite Apple Pay atteinte"
@@ -979,6 +1057,12 @@
             "value" : "Boulangerie"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boulangerie"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1049,6 +1133,12 @@
             "value" : "Vous ne trouvez pas la réponse à votre question ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous ne trouvez pas la réponse à votre question ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1114,6 +1204,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connecter Trente à Apple Pay"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connecter Trente à Apple Pay"
@@ -1195,6 +1291,12 @@
             "value" : "Personnalisez l’apparence de Trente sur votre écran d’accueil."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personnalisez l’apparence de Trente sur votre écran d’accueil."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1260,6 +1362,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date, plus récentes d’abord"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date, plus récentes d’abord"
@@ -1335,6 +1443,12 @@
             "value" : "Date, plus anciennes d’abord"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date, plus anciennes d’abord"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1400,6 +1514,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jour"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jour"
@@ -1475,6 +1595,12 @@
             "value" : "Envoyez un mail au développeur. Je réponds à toutes les sollicitations !"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoyez un courriel au développeur. Je réponds à tous les messages !"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1540,6 +1666,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment modifier la catégorie affichée dans le widget « Résumé par catégorie » ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comment modifier la catégorie affichée dans le widget « Résumé par catégorie » ?"
@@ -1615,6 +1747,12 @@
             "value" : "Comment répartir un revenu entre les catégories ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment répartir un revenu entre les catégories ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1685,6 +1823,12 @@
             "value" : "Dans le menu en bas de l’écran, touchez la catégorie **Automatisations**, puis descendez jusqu’à la ligne **Cartes**. Touchez la ligne **Cartes - Lorsque je présente une carte Cartes**."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans le menu au bas de l’écran, touchez la catégorie **Automatisation**, puis descendez jusqu’à la ligne **Cartes**. Touchez la ligne **Cartes - Lorsque je présente une carte Cartes**."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1750,6 +1894,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inclus avec Trente+"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inclus avec Trente+"
@@ -1825,6 +1975,12 @@
             "value" : "Trente+ fait les comptes à votre place, et vous donne accès à de nouvelles fonctionnalités."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+ fait les comptes à votre place, et vous donne accès à de nouvelles fonctionnalités."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1890,6 +2046,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrez chaque achat Apple Pay, pas seulement 10 par mois."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrez chaque achat Apple Pay, pas seulement 10 par mois."
@@ -1965,6 +2127,12 @@
             "value" : "Loyer, salaire, abonnements : ajoutés automatiquement, sans que vous ayez à y penser."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loyer, salaire, abonnements : ajoutés automatiquement, sans que vous ayez à y penser."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2030,6 +2198,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affiche une semaine à la fois"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Affiche une semaine à la fois"
@@ -2105,6 +2279,12 @@
             "value" : "Affiche le mois entier"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affiche le mois entier"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2170,6 +2350,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affiche ce que vous avez dépensé"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Affiche ce que vous avez dépensé"
@@ -2245,6 +2431,12 @@
             "value" : "Affiche ce qu’il reste"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affiche ce qu’il reste"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2310,6 +2502,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez **Obtenir le raccourci** ci-dessous et ajoutez **Trente & Wallet** à vos raccourcis."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Touchez **Obtenir le raccourci** ci-dessous et ajoutez **Trente & Wallet** à vos raccourcis."
@@ -2385,6 +2583,12 @@
             "value" : "Touchez le raccourci **Trente & Wallet** que vous venez d’ajouter, puis touchez **Modifier**."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez le raccourci **Trente & Wallet** que vous venez d’ajouter, puis touchez **Modifier**."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2450,6 +2654,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le montant restant correspond aux revenus que vous avez enregistrés ce mois-ci, moins les dépenses.\nSi le mois n’affiche aucun montant restant, commencez par ajouter un revenu en touchant « Ajouter une transaction »."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le montant restant correspond aux revenus que vous avez enregistrés ce mois-ci, moins les dépenses.\nSi le mois n’affiche aucun montant restant, commencez par ajouter un revenu en touchant « Ajouter une transaction »."
@@ -2525,6 +2735,12 @@
             "value" : "Titre, de A à Z"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titre, de A à Z"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2590,6 +2806,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titre, de Z à A"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titre, de Z à A"
@@ -2665,6 +2887,12 @@
             "value" : "Aucune transaction correspondante"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune transaction correspondante"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2730,6 +2958,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune transaction ne correspond à ces filtres."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune transaction ne correspond à ces filtres."
@@ -2805,6 +3039,12 @@
             "value" : "Réinitialiser"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réinitialiser"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2870,6 +3110,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réinitialiser les filtres"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réinitialiser les filtres"
@@ -2945,6 +3191,12 @@
             "value" : "Transactions récurrentes automatiques"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transactions récurrentes automatiques"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3010,6 +3262,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noir"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noir"
@@ -3085,6 +3343,12 @@
             "value" : "Reste à dépenser"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reste à dépenser"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3150,6 +3414,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menthe"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menthe"
@@ -3225,6 +3495,12 @@
             "value" : "En trop"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En trop"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3290,6 +3566,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget dépassé"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Budget dépassé"
@@ -3365,6 +3647,12 @@
             "value" : "En pause sans Trente+. Jusqu’à votre prochain abonnement, Trente vous demandera de confirmer %@."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En pause sans Trente+. Jusqu’à votre prochain abonnement, Trente vous demandera de confirmer %@."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3430,6 +3718,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Violet"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Violet"
@@ -3505,6 +3799,12 @@
             "value" : "Rouge"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rouge"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3570,6 +3870,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Répartition des dépenses"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Répartition des dépenses"
@@ -3645,6 +3951,12 @@
             "value" : "Bleu sarcelle"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bleu sarcelle"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3715,6 +4027,12 @@
             "value" : "Restez appuyé longtemps sur le widget, puis touchez « Modifier le widget ». Vous pourrez alors changer la catégorie du widget."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restez appuyé longtemps sur le widget, puis touchez « Modifier le widget ». Vous pourrez alors changer la catégorie du widget."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3780,6 +4098,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Des transactions qui reviennent chaque semaine, chaque mois ou chaque année, comme un loyer ou un salaire.\nTrente vous rappellera de valider la transaction le jour où elle est prévue.\nLes utilisateurs Trente+ peuvent activer la validation automatique des transactions récurrentes."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Des transactions qui reviennent chaque semaine, chaque mois ou chaque année, comme un loyer ou un salaire.\nTrente vous rappellera de valider la transaction le jour où elle est prévue.\nLes utilisateurs Trente+ peuvent activer la validation automatique des transactions récurrentes."
@@ -3858,6 +4182,12 @@
             "value" : "Trente est conçu et maintenu entièrement par une seule personne."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente est conçu et maintenu entièrement par une seule personne."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3923,6 +4253,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les utilisateurs Trente+ peuvent activer la validation automatique des transactions récurrentes. Dans ce cas-là, vous n’avez plus besoin d’ouvrir Trente pour ajouter la transaction à votre budget. Cela peut être utile pour des transactions certaines et régulières, comme un salaire par exemple."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les utilisateurs Trente+ peuvent activer la validation automatique des transactions récurrentes. Dans ce cas-là, vous n’avez plus besoin d’ouvrir Trente pour ajouter la transaction à votre budget. Cela peut être utile pour des transactions certaines et régulières, comme un salaire par exemple."
@@ -3998,6 +4334,12 @@
             "value" : "Connexion à Apple Pay illimitée"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion à Apple Pay illimitée"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4063,6 +4405,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À quoi sert l’option « Automatique » ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "À quoi sert l’option « Automatique » ?"
@@ -4138,6 +4486,12 @@
             "value" : "Lorsque vous ajoutez un revenu, choisissez combien va dans Besoins, Envies et Épargne et dettes. Une dépense va toujours dans une seule catégorie."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lorsque vous ajoutez un revenu, choisissez combien va dans Besoins, Envies et Épargne et dettes. Une dépense va toujours dans une seule catégorie."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4203,6 +4557,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pourquoi mon mois n’affiche aucun montant restant ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pourquoi mon mois n’affiche aucun montant restant ?"
@@ -4278,6 +4638,12 @@
             "value" : "Creative Commons Attribution 3.0"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Attribution 3.0"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4343,6 +4709,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Issue de Noun Project, sous licence CC BY 3.0. Adaptée pour l’icône de l’app et l’autocollant du cochon."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Issue de Noun Project, sous licence CC BY 3.0. Adaptée pour l’icône de l’app et l’autocollant du cochon."
@@ -4418,6 +4790,12 @@
             "value" : "Issue de Noun Project, sous licence CC BY 3.0. Utilisée pour l’autocollant de la fusée."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Issue de Noun Project, sous licence CC BY 3.0. Utilisée pour l’autocollant de la fusée."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4483,6 +4861,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La licence des deux illustrations."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "La licence des deux illustrations."
@@ -4558,6 +4942,12 @@
             "value" : "Jaune"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jaune"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4623,6 +5013,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oui. Depuis les réglages de Trente, vous pouvez ajouter le raccourci qui vous permet de connecter Trente à Apple Pay. Suivez les instructions présentes dans les réglages de Trente.\nAprès chaque achat, touchez la notification, ajoutez la catégorie et enregistrez. Aucune transaction n’est ajoutée sans votre validation.\nLa connexion à Apple Pay est limitée à 10 dépenses par mois pour les utilisateurs classiques. Les utilisateurs Trente+ peuvent ajouter autant de transactions qu’ils le souhaitent."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oui. Depuis les réglages de Trente, vous pouvez ajouter le raccourci qui vous permet de connecter Trente à Apple Pay. Suivez les instructions présentes dans les réglages de Trente.\nAprès chaque achat, touchez la notification, ajoutez la catégorie et enregistrez. Aucune transaction n’est ajoutée sans votre validation.\nLa connexion à Apple Pay est limitée à 10 dépenses par mois pour les utilisateurs classiques. Les utilisateurs Trente+ peuvent ajouter autant de transactions qu’ils le souhaitent."
@@ -4698,6 +5094,12 @@
             "value" : "Vous avez accès aux avantages Trente+. Merci pour votre abonnement !"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez accès aux avantages Trente+. Merci pour votre abonnement !"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4763,6 +5165,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous devriez voir deux blocs dans votre automatisation. C’est bon, Trente recevra vos prochaines dépenses Apple Pay !"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous devriez voir deux blocs dans votre automatisation. C’est bon, Trente recevra vos prochaines dépenses Apple Pay !"
@@ -4838,6 +5246,12 @@
             "value" : "Vous avez utilisé vos %lld connexions à Apple Pay ce mois-ci. Passez à Trente+ pour des enregistrements automatiques illimités."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez utilisé vos %lld connexions à Apple Pay ce mois-ci. Passez à Trente+ pour des enregistrements automatiques illimités."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4903,6 +5317,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos données vous appartiennent, et Trente n’y a jamais accès.\nElles sont stockées sur vos appareils, et dans votre compte iCloud si vous activez iCloud pour Trente.\nTrente n’a ni compte ni serveur, et ne se connecte jamais à votre banque.\nPour supprimer vos données, désactivez la synchronisation iCloud pour Trente dans les réglages de l’appareil, puis supprimez l’application."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vos données vous appartiennent, et Trente n’y a jamais accès.\nElles sont stockées sur vos appareils, et dans votre compte iCloud si vous activez iCloud pour Trente.\nTrente n’a ni compte ni serveur, et ne se connecte jamais à votre banque.\nPour supprimer vos données, désactivez la synchronisation iCloud pour Trente dans les réglages de l’appareil, puis supprimez l’application."
@@ -4978,6 +5398,12 @@
             "value" : "« Financial Startup » par Vectors Market"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« Financial Startup » par Vectors Market"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5043,6 +5469,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter le reste"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter le reste"
@@ -5118,6 +5550,12 @@
             "value" : "Mettre à zéro"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mettre à zéro"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5188,6 +5626,12 @@
             "value" : "« Piggy Savings » par Vectors Market"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« Piggy Savings » par Vectors Market"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5253,6 +5697,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
@@ -5334,6 +5784,12 @@
             "value" : "%1$@ - %2$@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5405,6 +5861,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$@"
@@ -5486,6 +5948,12 @@
             "value" : "%1$@ · %2$lld %%"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld %%"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5562,6 +6030,12 @@
             "value" : "%1$@ %2$@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5627,6 +6101,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ restants"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ restants"
@@ -5702,6 +6182,12 @@
             "value" : "%@ commence aujourd’hui"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ commence aujourd’hui"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5767,6 +6253,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ n’apparaîtra plus après aujourd’hui. Les transactions déjà enregistrées sont conservées."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ n’apparaîtra plus après aujourd’hui. Les transactions déjà enregistrées sont conservées."
@@ -5843,6 +6335,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, %2$@"
@@ -5964,6 +6462,24 @@
           }
         },
         "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld active"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld actives"
+                }
+              }
+            }
+          }
+        },
+        "fr-CA" : {
           "variations" : {
             "plural" : {
               "one" : {
@@ -6159,6 +6675,24 @@
             }
           }
         },
+        "fr-CA" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld mois"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld mois"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -6337,6 +6871,24 @@
             }
           }
         },
+        "fr-CA" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld transaction"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld transactions"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -6458,6 +7010,12 @@
             "value" : "À propos du développeur"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À propos du développeur"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6523,6 +7081,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actives"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Actives"
@@ -6598,6 +7162,12 @@
             "value" : "Ajouter une date de fin"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter une date de fin"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6668,6 +7238,12 @@
             "value" : "Ajouter une catégorie"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter une catégorie"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6733,6 +7309,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter une image"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajouter une image"
@@ -6831,6 +7413,12 @@
             "value" : "Ajoutez des notes et des images avec Trente+"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez des notes et des images avec Trente+"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6896,6 +7484,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez le raccourci Trente, puis créez une automatisation. Chaque paiement par carte apparaît ensuite dans Trente, prêt à être vérifié."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajoutez le raccourci Trente, puis créez une automatisation. Chaque paiement par carte apparaît ensuite dans Trente, prêt à être vérifié."
@@ -6971,6 +7565,12 @@
             "value" : "Ajouter une transaction"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter une transaction"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7036,6 +7636,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez votre première transaction récurrente en touchant « Ajouter une transaction »."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajoutez votre première transaction récurrente en touchant « Ajouter une transaction »."
@@ -7111,6 +7717,12 @@
             "value" : "Ajoutez votre première transaction en touchant « Ajouter une transaction »."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez votre première transaction en touchant « Ajouter une transaction »."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7176,6 +7788,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez votre première transaction du mois en touchant « Ajouter une transaction »."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajoutez votre première transaction du mois en touchant « Ajouter une transaction »."
@@ -7251,6 +7869,12 @@
             "value" : "Ajoutez vos premières transactions en touchant « Nouvelle transaction »."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez vos premières transactions en touchant « Nouvelle transaction »."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7316,6 +7940,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez vos notes ici."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajoutez vos notes ici."
@@ -7391,6 +8021,12 @@
             "value" : "Ajouté automatiquement."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouté automatiquement."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7456,6 +8092,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après chaque achat"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Après chaque achat"
@@ -7531,6 +8173,12 @@
             "value" : "Tous les mois"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tous les mois"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7596,6 +8244,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Your Worth (2005)"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "All Your Worth (2005)"
@@ -7671,6 +8325,12 @@
             "value" : "Montant"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montant"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7736,6 +8396,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le montant doit être inférieur à 0."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le montant doit être inférieur à 0."
@@ -7811,6 +8477,12 @@
             "value" : "Montant à répartir"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montant à répartir"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7876,6 +8548,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une erreur s’est produite"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une erreur s’est produite"
@@ -7951,6 +8629,12 @@
             "value" : "Icône de l’app"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icône de l’app"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8016,6 +8700,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icônes de l’app"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Icônes de l’app"
@@ -8091,6 +8781,12 @@
             "value" : "Apple Pay"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8156,6 +8852,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MOIS ARCHIVÉS"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "MOIS ARCHIVÉS"
@@ -8231,6 +8933,12 @@
             "value" : "Voulez-vous vraiment continuer ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voulez-vous vraiment continuer ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8296,6 +9004,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Au moins une catégorie doit avoir un montant non nul."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Au moins une catégorie doit avoir un montant non nul."
@@ -8371,6 +9085,12 @@
             "value" : "Automatique"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatique"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8436,6 +9156,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retour"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retour"
@@ -8511,6 +9237,12 @@
             "value" : "Bleu"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bleu"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8576,6 +9308,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les bases du budget"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les bases du budget"
@@ -8651,6 +9389,12 @@
             "value" : "Catégorie de budget"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catégorie de budget"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8716,6 +9460,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente peut-il enregistrer mes achats Apple Pay ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente peut-il enregistrer mes achats Apple Pay ?"
@@ -8791,6 +9541,12 @@
             "value" : "Annuler"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuler"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8856,6 +9612,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement impossible"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrement impossible"
@@ -8931,6 +9693,12 @@
             "value" : "Catégories"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catégories"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8996,6 +9764,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catégorie"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Catégorie"
@@ -9071,6 +9845,12 @@
             "value" : "Résumé par catégorie"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Résumé par catégorie"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9136,6 +9916,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changer d’image"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Changer d’image"
@@ -9211,6 +9997,12 @@
             "value" : "Modifier ou arrêter cette récurrence"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier ou arrêter cette récurrence"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9276,6 +10068,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fermer"
@@ -9351,6 +10149,12 @@
             "value" : "Vêtements"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vêtements"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9416,6 +10220,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuer"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continuer"
@@ -9491,6 +10301,12 @@
             "value" : "Copier l’adresse"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copier l’adresse"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9556,6 +10372,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’ouvrir Mail"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible d’ouvrir Mail"
@@ -9631,6 +10453,12 @@
             "value" : "Créer"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créer"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9696,6 +10524,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créez un mois pour enregistrer cette transaction."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Créez un mois pour enregistrer cette transaction."
@@ -9771,6 +10605,12 @@
             "value" : "Crédits"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crédits"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9836,6 +10676,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Devise"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Devise"
@@ -9911,6 +10757,12 @@
             "value" : "MOIS EN COURS"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MOIS EN COURS"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9976,6 +10828,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dépenses quotidiennes"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dépenses quotidiennes"
@@ -10051,6 +10909,12 @@
             "value" : "Date"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10116,6 +10980,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dates"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dates"
@@ -10191,6 +11061,12 @@
             "value" : "Diminuer %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diminuer %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10256,6 +11132,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supprimer"
@@ -10331,6 +11213,12 @@
             "value" : "Échec de la suppression"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec de la suppression"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10396,6 +11284,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer l’image"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supprimer l’image"
@@ -10471,6 +11365,12 @@
             "value" : "Supprimer le mois"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer le mois"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10536,6 +11436,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer la transaction récurrente"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supprimer la transaction récurrente"
@@ -10611,6 +11517,12 @@
             "value" : "Supprimer la transaction"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer la transaction"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10676,6 +11588,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout désélectionner"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tout désélectionner"
@@ -10752,6 +11670,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurants, loisirs..."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restaurants, loisirs..."
@@ -10850,6 +11774,12 @@
             "value" : "OK"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10915,6 +11845,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échéance le %@"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échéance le %@"
@@ -10990,6 +11926,12 @@
             "value" : "Échéance aujourd’hui"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échéance aujourd’hui"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11055,6 +11997,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échéance aujourd’hui. Ouvrez Trente pour indiquer que c’est payé."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échéance aujourd’hui. Ouvrez Trente pour indiquer que c’est payé."
@@ -11130,6 +12078,12 @@
             "value" : "Modifier"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11195,6 +12149,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier le mois"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifier le mois"
@@ -11270,6 +12230,12 @@
             "value" : "Modification"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modification"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11335,6 +12301,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date de fin"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date de fin"
@@ -11410,6 +12382,12 @@
             "value" : "La date de fin doit être au moins 7 jours après la date de début."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La date de fin doit être au moins 7 jours après la date de début."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11475,6 +12453,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminées"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminées"
@@ -11550,6 +12534,12 @@
             "value" : "Terminée le %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminée le %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11615,6 +12605,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur de chargement de l’image"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erreur de chargement de l’image"
@@ -11690,6 +12686,12 @@
             "value" : "Chaque %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chaque %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11755,6 +12757,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le %@ de chaque mois"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le %@ de chaque mois"
@@ -11830,6 +12838,12 @@
             "value" : "À venir ce mois-ci"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À venir ce mois-ci"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11900,6 +12914,12 @@
             "value" : "Prévu aujourd’hui. Ouvrez Trente pour indiquer que c’est reçu."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prévu aujourd’hui. Ouvrez Trente pour indiquer que c’est reçu."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11965,6 +12985,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dépense"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dépense"
@@ -12100,6 +13126,24 @@
             }
           }
         },
+        "fr-CA" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Exporter %lld transaction"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Exporter %lld transactions"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -12218,6 +13262,12 @@
             "value" : "Échec de l’exportation"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec de l’exportation"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12283,6 +13333,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporter le mois"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporter le mois"
@@ -12358,6 +13414,12 @@
             "value" : "Exporter les transactions"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporter les transactions"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12423,6 +13485,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporter…"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporter…"
@@ -12498,6 +13566,12 @@
             "value" : "Impossible d’enregistrer les modifications : %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’enregistrer les modifications : %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12563,6 +13637,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctionnalités et données"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonctionnalités et données"
@@ -12638,6 +13718,12 @@
             "value" : "Fichier"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12703,6 +13789,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtrer"
@@ -12778,6 +13870,12 @@
             "value" : "Me retrouver en ligne"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me retrouver en ligne"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12843,6 +13941,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fréquence"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fréquence"
@@ -12918,6 +14022,12 @@
             "value" : "Questions fréquentes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questions fréquentes"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12983,6 +14093,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du"
@@ -13058,6 +14174,12 @@
             "value" : "Recevez un rappel quand un nouveau mois commence et quand une transaction récurrente arrive à échéance, et une notification après chaque achat Apple Pay."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recevez un rappel quand un nouveau mois commence et quand une transaction récurrente arrive à échéance, et une notification après chaque achat Apple Pay."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13123,6 +14245,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recevez un rappel quand un nouveau mois commence et quand une transaction récurrente arrive à échéance."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recevez un rappel quand un nouveau mois commence et quand une transaction récurrente arrive à échéance."
@@ -13198,6 +14326,12 @@
             "value" : "Commencer"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commencer"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13263,6 +14397,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtenir le raccourci"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Obtenir le raccourci"
@@ -13338,6 +14478,12 @@
             "value" : "GitHub"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13403,6 +14549,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donnez un titre à votre transaction"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Donnez un titre à votre transaction"
@@ -13484,6 +14636,12 @@
             "value" : "Gris"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gris"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13549,6 +14707,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vert"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vert"
@@ -13624,6 +14788,12 @@
             "value" : "Aide et informations"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aide et informations"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13689,6 +14859,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonjour, moi c’est Louis 👋"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bonjour, moi c’est Louis 👋"
@@ -13764,6 +14940,12 @@
             "value" : "Comment fonctionnent les mois dans Trente ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment fonctionnent les mois dans Trente ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13829,6 +15011,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment souhaitez-vous répartir ce revenu ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comment souhaitez-vous répartir ce revenu ?"
@@ -13904,6 +15092,12 @@
             "value" : "Je suis un développeur français 🇫🇷 passionné par la création d’apps. Trente est l’app que j’aurais aimé avoir pour suivre la règle des 50/30/20. Chaque suggestion compte, alors n’hésitez pas à m’écrire !"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je suis un développeur français 🇫🇷 passionné par la création d’apps. Trente est l’app que j’aurais aimé avoir pour suivre la règle des 50/30/20. Chaque suggestion compte, alors n’hésitez pas à m’écrire !"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13969,6 +15163,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud n’est pas disponible pour Trente. Vérifiez qu’iCloud est activé pour Trente dans l’app Réglages."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud n’est pas disponible pour Trente. Vérifiez qu’iCloud est activé pour Trente dans l’app Réglages."
@@ -14044,6 +15244,12 @@
             "value" : "Synchronisation iCloud"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisation iCloud"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14109,6 +15315,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget idéal"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Budget idéal"
@@ -14184,6 +15396,12 @@
             "value" : "Illustrations"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illustrations"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14249,6 +15467,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les images sont enregistrées avec la feuille de calcul dans un fichier .zip."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les images sont enregistrées avec la feuille de calcul dans un fichier .zip."
@@ -14324,6 +15548,12 @@
             "value" : "Dans l’app Raccourcis"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans l’app Raccourcis"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14389,6 +15619,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inclure les images"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inclure les images"
@@ -14464,6 +15700,12 @@
             "value" : "Inclure les notes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inclure les notes"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14529,6 +15771,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revenu"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Revenu"
@@ -14604,6 +15852,12 @@
             "value" : "Répartition du revenu"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Répartition du revenu"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14669,6 +15923,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le total de la répartition du revenu doit être supérieur à 0."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le total de la répartition du revenu doit être supérieur à 0."
@@ -14744,6 +16004,12 @@
             "value" : "Revenus variables ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revenus variables ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14809,6 +16075,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revenu/Dépense"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Revenu/Dépense"
@@ -14884,6 +16156,12 @@
             "value" : "Augmenter %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Augmenter %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14949,6 +16227,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle ne sera pas ajoutée en %@. Les années suivantes ne sont pas concernées. Cette action est irréversible."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elle ne sera pas ajoutée en %@. Les années suivantes ne sont pas concernées. Cette action est irréversible."
@@ -15024,6 +16308,12 @@
             "value" : "Elle ne sera pas ajoutée cette semaine-là. Les semaines suivantes ne sont pas concernées. Cette action est irréversible."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle ne sera pas ajoutée cette semaine-là. Les semaines suivantes ne sont pas concernées. Cette action est irréversible."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15089,6 +16379,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle ne sera pas ajoutée en %@. Les mois suivants ne sont pas concernés. Cette action est irréversible."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elle ne sera pas ajoutée en %@. Les mois suivants ne sont pas concernés. Cette action est irréversible."
@@ -15164,6 +16460,12 @@
             "value" : "Elle est ajoutée aux transactions de ce mois-ci."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle est ajoutée aux transactions de ce mois-ci."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15229,6 +16531,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 derniers jours"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "7 derniers jours"
@@ -15304,6 +16612,12 @@
             "value" : "Dernières transactions"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dernières transactions"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15369,6 +16683,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restant"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restant"
@@ -15444,6 +16764,12 @@
             "value" : "LinkedIn"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LinkedIn"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15509,6 +16835,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrez vos achats Apple Pay automatiquement"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrez vos achats Apple Pay automatiquement"
@@ -15584,6 +16916,12 @@
             "value" : "Gérer l’abonnement"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gérer l’abonnement"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15649,6 +16987,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marquer %@ comme payé ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marquer %@ comme payé ?"
@@ -15724,6 +17068,12 @@
             "value" : "Marquer %@ comme reçu ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marquer %@ comme reçu ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15789,6 +17139,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marquer comme payé"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marquer comme payé"
@@ -15864,6 +17220,12 @@
             "value" : "Marquer comme payé automatiquement"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marquer comme payé automatiquement"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15929,6 +17291,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marquer comme reçu"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marquer comme reçu"
@@ -16004,6 +17372,12 @@
             "value" : "Marquer comme reçu automatiquement"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marquer comme reçu automatiquement"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16069,6 +17443,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Max"
@@ -16144,6 +17524,12 @@
             "value" : "Minuit"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minuit"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16209,6 +17595,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Min"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Min"
@@ -16284,6 +17676,12 @@
             "value" : "Détails du mois"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détails du mois"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16349,6 +17747,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Résumé du mois"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Résumé du mois"
@@ -16424,6 +17828,12 @@
             "value" : "Mensuel"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mensuel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16489,6 +17899,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mois"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mois"
@@ -16564,6 +17980,12 @@
             "value" : "Plus d’icônes avec Trente+"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus d’icônes avec Trente+"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16629,6 +18051,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besoins"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Besoins"
@@ -16704,6 +18132,12 @@
             "value" : "Ne manquez plus aucune dépense"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne manquez plus aucune dépense"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16769,6 +18203,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau mois"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouveau mois"
@@ -16844,6 +18284,12 @@
             "value" : "Vous découvrez Trente ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous découvrez Trente ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16909,6 +18355,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouvelle transaction"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouvelle transaction"
@@ -16984,6 +18436,12 @@
             "value" : "Nouvelle dépense Apple Pay"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouvelle dépense Apple Pay"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17049,6 +18507,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suivant"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suivant"
@@ -17124,6 +18588,12 @@
             "value" : "Aucune devise disponible pour créer un nouveau mois."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune devise disponible pour créer un nouveau mois."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17189,6 +18659,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun mois disponible"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun mois disponible"
@@ -17264,6 +18740,12 @@
             "value" : "Aucun mois pour l’instant"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun mois pour l’instant"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17329,6 +18811,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun mois disponible"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun mois disponible"
@@ -17404,6 +18892,12 @@
             "value" : "Aucune transaction récurrente"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune transaction récurrente"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17469,6 +18963,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune dépense enregistrée pour l’instant."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune dépense enregistrée pour l’instant."
@@ -17544,6 +19044,12 @@
             "value" : "Pas encore disponible."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas encore disponible."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17609,6 +19115,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus tard"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plus tard"
@@ -17684,6 +19196,12 @@
             "value" : "Non synchronisé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non synchronisé"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17749,6 +19267,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes et images"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notes et images"
@@ -17824,6 +19348,12 @@
             "value" : "Rien d’autre de prévu ce mois-ci."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rien d’autre de prévu ce mois-ci."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17889,6 +19419,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages des notifications"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réglages des notifications"
@@ -17964,6 +19500,12 @@
             "value" : "Notifications"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18029,6 +19571,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "maintenant"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "maintenant"
@@ -18104,6 +19652,12 @@
             "value" : "Désactivé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Désactivé"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18169,6 +19723,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -18244,6 +19804,12 @@
             "value" : "Activé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activé"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18309,6 +19875,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À l’échéance, %@ est ajouté aux transactions du mois."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "À l’échéance, %@ est ajouté aux transactions du mois."
@@ -18407,6 +19979,12 @@
             "value" : "Ouvrir Réglages"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir Réglages"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18472,6 +20050,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rouvrir le raccourci"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rouvrir le raccourci"
@@ -18547,6 +20131,12 @@
             "value" : "Orange"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orange"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18612,6 +20202,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget dépassé"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Budget dépassé"
@@ -18687,6 +20283,12 @@
             "value" : "En retard"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En retard"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18752,6 +20354,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En retard depuis le %@"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "En retard depuis le %@"
@@ -18833,6 +20441,12 @@
             "value" : "Page %1$lld sur %2$lld"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page %1$lld sur %2$lld"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18898,6 +20512,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Payé"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Payé"
@@ -18973,6 +20593,12 @@
             "value" : "Photo"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19043,6 +20669,12 @@
             "value" : "Rose"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rose"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19108,6 +20740,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrez cette fenêtre depuis le tableau de bord d’un mois."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrez cette fenêtre depuis le tableau de bord d’un mois."
@@ -19189,6 +20827,12 @@
             "value" : "Popularisée par Elizabeth Warren et Amelia Warren Tyagi."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popularisée par Elizabeth Warren et Amelia Warren Tyagi."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19254,6 +20898,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prépare une dépense à partir d’un paiement avec Cartes pour que vous puissiez la vérifier dans Trente."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prépare une dépense à partir d’un paiement avec Cartes pour que vous puissiez la vérifier dans Trente."
@@ -19329,6 +20979,12 @@
             "value" : "Préparation du nouveau mois..."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Préparation du nouveau mois..."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19394,6 +21050,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Précédent"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Précédent"
@@ -19469,6 +21131,12 @@
             "value" : "Politique de confidentialité"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Politique de confidentialité"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19534,6 +21202,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noter sur l’App Store"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noter sur l’App Store"
@@ -19609,6 +21283,12 @@
             "value" : "Reçu"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reçu"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19674,6 +21354,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détails de la récurrence"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Détails de la récurrence"
@@ -19749,6 +21435,12 @@
             "value" : "RÉCURRENTES"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RÉCURRENTES"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19814,6 +21506,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaction récurrente"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transaction récurrente"
@@ -19889,6 +21587,12 @@
             "value" : "Titre de la transaction récurrente"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titre de la transaction récurrente"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19954,6 +21658,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transactions récurrentes"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transactions récurrentes"
@@ -20029,6 +21739,12 @@
             "value" : "Restant"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restant"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20094,6 +21810,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heure du rappel"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Heure du rappel"
@@ -20169,6 +21891,12 @@
             "value" : "Rappels"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rappels"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20234,6 +21962,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rappels en pause"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rappels en pause"
@@ -20309,6 +22043,12 @@
             "value" : "Supprimer la date de fin"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer la date de fin"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20374,6 +22114,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loyer"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Loyer"
@@ -20449,6 +22195,12 @@
             "value" : "Loyer, courses, factures..."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loyer, épicerie, factures..."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20514,6 +22266,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Répartition"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Répartition"
@@ -20589,6 +22347,12 @@
             "value" : "Le total de la répartition ne correspond pas au montant à répartir."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le total de la répartition ne correspond pas au montant à répartir."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20654,6 +22418,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite Trente+"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nécessite Trente+"
@@ -20729,6 +22499,12 @@
             "value" : "Réessayer"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réessayer"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20794,6 +22570,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salaire"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salaire"
@@ -20869,6 +22651,12 @@
             "value" : "Enregistrer"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20934,6 +22722,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrez les transactions de ce mois et leurs images dans un fichier .zip, avec une feuille de calcul (.csv) qui s’ouvre dans Numbers, Excel ou Google Sheets."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrez les transactions de ce mois et leurs images dans un fichier .zip, avec une feuille de calcul (.csv) qui s’ouvre dans Numbers, Excel ou Google Sheets."
@@ -21009,6 +22803,12 @@
             "value" : "Enregistrez les transactions de ce mois dans une feuille de calcul (.csv) qui s’ouvre dans Numbers, Excel ou Google Sheets."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrez les transactions de ce mois dans une feuille de calcul (.csv) qui s’ouvre dans Numbers, Excel ou Google Sheets."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21079,6 +22879,12 @@
             "value" : "Épargne"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Épargne"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21144,6 +22950,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Épargne et dettes"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Épargne et dettes"
@@ -21225,6 +23037,12 @@
             "value" : "Épargne, dettes, retraite..."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Épargne, dettes, retraite..."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21290,6 +23108,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Récurrence"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Récurrence"
@@ -21365,6 +23189,12 @@
             "value" : "Rechercher par titre, montant, date, catégorie…"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher par titre, montant, date, catégorie…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21430,6 +23260,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher une devise"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher une devise"
@@ -21505,6 +23341,12 @@
             "value" : "Rechercher dans les questions"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher dans les questions"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21570,6 +23412,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir tout ce qui est prévu"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voir tout ce qui est prévu"
@@ -21645,6 +23493,12 @@
             "value" : "Voir toutes les transactions"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir toutes les transactions"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21715,6 +23569,12 @@
             "value" : "Voir les formules"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir les forfaits"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21780,6 +23640,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consultez votre budget restant du mois en cours pour une catégorie, ou pour toutes les catégories dans le widget moyen.\n\nPour choisir une catégorie, maintenez le doigt sur le widget."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Consultez votre budget restant du mois en cours pour une catégorie, ou pour toutes les catégories dans le widget moyen.\n\nPour choisir une catégorie, maintenez le doigt sur le widget."
@@ -21855,6 +23721,12 @@
             "value" : "Consultez votre budget restant du mois en cours, ainsi que vos dépenses sur les widgets plus grands.\nVoyez d’un coup d’œil où vous en êtes et enregistrez facilement de nouvelles transactions.\n\nVoir les exemples ci-dessous."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consultez votre budget restant du mois en cours, ainsi que vos dépenses sur les widgets plus grands.\nVoyez d’un coup d’œil où vous en êtes et enregistrez facilement de nouvelles transactions.\n\nVoir les exemples ci-dessous."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21920,6 +23792,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez une catégorie pour la dépense."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisissez une catégorie pour la dépense."
@@ -21995,6 +23873,12 @@
             "value" : "Choisissez une catégorie pour le widget."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez une catégorie pour le widget."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22060,6 +23944,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez une catégorie pour cette transaction."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisissez une catégorie pour cette transaction."
@@ -22135,6 +24025,12 @@
             "value" : "Sélectionnez un mois"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionnez un mois"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22200,6 +24096,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout sélectionner"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tout sélectionner"
@@ -22275,6 +24177,12 @@
             "value" : "Choisir une catégorie"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisir une catégorie"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22340,6 +24248,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoyer des commentaires"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envoyer des commentaires"
@@ -22415,6 +24329,12 @@
             "value" : "M’envoyer un e-mail"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M’envoyer un courriel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22480,6 +24400,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurer plus tard"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configurer plus tard"
@@ -22555,6 +24481,12 @@
             "value" : "Réglages"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22625,6 +24557,12 @@
             "value" : "Partager les détails de l’erreur"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager les détails de l’erreur"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22690,6 +24628,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher l’image"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher l’image"
@@ -22771,6 +24715,12 @@
             "value" : "Connectez-vous à iCloud dans l’app Réglages pour retrouver vos mois et vos transactions sur tous vos appareils. Vous pouvez les exporter en feuille de calcul à tout moment."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connectez-vous à iCloud dans l’app Réglages pour retrouver vos mois et vos transactions sur tous vos appareils. Vous pouvez les exporter en feuille de calcul à tout moment."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22836,6 +24786,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer"
@@ -22917,6 +24873,12 @@
             "value" : "Ignorer « %@ » en %@ ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer « %@ » en %@ ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22982,6 +24944,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer « %@ » en %@ ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer « %@ » en %@ ?"
@@ -23058,6 +25026,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer « %@ » le %@ ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer « %@ » le %@ ?"
@@ -23202,6 +25176,12 @@
             "value" : "Ignorer en %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer en %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23267,6 +25247,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer en %@"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer en %@"
@@ -23342,6 +25328,12 @@
             "value" : "Ignorer le %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer le %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23407,6 +25399,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer ce mois-ci"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer ce mois-ci"
@@ -23482,6 +25480,12 @@
             "value" : "Ignorer cette semaine"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer cette semaine"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23547,6 +25551,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer cette année"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer cette année"
@@ -23622,6 +25632,12 @@
             "value" : "Trier"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23687,6 +25703,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier par"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trier par"
@@ -23762,6 +25784,12 @@
             "value" : "Dépensé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dépensé"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23827,6 +25855,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Répartissez votre budget"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Répartissez votre budget"
@@ -23903,6 +25937,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Répartissez votre revenu net entre Besoins, Envies et Épargne et dettes. Trente classe chaque transaction dans l’une de ces catégories."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Répartissez votre revenu net entre Besoins, Envies et Épargne et dettes. Trente classe chaque transaction dans l’une de ces catégories."
@@ -24001,6 +26041,12 @@
             "value" : "Commencer un nouveau mois"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commencer un nouveau mois"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24066,6 +26112,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date de début"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Date de début"
@@ -24141,6 +26193,12 @@
             "value" : "La date de début ne peut pas être dans le passé."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La date de début ne peut pas être dans le passé."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24206,6 +26264,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commencer le suivi"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commencer le suivi"
@@ -24281,6 +26345,12 @@
             "value" : "Ouvrez l’app pour commencer à suivre votre budget avec Trente !"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrez l’app pour commencer à suivre votre budget avec Trente !"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24351,6 +26421,12 @@
             "value" : "Commencez à suivre votre budget."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commencez à suivre votre budget."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24416,6 +26492,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "État"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "État"
@@ -24497,6 +26579,12 @@
             "value" : "Étape %1$lld sur %2$lld"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étape %1$lld sur %2$lld"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24562,6 +26650,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec de l’arrêt"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échec de l’arrêt"
@@ -24637,6 +26731,12 @@
             "value" : "Arrêter les prochaines transactions « %@ » ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêter les prochaines transactions « %@ » ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24702,6 +26802,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêter les prochaines transactions"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arrêter les prochaines transactions"
@@ -24800,6 +26906,12 @@
             "value" : "Somme des transactions affichées"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Somme des transactions affichées"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24870,6 +26982,12 @@
             "value" : "Supermarché"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Épicerie"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24935,6 +27053,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soutenez un développeur indépendant"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Soutenez un développeur indépendant"
@@ -25010,6 +27134,12 @@
             "value" : "Synchronisé %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisé %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25075,6 +27205,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prenez le contrôle de votre budget."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prenez le contrôle de votre budget."
@@ -25150,6 +27286,12 @@
             "value" : "Touchez ici pour l’enregistrer dans Trente"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez ici pour l’enregistrer dans Trente"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25215,6 +27357,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conditions d’utilisation"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conditions d’utilisation"
@@ -25290,6 +27438,12 @@
             "value" : "Testeurs TestFlight"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testeurs TestFlight"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25355,6 +27509,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remerciements"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remerciements"
@@ -25430,6 +27590,12 @@
             "value" : "Merci à toutes les personnes qui ont testé Trente sur TestFlight."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merci à toutes les personnes qui ont testé Trente sur TestFlight."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25495,6 +27661,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La règle des 50/30/20"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "La règle des 50/30/20"
@@ -25570,6 +27742,12 @@
             "value" : "La règle des 50/30/20 en 30 secondes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La règle des 50/30/20 en 30 secondes"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25640,6 +27818,12 @@
             "value" : "Impossible de charger l’image. Veuillez réessayer."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger l’image. Veuillez réessayer."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25705,6 +27889,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elles proviennent de votre automatisation Apple Pay dans l’app Raccourcis. Pour les arrêter, désactivez ou supprimez cette automatisation."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elles proviennent de votre automatisation Apple Pay dans l’app Raccourcis. Pour les arrêter, désactivez ou supprimez cette automatisation."
@@ -25786,6 +27976,12 @@
             "value" : "C’est l’argent dont vous disposez librement chaque mois, une fois les impôts réglés."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C’est l’argent dont vous disposez librement chaque mois, une fois les impôts réglés."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25851,6 +28047,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette action est irréversible."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette action est irréversible."
@@ -25926,6 +28128,12 @@
             "value" : "Cette action est irréversible. Toutes les transactions de ce mois seront également supprimées."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette action est irréversible. Toutes les transactions de ce mois seront également supprimées."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25991,6 +28199,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce mois-ci"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ce mois-ci"
@@ -26066,6 +28280,12 @@
             "value" : "Ce mois ne contient encore aucune transaction à exporter."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce mois ne contient encore aucune transaction à exporter."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26131,6 +28351,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titre"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titre"
@@ -26206,6 +28432,12 @@
             "value" : "Le titre ne peut pas être vide."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le titre ne peut pas être vide."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26271,6 +28503,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Au"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Au"
@@ -26346,6 +28584,12 @@
             "value" : "Pour exporter plusieurs mois ou choisir le contenu, accédez à Réglages › Exporter les transactions."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour exporter plusieurs mois ou choisir le contenu, accédez à Réglages › Exporter les transactions."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26411,6 +28655,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total"
@@ -26486,6 +28736,12 @@
             "value" : "Transaction"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaction"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26551,6 +28807,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes de la transaction"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notes de la transaction"
@@ -26626,6 +28888,12 @@
             "value" : "Titre de la transaction"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titre de la transaction"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26691,6 +28959,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transactions"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transactions"
@@ -26766,6 +29040,12 @@
             "value" : "Trente"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26831,6 +29111,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente %@"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente %@"
@@ -26906,6 +29192,12 @@
             "value" : "Trente Tous les mois"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente Tous les mois"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26971,6 +29263,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commentaires sur Trente"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaires sur Trente"
@@ -27046,6 +29344,12 @@
             "value" : "Aide Trente"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aide Trente"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27111,6 +29415,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente succède à TrenteVingt (2023)."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente succède à TrenteVingt (2023)."
@@ -27186,6 +29496,12 @@
             "value" : "Trente reçoit uniquement le nom du commerçant et le montant. Jamais les informations de votre carte."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente reçoit uniquement le nom du commerçant et le montant. Jamais les informations de votre carte."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27251,6 +29567,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient à cette heure-ci quand un nouveau mois commence et quand une transaction récurrente arrive à échéance."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente vous prévient à cette heure-ci quand un nouveau mois commence et quand une transaction récurrente arrive à échéance."
@@ -27349,6 +29671,12 @@
             "value" : "Trente vous prévient à cette heure-ci quand un nouveau mois commence."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient à cette heure-ci quand un nouveau mois commence."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27419,6 +29747,12 @@
             "value" : "Trente vous prévient à cette heure-ci quand une transaction récurrente arrive à échéance."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient à cette heure-ci quand une transaction récurrente arrive à échéance."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27484,6 +29818,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente répartit votre budget entre Besoins, Envies et Épargne, pour que vous sachiez toujours ce qu’il vous reste ce mois-ci."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente répartit votre budget entre Besoins, Envies et Épargne, pour que vous sachiez toujours ce qu’il vous reste ce mois-ci."
@@ -27582,6 +29922,12 @@
             "value" : "Trente vous prévient quand un nouveau mois commence et quand un paiement récurrent comme le loyer arrive à échéance, pour le marquer comme payé directement depuis la notification."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient quand un nouveau mois commence et quand un paiement récurrent comme le loyer arrive à échéance, pour le marquer comme payé directement depuis la notification."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27647,6 +29993,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous prévient quand un nouveau mois commence et quand un paiement récurrent comme le loyer arrive à échéance. Une fois Apple Pay configuré, il vous envoie aussi une notification après chaque achat pour l’enregistrer en un instant."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente vous prévient quand un nouveau mois commence et quand un paiement récurrent comme le loyer arrive à échéance. Une fois Apple Pay configuré, il vous envoie aussi une notification après chaque achat pour l’enregistrer en un instant."
@@ -27745,6 +30097,12 @@
             "value" : "Trente+"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27810,6 +30168,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteVingt"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TrenteVingt"
@@ -27885,6 +30249,12 @@
             "value" : "Activez « Transaction récurrente » lorsque vous ajoutez une transaction."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activez « Transaction récurrente » lorsque vous ajoutez une transaction."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27950,6 +30320,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activez un rappel pour choisir quand Trente vous prévient."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activez un rappel pour choisir quand Trente vous prévient."
@@ -28025,6 +30401,12 @@
             "value" : "Activer les notifications"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer les notifications"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28090,6 +30472,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Type"
@@ -28165,6 +30553,12 @@
             "value" : "Dans le budget"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans le budget"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28235,6 +30629,12 @@
             "value" : "Faites votre meilleure estimation. Enregistrez les revenus supplémentaires au fil de l’eau et ajustez le budget du mois suivant."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faites votre meilleure estimation. Enregistrez les revenus supplémentaires au fur et à mesure et ajustez le budget du mois suivant."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28300,6 +30700,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envies"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envies"
@@ -28375,6 +30781,12 @@
             "value" : "Impossible de créer le mois. Veuillez réessayer."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de créer le mois. Veuillez réessayer."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28440,6 +30852,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de créer la transaction. Veuillez réessayer."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible de créer la transaction. Veuillez réessayer."
@@ -28515,6 +30933,12 @@
             "value" : "Impossible d’ajouter votre revenu"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’ajouter votre revenu"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28580,6 +31004,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’enregistrer votre mois"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible d’enregistrer votre mois"
@@ -28871,6 +31301,54 @@
             }
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nous avons retrouvé vos données dans iCloud : %#@months@ et %#@transactions@. Tout est là, prêt pour reprendre là où vous en étiez."
+          },
+          "substitutions" : {
+            "months" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg mois"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg mois"
+                    }
+                  }
+                }
+              }
+            },
+            "transactions" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg transaction"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg transactions"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29109,6 +31587,12 @@
             "value" : "Nous partons de la règle des 50/30/20. Ajustez-la à votre vie : vous pouvez la modifier chaque mois."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nous partons de la règle des 50/30/20. Ajustez-la à votre vie : vous pouvez la modifier chaque mois."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29174,6 +31658,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Site web"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Site web"
@@ -29249,6 +31739,12 @@
             "value" : "Hebdomadaire"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hebdomadaire"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29314,6 +31810,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bon retour !"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bon retour !"
@@ -29389,6 +31891,12 @@
             "value" : "Que sont les transactions récurrentes ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Que sont les transactions récurrentes ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29454,6 +31962,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qu’est-ce que la règle des 50/30/20 ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Qu’est-ce que la règle des 50/30/20 ?"
@@ -29529,6 +32043,12 @@
             "value" : "Qu’est-ce que Trente+ ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qu’est-ce que Trente+ ?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29599,6 +32119,12 @@
             "value" : "Contenu de l’export"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contenu de l’exportation"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29664,6 +32190,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Où sont stockées mes données ?"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Où sont stockées mes données ?"
@@ -29762,6 +32294,12 @@
             "value" : "Annuel"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29830,6 +32368,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous pouvez écrire à %@ depuis n’importe quelle app de messagerie."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous pouvez écrire à %@ depuis n’importe quelle app de courriel."
           }
         },
         "it" : {
@@ -29903,6 +32447,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas ouvert Trente sur cet iPad depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous n’avez pas ouvert Trente sur cet iPad depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
@@ -29984,6 +32534,12 @@
             "value" : "Vous n’avez pas ouvert Trente sur cet iPhone depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas ouvert Trente sur cet iPhone depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30060,6 +32616,12 @@
             "value" : "Vous n’avez pas ouvert Trente sur ce Mac depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas ouvert Trente sur ce Mac depuis le %@, les rappels sont donc en pause ici. Ouvrez l’app à tout moment pour les réactiver."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30125,6 +32687,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous choisirez les catégories de ce revenu aux étapes suivantes."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous choisirez les catégories de ce revenu aux étapes suivantes."
@@ -30200,6 +32768,12 @@
             "value" : "Tout est prêt !"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout est prêt !"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30265,6 +32839,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’ouvrir votre budget"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossible d’ouvrir votre budget"
@@ -30340,6 +32920,12 @@
             "value" : "Vos données"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos données"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30405,6 +32991,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos données n’ont pas été supprimées. Essayez de mettre à jour Trente et partagez les détails de l’erreur si le problème persiste."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vos données n’ont pas été supprimées. Essayez de mettre à jour Trente et partagez les détails de l’erreur si le problème persiste."
@@ -30480,6 +33072,12 @@
             "value" : "Votre premier mois commence aujourd’hui. Enregistrez vos dépenses au fur et à mesure et Trente vous montre ce qu’il reste."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre premier mois commence aujourd’hui. Enregistrez vos dépenses au fur et à mesure et Trente vous montre ce qu’il reste."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30550,6 +33148,12 @@
             "value" : "Votre stockage iCloud est plein : les nouvelles modifications restent sur cet appareil. Libérez de l’espace dans l’app Réglages pour reprendre la synchronisation."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre stockage iCloud est plein : les nouvelles modifications restent sur cet appareil. Libérez de l’espace dans l’app Réglages pour reprendre la synchronisation."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30615,6 +33219,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre budget mensuel"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Votre budget mensuel"
@@ -30696,6 +33306,12 @@
             "value" : "Vos mois et vos transactions se synchronisent via votre compte iCloud sur tous vos appareils. Trente n’a ni compte ni serveur. Vous pouvez les exporter en feuille de calcul à tout moment."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos mois et vos transactions se synchronisent via votre compte iCloud sur tous vos appareils. Trente n’a ni compte ni serveur. Vous pouvez les exporter en feuille de calcul à tout moment."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30761,6 +33377,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre nouveau mois est prêt, avec le même budget que le mois dernier. Ouvrez Trente pour le voir."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Votre nouveau mois est prêt, avec le même budget que le mois dernier. Ouvrez Trente pour le voir."
@@ -30836,6 +33458,12 @@
             "value" : "Zoom avant"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom avant"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30901,6 +33529,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom arrière"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zoom arrière"
