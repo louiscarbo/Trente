@@ -11357,6 +11357,7 @@
         }
       }
     },
+    "%lld Selected" : {},
     "^[%lld Month](inflect: true)" : {
       "localizations" : {
         "da" : {
@@ -16595,6 +16596,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Radera"
+          }
+        }
+      }
+    },
+    "Delete %lld Recurring Transactions" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Delete %lld Recurring Transaction"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Delete %lld Recurring Transactions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Delete %lld Transactions" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Delete %lld Transaction"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Delete %lld Transactions"
+                }
+              }
+            }
           }
         }
       }
@@ -24962,6 +25007,7 @@
         }
       }
     },
+    "Next: %@" : {},
     "No currencies available to create a new month." : {
       "localizations" : {
         "da" : {
@@ -27192,6 +27238,7 @@
         }
       }
     },
+    "Past transactions stay in their months with the same amounts." : {},
     "Photo" : {
       "localizations" : {
         "da" : {
@@ -41354,6 +41401,7 @@
         }
       }
     },
+    "Your budget" : {},
     "Your budget couldn't be opened" : {
       "localizations" : {
         "da" : {
