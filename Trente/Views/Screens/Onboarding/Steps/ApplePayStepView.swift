@@ -8,48 +8,48 @@
 import SwiftUI
 
 struct ApplePayStepView: View {
-    let hasOpenedShortcut: Bool
-    let onGetShortcut: () -> Void
+    let currency: Currency
+    let onSetUp: () -> Void
     let onContinue: () -> Void
 
     var body: some View {
         OnboardingStepLayout {
             OnboardingHeader(
                 title: "Log Apple Pay purchases automatically",
-                subtitle: "Add the Trente shortcut, then create one automation. Every card payment then shows up in Trente, ready to review."
+                subtitle: "Create one automation in the Shortcuts app. Every card payment then shows up in Trente, ready to review."
             )
         } secondary: {
             OnboardingScrollPane {
-                ApplePaySetupGuide()
+                NotificationPreview(
+                    title: NotificationText.amountTitle(amountCents: -4_50, currency: currency, title: String(localized: "Bakery")),
+                    message: WalletNotificationService.body
+                )
+                Label(
+                    "Trente only receives the merchant name and the amount. Never your card details.",
+                    systemImage: "lock.fill"
+                )
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 4)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .frame(maxWidth: 370)
+            .frame(maxWidth: .infinity)
         } actions: {
-            if hasOpenedShortcut {
-                OnboardingContinueButton(title: "Continue", action: onContinue)
-                secondaryButton(title: "Open Shortcut Again", action: onGetShortcut)
-            } else {
-                OnboardingContinueButton(title: "Get the Shortcut", action: onGetShortcut)
-                secondaryButton(title: "Set Up Later", action: onContinue)
+            OnboardingContinueButton(title: "Set Up", action: onSetUp)
+            Button(action: onContinue) {
+                Text("Set Up Later")
+                    .frame(maxWidth: .infinity)
             }
+            .buttonStyle(TrenteSecondaryButtonStyle())
         }
-    }
-
-    private func secondaryButton(title: LocalizedStringKey, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(title)
-                .frame(maxWidth: .infinity)
-        }
-        .buttonStyle(TrenteSecondaryButtonStyle())
     }
 }
 
 #Preview("Compact", traits: .fixedLayout(width: 390, height: 844)) {
-    ApplePayStepView(hasOpenedShortcut: false, onGetShortcut: {}, onContinue: {})
-}
-
-#Preview("Compact, Shortcut Opened", traits: .fixedLayout(width: 390, height: 844)) {
-    ApplePayStepView(hasOpenedShortcut: true, onGetShortcut: {}, onContinue: {})
+    ApplePayStepView(currency: Currencies.currency(for: "EUR")!, onSetUp: {}, onContinue: {})
 }
 
 #Preview("Regular", traits: .fixedLayout(width: 1200, height: 800)) {
-    ApplePayStepView(hasOpenedShortcut: false, onGetShortcut: {}, onContinue: {})
+    ApplePayStepView(currency: Currencies.currency(for: "USD")!, onSetUp: {}, onContinue: {})
 }

@@ -12,6 +12,7 @@ struct SettingsView: View {
     @Environment(\.openURL) private var openURL
     @Environment(\.isTrentePlusSubscribed) private var isSubscribed
     @State private var isShowingPaywall = false
+    @State private var isShowingShortcutsSetup = false
     @State private var notificationPermission = NotificationPermissionState()
     @State private var reminderTime = ReminderTime.stored().date(on: .now) ?? .now
     @AppStorage(NotificationPreferences.recurringTransactionsKey) private var remindsRecurringTransactions = true
@@ -47,11 +48,7 @@ struct SettingsView: View {
                     onTurnOn: turnOnNotifications,
                     onOpenSettings: openNotificationSettings
                 )
-                #if os(iOS)
-                if DeviceIdiom.isPhone {
-                    ApplePaySection(onGetShortcut: openShortcut)
-                }
-                #endif
+                ApplePaySection { isShowingShortcutsSetup = true }
                 DataSection(syncStatus: syncMonitor.status)
                 HelpAboutSection(
                     faqItems: FAQItem.items(isPhone: DeviceIdiom.isPhone),
@@ -76,6 +73,9 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $isShowingPaywall) {
             SubscriptionView()
+        }
+        .sheet(isPresented: $isShowingShortcutsSetup) {
+            ShortcutsSetupSheet()
         }
         .refreshesNotificationPermission(notificationPermission)
         .onChange(of: reminderTime) { _, time in
@@ -114,10 +114,6 @@ struct SettingsView: View {
     }
 
     #if os(iOS)
-    private func openShortcut() {
-        openURL(ExternalLinks.logWalletTransactionShortcut)
-    }
-
     private func applyAppIcon(_ icon: AppIcon) {
         Task {
             do {
