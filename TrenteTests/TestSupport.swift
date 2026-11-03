@@ -6,6 +6,7 @@
 //
 
 import SwiftData
+import Testing
 import Foundation
 import UserNotifications
 @testable import Trente
@@ -14,6 +15,33 @@ func makeContext() throws -> ModelContext {
     let config = ModelConfiguration(isStoredInMemoryOnly: true, cloudKitDatabase: .none)
     let container = try ModelContainer(for: .trente, migrationPlan: TrenteMigrationPlan.self, configurations: config)
     return ModelContext(container)
+}
+
+func insertRule(
+    _ title: String,
+    startingOn startDate: Date,
+    repartition: [BudgetCategory: Int] = [.needs: -800_00],
+    in context: ModelContext
+) -> RecurringTransactionRule {
+    let rule = RecurringTransactionRule(
+        title: title,
+        frequency: .monthly,
+        startDate: startDate,
+        repartition: repartition,
+        createdAt: startDate
+    )
+    context.insert(rule)
+    return rule
+}
+
+func recordedTransaction(
+    of rule: RecurringTransactionRule,
+    in month: Month,
+    context: ModelContext
+) throws -> TransactionGroup {
+    let occurrence = try #require(rule.pendingOccurrences(in: month).first)
+    try RecurringTransactionService.shared.confirm(occurrence, in: context, addedDate: occurrence.date)
+    return try #require(rule.transactions.first { $0.month == month })
 }
 
 @discardableResult
