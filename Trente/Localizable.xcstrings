@@ -66,6 +66,12 @@
             "value" : "    아직 예산 관리를 시작하지 않았어요. Trente 앱을 열고 시작해 보세요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "    Du har ikke begynt å føre budsjett ennå. Åpne Trente for å komme i gang."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -152,6 +158,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%2$@ 중 %1$@ 남음"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ igjen av %2$@"
           }
         },
         "pt-BR" : {
@@ -242,6 +254,12 @@
             "value" : "%2$@ 중 %1$@ 지출"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ brukt av %2$@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -322,6 +340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "나눌 금액 %@ 남음"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ igjen å fordele"
           }
         },
         "pt-BR" : {
@@ -412,6 +436,12 @@
             "value" : "이번 달 무료 Apple Pay 기록 %2$lld개 중 %1$lld개"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld av %2$lld gratis Apple Pay-registreringer denne måneden"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -495,6 +525,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "- %@ 남음"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "- %@ igjen"
           }
         },
         "pt-BR" : {
@@ -585,6 +621,12 @@
             "value" : "한 달은 원하는 날짜에 시작해 한 달 동안 이어져요. 예를 들어 10월 25일부터 11월 24일까지처럼 월급날에 맞출 수 있어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En måned starter på datoen du velger, og varer i én måned, for eksempel fra 25. oktober til 24. november, så den passer med lønningsdagen din."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -665,6 +707,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "실수령액을 간단하게 나누는 방법이에요. 약 50%는 필수(월세, 장보기, 공과금), 30%는 선택(외식, 여가), 20%는 저축과 부채 상환에 써요. Trente는 모든 거래를 이 세 카테고리 중 하나로 분류해요. 달마다 원하는 비율을 직접 정할 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En enkel måte å fordele inntekten etter skatt på: omtrent 50 % til behov (husleie, dagligvarer, regninger), 30 % til ønsker (spise ute, fritid) og 20 % til sparing og nedbetaling av gjeld. Trente plasserer hver transaksjon i én av disse tre kategoriene. Du kan velge din egen fordeling for hver måned."
           }
         },
         "pt-BR" : {
@@ -749,6 +797,12 @@
             "value" : "거래에 영수증, 사진, 메모를 추가하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg ved en kvittering, et bilde eller et notat til transaksjonene dine."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -831,6 +885,12 @@
             "value" : "금액, 높은 순"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløp, høyest først"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -911,6 +971,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "금액, 낮은 순"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløp, lavest først"
           }
         },
         "pt-BR" : {
@@ -1001,6 +1067,12 @@
             "value" : "Trente의 새로운 기능을 열어 주는 선택형 월간 또는 연간 구독이에요. 자세한 내용은 Trente 설정에서 확인하세요.\nTrente+는 개인 개발자인 저를 응원하는 방법이기도 해요.\nApple 계정에서 언제든지 구독을 관리하거나 취소할 수 있어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et valgfritt månedlig eller årlig abonnement som låser opp nye funksjoner i Trente. Åpne Innstillinger i Trente for å lese mer.\nMed Trente+ støtter du meg også som uavhengig utvikler.\nDu kan administrere eller avslutte abonnementet når som helst i Apple-kontoen din."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1081,6 +1153,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Pay 한도 도달"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay-grensen er nådd"
           }
         },
         "pt-BR" : {
@@ -1165,6 +1243,12 @@
             "value" : "빵집"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bakeri"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1247,6 +1331,12 @@
             "value" : "원하는 답을 찾지 못했나요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finner du ikke svaret?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1327,6 +1417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente를 Apple Pay에 연결"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koble Trente til Apple Pay"
           }
         },
         "pt-BR" : {
@@ -1417,6 +1513,12 @@
             "value" : "홈 화면에서 Trente의 모습을 바꿔 보세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilpass hvordan Trente ser ut på Hjem-skjermen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1497,6 +1599,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "날짜, 최신순"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dato, nyeste først"
           }
         },
         "pt-BR" : {
@@ -1581,6 +1689,12 @@
             "value" : "날짜, 오래된 순"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dato, eldste først"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1661,6 +1775,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "일"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dag"
           }
         },
         "pt-BR" : {
@@ -1745,6 +1865,12 @@
             "value" : "개발자에게 이메일을 보내 주세요. 모든 메시지에 답장해요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send en e-post til utvikleren. Jeg svarer på alle meldinger."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1825,6 +1951,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "‘카테고리 요약’ 위젯에 표시되는 카테고리는 어떻게 바꾸나요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan endrer jeg kategorien i widgeten «Kategorioversikt»?"
           }
         },
         "pt-BR" : {
@@ -1909,6 +2041,12 @@
             "value" : "수입을 카테고리별로 어떻게 나누나요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan fordeler jeg en inntekt på kategoriene?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1989,6 +2127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "화면 하단 메뉴에서 **자동화** 카테고리를 탭한 다음 **지갑** 항목까지 스크롤하세요. **지갑 - 지갑 카드를 탭할 때** 항목을 탭하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I menyen nederst på skjermen trykker du på kategorien **Automatisering** og blar ned til raden **Lommebok**. Trykk på **Lommebok – Når jeg trykker på et Lommebok-kort**."
           }
         },
         "pt-BR" : {
@@ -2073,6 +2217,12 @@
             "value" : "Trente+에 포함된 기능"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inkludert i Trente+"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2153,6 +2303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente+가 대신 기록하고, 새로운 기능도 열어 드려요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La Trente+ gjøre skrivejobben, og lås opp nye funksjoner."
           }
         },
         "pt-BR" : {
@@ -2237,6 +2393,12 @@
             "value" : "한 달에 10건이 아닌 모든 Apple Pay 결제를 기록하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrer alle Apple Pay-kjøp, ikke bare 10 i måneden."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2317,6 +2479,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "월세, 월급, 구독료가 신경 쓰지 않아도 자동으로 추가돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Husleie, lønn, abonnementer: lagt til automatisk, uten at du trenger å tenke på det."
           }
         },
         "pt-BR" : {
@@ -2401,6 +2569,12 @@
             "value" : "한 주씩 보여 줘요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser én uke om gangen"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2481,6 +2655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "한 달 전체를 보여 줘요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser hele måneden"
           }
         },
         "pt-BR" : {
@@ -2565,6 +2745,12 @@
             "value" : "지출한 금액을 보여 줘요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser hva du har brukt"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2645,6 +2831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "남은 금액을 보여 줘요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viser hva du har igjen"
           }
         },
         "pt-BR" : {
@@ -2729,6 +2921,12 @@
             "value" : "아래의 **단축어 받기**를 탭하고 **Trente & Wallet**을 단축어에 추가하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trykk på **Hent snarveien** nedenfor, og legg til **Trente & Wallet** i snarveiene dine."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2809,6 +3007,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "방금 추가한 **Trente & Wallet** 단축어를 탭한 다음 **편집**을 탭하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trykk på snarveien **Trente & Wallet** som du nettopp la til, og trykk deretter på **Rediger**."
           }
         },
         "pt-BR" : {
@@ -2893,6 +3097,12 @@
             "value" : "남은 금액은 이번 달에 기록한 수입에서 지출을 뺀 금액이에요.\n남은 금액이 표시되지 않는다면 먼저 ‘거래 추가’를 탭해 수입을 추가하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløpet du har igjen, er inntektene du har registrert denne måneden, minus utgiftene.\nHvis måneden ikke viser noe beløp igjen, begynner du med å legge til en inntekt: trykk på «Legg til transaksjon»."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2973,6 +3183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "제목, 오름차순"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tittel, A til Å"
           }
         },
         "pt-BR" : {
@@ -3057,6 +3273,12 @@
             "value" : "제목, 내림차순"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tittel, Å til A"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3137,6 +3359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "일치하는 거래 없음"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen treff"
           }
         },
         "pt-BR" : {
@@ -3221,6 +3449,12 @@
             "value" : "이 필터와 일치하는 거래가 없어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen transaksjoner passer til disse filtrene."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3301,6 +3535,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "재설정"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nullstill"
           }
         },
         "pt-BR" : {
@@ -3385,6 +3625,12 @@
             "value" : "필터 재설정"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nullstill filtre"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3465,6 +3711,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "자동 반복 거래"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatiske faste transaksjoner"
           }
         },
         "pt-BR" : {
@@ -3549,6 +3801,12 @@
             "value" : "블랙"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svart"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3629,6 +3887,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "남은 예산"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Igjen å bruke"
           }
         },
         "pt-BR" : {
@@ -3713,6 +3977,12 @@
             "value" : "민트"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mintgrønn"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3793,6 +4063,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "초과"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over"
           }
         },
         "pt-BR" : {
@@ -3877,6 +4153,12 @@
             "value" : "예산 초과"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over budsjett"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3957,6 +4239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente+가 없어 일시 중지됐어요. 다시 구독할 때까지 %@ 항목은 직접 확인해야 해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satt på pause uten Trente+. Frem til du abonnerer igjen, blir du bedt om å bekrefte %@."
           }
         },
         "pt-BR" : {
@@ -4041,6 +4329,12 @@
             "value" : "퍼플"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lilla"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4121,6 +4415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "레드"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rød"
           }
         },
         "pt-BR" : {
@@ -4205,6 +4505,12 @@
             "value" : "지출 분배"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utgiftsfordeling"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4285,6 +4591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "틸"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blågrønn"
           }
         },
         "pt-BR" : {
@@ -4369,6 +4681,12 @@
             "value" : "위젯을 길게 누른 다음 ‘위젯 편집’을 탭하세요. 그러면 위젯의 카테고리를 바꿀 수 있어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trykk og hold på widgeten, og trykk så på «Rediger widget». Da kan du endre kategorien for widgeten."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4449,6 +4767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "월세나 월급처럼 매주, 매월 또는 매년 반복되는 거래예요.\n예정된 날에 Trente가 거래를 확인하라고 알려 드려요.\nTrente+ 구독자는 반복 거래 자동 확인을 켤 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksjoner som kommer igjen hver uke, hver måned eller hvert år, som husleie eller lønn.\nTrente minner deg på å bekrefte transaksjonen den dagen den er planlagt.\nMed Trente+ kan du slå på automatisk bekreftelse av faste transaksjoner."
           }
         },
         "pt-BR" : {
@@ -4536,6 +4860,12 @@
             "value" : "Trente는 한 사람이 처음부터 끝까지 디자인하고 관리해요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente er designet og vedlikeholdt av bare én person."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4616,6 +4946,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente+ 구독자는 반복 거래 자동 확인을 켤 수 있어요. 그러면 Trente를 열지 않아도 거래가 예산에 추가돼요. 월급처럼 확실하고 규칙적인 거래에 유용해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med Trente+ kan du slå på automatisk bekreftelse av faste transaksjoner. Da trenger du ikke lenger å åpne Trente for å legge transaksjonen til i budsjettet. Det er praktisk for transaksjoner du kan regne med, som lønn."
           }
         },
         "pt-BR" : {
@@ -4700,6 +5036,12 @@
             "value" : "Apple Pay 무제한 기록"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubegrenset Apple Pay-registrering"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4780,6 +5122,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "‘자동’ 옵션은 무엇을 하나요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hva gjør valget «Automatisk»?"
           }
         },
         "pt-BR" : {
@@ -4864,6 +5212,12 @@
             "value" : "수입을 추가할 때 필수, 선택, 저축 및 부채에 각각 얼마를 넣을지 정하세요. 지출은 항상 한 카테고리에만 들어가요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når du legger til en inntekt, velger du hvor mye som går til Behov, Ønsker og Sparing og gjeld. En utgift går alltid til én kategori."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4944,6 +5298,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이번 달에 남은 금액이 표시되지 않는 이유는 무엇인가요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvorfor viser ikke måneden noe beløp igjen?"
           }
         },
         "pt-BR" : {
@@ -5028,6 +5388,12 @@
             "value" : "크리에이티브 커먼즈 저작자표시 3.0"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Attribution 3.0"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5108,6 +5474,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noun Project 제공, CC BY 3.0 라이선스. 앱 아이콘과 돼지 스티커에 맞게 수정해 사용했어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fra Noun Project, lisensiert under CC BY 3.0. Tilpasset for appikonet og klistremerket med grisen."
           }
         },
         "pt-BR" : {
@@ -5192,6 +5564,12 @@
             "value" : "Noun Project 제공, CC BY 3.0 라이선스. 로켓 스티커에 사용했어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fra Noun Project, lisensiert under CC BY 3.0. Brukt til klistremerket med raketten."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5272,6 +5650,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "두 일러스트의 라이선스예요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisensen for begge illustrasjonene."
           }
         },
         "pt-BR" : {
@@ -5356,6 +5740,12 @@
             "value" : "옐로"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gul"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5436,6 +5826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "네. Trente 설정에서 Trente를 Apple Pay에 연결하는 단축어를 추가할 수 있어요. Trente 설정에 있는 안내를 따라 주세요.\n결제할 때마다 알림을 탭하고 카테고리를 추가한 뒤 저장하세요. 확인하지 않은 거래는 추가되지 않아요.\n구독하지 않으면 Apple Pay 기록은 한 달에 지출 10건으로 제한돼요. Trente+ 구독자는 원하는 만큼 거래를 추가할 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ja. I Innstillinger i Trente kan du legge til snarveien som kobler Trente til Apple Pay. Følg instruksjonene der.\nEtter hvert kjøp trykker du på varslingen, legger til kategorien og lagrer. Ingen transaksjon legges til uten at du bekrefter den.\nUten abonnement er Apple Pay-registrering begrenset til 10 utgifter i måneden. Med Trente+ kan du legge til så mange transaksjoner du vil."
           }
         },
         "pt-BR" : {
@@ -5520,6 +5916,12 @@
             "value" : "Trente+의 모든 혜택을 이용할 수 있어요. 구독해 주셔서 감사합니다!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har tilgang til alle fordelene i Trente+. Takk for at du abonnerer."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5600,6 +6002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "자동화에 블록 두 개가 보이면 완료예요. 이제 다음 Apple Pay 결제부터 Trente에 전달돼요!"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du skal nå se to blokker i automatiseringen. Da er alt klart: Trente får med seg de neste Apple Pay-kjøpene dine."
           }
         },
         "pt-BR" : {
@@ -5684,6 +6092,12 @@
             "value" : "이번 달 무료 Apple Pay 기록 %lld개를 모두 사용했어요. Trente+로 무제한 자동 기록을 이용하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har brukt de %lld gratis Apple Pay-registreringene dine denne måneden. Skaff deg Trente+ for ubegrenset automatisk registrering."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5764,6 +6178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "데이터는 사용자의 것이며 Trente는 절대 접근하지 않아요.\n데이터는 기기에 저장되고, Trente에 iCloud를 켜면 iCloud 계정에도 저장돼요.\nTrente에는 계정도 서버도 없고, 은행에 연결하지도 않아요.\n데이터를 삭제하려면 기기 설정에서 Trente의 iCloud 동기화를 끈 다음 앱을 삭제하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dataene dine tilhører deg, og Trente har aldri tilgang til dem.\nDe lagres på enhetene dine, og i iCloud-kontoen din hvis du slår på iCloud for Trente.\nTrente bruker verken konto eller server og kobler seg aldri til banken din.\nFor å slette dataene slår du av iCloud-synkronisering for Trente i Innstillinger på enheten og sletter deretter appen."
           }
         },
         "pt-BR" : {
@@ -5848,6 +6268,12 @@
             "value" : "Vectors Market의 “Financial Startup”"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Financial Startup» av Vectors Market"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5928,6 +6354,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "남은 금액 모두 추가"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til resten"
           }
         },
         "pt-BR" : {
@@ -6012,6 +6444,12 @@
             "value" : "0으로 설정"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sett til null"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6094,6 +6532,12 @@
             "value" : "Vectors Market의 “Piggy Savings”"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Piggy Savings» av Vectors Market"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6171,6 +6615,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
@@ -6264,6 +6714,12 @@
             "value" : "%1$@ - %2$@"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6347,6 +6803,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$@"
@@ -6440,6 +6902,12 @@
             "value" : "%1$@ · %2$lld%%"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld %%"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6528,6 +6996,12 @@
             "value" : "%1$@ %2$@"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6608,6 +7082,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ 남음"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ igjen"
           }
         },
         "pt-BR" : {
@@ -6692,6 +7172,12 @@
             "value" : "%@이 오늘 시작돼요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ starter i dag"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6772,6 +7258,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "오늘 이후로 %@ 항목이 더 이상 표시되지 않아요. 이미 기록된 거래는 그대로 유지돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ vises ikke etter i dag. Transaksjoner som allerede er registrert, blir liggende."
           }
         },
         "pt-BR" : {
@@ -6857,6 +7349,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, %2$@"
@@ -7041,6 +7539,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld개 활성"
+          }
+        },
+        "nb" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktiv"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktive"
+                }
+              }
+            }
           }
         },
         "pt-BR" : {
@@ -7257,6 +7773,24 @@
             "value" : "%lld개월"
           }
         },
+        "nb" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld måned"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld måneder"
+                }
+              }
+            }
+          }
+        },
         "pt-BR" : {
           "variations" : {
             "plural" : {
@@ -7471,6 +8005,24 @@
             "value" : "거래 %lld건"
           }
         },
+        "nb" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld transaksjon"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld transaksjoner"
+                }
+              }
+            }
+          }
+        },
         "pt-BR" : {
           "variations" : {
             "plural" : {
@@ -7592,6 +8144,12 @@
             "value" : "개발자 소개"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Om utvikleren"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7672,6 +8230,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "활성"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktive"
           }
         },
         "pt-BR" : {
@@ -7756,6 +8320,12 @@
             "value" : "종료일 추가"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til sluttdato"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7838,6 +8408,12 @@
             "value" : "카테고리 추가"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til kategori"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7918,6 +8494,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이미지 추가"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til bilde"
           }
         },
         "pt-BR" : {
@@ -8025,6 +8607,12 @@
             "value" : "Trente+로 메모와 이미지를 추가하세요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til notater og bilder med Trente+"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8105,6 +8693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente 단축어를 추가한 다음 자동화를 하나 만드세요. 그러면 모든 카드 결제가 Trente에 표시되어 바로 확인할 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til Trente-snarveien, og opprett én automatisering. Da dukker hver kortbetaling opp i Trente, klar til gjennomgang."
           }
         },
         "pt-BR" : {
@@ -8189,6 +8783,12 @@
             "value" : "거래 추가"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til transaksjon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8269,6 +8869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "‘거래 추가’를 탭해 첫 번째 반복 거래를 추가하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til den første faste transaksjonen din ved å trykke på «Legg til transaksjon»."
           }
         },
         "pt-BR" : {
@@ -8353,6 +8959,12 @@
             "value" : "‘거래 추가’를 탭해 첫 거래를 추가하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til den første transaksjonen din ved å trykke på «Legg til transaksjon»."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8433,6 +9045,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "‘거래 추가’를 탭해 이번 달 첫 거래를 추가하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til månedens første transaksjon ved å trykke på «Legg til transaksjon»."
           }
         },
         "pt-BR" : {
@@ -8517,6 +9135,12 @@
             "value" : "‘새 거래’를 탭해 첫 거래를 추가하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til de første transaksjonene dine ved å trykke på «Ny transaksjon»."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8597,6 +9221,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "여기에 메모를 추가하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv notatene dine her."
           }
         },
         "pt-BR" : {
@@ -8681,6 +9311,12 @@
             "value" : "자동으로 추가됨."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagt til automatisk."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8761,6 +9397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "구매할 때마다"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etter hvert kjøp"
           }
         },
         "pt-BR" : {
@@ -8845,6 +9487,12 @@
             "value" : "모든 달"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle måneder"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8922,6 +9570,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Your Worth (2005)"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "All Your Worth (2005)"
@@ -9009,6 +9663,12 @@
             "value" : "금액"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløp"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9089,6 +9749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "금액은 0보다 작아야 해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløpet må være mindre enn 0."
           }
         },
         "pt-BR" : {
@@ -9173,6 +9839,12 @@
             "value" : "나눌 금액"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beløp å fordele"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9253,6 +9925,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "오류가 발생했어요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det oppstod en feil"
           }
         },
         "pt-BR" : {
@@ -9337,6 +10015,12 @@
             "value" : "앱 아이콘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appikon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9419,6 +10103,12 @@
             "value" : "앱 아이콘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appikoner"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9496,6 +10186,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Pay"
@@ -9583,6 +10279,12 @@
             "value" : "보관된 달"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ARKIVERTE MÅNEDER"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9663,6 +10365,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "계속할까요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er du sikker?"
           }
         },
         "pt-BR" : {
@@ -9747,6 +10455,12 @@
             "value" : "하나 이상의 카테고리에 0이 아닌 금액이 있어야 해요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minst én kategori må ha et beløp som ikke er null."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9827,6 +10541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "자동"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisk"
           }
         },
         "pt-BR" : {
@@ -9911,6 +10631,12 @@
             "value" : "뒤로"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbake"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9991,6 +10717,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "블루"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blå"
           }
         },
         "pt-BR" : {
@@ -10075,6 +10807,12 @@
             "value" : "예산 기초"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grunnleggende om budsjett"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10155,6 +10893,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "예산 카테고리"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budsjettkategori"
           }
         },
         "pt-BR" : {
@@ -10239,6 +10983,12 @@
             "value" : "Trente에서 Apple Pay 구매를 기록할 수 있나요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan Trente registrere Apple Pay-kjøpene mine?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10319,6 +11069,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "취소"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avbryt"
           }
         },
         "pt-BR" : {
@@ -10403,6 +11159,12 @@
             "value" : "저장할 수 없음"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan ikke lagre"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10483,6 +11245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "카테고리"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorier"
           }
         },
         "pt-BR" : {
@@ -10567,6 +11335,12 @@
             "value" : "카테고리"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10647,6 +11421,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "카테고리 요약"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorioversikt"
           }
         },
         "pt-BR" : {
@@ -10731,6 +11511,12 @@
             "value" : "이미지 변경"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endre bilde"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10811,6 +11597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 반복 일정 변경 또는 중단"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endre eller stopp gjentakelsen"
           }
         },
         "pt-BR" : {
@@ -10895,6 +11687,12 @@
             "value" : "닫기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lukk"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10975,6 +11773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "의류"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klær"
           }
         },
         "pt-BR" : {
@@ -11059,6 +11863,12 @@
             "value" : "계속"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsett"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11139,6 +11949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "주소 복사"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopier adresse"
           }
         },
         "pt-BR" : {
@@ -11223,6 +12039,12 @@
             "value" : "메일 앱을 열 수 없음"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke åpne Mail"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11303,6 +12125,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "만들기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opprett"
           }
         },
         "pt-BR" : {
@@ -11387,6 +12215,12 @@
             "value" : "이 거래를 기록하려면 먼저 달을 만드세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opprett en måned for å registrere denne transaksjonen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11467,6 +12301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "크레딧"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krediteringer"
           }
         },
         "pt-BR" : {
@@ -11551,6 +12391,12 @@
             "value" : "통화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valuta"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11631,6 +12477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이번 달"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DENNE MÅNEDEN"
           }
         },
         "pt-BR" : {
@@ -11715,6 +12567,12 @@
             "value" : "일별 지출"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daglig forbruk"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11795,6 +12653,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "날짜"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dato"
           }
         },
         "pt-BR" : {
@@ -11879,6 +12743,12 @@
             "value" : "기간"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datoer"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11959,6 +12829,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ 줄이기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduser %@"
           }
         },
         "pt-BR" : {
@@ -12043,6 +12919,12 @@
             "value" : "삭제"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slett"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12123,6 +13005,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "삭제 실패"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke slette"
           }
         },
         "pt-BR" : {
@@ -12207,6 +13095,12 @@
             "value" : "이미지 삭제"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slett bilde"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12287,6 +13181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "달 삭제"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slett måned"
           }
         },
         "pt-BR" : {
@@ -12371,6 +13271,12 @@
             "value" : "반복 거래 삭제"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slett fast transaksjon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12453,6 +13359,12 @@
             "value" : "거래 삭제"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slett transaksjon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12533,6 +13445,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "모두 선택 해제"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern alle valg"
           }
         },
         "pt-BR" : {
@@ -12621,6 +13539,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "외식, 여가..."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spise ute, fritid…"
           }
         },
         "pt-BR" : {
@@ -12728,6 +13652,12 @@
             "value" : "완료"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ferdig"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12808,6 +13738,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ 예정"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfaller %@"
           }
         },
         "pt-BR" : {
@@ -12892,6 +13828,12 @@
             "value" : "오늘 예정"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfaller i dag"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12972,6 +13914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "오늘 예정이에요. Trente를 열어 결제 완료로 표시하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfaller i dag. Åpne Trente for å merke den som betalt."
           }
         },
         "pt-BR" : {
@@ -13056,6 +14004,12 @@
             "value" : "편집"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13136,6 +14090,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "달 편집"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger måned"
           }
         },
         "pt-BR" : {
@@ -13220,6 +14180,12 @@
             "value" : "편집 중"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redigerer"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13300,6 +14266,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "종료일"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sluttdato"
           }
         },
         "pt-BR" : {
@@ -13384,6 +14356,12 @@
             "value" : "종료일은 시작일로부터 최소 7일 이후여야 해요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sluttdatoen må være minst 7 dager etter startdatoen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13464,6 +14442,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "종료됨"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avsluttede"
           }
         },
         "pt-BR" : {
@@ -13548,6 +14532,12 @@
             "value" : "%@에 종료됨"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avsluttet %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13628,6 +14618,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이미지 로드 오류"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke laste inn bildet"
           }
         },
         "pt-BR" : {
@@ -13712,6 +14708,12 @@
             "value" : "%@마다"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hver %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13792,6 +14794,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "매월 %@일"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den %@ hver måned"
           }
         },
         "pt-BR" : {
@@ -13876,6 +14884,12 @@
             "value" : "이번 달 예정"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ventet denne måneden"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13958,6 +14972,12 @@
             "value" : "오늘 예정이에요. Trente를 열어 수령 완료로 표시하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ventet i dag. Åpne Trente for å merke den som mottatt."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14038,6 +15058,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지출"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utgift"
           }
         },
         "pt-BR" : {
@@ -14218,6 +15244,24 @@
             "value" : "거래 %lld건 내보내기"
           }
         },
+        "nb" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Eksporter %lld transaksjon"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Eksporter %lld transaksjoner"
+                }
+              }
+            }
+          }
+        },
         "pt-BR" : {
           "variations" : {
             "plural" : {
@@ -14336,6 +15380,12 @@
             "value" : "내보내기 실패"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksport mislyktes"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14416,6 +15466,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "달 내보내기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksporter måned"
           }
         },
         "pt-BR" : {
@@ -14500,6 +15556,12 @@
             "value" : "거래 내보내기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksporter transaksjoner"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14580,6 +15642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "내보내기…"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksporter…"
           }
         },
         "pt-BR" : {
@@ -14664,6 +15732,12 @@
             "value" : "변경 사항을 저장하지 못했어요: %@"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke lagre endringene: %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14744,6 +15818,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "기능 및 데이터"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funksjoner og data"
           }
         },
         "pt-BR" : {
@@ -14828,6 +15908,12 @@
             "value" : "파일"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fil"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14908,6 +15994,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "필터"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer"
           }
         },
         "pt-BR" : {
@@ -14992,6 +16084,12 @@
             "value" : "온라인에서 만나요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finn meg på nettet"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15072,6 +16170,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "반복 주기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvor ofte"
           }
         },
         "pt-BR" : {
@@ -15156,6 +16260,12 @@
             "value" : "자주 묻는 질문"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vanlige spørsmål"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15236,6 +16346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "시작"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fra"
           }
         },
         "pt-BR" : {
@@ -15320,6 +16436,12 @@
             "value" : "새로운 달이 시작될 때와 반복 거래 예정일에 알림을 받고, Apple Pay로 구매할 때마다 알림을 받으세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Få en påminnelse når en ny måned starter og når en fast transaksjon forfaller, og en varsling etter hvert Apple Pay-kjøp."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15400,6 +16522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새로운 달이 시작될 때와 반복 거래 예정일에 알림을 받으세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Få en påminnelse når en ny måned starter og når en fast transaksjon forfaller."
           }
         },
         "pt-BR" : {
@@ -15484,6 +16612,12 @@
             "value" : "시작하기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kom i gang"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15566,6 +16700,12 @@
             "value" : "단축어 받기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hent snarveien"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15643,6 +16783,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub"
@@ -15728,6 +16874,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "거래에 제목을 입력하세요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gi transaksjonen en tittel"
           }
         },
         "pt-BR" : {
@@ -15818,6 +16970,12 @@
             "value" : "그레이"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grå"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15898,6 +17056,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "그린"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grønn"
           }
         },
         "pt-BR" : {
@@ -15982,6 +17146,12 @@
             "value" : "도움말 및 정보"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hjelp og informasjon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16062,6 +17232,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "안녕하세요, Louis예요 👋"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hei, jeg heter Louis 👋"
           }
         },
         "pt-BR" : {
@@ -16146,6 +17322,12 @@
             "value" : "Trente에서 달은 어떻게 작동하나요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan fungerer månedene i Trente?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16226,6 +17408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 수입을 어떻게 나눌까요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan vil du fordele denne inntekten?"
           }
         },
         "pt-BR" : {
@@ -16310,6 +17498,12 @@
             "value" : "저는 앱 만드는 걸 좋아하는 프랑스 🇫🇷 개발자예요. Trente는 50/30/20 법칙을 지키기 위해 제가 갖고 싶었던 앱이에요. 어떤 제안이든 도움이 되니 편하게 연락 주세요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeg er en fransk 🇫🇷 utvikler som er glad i å lage apper. Trente er appen jeg savnet da jeg ville følge 50/30/20-regelen. Alle forslag er til hjelp, så det er bare å skrive til meg."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16390,6 +17584,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente에서 iCloud를 사용할 수 없어요. 설정 앱에서 Trente의 iCloud가 켜져 있는지 확인하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud er ikke tilgjengelig for Trente. Sjekk at iCloud er slått på for Trente i Innstillinger-appen."
           }
         },
         "pt-BR" : {
@@ -16474,6 +17674,12 @@
             "value" : "iCloud 동기화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud-synkronisering"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16554,6 +17760,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이상적인 예산"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideelt budsjett"
           }
         },
         "pt-BR" : {
@@ -16638,6 +17850,12 @@
             "value" : "일러스트"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illustrasjoner"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16718,6 +17936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이미지는 스프레드시트와 함께 .zip 파일로 저장돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildene lagres sammen med regnearket i en .zip-fil."
           }
         },
         "pt-BR" : {
@@ -16802,6 +18026,12 @@
             "value" : "단축어 앱에서"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I Snarveier-appen"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16882,6 +18112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이미지 포함"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta med bilder"
           }
         },
         "pt-BR" : {
@@ -16966,6 +18202,12 @@
             "value" : "메모 포함"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta med notater"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17046,6 +18288,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "수입"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inntekt"
           }
         },
         "pt-BR" : {
@@ -17130,6 +18378,12 @@
             "value" : "수입 배분"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inntektsfordeling"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17210,6 +18464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "배분 합계는 0보다 커야 해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summen av inntektsfordelingen må være større enn 0."
           }
         },
         "pt-BR" : {
@@ -17294,6 +18554,12 @@
             "value" : "수입이 일정하지 않나요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varierer inntekten?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17374,6 +18640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "수입/지출"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inntekt/utgift"
           }
         },
         "pt-BR" : {
@@ -17458,6 +18730,12 @@
             "value" : "%@ 늘리기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Øk %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17538,6 +18816,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@에는 추가되지 않아요. 이후 연도에는 영향이 없어요. 이 작업은 되돌릴 수 없어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den legges ikke til i %@. Senere år påvirkes ikke. Dette kan ikke angres."
           }
         },
         "pt-BR" : {
@@ -17622,6 +18906,12 @@
             "value" : "그 주에는 추가되지 않아요. 이후 주에는 영향이 없어요. 이 작업은 되돌릴 수 없어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den legges ikke til den uken. Senere uker påvirkes ikke. Dette kan ikke angres."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17702,6 +18992,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@에는 추가되지 않아요. 이후 달에는 영향이 없어요. 이 작업은 되돌릴 수 없어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den legges ikke til i %@. Senere måneder påvirkes ikke. Dette kan ikke angres."
           }
         },
         "pt-BR" : {
@@ -17786,6 +19082,12 @@
             "value" : "이번 달 거래에 추가돼요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den legges til blant denne månedens transaksjoner."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17866,6 +19168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "최근 7일"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siste 7 dager"
           }
         },
         "pt-BR" : {
@@ -17950,6 +19258,12 @@
             "value" : "최근 거래"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siste transaksjoner"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18032,6 +19346,12 @@
             "value" : "남음"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Igjen"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18109,6 +19429,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LinkedIn"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "LinkedIn"
@@ -18196,6 +19522,12 @@
             "value" : "Apple Pay 구매를 자동으로 기록하세요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrer Apple Pay-kjøp automatisk"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18276,6 +19608,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "구독 관리"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Administrer abonnement"
           }
         },
         "pt-BR" : {
@@ -18360,6 +19698,12 @@
             "value" : "%@ 항목을 결제 완료로 표시할까요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil du merke %@ som betalt?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18440,6 +19784,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ 항목을 수령 완료로 표시할까요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil du merke %@ som mottatt?"
           }
         },
         "pt-BR" : {
@@ -18524,6 +19874,12 @@
             "value" : "결제 완료로 표시"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merk som betalt"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18604,6 +19960,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "자동으로 결제 완료 표시"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merk som betalt automatisk"
           }
         },
         "pt-BR" : {
@@ -18688,6 +20050,12 @@
             "value" : "수령 완료로 표시"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merk som mottatt"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18768,6 +20136,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "자동으로 수령 완료 표시"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merk som mottatt automatisk"
           }
         },
         "pt-BR" : {
@@ -18852,6 +20226,12 @@
             "value" : "최대"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maks"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18932,6 +20312,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "미드나이트"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Midnatt"
           }
         },
         "pt-BR" : {
@@ -19016,6 +20402,12 @@
             "value" : "최소"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Min"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19096,6 +20488,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "달 세부 정보"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månedsdetaljer"
           }
         },
         "pt-BR" : {
@@ -19180,6 +20578,12 @@
             "value" : "월 요약"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månedsoversikt"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19260,6 +20664,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "매월"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månedlig"
           }
         },
         "pt-BR" : {
@@ -19344,6 +20754,12 @@
             "value" : "달"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Måneder"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19424,6 +20840,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente+로 더 많은 아이콘을 사용하세요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flere ikoner med Trente+"
           }
         },
         "pt-BR" : {
@@ -19508,6 +20930,12 @@
             "value" : "필수"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behov"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19588,6 +21016,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지출을 놓치지 마세요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glem aldri en utgift"
           }
         },
         "pt-BR" : {
@@ -19672,6 +21106,12 @@
             "value" : "새로운 달"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny måned"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19752,6 +21192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente가 처음인가요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny i Trente?"
           }
         },
         "pt-BR" : {
@@ -19836,6 +21282,12 @@
             "value" : "새 거래"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny transaksjon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19916,6 +21368,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새 Apple Pay 지출"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny Apple Pay-utgift"
           }
         },
         "pt-BR" : {
@@ -20000,6 +21458,12 @@
             "value" : "다음"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neste"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20080,6 +21544,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새로운 달을 만들 수 있는 통화가 없어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen valutaer er tilgjengelige for å opprette en ny måned."
           }
         },
         "pt-BR" : {
@@ -20164,6 +21634,12 @@
             "value" : "사용 가능한 달이 없어요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen måned tilgjengelig"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20244,6 +21720,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "아직 달이 없어요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen måned ennå"
           }
         },
         "pt-BR" : {
@@ -20328,6 +21810,12 @@
             "value" : "사용 가능한 달이 없어요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen måneder tilgjengelig"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20408,6 +21896,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "반복 거래 없음"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen faste transaksjoner"
           }
         },
         "pt-BR" : {
@@ -20492,6 +21986,12 @@
             "value" : "아직 기록된 지출이 없어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen utgifter registrert ennå."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20572,6 +22072,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "아직 지원되지 않아요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke tilgjengelig ennå."
           }
         },
         "pt-BR" : {
@@ -20656,6 +22162,12 @@
             "value" : "나중에"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke nå"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20736,6 +22248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "동기화 안 됨"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkroniserer ikke"
           }
         },
         "pt-BR" : {
@@ -20820,6 +22338,12 @@
             "value" : "메모 및 이미지"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notater og bilder"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20900,6 +22424,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이번 달에 더 예정된 거래가 없어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det er ikke ventet noe mer denne måneden."
           }
         },
         "pt-BR" : {
@@ -20984,6 +22514,12 @@
             "value" : "알림 설정"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varslingsinnstillinger"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21064,6 +22600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "알림"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varslinger"
           }
         },
         "pt-BR" : {
@@ -21148,6 +22690,12 @@
             "value" : "지금"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nå"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21228,6 +22776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "끔"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Av"
           }
         },
         "pt-BR" : {
@@ -21312,6 +22866,12 @@
             "value" : "확인"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21394,6 +22954,12 @@
             "value" : "켬"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "På"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21474,6 +23040,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "예정일이 되면 %@ 항목이 해당 달의 거래에 추가돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "På forfallsdatoen legges %@ til i transaksjonene for den måneden."
           }
         },
         "pt-BR" : {
@@ -21581,6 +23153,12 @@
             "value" : "설정 열기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne Innstillinger"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21661,6 +23239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "단축어 다시 열기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne snarveien igjen"
           }
         },
         "pt-BR" : {
@@ -21745,6 +23329,12 @@
             "value" : "오렌지"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oransje"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21825,6 +23415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "예산 초과"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over budsjett"
           }
         },
         "pt-BR" : {
@@ -21909,6 +23505,12 @@
             "value" : "기한 지남"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfalt"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21989,6 +23591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@부터 기한 지남"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forfalt siden %@"
           }
         },
         "pt-BR" : {
@@ -22079,6 +23687,12 @@
             "value" : "%2$lld페이지 중 %1$lld페이지"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Side %1$lld av %2$lld"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22159,6 +23773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "결제 완료"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betalt"
           }
         },
         "pt-BR" : {
@@ -22243,6 +23863,12 @@
             "value" : "사진"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilde"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22325,6 +23951,12 @@
             "value" : "핑크"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rosa"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22405,6 +24037,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "달 대시보드에서 이 창을 여세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne dette vinduet fra oversikten til en måned."
           }
         },
         "pt-BR" : {
@@ -22495,6 +24133,12 @@
             "value" : "Elizabeth Warren과 Amelia Warren Tyagi가 널리 알렸어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjort kjent av Elizabeth Warren og Amelia Warren Tyagi."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22575,6 +24219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지갑 결제로 지출을 준비해 Trente에서 확인할 수 있게 해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klargjør en utgift fra en Lommebok-betaling, så du kan se gjennom den i Trente."
           }
         },
         "pt-BR" : {
@@ -22659,6 +24309,12 @@
             "value" : "새로운 달 준비 중..."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klargjør ny måned…"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22739,6 +24395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이전"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forrige"
           }
         },
         "pt-BR" : {
@@ -22823,6 +24485,12 @@
             "value" : "개인정보 처리방침"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personvernerklæring"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22903,6 +24571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "App Store에서 평가하기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurder i App Store"
           }
         },
         "pt-BR" : {
@@ -22987,6 +24661,12 @@
             "value" : "수령 완료"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mottatt"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23067,6 +24747,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "반복 세부 정보"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detaljer om gjentakelse"
           }
         },
         "pt-BR" : {
@@ -23151,6 +24837,12 @@
             "value" : "반복"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FASTE"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23231,6 +24923,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "반복 거래"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast transaksjon"
           }
         },
         "pt-BR" : {
@@ -23315,6 +25013,12 @@
             "value" : "반복 거래 제목"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tittel på fast transaksjon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23395,6 +25099,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "반복 거래"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faste transaksjoner"
           }
         },
         "pt-BR" : {
@@ -23479,6 +25189,12 @@
             "value" : "남은 금액"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Igjen"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23559,6 +25275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "알림 시간"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidspunkt for påminnelse"
           }
         },
         "pt-BR" : {
@@ -23643,6 +25365,12 @@
             "value" : "리마인더"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påminnelser"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23723,6 +25451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "리마인더 일시 중지됨"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påminnelser satt på pause"
           }
         },
         "pt-BR" : {
@@ -23807,6 +25541,12 @@
             "value" : "종료일 삭제"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern sluttdato"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23887,6 +25627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "월세"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Husleie"
           }
         },
         "pt-BR" : {
@@ -23971,6 +25717,12 @@
             "value" : "월세, 장보기, 공과금..."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Husleie, dagligvarer, regninger…"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24051,6 +25803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "배분"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fordeling"
           }
         },
         "pt-BR" : {
@@ -24135,6 +25893,12 @@
             "value" : "배분 합계가 나눌 금액과 일치하지 않아요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summen av fordelingen stemmer ikke med beløpet som skal fordeles."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24215,6 +25979,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente+ 필요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krever Trente+"
           }
         },
         "pt-BR" : {
@@ -24299,6 +26069,12 @@
             "value" : "다시 시도"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prøv igjen"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24379,6 +26155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "월급"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lønn"
           }
         },
         "pt-BR" : {
@@ -24463,6 +26245,12 @@
             "value" : "저장"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagre"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24543,6 +26331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이번 달 거래와 이미지를 .zip 파일로 저장하세요. Numbers, Excel, Google Sheets에서 열 수 있는 스프레드시트(.csv)가 함께 포함돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagre denne månedens transaksjoner og bildene i en .zip-fil, med et regneark (.csv) som kan åpnes i Numbers, Excel eller Google Regneark."
           }
         },
         "pt-BR" : {
@@ -24627,6 +26421,12 @@
             "value" : "이번 달 거래를 Numbers, Excel, Google Sheets에서 열 수 있는 스프레드시트 파일(.csv)로 저장하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagre denne månedens transaksjoner som en regnearkfil (.csv) som kan åpnes i Numbers, Excel eller Google Regneark."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24709,6 +26509,12 @@
             "value" : "저축"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparing"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24789,6 +26595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "저축 및 부채"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparing og gjeld"
           }
         },
         "pt-BR" : {
@@ -24879,6 +26691,12 @@
             "value" : "저축, 부채, 노후 대비..."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparing, gjeld, pensjon…"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24959,6 +26777,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "반복 일정"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjentakelse"
           }
         },
         "pt-BR" : {
@@ -25043,6 +26867,12 @@
             "value" : "제목, 금액, 날짜, 카테고리로 검색…"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søk etter tittel, beløp, dato, kategori…"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25123,6 +26953,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "통화 검색"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søk etter valuta"
           }
         },
         "pt-BR" : {
@@ -25207,6 +27043,12 @@
             "value" : "질문 검색"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søk i spørsmålene"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25287,6 +27129,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "예정된 거래 모두 보기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se alt som er ventet"
           }
         },
         "pt-BR" : {
@@ -25371,6 +27219,12 @@
             "value" : "모든 거래 보기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se alle transaksjoner"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25451,6 +27305,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "플랜 보기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se abonnementene"
           }
         },
         "pt-BR" : {
@@ -25535,6 +27395,12 @@
             "value" : "특정 카테고리의 이번 달 남은 예산을 확인하거나, 중간 크기 위젯에서 모든 카테고리를 확인하세요.\n\n카테고리를 선택하려면 위젯을 길게 누르세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se hva du har igjen av budsjettet denne måneden i én kategori, eller i alle kategorier i den mellomstore widgeten.\n\nTrykk og hold på widgeten for å velge en kategori."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25615,6 +27481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이번 달 남은 예산을 확인하고, 큰 위젯에서는 지출도 볼 수 있어요.\n현황을 한눈에 확인하고 새로운 거래를 쉽게 기록하세요.\n\n아래 예시를 확인하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se hva du har igjen av budsjettet denne måneden, og forbruket ditt på større widgeter.\nSe raskt hvordan det går, og registrer nye transaksjoner enkelt.\n\nSe eksempler nedenfor."
           }
         },
         "pt-BR" : {
@@ -25699,6 +27571,12 @@
             "value" : "지출 카테고리를 선택하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg en kategori for utgiften."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25779,6 +27657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "위젯에 표시할 카테고리를 선택하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg en kategori for widgeten."
           }
         },
         "pt-BR" : {
@@ -25863,6 +27747,12 @@
             "value" : "이 거래의 카테고리를 선택하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg en kategori for denne transaksjonen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25943,6 +27833,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "달을 선택하세요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg en måned"
           }
         },
         "pt-BR" : {
@@ -26027,6 +27923,12 @@
             "value" : "모두 선택"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg alle"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26107,6 +28009,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "카테고리 선택"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg kategori"
           }
         },
         "pt-BR" : {
@@ -26191,6 +28099,12 @@
             "value" : "피드백 보내기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send tilbakemelding"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26271,6 +28185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이메일 보내기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send meg en e-post"
           }
         },
         "pt-BR" : {
@@ -26355,6 +28275,12 @@
             "value" : "나중에 설정"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfigurer senere"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26435,6 +28361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "설정"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Innstillinger"
           }
         },
         "pt-BR" : {
@@ -26519,6 +28451,12 @@
             "value" : "오류 세부 정보 공유"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Del feildetaljer"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26599,6 +28537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이미지 보기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis bilde"
           }
         },
         "pt-BR" : {
@@ -26689,6 +28633,12 @@
             "value" : "설정 앱에서 iCloud에 로그인하면 모든 기기에서 달과 거래를 볼 수 있어요. 언제든지 스프레드시트로 내보낼 수 있어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logg på iCloud i Innstillinger-appen for å ha månedene og transaksjonene på alle enhetene dine. Du kan når som helst eksportere dem som regneark."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26769,6 +28719,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "건너뛰기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hopp over"
           }
         },
         "pt-BR" : {
@@ -26859,6 +28815,12 @@
             "value" : "%2$@에 “%1$@” 항목을 건너뛸까요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil du hoppe over «%1$@» i %2$@?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26939,6 +28901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%2$@에 “%1$@” 항목을 건너뛸까요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil du hoppe over «%1$@» i %2$@?"
           }
         },
         "pt-BR" : {
@@ -27027,6 +28995,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%2$@에 “%1$@” 항목을 건너뛸까요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil du hoppe over «%1$@» den %2$@?"
           }
         },
         "pt-BR" : {
@@ -27180,6 +29154,12 @@
             "value" : "%@ 건너뛰기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hopp over i %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27260,6 +29240,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ 건너뛰기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hopp over i %@"
           }
         },
         "pt-BR" : {
@@ -27344,6 +29330,12 @@
             "value" : "%@ 건너뛰기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hopp over den %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27424,6 +29416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이번 달 건너뛰기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hopp over denne måneden"
           }
         },
         "pt-BR" : {
@@ -27508,6 +29506,12 @@
             "value" : "이번 주 건너뛰기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hopp over denne uken"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27588,6 +29592,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "올해 건너뛰기"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hopp over dette året"
           }
         },
         "pt-BR" : {
@@ -27672,6 +29682,12 @@
             "value" : "정렬"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorter"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27752,6 +29768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "정렬 기준"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorter etter"
           }
         },
         "pt-BR" : {
@@ -27836,6 +29858,12 @@
             "value" : "지출"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brukt"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27916,6 +29944,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "예산을 나누세요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fordel budsjettet"
           }
         },
         "pt-BR" : {
@@ -28004,6 +30038,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "실수령액을 필수, 선택, 저축 및 부채로 나누세요. Trente가 모든 거래를 그중 하나로 분류해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fordel inntekten etter skatt på Behov, Ønsker og Sparing og gjeld. Trente plasserer hver transaksjon i én av dem."
           }
         },
         "pt-BR" : {
@@ -28111,6 +30151,12 @@
             "value" : "새로운 달 시작"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start en ny måned"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28191,6 +30237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "시작일"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startdato"
           }
         },
         "pt-BR" : {
@@ -28275,6 +30327,12 @@
             "value" : "시작일은 과거일 수 없어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startdatoen kan ikke være tilbake i tid."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28355,6 +30413,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "관리 시작"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start budsjettet"
           }
         },
         "pt-BR" : {
@@ -28439,6 +30503,12 @@
             "value" : "앱을 열고 Trente로 예산 관리를 시작하세요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne appen for å begynne å føre budsjett med Trente."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28521,6 +30591,12 @@
             "value" : "예산 관리를 시작하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begynn å føre budsjett."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28601,6 +30677,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "상태"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
           }
         },
         "pt-BR" : {
@@ -28691,6 +30773,12 @@
             "value" : "%2$lld단계 중 %1$lld단계"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trinn %1$lld av %2$lld"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28771,6 +30859,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "중단 실패"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke stoppe"
           }
         },
         "pt-BR" : {
@@ -28855,6 +30949,12 @@
             "value" : "앞으로의 “%@” 거래를 중단할까요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil du stoppe fremtidige transaksjoner for «%@»?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28935,6 +31035,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "앞으로의 거래 중단"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp fremtidige transaksjoner"
           }
         },
         "pt-BR" : {
@@ -29042,6 +31148,12 @@
             "value" : "표시된 거래 합계"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sum av viste transaksjoner"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29122,6 +31234,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "마트"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matbutikk"
           }
         },
         "pt-BR" : {
@@ -29206,6 +31324,12 @@
             "value" : "개인 개발자를 응원하세요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Støtt en uavhengig utvikler"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29286,6 +31410,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ 동기화됨"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkronisert %@"
           }
         },
         "pt-BR" : {
@@ -29370,6 +31500,12 @@
             "value" : "예산을 직접 관리하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta kontroll over budsjettet."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29450,6 +31586,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "탭하여 Trente에 기록하세요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trykk her for å registrere den i Trente"
           }
         },
         "pt-BR" : {
@@ -29534,6 +31676,12 @@
             "value" : "이용 약관"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vilkår for bruk"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29614,6 +31762,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TestFlight 테스터"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight-testere"
           }
         },
         "pt-BR" : {
@@ -29698,6 +31852,12 @@
             "value" : "감사의 말"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Takk"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29778,6 +31938,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TestFlight에서 Trente를 테스트해 주신 모든 분께 감사드려요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Takk til alle som har testet Trente på TestFlight."
           }
         },
         "pt-BR" : {
@@ -29862,6 +32028,12 @@
             "value" : "50/30/20 법칙"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50/30/20-regelen"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29942,6 +32114,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "30초 만에 알아보는 50/30/20 법칙"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50/30/20-regelen på 30 sekunder"
           }
         },
         "pt-BR" : {
@@ -30026,6 +32204,12 @@
             "value" : "이미지를 불러올 수 없어요. 다시 시도하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildet kunne ikke lastes inn. Prøv igjen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30106,6 +32290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 알림은 단축어 앱의 Apple Pay 자동화에서 와요. 중단하려면 해당 자동화를 끄거나 삭제하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disse kommer fra Apple Pay-automatiseringen din i Snarveier-appen. Hvis du vil stoppe dem, slår du av eller sletter den automatiseringen."
           }
         },
         "pt-BR" : {
@@ -30196,6 +32386,12 @@
             "value" : "세금을 낸 뒤 매달 자유롭게 쓸 수 있는 돈이라고 생각하면 돼요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det er pengene du fritt kan bruke hver måned, etter at skatten er trukket."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30276,6 +32472,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 작업은 되돌릴 수 없어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette kan ikke angres."
           }
         },
         "pt-BR" : {
@@ -30360,6 +32562,12 @@
             "value" : "이 작업은 되돌릴 수 없어요. 이 달의 모든 거래도 함께 삭제돼요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette kan ikke angres. Alle transaksjonene i denne måneden slettes også."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30440,6 +32648,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이번 달"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne måneden"
           }
         },
         "pt-BR" : {
@@ -30524,6 +32738,12 @@
             "value" : "이번 달에는 아직 내보낼 거래가 없어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne måneden har ingen transaksjoner å eksportere ennå."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30604,6 +32824,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "제목"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tittel"
           }
         },
         "pt-BR" : {
@@ -30688,6 +32914,12 @@
             "value" : "제목을 입력하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tittelen kan ikke være tom."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30768,6 +33000,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "종료"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Til"
           }
         },
         "pt-BR" : {
@@ -30852,6 +33090,12 @@
             "value" : "여러 달을 내보내거나 포함할 항목을 선택하려면 설정 › 거래 내보내기로 이동하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvis du vil eksportere flere måneder eller velge innholdet, går du til Innstillinger › Eksporter transaksjoner."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30932,6 +33176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "합계"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Totalt"
           }
         },
         "pt-BR" : {
@@ -31016,6 +33266,12 @@
             "value" : "거래"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksjon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31096,6 +33352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "거래 메모"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notater for transaksjonen"
           }
         },
         "pt-BR" : {
@@ -31180,6 +33442,12 @@
             "value" : "거래 제목"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tittel på transaksjon"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31262,6 +33530,12 @@
             "value" : "거래"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksjoner"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31339,6 +33613,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente"
@@ -31426,6 +33706,12 @@
             "value" : "Trente %@"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31506,6 +33792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente 모든 달"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle måneder i Trente"
           }
         },
         "pt-BR" : {
@@ -31590,6 +33882,12 @@
             "value" : "Trente 피드백"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbakemelding om Trente"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31670,6 +33968,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente 도움말"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hjelp for Trente"
           }
         },
         "pt-BR" : {
@@ -31754,6 +34058,12 @@
             "value" : "Trente는 TrenteVingt(2023)의 후속 앱이에요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente er etterfølgeren til TrenteVingt (2023)."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31836,6 +34146,12 @@
             "value" : "Trente는 가맹점 이름과 금액만 받아요. 카드 정보는 절대 받지 않아요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente får bare navnet på butikken og beløpet. Aldri kortopplysningene dine."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31916,6 +34232,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새로운 달이 시작될 때와 반복 거래 예정일에 이 시간에 알려 드려요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sender deg en påminnelse på dette tidspunktet når en ny måned starter og når en fast transaksjon forfaller."
           }
         },
         "pt-BR" : {
@@ -32023,6 +34345,12 @@
             "value" : "새로운 달이 시작될 때 이 시간에 알려 드려요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sender deg en påminnelse på dette tidspunktet når en ny måned starter."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32105,6 +34433,12 @@
             "value" : "반복 거래 예정일에 이 시간에 알려 드려요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sender deg en påminnelse på dette tidspunktet når en fast transaksjon forfaller."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32185,6 +34519,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente는 예산을 필수, 선택, 저축으로 나눠서 이번 달에 얼마가 남았는지 항상 알 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente fordeler budsjettet på Behov, Ønsker og Sparing, så du alltid vet hva du har igjen denne måneden."
           }
         },
         "pt-BR" : {
@@ -32292,6 +34632,12 @@
             "value" : "새로운 달이 시작될 때와 월세 같은 반복 결제 예정일에 알려 드려요. 알림에서 바로 결제 완료로 표시할 수 있어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sier fra når en ny måned starter og når en fast betaling som husleie forfaller, så du kan merke den som betalt rett fra varslingen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32372,6 +34718,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새로운 달이 시작될 때와 월세 같은 반복 결제 예정일에 알려 드려요. Apple Pay를 설정하면 구매할 때마다 알림을 보내 바로 기록할 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sier fra når en ny måned starter og når en fast betaling som husleie forfaller. Når Apple Pay er konfigurert, får du også en varsling etter hvert kjøp, så du kan registrere det med én gang."
           }
         },
         "pt-BR" : {
@@ -32479,6 +34831,12 @@
             "value" : "Trente+"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32556,6 +34914,12 @@
           }
         },
         "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteVingt"
+          }
+        },
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TrenteVingt"
@@ -32643,6 +35007,12 @@
             "value" : "거래를 추가할 때 ‘반복 거래’를 켜세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå på «Fast transaksjon» når du legger til en transaksjon."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32723,6 +35093,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "리마인더를 켜고 Trente가 알려 줄 시간을 선택하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå på en påminnelse for å velge når Trente skal varsle deg."
           }
         },
         "pt-BR" : {
@@ -32807,6 +35183,12 @@
             "value" : "알림 켜기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå på varslinger"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32887,6 +35269,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "유형"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
           }
         },
         "pt-BR" : {
@@ -32971,6 +35359,12 @@
             "value" : "예산 이내"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Under budsjett"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33051,6 +35445,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "최대한 정확하게 추정해 보세요. 추가 수입은 들어올 때마다 기록하고, 다음 달 예산을 조정하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anslå så godt du kan. Registrer ekstra inntekt etter hvert som den kommer, og juster budsjettet for neste måned."
           }
         },
         "pt-BR" : {
@@ -33135,6 +35535,12 @@
             "value" : "선택"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ønsker"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33215,6 +35621,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "달을 만들 수 없어요. 다시 시도하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke opprette måneden. Prøv igjen."
           }
         },
         "pt-BR" : {
@@ -33299,6 +35711,12 @@
             "value" : "거래를 만들 수 없어요. 다시 시도하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke opprette transaksjonen. Prøv igjen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33381,6 +35799,12 @@
             "value" : "수입을 추가할 수 없어요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke legge til inntekten"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33461,6 +35885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "달을 저장할 수 없어요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke lagre måneden"
           }
         },
         "pt-BR" : {
@@ -33887,6 +36317,54 @@
             "value" : "iCloud에서 데이터를 찾았어요. %1$lld개월, 거래 %2$lld건이 모두 그대로 있으니 이어서 사용하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi fant dataene dine i iCloud: %#@months@ og %#@transactions@. Alt ligger klart, så du kan fortsette der du slapp."
+          },
+          "substitutions" : {
+            "months" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg måned"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg måneder"
+                    }
+                  }
+                }
+              }
+            },
+            "transactions" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg transaksjon"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg transaksjoner"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34095,6 +36573,12 @@
             "value" : "50/30/20 법칙으로 시작해요. 내 생활에 맞게 조정하세요. 매달 바꿀 수 있어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi starter med 50/30/20-regelen. Juster den til den passer for deg. Du kan endre den hver måned."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34175,6 +36659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "웹사이트"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nettsted"
           }
         },
         "pt-BR" : {
@@ -34259,6 +36749,12 @@
             "value" : "매주"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukentlig"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34339,6 +36835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "다시 오신 걸 환영해요!"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velkommen tilbake"
           }
         },
         "pt-BR" : {
@@ -34423,6 +36925,12 @@
             "value" : "반복 거래란 무엇인가요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hva er faste transaksjoner?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34503,6 +37011,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "50/30/20 법칙이란 무엇인가요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hva er 50/30/20-regelen?"
           }
         },
         "pt-BR" : {
@@ -34587,6 +37101,12 @@
             "value" : "Trente+란 무엇인가요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hva er Trente+?"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34669,6 +37189,12 @@
             "value" : "내보낼 항목"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hva som skal eksporteres"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34749,6 +37275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "데이터는 어디에 저장되나요?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvor lagres dataene mine?"
           }
         },
         "pt-BR" : {
@@ -34856,6 +37388,12 @@
             "value" : "매년"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Årlig"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34936,6 +37474,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "어떤 이메일 앱에서든 %@ 주소로 메일을 보낼 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kan skrive til %@ fra hvilken som helst e-postapp."
           }
         },
         "pt-BR" : {
@@ -35026,6 +37570,12 @@
             "value" : "%@ 이후 이 iPad에서 Trente를 열지 않아 이 기기의 리마인더가 일시 중지됐어요. 언제든지 앱을 열면 다시 켜져요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke åpnet Trente på denne iPaden siden %@, så påminnelsene er satt på pause her. Åpne appen når som helst for å slå dem på igjen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35112,6 +37662,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ 이후 이 iPhone에서 Trente를 열지 않아 이 기기의 리마인더가 일시 중지됐어요. 언제든지 앱을 열면 다시 켜져요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke åpnet Trente på denne iPhonen siden %@, så påminnelsene er satt på pause her. Åpne appen når som helst for å slå dem på igjen."
           }
         },
         "pt-BR" : {
@@ -35202,6 +37758,12 @@
             "value" : "%@ 이후 이 Mac에서 Trente를 열지 않아 이 기기의 리마인더가 일시 중지됐어요. 언제든지 앱을 열면 다시 켜져요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke åpnet Trente på denne Macen siden %@, så påminnelsene er satt på pause her. Åpne appen når som helst for å slå dem på igjen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35282,6 +37844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "다음 단계에서 이 수입의 카테고리를 선택해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du velger kategorier for denne inntekten i de neste trinnene."
           }
         },
         "pt-BR" : {
@@ -35366,6 +37934,12 @@
             "value" : "모든 준비가 끝났어요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alt er klart"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35446,6 +38020,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "예산을 열 수 없어요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budsjettet kunne ikke åpnes"
           }
         },
         "pt-BR" : {
@@ -35530,6 +38110,12 @@
             "value" : "내 데이터"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dataene dine"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35610,6 +38196,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "데이터는 삭제되지 않았어요. Trente를 업데이트해 보고, 문제가 계속되면 오류 세부 정보를 공유해 주세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dataene dine er ikke slettet. Prøv å oppdatere Trente, og del feildetaljene hvis problemet vedvarer."
           }
         },
         "pt-BR" : {
@@ -35694,6 +38286,12 @@
             "value" : "첫 달이 오늘 시작돼요. 지출을 그때그때 기록하면 Trente가 남은 금액을 보여 줘요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den første måneden din starter i dag. Registrer utgifter underveis, så viser Trente deg hva du har igjen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35776,6 +38374,12 @@
             "value" : "iCloud 저장 공간이 가득 차서 새로운 변경 사항은 이 기기에만 저장돼요. 설정 앱에서 공간을 확보하면 다시 동기화돼요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud-lagringen din er full, så nye endringer blir værende på denne enheten. Frigjør plass i Innstillinger-appen for å synkronisere igjen."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35856,6 +38460,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "나의 월 예산"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månedsbudsjettet ditt"
           }
         },
         "pt-BR" : {
@@ -35946,6 +38556,12 @@
             "value" : "달과 거래는 iCloud 계정을 통해 모든 기기에서 동기화돼요. Trente에는 계정도 서버도 없어요. 언제든지 스프레드시트로 내보낼 수 있어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månedene og transaksjonene synkroniseres via iCloud-kontoen din på alle enhetene dine. Trente bruker verken konto eller server. Du kan når som helst eksportere dem som regneark."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36026,6 +38642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새로운 달이 준비됐어요. 지난달과 같은 예산이에요. Trente를 열어 확인하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den nye måneden din er klar, med samme budsjett som forrige måned. Åpne Trente for å se den."
           }
         },
         "pt-BR" : {
@@ -36110,6 +38732,12 @@
             "value" : "확대"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom inn"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36190,6 +38818,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "축소"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoom ut"
           }
         },
         "pt-BR" : {
