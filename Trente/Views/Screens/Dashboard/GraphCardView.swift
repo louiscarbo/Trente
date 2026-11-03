@@ -167,6 +167,9 @@ struct BudgetGaugeView: View {
         if showsPercentage {
             Text(percentage, format: .percent.precision(.fractionLength(0)))
                 .font(.headline)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .padding(.horizontal, size / 12 + 2)
                 .contentTransition(.numericText(value: percentage))
         } else {
             VStack(spacing: 0) {
