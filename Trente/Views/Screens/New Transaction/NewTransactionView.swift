@@ -48,41 +48,31 @@ struct NewTransactionView: View {
         }
     }
     
-    // TODO: Factorize this into a reusable component?
     private var navigationButtons: some View {
-        VStack {
-            HStack(spacing: 20) {
-                if viewModel.showPreviousButton {
-                    Button("Previous") {
-                        withAnimation(.bouncy) {
-                            viewModel.previousStep()
-                        }
-                    }
-                    .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
+        StepNavigationBar(
+            showsPrevious: viewModel.showPreviousButton,
+            nextTitle: viewModel.isLastStep ? "Create" : "Next",
+            canAdvance: viewModel.canAdvance,
+            onPrevious: {
+                withAnimation(.bouncy) {
+                    viewModel.previousStep()
                 }
-                
-                if let currentIndex = viewModel.filteredSteps.firstIndex(of: viewModel.step) {
-                    let isLastStep = currentIndex == viewModel.filteredSteps.count - 1
+            },
+            onNext: advance
+        )
+    }
 
-                    Button(isLastStep ? "Create" : "Next") {
-                        withAnimation {
-                            if isLastStep {
-                                guard let month else { return }
-                                if viewModel.createTransaction(for: month, in: modelContext) {
-                                    dismiss()
-                                }
-                            } else {
-                                viewModel.nextStep()
-                            }
-                        }
-                    }
-                    .disabled(!viewModel.canAdvance)
-                    .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
+    private func advance() {
+        withAnimation {
+            if viewModel.isLastStep {
+                guard let month else { return }
+                if viewModel.createTransaction(for: month, in: modelContext) {
+                    dismiss()
                 }
+            } else {
+                viewModel.nextStep()
             }
         }
-        .padding()
-        .bottomBarBackground()
     }
     
     private var stepsView: some View {
