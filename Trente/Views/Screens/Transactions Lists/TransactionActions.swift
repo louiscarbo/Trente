@@ -57,6 +57,15 @@ struct TransactionActions {
             reportError(error.localizedDescription)
         }
     }
+
+    func deleteBatch(_ action: () throws -> Void, onSuccess: () -> Void) {
+        do {
+            try action()
+            onSuccess()
+        } catch {
+            reportError(String(localized: "Nothing was deleted. \(error.localizedDescription)"))
+        }
+    }
 }
 
 extension EnvironmentValues {

@@ -25930,6 +25930,7 @@
         }
       }
     },
+    "Nothing was deleted. %@" : {},
     "Notification Settings" : {
       "localizations" : {
         "da" : {
@@ -30899,6 +30900,7 @@
         }
       }
     },
+    "Select" : {},
     "Select a category for the expense." : {
       "localizations" : {
         "da" : {
@@ -34095,6 +34097,7 @@
         }
       }
     },
+    "Stays" : {},
     "Step %lld of %lld" : {
       "localizations" : {
         "da" : {
@@ -40693,6 +40696,7 @@
         }
       }
     },
+    "Will be deleted" : {},
     "With Trente+, you can add images and notes to your transactions. Try it now!" : {
       "extractionState" : "stale",
       "localizations" : {
