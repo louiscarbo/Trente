@@ -32,6 +32,9 @@ extension MonthView {
             } label: {
                 Label("Add Transaction", systemImage: "plus")
                     .font(.title)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                    .padding(.horizontal, 12)
             }
             .buttonStyle(TrentePrimaryButtonStyle())
             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
