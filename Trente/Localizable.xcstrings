@@ -42,6 +42,12 @@
             "value" : "    Non hai ancora iniziato a monitorare il tuo budget. Apri l’app Trente per cominciare!"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "    まだ予算の記録がありません。Trenteを開いて始めましょう。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,6 +116,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ rimanenti su %2$@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$@のうち残り%1$@"
           }
         },
         "ko" : {
@@ -182,6 +194,12 @@
             "value" : "%1$@ spesi su %2$@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$@のうち%1$@を使用"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -244,6 +262,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ancora %@ da ripartire"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あと%@を配分"
           }
         },
         "ko" : {
@@ -316,6 +340,12 @@
             "value" : "%1$lld di %2$lld registrazioni Apple Pay gratuite questo mese"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月の無料Apple Pay記録：%1$lld/%2$lld件"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -381,6 +411,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "- %@ rimanenti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "- 残り%@"
           }
         },
         "ko" : {
@@ -453,6 +489,12 @@
             "value" : "Un mese inizia nella data che scegli e dura un mese, ad esempio dal 25 ottobre al 24 novembre, per seguire il ritmo del tuo stipendio."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1か月の始まりは好きな日に設定できます。たとえば10月25日から11月24日までのように、給料日に合わせられます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -515,6 +557,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Un modo semplice per suddividere il tuo reddito netto: circa il 50% per le necessità (affitto, spesa, bollette), il 30% per i desideri (ristoranti, svago) e il 20% per i risparmi e il rimborso dei debiti. Trente classifica ogni transazione in una di queste tre categorie. Puoi scegliere la tua suddivisione per ogni mese."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手取りをシンプルに分ける方法です。およそ50%を生活費（家賃、食費、光熱費など）、30%をゆとり費（外食、趣味など）、20%を貯蓄と返済に回します。Trenteでは、すべての取引をこの3つのカテゴリのどれかに分けます。配分は月ごとに自分で決められます。"
           }
         },
         "ko" : {
@@ -581,6 +629,12 @@
             "value" : "Aggiungi uno scontrino, una foto o una nota alle tue transazioni."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引にレシートや写真、メモを追加できます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,6 +699,12 @@
             "value" : "Importo, dal più alto"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "金額（高い順）"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -707,6 +767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importo, dal più basso"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "金額（低い順）"
           }
         },
         "ko" : {
@@ -779,6 +845,12 @@
             "value" : "Un abbonamento mensile o annuale facoltativo che sblocca nuove funzioni in Trente. Apri le impostazioni di Trente per saperne di più.\nTrente+ è anche un modo per sostenermi come sviluppatore indipendente.\nGestisci o annulla l’abbonamento quando vuoi dal tuo Account Apple."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月額または年額の任意のサブスクリプションで、Trenteの新しい機能が使えるようになります。詳しくはTrenteの設定をご覧ください。\nTrente+は、個人開発者である私への応援にもなります。\nサブスクリプションの管理や解約は、Apple Accountからいつでもできます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -841,6 +913,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Limite Apple Pay raggiunto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Payの記録上限に達しました"
           }
         },
         "ko" : {
@@ -907,6 +985,12 @@
             "value" : "Panetteria"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "パン屋"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -971,6 +1055,12 @@
             "value" : "Non trovi la risposta che cerchi?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "答えが見つかりませんか？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1033,6 +1123,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Collega Trente ad Apple Pay"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteをApple Payと連携"
           }
         },
         "ko" : {
@@ -1105,6 +1201,12 @@
             "value" : "Personalizza l’aspetto di Trente nella schermata Home."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ホーム画面でのTrenteの見た目をカスタマイズできます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1167,6 +1269,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data, prima le più recenti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日付（新しい順）"
           }
         },
         "ko" : {
@@ -1233,6 +1341,12 @@
             "value" : "Data, prima le meno recenti"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日付（古い順）"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1295,6 +1409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Giorno"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日"
           }
         },
         "ko" : {
@@ -1361,6 +1481,12 @@
             "value" : "Scrivi un’email allo sviluppatore. Rispondo a tutti i messaggi!"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開発者にメールでご連絡ください。すべてのメッセージに返信しています。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1423,6 +1549,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Come cambio la categoria mostrata nel widget «Riepilogo categoria»?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「カテゴリのまとめ」ウィジェットに表示するカテゴリを変更するには？"
           }
         },
         "ko" : {
@@ -1489,6 +1621,12 @@
             "value" : "Come suddivido un’entrata tra le categorie?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "収入をカテゴリに分けるには？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1551,6 +1689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nel menu in basso, tocca la categoria **Automazione**, poi scorri fino alla riga **Wallet**. Tocca la riga **Wallet – Quando avvicino una carta Wallet**."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画面下部のメニューで**オートメーション**をタップし、**ウォレット**（**取引**と表示される場合もあります）の行までスクロールして、その行をタップします。"
           }
         },
         "ko" : {
@@ -1617,6 +1761,12 @@
             "value" : "Incluso in Trente+"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+に含まれます"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1679,6 +1829,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente+ tiene i conti al posto tuo e ti dà accesso a nuove funzioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入力はTrente+におまかせ。新しい機能も使えるようになります。"
           }
         },
         "ko" : {
@@ -1745,6 +1901,12 @@
             "value" : "Registra ogni acquisto Apple Pay, non solo 10 al mese."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Payでの支払いを、月10件の上限なくすべて記録できます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1807,6 +1969,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Affitto, stipendio, abbonamenti: aggiunti in automatico, senza doverci pensare."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "家賃も給料もサブスクも、何もしなくても自動で追加されます。"
           }
         },
         "ko" : {
@@ -1873,6 +2041,12 @@
             "value" : "Mostra una settimana alla volta"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1週間ずつ表示"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1935,6 +2109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostra l’intero mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1か月分を表示"
           }
         },
         "ko" : {
@@ -2001,6 +2181,12 @@
             "value" : "Mostra quanto hai speso"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使った金額を表示"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2063,6 +2249,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostra quanto ti resta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残りを表示"
           }
         },
         "ko" : {
@@ -2129,6 +2321,12 @@
             "value" : "Tocca **Ottieni il comando rapido** qui sotto e aggiungi **Trente & Wallet** ai tuoi comandi rapidi."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下の**ショートカットを入手**をタップして、**Trente & Wallet**をショートカットに追加します。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2191,6 +2389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tocca il comando rapido **Trente & Wallet** che hai appena aggiunto, poi tocca **Modifica**."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "追加した**Trente & Wallet**ショートカットをタップしてから、**編集**をタップします。"
           }
         },
         "ko" : {
@@ -2257,6 +2461,12 @@
             "value" : "L’importo rimanente corrisponde alle entrate che hai registrato questo mese, meno le spese.\nSe il mese non mostra alcun importo rimanente, inizia aggiungendo un’entrata: tocca «Aggiungi transazione»."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残りの金額は、今月記録した収入から支出を引いた額です。\n残りの金額が表示されない場合は、まず「取引を追加」をタップして収入を追加してください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2319,6 +2529,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titolo, dalla A alla Z"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイトル（昇順）"
           }
         },
         "ko" : {
@@ -2385,6 +2601,12 @@
             "value" : "Titolo, dalla Z alla A"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイトル（降順）"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2447,6 +2669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nessuna transazione corrispondente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一致する取引はありません"
           }
         },
         "ko" : {
@@ -2513,6 +2741,12 @@
             "value" : "Nessuna transazione corrisponde a questi filtri."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このフィルタに一致する取引はありません。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2575,6 +2809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reimposta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リセット"
           }
         },
         "ko" : {
@@ -2641,6 +2881,12 @@
             "value" : "Reimposta filtri"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フィルタをリセット"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2703,6 +2949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transazioni ricorrenti automatiche"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの取引を自動化"
           }
         },
         "ko" : {
@@ -2769,6 +3021,12 @@
             "value" : "Nero"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ブラック"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2831,6 +3089,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ancora da spendere"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使える金額"
           }
         },
         "ko" : {
@@ -2897,6 +3161,12 @@
             "value" : "Menta"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ミント"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2959,6 +3229,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "In più"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "超過"
           }
         },
         "ko" : {
@@ -3025,6 +3301,12 @@
             "value" : "Budget superato"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算超過"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3087,6 +3369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "In pausa senza Trente+. Finché non ti abboni di nuovo, Trente ti chiederà di confermare %@."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+に登録していないため、一時停止しています。再度登録するまで、「%@」は毎回確認が必要です。"
           }
         },
         "ko" : {
@@ -3153,6 +3441,12 @@
             "value" : "Viola"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "パープル"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3215,6 +3509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rosso"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "レッド"
           }
         },
         "ko" : {
@@ -3281,6 +3581,12 @@
             "value" : "Ripartizione delle spese"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支出の内訳"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3343,6 +3649,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verde acqua"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ティール"
           }
         },
         "ko" : {
@@ -3409,6 +3721,12 @@
             "value" : "Tocca e tieni premuto il widget, poi tocca «Modifica widget». Potrai così cambiare la categoria del widget."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウィジェットを長押しして、「ウィジェットを編集」をタップします。ここでウィジェットのカテゴリを変更できます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3471,6 +3789,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transazioni che si ripetono ogni settimana, mese o anno, come l’affitto o lo stipendio.\nTrente ti ricorderà di confermare la transazione il giorno previsto.\nGli abbonati a Trente+ possono attivare la conferma automatica delle transazioni ricorrenti."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "家賃や給料のように、毎週、毎月、毎年発生する取引です。\n期日になると、Trenteが取引の確認をお知らせします。\nTrente+に登録すると、繰り返しの取引を確認なしで自動追加できます。"
           }
         },
         "ko" : {
@@ -3540,6 +3864,12 @@
             "value" : "Trente è progettato e mantenuto interamente da una sola persona."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteは、ひとりの開発者がデザインから保守まですべて手がけています。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3602,6 +3932,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gli abbonati a Trente+ possono attivare la conferma automatica delle transazioni ricorrenti. Così non devi più aprire Trente per aggiungere la transazione al tuo budget. È utile per transazioni regolari e sicure, come uno stipendio."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+に登録すると、繰り返しの取引を確認なしで自動追加できます。Trenteを開かなくても、取引が予算に追加されます。給料のように、決まって発生する取引に便利です。"
           }
         },
         "ko" : {
@@ -3668,6 +4004,12 @@
             "value" : "Registrazione Apple Pay illimitata"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Payの記録が無制限"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3730,6 +4072,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A cosa serve l’opzione «Automatico»?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「自動」をオンにするとどうなりますか？"
           }
         },
         "ko" : {
@@ -3796,6 +4144,12 @@
             "value" : "Quando aggiungi un’entrata, scegli quanto va in Necessità, Desideri e Risparmi e debiti. Una spesa va sempre in una sola categoria."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "収入を追加するときに、「生活費」「ゆとり費」「貯蓄と返済」にいくらずつ入れるかを選びます。支出は必ず1つのカテゴリに入ります。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3858,6 +4212,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perché il mio mese non mostra alcun importo rimanente?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残りの金額が表示されないのはなぜですか？"
           }
         },
         "ko" : {
@@ -3924,6 +4284,12 @@
             "value" : "Creative Commons Attribuzione 3.0"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クリエイティブ・コモンズ 表示 3.0"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3986,6 +4352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Da Noun Project, con licenza CC BY 3.0. Adattata per l’icona dell’app e l’adesivo del maialino."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noun Project提供、CC BY 3.0ライセンス。アプリアイコンとブタのステッカーに合わせて調整しています。"
           }
         },
         "ko" : {
@@ -4052,6 +4424,12 @@
             "value" : "Da Noun Project, con licenza CC BY 3.0. Usata per l’adesivo del razzo."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noun Project提供、CC BY 3.0ライセンス。ロケットのステッカーに使用しています。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4114,6 +4492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La licenza di entrambe le illustrazioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2つのイラストのライセンスです。"
           }
         },
         "ko" : {
@@ -4180,6 +4564,12 @@
             "value" : "Giallo"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "イエロー"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4242,6 +4632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sì. Dalle impostazioni di Trente puoi aggiungere la scorciatoia che collega Trente ad Apple Pay. Segui le istruzioni nelle impostazioni di Trente.\nDopo ogni acquisto, tocca la notifica, aggiungi la categoria e salva. Nessuna transazione viene aggiunta senza la tua conferma.\nSenza abbonamento, la registrazione Apple Pay è limitata a 10 spese al mese. Gli abbonati a Trente+ possono aggiungere tutte le transazioni che vogliono."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "はい。Trenteの設定から、TrenteとApple Payを連携するショートカットを追加できます。Trenteの設定にある案内に沿って進めてください。\n支払いのたびに通知をタップし、カテゴリを選んで保存します。確認しないまま取引が追加されることはありません。\nサブスクリプションなしの場合、Apple Payの記録は月10件までです。Trente+に登録すると、件数の制限はなくなります。"
           }
         },
         "ko" : {
@@ -4308,6 +4704,12 @@
             "value" : "Hai accesso a tutti i vantaggi di Trente+. Grazie per l’abbonamento!"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+のすべての特典を使えます。ご登録ありがとうございます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4370,6 +4772,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dovresti vedere due blocchi nella tua automazione. Fatto: Trente riceverà i tuoi prossimi acquisti Apple Pay!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オートメーションに2つのブロックが表示されていれば完了です。次回からApple Payでの支払いがTrenteに届きます。"
           }
         },
         "ko" : {
@@ -4436,6 +4844,12 @@
             "value" : "Hai usato le %lld registrazioni Apple Pay gratuite di questo mese. Passa a Trente+ per registrazioni automatiche illimitate."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月の無料のApple Pay記録%lld件を使い切りました。Trente+なら、件数の制限なく自動で記録できます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4498,6 +4912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "I tuoi dati ti appartengono e Trente non vi ha mai accesso.\nSono archiviati sui tuoi dispositivi e nel tuo account iCloud, se attivi iCloud per Trente.\nTrente non ha account né server e non si collega mai alla tua banca.\nPer eliminare i tuoi dati, disattiva la sincronizzazione iCloud per Trente nelle Impostazioni del dispositivo, poi elimina l’app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データはご自身のものです。Trenteがアクセスすることはありません。\nデータはデバイスに保存され、TrenteのiCloudをオンにしている場合はiCloudアカウントにも保存されます。\nTrenteにはアカウントもサーバもなく、銀行に接続することもありません。\nデータを削除するには、デバイスの「設定」でTrenteのiCloud同期をオフにしてから、アプリを削除してください。"
           }
         },
         "ko" : {
@@ -4564,6 +4984,12 @@
             "value" : "“Financial Startup” di Vectors Market"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vectors Market作「Financial Startup」"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4626,6 +5052,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aggiungi il resto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残りを追加"
           }
         },
         "ko" : {
@@ -4692,6 +5124,12 @@
             "value" : "Azzera"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0にする"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4756,6 +5194,12 @@
             "value" : "“Piggy Savings” di Vectors Market"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vectors Market作「Piggy Savings」"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4815,6 +5259,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
@@ -4890,6 +5340,12 @@
             "value" : "%1$@ - %2$@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4955,6 +5411,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$@"
@@ -5030,6 +5492,12 @@
             "value" : "%1$@ · %2$lld%%"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld%%"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5100,6 +5568,12 @@
             "value" : "%1$@ %2$@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5162,6 +5636,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ rimanenti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残り%@"
           }
         },
         "ko" : {
@@ -5228,6 +5708,12 @@
             "value" : "%@ inizia oggi"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日から%@です"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5290,6 +5776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ non apparirà più dopo oggi. Le transazioni già registrate restano."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@は明日から表示されなくなります。記録済みの取引はそのまま残ります。"
           }
         },
         "ko" : {
@@ -5357,6 +5849,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, %2$@"
@@ -5499,6 +5997,12 @@
                 }
               }
             }
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld件が有効"
           }
         },
         "ko" : {
@@ -5673,6 +6177,12 @@
             }
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldか月"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5845,6 +6355,12 @@
             }
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld件の取引"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5948,6 +6464,12 @@
             "value" : "Informazioni sullo sviluppatore"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開発者について"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6010,6 +6532,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Attive"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有効"
           }
         },
         "ko" : {
@@ -6076,6 +6604,12 @@
             "value" : "Aggiungi una data di fine"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了日を追加"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6140,6 +6674,12 @@
             "value" : "Aggiungi categoria"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カテゴリを追加"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6202,6 +6742,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aggiungi immagine"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像を追加"
           }
         },
         "ko" : {
@@ -6291,6 +6837,12 @@
             "value" : "Aggiungi note e immagini con Trente+"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+でメモと画像を追加"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6353,6 +6905,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aggiungi il comando rapido di Trente, poi crea un’automazione. Ogni pagamento con carta apparirà in Trente, pronto da verificare."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteのショートカットを追加し、オートメーションを1つ作成します。以後、カードで支払うたびに内容がTrenteに届くので、確認するだけで記録できます。"
           }
         },
         "ko" : {
@@ -6419,6 +6977,12 @@
             "value" : "Aggiungi transazione"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引を追加"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6481,6 +7045,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aggiungi la tua prima transazione ricorrente toccando “Aggiungi transazione”."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「取引を追加」をタップして、最初の繰り返しの取引を追加しましょう。"
           }
         },
         "ko" : {
@@ -6547,6 +7117,12 @@
             "value" : "Aggiungi la tua prima transazione toccando “Aggiungi transazione”."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「取引を追加」をタップして、最初の取引を追加しましょう。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6609,6 +7185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aggiungi la prima transazione di questo mese toccando “Aggiungi transazione”."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「取引を追加」をタップして、今月最初の取引を追加しましょう。"
           }
         },
         "ko" : {
@@ -6675,6 +7257,12 @@
             "value" : "Aggiungi le tue prime transazioni toccando “Nuova transazione”."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「新規取引」をタップして、最初の取引を追加しましょう。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6737,6 +7325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aggiungi qui le tue note."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ここにメモを入力"
           }
         },
         "ko" : {
@@ -6803,6 +7397,12 @@
             "value" : "Aggiunta automaticamente."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動で追加されました。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6865,6 +7465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dopo ogni acquisto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払いのたびに"
           }
         },
         "ko" : {
@@ -6931,6 +7537,12 @@
             "value" : "Tutti i mesi"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての月"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6993,6 +7605,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "All Your Worth (2005)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Your Worth（2005年）"
           }
         },
         "ko" : {
@@ -7059,6 +7677,12 @@
             "value" : "Importo"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "金額"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7121,6 +7745,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "L’importo deve essere inferiore a 0."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "金額は0未満にしてください。"
           }
         },
         "ko" : {
@@ -7187,6 +7817,12 @@
             "value" : "Importo da ripartire"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配分する金額"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7249,6 +7885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Si è verificato un errore"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エラーが発生しました"
           }
         },
         "ko" : {
@@ -7315,6 +7957,12 @@
             "value" : "Icona dell’app"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリアイコン"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7379,6 +8027,12 @@
             "value" : "Icone dell’app"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリアイコン"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7438,6 +8092,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Pay"
@@ -7507,6 +8167,12 @@
             "value" : "MESI ARCHIVIATI"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アーカイブ済みの月"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7569,6 +8235,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vuoi davvero continuare?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "よろしいですか？"
           }
         },
         "ko" : {
@@ -7635,6 +8307,12 @@
             "value" : "Almeno una categoria deve avere un importo diverso da zero."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "少なくとも1つのカテゴリに0以外の金額を入力してください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7697,6 +8375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatico"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動"
           }
         },
         "ko" : {
@@ -7763,6 +8447,12 @@
             "value" : "Indietro"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "戻る"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7825,6 +8515,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blu"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ブルー"
           }
         },
         "ko" : {
@@ -7891,6 +8587,12 @@
             "value" : "Le basi del budget"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算の基本"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7953,6 +8655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Categoria di budget"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算カテゴリ"
           }
         },
         "ko" : {
@@ -8019,6 +8727,12 @@
             "value" : "Trente può registrare i miei acquisti Apple Pay?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteでApple Payの支払いを記録できますか？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8081,6 +8795,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annulla"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
           }
         },
         "ko" : {
@@ -8147,6 +8867,12 @@
             "value" : "Impossibile salvare"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存できません"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8209,6 +8935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Categorie"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カテゴリ"
           }
         },
         "ko" : {
@@ -8275,6 +9007,12 @@
             "value" : "Categoria"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カテゴリ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8337,6 +9075,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Riepilogo categoria"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カテゴリのまとめ"
           }
         },
         "ko" : {
@@ -8403,6 +9147,12 @@
             "value" : "Cambia immagine"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像を変更"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8465,6 +9215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifica o interrompi questa ricorrenza"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この繰り返しを変更または停止"
           }
         },
         "ko" : {
@@ -8531,6 +9287,12 @@
             "value" : "Chiudi"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閉じる"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8593,6 +9355,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abbigliamento"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服"
           }
         },
         "ko" : {
@@ -8659,6 +9427,12 @@
             "value" : "Continua"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "続ける"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8721,6 +9495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copia indirizzo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アドレスをコピー"
           }
         },
         "ko" : {
@@ -8787,6 +9567,12 @@
             "value" : "Impossibile aprire Mail"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「メール」アプリを開けませんでした"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8849,6 +9635,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Crea"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作成"
           }
         },
         "ko" : {
@@ -8915,6 +9707,12 @@
             "value" : "Crea un mese per registrare questa transazione."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この取引を記録するには、月を作成してください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8977,6 +9775,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Riconoscimenti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クレジット"
           }
         },
         "ko" : {
@@ -9043,6 +9847,12 @@
             "value" : "Valuta"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通貨"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9105,6 +9915,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MESE IN CORSO"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月"
           }
         },
         "ko" : {
@@ -9171,6 +9987,12 @@
             "value" : "Spese giornaliere"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日ごとの支出"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9233,6 +10055,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日付"
           }
         },
         "ko" : {
@@ -9299,6 +10127,12 @@
             "value" : "Date"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期間"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9361,6 +10195,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diminuisci %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@を減らす"
           }
         },
         "ko" : {
@@ -9427,6 +10267,12 @@
             "value" : "Elimina"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9489,6 +10335,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eliminazione non riuscita"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除できませんでした"
           }
         },
         "ko" : {
@@ -9555,6 +10407,12 @@
             "value" : "Elimina immagine"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像を削除"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9617,6 +10475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elimina mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月を削除"
           }
         },
         "ko" : {
@@ -9683,6 +10547,12 @@
             "value" : "Elimina transazione ricorrente"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの取引を削除"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9747,6 +10617,12 @@
             "value" : "Elimina transazione"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引を削除"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9809,6 +10685,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deseleziona tutto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての選択を解除"
           }
         },
         "ko" : {
@@ -9879,6 +10761,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cene fuori, svago..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外食、娯楽など"
           }
         },
         "ko" : {
@@ -9968,6 +10856,12 @@
             "value" : "Fine"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完了"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10030,6 +10924,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scade il %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期日：%@"
           }
         },
         "ko" : {
@@ -10096,6 +10996,12 @@
             "value" : "Scade oggi"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日が期日"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10158,6 +11064,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scade oggi. Apri Trente per segnarla come pagata."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日が期日です。Trenteを開いて支払い済みにしましょう。"
           }
         },
         "ko" : {
@@ -10224,6 +11136,12 @@
             "value" : "Modifica"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編集"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10286,6 +11204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifica mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月を編集"
           }
         },
         "ko" : {
@@ -10352,6 +11276,12 @@
             "value" : "Modifica in corso"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編集中"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10414,6 +11344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data di fine"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了日"
           }
         },
         "ko" : {
@@ -10480,6 +11416,12 @@
             "value" : "La data di fine deve essere almeno 7 giorni dopo la data di inizio."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了日は開始日の7日後以降にしてください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10542,6 +11484,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminate"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了"
           }
         },
         "ko" : {
@@ -10608,6 +11556,12 @@
             "value" : "Terminata il %@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@に終了"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10670,6 +11624,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Errore nel caricamento dell’immagine"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像を読み込めませんでした"
           }
         },
         "ko" : {
@@ -10736,6 +11696,12 @@
             "value" : "Ogni %@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@に繰り返し"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10798,6 +11764,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il giorno %@ di ogni mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "毎月%@日"
           }
         },
         "ko" : {
@@ -10864,6 +11836,12 @@
             "value" : "Previste questo mese"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月の予定"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10928,6 +11906,12 @@
             "value" : "Prevista oggi. Apri Trente per segnarla come ricevuta."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日が入金予定日です。Trenteを開いて入金済みにしましょう。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10990,6 +11974,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spesa"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支出"
           }
         },
         "ko" : {
@@ -11128,6 +12118,12 @@
             }
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld件の取引を書き出す"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11228,6 +12224,12 @@
             "value" : "Esportazione non riuscita"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書き出せませんでした"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11290,6 +12292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esporta mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月を書き出す"
           }
         },
         "ko" : {
@@ -11356,6 +12364,12 @@
             "value" : "Esporta transazioni"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引を書き出す"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11418,6 +12432,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esporta…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書き出す…"
           }
         },
         "ko" : {
@@ -11484,6 +12504,12 @@
             "value" : "Impossibile salvare le modifiche: %@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "変更を保存できませんでした：%@"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11546,6 +12572,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Funzionalità e dati"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "機能とデータ"
           }
         },
         "ko" : {
@@ -11612,6 +12644,12 @@
             "value" : "File"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイル"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11674,6 +12712,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtra"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フィルタ"
           }
         },
         "ko" : {
@@ -11740,6 +12784,12 @@
             "value" : "Trovami online"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開発者のリンク"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11802,6 +12852,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Frequenza"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "頻度"
           }
         },
         "ko" : {
@@ -11868,6 +12924,12 @@
             "value" : "Domande frequenti"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "よくある質問"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11930,6 +12992,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dal"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始"
           }
         },
         "ko" : {
@@ -11996,6 +13064,12 @@
             "value" : "Ricevi un promemoria quando inizia un nuovo mese e quando scade una transazione ricorrente, e una notifica dopo ogni acquisto Apple Pay."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月の始まりと繰り返しの取引の期日にリマインダーが届きます。Apple Payで支払うたびに通知も届きます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12058,6 +13132,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ricevi un promemoria quando inizia un nuovo mese e quando scade una transazione ricorrente."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月の始まりと繰り返しの取引の期日にリマインダーが届きます。"
           }
         },
         "ko" : {
@@ -12124,6 +13204,12 @@
             "value" : "Inizia"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "始める"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12188,6 +13274,12 @@
             "value" : "Ottieni il comando rapido"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ショートカットを入手"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12247,6 +13339,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub"
@@ -12314,6 +13412,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dai un titolo alla transazione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引にタイトルを付けてください"
           }
         },
         "ko" : {
@@ -12386,6 +13490,12 @@
             "value" : "Grigio"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "グレイ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12448,6 +13558,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verde"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "グリーン"
           }
         },
         "ko" : {
@@ -12514,6 +13630,12 @@
             "value" : "Aiuto e informazioni"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ヘルプと情報"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12576,6 +13698,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ciao, sono Louis 👋"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "こんにちは、Louisです👋"
           }
         },
         "ko" : {
@@ -12642,6 +13770,12 @@
             "value" : "Come funzionano i mesi in Trente?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteの「月」はどのような仕組みですか？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12704,6 +13838,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Come vuoi ripartire questa entrata?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この収入をどのように配分しますか？"
           }
         },
         "ko" : {
@@ -12770,6 +13910,12 @@
             "value" : "Sono uno sviluppatore francese 🇫🇷 a cui piace creare app. Trente è l’app che avrei voluto avere per seguire la regola 50/30/20. Ogni suggerimento è utile, quindi scrivimi pure!"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリづくりが大好きな、フランス🇫🇷の開発者です。Trenteは、50/30/20ルールを続けるために私自身が欲しかったアプリです。どんなご意見も参考になります。お気軽にご連絡ください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12832,6 +13978,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud non è disponibile per Trente. Verifica che iCloud sia attivo per Trente nell’app Impostazioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteでiCloudを利用できません。「設定」アプリで、TrenteのiCloudがオンになっているか確認してください。"
           }
         },
         "ko" : {
@@ -12898,6 +14050,12 @@
             "value" : "Sincronizzazione iCloud"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud同期"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12960,6 +14118,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Budget ideale"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "理想の予算"
           }
         },
         "ko" : {
@@ -13026,6 +14190,12 @@
             "value" : "Illustrazioni"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "イラスト"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13088,6 +14258,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le immagini vengono salvate insieme al foglio di calcolo in un file .zip."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像はスプレッドシートと一緒に.zipファイルに保存されます。"
           }
         },
         "ko" : {
@@ -13154,6 +14330,12 @@
             "value" : "Nell’app Comandi Rapidi"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「ショートカット」アプリで"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13216,6 +14398,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Includi immagini"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像を含める"
           }
         },
         "ko" : {
@@ -13282,6 +14470,12 @@
             "value" : "Includi note"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メモを含める"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13344,6 +14538,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entrata"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "収入"
           }
         },
         "ko" : {
@@ -13410,6 +14610,12 @@
             "value" : "Ripartizione dell’entrata"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "収入の配分"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13472,6 +14678,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il totale della ripartizione deve essere maggiore di 0."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配分の合計は0より大きくしてください。"
           }
         },
         "ko" : {
@@ -13538,6 +14750,12 @@
             "value" : "Entrate variabili?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "収入が毎月変わる場合は？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13600,6 +14818,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entrata/Spesa"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "収入/支出"
           }
         },
         "ko" : {
@@ -13666,6 +14890,12 @@
             "value" : "Aumenta %@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@を増やす"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13728,6 +14958,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non verrà aggiunta nel %@. Gli anni successivi non sono interessati. Questa azione non può essere annullata."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@は追加されません。翌年以降には影響しません。この操作は取り消せません。"
           }
         },
         "ko" : {
@@ -13794,6 +15030,12 @@
             "value" : "Non verrà aggiunta quella settimana. Le settimane successive non sono interessate. Questa azione non può essere annullata."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "その週は追加されません。翌週以降には影響しません。この操作は取り消せません。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13856,6 +15098,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non verrà aggiunta a %@. I mesi successivi non sono interessati. Questa azione non può essere annullata."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@は追加されません。翌月以降には影響しません。この操作は取り消せません。"
           }
         },
         "ko" : {
@@ -13922,6 +15170,12 @@
             "value" : "Viene aggiunta alle transazioni di questo mese."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月の取引に追加されます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13984,6 +15238,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ultimi 7 giorni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "過去7日間"
           }
         },
         "ko" : {
@@ -14050,6 +15310,12 @@
             "value" : "Ultime transazioni"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近の取引"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14114,6 +15380,12 @@
             "value" : "Rimanente"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残り"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14173,6 +15445,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LinkedIn"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "LinkedIn"
@@ -14242,6 +15520,12 @@
             "value" : "Registra automaticamente gli acquisti Apple Pay"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Payの支払いを自動で記録"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14304,6 +15588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gestisci abbonamento"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サブスクリプションを管理"
           }
         },
         "ko" : {
@@ -14370,6 +15660,12 @@
             "value" : "Segnare %@ come pagato?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@を支払い済みにしますか？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14432,6 +15728,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Segnare %@ come ricevuto?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@を入金済みにしますか？"
           }
         },
         "ko" : {
@@ -14498,6 +15800,12 @@
             "value" : "Segna come pagato"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払い済みにする"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14560,6 +15868,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Segna come pagato automaticamente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動で支払い済みにする"
           }
         },
         "ko" : {
@@ -14626,6 +15940,12 @@
             "value" : "Segna come ricevuto"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入金済みにする"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14688,6 +16008,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Segna come ricevuto automaticamente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動で入金済みにする"
           }
         },
         "ko" : {
@@ -14754,6 +16080,12 @@
             "value" : "Max"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最大"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14816,6 +16148,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mezzanotte"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ミッドナイト"
           }
         },
         "ko" : {
@@ -14882,6 +16220,12 @@
             "value" : "Min"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最小"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14944,6 +16288,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dettagli del mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月の詳細"
           }
         },
         "ko" : {
@@ -15010,6 +16360,12 @@
             "value" : "Riepilogo del mese"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月のまとめ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15072,6 +16428,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mensile"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "毎月"
           }
         },
         "ko" : {
@@ -15138,6 +16500,12 @@
             "value" : "Mesi"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15200,6 +16568,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Più icone con Trente+"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+ならアイコンを選べます"
           }
         },
         "ko" : {
@@ -15266,6 +16640,12 @@
             "value" : "Necessità"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "生活費"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15328,6 +16708,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non perdere più nessuna spesa"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支出の記録を忘れずに"
           }
         },
         "ko" : {
@@ -15394,6 +16780,12 @@
             "value" : "Nuovo mese"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15456,6 +16848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nuovo su Trente?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteは初めてですか？"
           }
         },
         "ko" : {
@@ -15522,6 +16920,12 @@
             "value" : "Nuova transazione"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新規取引"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15584,6 +16988,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nuova spesa Apple Pay"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しいApple Payの支出"
           }
         },
         "ko" : {
@@ -15650,6 +17060,12 @@
             "value" : "Avanti"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "次へ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15712,6 +17128,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nessuna valuta disponibile per creare un nuovo mese."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月の作成に使える通貨がありません。"
           }
         },
         "ko" : {
@@ -15778,6 +17200,12 @@
             "value" : "Nessun mese disponibile"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用できる月がありません"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15840,6 +17268,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ancora nessun mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月はまだありません"
           }
         },
         "ko" : {
@@ -15906,6 +17340,12 @@
             "value" : "Nessun mese disponibile"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用できる月がありません"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15968,6 +17408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nessuna transazione ricorrente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの取引はありません"
           }
         },
         "ko" : {
@@ -16034,6 +17480,12 @@
             "value" : "Ancora nessuna spesa registrata."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支出はまだ記録されていません。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16096,6 +17548,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non ancora disponibile."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "まだ利用できません。"
           }
         },
         "ko" : {
@@ -16162,6 +17620,12 @@
             "value" : "Non ora"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今はしない"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16224,6 +17688,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non sincronizzato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "同期していません"
           }
         },
         "ko" : {
@@ -16290,6 +17760,12 @@
             "value" : "Note e immagini"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メモと画像"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16352,6 +17828,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nient’altro previsto questo mese."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月の予定はもうありません。"
           }
         },
         "ko" : {
@@ -16418,6 +17900,12 @@
             "value" : "Impostazioni notifiche"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知設定"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16480,6 +17968,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notifiche"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知"
           }
         },
         "ko" : {
@@ -16546,6 +18040,12 @@
             "value" : "ora"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16610,6 +18110,12 @@
             "value" : "Disattivato"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オフ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16669,6 +18175,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -16738,6 +18250,12 @@
             "value" : "Attivato"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オン"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16800,6 +18318,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alla scadenza, %@ viene aggiunto alle transazioni di quel mese."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期日になると、%@がその月の取引に追加されます。"
           }
         },
         "ko" : {
@@ -16889,6 +18413,12 @@
             "value" : "Apri Impostazioni"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定を開く"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16951,6 +18481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Riapri il comando rapido"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ショートカットをもう一度開く"
           }
         },
         "ko" : {
@@ -17017,6 +18553,12 @@
             "value" : "Arancione"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オレンジ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17079,6 +18621,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Budget superato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算超過"
           }
         },
         "ko" : {
@@ -17145,6 +18693,12 @@
             "value" : "In ritardo"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期日超過"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17207,6 +18761,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "In ritardo dal %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期日は%@でした"
           }
         },
         "ko" : {
@@ -17279,6 +18839,12 @@
             "value" : "Pagina %1$lld di %2$lld"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld/%2$lldページ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17341,6 +18907,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pagato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支払い済み"
           }
         },
         "ko" : {
@@ -17407,6 +18979,12 @@
             "value" : "Foto"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "写真"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17471,6 +19049,12 @@
             "value" : "Rosa"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ピンク"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17533,6 +19117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apri questa finestra dalla dashboard di un mese."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月のダッシュボードからこのウインドウを開いてください。"
           }
         },
         "ko" : {
@@ -17605,6 +19195,12 @@
             "value" : "Resa popolare da Elizabeth Warren e Amelia Warren Tyagi."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elizabeth WarrenとAmelia Warren Tyagiが広めました。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17667,6 +19263,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prepara una spesa a partire da un pagamento con Wallet, così puoi verificarla in Trente."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウォレットでの支払いをもとに支出を作成し、Trenteで確認できるようにします。"
           }
         },
         "ko" : {
@@ -17733,6 +19335,12 @@
             "value" : "Preparazione del nuovo mese..."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月を準備中…"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17795,6 +19403,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Precedente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前へ"
           }
         },
         "ko" : {
@@ -17861,6 +19475,12 @@
             "value" : "Informativa sulla privacy"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシーポリシー"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17923,6 +19543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valuta su App Store"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Storeで評価"
           }
         },
         "ko" : {
@@ -17989,6 +19615,12 @@
             "value" : "Ricevuto"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入金済み"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18051,6 +19683,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dettagli della ricorrenza"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの詳細"
           }
         },
         "ko" : {
@@ -18117,6 +19755,12 @@
             "value" : "RICORRENTI"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返し"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18179,6 +19823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transazione ricorrente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの取引"
           }
         },
         "ko" : {
@@ -18245,6 +19895,12 @@
             "value" : "Titolo della transazione ricorrente"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの取引のタイトル"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18307,6 +19963,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transazioni ricorrenti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの取引"
           }
         },
         "ko" : {
@@ -18373,6 +20035,12 @@
             "value" : "Rimanente"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残り"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18435,6 +20103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Orario del promemoria"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リマインダーの時刻"
           }
         },
         "ko" : {
@@ -18501,6 +20175,12 @@
             "value" : "Promemoria"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リマインダー"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18563,6 +20243,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Promemoria in pausa"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リマインダーを一時停止中"
           }
         },
         "ko" : {
@@ -18629,6 +20315,12 @@
             "value" : "Rimuovi data di fine"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了日を削除"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18691,6 +20383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Affitto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "家賃"
           }
         },
         "ko" : {
@@ -18757,6 +20455,12 @@
             "value" : "Affitto, spesa, bollette..."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "家賃、食費、光熱費など"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18819,6 +20523,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ripartizione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配分"
           }
         },
         "ko" : {
@@ -18885,6 +20595,12 @@
             "value" : "Il totale della ripartizione non corrisponde all’importo da ripartire."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配分の合計が金額と一致しません。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18947,6 +20663,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Richiede Trente+"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+が必要"
           }
         },
         "ko" : {
@@ -19013,6 +20735,12 @@
             "value" : "Riprova"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再試行"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19075,6 +20803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stipendio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "給料"
           }
         },
         "ko" : {
@@ -19141,6 +20875,12 @@
             "value" : "Salva"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19203,6 +20943,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salva le transazioni di questo mese e le relative immagini in un file .zip, con un foglio di calcolo (.csv) che si apre in Numbers, Excel o Google Sheets."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この月の取引と画像を.zipファイルに保存します。Numbers、Excel、Googleスプレッドシートで開けるスプレッドシート（.csv）も含まれます。"
           }
         },
         "ko" : {
@@ -19269,6 +21015,12 @@
             "value" : "Salva le transazioni di questo mese in un foglio di calcolo (.csv) che si apre in Numbers, Excel o Google Sheets."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この月の取引を、Numbers、Excel、Googleスプレッドシートで開けるスプレッドシートファイル（.csv）として保存します。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19333,6 +21085,12 @@
             "value" : "Risparmi"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貯蓄"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19395,6 +21153,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Risparmi e debiti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貯蓄と返済"
           }
         },
         "ko" : {
@@ -19467,6 +21231,12 @@
             "value" : "Risparmi, debiti, pensione..."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貯蓄、返済、老後資金など"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19529,6 +21299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ricorrenza"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返し"
           }
         },
         "ko" : {
@@ -19595,6 +21371,12 @@
             "value" : "Cerca per titolo, importo, data, categoria…"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイトル、金額、日付、カテゴリで検索…"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19657,6 +21439,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cerca valute"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通貨を検索"
           }
         },
         "ko" : {
@@ -19723,6 +21511,12 @@
             "value" : "Cerca nelle domande"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "質問を検索"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19785,6 +21579,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vedi tutte le previste"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予定をすべて見る"
           }
         },
         "ko" : {
@@ -19851,6 +21651,12 @@
             "value" : "Vedi tutte le transazioni"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての取引を見る"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19913,6 +21719,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vedi i piani"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プランを見る"
           }
         },
         "ko" : {
@@ -19979,6 +21791,12 @@
             "value" : "Visualizza il budget rimanente del mese in corso per una categoria specifica, o per tutte le categorie nel widget medio.\n\nPer scegliere una categoria, tieni premuto il widget."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月の残りの予算をカテゴリごとに確認できます。中サイズのウィジェットでは、すべてのカテゴリを確認できます。\n\nカテゴリを選ぶには、ウィジェットを長押しします。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20041,6 +21859,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Visualizza il budget rimanente del mese in corso e, nei widget più grandi, le tue spese.\nScopri a colpo d’occhio come stai andando e registra facilmente nuove transazioni.\n\nGuarda gli esempi qui sotto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月の残りの予算を確認できます。大きなウィジェットでは支出も確認できます。\n今の状況をすぐに確認して、新しい取引を簡単に記録できます。\n\n下の例をご覧ください。"
           }
         },
         "ko" : {
@@ -20107,6 +21931,12 @@
             "value" : "Scegli una categoria per la spesa."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支出のカテゴリを選択してください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20169,6 +21999,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scegli una categoria per il widget."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウィジェットのカテゴリを選択してください。"
           }
         },
         "ko" : {
@@ -20235,6 +22071,12 @@
             "value" : "Scegli una categoria per questa transazione."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この取引のカテゴリを選択してください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20297,6 +22139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seleziona un mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月を選択"
           }
         },
         "ko" : {
@@ -20363,6 +22211,12 @@
             "value" : "Seleziona tutto"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべて選択"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20425,6 +22279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scegli categoria"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カテゴリを選択"
           }
         },
         "ko" : {
@@ -20491,6 +22351,12 @@
             "value" : "Invia feedback"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フィードバックを送信"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20553,6 +22419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scrivimi un’email"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メールを送る"
           }
         },
         "ko" : {
@@ -20619,6 +22491,12 @@
             "value" : "Configura più tardi"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あとで設定"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20681,6 +22559,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impostazioni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
           }
         },
         "ko" : {
@@ -20747,6 +22631,12 @@
             "value" : "Condividi i dettagli dell’errore"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エラーの詳細を共有"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20809,6 +22699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostra immagine"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像を表示"
           }
         },
         "ko" : {
@@ -20881,6 +22777,12 @@
             "value" : "Accedi a iCloud nell’app Impostazioni per avere i tuoi mesi e le tue transazioni su tutti i tuoi dispositivi. Puoi esportarli come foglio di calcolo in qualsiasi momento."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「設定」アプリでiCloudにサインインすると、月と取引をすべてのデバイスで使えます。いつでもスプレッドシートとして書き出せます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20943,6 +22845,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スキップ"
           }
         },
         "ko" : {
@@ -21015,6 +22923,12 @@
             "value" : "Saltare “%@” per %@?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$@の「%1$@」をスキップしますか？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21077,6 +22991,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saltare “%@” nel %@?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$@の「%1$@」をスキップしますか？"
           }
         },
         "ko" : {
@@ -21147,6 +23067,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saltare “%@” il %@?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$@の「%1$@」をスキップしますか？"
           }
         },
         "ko" : {
@@ -21282,6 +23208,12 @@
             "value" : "Salta per %@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@はスキップ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21344,6 +23276,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salta nel %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@はスキップ"
           }
         },
         "ko" : {
@@ -21410,6 +23348,12 @@
             "value" : "Salta il %@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@はスキップ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21472,6 +23416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salta questo mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月はスキップ"
           }
         },
         "ko" : {
@@ -21538,6 +23488,12 @@
             "value" : "Salta questa settimana"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今週はスキップ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21600,6 +23556,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salta quest’anno"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今年はスキップ"
           }
         },
         "ko" : {
@@ -21666,6 +23628,12 @@
             "value" : "Ordina"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "並べ替え"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21728,6 +23696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ordina per"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "並べ替えの基準"
           }
         },
         "ko" : {
@@ -21794,6 +23768,12 @@
             "value" : "Speso"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支出"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21856,6 +23836,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ripartisci il tuo budget"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算を分ける"
           }
         },
         "ko" : {
@@ -21926,6 +23912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ripartisci il tuo reddito netto tra Necessità, Desideri e Risparmi e debiti. Trente assegna ogni transazione a una di queste categorie."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手取りを「生活費」「ゆとり費」「貯蓄と返済」に分けます。Trenteでは、すべての取引がこの3つのどれかに入ります。"
           }
         },
         "ko" : {
@@ -22015,6 +24007,12 @@
             "value" : "Inizia un nuovo mese"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月を始める"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22077,6 +24075,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data di inizio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始日"
           }
         },
         "ko" : {
@@ -22143,6 +24147,12 @@
             "value" : "La data di inizio non può essere nel passato."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始日に過去の日付は指定できません。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22205,6 +24215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inizia a monitorare"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記録を始める"
           }
         },
         "ko" : {
@@ -22271,6 +24287,12 @@
             "value" : "Apri l’app per iniziare a monitorare il tuo budget con Trente!"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteを開いて、予算の管理を始めましょう。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22335,6 +24357,12 @@
             "value" : "Inizia a monitorare il tuo budget."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算の管理を始めましょう。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22397,6 +24425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "状態"
           }
         },
         "ko" : {
@@ -22469,6 +24503,12 @@
             "value" : "Passaggio %1$lld di %2$lld"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ステップ%1$lld/%2$lld"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22531,6 +24571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interruzione non riuscita"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止できませんでした"
           }
         },
         "ko" : {
@@ -22597,6 +24643,12 @@
             "value" : "Interrompere le prossime transazioni “%@”?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今後の「%@」の取引を停止しますか？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22659,6 +24711,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interrompi le prossime transazioni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今後の取引を停止"
           }
         },
         "ko" : {
@@ -22748,6 +24806,12 @@
             "value" : "Somma delle transazioni visualizzate"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "表示中の取引の合計"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22810,6 +24874,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supermercato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スーパー"
           }
         },
         "ko" : {
@@ -22876,6 +24946,12 @@
             "value" : "Sostieni uno sviluppatore indipendente"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人開発者を応援する"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22938,6 +25014,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sincronizzato %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最終同期：%@"
           }
         },
         "ko" : {
@@ -23004,6 +25086,12 @@
             "value" : "Prendi il controllo del tuo budget."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算を自分で管理しましょう。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23066,6 +25154,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tocca qui per registrarla in Trente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ここをタップしてTrenteに記録"
           }
         },
         "ko" : {
@@ -23132,6 +25226,12 @@
             "value" : "Condizioni d’uso"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用規約"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23194,6 +25294,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tester di TestFlight"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlightテスター"
           }
         },
         "ko" : {
@@ -23260,6 +25366,12 @@
             "value" : "Ringraziamenti"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "謝辞"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23322,6 +25434,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grazie a tutte le persone che hanno testato Trente su TestFlight."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlightでTrenteをテストしてくださった皆さん、ありがとうございます。"
           }
         },
         "ko" : {
@@ -23388,6 +25506,12 @@
             "value" : "La regola 50/30/20"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50/30/20ルール"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23450,6 +25574,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La regola 50/30/20 in 30 secondi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30秒でわかる50/30/20ルール"
           }
         },
         "ko" : {
@@ -23516,6 +25646,12 @@
             "value" : "Impossibile caricare l’immagine. Riprova."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像を読み込めませんでした。もう一度お試しください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23578,6 +25714,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arrivano dalla tua automazione Apple Pay nell’app Comandi Rapidi. Per interromperle, disattiva o elimina quell’automazione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "これらの通知は、「ショートカット」アプリのApple Payオートメーションから届きます。止めるには、そのオートメーションをオフにするか削除してください。"
           }
         },
         "ko" : {
@@ -23650,6 +25792,12 @@
             "value" : "Sono i soldi che puoi spendere liberamente ogni mese, una volta pagate le tasse."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "税金や社会保険料が引かれたあとの、毎月自由に使えるお金のことです。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23712,6 +25860,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Questa azione non può essere annullata."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この操作は取り消せません。"
           }
         },
         "ko" : {
@@ -23778,6 +25932,12 @@
             "value" : "Questa azione non può essere annullata. Verranno eliminate anche tutte le transazioni di questo mese."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この操作は取り消せません。この月のすべての取引も削除されます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23840,6 +26000,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Questo mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月"
           }
         },
         "ko" : {
@@ -23906,6 +26072,12 @@
             "value" : "Questo mese non ha ancora transazioni da esportare."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この月に書き出せる取引はまだありません。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23968,6 +26140,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titolo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイトル"
           }
         },
         "ko" : {
@@ -24034,6 +26212,12 @@
             "value" : "Il titolo non può essere vuoto."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タイトルを入力してください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24096,6 +26280,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Al"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了"
           }
         },
         "ko" : {
@@ -24162,6 +26352,12 @@
             "value" : "Per esportare più mesi o scegliere cosa includere, vai su Impostazioni › Esporta transazioni."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複数の月を書き出したり内容を選んだりするには、「設定」›「取引を書き出す」に進みます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24224,6 +26420,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Totale"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "合計"
           }
         },
         "ko" : {
@@ -24290,6 +26492,12 @@
             "value" : "Transazione"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24352,6 +26560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Note della transazione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引のメモ"
           }
         },
         "ko" : {
@@ -24418,6 +26632,12 @@
             "value" : "Titolo della transazione"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引のタイトル"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24482,6 +26702,12 @@
             "value" : "Transazioni"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24541,6 +26767,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente"
@@ -24610,6 +26842,12 @@
             "value" : "Trente %@"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente %@"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24672,6 +26910,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente Tutti i mesi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteのすべての月"
           }
         },
         "ko" : {
@@ -24738,6 +26982,12 @@
             "value" : "Feedback su Trente"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteへのフィードバック"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24800,6 +27050,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aiuto Trente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteヘルプ"
           }
         },
         "ko" : {
@@ -24866,6 +27122,12 @@
             "value" : "Trente è il successore di TrenteVingt (2023)."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteはTrenteVingt（2023年）の後継アプリです。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24930,6 +27192,12 @@
             "value" : "Trente riceve solo il nome dell’esercente e l’importo. Mai i dati della tua carta."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteが受け取るのは店舗名と金額だけです。カード情報は受け取りません。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24992,6 +27260,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente ti avvisa a quest’ora quando inizia un nuovo mese e quando scade una transazione ricorrente."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月が始まるときと繰り返しの取引の期日に、Trenteがこの時刻にお知らせします。"
           }
         },
         "ko" : {
@@ -25081,6 +27355,12 @@
             "value" : "Trente ti avvisa a quest’ora quando inizia un nuovo mese."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月が始まるときに、Trenteがこの時刻にお知らせします。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25145,6 +27425,12 @@
             "value" : "Trente ti avvisa a quest’ora quando scade una transazione ricorrente."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの取引の期日に、Trenteがこの時刻にお知らせします。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25207,6 +27493,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente ripartisce il tuo budget tra Necessità, Desideri e Risparmi, così sai sempre quanto ti resta questo mese."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteは予算を「生活費」「ゆとり費」「貯蓄」に分けるので、今月の残りがいつでもわかります。"
           }
         },
         "ko" : {
@@ -25296,6 +27588,12 @@
             "value" : "Trente ti avvisa quando inizia un nuovo mese e quando scade un pagamento ricorrente come l’affitto, così puoi segnarlo come pagato direttamente dalla notifica."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月が始まるときや、家賃などの繰り返しの支払いの期日に、Trenteがお知らせします。通知からそのまま支払い済みにできます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25358,6 +27656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente ti avvisa quando inizia un nuovo mese e quando scade un pagamento ricorrente come l’affitto. Una volta configurato Apple Pay, ti invia anche una notifica dopo ogni acquisto, così puoi registrarlo in un attimo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月が始まるときや、家賃などの繰り返しの支払いの期日に、Trenteがお知らせします。Apple Payを設定すると、支払いのたびに通知が届き、すぐに記録できます。"
           }
         },
         "ko" : {
@@ -25447,6 +27751,12 @@
             "value" : "Trente+"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25506,6 +27816,12 @@
           }
         },
         "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteVingt"
+          }
+        },
+        "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TrenteVingt"
@@ -25575,6 +27891,12 @@
             "value" : "Attiva “Transazione ricorrente” quando aggiungi una transazione."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引を追加するときに、「繰り返しの取引」をオンにします。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25637,6 +27959,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Attiva un promemoria per scegliere quando Trente ti avvisa."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リマインダーをオンにすると、Trenteがお知らせする時刻を選べます。"
           }
         },
         "ko" : {
@@ -25703,6 +28031,12 @@
             "value" : "Attiva le notifiche"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知をオンにする"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25765,6 +28099,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tipo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "種類"
           }
         },
         "ko" : {
@@ -25831,6 +28171,12 @@
             "value" : "Nel budget"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算内"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25893,6 +28239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fai la tua stima migliore. Registra le entrate extra man mano che arrivano e adatta il budget del mese successivo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おおよその見込みで入力してください。追加の収入は入ったときに記録し、翌月の予算で調整しましょう。"
           }
         },
         "ko" : {
@@ -25959,6 +28311,12 @@
             "value" : "Desideri"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゆとり費"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26021,6 +28379,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossibile creare il mese. Riprova."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月を作成できませんでした。もう一度お試しください。"
           }
         },
         "ko" : {
@@ -26087,6 +28451,12 @@
             "value" : "Impossibile creare la transazione. Riprova."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取引を作成できませんでした。もう一度お試しください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26151,6 +28521,12 @@
             "value" : "Impossibile aggiungere l’entrata"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "収入を追加できませんでした"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26213,6 +28589,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossibile salvare il mese"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月を保存できませんでした"
           }
         },
         "ko" : {
@@ -26537,6 +28919,12 @@
             }
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloudにデータが見つかりました。%1$lldか月分、%2$lld件の取引です。すべてそろっているので、続きからすぐに始められます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26727,6 +29115,12 @@
             "value" : "Partiamo dalla regola 50/30/20. Modificala finché non si adatta alla tua vita: puoi cambiarla ogni mese."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "まずは50/30/20ルールから始めましょう。配分は毎月変えられるので、暮らしに合うまで調整してください。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26789,6 +29183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sito web"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webサイト"
           }
         },
         "ko" : {
@@ -26855,6 +29255,12 @@
             "value" : "Settimanale"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "毎週"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26917,6 +29323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Felice di rivederti!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おかえりなさい"
           }
         },
         "ko" : {
@@ -26983,6 +29395,12 @@
             "value" : "Cosa sono le transazioni ricorrenti?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繰り返しの取引とは？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27045,6 +29463,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cos’è la regola 50/30/20?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50/30/20ルールとは？"
           }
         },
         "ko" : {
@@ -27111,6 +29535,12 @@
             "value" : "Cos’è Trente+?"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+とは？"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27175,6 +29605,12 @@
             "value" : "Cosa esportare"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書き出す内容"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27237,6 +29673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dove sono archiviati i miei dati?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データはどこに保存されますか？"
           }
         },
         "ko" : {
@@ -27326,6 +29768,12 @@
             "value" : "Annuale"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "毎年"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27388,6 +29836,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Puoi scrivere a %@ da qualsiasi app di posta."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "どのメールアプリからでも%@宛にメールを送れます。"
           }
         },
         "ko" : {
@@ -27460,6 +29914,12 @@
             "value" : "Non apri Trente su questo iPad dal %@, quindi i promemoria qui sono in pausa. Apri l’app quando vuoi per riattivarli."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@以降このiPadでTrenteを開いていないため、このiPadのリマインダーを一時停止しています。アプリを開くと、いつでも再開できます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27528,6 +29988,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non apri Trente su questo iPhone dal %@, quindi i promemoria qui sono in pausa. Apri l’app quando vuoi per riattivarli."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@以降このiPhoneでTrenteを開いていないため、このiPhoneのリマインダーを一時停止しています。アプリを開くと、いつでも再開できます。"
           }
         },
         "ko" : {
@@ -27600,6 +30066,12 @@
             "value" : "Non apri Trente su questo Mac dal %@, quindi i promemoria qui sono in pausa. Apri l’app quando vuoi per riattivarli."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@以降このMacでTrenteを開いていないため、このMacのリマインダーを一時停止しています。アプリを開くと、いつでも再開できます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27662,6 +30134,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sceglierai le categorie per questa entrata nei passaggi successivi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この収入のカテゴリは、次のステップで選びます。"
           }
         },
         "ko" : {
@@ -27728,6 +30206,12 @@
             "value" : "Tutto pronto!"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "準備ができました"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27790,6 +30274,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Impossibile aprire il tuo budget"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予算を開けませんでした"
           }
         },
         "ko" : {
@@ -27856,6 +30346,12 @@
             "value" : "I tuoi dati"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データ"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27918,6 +30414,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "I tuoi dati non sono stati eliminati. Prova ad aggiornare Trente e condividi i dettagli dell’errore se il problema persiste."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データは削除されていません。Trenteをアップデートしてみてください。問題が続く場合は、エラーの詳細を共有してください。"
           }
         },
         "ko" : {
@@ -27984,6 +30486,12 @@
             "value" : "Il tuo primo mese inizia oggi. Registra le spese man mano e Trente ti mostra quanto ti resta."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日から最初の月が始まります。支出を記録していくと、Trenteが残りを教えてくれます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28048,6 +30556,12 @@
             "value" : "Il tuo spazio iCloud è pieno, quindi le nuove modifiche restano su questo dispositivo. Libera spazio nell’app Impostazioni per sincronizzare di nuovo."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloudストレージがいっぱいのため、新しい変更はこのデバイスに残っています。「設定」アプリで空き容量を増やすと、同期が再開されます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28110,6 +30624,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il tuo budget mensile"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "毎月の予算"
           }
         },
         "ko" : {
@@ -28182,6 +30702,12 @@
             "value" : "I tuoi mesi e le tue transazioni si sincronizzano tramite il tuo account iCloud su tutti i tuoi dispositivi. Trente non ha account né server. Puoi esportarli come foglio di calcolo in qualsiasi momento."
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月と取引は、iCloudアカウントを通じてすべてのデバイスで同期されます。Trenteにはアカウントもサーバもありません。いつでもスプレッドシートとして書き出せます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28244,6 +30770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Il tuo nuovo mese è pronto, con lo stesso budget del mese scorso. Apri Trente per vederlo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しい月の準備ができました。予算は先月と同じです。Trenteを開いて確認しましょう。"
           }
         },
         "ko" : {
@@ -28310,6 +30842,12 @@
             "value" : "Ingrandisci"
           }
         },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拡大"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28372,6 +30910,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Riduci"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "縮小"
           }
         },
         "ko" : {
