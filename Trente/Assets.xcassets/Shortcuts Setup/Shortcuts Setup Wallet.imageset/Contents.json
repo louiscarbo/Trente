@@ -1,0 +1,60 @@
+{
+  "images": [
+    {
+      "filename": "Wallet en.jpg",
+      "idiom": "iphone"
+    },
+    {
+      "filename": "Wallet en-GB.jpg",
+      "idiom": "iphone",
+      "locale": "en-GB"
+    },
+    {
+      "filename": "Wallet fr.jpg",
+      "idiom": "iphone",
+      "locale": "fr"
+    },
+    {
+      "filename": "Wallet es.jpg",
+      "idiom": "iphone",
+      "locale": "es"
+    },
+    {
+      "filename": "Wallet es-419.jpg",
+      "idiom": "iphone",
+      "locale": "es-419"
+    },
+    {
+      "filename": "Wallet it.jpg",
+      "idiom": "iphone",
+      "locale": "it"
+    },
+    {
+      "filename": "Wallet de.jpg",
+      "idiom": "iphone",
+      "locale": "de"
+    },
+    {
+      "filename": "Wallet ko.jpg",
+      "idiom": "iphone",
+      "locale": "ko"
+    },
+    {
+      "filename": "Wallet pt-BR.jpg",
+      "idiom": "iphone",
+      "locale": "pt-BR"
+    },
+    {
+      "filename": "Wallet pt-PT.jpg",
+      "idiom": "iphone",
+      "locale": "pt-PT"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  },
+  "properties": {
+    "localizable": true
+  }
+}
