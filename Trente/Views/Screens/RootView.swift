@@ -15,6 +15,8 @@ struct RootView: View {
     @State private var isFirstLaunch = false
     @State private var isShowingWelcomeBack = false
     @State private var pendingDeepLink: DeepLink?
+    @State private var trenteVingtExport: TrenteVingtExport?
+    @State private var isShowingTrenteVingtImport = false
 
     var body: some View {
         Group {
@@ -23,6 +25,14 @@ struct RootView: View {
                 Color.clear
             case .some(true) where isShowingWelcomeBack:
                 WelcomeBackView(onContinue: finishOnboarding)
+            case .some(true) where trenteVingtExport != nil:
+                if let trenteVingtExport {
+                    TrenteVingtWelcomeView(
+                        export: trenteVingtExport,
+                        onImported: finishTrenteVingtImport,
+                        onStartFresh: startFresh
+                    )
+                }
             case .some(true):
                 OnboardingView(
                     isFirstLaunch: isFirstLaunch,
@@ -32,6 +42,14 @@ struct RootView: View {
                 )
             case .some(false):
                 AppNavigationView(pendingDeepLink: $pendingDeepLink)
+                    .sheet(isPresented: $isShowingTrenteVingtImport) {
+                        NavigationStack {
+                            TrenteVingtImportView()
+                                .toolbar {
+                                    CloseToolbarItem { isShowingTrenteVingtImport = false }
+                                }
+                        }
+                    }
             }
         }
         .onOpenURL(perform: handleOpenURL)
@@ -59,11 +77,46 @@ struct RootView: View {
         if isShowingOnboarding == true {
             pendingDeepLink = nil
         }
+        if isFirstLaunch {
+            trenteVingtExport = importableTrenteVingtExport()
+        }
+    }
+
+    private func importableTrenteVingtExport() -> TrenteVingtExport? {
+        guard let export = TrenteVingtSnapshot.load(),
+              let summary = try? TrenteVingtImporter().preview(of: export, in: modelContext),
+              summary.monthCount > 0
+        else { return nil }
+        return export
     }
 
     private func handleOpenURL(_ url: URL) {
+        if TrenteVingtSnapshot.isImportURL(url) {
+            showTrenteVingtImport()
+            return
+        }
         guard isShowingOnboarding != true, let link = DeepLink(url: url) else { return }
         pendingDeepLink = link
+    }
+
+    private func showTrenteVingtImport() {
+        isShowingTrenteVingtImport = true
+        guard isShowingOnboarding == true else { return }
+        withAnimation {
+            trenteVingtExport = importableTrenteVingtExport()
+        }
+    }
+
+    private func startFresh() {
+        isShowingTrenteVingtImport = false
+        withAnimation {
+            trenteVingtExport = nil
+        }
+    }
+
+    private func finishTrenteVingtImport() {
+        isShowingTrenteVingtImport = false
+        finishOnboarding()
     }
 
     private func showWelcomeBack() {
