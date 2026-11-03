@@ -53,6 +53,12 @@
             "state" : "translated",
             "value" : "    Ainda não começou a acompanhar o seu orçamento. Abra a app Trente para começar!"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "    Du har inte börjat följa din budget än. Öppna appen för att komma igång med Trente!"
+          }
         }
       }
     },
@@ -110,6 +116,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ restantes de %2$@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ kvar av %2$@"
           }
         }
       }
@@ -169,6 +181,12 @@
             "state" : "translated",
             "value" : "%1$@ gastos de %2$@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ spenderat av %2$@"
+          }
         }
       }
     },
@@ -220,6 +238,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Faltam %@ para dividir"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kvar att fördela"
           }
         }
       }
@@ -279,6 +303,12 @@
             "state" : "translated",
             "value" : "%1$lld de %2$lld registos gratuitos do Apple Pay este mês"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld av %2$lld Apple Pay-köp loggade gratis den här månaden"
+          }
         }
       }
     },
@@ -333,6 +363,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "- %@ restantes"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "- %@ kvar"
           }
         }
       }
@@ -392,6 +428,12 @@
             "state" : "translated",
             "value" : "Um mês começa na data que escolher e dura um mês, por exemplo de 25 de outubro a 24 de novembro, para acompanhar o ritmo do seu salário."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En månad börjar på det datum du väljer och varar en månad, till exempel från den 25 oktober till den 24 november, så att den passar din lönedag."
+          }
         }
       }
     },
@@ -443,6 +485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uma forma simples de dividir o seu rendimento líquido: cerca de 50% para necessidades (renda, supermercado, contas), 30% para desejos (restaurantes, lazer) e 20% para poupança e pagamento de dívidas. O Trente classifica cada transação numa destas três categorias. Pode escolher a sua própria divisão para cada mês."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ett enkelt sätt att fördela din inkomst efter skatt: cirka 50 % till behov (hyra, mat, räkningar), 30 % till nöjen (restaurang, fritid) och 20 % till sparande och avbetalning av skulder. Trente sorterar in varje transaktion i en av de här tre kategorierna. Du kan välja din egen fördelning för varje månad."
           }
         }
       }
@@ -496,6 +544,12 @@
             "state" : "translated",
             "value" : "Adicione um talão, uma fotografia ou uma nota às suas transações."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bifoga ett kvitto, ett foto eller en anteckning till dina transaktioner."
+          }
         }
       }
     },
@@ -548,6 +602,12 @@
             "state" : "translated",
             "value" : "Montante, do maior para o menor"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belopp, högst först"
+          }
         }
       }
     },
@@ -599,6 +659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Montante, do menor para o maior"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belopp, lägst först"
           }
         }
       }
@@ -658,6 +724,12 @@
             "state" : "translated",
             "value" : "Uma subscrição mensal ou anual, opcional, que desbloqueia novas funcionalidades no Trente. Abra as definições do Trente para saber mais.\nO Trente+ é também uma forma de me apoiar como programador independente.\nPode gerir ou cancelar a subscrição a qualquer momento na sua Conta Apple."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ett valfritt abonnemang, per månad eller år, som låser upp nya funktioner i Trente. Öppna Trentes inställningar för att läsa mer.\nMed Trente+ stöder du också mig som oberoende utvecklare.\nHantera eller avsluta abonnemanget när som helst i ditt Apple-konto."
+          }
         }
       }
     },
@@ -709,6 +781,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Limite do Apple Pay atingido"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay-gränsen är nådd"
           }
         }
       }
@@ -762,6 +840,12 @@
             "state" : "translated",
             "value" : "Padaria"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bageri"
+          }
         }
       }
     },
@@ -814,6 +898,12 @@
             "state" : "translated",
             "value" : "Não encontrou a resposta que procura?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hittar du inte svaret?"
+          }
         }
       }
     },
@@ -865,6 +955,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligar o Trente ao Apple Pay"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anslut Trente till Apple Pay"
           }
         }
       }
@@ -924,6 +1020,12 @@
             "state" : "translated",
             "value" : "Personalize o aspeto do Trente no seu ecrã principal."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anpassa hur Trente ser ut på hemskärmen."
+          }
         }
       }
     },
@@ -975,6 +1077,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data, mais recentes primeiro"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum, nyast först"
           }
         }
       }
@@ -1028,6 +1136,12 @@
             "state" : "translated",
             "value" : "Data, mais antigas primeiro"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum, äldst först"
+          }
         }
       }
     },
@@ -1079,6 +1193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dia"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dag"
           }
         }
       }
@@ -1132,6 +1252,12 @@
             "state" : "translated",
             "value" : "Envie um e-mail ao programador. Respondo a todas as mensagens!"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mejla utvecklaren. Jag svarar på alla meddelanden!"
+          }
         }
       }
     },
@@ -1183,6 +1309,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Como altero a categoria apresentada no widget «Resumo da categoria»?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hur ändrar jag kategorin som visas i widgeten ”Kategoriöversikt”?"
           }
         }
       }
@@ -1236,6 +1368,12 @@
             "state" : "translated",
             "value" : "Como divido um rendimento entre as categorias?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hur fördelar jag en inkomst mellan kategorierna?"
+          }
         }
       }
     },
@@ -1287,6 +1425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No menu na parte inferior do ecrã, toque na categoria **Automatização** e desloque-se até à linha **Carteira**. Toque na linha **Carteira – Quando aproximar um cartão da Carteira**."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I menyn längst ned på skärmen trycker du på kategorin **Automatisering** och rullar sedan ned till raden **Plånbok**. Tryck på **Plånbok – När jag trycker på ett kort i Plånbok**."
           }
         }
       }
@@ -1340,6 +1484,12 @@
             "state" : "translated",
             "value" : "Incluído no Trente+"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingår i Trente+"
+          }
         }
       }
     },
@@ -1391,6 +1541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O Trente+ faz as contas por si e dá-lhe acesso a novas funcionalidades."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Låt Trente+ göra jobbet och lås upp nya funktioner."
           }
         }
       }
@@ -1444,6 +1600,12 @@
             "state" : "translated",
             "value" : "Registe cada compra com Apple Pay, não só 10 por mês."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logga varje Apple Pay-köp, inte bara 10 i månaden."
+          }
         }
       }
     },
@@ -1495,6 +1657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Renda, salário, subscrições: adicionados automaticamente, sem ter de pensar nisso."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyra, lön, abonnemang: läggs till automatiskt, utan att du behöver tänka på det."
           }
         }
       }
@@ -1548,6 +1716,12 @@
             "state" : "translated",
             "value" : "Mostra uma semana de cada vez"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visar en vecka i taget"
+          }
         }
       }
     },
@@ -1599,6 +1773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostra o mês inteiro"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visar hela månaden"
           }
         }
       }
@@ -1652,6 +1832,12 @@
             "state" : "translated",
             "value" : "Mostra quanto gastou"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visar vad du har spenderat"
+          }
         }
       }
     },
@@ -1703,6 +1889,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostra quanto resta"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visar vad som är kvar"
           }
         }
       }
@@ -1756,6 +1948,12 @@
             "state" : "translated",
             "value" : "Toque em **Obter o atalho** abaixo e adicione **Trente & Wallet** aos seus atalhos."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryck på **Hämta genvägen** nedan och lägg till **Trente & Wallet** i dina genvägar."
+          }
         }
       }
     },
@@ -1807,6 +2005,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toque no atalho **Trente & Wallet** que acabou de adicionar e depois toque em **Editar**."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryck på genvägen **Trente & Wallet** som du just lade till och tryck sedan på **Redigera**."
           }
         }
       }
@@ -1860,6 +2064,12 @@
             "state" : "translated",
             "value" : "O valor restante corresponde aos rendimentos que registou este mês, menos as despesas.\nSe o mês não mostrar nenhum valor restante, comece por adicionar um rendimento: toque em «Adicionar transação»."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det som är kvar är de inkomster du har loggat den här månaden, minus dina utgifter.\nVisar månaden inget belopp kvar? Börja med att lägga till en inkomst: tryck på ”Lägg till transaktion”."
+          }
         }
       }
     },
@@ -1911,6 +2121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Título, de A a Z"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel, A till Ö"
           }
         }
       }
@@ -1964,6 +2180,12 @@
             "state" : "translated",
             "value" : "Título, de Z a A"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel, Ö till A"
+          }
         }
       }
     },
@@ -2015,6 +2237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhuma transação correspondente"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga matchande transaktioner"
           }
         }
       }
@@ -2068,6 +2296,12 @@
             "state" : "translated",
             "value" : "Nenhuma transação corresponde a estes filtros."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga transaktioner matchar de här filtren."
+          }
         }
       }
     },
@@ -2119,6 +2353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Repor"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Återställ"
           }
         }
       }
@@ -2172,6 +2412,12 @@
             "state" : "translated",
             "value" : "Repor filtros"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Återställ filter"
+          }
         }
       }
     },
@@ -2223,6 +2469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transações recorrentes automáticas"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatiska återkommande transaktioner"
           }
         }
       }
@@ -2276,6 +2528,12 @@
             "state" : "translated",
             "value" : "Preto"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svart"
+          }
         }
       }
     },
@@ -2327,6 +2585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Disponível para gastar"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvar att spendera"
           }
         }
       }
@@ -2380,6 +2644,12 @@
             "state" : "translated",
             "value" : "Menta"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mint"
+          }
         }
       }
     },
@@ -2431,6 +2701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A mais"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Över"
           }
         }
       }
@@ -2484,6 +2760,12 @@
             "state" : "translated",
             "value" : "Orçamento ultrapassado"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Över budget"
+          }
         }
       }
     },
@@ -2535,6 +2817,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Em pausa sem o Trente+. Até voltar a subscrever, o Trente pede-lhe que confirme %@."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausad utan Trente+. Tills du har abonnemang igen får du bekräfta %@ själv."
           }
         }
       }
@@ -2588,6 +2876,12 @@
             "state" : "translated",
             "value" : "Roxo"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lila"
+          }
         }
       }
     },
@@ -2639,6 +2933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vermelho"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Röd"
           }
         }
       }
@@ -2692,6 +2992,12 @@
             "state" : "translated",
             "value" : "Divisão das despesas"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fördelning av utgifter"
+          }
         }
       }
     },
@@ -2743,6 +3049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Azul-petróleo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blågrön"
           }
         }
       }
@@ -2796,6 +3108,12 @@
             "state" : "translated",
             "value" : "Mantenha o widget premido e depois toque em «Editar widget». Assim pode alterar a categoria do widget."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Håll på widgeten och tryck på ”Redigera widget”. Sedan kan du ändra widgetens kategori."
+          }
         }
       }
     },
@@ -2847,6 +3165,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transações que se repetem todas as semanas, todos os meses ou todos os anos, como a renda ou o salário.\nO Trente lembra-o de confirmar a transação no dia previsto.\nOs subscritores do Trente+ podem ativar a confirmação automática das transações recorrentes."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaktioner som återkommer varje vecka, månad eller år, som hyra eller lön.\nTrente påminner dig om att bekräfta transaktionen när det är dags.\nMed Trente+ kan du slå på automatisk bekräftelse av återkommande transaktioner."
           }
         }
       }
@@ -2903,6 +3227,12 @@
             "state" : "translated",
             "value" : "O Trente é concebido e mantido inteiramente por uma única pessoa."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente designas och underhålls helt av en enda person."
+          }
         }
       }
     },
@@ -2954,6 +3284,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Os subscritores do Trente+ podem ativar a confirmação automática das transações recorrentes. Assim, já não precisa de abrir o Trente para adicionar a transação ao seu orçamento. É útil para transações certas e regulares, como um salário."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med Trente+ kan du slå på automatisk bekräftelse av återkommande transaktioner. Då behöver du inte längre öppna Trente för att lägga till transaktionen i din budget. Det är praktiskt för regelbundna transaktioner du kan lita på, som en lön."
           }
         }
       }
@@ -3007,6 +3343,12 @@
             "state" : "translated",
             "value" : "Registo ilimitado do Apple Pay"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logga Apple Pay-köp utan gräns"
+          }
         }
       }
     },
@@ -3058,6 +3400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Para que serve a opção «Automático»?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vad gör alternativet ”Automatiskt”?"
           }
         }
       }
@@ -3111,6 +3459,12 @@
             "state" : "translated",
             "value" : "Ao adicionar um rendimento, escolha quanto vai para Necessidades, Desejos e Poupança e dívidas. Uma despesa vai sempre para uma única categoria."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "När du lägger till en inkomst väljer du hur mycket som går till Behov, Nöjen samt Sparande och skulder. En utgift hamnar alltid i en enda kategori."
+          }
         }
       }
     },
@@ -3162,6 +3516,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Porque é que o meu mês não mostra nenhum valor restante?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varför visar min månad inget belopp kvar?"
           }
         }
       }
@@ -3215,6 +3575,12 @@
             "state" : "translated",
             "value" : "Creative Commons Atribuição 3.0"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creative Commons Erkännande 3.0"
+          }
         }
       }
     },
@@ -3266,6 +3632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Do Noun Project, com licença CC BY 3.0. Adaptada para o ícone da app e o autocolante do porquinho."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Från Noun Project, licensierad under CC BY 3.0. Bearbetad för appsymbolen och grisklistermärket."
           }
         }
       }
@@ -3319,6 +3691,12 @@
             "state" : "translated",
             "value" : "Do Noun Project, com licença CC BY 3.0. Usada no autocolante do foguetão."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Från Noun Project, licensierad under CC BY 3.0. Används för raketklistermärket."
+          }
         }
       }
     },
@@ -3370,6 +3748,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A licença das duas ilustrações."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licensen för båda illustrationerna."
           }
         }
       }
@@ -3423,6 +3807,12 @@
             "state" : "translated",
             "value" : "Amarelo"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gul"
+          }
         }
       }
     },
@@ -3474,6 +3864,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sim. Nas definições do Trente, pode adicionar o atalho que liga o Trente ao Apple Pay. Siga as instruções nas definições do Trente.\nDepois de cada compra, toque na notificação, adicione a categoria e guarde. Nenhuma transação é adicionada sem a sua confirmação.\nSem subscrição, o registo do Apple Pay está limitado a 10 despesas por mês. Os subscritores do Trente+ podem adicionar as transações que quiserem."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ja. I Trentes inställningar kan du lägga till genvägen som ansluter Trente till Apple Pay. Följ instruktionerna där.\nEfter varje köp trycker du på notisen, lägger till kategorin och sparar. Ingen transaktion läggs till utan din bekräftelse.\nUtan abonnemang kan du logga 10 utgifter i månaden med Apple Pay. Med Trente+ kan du lägga till så många transaktioner du vill."
           }
         }
       }
@@ -3527,6 +3923,12 @@
             "state" : "translated",
             "value" : "Tem acesso a todas as vantagens do Trente+. Obrigado pela sua subscrição!"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har tillgång till alla förmåner i Trente+. Tack för ditt stöd!"
+          }
         }
       }
     },
@@ -3578,6 +3980,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deverá ver dois blocos na sua automatização. Pronto: o Trente vai receber as suas próximas compras com Apple Pay!"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bör se två block i din automatisering. Nu är allt klart: Trente tar emot dina kommande Apple Pay-köp!"
           }
         }
       }
@@ -3631,6 +4039,12 @@
             "state" : "translated",
             "value" : "Utilizou os seus %lld registos gratuitos do Apple Pay este mês. Subscreva o Trente+ para registos automáticos ilimitados."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har loggat %lld Apple Pay-köp gratis den här månaden. Skaffa Trente+ för att logga automatiskt utan gräns."
+          }
         }
       }
     },
@@ -3682,6 +4096,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Os seus dados pertencem-lhe e o Trente nunca tem acesso a eles.\nSão guardados nos seus dispositivos e na sua conta iCloud, se ativar o iCloud para o Trente.\nO Trente não tem conta nem servidor e nunca se liga ao seu banco.\nPara apagar os seus dados, desative a sincronização iCloud do Trente nas Definições do dispositivo e depois apague a app."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dina data tillhör dig, och Trente har aldrig tillgång till dem.\nDe lagras på dina enheter och i ditt iCloud-konto om du slår på iCloud för Trente.\nTrente har varken konto eller server och ansluter aldrig till din bank.\nFör att radera dina data stänger du av iCloud-synkronisering för Trente i enhetens inställningar och raderar sedan appen."
           }
         }
       }
@@ -3735,6 +4155,12 @@
             "state" : "translated",
             "value" : "«Financial Startup» por Vectors Market"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "”Financial Startup” av Vectors Market"
+          }
         }
       }
     },
@@ -3786,6 +4212,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicionar o que falta"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till resten"
           }
         }
       }
@@ -3839,6 +4271,12 @@
             "state" : "translated",
             "value" : "Pôr a zero"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nollställ"
+          }
         }
       }
     },
@@ -3891,6 +4329,12 @@
             "state" : "translated",
             "value" : "«Piggy Savings» por Vectors Market"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "”Piggy Savings” av Vectors Market"
+          }
         }
       }
     },
@@ -3939,6 +4383,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
@@ -4001,6 +4451,12 @@
             "state" : "translated",
             "value" : "%1$@ - %2$@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ - %2$@"
+          }
         }
       }
     },
@@ -4055,6 +4511,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$@"
@@ -4117,6 +4579,12 @@
             "state" : "translated",
             "value" : "%1$@ · %2$lld%%"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld %%"
+          }
         }
       }
     },
@@ -4175,6 +4643,12 @@
             "state" : "translated",
             "value" : "%1$@ %2$@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
         }
       }
     },
@@ -4226,6 +4700,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ restantes"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kvar"
           }
         }
       }
@@ -4279,6 +4759,12 @@
             "state" : "translated",
             "value" : "%@ começa hoje"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ börjar idag"
+          }
         }
       }
     },
@@ -4330,6 +4816,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ deixará de aparecer depois de hoje. As transações já registadas mantêm-se."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ visas inte efter idag. Redan loggade transaktioner finns kvar."
           }
         }
       }
@@ -4385,6 +4877,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, %2$@"
@@ -4528,6 +5026,24 @@
               }
             }
           }
+        },
+        "sv" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktiv"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld aktiva"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -4660,6 +5176,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld meses"
+                }
+              }
+            }
+          }
+        },
+        "sv" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld månad"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld månader"
                 }
               }
             }
@@ -4800,6 +5334,24 @@
               }
             }
           }
+        },
+        "sv" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld transaktion"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld transaktioner"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -4855,6 +5407,12 @@
             "state" : "translated",
             "value" : "Sobre o programador"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Om utvecklaren"
+          }
         }
       }
     },
@@ -4906,6 +5464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ativas"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiva"
           }
         }
       }
@@ -4959,6 +5523,12 @@
             "state" : "translated",
             "value" : "Adicionar data de fim"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till slutdatum"
+          }
         }
       }
     },
@@ -5011,6 +5581,12 @@
             "state" : "translated",
             "value" : "Adicionar categoria"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till kategori"
+          }
         }
       }
     },
@@ -5062,6 +5638,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicionar imagem"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till bild"
           }
         }
       }
@@ -5138,6 +5720,12 @@
             "state" : "translated",
             "value" : "Adicione notas e imagens com o Trente+"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till anteckningar och bilder med Trente+"
+          }
         }
       }
     },
@@ -5189,6 +5777,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicione o atalho do Trente e crie uma automatização. Cada pagamento com cartão passa a aparecer no Trente, pronto a rever."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till Trente-genvägen och skapa sedan en automatisering. Då dyker varje kortbetalning upp i Trente, redo att granskas."
           }
         }
       }
@@ -5242,6 +5836,12 @@
             "state" : "translated",
             "value" : "Adicionar transação"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till transaktion"
+          }
         }
       }
     },
@@ -5293,6 +5893,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicione a sua primeira transação recorrente tocando em «Adicionar transação»."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till din första återkommande transaktion genom att trycka på ”Lägg till transaktion”."
           }
         }
       }
@@ -5346,6 +5952,12 @@
             "state" : "translated",
             "value" : "Adicione a sua primeira transação tocando em «Adicionar transação»."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till din första transaktion genom att trycka på ”Lägg till transaktion”."
+          }
         }
       }
     },
@@ -5397,6 +6009,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicione a primeira transação deste mês tocando em «Adicionar transação»."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till månadens första transaktion genom att trycka på ”Lägg till transaktion”."
           }
         }
       }
@@ -5450,6 +6068,12 @@
             "state" : "translated",
             "value" : "Adicione as suas primeiras transações tocando em «Nova transação»."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till dina första transaktioner genom att trycka på ”Ny transaktion”."
+          }
         }
       }
     },
@@ -5501,6 +6125,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicione aqui as suas notas."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv dina anteckningar här."
           }
         }
       }
@@ -5554,6 +6184,12 @@
             "state" : "translated",
             "value" : "Adicionada automaticamente."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillagd automatiskt."
+          }
         }
       }
     },
@@ -5605,6 +6241,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Após cada compra"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efter varje köp"
           }
         }
       }
@@ -5658,6 +6300,12 @@
             "state" : "translated",
             "value" : "Todos os meses"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alla månader"
+          }
         }
       }
     },
@@ -5706,6 +6354,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Your Worth (2005)"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "All Your Worth (2005)"
@@ -5762,6 +6416,12 @@
             "state" : "translated",
             "value" : "Montante"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belopp"
+          }
         }
       }
     },
@@ -5813,6 +6473,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O montante tem de ser inferior a 0."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beloppet måste vara mindre än 0."
           }
         }
       }
@@ -5866,6 +6532,12 @@
             "state" : "translated",
             "value" : "Montante a dividir"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belopp att fördela"
+          }
         }
       }
     },
@@ -5917,6 +6589,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ocorreu um erro"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ett fel uppstod"
           }
         }
       }
@@ -5970,6 +6648,12 @@
             "state" : "translated",
             "value" : "Ícone da app"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appsymbol"
+          }
         }
       }
     },
@@ -6022,6 +6706,12 @@
             "state" : "translated",
             "value" : "Ícones da app"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appsymboler"
+          }
         }
       }
     },
@@ -6070,6 +6760,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Pay"
@@ -6126,6 +6822,12 @@
             "state" : "translated",
             "value" : "MESES ARQUIVADOS"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ARKIVERADE MÅNADER"
+          }
         }
       }
     },
@@ -6177,6 +6879,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tem a certeza?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Är du säker?"
           }
         }
       }
@@ -6230,6 +6938,12 @@
             "state" : "translated",
             "value" : "Pelo menos uma categoria tem de ter um montante diferente de zero."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minst en kategori måste ha ett belopp som inte är noll."
+          }
         }
       }
     },
@@ -6281,6 +6995,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automático"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatiskt"
           }
         }
       }
@@ -6334,6 +7054,12 @@
             "state" : "translated",
             "value" : "Voltar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillbaka"
+          }
         }
       }
     },
@@ -6385,6 +7111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Azul"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blå"
           }
         }
       }
@@ -6438,6 +7170,12 @@
             "state" : "translated",
             "value" : "Noções básicas de orçamento"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grunderna i budgetering"
+          }
         }
       }
     },
@@ -6489,6 +7227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Categoria de orçamento"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budgetkategori"
           }
         }
       }
@@ -6542,6 +7286,12 @@
             "state" : "translated",
             "value" : "O Trente pode registar as minhas compras Apple Pay?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan Trente logga mina Apple Pay-köp?"
+          }
         }
       }
     },
@@ -6593,6 +7343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancelar"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avbryt"
           }
         }
       }
@@ -6646,6 +7402,12 @@
             "state" : "translated",
             "value" : "Não foi possível guardar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det går inte att spara"
+          }
         }
       }
     },
@@ -6697,6 +7459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Categorias"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorier"
           }
         }
       }
@@ -6750,6 +7518,12 @@
             "state" : "translated",
             "value" : "Categoria"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
         }
       }
     },
@@ -6801,6 +7575,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Resumo da categoria"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategoriöversikt"
           }
         }
       }
@@ -6854,6 +7634,12 @@
             "state" : "translated",
             "value" : "Alterar imagem"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byt bild"
+          }
         }
       }
     },
@@ -6905,6 +7691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alterar ou parar esta recorrência"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ändra eller stoppa den här upprepningen"
           }
         }
       }
@@ -6958,6 +7750,12 @@
             "state" : "translated",
             "value" : "Fechar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stäng"
+          }
         }
       }
     },
@@ -7009,6 +7807,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Roupa"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kläder"
           }
         }
       }
@@ -7062,6 +7866,12 @@
             "state" : "translated",
             "value" : "Continuar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsätt"
+          }
         }
       }
     },
@@ -7113,6 +7923,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copiar endereço"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiera adress"
           }
         }
       }
@@ -7166,6 +7982,12 @@
             "state" : "translated",
             "value" : "Não foi possível abrir o Mail"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att öppna Mail"
+          }
         }
       }
     },
@@ -7217,6 +8039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Criar"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skapa"
           }
         }
       }
@@ -7270,6 +8098,12 @@
             "state" : "translated",
             "value" : "Crie um mês para registar esta transação."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skapa en månad för att logga den här transaktionen."
+          }
         }
       }
     },
@@ -7321,6 +8155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Créditos"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tack till"
           }
         }
       }
@@ -7374,6 +8214,12 @@
             "state" : "translated",
             "value" : "Moeda"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valuta"
+          }
         }
       }
     },
@@ -7425,6 +8271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MÊS ATUAL"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AKTUELL MÅNAD"
           }
         }
       }
@@ -7478,6 +8330,12 @@
             "state" : "translated",
             "value" : "Gastos diários"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utgifter per dag"
+          }
         }
       }
     },
@@ -7529,6 +8387,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
           }
         }
       }
@@ -7582,6 +8446,12 @@
             "state" : "translated",
             "value" : "Datas"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
         }
       }
     },
@@ -7633,6 +8503,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diminuir %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minska %@"
           }
         }
       }
@@ -7686,6 +8562,12 @@
             "state" : "translated",
             "value" : "Apagar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radera"
+          }
         }
       }
     },
@@ -7737,6 +8619,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Falha ao apagar"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att radera"
           }
         }
       }
@@ -7790,6 +8678,12 @@
             "state" : "translated",
             "value" : "Apagar imagem"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radera bild"
+          }
         }
       }
     },
@@ -7841,6 +8735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apagar mês"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radera månad"
           }
         }
       }
@@ -7894,6 +8794,12 @@
             "state" : "translated",
             "value" : "Apagar transação recorrente"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radera återkommande transaktion"
+          }
         }
       }
     },
@@ -7946,6 +8852,12 @@
             "state" : "translated",
             "value" : "Apagar transação"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radera transaktion"
+          }
         }
       }
     },
@@ -7997,6 +8909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desmarcar tudo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avmarkera alla"
           }
         }
       }
@@ -8055,6 +8973,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Restaurantes, lazer..."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurang, fritid…"
           }
         }
       }
@@ -8131,6 +9055,12 @@
             "state" : "translated",
             "value" : "OK"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klar"
+          }
         }
       }
     },
@@ -8182,6 +9112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vence a %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planerad till den %@"
           }
         }
       }
@@ -8235,6 +9171,12 @@
             "state" : "translated",
             "value" : "Vence hoje"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planerad till idag"
+          }
         }
       }
     },
@@ -8286,6 +9228,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vence hoje. Abra o Trente para a marcar como paga."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ska betalas idag. Öppna Trente för att markera den som betald."
           }
         }
       }
@@ -8339,6 +9287,12 @@
             "state" : "translated",
             "value" : "Editar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redigera"
+          }
         }
       }
     },
@@ -8390,6 +9344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Editar mês"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redigera månad"
           }
         }
       }
@@ -8443,6 +9403,12 @@
             "state" : "translated",
             "value" : "A editar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redigerar"
+          }
         }
       }
     },
@@ -8494,6 +9460,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data de fim"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slutdatum"
           }
         }
       }
@@ -8547,6 +9519,12 @@
             "state" : "translated",
             "value" : "A data de fim tem de ser pelo menos 7 dias após a data de início."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slutdatumet måste vara minst 7 dagar efter startdatumet."
+          }
         }
       }
     },
@@ -8598,6 +9576,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminadas"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutade"
           }
         }
       }
@@ -8651,6 +9635,12 @@
             "state" : "translated",
             "value" : "Terminada a %@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutades den %@"
+          }
         }
       }
     },
@@ -8702,6 +9692,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erro ao carregar a imagem"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att läsa in bilden"
           }
         }
       }
@@ -8755,6 +9751,12 @@
             "state" : "translated",
             "value" : "A cada %@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varje %@"
+          }
         }
       }
     },
@@ -8806,6 +9808,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todos os meses no dia %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varje månad den %@"
           }
         }
       }
@@ -8859,6 +9867,12 @@
             "state" : "translated",
             "value" : "Previstas este mês"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Väntas denna månad"
+          }
         }
       }
     },
@@ -8911,6 +9925,12 @@
             "state" : "translated",
             "value" : "Prevista para hoje. Abra o Trente para a marcar como recebida."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Väntas idag. Öppna Trente för att markera den som mottagen."
+          }
         }
       }
     },
@@ -8962,6 +9982,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Despesa"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utgift"
           }
         }
       }
@@ -9099,6 +10125,24 @@
               }
             }
           }
+        },
+        "sv" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Exportera %lld transaktion"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Exportera %lld transaktioner"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -9150,6 +10194,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Falha na exportação"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att exportera"
           }
         }
       }
@@ -9203,6 +10253,12 @@
             "state" : "translated",
             "value" : "Exportar mês"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportera månad"
+          }
         }
       }
     },
@@ -9254,6 +10310,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exportar transações"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportera transaktioner"
           }
         }
       }
@@ -9307,6 +10369,12 @@
             "state" : "translated",
             "value" : "Exportar…"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportera…"
+          }
         }
       }
     },
@@ -9358,6 +10426,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não foi possível guardar as alterações: %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att spara ändringarna: %@"
           }
         }
       }
@@ -9411,6 +10485,12 @@
             "state" : "translated",
             "value" : "Funcionalidades e dados"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funktioner och data"
+          }
         }
       }
     },
@@ -9462,6 +10542,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ficheiro"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fil"
           }
         }
       }
@@ -9515,6 +10601,12 @@
             "state" : "translated",
             "value" : "Filtrar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrera"
+          }
         }
       }
     },
@@ -9566,6 +10658,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Encontre-me online"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hitta mig på nätet"
           }
         }
       }
@@ -9619,6 +10717,12 @@
             "state" : "translated",
             "value" : "Frequência"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frekvens"
+          }
         }
       }
     },
@@ -9670,6 +10774,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perguntas frequentes"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vanliga frågor"
           }
         }
       }
@@ -9723,6 +10833,12 @@
             "state" : "translated",
             "value" : "De"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Från"
+          }
         }
       }
     },
@@ -9774,6 +10890,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Receba um lembrete quando um novo mês começar e quando uma transação recorrente vencer, e uma notificação após cada compra Apple Pay."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Få en påminnelse när en ny månad börjar och när det är dags för en återkommande transaktion, och en notis efter varje Apple Pay-köp."
           }
         }
       }
@@ -9827,6 +10949,12 @@
             "state" : "translated",
             "value" : "Receba um lembrete quando um novo mês começar e quando uma transação recorrente vencer."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Få en påminnelse när en ny månad börjar och när det är dags för en återkommande transaktion."
+          }
         }
       }
     },
@@ -9878,6 +11006,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Começar"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kom igång"
           }
         }
       }
@@ -9931,6 +11065,12 @@
             "state" : "translated",
             "value" : "Obter o atalho"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hämta genvägen"
+          }
         }
       }
     },
@@ -9979,6 +11119,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub"
@@ -10034,6 +11180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dê um título à sua transação"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ge transaktionen en titel"
           }
         }
       }
@@ -10093,6 +11245,12 @@
             "state" : "translated",
             "value" : "Cinzento"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grå"
+          }
         }
       }
     },
@@ -10144,6 +11302,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verde"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grön"
           }
         }
       }
@@ -10197,6 +11361,12 @@
             "state" : "translated",
             "value" : "Ajuda e informações"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hjälp och information"
+          }
         }
       }
     },
@@ -10248,6 +11418,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Olá, sou o Louis 👋"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hej, jag heter Louis 👋"
           }
         }
       }
@@ -10301,6 +11477,12 @@
             "state" : "translated",
             "value" : "Como funcionam os meses no Trente?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hur fungerar månader i Trente?"
+          }
         }
       }
     },
@@ -10352,6 +11534,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Como pretende dividir esta receita?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hur vill du fördela den här inkomsten?"
           }
         }
       }
@@ -10405,6 +11593,12 @@
             "state" : "translated",
             "value" : "Sou um programador francês 🇫🇷 que adora criar apps. O Trente é a app que gostava de ter tido para seguir a regra 50/30/20. Todas as sugestões ajudam, por isso não hesite em escrever-me!"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jag är en fransk 🇫🇷 utvecklare som älskar att bygga appar. Trente är appen jag själv saknade för att följa 50/30/20-regeln. Alla förslag hjälper, så skriv gärna till mig!"
+          }
         }
       }
     },
@@ -10456,6 +11650,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O iCloud não está disponível para o Trente. Verifique se o iCloud está ativado para o Trente na app Definições."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud är inte tillgängligt för Trente. Kontrollera att iCloud är påslaget för Trente i appen Inställningar."
           }
         }
       }
@@ -10509,6 +11709,12 @@
             "state" : "translated",
             "value" : "Sincronização iCloud"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud-synkronisering"
+          }
         }
       }
     },
@@ -10560,6 +11766,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Orçamento ideal"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Idealbudget"
           }
         }
       }
@@ -10613,6 +11825,12 @@
             "state" : "translated",
             "value" : "Ilustrações"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illustrationer"
+          }
         }
       }
     },
@@ -10664,6 +11882,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "As imagens são guardadas junto com a folha de cálculo num ficheiro .zip."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilderna sparas tillsammans med kalkylbladet i en .zip-fil."
           }
         }
       }
@@ -10717,6 +11941,12 @@
             "state" : "translated",
             "value" : "Na app Atalhos"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I appen Genvägar"
+          }
         }
       }
     },
@@ -10768,6 +11998,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Incluir imagens"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inkludera bilder"
           }
         }
       }
@@ -10821,6 +12057,12 @@
             "state" : "translated",
             "value" : "Incluir notas"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inkludera anteckningar"
+          }
         }
       }
     },
@@ -10872,6 +12114,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Receita"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inkomst"
           }
         }
       }
@@ -10925,6 +12173,12 @@
             "state" : "translated",
             "value" : "Divisão da receita"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inkomstfördelning"
+          }
         }
       }
     },
@@ -10976,6 +12230,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O total da divisão tem de ser superior a 0."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summan av fördelningen måste vara större än 0."
           }
         }
       }
@@ -11029,6 +12289,12 @@
             "state" : "translated",
             "value" : "Rendimento variável?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varierar din inkomst?"
+          }
         }
       }
     },
@@ -11080,6 +12346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Receita/Despesa"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inkomst/utgift"
           }
         }
       }
@@ -11133,6 +12405,12 @@
             "state" : "translated",
             "value" : "Aumentar %@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öka %@"
+          }
         }
       }
     },
@@ -11184,6 +12462,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não será adicionada em %@. Os anos seguintes não são afetados. Esta ação não pode ser anulada."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den läggs inte till år %@. Kommande år påverkas inte. Det går inte att ångra."
           }
         }
       }
@@ -11237,6 +12521,12 @@
             "state" : "translated",
             "value" : "Não será adicionada nessa semana. As semanas seguintes não são afetadas. Esta ação não pode ser anulada."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den läggs inte till den veckan. Kommande veckor påverkas inte. Det går inte att ångra."
+          }
         }
       }
     },
@@ -11288,6 +12578,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não será adicionada em %@. Os meses seguintes não são afetados. Esta ação não pode ser anulada."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den läggs inte till i %@. Kommande månader påverkas inte. Det går inte att ångra."
           }
         }
       }
@@ -11341,6 +12637,12 @@
             "state" : "translated",
             "value" : "É adicionada às transações deste mês."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den läggs till i den här månadens transaktioner."
+          }
         }
       }
     },
@@ -11392,6 +12694,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Últimos 7 dias"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senaste 7 dagarna"
           }
         }
       }
@@ -11445,6 +12753,12 @@
             "state" : "translated",
             "value" : "Últimas transações"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senaste transaktionerna"
+          }
         }
       }
     },
@@ -11497,6 +12811,12 @@
             "state" : "translated",
             "value" : "Restante"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvar"
+          }
         }
       }
     },
@@ -11545,6 +12865,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LinkedIn"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "LinkedIn"
@@ -11601,6 +12927,12 @@
             "state" : "translated",
             "value" : "Registe automaticamente as compras Apple Pay"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logga Apple Pay-köp automatiskt"
+          }
         }
       }
     },
@@ -11652,6 +12984,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gerir subscrição"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hantera abonnemang"
           }
         }
       }
@@ -11705,6 +13043,12 @@
             "state" : "translated",
             "value" : "Marcar %@ como pago?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markera %@ som betald?"
+          }
         }
       }
     },
@@ -11756,6 +13100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marcar %@ como recebido?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markera %@ som mottagen?"
           }
         }
       }
@@ -11809,6 +13159,12 @@
             "state" : "translated",
             "value" : "Marcar como pago"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markera som betald"
+          }
         }
       }
     },
@@ -11860,6 +13216,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marcar como pago automaticamente"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markera betald automatiskt"
           }
         }
       }
@@ -11913,6 +13275,12 @@
             "state" : "translated",
             "value" : "Marcar como recebido"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markera som mottagen"
+          }
         }
       }
     },
@@ -11964,6 +13332,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marcar como recebido automaticamente"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markera mottagen automatiskt"
           }
         }
       }
@@ -12017,6 +13391,12 @@
             "state" : "translated",
             "value" : "Máx."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max"
+          }
         }
       }
     },
@@ -12068,6 +13448,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meia-noite"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Midnatt"
           }
         }
       }
@@ -12121,6 +13507,12 @@
             "state" : "translated",
             "value" : "Mín."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Min"
+          }
         }
       }
     },
@@ -12172,6 +13564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detalhes do mês"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månadsdetaljer"
           }
         }
       }
@@ -12225,6 +13623,12 @@
             "state" : "translated",
             "value" : "Resumo do mês"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månadsöversikt"
+          }
         }
       }
     },
@@ -12276,6 +13680,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mensal"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varje månad"
           }
         }
       }
@@ -12329,6 +13739,12 @@
             "state" : "translated",
             "value" : "Meses"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Månader"
+          }
         }
       }
     },
@@ -12380,6 +13796,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mais ícones com o Trente+"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fler symboler med Trente+"
           }
         }
       }
@@ -12433,6 +13855,12 @@
             "state" : "translated",
             "value" : "Necessidades"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behov"
+          }
         }
       }
     },
@@ -12484,6 +13912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nunca mais perca uma despesa"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Missa aldrig en utgift"
           }
         }
       }
@@ -12537,6 +13971,12 @@
             "state" : "translated",
             "value" : "Novo mês"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny månad"
+          }
         }
       }
     },
@@ -12588,6 +14028,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "É novo no Trente?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny på Trente?"
           }
         }
       }
@@ -12641,6 +14087,12 @@
             "state" : "translated",
             "value" : "Nova transação"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny transaktion"
+          }
         }
       }
     },
@@ -12692,6 +14144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nova despesa Apple Pay"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny Apple Pay-utgift"
           }
         }
       }
@@ -12745,6 +14203,12 @@
             "state" : "translated",
             "value" : "Seguinte"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nästa"
+          }
         }
       }
     },
@@ -12796,6 +14260,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhuma moeda disponível para criar um novo mês."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga valutor tillgängliga för att skapa en ny månad."
           }
         }
       }
@@ -12849,6 +14319,12 @@
             "state" : "translated",
             "value" : "Nenhum mês disponível"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen månad tillgänglig"
+          }
         }
       }
     },
@@ -12900,6 +14376,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ainda sem meses"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen månad än"
           }
         }
       }
@@ -12953,6 +14435,12 @@
             "state" : "translated",
             "value" : "Nenhum mês disponível"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga månader tillgängliga"
+          }
         }
       }
     },
@@ -13004,6 +14492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhuma transação recorrente"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga återkommande transaktioner"
           }
         }
       }
@@ -13057,6 +14551,12 @@
             "state" : "translated",
             "value" : "Ainda não há gastos registados."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga utgifter loggade än."
+          }
         }
       }
     },
@@ -13108,6 +14608,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ainda não disponível."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inte tillgängligt än."
           }
         }
       }
@@ -13161,6 +14667,12 @@
             "state" : "translated",
             "value" : "Agora não"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inte nu"
+          }
         }
       }
     },
@@ -13212,6 +14724,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sem sincronização"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkroniserar inte"
           }
         }
       }
@@ -13265,6 +14783,12 @@
             "state" : "translated",
             "value" : "Notas e imagens"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anteckningar och bilder"
+          }
         }
       }
     },
@@ -13316,6 +14840,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nada mais previsto para este mês."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inget mer väntas den här månaden."
           }
         }
       }
@@ -13369,6 +14899,12 @@
             "state" : "translated",
             "value" : "Definições de notificações"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notisinställningar"
+          }
         }
       }
     },
@@ -13420,6 +14956,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notificações"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiser"
           }
         }
       }
@@ -13473,6 +15015,12 @@
             "state" : "translated",
             "value" : "agora"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nu"
+          }
         }
       }
     },
@@ -13525,6 +15073,12 @@
             "state" : "translated",
             "value" : "Desativado"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Av"
+          }
         }
       }
     },
@@ -13573,6 +15127,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -13629,6 +15189,12 @@
             "state" : "translated",
             "value" : "Ativado"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "På"
+          }
         }
       }
     },
@@ -13680,6 +15246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Na data de vencimento, %@ é adicionado às transações desse mês."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "När det är dags läggs %@ till i den månadens transaktioner."
           }
         }
       }
@@ -13756,6 +15328,12 @@
             "state" : "translated",
             "value" : "Abrir Definições"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna Inställningar"
+          }
         }
       }
     },
@@ -13807,6 +15385,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir novamente o atalho"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna genvägen igen"
           }
         }
       }
@@ -13860,6 +15444,12 @@
             "state" : "translated",
             "value" : "Laranja"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orange"
+          }
         }
       }
     },
@@ -13911,6 +15501,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Acima do orçamento"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Över budget"
           }
         }
       }
@@ -13964,6 +15560,12 @@
             "state" : "translated",
             "value" : "Em atraso"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Försenad"
+          }
         }
       }
     },
@@ -14015,6 +15617,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Em atraso desde %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Försenad sedan den %@"
           }
         }
       }
@@ -14074,6 +15682,12 @@
             "state" : "translated",
             "value" : "Página %1$lld de %2$lld"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sida %1$lld av %2$lld"
+          }
         }
       }
     },
@@ -14125,6 +15739,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pago"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betald"
           }
         }
       }
@@ -14178,6 +15798,12 @@
             "state" : "translated",
             "value" : "Fotografia"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto"
+          }
         }
       }
     },
@@ -14226,6 +15852,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rosa"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rosa"
@@ -14281,6 +15913,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abra esta janela a partir do painel de um mês."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna det här fönstret från en månads översikt."
           }
         }
       }
@@ -14340,6 +15978,12 @@
             "state" : "translated",
             "value" : "Popularizada por Elizabeth Warren e Amelia Warren Tyagi."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjordes känd av Elizabeth Warren och Amelia Warren Tyagi."
+          }
         }
       }
     },
@@ -14391,6 +16035,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prepara uma despesa a partir de um pagamento com a Carteira para que a possa rever no Trente."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Förbereder en utgift från en betalning i Plånbok så att du kan granska den i Trente."
           }
         }
       }
@@ -14444,6 +16094,12 @@
             "state" : "translated",
             "value" : "A preparar novo mês..."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Förbereder ny månad…"
+          }
         }
       }
     },
@@ -14495,6 +16151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anterior"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Föregående"
           }
         }
       }
@@ -14548,6 +16210,12 @@
             "state" : "translated",
             "value" : "Política de privacidade"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integritetspolicy"
+          }
         }
       }
     },
@@ -14599,6 +16267,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avaliar na App Store"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betygsätt i App Store"
           }
         }
       }
@@ -14652,6 +16326,12 @@
             "state" : "translated",
             "value" : "Recebido"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mottagen"
+          }
         }
       }
     },
@@ -14703,6 +16383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detalhes da recorrência"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detaljer om upprepning"
           }
         }
       }
@@ -14756,6 +16442,12 @@
             "state" : "translated",
             "value" : "RECORRENTES"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ÅTERKOMMANDE"
+          }
         }
       }
     },
@@ -14807,6 +16499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transação recorrente"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Återkommande transaktion"
           }
         }
       }
@@ -14860,6 +16558,12 @@
             "state" : "translated",
             "value" : "Título da transação recorrente"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den återkommande transaktionens titel"
+          }
         }
       }
     },
@@ -14911,6 +16615,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transações recorrentes"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Återkommande transaktioner"
           }
         }
       }
@@ -14964,6 +16674,12 @@
             "state" : "translated",
             "value" : "Restante"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvar"
+          }
         }
       }
     },
@@ -15015,6 +16731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hora do lembrete"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tid för påminnelse"
           }
         }
       }
@@ -15068,6 +16790,12 @@
             "state" : "translated",
             "value" : "Lembretes"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påminnelser"
+          }
         }
       }
     },
@@ -15119,6 +16847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lembretes em pausa"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påminnelser pausade"
           }
         }
       }
@@ -15172,6 +16906,12 @@
             "state" : "translated",
             "value" : "Remover data de fim"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta bort slutdatum"
+          }
         }
       }
     },
@@ -15223,6 +16963,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Renda"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyra"
           }
         }
       }
@@ -15276,6 +17022,12 @@
             "state" : "translated",
             "value" : "Renda, supermercado, contas..."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyra, mat, räkningar…"
+          }
         }
       }
     },
@@ -15327,6 +17079,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Divisão"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fördelning"
           }
         }
       }
@@ -15380,6 +17138,12 @@
             "state" : "translated",
             "value" : "O total da divisão não corresponde ao montante a dividir."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summan stämmer inte med beloppet att fördela."
+          }
         }
       }
     },
@@ -15431,6 +17195,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Requer Trente+"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kräver Trente+"
           }
         }
       }
@@ -15484,6 +17254,12 @@
             "state" : "translated",
             "value" : "Tentar novamente"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Försök igen"
+          }
         }
       }
     },
@@ -15535,6 +17311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salário"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lön"
           }
         }
       }
@@ -15588,6 +17370,12 @@
             "state" : "translated",
             "value" : "Guardar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spara"
+          }
         }
       }
     },
@@ -15639,6 +17427,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Guarde as transações deste mês e as respetivas imagens num ficheiro .zip, com uma folha de cálculo (.csv) que abre no Numbers, Excel ou Google Sheets."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spara den här månadens transaktioner och deras bilder i en .zip-fil, med ett kalkylblad (.csv) som kan öppnas i Numbers, Excel eller Google Kalkylark."
           }
         }
       }
@@ -15692,6 +17486,12 @@
             "state" : "translated",
             "value" : "Guarde as transações deste mês numa folha de cálculo (.csv) que abre no Numbers, Excel ou Google Sheets."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spara den här månadens transaktioner som ett kalkylblad (.csv) som kan öppnas i Numbers, Excel eller Google Kalkylark."
+          }
         }
       }
     },
@@ -15744,6 +17544,12 @@
             "state" : "translated",
             "value" : "Poupança"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparande"
+          }
         }
       }
     },
@@ -15795,6 +17601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Poupança e dívidas"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparande och skulder"
           }
         }
       }
@@ -15854,6 +17666,12 @@
             "state" : "translated",
             "value" : "Poupança, dívidas, reforma..."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparande, skulder, pension…"
+          }
         }
       }
     },
@@ -15905,6 +17723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recorrência"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upprepning"
           }
         }
       }
@@ -15958,6 +17782,12 @@
             "state" : "translated",
             "value" : "Pesquisar por título, montante, data, categoria…"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sök på titel, belopp, datum, kategori…"
+          }
         }
       }
     },
@@ -16009,6 +17839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pesquisar moedas"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sök valutor"
           }
         }
       }
@@ -16062,6 +17898,12 @@
             "state" : "translated",
             "value" : "Pesquisar perguntas"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sök bland frågorna"
+          }
         }
       }
     },
@@ -16113,6 +17955,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ver todas as previstas"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa allt som väntas"
           }
         }
       }
@@ -16166,6 +18014,12 @@
             "state" : "translated",
             "value" : "Ver todas as transações"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa alla transaktioner"
+          }
         }
       }
     },
@@ -16217,6 +18071,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ver planos"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa abonnemang"
           }
         }
       }
@@ -16270,6 +18130,12 @@
             "state" : "translated",
             "value" : "Veja o orçamento restante do mês atual numa categoria específica, ou em todas as categorias no widget médio.\n\nPara escolher uma categoria, mantenha o widget premido."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se vad som är kvar av månadens budget i en viss kategori, eller i alla kategorier i den mellanstora widgeten.\n\nHåll på widgeten för att välja en kategori."
+          }
         }
       }
     },
@@ -16321,6 +18187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Veja o orçamento restante do mês atual e, nos widgets maiores, os seus gastos.\nVeja rapidamente como está a correr e registe novas transações com facilidade.\n\nVeja os exemplos abaixo."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se vad som är kvar av månadens budget, och dina utgifter på större widgetar.\nSe snabbt hur det går och logga enkelt nya transaktioner.\n\nSe exempel nedan."
           }
         }
       }
@@ -16374,6 +18246,12 @@
             "state" : "translated",
             "value" : "Selecione uma categoria para a despesa."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välj en kategori för utgiften."
+          }
         }
       }
     },
@@ -16425,6 +18303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecione uma categoria para o widget."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välj en kategori för widgeten."
           }
         }
       }
@@ -16478,6 +18362,12 @@
             "state" : "translated",
             "value" : "Selecione uma categoria para esta transação."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välj en kategori för den här transaktionen."
+          }
         }
       }
     },
@@ -16529,6 +18419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecione um mês"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välj en månad"
           }
         }
       }
@@ -16582,6 +18478,12 @@
             "state" : "translated",
             "value" : "Selecionar tudo"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markera alla"
+          }
         }
       }
     },
@@ -16633,6 +18535,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecionar categoria"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välj kategori"
           }
         }
       }
@@ -16686,6 +18594,12 @@
             "state" : "translated",
             "value" : "Enviar feedback"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skicka feedback"
+          }
         }
       }
     },
@@ -16737,6 +18651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Envie-me um e-mail"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mejla mig"
           }
         }
       }
@@ -16790,6 +18710,12 @@
             "state" : "translated",
             "value" : "Configurar mais tarde"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ställ in senare"
+          }
         }
       }
     },
@@ -16841,6 +18767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Definições"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inställningar"
           }
         }
       }
@@ -16894,6 +18826,12 @@
             "state" : "translated",
             "value" : "Partilhar detalhes do erro"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dela felinformation"
+          }
         }
       }
     },
@@ -16945,6 +18883,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mostrar imagem"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa bild"
           }
         }
       }
@@ -17004,6 +18948,12 @@
             "state" : "translated",
             "value" : "Inicie sessão no iCloud na app Definições para ter os seus meses e transações em todos os seus dispositivos. Pode exportá-los como folha de cálculo a qualquer momento."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logga in på iCloud i appen Inställningar för att ha dina månader och transaktioner på alla dina enheter. Du kan när som helst exportera dem som ett kalkylblad."
+          }
         }
       }
     },
@@ -17055,6 +19005,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saltar"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över"
           }
         }
       }
@@ -17114,6 +19070,12 @@
             "state" : "translated",
             "value" : "Saltar «%1$@» em %2$@?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över ”%1$@” i %2$@?"
+          }
         }
       }
     },
@@ -17165,6 +19127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saltar «%1$@» em %2$@?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över ”%1$@” år %2$@?"
           }
         }
       }
@@ -17223,6 +19191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saltar «%1$@» a %2$@?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över ”%1$@” den %2$@?"
           }
         }
       }
@@ -17345,6 +19319,12 @@
             "state" : "translated",
             "value" : "Saltar em %@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över i %@"
+          }
         }
       }
     },
@@ -17396,6 +19376,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saltar em %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över år %@"
           }
         }
       }
@@ -17449,6 +19435,12 @@
             "state" : "translated",
             "value" : "Saltar a %@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över den %@"
+          }
         }
       }
     },
@@ -17500,6 +19492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saltar este mês"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över den här månaden"
           }
         }
       }
@@ -17553,6 +19551,12 @@
             "state" : "translated",
             "value" : "Saltar esta semana"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över den här veckan"
+          }
         }
       }
     },
@@ -17604,6 +19608,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saltar este ano"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppa över det här året"
           }
         }
       }
@@ -17657,6 +19667,12 @@
             "state" : "translated",
             "value" : "Ordenar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortera"
+          }
         }
       }
     },
@@ -17708,6 +19724,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ordenar por"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortera efter"
           }
         }
       }
@@ -17761,6 +19783,12 @@
             "state" : "translated",
             "value" : "Gasto"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spenderat"
+          }
         }
       }
     },
@@ -17812,6 +19840,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Divida o seu orçamento"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fördela din budget"
           }
         }
       }
@@ -17870,6 +19904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Divida o seu rendimento líquido entre Necessidades, Desejos e Poupança e dívidas. O Trente classifica cada transação numa delas."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fördela din inkomst efter skatt på Behov, Nöjen samt Sparande och skulder. Trente sorterar in varje transaktion i en av dem."
           }
         }
       }
@@ -17946,6 +19986,12 @@
             "state" : "translated",
             "value" : "Começar um novo mês"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starta en ny månad"
+          }
         }
       }
     },
@@ -17997,6 +20043,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data de início"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startdatum"
           }
         }
       }
@@ -18050,6 +20102,12 @@
             "state" : "translated",
             "value" : "A data de início não pode ser no passado."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startdatumet får inte ha passerat."
+          }
         }
       }
     },
@@ -18101,6 +20159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Começar a acompanhar"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Börja budgetera"
           }
         }
       }
@@ -18154,6 +20218,12 @@
             "state" : "translated",
             "value" : "Abra a app para começar a acompanhar o seu orçamento com o Trente!"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öppna appen och börja följa din budget med Trente!"
+          }
         }
       }
     },
@@ -18206,6 +20276,12 @@
             "state" : "translated",
             "value" : "Comece a acompanhar o seu orçamento."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Börja följa din budget."
+          }
         }
       }
     },
@@ -18257,6 +20333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estado"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
           }
         }
       }
@@ -18316,6 +20398,12 @@
             "state" : "translated",
             "value" : "Passo %1$lld de %2$lld"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steg %1$lld av %2$lld"
+          }
         }
       }
     },
@@ -18367,6 +20455,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Falha ao parar"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att stoppa"
           }
         }
       }
@@ -18420,6 +20514,12 @@
             "state" : "translated",
             "value" : "Parar as próximas transações «%@»?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stoppa kommande transaktioner ”%@”?"
+          }
         }
       }
     },
@@ -18471,6 +20571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Parar próximas transações"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stoppa kommande transaktioner"
           }
         }
       }
@@ -18547,6 +20653,12 @@
             "state" : "translated",
             "value" : "Soma das transações apresentadas"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summa av visade transaktioner"
+          }
         }
       }
     },
@@ -18598,6 +20710,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supermercado"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mataffär"
           }
         }
       }
@@ -18651,6 +20769,12 @@
             "state" : "translated",
             "value" : "Apoie um programador independente"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stöd en oberoende utvecklare"
+          }
         }
       }
     },
@@ -18702,6 +20826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sincronizado %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkroniserad %@"
           }
         }
       }
@@ -18755,6 +20885,12 @@
             "state" : "translated",
             "value" : "Assuma o controlo do seu orçamento."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta kontroll över din budget."
+          }
         }
       }
     },
@@ -18806,6 +20942,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toque aqui para registar no Trente"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryck här för att logga den i Trente"
           }
         }
       }
@@ -18859,6 +21001,12 @@
             "state" : "translated",
             "value" : "Termos de utilização"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Användarvillkor"
+          }
         }
       }
     },
@@ -18910,6 +21058,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Testadores do TestFlight"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TestFlight-testare"
           }
         }
       }
@@ -18963,6 +21117,12 @@
             "state" : "translated",
             "value" : "Agradecimentos"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tack"
+          }
         }
       }
     },
@@ -19014,6 +21174,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Obrigado a todos os que testaram o Trente no TestFlight."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tack till alla som har testat Trente på TestFlight."
           }
         }
       }
@@ -19067,6 +21233,12 @@
             "state" : "translated",
             "value" : "A regra 50/30/20"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50/30/20-regeln"
+          }
         }
       }
     },
@@ -19118,6 +21290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A regra 50/30/20 em 30 segundos"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50/30/20-regeln på 30 sekunder"
           }
         }
       }
@@ -19171,6 +21349,12 @@
             "state" : "translated",
             "value" : "Não foi possível carregar a imagem. Tente novamente."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att läsa in bilden. Försök igen."
+          }
         }
       }
     },
@@ -19222,6 +21406,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vêm da sua automatização Apple Pay na app Atalhos. Para as parar, desative ou apague essa automatização."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De kommer från din Apple Pay-automatisering i appen Genvägar. Stäng av eller radera automatiseringen för att stoppa dem."
           }
         }
       }
@@ -19281,6 +21471,12 @@
             "state" : "translated",
             "value" : "É o dinheiro de que dispõe livremente todos os meses, depois de pagos os impostos."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det är pengarna du fritt kan använda varje månad, när skatten är betald."
+          }
         }
       }
     },
@@ -19332,6 +21528,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta ação não pode ser anulada."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det här går inte att ångra."
           }
         }
       }
@@ -19385,6 +21587,12 @@
             "state" : "translated",
             "value" : "Esta ação não pode ser anulada. Todas as transações deste mês também serão apagadas."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det här går inte att ångra. Alla transaktioner i den här månaden raderas också."
+          }
         }
       }
     },
@@ -19436,6 +21644,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Este mês"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den här månaden"
           }
         }
       }
@@ -19489,6 +21703,12 @@
             "state" : "translated",
             "value" : "Este mês ainda não tem transações para exportar."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den här månaden har inga transaktioner att exportera än."
+          }
         }
       }
     },
@@ -19540,6 +21760,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Título"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel"
           }
         }
       }
@@ -19593,6 +21819,12 @@
             "state" : "translated",
             "value" : "O título não pode estar vazio."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titeln får inte vara tom."
+          }
         }
       }
     },
@@ -19644,6 +21876,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Até"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Till"
           }
         }
       }
@@ -19697,6 +21935,12 @@
             "state" : "translated",
             "value" : "Para exportar vários meses ou escolher o que incluir, vá a Definições › Exportar transações."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gå till Inställningar › Exportera transaktioner för att exportera flera månader eller välja vad som ska ingå."
+          }
         }
       }
     },
@@ -19748,6 +21992,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Totalt"
           }
         }
       }
@@ -19801,6 +22051,12 @@
             "state" : "translated",
             "value" : "Transação"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaktion"
+          }
         }
       }
     },
@@ -19852,6 +22108,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notas da transação"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anteckningar om transaktionen"
           }
         }
       }
@@ -19905,6 +22167,12 @@
             "state" : "translated",
             "value" : "Título da transação"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaktionens titel"
+          }
         }
       }
     },
@@ -19957,6 +22225,12 @@
             "state" : "translated",
             "value" : "Transações"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaktioner"
+          }
         }
       }
     },
@@ -20005,6 +22279,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente"
@@ -20061,6 +22341,12 @@
             "state" : "translated",
             "value" : "Trente %@"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente %@"
+          }
         }
       }
     },
@@ -20112,6 +22398,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente Todos os meses"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente Alla månader"
           }
         }
       }
@@ -20165,6 +22457,12 @@
             "state" : "translated",
             "value" : "Feedback sobre o Trente"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback om Trente"
+          }
         }
       }
     },
@@ -20216,6 +22514,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajuda do Trente"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hjälp för Trente"
           }
         }
       }
@@ -20269,6 +22573,12 @@
             "state" : "translated",
             "value" : "O Trente é o sucessor do TrenteVingt (2023)."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente är efterföljaren till TrenteVingt (2023)."
+          }
         }
       }
     },
@@ -20321,6 +22631,12 @@
             "state" : "translated",
             "value" : "O Trente recebe apenas o nome do comerciante e o montante. Nunca os dados do seu cartão."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente får bara butikens namn och beloppet. Aldrig dina kortuppgifter."
+          }
         }
       }
     },
@@ -20372,6 +22688,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O Trente envia um lembrete a esta hora quando um novo mês começa e quando uma transação recorrente vence."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente påminner dig vid den här tiden när en ny månad börjar och när det är dags för en återkommande transaktion."
           }
         }
       }
@@ -20448,6 +22770,12 @@
             "state" : "translated",
             "value" : "O Trente envia um lembrete a esta hora quando um novo mês começa."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente påminner dig vid den här tiden när en ny månad börjar."
+          }
         }
       }
     },
@@ -20500,6 +22828,12 @@
             "state" : "translated",
             "value" : "O Trente envia um lembrete a esta hora quando uma transação recorrente vence."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente påminner dig vid den här tiden när det är dags för en återkommande transaktion."
+          }
         }
       }
     },
@@ -20551,6 +22885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O Trente divide o seu orçamento em Necessidades, Desejos e Poupança, para que saiba sempre quanto lhe resta este mês."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente delar upp din budget i Behov, Nöjen och Sparande, så att du alltid vet vad som är kvar den här månaden."
           }
         }
       }
@@ -20627,6 +22967,12 @@
             "state" : "translated",
             "value" : "O Trente avisa quando um novo mês começa e quando um pagamento recorrente, como a renda, vence, para que o possa marcar como pago diretamente na notificação."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente säger till när en ny månad börjar och när det är dags för en återkommande betalning som hyran, så att du kan markera den som betald direkt i notisen."
+          }
         }
       }
     },
@@ -20678,6 +23024,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O Trente avisa quando um novo mês começa e quando um pagamento recorrente, como a renda, vence. Depois de configurar o Apple Pay, envia também uma notificação após cada compra para a registar de uma só vez."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente säger till när en ny månad börjar och när det är dags för en återkommande betalning som hyran. När Apple Pay är inställt får du också en notis efter varje köp, så att du kan logga det direkt."
           }
         }
       }
@@ -20754,6 +23106,12 @@
             "state" : "translated",
             "value" : "Trente+"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente+"
+          }
         }
       }
     },
@@ -20802,6 +23160,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TrenteVingt"
+          }
+        },
+        "sv" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TrenteVingt"
@@ -20858,6 +23222,12 @@
             "state" : "translated",
             "value" : "Ative «Transação recorrente» ao adicionar uma transação."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå på ”Återkommande transaktion” när du lägger till en transaktion."
+          }
         }
       }
     },
@@ -20909,6 +23279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ative um lembrete para escolher quando o Trente envia notificações."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå på en påminnelse för att välja när Trente meddelar dig."
           }
         }
       }
@@ -20962,6 +23338,12 @@
             "state" : "translated",
             "value" : "Ativar notificações"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå på notiser"
+          }
         }
       }
     },
@@ -21013,6 +23395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tipo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ"
           }
         }
       }
@@ -21066,6 +23454,12 @@
             "state" : "translated",
             "value" : "Dentro do orçamento"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Under budget"
+          }
         }
       }
     },
@@ -21117,6 +23511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Faça a sua melhor estimativa. Registe as receitas extra à medida que entram e ajuste o orçamento do mês seguinte."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gör din bästa uppskattning. Logga extra inkomster när de kommer in och justera nästa månads budget."
           }
         }
       }
@@ -21170,6 +23570,12 @@
             "state" : "translated",
             "value" : "Desejos"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nöjen"
+          }
         }
       }
     },
@@ -21221,6 +23627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não foi possível criar o mês. Tente novamente."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att skapa månaden. Försök igen."
           }
         }
       }
@@ -21274,6 +23686,12 @@
             "state" : "translated",
             "value" : "Não foi possível criar a transação. Tente novamente."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att skapa transaktionen. Försök igen."
+          }
         }
       }
     },
@@ -21326,6 +23744,12 @@
             "state" : "translated",
             "value" : "Não foi possível adicionar a sua receita"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att lägga till din inkomst"
+          }
         }
       }
     },
@@ -21377,6 +23801,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não foi possível guardar o seu mês"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att spara din månad"
           }
         }
       }
@@ -21730,6 +24160,54 @@
               }
             }
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi hittade dina data i iCloud: %#@months@ och %#@transactions@. Allt finns kvar, så du kan fortsätta där du slutade."
+          },
+          "substitutions" : {
+            "months" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg månad"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg månader"
+                    }
+                  }
+                }
+              }
+            },
+            "transactions" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg transaktion"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg transaktioner"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -21781,6 +24259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Começamos com a regra 50/30/20. Ajuste-a até se adequar à sua vida: pode alterá-la todos os meses."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi börjar med 50/30/20-regeln. Justera den tills den passar ditt liv. Du kan ändra den varje månad."
           }
         }
       }
@@ -21834,6 +24318,12 @@
             "state" : "translated",
             "value" : "Site"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webbplats"
+          }
         }
       }
     },
@@ -21885,6 +24375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Semanal"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varje vecka"
           }
         }
       }
@@ -21938,6 +24434,12 @@
             "state" : "translated",
             "value" : "Olá de novo!"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välkommen tillbaka!"
+          }
         }
       }
     },
@@ -21989,6 +24491,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O que são transações recorrentes?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vad är återkommande transaktioner?"
           }
         }
       }
@@ -22042,6 +24550,12 @@
             "state" : "translated",
             "value" : "O que é a regra 50/30/20?"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vad är 50/30/20-regeln?"
+          }
         }
       }
     },
@@ -22093,6 +24607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O que é o Trente+?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vad är Trente+?"
           }
         }
       }
@@ -22146,6 +24666,12 @@
             "state" : "translated",
             "value" : "O que exportar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vad som ska exporteras"
+          }
         }
       }
     },
@@ -22197,6 +24723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Onde são guardados os meus dados?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Var lagras mina data?"
           }
         }
       }
@@ -22273,6 +24805,12 @@
             "state" : "translated",
             "value" : "Anual"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varje år"
+          }
         }
       }
     },
@@ -22324,6 +24862,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pode escrever para %@ a partir de qualquer app de e-mail."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kan skriva till %@ från vilken mejlapp som helst."
           }
         }
       }
@@ -22383,6 +24927,12 @@
             "state" : "translated",
             "value" : "Não abre o Trente neste iPad desde %@, por isso os lembretes aqui estão em pausa. Abra a app quando quiser para os reativar."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har inte öppnat Trente på den här iPaden sedan den %@, så påminnelserna är pausade här. Öppna appen när som helst för att slå på dem igen."
+          }
         }
       }
     },
@@ -22440,6 +24990,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não abre o Trente neste iPhone desde %@, por isso os lembretes aqui estão em pausa. Abra a app quando quiser para os reativar."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har inte öppnat Trente på den här iPhonen sedan den %@, så påminnelserna är pausade här. Öppna appen när som helst för att slå på dem igen."
           }
         }
       }
@@ -22499,6 +25055,12 @@
             "state" : "translated",
             "value" : "Não abre o Trente neste Mac desde %@, por isso os lembretes aqui estão em pausa. Abra a app quando quiser para os reativar."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har inte öppnat Trente på den här Macen sedan den %@, så påminnelserna är pausade här. Öppna appen när som helst för att slå på dem igen."
+          }
         }
       }
     },
@@ -22550,6 +25112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vai selecionar as categorias desta receita nos próximos passos."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du väljer kategorier för den här inkomsten i nästa steg."
           }
         }
       }
@@ -22603,6 +25171,12 @@
             "state" : "translated",
             "value" : "Tudo pronto!"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allt är klart!"
+          }
         }
       }
     },
@@ -22654,6 +25228,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Não foi possível abrir o seu orçamento"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att öppna din budget"
           }
         }
       }
@@ -22707,6 +25287,12 @@
             "state" : "translated",
             "value" : "Os seus dados"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dina data"
+          }
         }
       }
     },
@@ -22758,6 +25344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Os seus dados não foram apagados. Experimente atualizar o Trente e partilhe os detalhes do erro se o problema persistir."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dina data har inte raderats. Prova att uppdatera Trente och dela felinformationen om problemet kvarstår."
           }
         }
       }
@@ -22811,6 +25403,12 @@
             "state" : "translated",
             "value" : "O seu primeiro mês começa hoje. Registe as despesas à medida que as faz e o Trente mostra-lhe quanto resta."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din första månad börjar idag. Logga utgifter allt eftersom, så visar Trente vad som är kvar."
+          }
         }
       }
     },
@@ -22863,6 +25461,12 @@
             "state" : "translated",
             "value" : "O seu armazenamento iCloud está cheio, por isso as novas alterações ficam neste dispositivo. Liberte espaço na app Definições para voltar a sincronizar."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditt iCloud-lagringsutrymme är fullt, så nya ändringar stannar på den här enheten. Frigör utrymme i appen Inställningar för att synkronisera igen."
+          }
         }
       }
     },
@@ -22914,6 +25518,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O seu orçamento mensal"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din månadsbudget"
           }
         }
       }
@@ -22973,6 +25583,12 @@
             "state" : "translated",
             "value" : "Os seus meses e transações são sincronizados através da sua conta iCloud em todos os seus dispositivos. O Trente não tem conta nem servidor. Pode exportá-los como folha de cálculo a qualquer momento."
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dina månader och transaktioner synkroniseras via ditt iCloud-konto på alla dina enheter. Trente har inget konto och ingen server. Du kan när som helst exportera dem som ett kalkylblad."
+          }
         }
       }
     },
@@ -23024,6 +25640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O seu novo mês está pronto, com o mesmo orçamento do mês passado. Abra o Trente para o ver."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din nya månad är klar, med samma budget som förra månaden. Öppna Trente för att se den."
           }
         }
       }
@@ -23077,6 +25699,12 @@
             "state" : "translated",
             "value" : "Ampliar"
           }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zooma in"
+          }
         }
       }
     },
@@ -23128,6 +25756,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reduzir"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zooma ut"
           }
         }
       }
