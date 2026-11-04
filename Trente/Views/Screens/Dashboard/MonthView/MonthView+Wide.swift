@@ -37,7 +37,12 @@ extension MonthView {
         private func card(for page: CarouselPage) -> some View {
             switch page {
             case .gauges: BudgetGauges(month: month)
-            case .dailySpending: DailySpendingCard(spending: DailySpending(month: month), currencyCode: month.currency.isoCode)
+            case .dailySpending:
+                DailySpendingCard(
+                    spending: DailySpending(month: month),
+                    currencyCode: month.currency.isoCode,
+                    stretchesChart: true
+                )
             }
         }
 

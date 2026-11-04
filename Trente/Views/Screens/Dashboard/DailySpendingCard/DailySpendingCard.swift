@@ -11,6 +11,7 @@ import Charts
 struct DailySpendingCard: View {
     let spending: DailySpending
     let currencyCode: String
+    let stretchesChart: Bool
 
     @State private var mode: SpendingWindowMode = .month
     @State private var scrollPosition: Date
@@ -18,9 +19,10 @@ struct DailySpendingCard: View {
     @State private var settleTask: Task<Void, Never>?
     @State private var selectedDate: Date?
 
-    init(spending: DailySpending, currencyCode: String) {
+    init(spending: DailySpending, currencyCode: String, stretchesChart: Bool = false) {
         self.spending = spending
         self.currencyCode = currencyCode
+        self.stretchesChart = stretchesChart
         let defaultWeekStart = spending.defaultWeekStart
         self._scrollPosition = State(initialValue: defaultWeekStart)
         self._settledScrollPosition = State(initialValue: defaultWeekStart)
@@ -69,7 +71,7 @@ struct DailySpendingCard: View {
                 if hasData {
                     VStack(spacing: DesignSystem.Spacing.medium.rawValue) {
                         chart(spending, selectedDay: selectedDay)
-                            .frame(height: 210)
+                            .frame(minHeight: 210, idealHeight: 210, maxHeight: stretchesChart ? .infinity : 210)
                         dock(spending, selectedDay: selectedDay)
                             .id(selectedDay?.date)
                             .transition(.opacity)
