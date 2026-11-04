@@ -20,6 +20,11 @@ struct DataSection: View {
             } label: {
                 Label("Export Transactions", systemImage: "tablecells")
             }
+            NavigationLink {
+                TrenteVingtImportView()
+            } label: {
+                Label("Import from TrenteVingt", systemImage: "square.and.arrow.down")
+            }
         } header: {
             Text("Your Data")
         } footer: {
