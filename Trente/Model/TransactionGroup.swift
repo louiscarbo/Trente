@@ -74,4 +74,8 @@ extension TransactionGroup {
     var totalAmount: Double {
         Double(totalAmountCents) / 100.0
     }
+
+    static func totalAmountCents(of groups: [TransactionGroup], in category: BudgetCategory) -> Int {
+        groups.flatMap(\.entries).filter { $0.category == category }.reduce(0) { $0 + $1.amountCents }
+    }
 }
