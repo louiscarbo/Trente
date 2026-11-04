@@ -45,9 +45,10 @@ struct RepartitionSplit: Equatable {
         values[category] = Self.clampedValue(proposedValue, from: amount(for: category), remaining: remaining)
     }
 
-    func value(forDragFraction fraction: CGFloat, of category: BudgetCategory) -> Int {
-        Self.dragValue(
-            atFraction: fraction,
+    func dragPosition(from position: CGFloat, movedBy fraction: CGFloat, of category: BudgetCategory) -> CGFloat {
+        Self.dragPosition(
+            from: position,
+            movedBy: fraction,
             total: amountToSplit,
             maxValue: amount(for: category) + remaining
         )
@@ -69,11 +70,13 @@ struct RepartitionSplit: Equatable {
         return min(roundedValue, currentValue + remaining)
     }
 
-    static func dragValue(atFraction fraction: CGFloat, total: Int, maxValue: Int) -> Int {
-        let clampedFraction = min(max(0, fraction), 1)
-        let rawNewValue = Int(round(clampedFraction * CGFloat(total)))
-        let roundedNewValue = (rawNewValue / 100) * 100
-        return min(roundedNewValue, maxValue)
+    static func dragPosition(from position: CGFloat, movedBy fraction: CGFloat, total: Int, maxValue: Int) -> CGFloat {
+        min(max(0, position + fraction * CGFloat(total)), CGFloat(maxValue))
+    }
+
+    static func dragValue(atPosition position: CGFloat, currentValue: Int) -> Int {
+        let wholeUnits = Int(position.rounded()) / 100
+        return wholeUnits == currentValue / 100 ? currentValue : wholeUnits * 100
     }
 
     static func steppedUpValue(from currentValue: Int, total: Int, remaining: Int) -> Int {
