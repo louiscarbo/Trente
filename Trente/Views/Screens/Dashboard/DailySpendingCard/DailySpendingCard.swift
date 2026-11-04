@@ -97,10 +97,7 @@ struct DailySpendingCard: View {
         switch mode {
         case .month:
             if spending.today != nil { return String(localized: "This Month") }
-            let isCurrentYear = calendar.isDate(.now, equalTo: spending.monthStartDay, toGranularity: .year)
-            return isCurrentYear
-                ? spending.monthStartDay.formatted(.dateTime.month(.wide))
-                : spending.monthStartDay.formatted(.dateTime.month(.wide).year())
+            return Month.name(startingOn: spending.monthStartDay)
         case .week:
             let window = spending.weekWindow(at: scrollPosition)
             if let today = spending.today, calendar.isDate(window.upperBound, inSameDayAs: today) {

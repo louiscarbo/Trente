@@ -60,8 +60,8 @@ struct ExportMonthSelectionView: View {
     NavigationStack {
         ExportMonthSelectionView(
             options: [
-                ExportMonthOption(id: UUID(), name: "October 2026", startDate: .now, transactionCount: 24),
-                ExportMonthOption(id: UUID(), name: "September 2026", startDate: .now.addingTimeInterval(-2_600_000), transactionCount: 31)
+                ExportMonthOption(id: UUID(), name: "October", startDate: .now, transactionCount: 24),
+                ExportMonthOption(id: UUID(), name: "September", startDate: .now.addingTimeInterval(-2_600_000), transactionCount: 31)
             ],
             excludedMonthIDs: .constant([])
         )

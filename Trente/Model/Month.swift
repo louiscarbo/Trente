@@ -47,7 +47,9 @@ extension Month {
     }
 
     static func name(startingOn startDate: Date) -> String {
-        startDate.formatted(Date.FormatStyle(capitalizationContext: .beginningOfSentence).month(.wide).year())
+        let isCurrentYear = Calendar.current.isDate(startDate, equalTo: .now, toGranularity: .year)
+        let monthFormat = Date.FormatStyle(capitalizationContext: .beginningOfSentence).month(.wide)
+        return startDate.formatted(isCurrentYear ? monthFormat : monthFormat.year())
     }
 
     private var transactionEntries: [TransactionEntry] {
