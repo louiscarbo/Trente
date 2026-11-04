@@ -69,19 +69,24 @@ struct TrentePlusSection: View {
 
     @ViewBuilder
     private func pageContent(_ page: SubscribedPage) -> some View {
+        let isStacked = dynamicTypeSize.isAccessibilitySize
         switch page {
         case .thanks:
             VStack(alignment: .leading, spacing: 0) {
                 note("Thank you for subscribing to Trente+! Your subscription is what lets me keep working on Trente on my own, without ads or data collection.")
-                manageButton
+                if !isStacked {
+                    manageButton
+                }
             }
         case .comparison:
             VStack(alignment: .leading, spacing: 0) {
-                Text("You have everything in the Trente+ column.")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .padding([.horizontal, .top])
-                    .padding(.bottom, 4)
+                if !isStacked {
+                    Text("You have everything in the Trente+ column.")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .padding([.horizontal, .top])
+                        .padding(.bottom, 4)
+                }
                 ComparisonTable(comparisons: TrentePlusBenefit.comparisons)
                 manageButton
             }
