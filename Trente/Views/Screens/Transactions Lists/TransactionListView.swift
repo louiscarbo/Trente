@@ -37,7 +37,10 @@ struct TransactionListView: View {
     init(month: Month, showRecurring: Bool) {
         self.showRecurring = showRecurring
         self.month = month
-        _filter = State(initialValue: TransactionListFilter(month: month))
+        _filter = State(initialValue: TransactionListFilter(
+            month: month,
+            sort: showRecurring ? .dateAsc : .dateDesc
+        ))
     }
     
     var body: some View {

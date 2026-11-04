@@ -12,11 +12,12 @@ struct TransactionListFilter {
     var firstDay: Date
     var lastDay: Date
     var categories: Set<BudgetCategory> = []
-    var sort: SortOption = .dateDesc
+    var sort: SortOption
 
-    init(month: Month) {
+    init(month: Month, sort: SortOption = .dateDesc) {
         firstDay = month.startDate
         lastDay = month.endDate()
+        self.sort = sort
     }
 
     func isActive(for month: Month) -> Bool {
