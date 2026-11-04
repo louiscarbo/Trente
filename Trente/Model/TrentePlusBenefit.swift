@@ -13,6 +13,7 @@ struct TrentePlusBenefit: Identifiable {
     let detail: LocalizedStringResource
     let systemImage: String
     let tint: Color
+    var comparison: Comparison?
 
     @MainActor
     static var all: [TrentePlusBenefit] {
@@ -27,12 +28,22 @@ struct TrentePlusBenefit: Identifiable {
         #endif
     }
 
+    @MainActor
+    static var comparisons: [Comparison] {
+        all.compactMap(\.comparison)
+    }
+
     private static let automaticRecurring = TrentePlusBenefit(
         id: "automaticRecurring",
         title: "Automatic recurring transactions",
         detail: "Rent, salary, subscriptions: added automatically, without you having to think about it.",
         systemImage: "arrow.triangle.2.circlepath",
-        tint: .blue
+        tint: .blue,
+        comparison: Comparison(
+            title: "Recurring transactions validation",
+            free: .text("By hand"),
+            plus: .text("Automatic")
+        )
     )
 
     private static let applePayLogging = TrentePlusBenefit(
@@ -40,7 +51,12 @@ struct TrentePlusBenefit: Identifiable {
         title: "Unlimited Apple Pay logging",
         detail: "Log every Apple Pay purchase, not just 10 a month.",
         systemImage: "creditcard.fill",
-        tint: .green
+        tint: .green,
+        comparison: Comparison(
+            title: "Apple Pay logging",
+            free: .text("\(WalletIntakeAllowance.freeMonthlyLimit) a month"),
+            plus: .text("Unlimited")
+        )
     )
 
     private static let notesAndImages = TrentePlusBenefit(
@@ -48,7 +64,12 @@ struct TrentePlusBenefit: Identifiable {
         title: "Notes and images",
         detail: "Add a receipt, a photo or a note to your transactions.",
         systemImage: "photo",
-        tint: .orange
+        tint: .orange,
+        comparison: Comparison(
+            title: "Notes and images",
+            free: .notIncluded,
+            plus: .included
+        )
     )
 
     private static let appIcons = TrentePlusBenefit(
@@ -56,7 +77,12 @@ struct TrentePlusBenefit: Identifiable {
         title: "App icons",
         detail: "Customize how Trente looks on your Home Screen.",
         systemImage: "paintpalette.fill",
-        tint: .purple
+        tint: .purple,
+        comparison: Comparison(
+            title: "App icons",
+            free: .text("Green only"),
+            plus: .text("\(AppIcon.allCases.count) colors")
+        )
     )
 
     private static let supportIndieDeveloper = TrentePlusBenefit(
@@ -66,4 +92,20 @@ struct TrentePlusBenefit: Identifiable {
         systemImage: "heart.fill",
         tint: .red
     )
+}
+
+extension TrentePlusBenefit {
+    struct Comparison: Identifiable {
+        let title: LocalizedStringResource
+        let free: Offer
+        let plus: Offer
+
+        var id: String { title.key }
+    }
+
+    enum Offer {
+        case text(LocalizedStringResource)
+        case included
+        case notIncluded
+    }
 }
