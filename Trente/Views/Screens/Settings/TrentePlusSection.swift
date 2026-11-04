@@ -15,6 +15,10 @@ struct TrentePlusSection: View {
     var body: some View {
         Section {
             VStack(alignment: .leading, spacing: 0) {
+                if !isSubscribed {
+                    note("I make Trente on my own, in my spare time, without ads or collecting your data. Trente+ helps me keep going, and gives you a few extras.")
+                        .padding(.bottom, 8)
+                }
                 if isSubscribed {
                     Text("You have everything in the Trente+ column.")
                         .font(.subheadline)
@@ -38,6 +42,14 @@ struct TrentePlusSection: View {
         } header: {
             Text("Trente+")
         }
+    }
+
+    private func note(_ message: LocalizedStringResource) -> some View {
+        SignedNote(
+            message: message,
+            signature: "Louis",
+            portraitName: DeveloperProfile.louis.photoName
+        )
     }
 }
 
