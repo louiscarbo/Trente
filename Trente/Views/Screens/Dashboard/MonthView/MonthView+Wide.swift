@@ -66,6 +66,7 @@ extension MonthView {
                         }
                         .frame(width: foldColumns?.leadingWidth)
                         UpcomingRecurring(
+                            month: month,
                             upcomingOccurrences: upcomingOccurrences,
                             recurringTransactionsCount: recurringTransactionsCount,
                             transactionCount: 5
