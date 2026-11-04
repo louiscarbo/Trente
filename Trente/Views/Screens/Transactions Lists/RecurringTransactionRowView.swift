@@ -28,6 +28,7 @@ struct RecurringTransactionRowView: View {
                 amount: Double(occurrence.amountCents) / 100,
                 currencyCode: occurrence.month.currency.isoCode,
                 isOverdue: occurrence.isOverdue,
+                isDueToday: occurrence.isDueToday,
                 showsDateBadge: showsDateBadge
             )
             .contentShape(.rect)

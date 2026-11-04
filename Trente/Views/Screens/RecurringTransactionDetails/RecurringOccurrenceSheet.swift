@@ -140,7 +140,7 @@ struct RecurringOccurrenceSheet: View {
         if occurrence.isOverdue {
             return String(localized: "Overdue since \(day)")
         }
-        if Calendar.current.isDateInToday(occurrence.date) {
+        if occurrence.isDueToday {
             return String(localized: "Due today")
         }
         return String(localized: "Due \(day)")

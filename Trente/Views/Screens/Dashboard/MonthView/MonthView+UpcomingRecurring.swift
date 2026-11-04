@@ -27,8 +27,8 @@ extension MonthView {
             return Array(dayOccurrences.prefix(transactionCount))
         }
 
-        private var overdueOccurrences: [RecurringTransactionOccurrence] {
-            Array(upcomingOccurrences.filter(\.isOverdue).prefix(transactionCount))
+        private var dueOccurrences: [RecurringTransactionOccurrence] {
+            Array(upcomingOccurrences.filter(\.isDue).prefix(transactionCount))
         }
 
         private var shownSelectedDay: Date? {
@@ -67,7 +67,7 @@ extension MonthView {
                         }
                     }
 
-                    let rows = shownSelectedDay == nil ? overdueOccurrences : selectedOccurrences
+                    let rows = shownSelectedDay == nil ? dueOccurrences : selectedOccurrences
                     if !rows.isEmpty {
                         Divider()
                         ForEach(rows) { occurrence in
