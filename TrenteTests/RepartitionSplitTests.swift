@@ -104,37 +104,82 @@ struct RepartitionSplitTests {
         #expect(split.amount(for: .needs) == 12_00)
     }
 
+    @Test("Dragging changes the value by the distance moved, not to where the finger is")
+    func dragIsRelative() {
+        let split = RepartitionSplit(amountToSplit: 100_00, values: [.needs: 30_00, .wants: 70_00])
+
+        let position = split.dragPosition(from: 30_00, movedBy: -0.2, of: .needs)
+
+        #expect(RepartitionSplit.dragValue(atPosition: position, currentValue: 30_00) == 10_00)
+    }
+
+    @Test("Touching without moving keeps the value, cents included")
+    func touchKeepsValue() {
+        let split = RepartitionSplit(amountToSplit: 20_00, values: [.needs: 12_30])
+
+        let position = split.dragPosition(from: 12_30, movedBy: 0, of: .needs)
+
+        #expect(RepartitionSplit.dragValue(atPosition: position, currentValue: 12_30) == 12_30)
+    }
+
+    @Test("Dragging changes the value only once it reaches another whole unit")
+    func dragWithinWholeUnitKeepsCents() {
+        #expect(RepartitionSplit.dragValue(atPosition: 12_90, currentValue: 12_30) == 12_30)
+        #expect(RepartitionSplit.dragValue(atPosition: 13_10, currentValue: 12_30) == 13_00)
+        #expect(RepartitionSplit.dragValue(atPosition: 11_90, currentValue: 12_30) == 11_00)
+    }
+
+    @Test("Pushing past what is left, then back, responds at once")
+    func pushPastEndThenBack() {
+        let split = RepartitionSplit(amountToSplit: 100_00, values: [.needs: 30_00, .wants: 70_00])
+
+        let pushedPosition = split.dragPosition(from: 30_00, movedBy: 0.2, of: .needs)
+        #expect(pushedPosition == 30_00)
+
+        let backPosition = split.dragPosition(from: pushedPosition, movedBy: -0.1, of: .needs)
+        #expect(RepartitionSplit.dragValue(atPosition: backPosition, currentValue: 30_00) == 20_00)
+    }
+
+    @Test("Pushing below zero, then back, responds at once")
+    func pushBelowZeroThenBack() {
+        let split = RepartitionSplit(amountToSplit: 100_00, values: [.needs: 10_00])
+
+        let pushedPosition = split.dragPosition(from: 10_00, movedBy: -0.5, of: .needs)
+        #expect(pushedPosition == 0)
+
+        let backPosition = split.dragPosition(from: pushedPosition, movedBy: 0.1, of: .needs)
+        #expect(RepartitionSplit.dragValue(atPosition: backPosition, currentValue: 0) == 10_00)
+    }
+
     @Test("Dragging to the end stops before the last cents")
     func dragToEndKeepsCents() {
         let split = RepartitionSplit(amountToSplit: 60_30, values: [:])
 
-        #expect(split.value(forDragFraction: 1, of: .needs) == 60_00)
+        let position = split.dragPosition(from: 0, movedBy: 1.5, of: .needs)
+
+        #expect(position == 60_30)
+        #expect(RepartitionSplit.dragValue(atPosition: position, currentValue: 0) == 60_00)
     }
 
     @Test("Dragging rounds to the nearest cent, then down to whole units")
     func dragRoundsDown() {
         let split = RepartitionSplit(amountToSplit: 60_30, values: [:])
 
-        #expect(split.value(forDragFraction: 0.5, of: .needs) == 30_00)
-        #expect(split.value(forDragFraction: 0.99, of: .needs) == 59_00)
-    }
+        let halfway = split.dragPosition(from: 0, movedBy: 0.5, of: .needs)
+        let almostEnd = split.dragPosition(from: 0, movedBy: 0.99, of: .needs)
 
-    @Test("Dragging outside the slider is clamped to its ends")
-    func dragOutsideIsClamped() {
-        let split = RepartitionSplit(amountToSplit: 60_30, values: [:])
-
-        #expect(split.value(forDragFraction: -0.2, of: .needs) == 0)
-        #expect(split.value(forDragFraction: 1.5, of: .needs) == 60_00)
+        #expect(RepartitionSplit.dragValue(atPosition: halfway, currentValue: 0) == 30_00)
+        #expect(RepartitionSplit.dragValue(atPosition: almostEnd, currentValue: 0) == 59_00)
     }
 
     @Test("Dragging is capped at what the category can take, cents included")
     func dragIsCappedAtMaxValue() {
         var split = RepartitionSplit(amountToSplit: 60_30, values: [.wants: 40_00])
 
-        let draggedValue = split.value(forDragFraction: 1, of: .needs)
-        #expect(draggedValue == 20_30)
+        let position = split.dragPosition(from: 0, movedBy: 1, of: .needs)
+        #expect(position == 20_30)
 
-        split.set(.needs, to: draggedValue)
+        split.set(.needs, to: RepartitionSplit.dragValue(atPosition: position, currentValue: 0))
         #expect(split.amount(for: .needs) == 20_00)
     }
 
@@ -142,7 +187,10 @@ struct RepartitionSplitTests {
     func remainingMatchesValues() {
         var split = RepartitionSplit(amountToSplit: 60_30, values: [:])
         let steps: [(inout RepartitionSplit) -> Void] = [
-            { $0.set(.needs, to: $0.value(forDragFraction: 0.5, of: .needs)) },
+            {
+                let position = $0.dragPosition(from: 0, movedBy: 0.5, of: .needs)
+                $0.set(.needs, to: RepartitionSplit.dragValue(atPosition: position, currentValue: 0))
+            },
             { $0.increase(.wants) },
             { $0.set(.savingsAndDebts, to: 100_00) },
             { $0.increase(.needs) },
