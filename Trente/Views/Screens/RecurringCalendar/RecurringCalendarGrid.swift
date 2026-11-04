@@ -33,6 +33,7 @@ struct RecurringCalendarGrid: View {
                 .frame(minHeight: 40, alignment: .top)
             }
         }
+        .sensoryFeedback(.selection, trigger: selectedDay)
     }
 
     @ViewBuilder
