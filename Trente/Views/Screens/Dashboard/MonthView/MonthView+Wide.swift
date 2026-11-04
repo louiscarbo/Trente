@@ -13,8 +13,11 @@ extension MonthView {
         // Data
         let month: Month
         var upcomingOccurrences: [RecurringTransactionOccurrence]
+        var pendingTransactions: [PendingTransaction]
+        var pendingCurrencyCode: String
         var hasTransactions: Bool
         var recurringTransactionsCount: Int
+        var onReviewPending: (PendingReview) -> Void
 
         // View State
         @State private var carouselPage: CarouselPage?
@@ -50,12 +53,21 @@ extension MonthView {
                     GridRow {
                         BudgetRingsCard(rings: BudgetRings(month: month))
                             .frame(width: foldColumns?.leadingWidth)
-                        LatestTransactions(
-                            transactions: month.latestTransactions,
-                            hasTransactions: hasTransactions,
-                            transactionCount: 5
-                        ) {
-                            TransactionListView(month: month, showRecurring: false)
+                        VStack(spacing: .grid) {
+                            if !pendingTransactions.isEmpty {
+                                PendingPurchases(
+                                    pendingTransactions: pendingTransactions,
+                                    currencyCode: pendingCurrencyCode,
+                                    onReview: onReviewPending
+                                )
+                            }
+                            LatestTransactions(
+                                transactions: month.latestTransactions,
+                                hasTransactions: hasTransactions,
+                                transactionCount: pendingTransactions.isEmpty ? 5 : 3
+                            ) {
+                                TransactionListView(month: month, showRecurring: false)
+                            }
                         }
                         .frame(idealWidth: 400)
                         .frame(width: foldColumns?.trailingWidth)

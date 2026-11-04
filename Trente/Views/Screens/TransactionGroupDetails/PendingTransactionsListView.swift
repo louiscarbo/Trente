@@ -89,6 +89,7 @@ struct PendingTransactionsListView: View {
             date: pending.date,
             amount: Double(pending.amountCents) / 100,
             currencyCode: currencyCode,
+            showsActionButtons: true,
             onReview: { reviewedID = pending.id },
             onDiscard: { discard(pending) }
         )

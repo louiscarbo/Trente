@@ -44,6 +44,12 @@ struct TransactionActions {
         }
     }
 
+    func discard(_ pending: PendingTransaction, in context: ModelContext) {
+        perform {
+            try PendingTransactionService.shared.discard(pending, in: context)
+        }
+    }
+
     private func perform(_ action: () throws -> Void) {
         do {
             try action()

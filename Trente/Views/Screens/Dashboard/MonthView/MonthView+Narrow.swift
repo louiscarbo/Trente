@@ -13,8 +13,11 @@ extension MonthView {
         // Data
         let month: Month
         var upcomingOccurrences: [RecurringTransactionOccurrence]
+        var pendingTransactions: [PendingTransaction]
+        var pendingCurrencyCode: String
         var hasTransactions: Bool
         var recurringTransactionsCount: Int
+        var onReviewPending: (PendingReview) -> Void
 
         // View State
         @State private var carouselPage: CarouselPage?
@@ -37,6 +40,15 @@ extension MonthView {
                 LazyVStack(spacing: 20) {
                     CardCarousel(selection: $carouselPage, safeAreaPadding: true) { page in
                         card(for: page)
+                    }
+
+                    if !pendingTransactions.isEmpty {
+                        PendingPurchases(
+                            pendingTransactions: pendingTransactions,
+                            currencyCode: pendingCurrencyCode,
+                            onReview: onReviewPending
+                        )
+                        .padding(.horizontal)
                     }
 
                     LatestTransactions(

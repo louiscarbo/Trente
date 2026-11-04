@@ -12,6 +12,7 @@ struct PendingTransactionRow: View {
     let date: Date
     let amount: Double
     let currencyCode: String
+    let showsActionButtons: Bool
     let onReview: () -> Void
     let onDiscard: () -> Void
 
@@ -36,12 +37,14 @@ struct PendingTransactionRow: View {
             }
             .buttonStyle(.plain)
 
-            actionButton("Discard", systemImage: "xmark") {
-                isConfirmingDiscard = true
+            if showsActionButtons {
+                actionButton("Discard", systemImage: "xmark") {
+                    isConfirmingDiscard = true
+                }
+                .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
+                actionButton("Review", systemImage: "checkmark", action: onReview)
+                    .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
             }
-            .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
-            actionButton("Review", systemImage: "checkmark", action: onReview)
-                .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
         }
         .rowActions(
             leading: RowAction(
@@ -88,6 +91,7 @@ struct PendingTransactionRow: View {
         date: .now,
         amount: -4.20,
         currencyCode: "EUR",
+        showsActionButtons: true,
         onReview: {},
         onDiscard: {}
     )
