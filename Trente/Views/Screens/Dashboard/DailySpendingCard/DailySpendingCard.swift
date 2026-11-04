@@ -214,7 +214,9 @@ struct DailySpendingCard: View {
     private func dock(_ spending: DailySpending, selectedDay: DailySpend?) -> some View {
         if let selectedDay {
             Dock(
-                title: selectedDay.date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated)),
+                title: selectedDay.date.formatted(
+                    Date.FormatStyle(capitalizationContext: .beginningOfSentence).weekday(.wide).day().month(.abbreviated)
+                ),
                 days: [selectedDay],
                 currencyCode: currencyCode
             )
