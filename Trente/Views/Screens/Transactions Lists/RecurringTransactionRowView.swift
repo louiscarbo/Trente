@@ -12,6 +12,7 @@ struct RecurringTransactionRowView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.transactionActions) private var transactionActions
     let occurrence: RecurringTransactionOccurrence
+    var showsDateBadge = true
     let onOpen: () -> Void
 
     @State private var showConfirmConfirmation = false
@@ -26,7 +27,8 @@ struct RecurringTransactionRowView: View {
                 frequency: occurrence.rule.frequency,
                 amount: Double(occurrence.amountCents) / 100,
                 currencyCode: occurrence.month.currency.isoCode,
-                isOverdue: occurrence.isOverdue
+                isOverdue: occurrence.isOverdue,
+                showsDateBadge: showsDateBadge
             )
             .contentShape(.rect)
         }

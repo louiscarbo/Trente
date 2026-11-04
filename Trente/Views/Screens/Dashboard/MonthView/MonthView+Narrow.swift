@@ -60,6 +60,7 @@ extension MonthView {
                     .padding(.horizontal)
 
                     UpcomingRecurring(
+                        month: month,
                         upcomingOccurrences: upcomingOccurrences,
                         recurringTransactionsCount: recurringTransactionsCount
                     ) {
