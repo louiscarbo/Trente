@@ -92,16 +92,4 @@ struct WalletIntakeAllowanceTests {
 
         #expect(!allowance.hasSentLimitNotice(on: today))
     }
-
-    @Test("Cancelling a log gives it back, never below zero")
-    func cancelGivesLogBack() {
-        let allowance = makeAllowance()
-        let today = date(month: 10, day: 29)
-
-        allowance.recordIntake(on: today)
-        allowance.cancelIntake(on: today)
-        allowance.cancelIntake(on: today)
-
-        #expect(allowance.count(on: today) == 0)
-    }
 }

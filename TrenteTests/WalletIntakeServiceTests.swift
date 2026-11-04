@@ -133,6 +133,26 @@ struct WalletIntakeServiceTests {
         #expect(try context.fetch(FetchDescriptor<Month>()).count == 3)
     }
 
+    @Test("Keeps the purchase when its notification can't be posted")
+    func handleKeepsPurchaseWithoutNotificationPermission() async throws {
+        let context = try makeContext()
+        let today = Date.now
+        let components = Calendar.current.dateComponents([.year, .month], from: today)
+        insertMonth(year: components.year!, month: components.month!, in: context)
+        let allowance = makeAllowance()
+
+        try await WalletIntakeService(allowance: allowance).handle(
+            transaction: "Dia",
+            amount: "53,74 €",
+            in: context,
+            now: today,
+            isTrentePlusSubscribed: false
+        )
+
+        #expect(try context.fetch(FetchDescriptor<PendingTransaction>()).count == 1)
+        #expect(allowance.count(on: today) == 1)
+    }
+
     @Test("Throws when there is no month yet")
     func currentMonthWithoutMonths() throws {
         let context = try makeContext()
