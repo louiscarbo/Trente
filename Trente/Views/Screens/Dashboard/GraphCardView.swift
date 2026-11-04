@@ -16,7 +16,9 @@ struct GraphCardView: View {
     @State private var showRemaining = false
 
     var body: some View {
-        let exactAmount = figures.amount(showingRemaining: showRemaining)
+        let isOverBudget = figures.isOverBudget(in: scope)
+        let showsExtra = showRemaining && figures.extraSaved(in: scope) > 0
+        let exactAmount = figures.amount(showingRemaining: showRemaining, in: scope)
 
         Button {
             withAnimation(.spring(duration: 0.35, bounce: 0.15)) { showRemaining.toggle() }
@@ -24,9 +26,9 @@ struct GraphCardView: View {
             GroupBox(label:
                 Label(
                     scope.shortName,
-                    systemImage: figures.isOverspent ? "exclamationmark.triangle.fill" : currency.sfSymbolGaugeName
+                    systemImage: isOverBudget ? "exclamationmark.triangle.fill" : currency.sfSymbolGaugeName
                 )
-                .foregroundStyle(figures.isOverspent ? .red : scope.color)
+                .foregroundStyle(isOverBudget ? .red : scope.color)
             ) {
                 VStack(spacing: 0) {
                     BudgetGaugeView(
@@ -41,8 +43,8 @@ struct GraphCardView: View {
 
                     VStack(spacing: 2) {
                         HStack(spacing: 3) {
-                            Text(exactAmount, format: .amount(currency.isoCode))
-                                .foregroundStyle(figures.isOverspent ? .red : .primary)
+                            Text(exactAmount, format: .amount(currency.isoCode).sign(strategy: showsExtra ? .always() : .automatic))
+                                .foregroundStyle(isOverBudget ? .red : .primary)
                                 .contentTransition(.numericText(value: exactAmount))
                             Text(verbatim: "/")
                                 .foregroundStyle(.secondary)
@@ -54,7 +56,7 @@ struct GraphCardView: View {
                         }
                         .font(.caption.monospacedDigit())
 
-                        (showRemaining ? Text("Left") : Text("Spent"))
+                        caption(showsExtra: showsExtra)
                             .font(.caption2)
                             .foregroundStyle(.secondary)
                             .contentTransition(.opacity)
@@ -69,24 +71,36 @@ struct GraphCardView: View {
         .sensoryFeedback(.selection, trigger: showRemaining)
         .accessibilityLabel(Text(scope.name))
         .accessibilityValue(
-            figures.accessibilityDescription(currencyCode: currency.isoCode, showingRemaining: showRemaining)
+            figures.accessibilityDescription(currencyCode: currency.isoCode, showingRemaining: showRemaining, in: scope)
         )
         .accessibilityHint(showRemaining ? Text("Shows what you spent") : Text("Shows what's left"))
+    }
+
+    private func caption(showsExtra: Bool) -> Text {
+        if showsExtra {
+            return Text("Extra")
+        }
+        return showRemaining ? Text("Left") : Text("Spent")
     }
 }
 
 private extension BudgetFigures {
-    func amount(showingRemaining: Bool) -> Double {
-        showingRemaining ? remaining : spent
+    func amount(showingRemaining: Bool, in scope: BudgetScope) -> Double {
+        guard showingRemaining else { return spent }
+        let extra = extraSaved(in: scope)
+        return extra > 0 ? extra : remaining
     }
 
-    func accessibilityDescription(currencyCode: String, showingRemaining: Bool) -> String {
-        let amount = amount(showingRemaining: showingRemaining).formatted(.amount(currencyCode))
+    func accessibilityDescription(currencyCode: String, showingRemaining: Bool, in scope: BudgetScope) -> String {
+        let amount = amount(showingRemaining: showingRemaining, in: scope).formatted(.amount(currencyCode))
         let total = income.formatted(.budget(currencyCode))
+        if showingRemaining && extraSaved(in: scope) > 0 {
+            return String(localized: "\(amount) extra, above \(total)")
+        }
         let description = showingRemaining
             ? String(localized: "\(amount) left of \(total)")
             : String(localized: "\(amount) spent of \(total)")
-        guard isOverspent else { return description }
+        guard isOverBudget(in: scope) else { return description }
         return String(localized: "Over Budget") + ", " + description
     }
 }
@@ -105,7 +119,15 @@ struct BudgetGaugeView: View {
     }
 
     private var displayedAmount: Double {
-        figures.amount(showingRemaining: showRemaining)
+        figures.amount(showingRemaining: showRemaining, in: scope)
+    }
+
+    private var isOverBudget: Bool {
+        figures.isOverBudget(in: scope)
+    }
+
+    private var showsExtra: Bool {
+        showRemaining && figures.extraSaved(in: scope) > 0
     }
 
     private var percentage: Double {
@@ -115,26 +137,28 @@ struct BudgetGaugeView: View {
 
     var gaugeColor: Color {
         if showRemaining {
-            return figures.isOverspent ? .red : scope.color
+            return isOverBudget ? .red : scope.color
         }
         if figures.spent == 0 {
             return .gray
         }
-        if figures.isOverspent {
+        if isOverBudget {
             return .red
         }
         return scope.color
     }
 
     var textColor: Color {
-        if figures.isOverspent {
+        if isOverBudget {
             return .red
         }
         return .primary
     }
 
     var gaugeValue: Double {
-        if showRemaining && figures.isOverspent {
+        if figures.extraSaved(in: scope) > 0 {
+            figures.income
+        } else if showRemaining && figures.isOverspent {
             1
         } else if figures.isOverspent {
             -1 * figures.remaining.truncatingRemainder(dividingBy: figures.income)
@@ -159,13 +183,15 @@ struct BudgetGaugeView: View {
         )
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(scope.name))
-        .accessibilityValue(figures.accessibilityDescription(currencyCode: currencyCode, showingRemaining: showRemaining))
+        .accessibilityValue(
+            figures.accessibilityDescription(currencyCode: currencyCode, showingRemaining: showRemaining, in: scope)
+        )
     }
 
     @ViewBuilder
     private var centerLabel: some View {
         if showsPercentage {
-            Text(percentage, format: .percent.precision(.fractionLength(0)))
+            Text(percentage, format: .percent.precision(.fractionLength(0)).sign(strategy: showsExtra ? .always() : .automatic))
                 .font(.headline)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
@@ -173,7 +199,7 @@ struct BudgetGaugeView: View {
                 .contentTransition(.numericText(value: percentage))
         } else {
             VStack(spacing: 0) {
-                Text(displayedAmount, format: currencyFormat)
+                Text(displayedAmount, format: currencyFormat.sign(strategy: showsExtra ? .always() : .automatic))
                     .font(.headline)
                     .contentTransition(.numericText(value: displayedAmount))
                 Divider()
