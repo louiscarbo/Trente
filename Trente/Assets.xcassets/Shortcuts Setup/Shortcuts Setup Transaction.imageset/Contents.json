@@ -15,6 +15,11 @@
       "locale": "fr"
     },
     {
+      "filename": "Transaction fr-CA.jpg",
+      "idiom": "iphone",
+      "locale": "fr-CA"
+    },
+    {
       "filename": "Transaction es.jpg",
       "idiom": "iphone",
       "locale": "es"
@@ -48,6 +53,31 @@
       "filename": "Transaction pt-PT.jpg",
       "idiom": "iphone",
       "locale": "pt-PT"
+    },
+    {
+      "filename": "Transaction ja.jpg",
+      "idiom": "iphone",
+      "locale": "ja"
+    },
+    {
+      "filename": "Transaction el.jpg",
+      "idiom": "iphone",
+      "locale": "el"
+    },
+    {
+      "filename": "Transaction sv.jpg",
+      "idiom": "iphone",
+      "locale": "sv"
+    },
+    {
+      "filename": "Transaction da.jpg",
+      "idiom": "iphone",
+      "locale": "da"
+    },
+    {
+      "filename": "Transaction nb.jpg",
+      "idiom": "iphone",
+      "locale": "nb"
     }
   ],
   "info": {

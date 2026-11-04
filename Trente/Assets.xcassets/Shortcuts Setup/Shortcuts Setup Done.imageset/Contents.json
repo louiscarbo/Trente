@@ -15,6 +15,11 @@
       "locale": "fr"
     },
     {
+      "filename": "Done fr-CA.jpg",
+      "idiom": "iphone",
+      "locale": "fr-CA"
+    },
+    {
       "filename": "Done es.jpg",
       "idiom": "iphone",
       "locale": "es"
@@ -48,6 +53,31 @@
       "filename": "Done pt-PT.jpg",
       "idiom": "iphone",
       "locale": "pt-PT"
+    },
+    {
+      "filename": "Done ja.jpg",
+      "idiom": "iphone",
+      "locale": "ja"
+    },
+    {
+      "filename": "Done el.jpg",
+      "idiom": "iphone",
+      "locale": "el"
+    },
+    {
+      "filename": "Done sv.jpg",
+      "idiom": "iphone",
+      "locale": "sv"
+    },
+    {
+      "filename": "Done da.jpg",
+      "idiom": "iphone",
+      "locale": "da"
+    },
+    {
+      "filename": "Done nb.jpg",
+      "idiom": "iphone",
+      "locale": "nb"
     }
   ],
   "info": {
