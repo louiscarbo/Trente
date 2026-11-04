@@ -4055,6 +4055,94 @@
         }
       }
     },
+    "Outer ring: planned · Inner ring: spent" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ydre ring: planlagt · Indre ring: brugt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Äußerer Ring: geplant · Innerer Ring: ausgegeben"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εξωτερικός δακτύλιος: προγραμματισμένα · Εσωτερικός: δαπάνες"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anillo exterior: previsto · Anillo interior: gastado"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anillo exterior: previsto · Anillo interior: gastado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anneau extérieur : prévu · Anneau intérieur : dépensé"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anneau extérieur : prévu · Anneau intérieur : dépensé"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anello esterno: previsto · Anello interno: speso"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外側の輪：予定 · 内側の輪：支出"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "바깥쪽 링: 계획 · 안쪽 링: 지출"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ytre ring: planlagt · Indre ring: brukt"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anel externo: previsto · Anel interno: gasto"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anel exterior: previsto · Anel interior: gasto"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yttre ring: planerat · Inre ring: spenderat"
+          }
+        }
+      }
+    },
     "Rent, salary, subscriptions: added automatically, without you having to think about it." : {
       "localizations" : {
         "da" : {
