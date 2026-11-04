@@ -43,6 +43,8 @@ Debug builds use an in-memory store that never syncs. To test iCloud sync, turn 
 
 Run the tests from the `Trente` scheme.
 
+Run `Scripts/setup-git.sh` once per clone. It sets up the String Catalog merge driver, which merges `Localizable.xcstrings` string by string and language by language. A plain line merge can attach translations to the wrong strings without reporting a conflict.
+
 ## Project layout
 
 | Path | Contents |
@@ -52,7 +54,7 @@ Run the tests from the `Trente` scheme.
 | `Trente/Views` | SwiftUI screens and the design system |
 | `TrenteWidget` | Widget extension |
 | `TrenteTests` | Unit tests |
-| `Scripts` | Release and App Store capture tooling |
+| `Scripts` | Release, App Store capture and Git tooling |
 
 The release process is described in [RELEASING.md](RELEASING.md).
 
