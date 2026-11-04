@@ -27590,7 +27590,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prépare une dépense à partir d’un paiement avec Cartes pour que vous puissiez la vérifier dans Trente."
+            "value" : "Prépare une dépense à partir d’un paiement fait avec Portefeuille pour que vous puissiez la vérifier dans Trente."
           }
         },
         "it" : {
@@ -42319,7 +42319,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryck på **Redigera** uppe till höger."
+            "value" : "Tryck på **Ändra** uppe till höger."
           }
         }
       }
@@ -42341,7 +42341,7 @@
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Αγγίξτε **Αυτοματισμός**."
+            "value" : "Αγγίξτε **Αυτοματοποίηση**."
           }
         },
         "es" : {
@@ -42429,7 +42429,7 @@
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Κάντε κύλιση προς τα κάτω και αγγίξτε **Wallet**."
+            "value" : "Κάντε κύλιση προς τα κάτω και αγγίξτε **Πορτοφόλι**."
           }
         },
         "es" : {
@@ -42453,7 +42453,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Faites défiler vers le bas et touchez **Cartes**."
+            "value" : "Faites défiler vers le bas et touchez **Portefeuille**."
           }
         },
         "it" : {
@@ -42541,7 +42541,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Touchez **Rechercher** en bas et entrez « Trente »."
+            "value" : "Touchez le champ **Recherche** en bas et entrez « Trente »."
           }
         },
         "it" : {
@@ -42869,7 +42869,7 @@
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Αγγίξτε τη νέα **Συναλλαγή** στο πεδίο Ποσό και μετά επιλέξτε **Ποσό**."
+            "value" : "Αγγίξτε τη νέα **Συναλλαγή** στο πεδίο Ποσό και μετά επιλέξτε **Ποσότητα**."
           }
         },
         "es" : {
@@ -42935,7 +42935,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryck på **Transaktion** som just dök upp i fältet Belopp och välj sedan **Belopp**."
+            "value" : "Tryck på **Transaktion** som just dök upp i fältet Belopp och välj sedan **Mängd**."
           }
         }
       }
@@ -43309,7 +43309,7 @@
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Οι αγορές με Apple Pay φτάνουν στο Trente μέσω ενός αυτοματισμού στην εφαρμογή Συντομεύσεις του iPhone σας. Ανοίξτε εκεί το Trente, μεταβείτε στις Ρυθμίσεις και αγγίξτε «Σύνδεση του Trente με το Apple Pay»."
+            "value" : "Οι αγορές με Apple Pay φτάνουν στο Trente μέσω μιας αυτοματοποίησης στην εφαρμογή Συντομεύσεις του iPhone σας. Ανοίξτε εκεί το Trente, μεταβείτε στις Ρυθμίσεις και αγγίξτε «Σύνδεση του Trente με το Apple Pay»."
           }
         },
         "es" : {
@@ -43397,7 +43397,7 @@
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Δημιουργήστε έναν αυτοματισμό στην εφαρμογή Συντομεύσεις. Από εκεί και πέρα, κάθε πληρωμή με κάρτα εμφανίζεται στο Trente, έτοιμη για έλεγχο."
+            "value" : "Δημιουργήστε μία αυτοματοποίηση στην εφαρμογή Συντομεύσεις. Από εκεί και πέρα, κάθε πληρωμή με κάρτα εμφανίζεται στο Trente, έτοιμη για έλεγχο."
           }
         },
         "es" : {
@@ -43485,7 +43485,7 @@
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Το Trente θα σας καθοδηγήσει στη δημιουργία ενός αυτοματισμού στην εφαρμογή Συντομεύσεις. Επιστρέψτε εδώ μετά από κάθε βήμα."
+            "value" : "Το Trente θα σας καθοδηγήσει στη δημιουργία μιας αυτοματοποίησης στην εφαρμογή Συντομεύσεις. Επιστρέψτε εδώ μετά από κάθε βήμα."
           }
         },
         "es" : {
