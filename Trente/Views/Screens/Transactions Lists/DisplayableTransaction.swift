@@ -56,7 +56,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
             return title + delimiter + categories + delimiter + date + delimiter + amount
         case .recurring(let r):
             let title = r.rule.title
-            let categories = r.rule.repartition.map { $0.key.name }.joined(separator: delimiter)
+            let categories = r.rule.categories.map(\.name).joined(separator: delimiter)
             let date = r.date.formatted(.dateTime.year().month(.wide).day().weekday(.wide))
             let amount = displayAmount
             return title + delimiter + categories + delimiter + date + delimiter + amount
@@ -67,7 +67,7 @@ struct DisplayableTransaction: Identifiable, Equatable {
         case .group(let g):
             return g.entries.map { $0.category }
         case .recurring(let r):
-            return r.rule.repartition.map { $0.key }
+            return r.rule.categories
         }
     }
     var amountCents: Int {

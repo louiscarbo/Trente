@@ -83,6 +83,34 @@ struct TransactionListFilterTests {
         #expect(filter.apply(to: items).map(\.title) == ["Salary", "Café"])
     }
 
+    @Test("An expected income doesn't match a category it gives nothing to")
+    func expectedIncomeSkipsZeroShareCategory() throws {
+        let context = try makeContext()
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        let rule = RecurringTransactionRule(
+            title: "Salary",
+            frequency: .monthly,
+            startDate: date(10, 25),
+            repartition: [.needs: 1_000_00, .wants: 0],
+            createdAt: date(10, 1)
+        )
+        context.insert(rule)
+        try context.save()
+        let occurrence = RecurringTransactionOccurrence(rule: rule, date: date(10, 25), month: month)
+        let items = [DisplayableTransaction(kind: .recurring(occurrence))]
+        var filter = TransactionListFilter(month: month)
+
+        filter.categories = [.wants]
+        #expect(filter.apply(to: items).isEmpty)
+
+        filter.categories = [.needs]
+        #expect(filter.apply(to: items).map(\.title) == ["Salary"])
+
+        filter.categories = []
+        filter.searchText = BudgetCategory.wants.name
+        #expect(filter.apply(to: items).isEmpty)
+    }
+
     @Test("Each sort order orders the transactions", arguments: SortOption.allCases)
     func sortOrders(sort: SortOption) throws {
         let context = try makeContext()

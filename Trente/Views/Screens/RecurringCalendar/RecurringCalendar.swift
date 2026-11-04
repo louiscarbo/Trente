@@ -30,7 +30,11 @@ struct RecurringCalendar: Equatable {
         let categoriesByDay = Dictionary(grouping: occurrences) { occurrence in
             calendar.startOfDay(for: occurrence.date)
         }
-        .mapValues(Self.dueCategories)
+        .mapValues { dayOccurrences in
+            BudgetCategory.allCases.filter { category in
+                dayOccurrences.contains { $0.rule.categories.contains(category) }
+            }
+        }
 
         let lastOffset = calendar.dateComponents([.day], from: firstDay, to: lastDay).day ?? 0
         let days: [Day?] = (0...max(0, lastOffset)).compactMap { offset in
@@ -46,12 +50,5 @@ struct RecurringCalendar: Equatable {
             let week = Array(cells[start..<min(start + Self.daysPerWeek, cells.count)])
             return week + Array(repeating: nil, count: Self.daysPerWeek - week.count)
         }
-    }
-
-    private static func dueCategories(of occurrences: [RecurringTransactionOccurrence]) -> [BudgetCategory] {
-        let categories = Set(occurrences.flatMap { occurrence in
-            occurrence.rule.repartition.filter { $0.value != 0 }.keys
-        })
-        return BudgetCategory.allCases.filter(categories.contains)
     }
 }

@@ -54,6 +54,12 @@ extension RecurringTransactionRule {
         repartition.values.reduce(0, +)
     }
 
+    var categories: [BudgetCategory] {
+        BudgetCategory.allCases.filter { category in
+            (repartition[category] ?? 0) != 0
+        }
+    }
+
     var transactions: [TransactionGroup] {
         get { storedTransactions ?? [] }
         set { storedTransactions = newValue }
