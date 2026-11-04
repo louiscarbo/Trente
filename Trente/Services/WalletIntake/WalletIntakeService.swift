@@ -77,16 +77,10 @@ struct WalletIntakeService {
         )
         switch result {
         case .logged(let pending):
-            do {
-                try await WalletNotificationService.shared.post(for: pending, currency: month.currency)
-            } catch {
-                try? PendingTransactionService.shared.discard(pending, in: context)
-                allowance.cancelIntake(on: now)
-                throw error
-            }
+            try? await WalletNotificationService.shared.post(for: pending, currency: month.currency)
         case .limitReached:
             guard !allowance.hasSentLimitNotice(on: now) else { return }
-            try await WalletNotificationService.shared.postLimitReached()
+            guard (try? await WalletNotificationService.shared.postLimitReached()) != nil else { return }
             allowance.recordLimitNotice(on: now)
         }
     }

@@ -18,7 +18,6 @@ struct PendingTransactionReviewView: View {
 
     @State private var draft: TransactionGroupDraft
     @State private var validationErrors: [String] = []
-    @State private var deleteError: String? = nil
     @State private var applePayLogCount = WalletIntakeAllowance().count(on: .now)
 
     @FocusState private var titleFocused: Bool
@@ -38,12 +37,12 @@ struct PendingTransactionReviewView: View {
                 cancelSystemImage: "xmark",
                 isEditing: .constant(true),
                 validationErrors: $validationErrors,
-                deleteError: $deleteError,
+                deleteError: .constant(nil),
                 isDoneDisabled: !draft.validate().isEmpty,
                 keyboardDismissVisible: titleFocused || notesFocused || amountFocused,
                 onDismissKeyboard: clearFocus,
                 onBeginEdit: {},
-                onCancel: discard,
+                onCancel: { dismiss() },
                 onDone: validate
             ) {
                 EditableTransactionHeader(
@@ -93,15 +92,6 @@ struct PendingTransactionReviewView: View {
             dismiss()
         } catch {
             validationErrors = [String(localized: "Failed to save changes: \(error.localizedDescription)")]
-        }
-    }
-
-    private func discard() {
-        do {
-            try PendingTransactionService.shared.discard(pending, in: modelContext)
-            dismiss()
-        } catch {
-            deleteError = error.localizedDescription
         }
     }
 }
