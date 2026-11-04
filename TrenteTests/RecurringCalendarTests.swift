@@ -53,7 +53,7 @@ struct RecurringCalendarTests {
         #expect(days.last?.date == date(11, 24))
         #expect(grid.weeks.allSatisfy { $0.count == RecurringCalendar.daysPerWeek })
         #expect(grid.weeks[0].prefix(6).allSatisfy { $0 == nil })
-        #expect(grid.weekdaySymbols.first == calendar.shortStandaloneWeekdaySymbols[1])
+        #expect(grid.weekdaySymbols.first == calendar.veryShortStandaloneWeekdaySymbols[1])
         #expect(days.allSatisfy { !$0.isDue })
     }
 

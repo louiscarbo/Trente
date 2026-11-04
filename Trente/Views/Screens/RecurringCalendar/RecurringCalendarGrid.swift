@@ -17,10 +17,9 @@ struct RecurringCalendarGrid: View {
             HStack(spacing: 0) {
                 ForEach(layout.weekdaySymbols.indices, id: \.self) { index in
                     Text(layout.weekdaySymbols[index])
-                        .font(.caption2.weight(.semibold))
-                        .textCase(.uppercase)
+                        .font(.subheadline)
                         .foregroundStyle(.secondary)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, minHeight: 24, alignment: .top)
                 }
             }
             .accessibilityHidden(true)

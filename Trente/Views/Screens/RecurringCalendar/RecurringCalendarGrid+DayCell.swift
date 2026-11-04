@@ -14,33 +14,36 @@ extension RecurringCalendarGrid {
         let isSelected: Bool
         let onSelect: () -> Void
 
-        private var numberStyle: HierarchicalShapeStyle {
-            if !isShown || (isPast && !day.isDue) {
-                return .tertiary
+        private var numberStyle: AnyShapeStyle {
+            if isSelected {
+                return AnyShapeStyle(.background)
             }
-            return day.isDue ? .primary : .secondary
-        }
-
-        private var monthStyle: HierarchicalShapeStyle {
-            isShown && (day.isDue || !isPast) ? .secondary : .tertiary
+            if !isShown || (isPast && !day.isDue) {
+                return AnyShapeStyle(.tertiary)
+            }
+            return day.isDue ? AnyShapeStyle(.primary) : AnyShapeStyle(.secondary)
         }
 
         var body: some View {
             Button(action: onSelect) {
                 VStack(spacing: 0) {
                     Text(day.date, format: .dateTime.day())
-                        .font(.title3.weight(day.isDue ? .semibold : .regular))
+                        .font(.subheadline.weight(day.isDue ? .semibold : .regular))
+                        .monospacedDigit()
+                        .lineLimit(1)
                         .foregroundStyle(numberStyle)
-                    Text(day.date, format: .dateTime.month(.abbreviated))
-                        .font(.footnote)
-                        .textCase(.uppercase)
-                        .foregroundStyle(monthStyle)
+                        .padding(.horizontal, 6)
+                        .frame(minWidth: 29, minHeight: 22)
+                        .background {
+                            if isSelected {
+                                Capsule()
+                                    .fill(.primary)
+                            }
+                        }
                     dots
                 }
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
-                .padding(.top, 5)
-                .frame(maxWidth: .infinity, minHeight: 58, alignment: .top)
+                .padding(.top, 1)
+                .frame(maxWidth: .infinity, minHeight: 32, alignment: .top)
                 .background {
                     if isToday {
                         RoundedRectangle(cornerRadius: 8)
@@ -66,7 +69,7 @@ extension RecurringCalendarGrid {
                 }
             }
             .opacity(isShown ? 1 : 0.35)
-            .frame(height: 10)
+            .frame(height: 8)
         }
     }
 }

@@ -21,7 +21,7 @@ struct RecurringCalendar: Equatable {
     let weeks: [[Day?]]
 
     init(month: Month, occurrences: [RecurringTransactionOccurrence], calendar: Calendar = .current) {
-        let symbols = calendar.shortStandaloneWeekdaySymbols
+        let symbols = calendar.veryShortStandaloneWeekdaySymbols
         let firstSymbol = calendar.firstWeekday - 1
         weekdaySymbols = Array(symbols[firstSymbol...] + symbols[..<firstSymbol])
 
