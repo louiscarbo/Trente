@@ -25,12 +25,12 @@ struct NotificationsStepView: View {
         } secondary: {
             VStack(spacing: .large) {
                 NotificationPreview(
-                    title: NotificationText.amountTitle(amountCents: -800_00 * sampleAmountScale, currency: currency, title: String(localized: "Rent")),
+                    title: NotificationText.amountTitle(amountCents: -currency.sampleAmounts.rentCents, currency: currency, title: String(localized: "Rent")),
                     message: RecurringNotificationPlanner.body(for: .due, isIncome: false)
                 )
                 if showsApplePay {
                     NotificationPreview(
-                        title: NotificationText.amountTitle(amountCents: -4_50 * sampleAmountScale, currency: currency, title: String(localized: "Bakery")),
+                        title: NotificationText.amountTitle(amountCents: -currency.sampleAmounts.bakeryCents, currency: currency, title: String(localized: "Bakery")),
                         message: WalletNotificationService.body
                     )
                 }
@@ -39,14 +39,6 @@ struct NotificationsStepView: View {
             .frame(maxWidth: .infinity)
         } actions: {
             actions
-        }
-    }
-
-    private var sampleAmountScale: Int {
-        switch currency.isoCode {
-        case "JPY", "KRW": 100
-        case "SEK", "DKK", "NOK": 10
-        default: 1
         }
     }
 
