@@ -46,6 +46,12 @@ struct TransactionListView: View {
 
         VStack {
             List {
+                if showRecurring && !showsNoMatches {
+                    Section {
+                        calendarGrid
+                    }
+                }
+
                 Section {
                     ForEach(items) { item in
                         Row(item: item) { occurrence in
@@ -113,6 +119,20 @@ struct TransactionListView: View {
             .sheet(item: $presentedOccurrence) { occurrence in
                 RecurringOccurrenceSheet(occurrence: occurrence)
             }
+        }
+    }
+
+    private var calendarGrid: some View {
+        let matchingOccurrences = filter.matchingOnAnyDay(allItems).compactMap { item in
+            if case .recurring(let occurrence) = item.kind { occurrence } else { nil }
+        }
+        return RecurringCalendarGrid(
+            layout: RecurringCalendar(month: month, occurrences: matchingOccurrences),
+            today: Calendar.current.startOfDay(for: .now),
+            shownDays: filter.shownDays,
+            selectedDay: filter.shownSingleDay
+        ) { day in
+            filter.toggleDay(day, in: month)
         }
     }
 
