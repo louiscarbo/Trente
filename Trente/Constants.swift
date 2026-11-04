@@ -17,7 +17,8 @@ enum WindowIdentifiers {
 }
 
 enum ExternalLinks {
-    static let logWalletTransactionShortcut = URL(string: "https://www.icloud.com/shortcuts/439846ebfc2c44e0957630a492e6fd39")!
+    static let newShortcut = URL(string: "shortcuts://create-shortcut")!
+    static let shortcutsApp = URL(string: "shortcuts://")!
     static let writeReview = URL(string: "https://apps.apple.com/app/id6745130463?action=write-review")!
 
     static var notificationSettings: URL? {

@@ -1,0 +1,60 @@
+{
+  "images": [
+    {
+      "filename": "Edit en.jpg",
+      "idiom": "iphone"
+    },
+    {
+      "filename": "Edit en-GB.jpg",
+      "idiom": "iphone",
+      "locale": "en-GB"
+    },
+    {
+      "filename": "Edit fr.jpg",
+      "idiom": "iphone",
+      "locale": "fr"
+    },
+    {
+      "filename": "Edit es.jpg",
+      "idiom": "iphone",
+      "locale": "es"
+    },
+    {
+      "filename": "Edit es-419.jpg",
+      "idiom": "iphone",
+      "locale": "es-419"
+    },
+    {
+      "filename": "Edit it.jpg",
+      "idiom": "iphone",
+      "locale": "it"
+    },
+    {
+      "filename": "Edit de.jpg",
+      "idiom": "iphone",
+      "locale": "de"
+    },
+    {
+      "filename": "Edit ko.jpg",
+      "idiom": "iphone",
+      "locale": "ko"
+    },
+    {
+      "filename": "Edit pt-BR.jpg",
+      "idiom": "iphone",
+      "locale": "pt-BR"
+    },
+    {
+      "filename": "Edit pt-PT.jpg",
+      "idiom": "iphone",
+      "locale": "pt-PT"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  },
+  "properties": {
+    "localizable": true
+  }
+}

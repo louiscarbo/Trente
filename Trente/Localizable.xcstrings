@@ -1909,58 +1909,6 @@
         }
       }
     },
-    "In the menu at the bottom of the screen, tap the **Automation** category, then scroll down to the **Wallet** row. Tap **Wallet – When I tap a Wallet card**." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tippe im Menü unten auf dem Bildschirm auf die Kategorie **Automation** und scrolle dann zur Zeile **Wallet**. Tippe auf die Zeile **Wallet – Wenn ich eine Wallet-Karte verwende**."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En el menú de la parte inferior de la pantalla, toca la categoría **Automatización** y desplázate hasta la fila **Wallet**. Toca la fila **Wallet – Cuando acerco una tarjeta de Wallet**."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En el menú de la parte inferior de la pantalla, toca la categoría **Automatización** y desplázate hasta la fila **Wallet**. Toca la fila **Wallet – Cuando acerco una tarjeta de Wallet**."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dans le menu en bas de l’écran, touchez la catégorie **Automatisations**, puis descendez jusqu’à la ligne **Cartes**. Touchez la ligne **Cartes - Lorsque je présente une carte Cartes**."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nel menu in basso, tocca la categoria **Automazione**, poi scorri fino alla riga **Wallet**. Tocca la riga **Wallet – Quando avvicino una carta Wallet**."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "화면 하단 메뉴에서 **자동화** 카테고리를 탭한 다음 **지갑** 항목까지 스크롤하세요. **지갑 - 지갑 카드를 탭할 때** 항목을 탭하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No menu na parte inferior da tela, toque na categoria **Automação** e role até a linha **Carteira**. Toque na linha **Carteira – Quando eu aproximar um cartão da Carteira**."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No menu na parte inferior do ecrã, toque na categoria **Automatização** e desloque-se até à linha **Carteira**. Toque na linha **Carteira – Quando aproximar um cartão da Carteira**."
-          }
-        }
-      }
-    },
     "In TrenteVingt, open Settings and tap Export for Trente. Save the file or send it to this device, then choose it here." : {
       "localizations" : {
         "de" : {
@@ -2749,110 +2697,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Começar do zero"
-          }
-        }
-      }
-    },
-    "Tap **Get the Shortcut** below and add **Trente & Wallet** to your shortcuts." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tippe unten auf **Kurzbefehl laden** und füge **Trente & Wallet** zu deinen Kurzbefehlen hinzu."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toca **Obtener el atajo** a continuación y añade **Trente & Wallet** a tus atajos."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toca **Obtener el atajo** a continuación y agrega **Trente & Wallet** a tus atajos."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Touchez **Obtenir le raccourci** ci-dessous et ajoutez **Trente & Wallet** à vos raccourcis."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tocca **Ottieni il comando rapido** qui sotto e aggiungi **Trente & Wallet** ai tuoi comandi rapidi."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "아래의 **단축어 받기**를 탭하고 **Trente & Wallet**을 단축어에 추가하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toque em **Obter o atalho** abaixo e adicione **Trente & Wallet** aos seus atalhos."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toque em **Obter o atalho** abaixo e adicione **Trente & Wallet** aos seus atalhos."
-          }
-        }
-      }
-    },
-    "Tap the **Trente & Wallet** shortcut you just added, then tap **Edit**." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tippe auf den Kurzbefehl **Trente & Wallet**, den du gerade hinzugefügt hast, und dann auf **Bearbeiten**."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toca el atajo **Trente & Wallet** que acabas de añadir y luego toca **Editar**."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toca el atajo **Trente & Wallet** que acabas de agregar y luego toca **Editar**."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Touchez le raccourci **Trente & Wallet** que vous venez d’ajouter, puis touchez **Modifier**."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tocca il comando rapido **Trente & Wallet** che hai appena aggiunto, poi tocca **Modifica**."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "방금 추가한 **Trente & Wallet** 단축어를 탭한 다음 **편집**을 탭하세요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toque no atalho **Trente & Wallet** que você acabou de adicionar e depois toque em **Editar**."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toque no atalho **Trente & Wallet** que acabou de adicionar e depois toque em **Editar**."
           }
         }
       }
@@ -5980,58 +5824,6 @@
         }
       }
     },
-    "You should see two blocks in your automation. You're all set: Trente will receive your next Apple Pay purchases!" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Du solltest zwei Blöcke in deiner Automation sehen. Fertig: Trente erhält ab jetzt deine Apple Pay-Zahlungen!"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deberías ver dos bloques en tu automatización. ¡Listo! Trente recibirá tus próximas compras con Apple Pay."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deberías ver dos bloques en tu automatización. ¡Listo! Trente recibirá tus próximas compras con Apple Pay."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vous devriez voir deux blocs dans votre automatisation. C’est bon, Trente recevra vos prochaines dépenses Apple Pay !"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dovresti vedere due blocchi nella tua automazione. Fatto: Trente riceverà i tuoi prossimi acquisti Apple Pay!"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "자동화에 블록 두 개가 보이면 완료예요. 이제 다음 Apple Pay 결제부터 Trente에 전달돼요!"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você deve ver dois blocos na sua automação. Pronto: o Trente vai receber suas próximas compras com Apple Pay!"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deverá ver dois blocos na sua automatização. Pronto: o Trente vai receber as suas próximas compras com Apple Pay!"
-          }
-        }
-      }
-    },
     "You've used your %lld free Apple Pay logs this month. Get Trente+ for unlimited automatic logging." : {
       "localizations" : {
         "de" : {
@@ -7587,58 +7379,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Adicione notas e imagens com o Trente+"
-          }
-        }
-      }
-    },
-    "Add the Trente shortcut, then create one automation. Every card payment then shows up in Trente, ready to review." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Füge den Trente-Kurzbefehl hinzu und erstelle eine Automation. Danach erscheint jede Kartenzahlung in Trente, bereit zur Prüfung."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añade el atajo de Trente y crea una automatización. Cada pago con tarjeta aparecerá en Trente, listo para revisar."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Agrega el atajo de Trente y crea una automatización. Cada pago con tarjeta aparecerá en Trente, listo para revisar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajoutez le raccourci Trente, puis créez une automatisation. Chaque paiement par carte apparaît ensuite dans Trente, prêt à être vérifié."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aggiungi il comando rapido di Trente, poi crea un’automazione. Ogni pagamento con carta apparirà in Trente, pronto da verificare."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trente 단축어를 추가한 다음 자동화를 하나 만드세요. 그러면 모든 카드 결제가 Trente에 표시되어 바로 확인할 수 있어요."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adicione o atalho do Trente e crie uma automação. Cada pagamento com cartão vai aparecer no Trente, pronto para revisar."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Adicione o atalho do Trente e crie uma automatização. Cada pagamento com cartão passa a aparecer no Trente, pronto a rever."
           }
         }
       }
@@ -12332,58 +12072,6 @@
         }
       }
     },
-    "Get the Shortcut" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kurzbefehl laden"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obtener el atajo"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obtener el atajo"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obtenir le raccourci"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ottieni il comando rapido"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "단축어 받기"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obter o atalho"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obter o atalho"
-          }
-        }
-      }
-    },
     "GitHub" : {
       "localizations" : {
         "de" : {
@@ -13114,58 +12802,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "As imagens são guardadas junto com a folha de cálculo num ficheiro .zip."
-          }
-        }
-      }
-    },
-    "In the Shortcuts app" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In der App „Kurzbefehle“"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En la app Atajos"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En la app Atajos"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dans l’app Raccourcis"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nell’app Comandi Rapidi"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "단축어 앱에서"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No app Atalhos"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Na app Atalhos"
           }
         }
       }
@@ -16205,58 +15841,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir Definições"
-          }
-        }
-      }
-    },
-    "Open Shortcut Again" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kurzbefehl erneut öffnen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Volver a abrir el atajo"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Volver a abrir el atajo"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rouvrir le raccourci"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Riapri il comando rapido"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "단축어 다시 열기"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir o atalho novamente"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir novamente o atalho"
           }
         }
       }
@@ -25578,6 +25162,786 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reduzir"
+          }
+        }
+      }
+    },
+    "Tap **Edit** in the top right corner." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe oben rechts auf **Bearbeiten**."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca **Editar** en la esquina superior derecha."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca **Editar** en la esquina superior derecha."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez **Modifier** en haut à droite."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca **Modifica** in alto a destra."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오른쪽 상단의 **편집**을 탭하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque em **Editar** no canto superior direito."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque em **Editar** no canto superior direito."
+          }
+        }
+      }
+    },
+    "Tap **Automation**." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe auf **Automation**."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca **Automatización**."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca **Automatización**."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez **Automatisation**."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca **Automazioni**."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**자동화**를 탭하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque em **Automação**."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque em **Automatização**."
+          }
+        }
+      }
+    },
+    "Scroll down and tap **Wallet**." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scrolle nach unten und tippe auf **Wallet**."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desplázate hacia abajo y toca **Cartera**."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desplázate hacia abajo y toca **Wallet**."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faites défiler vers le bas et touchez **Cartes**."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scorri verso il basso e tocca **Wallet**."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아래로 스크롤하여 **지갑**을 탭하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Role para baixo e toque em **Carteira**."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desloque-se para baixo e toque em **Carteira**."
+          }
+        }
+      }
+    },
+    "Tap **Search** at the bottom and type “Trente”." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe unten auf **Suchen** und gib „Trente“ ein."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca **Buscar** en la parte inferior y escribe “Trente”."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca **Buscar** en la parte inferior y escribe “Trente”."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez **Rechercher** en bas et saisissez « Trente »."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca **Cerca** in basso e scrivi “Trente”."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "하단의 **검색**을 탭하고 ‘Trente’를 입력하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque em **Buscar** na parte inferior e digite “Trente”."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque em **Pesquisa** na parte inferior e escreva “Trente”."
+          }
+        }
+      }
+    },
+    "Tap **Trente & Wallet**." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe auf **Trente & Wallet**."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca **Trente & Wallet**."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca **Trente & Wallet**."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez **Trente & Wallet**."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca **Trente & Wallet**."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Trente & Wallet**을 탭하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque em **Trente & Wallet**."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque em **Trente & Wallet**."
+          }
+        }
+      }
+    },
+    "Tap the **Transaction** field. In the bar above the keyboard, scroll to the end and tap **Transaction**." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe auf das Feld **Transaktion**. Scrolle in der Leiste über der Tastatur bis zum Ende und tippe auf **Transaktion**."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca el campo **Transacción**. En la barra sobre el teclado, desplázate hasta el final y toca **Transacción**."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca el campo **Transacción**. En la barra sobre el teclado, desplázate hasta el final y toca **Transacción**."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez le champ **Transaction**. Dans la barre au-dessus du clavier, faites défiler jusqu’au bout et touchez **Transaction**."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca il campo **Transazione**. Nella barra sopra la tastiera, scorri fino alla fine e tocca **Transazione**."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**거래** 필드를 탭하세요. 키보드 위 막대를 끝까지 스크롤한 다음 **거래**를 탭하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque no campo **Transação**. Na barra acima do teclado, role até o fim e toque em **Transação**."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque no campo **Transação**. Na barra acima do teclado, desloque-se até ao fim e toque em **Transação**."
+          }
+        }
+      }
+    },
+    "Tap the **Amount** field. Scroll the bar to the end again and tap **Transaction**." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe auf das Feld **Betrag**. Scrolle die Leiste wieder bis zum Ende und tippe auf **Transaktion**."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca el campo **Importe**. Vuelve a desplazar la barra hasta el final y toca **Transacción**."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca el campo **Importe**. Vuelve a desplazar la barra hasta el final y toca **Transacción**."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez le champ **Montant**. Faites de nouveau défiler la barre jusqu’au bout et touchez **Transaction**."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca il campo **Importo**. Scorri di nuovo la barra fino alla fine e tocca **Transazione**."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**금액** 필드를 탭하세요. 다시 막대를 끝까지 스크롤한 다음 **거래**를 탭하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque no campo **Valor**. Role a barra até o fim de novo e toque em **Transação**."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque no campo **Montante**. Desloque novamente a barra até ao fim e toque em **Transação**."
+          }
+        }
+      }
+    },
+    "Tap the new **Transaction** in the Amount field, then choose **Amount**." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe im Feld „Betrag“ auf das neue **Transaktion** und wähle dann **Betrag**."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca la nueva **Transacción** del campo Importe y elige **Importe**."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca la nueva **Transacción** del campo Importe y elige **Cantidad**."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez le nouveau **Transaction** dans le champ Montant, puis choisissez **Montant**."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca la nuova **Transazione** nel campo Importo, poi scegli **Importo**."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "금액 필드의 새 **거래**를 탭한 다음 **금액**을 선택하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque na nova **Transação** no campo Valor e escolha **Valor**."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque na nova **Transação** no campo Montante e escolha **Quantia**."
+          }
+        }
+      }
+    },
+    "That's it! Trente will prepare an expense after each Apple Pay purchase." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fertig! Trente bereitet nach jedem Kauf mit Apple Pay eine Ausgabe vor."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Listo! Trente preparará un gasto después de cada compra con Apple Pay."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Listo! Trente preparará un gasto después de cada compra con Apple Pay."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C’est tout ! Trente préparera une dépense après chaque achat avec Apple Pay."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fatto! Trente preparerà una spesa dopo ogni acquisto con Apple Pay."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료되었어요! 이제 Apple Pay로 결제할 때마다 Trente가 지출을 준비해 둘 거예요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pronto! O Trente vai preparar uma despesa após cada compra com Apple Pay."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Já está! O Trente vai preparar uma despesa após cada compra com Apple Pay."
+          }
+        }
+      }
+    },
+    "Open Shortcuts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurzbefehle öffnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Atajos"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Atajos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir Raccourcis"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri Comandi Rapidi"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축어 열기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Atalhos"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Atalhos"
+          }
+        }
+      }
+    },
+    "Set Up" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einrichten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configura"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정하기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar"
+          }
+        }
+      }
+    },
+    "Set this up on your iPhone" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richte das auf deinem iPhone ein"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configúralo en tu iPhone"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configúralo en tu iPhone"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurez-le sur votre iPhone"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuralo sul tuo iPhone"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone에서 설정하세요"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configure no seu iPhone"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configure no seu iPhone"
+          }
+        }
+      }
+    },
+    "Apple Pay purchases reach Trente through an automation in the Shortcuts app on your iPhone. Open Trente there, go to Settings and tap Connect Trente to Apple Pay." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple-Pay-Käufe gelangen über eine Automation in der App „Kurzbefehle“ auf deinem iPhone zu Trente. Öffne Trente dort, gehe zu Einstellungen und tippe auf „Trente mit Apple Pay verbinden“."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las compras con Apple Pay llegan a Trente a través de una automatización de la app Atajos de tu iPhone. Abre Trente en tu iPhone, ve a Ajustes y toca Conectar Trente a Apple Pay."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las compras con Apple Pay llegan a Trente a través de una automatización de la app Atajos de tu iPhone. Abre Trente en tu iPhone, ve a Configuración y toca Conectar Trente a Apple Pay."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les achats Apple Pay arrivent dans Trente grâce à une automatisation de l’app Raccourcis sur votre iPhone. Ouvrez Trente sur votre iPhone, allez dans Réglages et touchez Connecter Trente à Apple Pay."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gli acquisti con Apple Pay arrivano in Trente tramite un’automazione nell’app Comandi Rapidi del tuo iPhone. Apri Trente sull’iPhone, vai in Impostazioni e tocca Collega Trente ad Apple Pay."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay 결제는 iPhone 단축어 앱의 자동화를 통해 Trente에 전달돼요. iPhone에서 Trente를 열고 설정으로 이동한 다음 Trente를 Apple Pay에 연결을 탭하세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As compras com Apple Pay chegam ao Trente por meio de uma automação no app Atalhos do seu iPhone. Abra o Trente no iPhone, vá em Ajustes e toque em Conectar o Trente ao Apple Pay."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As compras com Apple Pay chegam ao Trente através de uma automatização na app Atalhos do seu iPhone. Abra o Trente no iPhone, vá a Definições e toque em Ligar o Trente ao Apple Pay."
+          }
+        }
+      }
+    },
+    "Create one automation in the Shortcuts app. Every card payment then shows up in Trente, ready to review." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstelle eine Automation in der App „Kurzbefehle“. Danach erscheint jede Kartenzahlung in Trente, bereit zur Prüfung."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea una automatización en la app Atajos. Cada pago con tarjeta aparecerá en Trente, listo para revisar."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea una automatización en la app Atajos. Cada pago con tarjeta aparecerá en Trente, listo para revisar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créez une automatisation dans l’app Raccourcis. Chaque paiement par carte apparaît ensuite dans Trente, prêt à être vérifié."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea un’automazione nell’app Comandi Rapidi. Ogni pagamento con carta apparirà in Trente, pronto da verificare."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축어 앱에서 자동화를 하나 만드세요. 그러면 모든 카드 결제가 Trente에 표시되어 바로 확인할 수 있어요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crie uma automação no app Atalhos. Cada pagamento com cartão vai aparecer no Trente, pronto para revisar."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crie uma automatização na app Atalhos. Cada pagamento com cartão passa a aparecer no Trente, pronto a rever."
+          }
+        }
+      }
+    },
+    "Trente will walk you through one automation in the Shortcuts app. Come back here after each step." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente führt dich durch eine Automation in der App „Kurzbefehle“. Komm nach jedem Schritt hierher zurück."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te guiará para crear una automatización en la app Atajos. Vuelve aquí después de cada paso."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te guiará para crear una automatización en la app Atajos. Regresa aquí después de cada paso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous guide pour créer une automatisation dans l’app Raccourcis. Revenez ici après chaque étape."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente ti guida nella creazione di un’automazione nell’app Comandi Rapidi. Torna qui dopo ogni passaggio."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente가 단축어 앱에서 자동화 하나를 만드는 과정을 안내해 드려요. 단계마다 여기로 돌아오세요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente vai guiar você na criação de uma automação no app Atalhos. Volte aqui depois de cada etapa."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente vai guiá-lo na criação de uma automatização na app Atalhos. Volte aqui depois de cada passo."
           }
         }
       }

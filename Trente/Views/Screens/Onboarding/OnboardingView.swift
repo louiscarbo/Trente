@@ -22,7 +22,7 @@ struct OnboardingView: View {
     @State private var incomeErrorMessage: String?
     @State private var notificationPermission = NotificationPermissionState()
     @State private var isShowingPaywall = false
-    @State private var hasOpenedShortcut = false
+    @State private var isShowingShortcutsSetup = false
     @Query private var months: [Month]
 
     var body: some View {
@@ -39,6 +39,9 @@ struct OnboardingView: View {
         .refreshesNotificationPermission(notificationPermission)
         .sheet(isPresented: $isShowingPaywall, onDismiss: onFinish) {
             SubscriptionView()
+        }
+        .sheet(isPresented: $isShowingShortcutsSetup, onDismiss: goForward) {
+            ShortcutsSetupSheet()
         }
         .alert("We couldn't save your month", item: $saveErrorMessage) { _ in
             Button("Retry", action: saveMonthAndContinue)
@@ -116,8 +119,8 @@ struct OnboardingView: View {
             )
         case .applePay:
             ApplePayStepView(
-                hasOpenedShortcut: hasOpenedShortcut,
-                onGetShortcut: openShortcut,
+                currency: model.draft.currency,
+                onSetUp: { isShowingShortcutsSetup = true },
                 onContinue: goForward
             )
         case .allSet:
@@ -145,13 +148,6 @@ struct OnboardingView: View {
             await notificationPermission.request()
             guard model.currentStep == .notifications else { return }
             goForward()
-        }
-    }
-
-    private func openShortcut() {
-        openURL(ExternalLinks.logWalletTransactionShortcut) { accepted in
-            guard accepted else { return }
-            hasOpenedShortcut = true
         }
     }
 
