@@ -25,6 +25,16 @@ extension RecurringCalendarGrid {
             return day.isDue ? AnyShapeStyle(.primary) : AnyShapeStyle(.secondary)
         }
 
+        private var highlightStyle: AnyShapeStyle? {
+            if isSelected {
+                return AnyShapeStyle(.primary)
+            }
+            if isToday {
+                return AnyShapeStyle(.fill.tertiary)
+            }
+            return nil
+        }
+
         var body: some View {
             Button(action: onSelect) {
                 VStack(spacing: 0) {
@@ -39,12 +49,10 @@ extension RecurringCalendarGrid {
                 .padding(.top, 1)
                 .frame(maxWidth: .infinity, minHeight: 32, alignment: .top)
                 .background {
-                    if isSelected {
+                    if let highlightStyle {
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(.primary)
-                    } else if isToday {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(.fill.tertiary)
+                            .fill(highlightStyle)
+                            .padding(.horizontal, 4)
                     }
                 }
                 .contentShape(.rect)
