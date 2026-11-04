@@ -9,32 +9,16 @@ extension TrentePlusSection {
     struct ComparisonTable: View {
         let comparisons: [TrentePlusBenefit.Comparison]
 
-        @State private var isShowingAll = false
         @ScaledMetric(relativeTo: .subheadline) private var columnWidth = 80.0
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-        private let foldedCount = 5
-
-        private var canFold: Bool {
-            comparisons.count > foldedCount
-        }
-
-        private var visibleComparisons: [TrentePlusBenefit.Comparison] {
-            isShowingAll ? comparisons : Array(comparisons.prefix(foldedCount))
-        }
-
         var body: some View {
-            VStack(spacing: 0) {
-                if dynamicTypeSize.isAccessibilitySize {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(spacing: 0) {
                     stackedRows
-                } else {
-                    grid
                 }
-                if canFold {
-                    Divider()
-                        .padding(.leading)
-                    foldButton
-                }
+            } else {
+                grid
             }
         }
 
@@ -55,8 +39,8 @@ extension TrentePlusSection {
                 .padding(.top, 4)
                 .padding(.bottom, 2)
                 .accessibilityHidden(true)
-                ForEach(visibleComparisons) { comparison in
-                    if comparison.id != visibleComparisons.first?.id {
+                ForEach(comparisons) { comparison in
+                    if comparison.id != comparisons.first?.id {
                         Divider()
                             .gridCellUnsizedAxes(.horizontal)
                     }
@@ -85,8 +69,8 @@ extension TrentePlusSection {
         }
 
         private var stackedRows: some View {
-            ForEach(visibleComparisons) { comparison in
-                if comparison.id != visibleComparisons.first?.id {
+            ForEach(comparisons) { comparison in
+                if comparison.id != comparisons.first?.id {
                     Divider()
                         .padding(.leading)
                 }
@@ -129,33 +113,6 @@ extension TrentePlusSection {
             case .included: Text("Included")
             case .notIncluded: Text("Not included")
             }
-        }
-
-        private var foldButton: some View {
-            Button {
-                withAnimation {
-                    isShowingAll.toggle()
-                }
-            } label: {
-                HStack {
-                    Group {
-                        if isShowingAll {
-                            Text("Show less")
-                        } else {
-                            Text("Show all \(comparisons.count)")
-                        }
-                    }
-                    .foregroundStyle(.primary)
-                    Spacer()
-                    Image(systemName: isShowingAll ? "chevron.up" : "chevron.down")
-                        .foregroundStyle(.tertiary)
-                        .accessibilityHidden(true)
-                }
-                .padding(.horizontal)
-                .padding(.vertical, 12)
-                .contentShape(.rect)
-            }
-            .buttonStyle(.plain)
         }
     }
 }
