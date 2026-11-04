@@ -12,6 +12,7 @@ extension RecurringCalendarGrid {
         let isPast: Bool
         let isShown: Bool
         let isSelected: Bool
+        let isTappable: Bool
         let onSelect: () -> Void
 
         private var numberStyle: AnyShapeStyle {
@@ -32,20 +33,16 @@ extension RecurringCalendarGrid {
                         .monospacedDigit()
                         .lineLimit(1)
                         .foregroundStyle(numberStyle)
-                        .padding(.horizontal, 6)
-                        .frame(minWidth: 29, minHeight: 22)
-                        .background {
-                            if isSelected {
-                                Capsule()
-                                    .fill(.primary)
-                            }
-                        }
+                        .frame(minHeight: 22)
                     dots
                 }
                 .padding(.top, 1)
                 .frame(maxWidth: .infinity, minHeight: 32, alignment: .top)
                 .background {
-                    if isToday {
+                    if isSelected {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.primary)
+                    } else if isToday {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(.fill.tertiary)
                     }
@@ -53,7 +50,7 @@ extension RecurringCalendarGrid {
                 .contentShape(.rect)
             }
             .buttonStyle(.plain)
-            .allowsHitTesting(day.isDue)
+            .allowsHitTesting(isTappable)
             .accessibilityRemoveTraits(day.isDue ? [] : .isButton)
             .accessibilityLabel(Text(day.date, format: .dateTime.day().month(.wide)))
             .accessibilityValue(Text(day.dueCategories.map(\.name).formatted(.list(type: .and))))

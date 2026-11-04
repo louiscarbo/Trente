@@ -10,7 +10,7 @@ struct RecurringCalendarGrid: View {
     let today: Date
     let shownDays: Range<Date>
     let selectedDay: Date?
-    let onSelectDay: (Date) -> Void
+    let onSelectDay: (Date?) -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -43,9 +43,10 @@ struct RecurringCalendarGrid: View {
                 isToday: day.date == today,
                 isPast: day.date < today,
                 isShown: shownDays.contains(day.date),
-                isSelected: day.date == selectedDay
+                isSelected: day.date == selectedDay,
+                isTappable: day.isDue || selectedDay != nil
             ) {
-                onSelectDay(day.date)
+                onSelectDay(day.isDue ? day.date : nil)
             }
         } else {
             Color.clear

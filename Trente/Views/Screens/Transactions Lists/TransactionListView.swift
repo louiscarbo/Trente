@@ -132,7 +132,11 @@ struct TransactionListView: View {
             shownDays: filter.shownDays,
             selectedDay: filter.shownSingleDay
         ) { day in
-            filter.toggleDay(day, in: month)
+            if let day {
+                filter.toggleDay(day, in: month)
+            } else {
+                filter.clearDay(in: month)
+            }
         }
     }
 

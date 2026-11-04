@@ -43,12 +43,16 @@ struct TransactionListFilter {
     mutating func toggleDay(_ day: Date, in month: Month) {
         let tappedDay = Calendar.current.startOfDay(for: day)
         if shownSingleDay == tappedDay {
-            firstDay = month.startDate
-            lastDay = month.endDate()
+            clearDay(in: month)
         } else {
             firstDay = tappedDay
             lastDay = tappedDay
         }
+    }
+
+    mutating func clearDay(in month: Month) {
+        firstDay = month.startDate
+        lastDay = month.endDate()
     }
 
     func matchingOnAnyDay(_ items: [DisplayableTransaction]) -> [DisplayableTransaction] {

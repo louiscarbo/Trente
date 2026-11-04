@@ -187,6 +187,24 @@ struct TransactionListFilterTests {
         #expect(filter.apply(to: items).map(\.title) == ["Salary", "Rent"])
     }
 
+    @Test("Clearing the day brings back the month and keeps search and categories")
+    func clearingTheDayRestoresTheMonth() throws {
+        let context = try makeContext()
+        let (month, items) = try sampleItems(in: context)
+        var filter = TransactionListFilter(month: month)
+        filter.categories = [.needs]
+        filter.searchText = "r"
+
+        filter.toggleDay(date(10, 1), in: month)
+        filter.clearDay(in: month)
+
+        #expect(filter.firstDay == month.startDate)
+        #expect(filter.lastDay == month.endDate())
+        #expect(filter.categories == [.needs])
+        #expect(filter.searchText == "r")
+        #expect(filter.apply(to: items).map(\.title) == ["Salary", "Rent"])
+    }
+
     @Test("Tapping another day moves to that day")
     func tappingAnotherDayMovesThere() throws {
         let context = try makeContext()
