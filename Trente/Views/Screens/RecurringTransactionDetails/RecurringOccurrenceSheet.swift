@@ -16,6 +16,7 @@ struct RecurringOccurrenceSheet: View {
 
     @State private var showRecurringTransaction = false
     @State private var showSkipConfirmation = false
+    @State private var proposedMove: ScheduleMove?
     @State private var errorMessage: String?
 
     var body: some View {
@@ -34,6 +35,7 @@ struct RecurringOccurrenceSheet: View {
                 CloseToolbarItem { dismiss() }
             }
             .errorAlert(message: $errorMessage)
+            .scheduleMoveAlert($proposedMove, onMove: move, onKeep: { dismiss() })
         }
         .presentationDetents([.medium, .large])
         .sheet(isPresented: $showRecurringTransaction, onDismiss: dismissIfNoLongerPending) {
@@ -169,6 +171,19 @@ struct RecurringOccurrenceSheet: View {
     private func confirm() {
         do {
             try RecurringTransactionService.shared.confirm(occurrence, in: modelContext)
+            if let startDate = RecurringTransactionService.shared.movedStartDate(for: occurrence) {
+                proposedMove = ScheduleMove(rule: occurrence.rule, startDate: startDate)
+            } else {
+                dismiss()
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func move(_ move: ScheduleMove) {
+        do {
+            try RecurringTransactionService.shared.move(move.rule, to: move.startDate, in: modelContext)
             dismiss()
         } catch {
             errorMessage = error.localizedDescription

@@ -95,7 +95,7 @@ struct AppNavigationView: View {
             NewTransactionView(context: context)
         }
         #endif
-        .transactionActionsErrorAlert()
+        .transactionActionsAlerts()
         .reviewPrompt(
             monthCount: months.count,
             isShowingLatestMonth: isShowingLatestMonth,

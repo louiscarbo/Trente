@@ -12,6 +12,7 @@ struct RowAction {
     let systemImage: String
     let tint: Color
     var isDestructive = false
+    var allowsFullSwipe = true
     let action: () -> Void
 
     fileprivate var swipeButton: some View {
@@ -31,10 +32,10 @@ struct RowAction {
 extension View {
     func rowActions(leading: RowAction, trailing: RowAction) -> some View {
         self
-            .swipeActions(edge: .leading) {
+            .swipeActions(edge: .leading, allowsFullSwipe: leading.allowsFullSwipe) {
                 leading.swipeButton
             }
-            .swipeActions(edge: .trailing) {
+            .swipeActions(edge: .trailing, allowsFullSwipe: trailing.allowsFullSwipe) {
                 trailing.swipeButton
             }
             .contextMenu {

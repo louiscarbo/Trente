@@ -15,7 +15,6 @@ struct RecurringTransactionRowView: View {
     var showsDateBadge = true
     let onOpen: () -> Void
 
-    @State private var showConfirmConfirmation = false
     @State private var showSkipConfirmation = false
 
     var body: some View {
@@ -38,9 +37,10 @@ struct RecurringTransactionRowView: View {
             leading: RowAction(
                 title: occurrence.isIncome ? String(localized: "Received") : String(localized: "Paid"),
                 systemImage: "checkmark.circle",
-                tint: .green
+                tint: .green,
+                allowsFullSwipe: false
             ) {
-                showConfirmConfirmation = true
+                transactionActions.confirm(occurrence, in: modelContext)
             },
             trailing: RowAction(
                 title: String(localized: "Skip"),
@@ -50,18 +50,6 @@ struct RecurringTransactionRowView: View {
                 showSkipConfirmation = true
             }
         )
-        .confirmationDialog(
-            confirmConfirmationTitle,
-            isPresented: $showConfirmConfirmation,
-            titleVisibility: .visible
-        ) {
-            Button(occurrence.isIncome ? String(localized: "Mark as Received") : String(localized: "Mark as Paid")) {
-                transactionActions.confirm(occurrence, in: modelContext)
-            }
-            Button(String(localized: "Cancel"), role: .cancel) {}
-        } message: {
-            Text("It's added to this month's transactions.")
-        }
         .skipOccurrenceConfirmation(
             isPresented: $showSkipConfirmation,
             title: occurrence.rule.title,
@@ -70,13 +58,6 @@ struct RecurringTransactionRowView: View {
         ) {
             transactionActions.skip(occurrence, in: modelContext)
         }
-    }
-
-    private var confirmConfirmationTitle: String {
-        let title = occurrence.rule.title
-        return occurrence.isIncome
-            ? String(localized: "Mark \(title) as received?")
-            : String(localized: "Mark \(title) as paid?")
     }
 }
 
