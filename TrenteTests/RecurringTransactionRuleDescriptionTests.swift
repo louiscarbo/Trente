@@ -36,6 +36,12 @@ struct RecurringTransactionRuleDescriptionTests {
         ("ko", "15"),
         ("pt-BR", "15"),
         ("pt-PT", "15"),
+        ("sv", "15:e"),
+        ("da", "15."),
+        ("nb", "15."),
+        ("el", "15"),
+        ("ja", "15"),
+        ("fr-CA", "15"),
     ])
     func monthlyDayFormatting(localization: String, expected: String) {
         #expect(15.dayOfMonthString(localization: localization) == expected)

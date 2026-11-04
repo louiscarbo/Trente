@@ -39,6 +39,21 @@ struct CurrencyFractionDigitsTests {
         }
     }
 
+    @Test("Every available currency has its own sample amounts")
+    func sampleAmountsCoverEveryCurrency() {
+        for currency in Currencies.availableCurrencies {
+            #expect(Currency.sampleAmountsByIsoCode[currency.isoCode] != nil, "\(currency.isoCode)")
+        }
+    }
+
+    @Test("Sample amounts show without hidden decimals")
+    func sampleAmountsAreWholeWithoutMinorUnit() {
+        for currency in Currencies.availableCurrencies where currency.fractionDigits == 0 {
+            #expect(currency.sampleAmounts.rentCents % 100 == 0, "\(currency.isoCode)")
+            #expect(currency.sampleAmounts.bakeryCents % 100 == 0, "\(currency.isoCode)")
+        }
+    }
+
     @Test("Currencies without a minor unit show whole amounts", arguments: ["CLP", "JPY", "KRW", "XPF"])
     func wholeAmounts(isoCode: String) throws {
         let currency = try #require(Currencies.currency(for: isoCode))

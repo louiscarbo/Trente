@@ -37,14 +37,20 @@ enum ExternalLinks {
     private static let privacyPolicyPages = [
         "en": "privacy/",
         "en-GB": "en-gb/privacy/",
+        "da": "da/privatliv/",
         "de": "de/datenschutz/",
+        "el": "el/aporrito/",
         "es": "es/privacidad/",
         "es-419": "es-419/privacidad/",
         "fr": "fr/confidentialite/",
+        "fr-CA": "fr-ca/confidentialite/",
         "it": "it/privacy/",
+        "ja": "ja/privacy/",
         "ko": "ko/privacy/",
+        "nb": "nb/personvern/",
         "pt-BR": "pt-br/privacidade/",
-        "pt-PT": "pt-pt/privacidade/"
+        "pt-PT": "pt-pt/privacidade/",
+        "sv": "sv/integritet/"
     ]
 
     static var privacyPolicy: URL {

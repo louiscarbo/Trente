@@ -53,6 +53,7 @@ struct RecurringTransactionsListView: View {
             }
         }
         .navigationTitle("Recurring Transactions")
+        .inlineNavigationBarTitleDisplayMode()
         .sheet(item: $selectedRule) { rule in
             RecurringTransactionRuleDetailsView(rule: rule, currency: currency)
         }
