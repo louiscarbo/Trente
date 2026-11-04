@@ -34,7 +34,7 @@ extension View {
             .swipeActions(edge: .leading) {
                 leading.swipeButton
             }
-            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            .swipeActions(edge: .trailing) {
                 trailing.swipeButton
             }
             .contextMenu {
