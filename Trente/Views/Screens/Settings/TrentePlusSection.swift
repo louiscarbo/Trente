@@ -30,6 +30,9 @@ struct TrentePlusSection: View {
                 }
             }
             .listRowInsets(EdgeInsets())
+            .onChange(of: isSubscribed) {
+                subscribedPage = .thanks
+            }
         } header: {
             Text("Trente+")
         }
