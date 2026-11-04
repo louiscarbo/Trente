@@ -7,8 +7,9 @@
 # Env:   SHORTCUTS_CAPTURE_LANGUAGES="fr ko" retakes only those, keeping the other captures.
 #        SHORTCUTS_CAPTURE_SIMULATORS="A,B,C" spreads the languages over these simulators in
 #        parallel. A simulator without Apple Intelligence skips the Edit step and keeps each
-#        language's previous Edit image. The default simslim profile doesn't work yet: Shortcuts
-#        finds no Trente action there, likely because the "siri" category (siriactionsd) is off.
+#        language's previous Edit image. Slim simulators work once slimmed with
+#        `simslim on <udid> --except siri --keep com.apple.linkd`: the default profile turns off
+#        Apple Intelligence and linkd, which indexes App Intents, so Shortcuts finds no Trente action.
 #        SHORTCUTS_CAPTURE_SKIP_BUILD=1
 
 set -euo pipefail
@@ -18,7 +19,7 @@ ROOT=${SCRIPT_DIR:h:h}
 DERIVED="$HOME/Library/Developer/Xcode/DerivedData/TrenteShortcutsCapture"
 OUT="$DERIVED/captures"
 ASSETS="$ROOT/Trente/Assets.xcassets/Shortcuts Setup"
-ALL_LANGUAGES=(en en-GB fr es es-419 it de ko pt-BR pt-PT)
+ALL_LANGUAGES=(en en-GB fr fr-CA es es-419 it de ko pt-BR pt-PT ja el sv da nb)
 LANGUAGES=(${=SHORTCUTS_CAPTURE_LANGUAGES:-$ALL_LANGUAGES})
 SIMULATORS=(${(s:,:)SHORTCUTS_CAPTURE_SIMULATORS:-Shortcuts Capture})
 DEVICE_TYPE=com.apple.CoreSimulator.SimDeviceType.iPhone-17
@@ -26,7 +27,8 @@ RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-0
 
 typeset -A LOCALES=(
     en en_US en-GB en_GB fr fr_FR es es_ES es-419 es_MX it it_IT
-    de de_DE ko ko_KR pt-BR pt_BR pt-PT pt_PT
+    de de_DE ko ko_KR pt-BR pt_BR pt-PT pt_PT fr-CA fr_CA
+    ja ja_JP el el_GR sv sv_SE da da_DK nb nb_NO
 )
 
 UDIDS=()
@@ -186,8 +188,11 @@ for capture in sorted((captures / "en").glob("*.jpg")):
     image_set.mkdir()
     images = []
     for language in languages:
+        source = captures / language / capture.name
+        if not source.exists():
+            continue
         filename = f"{capture.stem} {language}.jpg"
-        shutil.copy(captures / language / capture.name, image_set / filename)
+        shutil.copy(source, image_set / filename)
         entry = {"filename": filename, "idiom": "iphone"}
         if language != "en":
             entry["locale"] = language
