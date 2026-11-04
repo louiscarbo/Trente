@@ -30,6 +30,7 @@ struct RecurringCalendarGrid: View {
                         cell(for: layout.weeks[weekIndex][dayIndex])
                     }
                 }
+                .frame(minHeight: 40, alignment: .top)
             }
         }
     }
