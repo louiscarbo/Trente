@@ -57,6 +57,7 @@ struct TrentePlusSection: View {
                 }
                 .frame(height: visiblePageHeight, alignment: .top)
                 .clipped()
+                .accessibilityHidden(isOffScreen(page))
         }
         .animation(.default, value: subscribedPage)
         .padding(.bottom, 12)
@@ -65,6 +66,10 @@ struct TrentePlusSection: View {
     private var visiblePageHeight: CGFloat? {
         guard !dynamicTypeSize.isAccessibilitySize else { return nil }
         return pageHeights[subscribedPage ?? .thanks]
+    }
+
+    private func isOffScreen(_ page: SubscribedPage) -> Bool {
+        !dynamicTypeSize.isAccessibilitySize && page != (subscribedPage ?? .thanks)
     }
 
     @ViewBuilder
