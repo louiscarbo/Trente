@@ -100,7 +100,8 @@ extension MonthView {
                         .font(.title2)
                         .fontWeight(.regular)
                 }
-                .padding(.horizontal)
+                .padding(.vertical, 4)
+                .padding(.horizontal, 24)
             }
             .buttonStyle(TrenteSecondaryButtonStyle(narrow: true))
         }
