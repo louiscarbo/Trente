@@ -36,10 +36,14 @@ struct RecurringTransactionRuleDraftTests {
         let rule = makeRule(frequency: .weekly, startDate: daysFromToday(-13))
         var draft = RecurringTransactionRuleDraft(from: rule)
 
-        draft.setFrequency(.monthly)
+        draft.frequency = .monthly
 
-        #expect(draft.startDate == daysFromToday(1))
+        #expect(draft.nextDate == daysFromToday(1))
         #expect(draft.validate().isEmpty)
+
+        draft.apply(to: rule)
+
+        #expect(rule.startDate == daysFromToday(1))
     }
 
     @Test("Changing the frequency of a rule not started yet keeps its start date")
@@ -47,9 +51,46 @@ struct RecurringTransactionRuleDraftTests {
         let startDate = daysFromToday(10)
         var draft = RecurringTransactionRuleDraft(from: makeRule(frequency: .monthly, startDate: startDate))
 
-        draft.setFrequency(.weekly)
+        draft.frequency = .weekly
 
-        #expect(draft.startDate == startDate)
+        #expect(draft.nextDate == startDate)
+    }
+
+    @Test("Editing a running rule shows its next transaction, not its first")
+    func showsNextTransaction() {
+        let draft = RecurringTransactionRuleDraft(from: makeRule(frequency: .weekly, startDate: daysFromToday(-13)))
+
+        #expect(draft.nextDate == daysFromToday(1))
+        #expect(draft.hasNextDate)
+    }
+
+    @Test("The next date passes over a skipped transaction")
+    func nextDatePassesOverSkipped() {
+        let rule = makeRule(frequency: .weekly, startDate: daysFromToday(-13))
+        rule.skippedOccurrenceDates = [daysFromToday(1)]
+
+        #expect(RecurringTransactionRuleDraft(from: rule).nextDate == daysFromToday(8))
+    }
+
+    @Test("Changing the next date moves the schedule to it")
+    func changingNextDateMovesSchedule() {
+        let rule = makeRule(frequency: .weekly, startDate: daysFromToday(-13))
+        var draft = RecurringTransactionRuleDraft(from: rule)
+
+        draft.nextDate = daysFromToday(3)
+        draft.apply(to: rule)
+
+        #expect(rule.startDate == daysFromToday(3))
+    }
+
+    @Test("A stopped rule shows its start date")
+    func stoppedRuleShowsStartDate() {
+        let rule = makeRule(frequency: .monthly, startDate: daysFromToday(-40), endDate: daysFromToday(-1))
+        let draft = RecurringTransactionRuleDraft(from: rule)
+
+        #expect(draft.nextDate == daysFromToday(-40))
+        #expect(!draft.hasNextDate)
+        #expect(draft.validate().isEmpty)
     }
 
     @Test("A rule stopped before it started can still be edited")
