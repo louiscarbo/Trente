@@ -19,6 +19,7 @@ extension MonthView {
     struct PendingPurchases: View {
         @Environment(\.modelContext) private var modelContext
         @Environment(\.transactionActions) private var transactionActions
+        @Environment(\.isTrentePlusSubscribed) private var isTrentePlusSubscribed
 
         let pendingTransactions: [PendingTransaction]
         let currencyCode: String
@@ -36,6 +37,10 @@ extension MonthView {
             pendingTransactions.dropFirst(shownTransactions.count)
         }
 
+        private var isAtFreeLimit: Bool {
+            !WalletIntakeAllowance().allowsIntake(on: .now, isTrentePlusSubscribed: isTrentePlusSubscribed)
+        }
+
         var body: some View {
             GroupBox(label: Label("\(pendingTransactions.count) Purchases to Review", systemImage: "list.clipboard")) {
                 ForEach(shownTransactions) { pending in
@@ -48,6 +53,7 @@ extension MonthView {
                         onReview: { onReview(.purchase(pending.id)) },
                         onDiscard: { transactionActions.discard(pending, in: modelContext) }
                     )
+                    .accessibilityHidden(isAtFreeLimit)
 
                     if pending != shownTransactions.last {
                         Divider()
@@ -56,9 +62,22 @@ extension MonthView {
 
                 if !hiddenTransactions.isEmpty {
                     moreButton
+                        .accessibilityHidden(isAtFreeLimit)
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
+            .overlay {
+                if isAtFreeLimit {
+                    Button {
+                        onReview(.all)
+                    } label: {
+                        Color.clear
+                            .contentShape(.rect)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Unlimited Apple Pay logging with Trente+")
+                }
+            }
         }
 
         private var moreButton: some View {
