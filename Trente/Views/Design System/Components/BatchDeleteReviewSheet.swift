@@ -40,7 +40,7 @@ struct BatchDeleteReviewSheet: View {
             }
         }
         #if os(macOS)
-        .frame(minWidth: 420, minHeight: 480)
+        .frame(minWidth: 360, minHeight: 480)
         #endif
     }
 
