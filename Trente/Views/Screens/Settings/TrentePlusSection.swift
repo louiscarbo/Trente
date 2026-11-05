@@ -66,7 +66,7 @@ struct TrentePlusSection: View {
             }
             .onScrollGeometryChange(for: SubscribedPage?.self, of: alignedPage) { _, settledPage in
                 guard let settledPage, settledPage != restingPage else { return }
-                withAnimation {
+                withAnimation(.snappy(duration: 0.4)) {
                     restingPage = settledPage
                 }
             }
