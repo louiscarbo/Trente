@@ -184,12 +184,10 @@ struct TransactionListView: View {
     }
 
     private func budgetRows(for groups: [TransactionGroup]) -> [BatchDeleteReviewSheet.Row] {
-        let currencyCodes = Set(groups.map(\.currency.isoCode))
-        guard currencyCodes.count == 1, let currencyCode = currencyCodes.first else { return [] }
-        return BudgetCategory.allCases.compactMap { category in
+        BudgetCategory.allCases.compactMap { category in
             let totalCents = TransactionGroup.totalAmountCents(of: groups, in: category)
             guard totalCents != 0 else { return nil }
-            let givenBack = (Double(-totalCents) / 100).formatted(.amount(currencyCode).sign(strategy: .always()))
+            let givenBack = (Double(-totalCents) / 100).formatted(.amount(month.currency.isoCode).sign(strategy: .always()))
             return .init(title: category.name, detail: givenBack)
         }
     }
