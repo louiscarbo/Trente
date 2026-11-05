@@ -11,8 +11,8 @@ Each layer may use the layers below it, never the ones above.
 1. **App shell**: `TrenteApp`, the widget, App Intents, `NotificationDelegate`, UIKit and AppKit glue. It may use every layer, and no layer uses it.
 2. **Screens** (`Views/Screens`): root views, view models, and each screen's own leaf views.
 3. **Design System** (`Views/Design System`): leaf views used by more than one screen, and styles. It never sees screens, services or an `@Model` type.
-4. **Services** (`Services/`): the app's operations: fetching and saving, notifications, iCloud sync, Trente+, export and import. No screens and no SwiftUI. A service never returns a UI type.
-5. **Model** (`Model/`): SwiftData models, value types such as `BudgetCategory` and `Currency`, the domain math on them (`Month.spentAmount(for:)`, `BudgetFigures`), and drafts. It depends on nothing of ours.
+4. **Services** (`Services/`): the app's operations: fetching and saving, notifications, iCloud sync, Trente+, export and import. No domain rules, no screens and no SwiftUI. A service never returns a UI type.
+5. **Model** (`Model/`): SwiftData models, value types such as `BudgetCategory` and `Currency`, drafts, and the domain rules. It depends on nothing of ours.
 
 ## Views
 
@@ -30,7 +30,15 @@ A screen gets a view model only when it has real logic of its own, like the step
 
 ## Drafts
 
-A draft is an editable copy of one model: `init(from:)`, `validate()`, `apply(to:)`. Drafts are data models, so they belong in Model.
+A draft is an editable copy of one model: `init(from:)`, `validate()`, `apply(to:)`. Drafts are data models, so they belong in Model. `TransactionCreationRequest` is the draft for a new transaction.
+
+## Domain rules
+
+Model says what's true and what's allowed. Services make it happen.
+
+- A domain rule is written once, in Model, as an extension on the model's typealias, next to `Month.spentAmount(for:)`. Examples: how a transaction splits into entries, what confirming or skipping a recurring occurrence does, how a new month starts from the previous one.
+- The service around a rule fetches what it needs, calls the rule, saves, and handles side effects such as notifications and Trente+ checks.
+- Once Model is a package, the stored properties a rule guards are `public internal(set)`: other modules can read them, and only Model changes them.
 
 ## State
 
