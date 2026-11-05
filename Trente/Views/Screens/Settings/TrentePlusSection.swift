@@ -50,20 +50,25 @@ struct TrentePlusSection: View {
     }
 
     private var subscribedCarousel: some View {
-        CardCarousel(selection: $subscribedPage) { page in
-            pageContent(page)
-                .fixedSize(horizontal: false, vertical: true)
-                .onGeometryChange(for: CGFloat.self) { proxy in
-                    proxy.size.height
-                } action: { height in
-                    pageHeights[page] = height
-                }
-                .frame(height: visiblePageHeight, alignment: .top)
-                .clipped()
-                .accessibilityHidden(isOffScreen(page))
+        VStack(alignment: .leading, spacing: 0) {
+            CardCarousel(selection: $subscribedPage) { page in
+                pageContent(page)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .onGeometryChange(for: CGFloat.self) { proxy in
+                        proxy.size.height
+                    } action: { height in
+                        withAnimation {
+                            pageHeights[page] = height
+                        }
+                    }
+                    .frame(height: visiblePageHeight, alignment: .top)
+                    .clipped()
+                    .accessibilityHidden(isOffScreen(page))
+            }
+            .animation(.default, value: subscribedPage)
+            .padding(.bottom, 12)
+            manageButton
         }
-        .animation(.default, value: subscribedPage)
-        .padding(.bottom, 12)
     }
 
     private var visiblePageHeight: CGFloat? {
@@ -82,9 +87,6 @@ struct TrentePlusSection: View {
         case .thanks:
             VStack(alignment: .leading, spacing: 0) {
                 note("Thank you for subscribing to Trente+! Your subscription is what lets me keep working on Trente on my own, without ads or data collection.")
-                if !isStacked {
-                    manageButton
-                }
             }
         case .comparison:
             VStack(alignment: .leading, spacing: 0) {
@@ -96,7 +98,6 @@ struct TrentePlusSection: View {
                         .padding(.bottom, 4)
                 }
                 ComparisonTable(comparisons: TrentePlusBenefit.comparisons)
-                manageButton
             }
         }
     }
