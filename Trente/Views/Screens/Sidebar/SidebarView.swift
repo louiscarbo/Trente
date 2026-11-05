@@ -19,13 +19,10 @@ enum SidebarSelection: Hashable {
 }
 
 struct SidebarView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Environment(\.transactionActions) private var transactionActions
-
     let months: [Month]
     @Binding var selection: SidebarSelection?
     let showsSelection: Bool
-    let onDeleteMonths: ([Month], @escaping () -> Void) -> Void
+    let onDeleteMonths: ([Month]) -> Void
 
     @Query private var recurringRules: [RecurringTransactionRule]
 
@@ -206,12 +203,8 @@ struct SidebarView: View {
     }
 
     private func deleteSelectedMonths() {
-        let monthsToDelete = selectedMonths
-        onDeleteMonths(monthsToDelete) {
-            transactionActions.delete(monthsToDelete, in: modelContext) {
-                monthSelection.end()
-            }
-        }
+        onDeleteMonths(selectedMonths)
+        monthSelection.end()
     }
 
     private var selectedMonth: Binding<Month?> {

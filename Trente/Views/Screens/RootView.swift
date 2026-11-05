@@ -42,6 +42,7 @@ struct RootView: View {
                 )
             case .some(false):
                 AppNavigationView(pendingDeepLink: $pendingDeepLink)
+                    .transactionActionsErrorAlert()
                     .sheet(isPresented: $isShowingTrenteVingtImport) {
                         NavigationStack {
                             TrenteVingtImportView()
