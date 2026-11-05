@@ -37,6 +37,10 @@ struct BudgetRingsCard: View {
                         isOverspent: rings.isOverspent,
                         showsCaptionAsAlert: shownLens == .leftToSpend && rings.isOverspent
                     )
+                    Text("Outer ring: planned · Inner ring: spent")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
                     Legend()
                 }
             }

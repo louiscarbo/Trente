@@ -150,6 +150,18 @@ extension RecurringTransactionRule {
         occurrences(in: month).filter { isPending(on: $0.date) }
     }
 
+    func nextPendingDate(onOrAfter date: Date, calendar: Calendar = .current) -> Date? {
+        var searchStart = date
+        while let candidate = schedule.firstDate(onOrAfter: searchStart, calendar: calendar) {
+            if isPending(on: candidate, calendar: calendar) {
+                return candidate
+            }
+            guard let dayAfter = calendar.date(byAdding: .day, value: 1, to: candidate) else { return nil }
+            searchStart = dayAfter
+        }
+        return nil
+    }
+
     func isPending(on date: Date, calendar: Calendar = .current) -> Bool {
         !isSettled(on: date, calendar: calendar) && !isSkipped(on: date, calendar: calendar)
     }

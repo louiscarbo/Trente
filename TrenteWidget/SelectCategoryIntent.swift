@@ -45,7 +45,7 @@ struct WidgetBudgetCategoryQuery: EntityQuery {
         return WidgetBudgetCategory.allCategories.first
     }
     
-    func suggestedEntities() async throws -> some ResultsCollection {
+    func suggestedEntities() async throws -> [WidgetBudgetCategory] {
         return WidgetBudgetCategory.allCategories
     }
 }

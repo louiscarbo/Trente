@@ -41,6 +41,14 @@ struct RecurringTransactionOccurrence: Identifiable, Hashable {
         date < Calendar.current.startOfDay(for: .now)
     }
 
+    var isDueToday: Bool {
+        Calendar.current.isDateInToday(date)
+    }
+
+    var isDue: Bool {
+        isOverdue || isDueToday
+    }
+
     var categoryName: String {
         if amountCents < 0, let category = rule.repartition.keys.first {
             return category.shortName

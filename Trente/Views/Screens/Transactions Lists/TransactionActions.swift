@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TransactionActions {
     let reportError: (String) -> Void
+    var proposeMove: (ScheduleMove) -> Void = { _ in }
 
     func delete(_ group: TransactionGroup, in context: ModelContext) {
         perform {
@@ -35,6 +36,15 @@ struct TransactionActions {
     func confirm(_ occurrence: RecurringTransactionOccurrence, in context: ModelContext) {
         perform {
             try RecurringTransactionService.shared.confirm(occurrence, in: context)
+            if let startDate = RecurringTransactionService.shared.movedStartDate(for: occurrence) {
+                proposeMove(ScheduleMove(rule: occurrence.rule, startDate: startDate))
+            }
+        }
+    }
+
+    func move(_ move: ScheduleMove, in context: ModelContext) {
+        perform {
+            try RecurringTransactionService.shared.move(move.rule, to: move.startDate, in: context)
         }
     }
 
@@ -89,18 +99,27 @@ extension EnvironmentValues {
     @Entry var transactionActions = TransactionActions { _ in }
 }
 
-private struct TransactionActionsErrorAlert: ViewModifier {
+private struct TransactionActionsAlerts: ViewModifier {
+    @Environment(\.modelContext) private var modelContext
     @State private var errorMessage: String?
+    @State private var proposedMove: ScheduleMove?
 
     func body(content: Content) -> some View {
+        let actions = TransactionActions(
+            reportError: { errorMessage = $0 },
+            proposeMove: { proposedMove = $0 }
+        )
         content
-            .environment(\.transactionActions, TransactionActions { errorMessage = $0 })
+            .environment(\.transactionActions, actions)
             .errorAlert(message: $errorMessage)
+            .scheduleMoveAlert($proposedMove) { move in
+                actions.move(move, in: modelContext)
+            }
     }
 }
 
 extension View {
-    func transactionActionsErrorAlert() -> some View {
-        modifier(TransactionActionsErrorAlert())
+    func transactionActionsAlerts() -> some View {
+        modifier(TransactionActionsAlerts())
     }
 }

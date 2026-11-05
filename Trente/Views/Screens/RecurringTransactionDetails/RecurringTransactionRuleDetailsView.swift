@@ -132,19 +132,16 @@ struct RecurringTransactionRuleDetailsView: View {
             VStack(spacing: .medium) {
                 LabeledPicker(
                     title: "Frequency",
-                    selection: Binding(
-                        get: { shown.wrappedValue.frequency },
-                        set: { draft.setFrequency($0) }
-                    ),
+                    selection: shown.frequency,
                     options: RecurrenceFrequency.allCases
                 ) { frequency in
                     Text(frequency.displayName)
                 }
 
                 DatePicker(
-                    "Start Date",
-                    selection: shown.startDate,
-                    in: (isEditing ? Calendar.current.startOfDay(for: .now) : .distantPast)...,
+                    shown.wrappedValue.hasNextDate ? "Next Date" : "Start Date",
+                    selection: shown.nextDate,
+                    in: (isEditing ? draft.earliestNextDate : .distantPast)...,
                     displayedComponents: .date
                 )
                 .datePickerStyle(.compact)
@@ -162,7 +159,7 @@ struct RecurringTransactionRuleDetailsView: View {
             if isEditing {
                 Button("Add an End Date") {
                     withAnimation(.bouncy) {
-                        draft.endDate = draft.startDate
+                        draft.endDate = draft.nextDate
                     }
                 }
                 .buttonStyle(TrentePrimaryButtonStyle(narrow: true))
@@ -170,7 +167,7 @@ struct RecurringTransactionRuleDetailsView: View {
         } else {
             let minimumEndDate = Calendar.current.date(
                 byAdding: .day, value: 7,
-                to: shown.wrappedValue.startDate
+                to: shown.wrappedValue.nextDate
             ) ?? rule.startDate
             HStack {
                 DatePicker(
