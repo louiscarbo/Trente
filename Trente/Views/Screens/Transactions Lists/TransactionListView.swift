@@ -10,6 +10,7 @@ import SwiftData
 
 struct TransactionListView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.transactionActions) private var transactionActions
 
     let month: Month
     let showRecurring: Bool
@@ -33,6 +34,7 @@ struct TransactionListView: View {
     @State private var filterDateLimits = Date.distantPast...Date.distantFuture
     @State private var errorMessage: String?
     @State private var presentedOccurrence: RecurringTransactionOccurrence?
+    @State private var rowSelection = RowSelection<DisplayableTransaction.ID>()
 
     init(month: Month, showRecurring: Bool) {
         self.showRecurring = showRecurring
@@ -43,9 +45,10 @@ struct TransactionListView: View {
     var body: some View {
         let items = filter.apply(to: allItems)
         let showsNoMatches = items.isEmpty && filter.isActive(for: month)
+        let groupsToDelete = selectedGroups(in: items)
 
         VStack {
-            List {
+            List(selection: rowSelection.isActive ? $rowSelection.selectedIDs : nil) {
                 if showRecurring && !showsNoMatches {
                     Section {
                         calendarGrid
@@ -54,13 +57,13 @@ struct TransactionListView: View {
 
                 Section {
                     ForEach(items) { item in
-                        Row(item: item) { occurrence in
+                        Row(item: item, isSelecting: rowSelection.isActive) { occurrence in
                             presentedOccurrence = occurrence
                         }
                     }
                 }
                 
-                if !showsNoMatches {
+                if !showsNoMatches && !rowSelection.isActive {
                     Section {
                         HStack {
                             VStack(alignment: .leading) {
@@ -85,7 +88,7 @@ struct TransactionListView: View {
                     .accessibilityElement(children: .combine)
                 }
             }
-            .navigationTitle(showRecurring ? "Expected This Month" : "Transactions")
+            .navigationTitle(rowSelection.isActive ? Text("\(groupsToDelete.count) Selected") : Text(showRecurring ? "Expected This Month" : "Transactions"))
             .searchable(text: $filter.searchText, prompt: "Search by title, amount, date, category…")
             .toolbar {
                 #if os(iOS)
@@ -115,6 +118,14 @@ struct TransactionListView: View {
                     }
                 }
             }
+            .selectionMode(
+                $rowSelection,
+                visibleIDs: items.map(\.id),
+                isAvailable: !showRecurring,
+                deleteTitle: String(localized: "Delete \(groupsToDelete.count) Transactions"),
+                reviewSections: { reviewSections(for: selectedGroups(in: filter.apply(to: allItems))) },
+                onDelete: deleteSelectedGroups
+            )
             .errorAlert(message: $errorMessage)
             .sheet(item: $presentedOccurrence) { occurrence in
                 RecurringOccurrenceSheet(occurrence: occurrence)
@@ -137,6 +148,45 @@ struct TransactionListView: View {
             } else {
                 filter.clearDay(in: month)
             }
+        }
+    }
+
+    private func selectedGroups(in items: [DisplayableTransaction]) -> [TransactionGroup] {
+        rowSelection.selected(in: items).compactMap { item in
+            guard case .group(let group) = item.kind else { return nil }
+            return group
+        }
+    }
+
+    private func deleteSelectedGroups() {
+        transactionActions.delete(selectedGroups(in: filter.apply(to: allItems)), in: modelContext)
+        rowSelection.end()
+    }
+
+    private func reviewSections(for groups: [TransactionGroup]) -> [BatchDeleteReviewSheet.Section] {
+        var sections: [BatchDeleteReviewSheet.Section] = [
+            .willBeDeleted(
+                groups.map { group in
+                    .init(title: group.title, detail: group.totalAmount.formatted(.amount(group.currency.isoCode)))
+                }
+            )
+        ]
+
+        let budgetRows = budgetRows(for: groups)
+        if !budgetRows.isEmpty {
+            sections.append(
+                .init(title: String(localized: "Your budget"), systemImage: "chart.pie.fill", rows: budgetRows)
+            )
+        }
+        return sections
+    }
+
+    private func budgetRows(for groups: [TransactionGroup]) -> [BatchDeleteReviewSheet.Row] {
+        BudgetCategory.allCases.compactMap { category in
+            let totalCents = TransactionGroup.totalAmountCents(of: groups, in: category)
+            guard totalCents != 0 else { return nil }
+            let givenBack = (Double(-totalCents) / 100).formatted(.amount(month.currency.isoCode).sign(strategy: .always()))
+            return .init(title: category.name, detail: givenBack)
         }
     }
 

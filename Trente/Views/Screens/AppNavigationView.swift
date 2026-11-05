@@ -15,6 +15,9 @@ struct AppNavigationView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
 
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.transactionActions) private var transactionActions
+
     @Binding var pendingDeepLink: DeepLink?
 
     @Query(
@@ -24,6 +27,7 @@ struct AppNavigationView: View {
     ) private var months: [Month]
 
     @State private var selection: SidebarSelection?
+    @State private var monthsToDeleteAfterLeaving: [Month] = []
     @State private var preferredCompactColumn: NavigationSplitViewColumn = .sidebar
     @State private var pendingTransactionRouter = PendingTransactionRouter.shared
     @State private var paywallRouter = PaywallRouter.shared
@@ -36,7 +40,8 @@ struct AppNavigationView: View {
             SidebarView(
                 months: months,
                 selection: sidebarSelection,
-                showsSelection: showsSidebarSelection
+                showsSelection: showsSidebarSelection,
+                onDeleteMonths: delete
             )
         } detail: {
             NavigationStack {
@@ -95,7 +100,6 @@ struct AppNavigationView: View {
             NewTransactionView(context: context)
         }
         #endif
-        .transactionActionsErrorAlert()
         .reviewPrompt(
             monthCount: months.count,
             isShowingLatestMonth: isShowingLatestMonth,
@@ -150,9 +154,10 @@ struct AppNavigationView: View {
         switch destination {
         case .month(let month):
             MonthView(month: month) {
-                leave(month)
+                leave([month])
             }
             .id(month)
+            .onDisappear(perform: deleteMonthsAfterLeaving)
         case .recurring:
             if let currency = months.first?.currency {
                 RecurringTransactionsListView(currency: currency)
@@ -170,8 +175,25 @@ struct AppNavigationView: View {
         )
     }
 
-    private func leave(_ deletedMonth: Month) {
-        selection = selection?.leaving([deletedMonth], for: months.first { $0 != deletedMonth })
+    private func leave(_ deletedMonths: [Month]) {
+        selection = selection?.leaving(deletedMonths, for: months.first { !deletedMonths.contains($0) })
+    }
+
+    private func delete(_ deletedMonths: [Month]) {
+        guard showsSidebarSelection, case .month(let shownMonth) = selection, deletedMonths.contains(shownMonth) else {
+            leave(deletedMonths)
+            transactionActions.delete(deletedMonths, in: modelContext)
+            return
+        }
+        monthsToDeleteAfterLeaving = deletedMonths
+        leave(deletedMonths)
+    }
+
+    private func deleteMonthsAfterLeaving() {
+        guard !monthsToDeleteAfterLeaving.isEmpty else { return }
+        let deletedMonths = monthsToDeleteAfterLeaving
+        monthsToDeleteAfterLeaving = []
+        transactionActions.delete(deletedMonths, in: modelContext)
     }
 
     private func show(_ destination: SidebarSelection) {

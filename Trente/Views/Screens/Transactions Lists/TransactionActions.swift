@@ -50,11 +50,37 @@ struct TransactionActions {
         }
     }
 
+    func delete(_ groups: [TransactionGroup], in context: ModelContext) {
+        performBatchDeletion {
+            try BatchDeleteService.shared.delete(groups: groups, in: context)
+        }
+    }
+
+    func delete(_ rules: [RecurringTransactionRule], in context: ModelContext) {
+        performBatchDeletion {
+            try BatchDeleteService.shared.delete(rules: rules, in: context)
+        }
+    }
+
+    func delete(_ months: [Month], in context: ModelContext) {
+        performBatchDeletion {
+            try BatchDeleteService.shared.delete(months: months, in: context)
+        }
+    }
+
     private func perform(_ action: () throws -> Void) {
         do {
             try action()
         } catch {
             reportError(error.localizedDescription)
+        }
+    }
+
+    private func performBatchDeletion(_ action: () throws -> Void) {
+        do {
+            try action()
+        } catch {
+            reportError(String(localized: "Nothing was deleted. \(error.localizedDescription)"))
         }
     }
 }

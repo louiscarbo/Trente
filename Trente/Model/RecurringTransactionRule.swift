@@ -154,6 +154,12 @@ extension RecurringTransactionRule {
         !isSettled(on: date, calendar: calendar) && !isSkipped(on: date, calendar: calendar)
     }
 
+    func nextDateIfPending(onOrAfter date: Date, calendar: Calendar = .current) -> Date? {
+        guard let nextDate = schedule.firstDate(onOrAfter: date, calendar: calendar),
+              isPending(on: nextDate, calendar: calendar) else { return nil }
+        return nextDate
+    }
+
     func dueAutomaticOccurrences(in month: Month, by date: Date) -> [RecurringTransactionOccurrence] {
         guard autoConfirm else { return [] }
         return pendingOccurrences(in: month).filter { occurrence in
