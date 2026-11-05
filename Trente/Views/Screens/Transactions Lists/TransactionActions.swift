@@ -50,6 +50,24 @@ struct TransactionActions {
         }
     }
 
+    func delete(_ groups: [TransactionGroup], in context: ModelContext, onSuccess: () -> Void = {}) {
+        performBatch(onSuccess: onSuccess) {
+            try BatchDeleteService.shared.delete(groups: groups, in: context)
+        }
+    }
+
+    func delete(_ rules: [RecurringTransactionRule], in context: ModelContext, onSuccess: () -> Void = {}) {
+        performBatch(onSuccess: onSuccess) {
+            try BatchDeleteService.shared.delete(rules: rules, in: context)
+        }
+    }
+
+    func delete(_ months: [Month], in context: ModelContext, onSuccess: () -> Void = {}) {
+        performBatch(onSuccess: onSuccess) {
+            try BatchDeleteService.shared.delete(months: months, in: context)
+        }
+    }
+
     private func perform(_ action: () throws -> Void) {
         do {
             try action()
@@ -58,7 +76,7 @@ struct TransactionActions {
         }
     }
 
-    func deleteBatch(_ action: () throws -> Void, onSuccess: () -> Void) {
+    private func performBatch(onSuccess: () -> Void, _ action: () throws -> Void) {
         do {
             try action()
             onSuccess()

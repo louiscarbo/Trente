@@ -106,9 +106,7 @@ struct RecurringTransactionsListView: View {
     }
 
     private func deleteSelectedRules() {
-        transactionActions.deleteBatch {
-            try BatchDeleteService.shared.delete(rules: selectedRules, in: modelContext)
-        } onSuccess: {
+        transactionActions.delete(selectedRules, in: modelContext) {
             rowSelection.end()
         }
     }

@@ -160,9 +160,7 @@ struct TransactionListView: View {
 
     private func deleteSelectedGroups() {
         let groups = selectedGroups(in: filter.apply(to: allItems))
-        transactionActions.deleteBatch {
-            try BatchDeleteService.shared.delete(groups: groups, in: modelContext)
-        } onSuccess: {
+        transactionActions.delete(groups, in: modelContext) {
             rowSelection.end()
         }
     }

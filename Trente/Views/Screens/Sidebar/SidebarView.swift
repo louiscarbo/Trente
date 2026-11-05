@@ -208,9 +208,7 @@ struct SidebarView: View {
     private func deleteSelectedMonths() {
         let monthsToDelete = selectedMonths
         onDeleteMonths(monthsToDelete) {
-            transactionActions.deleteBatch {
-                try BatchDeleteService.shared.delete(months: monthsToDelete, in: modelContext)
-            } onSuccess: {
+            transactionActions.delete(monthsToDelete, in: modelContext) {
                 monthSelection.end()
             }
         }
