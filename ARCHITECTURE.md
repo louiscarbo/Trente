@@ -40,6 +40,10 @@ Model says what's true and what's allowed. Services make it happen.
 - The service around a rule fetches what it needs, calls the rule, saves, and handles side effects such as notifications and Trente+ checks.
 - Once Model is a package, the stored properties a rule guards are `public internal(set)`: other modules can read them, and only Model changes them.
 
+## Services
+
+- A service with no stored state is an enum with static functions, never a singleton.
+
 ## State
 
 There is no app-wide state object. SwiftData is the app's state and storage: root views read with `@Query` and write through `ModelContext` and Services.
