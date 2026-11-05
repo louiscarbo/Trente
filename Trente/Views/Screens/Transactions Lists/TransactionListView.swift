@@ -159,10 +159,8 @@ struct TransactionListView: View {
     }
 
     private func deleteSelectedGroups() {
-        let groups = selectedGroups(in: filter.apply(to: allItems))
-        transactionActions.delete(groups, in: modelContext) {
-            rowSelection.end()
-        }
+        transactionActions.delete(selectedGroups(in: filter.apply(to: allItems)), in: modelContext)
+        rowSelection.end()
     }
 
     private func reviewSections(for groups: [TransactionGroup]) -> [BatchDeleteReviewSheet.Section] {

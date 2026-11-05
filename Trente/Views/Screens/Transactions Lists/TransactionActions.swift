@@ -50,20 +50,20 @@ struct TransactionActions {
         }
     }
 
-    func delete(_ groups: [TransactionGroup], in context: ModelContext, onSuccess: () -> Void = {}) {
-        performBatch(onSuccess: onSuccess) {
+    func delete(_ groups: [TransactionGroup], in context: ModelContext) {
+        performBatchDeletion {
             try BatchDeleteService.shared.delete(groups: groups, in: context)
         }
     }
 
-    func delete(_ rules: [RecurringTransactionRule], in context: ModelContext, onSuccess: () -> Void = {}) {
-        performBatch(onSuccess: onSuccess) {
+    func delete(_ rules: [RecurringTransactionRule], in context: ModelContext) {
+        performBatchDeletion {
             try BatchDeleteService.shared.delete(rules: rules, in: context)
         }
     }
 
-    func delete(_ months: [Month], in context: ModelContext, onSuccess: () -> Void = {}) {
-        performBatch(onSuccess: onSuccess) {
+    func delete(_ months: [Month], in context: ModelContext) {
+        performBatchDeletion {
             try BatchDeleteService.shared.delete(months: months, in: context)
         }
     }
@@ -76,10 +76,9 @@ struct TransactionActions {
         }
     }
 
-    private func performBatch(onSuccess: () -> Void, _ action: () throws -> Void) {
+    private func performBatchDeletion(_ action: () throws -> Void) {
         do {
             try action()
-            onSuccess()
         } catch {
             reportError(String(localized: "Nothing was deleted. \(error.localizedDescription)"))
         }

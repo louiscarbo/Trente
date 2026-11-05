@@ -106,9 +106,8 @@ struct RecurringTransactionsListView: View {
     }
 
     private func deleteSelectedRules() {
-        transactionActions.delete(selectedRules, in: modelContext) {
-            rowSelection.end()
-        }
+        transactionActions.delete(selectedRules, in: modelContext)
+        rowSelection.end()
     }
 
     private func reviewSections(for rules: [RecurringTransactionRule]) -> [BatchDeleteReviewSheet.Section] {
