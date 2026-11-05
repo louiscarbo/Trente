@@ -13,6 +13,7 @@ struct TrentePlusSection: View {
     let onManage: () -> Void
 
     @State private var subscribedPage: SubscribedPage?
+    @State private var restingPage: SubscribedPage?
     @State private var pageHeights: [SubscribedPage: CGFloat] = [:]
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -32,6 +33,7 @@ struct TrentePlusSection: View {
             .listRowInsets(EdgeInsets())
             .onChange(of: isSubscribed) {
                 subscribedPage = .thanks
+                restingPage = .thanks
             }
         } header: {
             Text("Trente+")
@@ -57,15 +59,17 @@ struct TrentePlusSection: View {
                     .onGeometryChange(for: CGFloat.self) { proxy in
                         proxy.size.height
                     } action: { height in
-                        withAnimation {
-                            pageHeights[page] = height
-                        }
+                        pageHeights[page] = height
                     }
-                    .frame(height: visiblePageHeight, alignment: .top)
-                    .clipped()
+                    .modifier(PageHeight(height: visiblePageHeight))
                     .accessibilityHidden(isOffScreen(page))
             }
-            .animation(.default, value: subscribedPage)
+            .onScrollGeometryChange(for: SubscribedPage?.self, of: alignedPage) { _, settledPage in
+                guard let settledPage, settledPage != restingPage else { return }
+                withAnimation {
+                    restingPage = settledPage
+                }
+            }
             .padding(.bottom, 12)
             manageButton
         }
@@ -73,7 +77,17 @@ struct TrentePlusSection: View {
 
     private var visiblePageHeight: CGFloat? {
         guard !dynamicTypeSize.isAccessibilitySize else { return nil }
-        return pageHeights[subscribedPage ?? .thanks]
+        return pageHeights[restingPage ?? .thanks]
+    }
+
+    private func alignedPage(in geometry: ScrollGeometry) -> SubscribedPage? {
+        let pages = SubscribedPage.allCases
+        let pageStride = (geometry.contentSize.width - geometry.containerSize.width) / CGFloat(pages.count - 1)
+        guard pageStride > 0 else { return nil }
+        let position = geometry.contentOffset.x / pageStride
+        let nearestIndex = Int(position.rounded())
+        guard abs(position - CGFloat(nearestIndex)) < 0.02, pages.indices.contains(nearestIndex) else { return nil }
+        return pages[nearestIndex]
     }
 
     private func isOffScreen(_ page: SubscribedPage) -> Bool {
@@ -114,6 +128,21 @@ struct TrentePlusSection: View {
             signature: "Louis",
             portraitName: DeveloperProfile.louis.photoName
         )
+    }
+}
+
+private struct PageHeight: ViewModifier, Animatable {
+    nonisolated var height: CGFloat?
+
+    nonisolated var animatableData: CGFloat {
+        get { height ?? 0 }
+        set { if height != nil { height = newValue } }
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .frame(height: height, alignment: .top)
+            .clipped()
     }
 }
 
