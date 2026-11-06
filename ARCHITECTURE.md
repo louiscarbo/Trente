@@ -1,6 +1,6 @@
 # Architecture
 
-How Trente's code is organised and the rules it follows. This file holds only settled decisions. Open questions live on the Roadmap card "Enforce layer boundaries with Swift modules", along with the places where the code doesn't follow this file yet. When a decision changes, update this file in the same change.
+How Trente's code is organised and the rules it follows. This file holds only settled decisions. Open questions live on the Roadmap card "Stricter, well-defined architecture rules and enforcement" and its page "Architecture audit: your calls", along with the places where the code doesn't follow this file yet. When a decision changes, update this file in the same change.
 
 The transaction domain model is explained in [`Trente/Model/README.md`](Trente/Model/README.md).
 
@@ -10,18 +10,22 @@ Each layer may use the layers below it, never the ones above.
 
 1. **App shell**: `TrenteApp`, the widget, App Intents, `NotificationDelegate`, UIKit and AppKit glue. It may use every layer, and no layer uses it.
 2. **Screens** (`Views/Screens`): root views, view models, and each screen's own leaf views.
-3. **Design System** (`Views/Design System`): leaf views used by more than one screen, and styles. It never sees screens, services or an `@Model` type.
+3. **Design System** (`Views/Design System`): leaf views used by more than one screen, and styles. It never sees screens, services or an `@Model` type: once modules exist, it imports `TrenteValues`, never `TrenteModel`.
 4. **Services** (`Services/`): the app's operations: fetching and saving, notifications, iCloud sync, Trente+, export and import. No domain rules, no screens and no SwiftUI. A service never returns a UI type.
-5. **Model** (`Model/`): SwiftData models, value types such as `BudgetCategory` and `Currency`, drafts, and the domain rules. It depends on nothing of ours.
+5. **Model** (`Model/`): SwiftData models, value types such as `BudgetCategory` and `Currency`, drafts, and the domain rules. It depends on nothing of ours. Once modules exist it is two packages: `TrenteValues` holds the value types the models store and the rules on them, and never imports SwiftData; `TrenteModel` holds the SwiftData models, the drafts and the rules that need a model, and imports `TrenteValues`.
 
 ## Views
 
 - A **leaf view** takes plain values only: strings, numbers, dates, value enums, bindings and action closures. Never an `@Model` object, so its preview needs nothing else.
-- A **root view** orchestrates one screen. It owns the models, `modelContext`, `@Query` and fetching, maps models to leaf inputs, owns navigation and presentation, and turns user actions into calls to Services.
+- A **root view** orchestrates one screen, or one row that maps a model and owns its actions. It owns the models, `modelContext`, `@Query` and fetching, maps models to leaf inputs, owns navigation and presentation, and turns user actions into calls to Services.
+- A leaf may present plain content itself: a confirmation dialog, a picker, its own sheet of plain values. Presenting or pushing a view that needs models or services is root work.
+- A leaf in Screens may take a plain value type declared in Services, such as `CloudSyncStatus`. A Design System component never does.
 - Screens, steps and thin single-use containers may take `@Model` objects. Prefer inlining a single-use container into its parent.
 - A screen's own leaf views stay with that screen, nested as `Screen+Piece.swift` containing `extension Screen { struct Piece: View }`.
 - Leaf views take flat parameters. No `Item` or `Summary` struct whose only job is to bundle them, and no `init(model:)` mapping in a leaf's file.
 - The Design System holds no domain logic and no model mapping, not even in a companion file in the same folder.
+- The Design System reads app state only through environment values it declares itself, such as whether Trente+ is active and the action that shows the paywall. `TrenteApp` provides them.
+- Content a screen shows, such as the FAQ, the credits or the Trente+ benefits, is a UI model: it lives in Screens, next to the screen that shows it, never in Model.
 - Before adding a component, look in `Views/Design System/Components`: new designs evolve the components we have. Sheets close with `CloseToolbarItem` and step through flows with `StepNavigationBar`.
 
 ## View models
@@ -37,6 +41,7 @@ A draft is an editable copy of one model: `init(from:)`, `validate()`, `apply(to
 Model says what's true and what's allowed. Services make it happen.
 
 - A domain rule is written once, in Model, as an extension on the model's typealias, next to `Month.spentAmount(for:)`. Examples: how a transaction splits into entries, what confirming or skipping a recurring occurrence does, how a new month starts from the previous one.
+- A rule lives with the types it acts on: a rule on plain values (splits, cents, schedules) in `TrenteValues`, a rule that needs a model in `TrenteModel`.
 - The service around a rule fetches what it needs, calls the rule, saves, and handles side effects such as notifications and Trente+ checks.
 - Once Model is a package, the stored properties a rule guards are `public internal(set)`: other modules can read them, and only Model changes them.
 
@@ -59,7 +64,7 @@ There is no app-wide state object. SwiftData is the app's state and storage: roo
 
 Planned. Each layer becomes a local Swift package, so the compiler enforces the direction: a file has to `import` a layer to use it, and a package can't import one above it.
 
-- `TrenteModel` comes first, and the widget imports it. `TrenteDesignSystem` follows. `TrenteServices` only if it pays off.
+- `TrenteValues` and `TrenteModel` come first, and the widget imports them. `TrenteDesignSystem` follows, importing `TrenteValues` only. `TrenteServices` only if it pays off.
 - Everything that crosses a package boundary is `public`, member by member, not only the type.
 - Each package has its own String Catalog. Code inside a package must name the package's bundle (`bundle: .module`), or it looks up the app's catalog and silently shows English. Keep strings out of packages where possible: Design System components take their text from the caller. The `xcstrings` merge driver applies to every catalog, and each translation pass covers every catalog, fr-CA included.
 
