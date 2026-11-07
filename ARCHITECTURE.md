@@ -45,6 +45,7 @@ Model says what's true and what's allowed. Services make it happen.
 
 - A domain rule is written once, in Model, as an extension on the model's typealias, next to `Month.spentAmount(for:)`. Examples: how a transaction splits into entries, what confirming or skipping a recurring occurrence does, how a new month starts from the previous one.
 - A rule lives with the types it acts on: a rule on plain values (splits, cents, schedules) in `TrenteValues`, a rule that needs a model in `TrenteModel`.
+- Validation lives in Model and returns problems as values, one validation per kind of record for every path that writes it. The screens turn problems into text.
 - Amounts are hundredths of the main unit for every currency, even yen. Convert only through the pair of functions in `TrenteValues`, never with `* 100` or `/ 100`.
 - The service around a rule fetches what it needs, calls the rule, saves, and handles side effects such as notifications and Trente+ checks.
 - Once Model is a package, the stored properties a rule guards are `public internal(set)`: other modules can read them, and only Model changes them.
