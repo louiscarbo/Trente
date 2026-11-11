@@ -33,7 +33,7 @@ Each layer may use the layers below it, never the ones above.
 
 ## View models
 
-A screen gets a view model only when it has real logic of its own, like the steps and image loading in `NewTransactionViewModel`. A view model lives with its screen. Most screens don't need one.
+A screen gets a view model only when it has real logic of its own, like the steps and image loading in `NewTransactionViewModel`. A view model lives with its screen. Lots of screens don't need one.
 
 ## Drafts
 
