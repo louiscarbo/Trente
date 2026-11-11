@@ -1,6 +1,6 @@
 # Architecture
 
-How Trente's code is organised and the rules it follows. This file holds only settled decisions. Open questions live on the Roadmap card "Stricter, well-defined architecture rules and enforcement" and its page "Architecture audit: your calls", along with the places where the code doesn't follow this file yet. When a decision changes, update this file in the same change.
+How Trente's code is organised and the rules it follows. This file holds only settled decisions. Open questions live on the Roadmap card "Stricter, well-defined architecture rules and enforcement", along with the plan and the places where the code doesn't follow this file yet. When a decision changes, update this file in the same change.
 
 The transaction domain model is explained in [`Trente/Model/README.md`](Trente/Model/README.md).
 
@@ -19,10 +19,10 @@ Each layer may use the layers below it, never the ones above.
 - A **leaf view** takes plain values only: strings, numbers, dates, value enums, bindings and action closures. Never an `@Model` object, so its preview needs nothing else.
 - A **root view** orchestrates one screen, or one row that maps a model and owns its actions. It owns the models, `modelContext`, `@Query` and fetching, maps models to leaf inputs, owns navigation and presentation, and turns user actions into calls to Services.
 - A leaf may present plain content itself: a confirmation dialog, a picker, its own sheet of plain values. Presenting or pushing a view that needs models or services is root work.
-- A leaf in Screens may take a plain value type declared in Services, such as `CloudSyncStatus`. A Design System component never does.
+- A leaf in Screens may take a plain value type declared in Services, an enum or struct with no side effects, such as `CloudSyncStatus`. A value that does work, such as `TransactionsCSVFile`, which writes files, stays with the root. A Design System component never takes a Services type.
 - A view nested in its screen (`Screen+Piece.swift`) is always a leaf. A top-level view (a screen, a step, a row) may be a root.
 - A root only composes views and attaches navigation, presentation and data modifiers. Styled layout goes in a leaf.
-- A leaf never names a Services type: its root passes in what it needs, text included.
+- A leaf never calls Services: its root passes in what it needs, text included.
 - A screen's own leaf views stay with that screen, nested as `Screen+Piece.swift` containing `extension Screen { struct Piece: View }`.
 - Leaf views take flat parameters. No `Item` or `Summary` struct whose only job is to bundle them, and no `init(model:)` mapping in a leaf's file.
 - The Design System holds no domain logic and no model mapping, not even in a companion file in the same folder.
@@ -37,7 +37,7 @@ A screen gets a view model only when it has real logic of its own, like the step
 
 ## Drafts
 
-A draft is an editable copy of one model: `init(from:)`, `validate()`, `apply(to:)`. Drafts are data models, so they belong in Model. `TransactionCreationRequest` is the draft for a new transaction.
+A draft is an editable copy of one model: `init(from:)`, `validate()`, `apply(to:)`. Drafts are data models, so they belong in Model. `NewTransactionDraft` is the draft for a new transaction or a new recurring rule. It starts empty, so it has no `init(from:)`. Until it moves into Model, it's named `TransactionCreationRequest`.
 
 ## Domain rules
 
@@ -45,6 +45,7 @@ Model says what's true and what's allowed. Services make it happen.
 
 - A domain rule is written once, in Model, as an extension on the model's typealias, next to `Month.spentAmount(for:)`. Examples: how a transaction splits into entries, what confirming or skipping a recurring occurrence does, how a new month starts from the previous one.
 - A rule lives with the types it acts on: a rule on plain values (splits, cents, schedules) in `TrenteValues`, a rule that needs a model in `TrenteModel`.
+- A control's own interaction logic stays with the control in the Design System, such as the split control's steps and drag snapping. Only what other layers also need moves down, such as what's left of a split and whether it's complete.
 - Validation lives in Model and returns problems as values, one validation per kind of record for every path that writes it. The screens turn problems into text.
 - Amounts are hundredths of the main unit for every currency, even yen. Convert only through the pair of functions in `TrenteValues`, never with `* 100` or `/ 100`.
 - The service around a rule fetches what it needs, calls the rule, saves, and handles side effects such as notifications and Trente+ checks.
@@ -65,7 +66,7 @@ An object that holds state lives in the environment when views read it (`CloudSy
 - One primary type per file. Small companions that only serve it, such as an error or option enum, may share its file.
 - A destination screen, or a type used by several screens, gets its own top-level file.
 - Folders are synchronized with the file system: a new file joins the app target with no project edit.
-- The widget compiles a hand-picked list of app files (`membershipExceptions` in the project file). Don't move those files or reference app-only types from them, and build the `Trente` scheme after touching them, since `Trente Dev` doesn't build the widget. This goes away once the widget imports the four packages.
+- The widget compiles a hand-picked list of app files (`membershipExceptions` in the project file). Don't move those files or reference app-only types from them, and build the `Trente` scheme after touching them, until `Trente Dev` builds the widget too. The list goes away once the widget imports the four packages, apart from the String Catalog, which stays shared.
 
 ## Modules
 
@@ -73,11 +74,11 @@ Planned. Each layer becomes a local Swift package, so the compiler enforces the 
 
 - Four packages: `TrenteValues` and `TrenteModel` first, then `TrenteDesignSystem`, which imports `TrenteValues` only, then `TrenteServices`. The widget is an app target like the app, so it may import all four.
 - Everything that crosses a package boundary is `public`, member by member, not only the type.
-- Each package has its own String Catalog. Code inside a package must name the package's bundle (`bundle: .module`), or it looks up the app's catalog and silently shows English. Display names stay with their types, such as `BudgetCategory.name` in `TrenteValues`. Keep strings out of packages where possible: Design System components take their text from the caller. The `xcstrings` merge driver applies to every catalog, and each translation pass covers every catalog, fr-CA included.
+- Each package has its own String Catalog. Code inside a package must name the package's bundle (`bundle: .module`), or it looks up the app's catalog and silently shows English. Display names stay with their types, such as `BudgetCategory.name` in `TrenteValues`. A Design System component's own words, such as Close, Cancel or its accessibility labels, stay in the component, in its package's catalog. Text about the screen's content, such as titles and descriptions, comes from the caller. The `xcstrings` merge driver applies to every catalog, and each translation pass covers every catalog, fr-CA included.
 
 ## Enforcement
 
-- SwiftLint runs on every build through the SwiftLintPlugins build plugin, pinned to one version, and as a gate in Xcode Cloud's `ci_post_clone.sh`. The architecture rules are custom rules with `severity: error`.
+- SwiftLint runs on every build through the SwiftLintPlugins build plugin, pinned to one version, and as a gate in Xcode Cloud's `ci_post_clone.sh`. The architecture rules are custom rules. A rule that passes the day it's added is an error at once. A rule the code still breaks starts as a warning, and the change that fixes its last violation makes it an error.
 - An architecture test package reads the sources and checks what lint can't, such as layer direction and fr-CA in every String Catalog. It runs in CI.
 - Each package turns on `MemberImportVisibility`, `InternalImportsByDefault` and the explicit target dependency check.
 
