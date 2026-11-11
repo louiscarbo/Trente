@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		7B7F9D7C2E0C8C01007296E5 /* Trente Grey.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Grey.icon */; platformFilter = ios; };
 		7BA442CA2E2052DD00925EF5 /* Trente Green.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Green.icon */; platformFilter = ios; };
-		7BAC10022EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; platformFilter = ios; };
+		7BAC10022EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; };
 		7BAC10032EB2000000A1C0DE /* Trente Blue.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC10012EB2000000A1C0DE /* Trente Blue.icon */; platformFilter = ios; };
-		7BAC10042EB2000000A1C0DE /* Trente Green.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Green.icon */; };
+		7BAC10042EB2000000A1C0DE /* Trente Green.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BA442C92E2052DD00925EF5 /* Trente Green.icon */; platformFilter = ios; };
 		7BAC10052EB2000000A1C0DE /* Trente Grey.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7B7F9D7B2E0C8C01007296E5 /* Trente Grey.icon */; };
 		7BAC11022EB2000000A1C0DE /* Trente Orange.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC11012EB2000000A1C0DE /* Trente Orange.icon */; platformFilter = ios; };
 		7BAC11032EB2000000A1C0DE /* Trente Orange.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7BAC11012EB2000000A1C0DE /* Trente Orange.icon */; platformFilter = ios; };
@@ -694,8 +694,8 @@
 		7B2847592DAFE05500EEF97C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Mint\" \"Trente Teal\" \"Trente Blue\" \"Trente Midnight\" \"Trente Purple\" \"Trente Pink\" \"Trente Red\" \"Trente Orange\" \"Trente Yellow\" \"Trente Grey\" \"Trente Black\"";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Green";
+				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Green\" \"Trente Mint\" \"Trente Teal\" \"Trente Midnight\" \"Trente Purple\" \"Trente Pink\" \"Trente Red\" \"Trente Orange\" \"Trente Yellow\" \"Trente Grey\" \"Trente Black\"";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Blue";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -742,8 +742,8 @@
 		7B28475A2DAFE05500EEF97C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Mint\" \"Trente Teal\" \"Trente Blue\" \"Trente Midnight\" \"Trente Purple\" \"Trente Pink\" \"Trente Red\" \"Trente Orange\" \"Trente Yellow\" \"Trente Grey\" \"Trente Black\"";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Green";
+				"ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES[sdk=iphone*]" = "\"Trente Green\" \"Trente Mint\" \"Trente Teal\" \"Trente Midnight\" \"Trente Purple\" \"Trente Pink\" \"Trente Red\" \"Trente Orange\" \"Trente Yellow\" \"Trente Grey\" \"Trente Black\"";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Trente Blue";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Trente/Trente.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
