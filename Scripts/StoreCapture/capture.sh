@@ -12,7 +12,7 @@ SCRIPT_DIR=${0:A:h}
 ROOT=${SCRIPT_DIR:h:h}
 OUT=${STORE_CAPTURE_OUT:-"$HOME/Pictures/Trente App Store Captures/$(date +%F)"}
 DERIVED=${STORE_CAPTURE_DERIVED_DATA:-"$HOME/Library/Developer/Xcode/DerivedData/TrenteStoreCapture"}
-LANGUAGES=(${=STORE_CAPTURE_LANGUAGES:-en fr es it de ko pt-BR pt-PT})
+LANGUAGES=(${=STORE_CAPTURE_LANGUAGES:-en fr es it de ko pt-BR pt-PT da el ja sv nb})
 TARGETS=("$@")
 (( $# )) || TARGETS=(iphone ipad mac)
 MAC_APPEARANCES=(${=STORE_CAPTURE_MAC_APPEARANCES:-light dark})
@@ -23,7 +23,7 @@ IPAD_NAME="iPad Pro 13-inch (M5)"
 MAC_WINDOW=(1260 800)
 HELPER="$DERIVED/store-capture-helper"
 
-typeset -A LOCALES=(en en_US fr fr_FR es es_ES it it_IT de de_DE ko ko_KR pt-BR pt_BR pt-PT pt_PT)
+typeset -A LOCALES=(en en_US fr fr_FR es es_ES it it_IT de de_DE ko ko_KR pt-BR pt_BR pt-PT pt_PT da da_DK el el_GR ja ja_JP sv sv_SE nb nb_NO)
 
 BOOTED_UDID=""
 MAC_PID=""
@@ -143,13 +143,13 @@ prepare_ios_app() {
 
 capture_iphone() {
     local app=$1 bundle=$2 udid=$(udid_for $IPHONE_NAME)
-    set_system_language $udid en
-    boot $udid
-    xcrun simctl install $udid "$app"
     for language in $LANGUAGES; do
+        set_system_language $udid $language
+        boot $udid
+        xcrun simctl install $udid "$app"
         capture_language_ios $udid $bundle $language iphone
+        shutdown_booted
     done
-    shutdown_booted
 }
 
 capture_ipad() {

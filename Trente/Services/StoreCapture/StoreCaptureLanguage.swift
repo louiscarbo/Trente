@@ -85,6 +85,47 @@ struct StoreCaptureLanguage {
             "Sweetgreen": "Vitaminas", "Whole Foods": "Pingo Doce", "AMC Theatres": "Cinemas NOS",
             "Con Edison": "EDP", "Uber": "Bolt", "Ticketmaster": "BOL", "Target": "Lidl",
             "Ally Savings": "Certificados de Aforro", "Delta Air Lines": "TAP", "Jiffy Lube": "Midas"
+        ]),
+        "da": StoreCaptureLanguage(currencyCode: "DKK", amountScale: 10, titles: [
+            "Paycheck": "Løn", "Direct deposit": "Overførsel", "Rent": "Husleje", "Roth IRA": "Aldersopsparing",
+            "Verizon": "Telenor", "Student Loan": "SU-lån", "GEICO": "Tryg", "Trader Joe's": "Netto",
+            "Chipotle": "Sunset Boulevard", "Shell": "Circle K", "Olive Garden": "Jensens Bøfhus",
+            "CVS Pharmacy": "Matas", "Sweetgreen": "Joe & The Juice", "Whole Foods": "Meny",
+            "AMC Theatres": "Nordisk Film", "Con Edison": "Norlys", "Uber": "Dantaxi", "Target": "Bilka",
+            "Ally Savings": "Opsparingskonto", "Delta Air Lines": "SAS", "Jiffy Lube": "AutoMester",
+            "Amazon": "Elgiganten"
+        ]),
+        "el": StoreCaptureLanguage(currencyCode: "EUR", titles: [
+            "Paycheck": "Μισθός", "Direct deposit": "Μισθοδοσία", "Rent": "Ενοίκιο",
+            "Roth IRA": "Συνταξιοδοτικό", "Verizon": "Cosmote", "Student Loan": "Δάνειο",
+            "GEICO": "Interamerican", "Trader Joe's": "Σκλαβενίτης", "Chipotle": "Goody's", "Shell": "EKO",
+            "Olive Garden": "Ταβέρνα", "CVS Pharmacy": "Φαρμακείο", "Sweetgreen": "Everest",
+            "Whole Foods": "ΑΒ Βασιλόπουλος", "AMC Theatres": "Village Cinemas", "Con Edison": "ΔΕΗ",
+            "Ticketmaster": "Συναυλία", "Target": "Jumbo", "Ally Savings": "Ταμιευτήριο",
+            "Delta Air Lines": "Aegean", "Jiffy Lube": "Συνεργείο", "Amazon": "Skroutz"
+        ]),
+        "ja": StoreCaptureLanguage(currencyCode: "JPY", amountScale: 100, titles: [
+            "Paycheck": "給料", "Direct deposit": "給与振込", "Rent": "家賃", "Roth IRA": "iDeCo", "Verizon": "ドコモ",
+            "Student Loan": "奨学金", "GEICO": "ソニー損保", "Trader Joe's": "イオン", "Chipotle": "スシロー", "Shell": "ENEOS",
+            "Olive Garden": "鳥貴族", "CVS Pharmacy": "マツモトキヨシ", "Sweetgreen": "モスバーガー", "Whole Foods": "成城石井",
+            "AMC Theatres": "TOHOシネマズ", "Con Edison": "東京電力", "Ticketmaster": "チケットぴあ", "Target": "ドン・キホーテ",
+            "Ally Savings": "積立貯金", "Delta Air Lines": "JAL", "Jiffy Lube": "オートバックス"
+        ]),
+        "sv": StoreCaptureLanguage(currencyCode: "SEK", amountScale: 10, titles: [
+            "Paycheck": "Lön", "Direct deposit": "Insättning", "Rent": "Hyra", "Roth IRA": "ISK",
+            "Verizon": "Telia", "Student Loan": "CSN-lån", "GEICO": "Folksam", "Trader Joe's": "ICA",
+            "Chipotle": "Max", "Shell": "Circle K", "Olive Garden": "O'Learys", "CVS Pharmacy": "Apoteket",
+            "Sweetgreen": "Pinchos", "Whole Foods": "Coop", "AMC Theatres": "Filmstaden",
+            "Con Edison": "Vattenfall", "Target": "Willys", "Ally Savings": "Sparkonto",
+            "Delta Air Lines": "SAS", "Jiffy Lube": "Mekonomen"
+        ]),
+        "nb": StoreCaptureLanguage(currencyCode: "NOK", amountScale: 10, titles: [
+            "Paycheck": "Lønn", "Direct deposit": "Overføring", "Rent": "Husleie", "Roth IRA": "Fondsparing",
+            "Verizon": "Telenor", "Student Loan": "Studielån", "GEICO": "Gjensidige", "Trader Joe's": "Kiwi",
+            "Chipotle": "Big Bite", "Shell": "Circle K", "Olive Garden": "Egon", "CVS Pharmacy": "Apotek 1",
+            "Sweetgreen": "Joe & The Juice", "Whole Foods": "Meny", "AMC Theatres": "Odeon Kino",
+            "Con Edison": "Fjordkraft", "Target": "Europris", "Ally Savings": "Sparekonto",
+            "Delta Air Lines": "SAS", "Jiffy Lube": "Mekonomen", "Amazon": "Komplett"
         ])
     ]
 }
