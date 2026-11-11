@@ -64,7 +64,7 @@ enum AppIcon: String, CaseIterable, Identifiable {
     static func primary(in infoDictionary: [String: Any]?) -> AppIcon {
         let primaryIcon = bundleIcons(in: infoDictionary)?["CFBundlePrimaryIcon"] as? [String: Any]
         let iconName = primaryIcon?["CFBundleIconName"] as? String
-        return iconName.flatMap(AppIcon.init(iconName:)) ?? .green
+        return iconName.flatMap(AppIcon.init(iconName:)) ?? .blue
     }
 
     static func alternateIconNames(in infoDictionary: [String: Any]?) -> Set<String> {

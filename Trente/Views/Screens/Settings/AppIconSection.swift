@@ -22,7 +22,7 @@ struct AppIconSection: View {
 }
 
 #Preview {
-    @Previewable @State var selection = AppIcon.green
+    @Previewable @State var selection = AppIcon.blue
     @Previewable @State var isSubscribed = false
 
     Form {

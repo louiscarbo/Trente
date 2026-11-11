@@ -31,10 +31,10 @@ struct AppIconTests {
         #expect(AppIcon.primary(in: infoDictionary) == .grey)
     }
 
-    @Test("A bundle without icons falls back to green")
+    @Test("A bundle without icons falls back to blue")
     func primaryFallback() {
-        #expect(AppIcon.primary(in: nil) == .green)
-        #expect(AppIcon.primary(in: [:]) == .green)
+        #expect(AppIcon.primary(in: nil) == .blue)
+        #expect(AppIcon.primary(in: [:]) == .blue)
     }
 
     @Test("The alternate icon names are read from the bundle icons")
@@ -72,15 +72,15 @@ struct AppIconTests {
         let primary = AppIcon.primary(in: Bundle.main.infoDictionary)
         let alternateIconNames = AppIcon.alternateIconNames(in: Bundle.main.infoDictionary)
 
-        #expect(primary == .green)
+        #expect(primary == .blue)
         for icon in AppIcon.allCases where icon != primary {
             #expect(alternateIconNames.contains(icon.iconName), "\(icon.iconName) is missing")
         }
     }
     #else
-    @Test("The app ships with the green icon")
-    func appIconIsGreen() {
-        #expect(Bundle.main.object(forInfoDictionaryKey: "CFBundleIconName") as? String == AppIcon.green.iconName)
+    @Test("The app ships with the blue icon")
+    func appIconIsBlue() {
+        #expect(Bundle.main.object(forInfoDictionaryKey: "CFBundleIconName") as? String == AppIcon.blue.iconName)
     }
     #endif
 }
