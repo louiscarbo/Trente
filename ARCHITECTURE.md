@@ -21,7 +21,7 @@ Each layer may use the layers below it, never the ones above.
 - A leaf may present plain content itself: a confirmation dialog, a picker, its own sheet of plain values. Presenting or pushing a view that needs models or services is root work.
 - A leaf in Screens may take a plain value type declared in Services, an enum or struct with no side effects, such as `CloudSyncStatus`. A value that does work, such as `TransactionsCSVFile`, which writes files, stays with the root. A Design System component never takes a Services type.
 - A view nested in its screen (`Screen+Piece.swift`) is always a leaf. A top-level view (a screen, a step, a row) may be a root.
-- A root only composes views and attaches navigation, presentation and data modifiers. Styled layout goes in a leaf.
+- A root only composes views and attaches navigation, presentation and data modifiers. Styled layout goes in a leaf: once a root holds 60 lines of inline layout or more, that layout moves out.
 - A leaf never calls Services: its root passes in what it needs, text included.
 - A screen's own leaf views stay with that screen, nested as `Screen+Piece.swift` containing `extension Screen { struct Piece: View }`.
 - Leaf views take flat parameters. No `Item` or `Summary` struct whose only job is to bundle them, and no `init(model:)` mapping in a leaf's file.
@@ -37,7 +37,7 @@ A screen gets a view model only when it has real logic of its own, like the step
 
 ## Drafts
 
-A draft is an editable copy of one model: `init(from:)`, `validate()`, `apply(to:)`. Drafts are data models, so they belong in Model. `NewTransactionDraft` is the draft for a new transaction or a new recurring rule. It starts empty, so it has no `init(from:)`. Until it moves into Model, it's named `TransactionCreationRequest`.
+A draft is an editable copy of one model: `init(from:)`, `validate()`, `apply(to:)`. Drafts are data models, so they belong in Model. `TransactionGroupDraft` serves new and edited transactions alike: a new one starts empty and is saved by a creating function beside `apply(to:)`. The recurrence fields of the New Transaction flow stay with that flow's view model. Until the two types are merged, a new transaction uses `TransactionCreationRequest`.
 
 ## Domain rules
 
@@ -46,7 +46,7 @@ Model says what's true and what's allowed. Services make it happen.
 - A domain rule is written once, in Model, as an extension on the model's typealias, next to `Month.spentAmount(for:)`. Examples: how a transaction splits into entries, what confirming or skipping a recurring occurrence does, how a new month starts from the previous one.
 - A rule lives with the types it acts on: a rule on plain values (splits, cents, schedules) in `TrenteValues`, a rule that needs a model in `TrenteModel`.
 - A control's own interaction logic stays with the control in the Design System, such as the split control's steps and drag snapping. Only what other layers also need moves down, such as what's left of a split and whether it's complete.
-- Validation lives in Model and returns problems as values, one validation per kind of record for every path that writes it. The screens turn problems into text.
+- Validation lives in Model and returns problems as values, one validation per kind of record for every path that writes it. The write itself runs it, so no path can skip it. The screens turn problems into text. The TrenteVingt import skips the title check only, so it never drops a row over a blank title.
 - Amounts are hundredths of the main unit for every currency, even yen. Convert only through the pair of functions in `TrenteValues`, never with `* 100` or `/ 100`.
 - The service around a rule fetches what it needs, calls the rule, saves, and handles side effects such as notifications and Trente+ checks.
 - Once Model is a package, the stored properties a rule guards are `public internal(set)`: other modules can read them, and only Model changes them.
@@ -78,8 +78,9 @@ Planned. Each layer becomes a local Swift package, so the compiler enforces the 
 
 ## Enforcement
 
-- SwiftLint runs on every build through the SwiftLintPlugins build plugin, pinned to one version, and as a gate in Xcode Cloud's `ci_post_clone.sh`. The architecture rules are custom rules. A rule that passes the day it's added is an error at once. A rule the code still breaks starts as a warning, and the change that fixes its last violation makes it an error.
-- An architecture test package reads the sources and checks what lint can't, such as layer direction and fr-CA in every String Catalog. It runs in CI.
+- SwiftLint runs on every build through the SwiftLintPlugins build plugin, pinned to one version: in Xcode, in `xcb` and on Xcode Cloud, where `ci_scripts/ci_post_clone.sh` trusts the plugin. The architecture rules are custom rules. A rule that passes the day it's added is an error at once. A rule the code still breaks starts as a warning, and the change that fixes its last violation makes it an error.
+- An architecture check script runs as a build phase of the app and reads the sources to check what lint can't, such as layer direction and fr-CA in every String Catalog. A build always has the sources, so the script fails the same way everywhere.
+- Xcode Cloud builds every push to `develop` in a Check workflow (one Build action, no archive), and tests and archives at release.
 - Each package turns on `MemberImportVisibility`, `InternalImportsByDefault` and the explicit target dependency check.
 
 ## Persistence
