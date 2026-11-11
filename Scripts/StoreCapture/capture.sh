@@ -195,7 +195,13 @@ capture_mac() {
             front=$(frontmost_bundle)
             open -a "$app"
             sleep 1
-            screencapture -o -x -l $window "$OUT/$language/mac-dashboard-$appearance.png"
+            local file="$OUT/$language/mac-dashboard-$appearance.png"
+            screencapture -o -x -l $window "$file"
+            if [[ $(sips -g pixelWidth "$file" | awk '/pixelWidth/ {print $2}') != $(( MAC_WINDOW[1] * 2 )) ]]; then
+                log "Undersized shot, retrying once: $language/${file:t}"
+                sleep 1
+                screencapture -o -x -l $window "$file"
+            fi
             if [[ -n $front ]]; then open -b $front; fi
             log "Saved $language/mac-dashboard-$appearance.png"
             kill $MAC_PID
