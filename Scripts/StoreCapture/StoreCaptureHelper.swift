@@ -77,6 +77,19 @@ func distinctColorCount(at path: String) -> Int {
     return colors.count
 }
 
+func macShotProblem(at path: String, expectedWidth: Int) -> String? {
+    let image = loadImage(at: path)
+    if image.width != expectedWidth { return "\(image.width) px wide, expected \(expectedWidth)" }
+    let context = makeContext(for: image)
+    let hasRedCloseButton = (30...80).contains { x in
+        (30...80).contains { topY in
+            let color = rgb(in: context, x: x, topY: topY)
+            return (color >> 16 & 0xFF) - max(color >> 8 & 0xFF, color & 0xFF) > 80
+        }
+    }
+    return hasRedCloseButton ? nil : "inactive window, grey traffic lights"
+}
+
 func windowID(pid: Int32, width: Double, height: Double) -> Int {
     let windows = CGWindowListCopyWindowInfo(.optionAll, kCGNullWindowID) as? [[String: Any]] ?? []
     let candidates = windows.filter {
@@ -99,11 +112,14 @@ case "paint-grabber" where arguments.count == 2:
     paintGrabber(at: arguments[1])
 case "distinct-colors" where arguments.count == 2:
     print(distinctColorCount(at: arguments[1]))
+case "check-mac-shot" where arguments.count == 3:
+    guard let expectedWidth = Int(arguments[2]) else { fail("check-mac-shot <png> <width>") }
+    if let problem = macShotProblem(at: arguments[1], expectedWidth: expectedWidth) { fail(problem) }
 case "window-id" where arguments.count == 4:
     guard let pid = Int32(arguments[1]), let width = Double(arguments[2]), let height = Double(arguments[3]) else {
         fail("window-id <pid> <width> <height>")
     }
     print(windowID(pid: pid, width: width, height: height))
 default:
-    fail("Usage: paint-grabber <png> | distinct-colors <png> | window-id <pid> <width> <height>")
+    fail("Usage: paint-grabber <png> | distinct-colors <png> | check-mac-shot <png> <width> | window-id <pid> <width> <height>")
 }

@@ -197,8 +197,9 @@ capture_mac() {
             sleep 1
             local file="$OUT/$language/mac-dashboard-$appearance.png"
             screencapture -o -x -l $window "$file"
-            if [[ $(sips -g pixelWidth "$file" | awk '/pixelWidth/ {print $2}') != $(( MAC_WINDOW[1] * 2 )) ]]; then
-                log "Undersized shot, retrying once: $language/${file:t}"
+            if ! "$HELPER" check-mac-shot "$file" $(( MAC_WINDOW[1] * 2 )); then
+                log "Retrying once: $language/${file:t}"
+                open -a "$app"
                 sleep 1
                 screencapture -o -x -l $window "$file"
             fi
