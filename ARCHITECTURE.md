@@ -12,7 +12,7 @@ Each layer may use the layers below it, never the ones above.
 2. **Screens** (`Views/Screens`): root views, view models, and each screen's own leaf views.
 3. **Design System** (`Views/Design System`): leaf views used by more than one screen, and styles. It never sees screens, services or an `@Model` type: once modules exist, it imports `TrenteValues`, never `TrenteModel`.
 4. **Services** (`Services/`): the app's operations: fetching and saving, notifications, iCloud sync, Trente+, export and import. No domain rules, no screens and no SwiftUI; UIKit and AppKit are fine for system wrappers such as `Device`, `Pasteboard` and `AppIconSwitcher`. A service never returns a UI type.
-5. **Model** (`Model/`): SwiftData models, value types such as `BudgetCategory` and `Currency`, drafts, and the domain rules. It depends on nothing of ours. Once modules exist it is two packages: `TrenteValues` holds the value types the models store and the rules on them, and never imports SwiftData; `TrenteModel` holds the SwiftData models, the drafts and the rules that need a model, and imports `TrenteValues`.
+5. **Model** (`Model/`): SwiftData models, value types such as `BudgetCategory` and `Currency`, drafts, and the domain rules. It depends on nothing of ours. Once modules exist it is two modules: `TrenteValues` holds the value types the models store and the rules on them, and never imports SwiftData; `TrenteModel` holds the SwiftData models, the drafts and the rules that need a model, and imports `TrenteValues`.
 
 ## Views
 
@@ -49,7 +49,7 @@ Model says what's true and what's allowed. Services make it happen.
 - Validation lives in Model and returns problems as values, one validation per kind of record for every path that writes it. The write itself runs it, so no path can skip it. The screens turn problems into text. The TrenteVingt import skips the title check only, so it never drops a row over a blank title.
 - Amounts are hundredths of the main unit for every currency, even yen. Convert only through the pair of functions in `TrenteValues`, never with `* 100` or `/ 100`.
 - The service around a rule fetches what it needs, calls the rule, saves, and handles side effects such as notifications and Trente+ checks.
-- Only Model writes a model's stored properties. Sample data, the importer and the duplicate cleaner go through Model functions too. Once Model is a package, every stored property is `public internal(set)`: other modules can read it, and only Model changes it.
+- Only Model writes a model's stored properties. Sample data, the importer and the duplicate cleaner go through Model functions too. Once Model is a module, every stored property is `public internal(set)`: other modules can read it, and only Model changes it.
 
 ## Services
 
@@ -66,22 +66,23 @@ An object that holds state lives in the environment when views read it (`CloudSy
 - One primary type per file. Small companions that only serve it, such as an error or option enum, may share its file.
 - A destination screen, or a type used by several screens, gets its own top-level file.
 - Folders are synchronized with the file system: a new file joins the app target with no project edit.
-- The widget compiles a hand-picked list of app files (`membershipExceptions` in the project file). Moving or renaming one of those files means updating the list in the same commit. Don't reference app-only types from them, and build the `Trente` scheme after touching them, until `Trente Dev` builds the widget too. The list goes away once the widget imports the four packages, apart from the String Catalog, which stays shared.
+- The widget compiles a hand-picked list of app files (`membershipExceptions` in the project file). Moving or renaming one of those files means updating the list in the same commit. Don't reference app-only types from them, and build the `Trente` scheme after touching them, until `Trente Dev` builds the widget too. The list goes away once the widget imports the four modules, apart from the String Catalog, which stays shared.
 
 ## Modules
 
-Planned. Each layer becomes a local Swift package, so the compiler enforces the direction: a file has to `import` a layer to use it, and a package can't import one above it.
+Planned. Each layer becomes a module of one local Swift package, so the compiler enforces the direction: a file has to `import` a layer to use it, and a module can't import one above it.
 
-- Four packages: `TrenteValues` and `TrenteModel` first, then `TrenteDesignSystem`, which imports `TrenteValues` only, then `TrenteServices`. The widget is an app target like the app, so it may import all four.
-- Everything that crosses a package boundary is `public`, member by member, not only the type.
-- Each package has its own String Catalog. Code inside a package must name the package's bundle (`bundle: .module`), or it looks up the app's catalog and silently shows English. Display names stay with their types, such as `BudgetCategory.name` in `TrenteValues`. A Design System component's own words, such as Close, Cancel or its accessibility labels, stay in the component, in its package's catalog. Text about the screen's content, such as titles and descriptions, comes from the caller. The `xcstrings` merge driver applies to every catalog, and each translation pass covers every catalog, fr-CA included.
+- One package with four library targets, so one `Package.swift` states who may import whom and holds the settings they share: `TrenteValues` and `TrenteModel` first, then `TrenteDesignSystem`, which imports `TrenteValues` only, then `TrenteServices`. The widget is an app target like the app, so it may import all four.
+- The `package` access level is never used: it would let another module of the package write what `internal(set)` guards. Lint bans it.
+- Everything that crosses a module boundary is `public`, member by member, not only the type.
+- Each module has its own String Catalog. Code inside a module must name its own bundle (`bundle: .module`), or it looks up the app's catalog and silently shows English. Display names stay with their types, such as `BudgetCategory.name` in `TrenteValues`. A Design System component's own words, such as Close, Cancel or its accessibility labels, stay in the component, in its package's catalog. Text about the screen's content, such as titles and descriptions, comes from the caller. The `xcstrings` merge driver applies to every catalog, and each translation pass covers every catalog, fr-CA included.
 
 ## Enforcement
 
 - SwiftLint runs on every build through the SwiftLintPlugins build plugin, pinned to one version: in Xcode, in `xcb` and on Xcode Cloud, where `ci_scripts/ci_post_clone.sh` trusts the plugin. The architecture rules are custom rules. A rule that passes the day it's added is an error at once. A rule the code still breaks starts as a warning, and the change that fixes its last violation makes it an error.
 - An architecture check script runs as a build phase of the app and reads the sources to check what lint can't, such as layer direction and fr-CA in every String Catalog. A build always has the sources, so the script fails the same way everywhere.
 - Xcode Cloud builds every push to `develop` in a Check workflow (one Build action, no archive), and tests and archives at release.
-- Each package turns on `MemberImportVisibility`, `InternalImportsByDefault` and the explicit target dependency check.
+- Each target of the package turns on `MemberImportVisibility`, `InternalImportsByDefault` and the explicit target dependency check.
 - Rules no tool can check are checked in review: what a leaf presents, what a root holds, a top-level leaf calling Services, where screen content lives, reusing the components we have, when a screen earns a view model, no app-wide state object, and the file rules.
 
 ## Persistence
