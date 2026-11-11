@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct ApplePaySection: View {
-    let onGetShortcut: () -> Void
+    let onSetUp: () -> Void
 
     var body: some View {
         Section {
-            NavigationLink {
-                ApplePaySetupView(onGetShortcut: onGetShortcut)
-            } label: {
+            Button(action: onSetUp) {
                 Label("Connect Trente to Apple Pay", systemImage: "creditcard")
             }
         } header: {

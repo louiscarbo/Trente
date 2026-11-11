@@ -359,4 +359,17 @@ struct MonthTests {
         #expect(summedSpent == month.spentAmount(in: .all))
     }
 
+    @Test("Name leaves out the year for a month of the current year")
+    func nameInCurrentYear() {
+        let currentYear = Calendar.current.component(.year, from: .now)
+        #expect(!Month.name(startingOn: .now).contains(String(currentYear)))
+    }
+
+    @Test("Name shows the year for a month of another year")
+    func nameInAnotherYear() throws {
+        let lastYearDate = try #require(Calendar.current.date(byAdding: .year, value: -1, to: .now))
+        let lastYear = Calendar.current.component(.year, from: lastYearDate)
+        #expect(Month.name(startingOn: lastYearDate).contains(String(lastYear)))
+    }
+
 }

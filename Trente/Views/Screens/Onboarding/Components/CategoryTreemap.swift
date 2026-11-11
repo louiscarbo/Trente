@@ -11,6 +11,8 @@ struct CategoryTreemap: View {
     let percentages: [BudgetCategory: Int]
     let isWide: Bool
 
+    @ScaledMetric(relativeTo: .largeTitle) private var percentageClearance = 64
+
     var body: some View {
         Group {
             if isWide {
@@ -46,7 +48,8 @@ struct CategoryTreemap: View {
         slab(for: .needs)
             .overlay(alignment: .topTrailing) {
                 StickerView(imageName: "Trente Pig Sticker", rotation: .zero)
-                    .frame(width: 150)
+                    .frame(maxWidth: 150, alignment: .trailing)
+                    .padding(.bottom, percentageClearance)
                     .offset(x: isWide ? -6 : 10, y: isWide ? 10 : -14)
             }
             .zIndex(1)

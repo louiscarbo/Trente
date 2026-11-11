@@ -52,6 +52,11 @@ struct SupportMailTests {
         #expect(body.hasSuffix("\nTrente 1.0 (1) · iOS 27.0"))
     }
 
+    @Test("Support mail goes to the trente.app address")
+    func supportAddress() {
+        #expect(SupportMail.address == "louis@trente.app")
+    }
+
     @Test("The feedback link goes to the support address")
     func feedbackURL() throws {
         let url = try #require(SupportMail.feedbackURL(appInfo: appInfo))

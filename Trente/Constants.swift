@@ -17,7 +17,8 @@ enum WindowIdentifiers {
 }
 
 enum ExternalLinks {
-    static let logWalletTransactionShortcut = URL(string: "https://www.icloud.com/shortcuts/439846ebfc2c44e0957630a492e6fd39")!
+    static let newShortcut = URL(string: "shortcuts://create-shortcut")!
+    static let shortcutsApp = URL(string: "shortcuts://")!
     static let writeReview = URL(string: "https://apps.apple.com/app/id6745130463?action=write-review")!
 
     static var notificationSettings: URL? {
@@ -33,7 +34,33 @@ enum ExternalLinks {
     static let piggySavingsIcon = URL(string: "https://thenounproject.com/icon/piggy-savings-5860187/")!
     static let financialStartupIcon = URL(string: "https://thenounproject.com/icon/financial-startup-5860236/")!
     static let developerWebsite = URL(string: "https://carbo-estaque.fr")!
-    static let privacyPolicy = URL(string: "https://carbo-estaque.fr/trente/privacy")!
+    private static let privacyPolicyPages = [
+        "en": "privacy/",
+        "en-GB": "en-gb/privacy/",
+        "da": "da/privatliv/",
+        "de": "de/datenschutz/",
+        "el": "el/aporrito/",
+        "es": "es/privacidad/",
+        "es-419": "es-419/privacidad/",
+        "fr": "fr/confidentialite/",
+        "fr-CA": "fr-ca/confidentialite/",
+        "it": "it/privacy/",
+        "ja": "ja/privacy/",
+        "ko": "ko/privacy/",
+        "nb": "nb/personvern/",
+        "pt-BR": "pt-br/privacidade/",
+        "pt-PT": "pt-pt/privacidade/",
+        "sv": "sv/integritet/"
+    ]
+
+    static var privacyPolicy: URL {
+        privacyPolicy(localization: Bundle.main.preferredLocalizations.first ?? "en")
+    }
+
+    static func privacyPolicy(localization: String) -> URL {
+        URL(string: "https://trente.app/\(privacyPolicyPages[localization, default: "privacy/"])")!
+    }
+
     static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
     static let developerLinkedIn = URL(string: "https://www.linkedin.com/in/louis-carbo-estaque/")!
     static let developerGitHub = URL(string: "https://github.com/louiscarbo")!

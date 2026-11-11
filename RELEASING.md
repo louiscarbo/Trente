@@ -1,13 +1,13 @@
 # Releasing Trente
 
 ```
-develop ──► scripts/release.sh 1.0.1 ──► prod + tag v1.0.1 ──► git push ──► Xcode Cloud ──► TestFlight ──► App Review ──► App Store
+develop ──► Scripts/release.sh 1.0.1 ──► prod + tag v1.0.1 ──► git push ──► Xcode Cloud ──► TestFlight ──► App Review ──► App Store
 ```
 
 ## Every release
 
 1. On `develop`, everything merged and pushed, tests green.
-2. `scripts/release.sh <version>`: sets `MARKETING_VERSION` on every target, merges `develop` into `prod` with a `Release <version>` commit, tags `v<version>`, fast-forwards `develop`. Nothing is pushed.
+2. `Scripts/release.sh <version>`: sets `MARKETING_VERSION` on every target, merges `develop` into `prod` with a `Release <version>` commit, tags `v<version>`, fast-forwards `develop`. Nothing is pushed.
 3. `git push origin develop prod v<version>`.
 4. Xcode Cloud's **Release** workflow starts on the `prod` push: tests on the iOS Simulator, archives iOS and macOS, uploads both to TestFlight. Build numbers come from Xcode Cloud. `ci_scripts/ci_post_xcodebuild.sh` writes TestFlight's *What to Test* from the `feat`/`fix` commits since the previous tag.
 5. Install from TestFlight on iPhone and Mac. Check iCloud sync between the two and the widget.
@@ -24,4 +24,4 @@ develop ──► scripts/release.sh 1.0.1 ──► prod + tag v1.0.1 ──►
 
 - Privacy nutrition label: *Data Not Collected* (matches `PrivacyInfo.xcprivacy`).
 - Subscriptions `Trente+` monthly and yearly approved with the first version.
-- Privacy policy URL live (carbo-estaque.fr/trente/privacy).
+- Privacy policy URL live (trente.app/privacy/).

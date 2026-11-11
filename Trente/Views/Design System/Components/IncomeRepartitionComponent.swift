@@ -336,6 +336,8 @@ struct RepartitionSlider: View {
     let formatter: NumberFormatter
 
     @State private var measuredHeight: CGFloat = 0
+    @State private var dragPosition: CGFloat?
+    @State private var lastDragX: CGFloat = 0
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -415,14 +417,30 @@ struct RepartitionSlider: View {
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { drag in
-                        value = RepartitionSplit.dragValue(
-                            atFraction: drag.location.x / width,
+                        let previousX = dragPosition == nil ? drag.startLocation.x : lastDragX
+                        let position = RepartitionSplit.dragPosition(
+                            from: dragPosition ?? CGFloat(value),
+                            movedBy: (drag.location.x - previousX) / width,
                             total: total,
                             maxValue: maxValue
                         )
+                        dragPosition = position
+                        lastDragX = drag.location.x
+
+                        let newValue = RepartitionSplit.dragValue(atPosition: position, currentValue: value)
+                        if newValue != value {
+                            value = newValue
+                        }
+                    }
+                    .onEnded { _ in
+                        dragPosition = nil
                     }
             )
-            .sensoryFeedback(.selection, trigger: value)
+            .sensoryFeedback(trigger: value) { _, newValue in
+                newValue == 0 || newValue / 100 == maxValue / 100
+                    ? .impact(flexibility: .rigid, intensity: 0.7)
+                    : .selection
+            }
         }
         .frame(height: measuredHeight)
     }

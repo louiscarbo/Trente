@@ -13,7 +13,7 @@ struct MonthDetailsComponent: View {
     var isAmountFocused: FocusState<Bool>.Binding
 
     var body: some View {
-        VStack(spacing: .medium) {
+        VStack(spacing: .grid) {
             GroupBox(label: Label("Month Details", systemImage: "calendar")) {
                 VStack(spacing: .medium) {
                     MonthStartDatePicker(startDate: $month.startDate)
@@ -25,15 +25,13 @@ struct MonthDetailsComponent: View {
             GroupBox(label: Label("Ideal Budget", systemImage: month.currency.sfSymbolGaugeName)) {
                 VStack(spacing: .medium) {
                     IdealBudgetField(
-                        amountCents: $month.idealBudgetCents,
+                        amountCents: Binding(
+                            get: { month.idealBudgetCents },
+                            set: { month.changeIdealBudget(to: $0) }
+                        ),
                         currency: month.currency,
                         isFocused: isAmountFocused
                     )
-                    .onChange(of: month.idealBudgetCents) { oldValue, newValue in
-                        if newValue < oldValue {
-                            resetRepartition()
-                        }
-                    }
                     
                     if month.idealBudgetCents > 0 {
                         IncomeRepartitionComponent(
@@ -49,11 +47,6 @@ struct MonthDetailsComponent: View {
             .groupBoxStyle(TrenteGroupBoxStyle())
             .animation(.bouncy, value: month.idealBudgetCents > 0)
         }
-    }
-
-    private func resetRepartition() {
-        month.idealRepartition = Dictionary(
-            uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
     }
 }
 

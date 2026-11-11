@@ -1,0 +1,29 @@
+name: ShortcutsCapture
+options:
+  bundleIdPrefix: louiscarboestaque.shortcutscapture
+  deploymentTarget:
+    iOS: "27.0"
+settings:
+  base:
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    SWIFT_VERSION: "6.0"
+targets:
+  CaptureHost:
+    type: application
+    platform: iOS
+    sources: [CaptureHost]
+    info:
+      path: CaptureHost/Info.plist
+      properties:
+        UILaunchScreen: {}
+  CaptureUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [CaptureUITests]
+    dependencies:
+      - target: CaptureHost
+    settings:
+      base:
+        TEST_TARGET_NAME: CaptureHost
+        GENERATE_INFOPLIST_FILE: YES

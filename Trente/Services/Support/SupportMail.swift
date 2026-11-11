@@ -8,7 +8,7 @@
 import Foundation
 
 enum SupportMail {
-    static let address = "trente@carbo-estaque.fr"
+    static let address = "louis@trente.app"
 
     private static let queryValueAllowed = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "&=+?#"))
 

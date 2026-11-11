@@ -83,6 +83,34 @@ struct TransactionListFilterTests {
         #expect(filter.apply(to: items).map(\.title) == ["Salary", "Café"])
     }
 
+    @Test("An expected income doesn't match a category it gives nothing to")
+    func expectedIncomeSkipsZeroShareCategory() throws {
+        let context = try makeContext()
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        let rule = RecurringTransactionRule(
+            title: "Salary",
+            frequency: .monthly,
+            startDate: date(10, 25),
+            repartition: [.needs: 1_000_00, .wants: 0],
+            createdAt: date(10, 1)
+        )
+        context.insert(rule)
+        try context.save()
+        let occurrence = RecurringTransactionOccurrence(rule: rule, date: date(10, 25), month: month)
+        let items = [DisplayableTransaction(kind: .recurring(occurrence))]
+        var filter = TransactionListFilter(month: month)
+
+        filter.categories = [.wants]
+        #expect(filter.apply(to: items).isEmpty)
+
+        filter.categories = [.needs]
+        #expect(filter.apply(to: items).map(\.title) == ["Salary"])
+
+        filter.categories = []
+        filter.searchText = BudgetCategory.wants.name
+        #expect(filter.apply(to: items).isEmpty)
+    }
+
     @Test("Each sort order orders the transactions", arguments: SortOption.allCases)
     func sortOrders(sort: SortOption) throws {
         let context = try makeContext()
@@ -151,6 +179,97 @@ struct TransactionListFilterTests {
         let shown = filter.apply(to: items)
 
         #expect(filter.totalCents(of: shown) == -800_00 + 1_500_00)
+    }
+
+    @Test("Tapping a day shows only that day and marks the filter active")
+    func tappingADayShowsOnlyThatDay() throws {
+        let context = try makeContext()
+        let (month, items) = try sampleItems(in: context)
+        var filter = TransactionListFilter(month: month)
+
+        filter.toggleDay(date(10, 3, hour: 12), in: month)
+
+        #expect(filter.firstDay == date(10, 3))
+        #expect(filter.lastDay == date(10, 3))
+        #expect(filter.shownSingleDay == date(10, 3))
+        #expect(filter.isActive(for: month))
+        #expect(filter.apply(to: items).map(\.title) == ["Café"])
+    }
+
+    @Test("Tapping the same day again brings back the month and keeps search and categories")
+    func tappingTheSameDayAgainRestoresTheMonth() throws {
+        let context = try makeContext()
+        let (month, items) = try sampleItems(in: context)
+        var filter = TransactionListFilter(month: month)
+        filter.categories = [.needs]
+        filter.searchText = "r"
+
+        filter.toggleDay(date(10, 1), in: month)
+        filter.toggleDay(date(10, 1, hour: 18), in: month)
+
+        #expect(filter.firstDay == month.startDate)
+        #expect(filter.lastDay == month.endDate())
+        #expect(filter.shownSingleDay == nil)
+        #expect(filter.categories == [.needs])
+        #expect(filter.searchText == "r")
+        #expect(filter.apply(to: items).map(\.title) == ["Salary", "Rent"])
+    }
+
+    @Test("Clearing the day brings back the month and keeps search and categories")
+    func clearingTheDayRestoresTheMonth() throws {
+        let context = try makeContext()
+        let (month, items) = try sampleItems(in: context)
+        var filter = TransactionListFilter(month: month)
+        filter.categories = [.needs]
+        filter.searchText = "r"
+
+        filter.toggleDay(date(10, 1), in: month)
+        filter.clearDay(in: month)
+
+        #expect(filter.firstDay == month.startDate)
+        #expect(filter.lastDay == month.endDate())
+        #expect(filter.categories == [.needs])
+        #expect(filter.searchText == "r")
+        #expect(filter.apply(to: items).map(\.title) == ["Salary", "Rent"])
+    }
+
+    @Test("Tapping another day moves to that day")
+    func tappingAnotherDayMovesThere() throws {
+        let context = try makeContext()
+        let (month, items) = try sampleItems(in: context)
+        var filter = TransactionListFilter(month: month)
+
+        filter.toggleDay(date(10, 1), in: month)
+        filter.toggleDay(date(10, 25), in: month)
+
+        #expect(filter.shownSingleDay == date(10, 25))
+        #expect(filter.apply(to: items).map(\.title) == ["Salary"])
+    }
+
+    @Test("A range picked in the filter sheet is not a single day")
+    func rangeIsNotASingleDay() throws {
+        let context = try makeContext()
+        let month = insertMonth(year: 2026, month: 10, in: context)
+        var filter = TransactionListFilter(month: month)
+        filter.firstDay = date(10, 3)
+        filter.lastDay = date(10, 4)
+
+        #expect(filter.shownSingleDay == nil)
+
+        filter.toggleDay(date(10, 3), in: month)
+
+        #expect(filter.shownSingleDay == date(10, 3))
+    }
+
+    @Test("Matching on any day applies search and categories but not dates")
+    func matchingOnAnyDayIgnoresDates() throws {
+        let context = try makeContext()
+        let (month, items) = try sampleItems(in: context)
+        var filter = TransactionListFilter(month: month)
+        filter.toggleDay(date(10, 3), in: month)
+        filter.categories = [.needs]
+
+        #expect(filter.matchingOnAnyDay(items).map(\.title).sorted() == ["Rent", "Salary"])
     }
 
     @Test func includesTheWholeLastDay() {

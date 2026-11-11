@@ -17,6 +17,8 @@ extension BudgetRingsCard {
         var cornerRadius: Double = 0
         var insetAmount: Double = 0
 
+        private static let cornerHandleRatio = 0.5523
+
         var animatableData: AnimatablePair<Double, Double> {
             get { AnimatablePair(startDegrees, endDegrees) }
             set {
@@ -42,50 +44,76 @@ extension BudgetRingsCard {
                 return fullRing(center: center, outer: outer, inner: inner)
             }
 
-            let edgeInset = gap / 2 + insetAmount
-            let start = startDegrees * .pi / 180
-            let end = endDegrees * .pi / 180
-            let outerStart = start + edgeInset / outer
-            let outerEnd = end - edgeInset / outer
-            let innerStart = start + edgeInset / inner
-            let innerEnd = end - edgeInset / inner
+            let edgeAngle = gap / (radius * (outerRatio + innerRatio))
+            let start = startDegrees * .pi / 180 + edgeAngle
+            let end = endDegrees * .pi / 180 - edgeAngle
+            let outerStart = start + insetAmount / outer
+            let outerEnd = end - insetAmount / outer
+            let innerStart = start + insetAmount / inner
+            let innerEnd = end - insetAmount / inner
             guard innerEnd > innerStart else { return Path() }
 
             let corner = max(0, min(cornerRadius - insetAmount, (outer - inner) / 2, (innerEnd - innerStart) * inner / 2))
+            let handle = corner * Self.cornerHandleRatio
             let point = { (distance: Double, angle: Double) in
                 CGPoint(x: center.x + distance * cos(angle), y: center.y + distance * sin(angle))
             }
             let along = { (origin: CGPoint, angle: Double, length: Double) in
                 CGPoint(x: origin.x - length * sin(angle), y: origin.y + length * cos(angle))
             }
-            let outerStartPoint = point(outer, outerStart)
-            let outerEndPoint = point(outer, outerEnd)
-            let innerStartPoint = point(inner, innerStart)
-            let innerEndPoint = point(inner, innerEnd)
+            let outward = { (origin: CGPoint, angle: Double, length: Double) in
+                CGPoint(x: origin.x + length * cos(angle), y: origin.y + length * sin(angle))
+            }
+            let outerArcStart = outerStart + corner / outer
+            let outerArcEnd = outerEnd - corner / outer
+            let innerArcStart = innerStart + corner / inner
+            let innerArcEnd = innerEnd - corner / inner
+            let startEdgeOuter = outward(point(outer, outerStart), start, -corner)
+            let endEdgeOuter = outward(point(outer, outerEnd), end, -corner)
+            let endEdgeInner = outward(point(inner, innerEnd), end, corner)
+            let startEdgeInner = outward(point(inner, innerStart), start, corner)
+            let outerArcStartPoint = point(outer, outerArcStart)
+            let outerArcEndPoint = point(outer, outerArcEnd)
+            let innerArcStartPoint = point(inner, innerArcStart)
+            let innerArcEndPoint = point(inner, innerArcEnd)
 
             var path = Path()
-            path.move(to: CGPoint(
-                x: (outerStartPoint.x + innerStartPoint.x) / 2,
-                y: (outerStartPoint.y + innerStartPoint.y) / 2
-            ))
-            path.addArc(tangent1End: outerStartPoint, tangent2End: along(outerStartPoint, outerStart, 2 * corner + 1), radius: corner)
+            path.move(to: startEdgeOuter)
+            path.addCurve(
+                to: outerArcStartPoint,
+                control1: outward(startEdgeOuter, start, handle),
+                control2: along(outerArcStartPoint, outerArcStart, -handle)
+            )
             path.addArc(
                 center: center,
                 radius: outer,
-                startAngle: .radians(outerStart + corner / outer),
-                endAngle: .radians(outerEnd - corner / outer),
+                startAngle: .radians(outerArcStart),
+                endAngle: .radians(outerArcEnd),
                 clockwise: false
             )
-            path.addArc(tangent1End: outerEndPoint, tangent2End: innerEndPoint, radius: corner)
-            path.addArc(tangent1End: innerEndPoint, tangent2End: along(innerEndPoint, innerEnd, -2 * corner - 1), radius: corner)
+            path.addCurve(
+                to: endEdgeOuter,
+                control1: along(outerArcEndPoint, outerArcEnd, handle),
+                control2: outward(endEdgeOuter, end, handle)
+            )
+            path.addLine(to: endEdgeInner)
+            path.addCurve(
+                to: innerArcEndPoint,
+                control1: outward(endEdgeInner, end, -handle),
+                control2: along(innerArcEndPoint, innerArcEnd, handle)
+            )
             path.addArc(
                 center: center,
                 radius: inner,
-                startAngle: .radians(innerEnd - corner / inner),
-                endAngle: .radians(innerStart + corner / inner),
+                startAngle: .radians(innerArcEnd),
+                endAngle: .radians(innerArcStart),
                 clockwise: true
             )
-            path.addArc(tangent1End: innerStartPoint, tangent2End: outerStartPoint, radius: corner)
+            path.addCurve(
+                to: startEdgeInner,
+                control1: along(innerArcStartPoint, innerArcStart, -handle),
+                control2: outward(startEdgeInner, start, -handle)
+            )
             path.closeSubpath()
             return path
         }

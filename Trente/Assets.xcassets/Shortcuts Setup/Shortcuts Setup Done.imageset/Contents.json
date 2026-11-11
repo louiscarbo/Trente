@@ -1,0 +1,90 @@
+{
+  "images": [
+    {
+      "filename": "Done en.jpg",
+      "idiom": "iphone"
+    },
+    {
+      "filename": "Done en-GB.jpg",
+      "idiom": "iphone",
+      "locale": "en-GB"
+    },
+    {
+      "filename": "Done fr.jpg",
+      "idiom": "iphone",
+      "locale": "fr"
+    },
+    {
+      "filename": "Done fr-CA.jpg",
+      "idiom": "iphone",
+      "locale": "fr-CA"
+    },
+    {
+      "filename": "Done es.jpg",
+      "idiom": "iphone",
+      "locale": "es"
+    },
+    {
+      "filename": "Done es-419.jpg",
+      "idiom": "iphone",
+      "locale": "es-419"
+    },
+    {
+      "filename": "Done it.jpg",
+      "idiom": "iphone",
+      "locale": "it"
+    },
+    {
+      "filename": "Done de.jpg",
+      "idiom": "iphone",
+      "locale": "de"
+    },
+    {
+      "filename": "Done ko.jpg",
+      "idiom": "iphone",
+      "locale": "ko"
+    },
+    {
+      "filename": "Done pt-BR.jpg",
+      "idiom": "iphone",
+      "locale": "pt-BR"
+    },
+    {
+      "filename": "Done pt-PT.jpg",
+      "idiom": "iphone",
+      "locale": "pt-PT"
+    },
+    {
+      "filename": "Done ja.jpg",
+      "idiom": "iphone",
+      "locale": "ja"
+    },
+    {
+      "filename": "Done el.jpg",
+      "idiom": "iphone",
+      "locale": "el"
+    },
+    {
+      "filename": "Done sv.jpg",
+      "idiom": "iphone",
+      "locale": "sv"
+    },
+    {
+      "filename": "Done da.jpg",
+      "idiom": "iphone",
+      "locale": "da"
+    },
+    {
+      "filename": "Done nb.jpg",
+      "idiom": "iphone",
+      "locale": "nb"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  },
+  "properties": {
+    "localizable": true
+  }
+}

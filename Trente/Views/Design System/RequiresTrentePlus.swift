@@ -7,30 +7,23 @@
 
 import SwiftUI
 
-enum TrentePlusLockStyle {
-    case inline
-    case section(prompt: LocalizedStringKey)
-}
-
 struct RequiresTrentePlus: ViewModifier {
-    let style: TrentePlusLockStyle
+    let message: LocalizedStringKey?
     let isRequired: Bool
     @Environment(\.isTrentePlusSubscribed) private var isSubscribed
     @State private var isShowingPaywall = false
 
-    private var isLocked: Bool { isRequired && !isSubscribed }
+    private let tagShape = RoundedRectangle(cornerRadius: .large)
 
-    private var isSection: Bool {
-        if case .section = style { true } else { false }
-    }
+    private var isLocked: Bool { isRequired && !isSubscribed }
+    private var contentBlurRadius: CGFloat { isLocked && message != nil ? 2 : 0 }
 
     func body(content: Content) -> some View {
         content
             .disabled(isLocked)
-            .opacity(isLocked ? (isSection ? 0.8 : 0.4) : 1)
-            .blur(radius: isLocked && isSection ? 3 : 0)
-            .accessibilityHidden(isLocked && isSection)
-            .overlay(alignment: isSection ? .center : .trailing) {
+            .blur(radius: contentBlurRadius)
+            .opacity(isLocked ? 0.4 : 1)
+            .overlay {
                 if isLocked {
                     lock
                 }
@@ -40,54 +33,49 @@ struct RequiresTrentePlus: ViewModifier {
             }
     }
 
-    @ViewBuilder
     private var lock: some View {
-        switch style {
-        case .inline:
-            Button {
-                isShowingPaywall = true
-            } label: {
-                Label("Trente+", systemImage: "lock.fill")
-                    .font(.caption.bold())
-                    .foregroundStyle(.primary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(.regularMaterial, in: .capsule)
-                    .overlay(
-                        Capsule()
-                            .inset(by: 1)
-                            .stroke(.primary.opacity(0.2), lineWidth: 2)
-                    )
-                    .padding(.trailing, DesignSystem.Spacing.medium.rawValue)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
-                    .contentShape(.rect)
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel("Requires Trente+")
-        case .section(let prompt):
-            Button {
-                isShowingPaywall = true
-            } label: {
-                HStack {
-                    Image(systemName: "lock.fill")
-                        .padding(.trailing, 4)
-                    Text(prompt)
-                }
-                .font(.title3)
-            }
-            .buttonStyle(TrentePrimaryButtonStyle())
-            .padding(.horizontal, 24)
+        Button {
+            isShowingPaywall = true
+        } label: {
+            tag
+                .padding(.horizontal, DesignSystem.Spacing.medium.rawValue)
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: message == nil ? .trailing : .center
+                )
+                .contentShape(.rect)
         }
+        .buttonStyle(.plain)
+        .accessibilityLabel(message ?? "Requires Trente+")
+    }
+
+    private var tag: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "lock.fill")
+            Text(message ?? "Trente+")
+        }
+        .font(.caption.bold())
+        .foregroundStyle(.primary)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(.regularMaterial, in: tagShape)
+        .overlay {
+            tagShape
+                .inset(by: 1)
+                .stroke(.primary.opacity(0.2), lineWidth: 2)
+        }
+        .fixedSize(horizontal: false, vertical: true)
     }
 }
 
 extension View {
-    func requiresTrentePlus(_ style: TrentePlusLockStyle = .inline, isRequired: Bool = true) -> some View {
-        modifier(RequiresTrentePlus(style: style, isRequired: isRequired))
+    func requiresTrentePlus(message: LocalizedStringKey? = nil, isRequired: Bool = true) -> some View {
+        modifier(RequiresTrentePlus(message: message, isRequired: isRequired))
     }
 }
 
-#Preview("Inline") {
+#Preview("Without message") {
     @Previewable @State var isSubscribed = false
     @Previewable @State var note = ""
 
@@ -107,7 +95,7 @@ extension View {
     .environment(\.isTrentePlusSubscribed, isSubscribed)
 }
 
-#Preview("Section") {
+#Preview("With message") {
     @Previewable @State var isSubscribed = false
 
     VStack(spacing: 20) {
@@ -120,7 +108,7 @@ extension View {
                 .frame(maxWidth: .infinity, minHeight: 120)
                 .background(.gray.opacity(0.2), in: .rect(cornerRadius: 10))
         }
-        .requiresTrentePlus(.section(prompt: "Add notes and images with Trente+"))
+        .requiresTrentePlus(message: "Add notes and images with Trente+")
     }
     .padding()
     .environment(\.isTrentePlusSubscribed, isSubscribed)

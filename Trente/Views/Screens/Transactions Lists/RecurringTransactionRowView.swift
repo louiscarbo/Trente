@@ -12,9 +12,9 @@ struct RecurringTransactionRowView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.transactionActions) private var transactionActions
     let occurrence: RecurringTransactionOccurrence
+    var showsDateBadge = true
     let onOpen: () -> Void
 
-    @State private var showConfirmConfirmation = false
     @State private var showSkipConfirmation = false
 
     var body: some View {
@@ -26,57 +26,30 @@ struct RecurringTransactionRowView: View {
                 frequency: occurrence.rule.frequency,
                 amount: Double(occurrence.amountCents) / 100,
                 currencyCode: occurrence.month.currency.isoCode,
-                isOverdue: occurrence.isOverdue
+                isOverdue: occurrence.isOverdue,
+                isDueToday: occurrence.isDueToday,
+                showsDateBadge: showsDateBadge
             )
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .swipeActions(edge: .leading) {
-            Button {
-                showConfirmConfirmation = true
-            } label: {
-                Label(
-                    occurrence.isIncome ? String(localized: "Received") : String(localized: "Paid"),
-                    systemImage: "checkmark.circle"
-                )
-            }
-            .tint(.green)
-        }
-        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-            Button {
-                showSkipConfirmation = true
-            } label: {
-                Label("Skip", systemImage: "forward.end")
-            }
-            .tint(.gray)
-        }
-        .contextMenu {
-            Button {
-                showConfirmConfirmation = true
-            } label: {
-                Label(
-                    occurrence.isIncome ? String(localized: "Received") : String(localized: "Paid"),
-                    systemImage: "checkmark.circle"
-                )
-            }
-            Button {
-                showSkipConfirmation = true
-            } label: {
-                Label("Skip", systemImage: "forward.end")
-            }
-        }
-        .confirmationDialog(
-            confirmConfirmationTitle,
-            isPresented: $showConfirmConfirmation,
-            titleVisibility: .visible
-        ) {
-            Button(occurrence.isIncome ? String(localized: "Mark as Received") : String(localized: "Mark as Paid")) {
+        .rowActions(
+            leading: RowAction(
+                title: occurrence.isIncome ? String(localized: "Received") : String(localized: "Paid"),
+                systemImage: "checkmark.circle",
+                tint: .green,
+                allowsFullSwipe: false
+            ) {
                 transactionActions.confirm(occurrence, in: modelContext)
+            },
+            trailing: RowAction(
+                title: String(localized: "Skip"),
+                systemImage: "forward.end",
+                tint: .gray
+            ) {
+                showSkipConfirmation = true
             }
-            Button(String(localized: "Cancel"), role: .cancel) {}
-        } message: {
-            Text("It's added to this month's transactions.")
-        }
+        )
         .skipOccurrenceConfirmation(
             isPresented: $showSkipConfirmation,
             title: occurrence.rule.title,
@@ -85,14 +58,6 @@ struct RecurringTransactionRowView: View {
         ) {
             transactionActions.skip(occurrence, in: modelContext)
         }
-        .clipShape(Rectangle().inset(by: -3))
-    }
-
-    private var confirmConfirmationTitle: String {
-        let title = occurrence.rule.title
-        return occurrence.isIncome
-            ? String(localized: "Mark \(title) as received?")
-            : String(localized: "Mark \(title) as paid?")
     }
 }
 

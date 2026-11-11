@@ -99,6 +99,22 @@ final class RecurringTransactionService: Sendable {
         try context.save()
     }
 
+    func movedStartDate(
+        for occurrence: RecurringTransactionOccurrence,
+        confirmedOn date: Date = .now,
+        calendar: Calendar = .current
+    ) -> Date? {
+        let period = occurrence.rule.frequency.calendarComponent
+        guard calendar.isDate(date, equalTo: occurrence.date, toGranularity: period),
+              !calendar.isDate(date, inSameDayAs: occurrence.date) else { return nil }
+        return calendar.startOfDay(for: date)
+    }
+
+    func move(_ rule: RecurringTransactionRule, to startDate: Date, in context: ModelContext) throws {
+        rule.startDate = startDate
+        try context.save()
+    }
+
     func stop(_ rule: RecurringTransactionRule, in context: ModelContext) throws {
         rule.endDate = Calendar.current.startOfDay(for: .now)
         try context.save()

@@ -17,10 +17,14 @@ extension RecurringTransactionRowView {
         let amount: Double
         let currencyCode: String
         let isOverdue: Bool
+        let isDueToday: Bool
+        var showsDateBadge = true
 
         var body: some View {
             HStack(spacing: 12) {
-                DateBadge(date: date, isOverdue: isOverdue)
+                if showsDateBadge {
+                    DateBadge(date: date, isOverdue: isOverdue)
+                }
                 VStack(alignment: .leading) {
                     Text(title)
                         .multilineTextAlignment(.leading)
@@ -36,10 +40,13 @@ extension RecurringTransactionRowView {
         }
 
         private var subtitle: Text {
-            guard isOverdue else {
-                return Text("\(categoryName) · \(frequency.displayName)")
+            if isOverdue {
+                return Text("\(Text("Overdue").foregroundStyle(.orange)) · \(categoryName)")
             }
-            return Text("\(Text("Overdue").foregroundStyle(.orange)) · \(categoryName)")
+            if isDueToday {
+                return Text("\(Text("Due today").foregroundStyle(Color.primary)) · \(categoryName)")
+            }
+            return Text("\(categoryName) · \(frequency.displayName)")
         }
     }
 }

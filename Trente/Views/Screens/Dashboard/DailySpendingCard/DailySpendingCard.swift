@@ -11,6 +11,7 @@ import Charts
 struct DailySpendingCard: View {
     let spending: DailySpending
     let currencyCode: String
+    let stretchesChart: Bool
 
     @State private var mode: SpendingWindowMode = .month
     @State private var scrollPosition: Date
@@ -18,9 +19,10 @@ struct DailySpendingCard: View {
     @State private var settleTask: Task<Void, Never>?
     @State private var selectedDate: Date?
 
-    init(spending: DailySpending, currencyCode: String) {
+    init(spending: DailySpending, currencyCode: String, stretchesChart: Bool = false) {
         self.spending = spending
         self.currencyCode = currencyCode
+        self.stretchesChart = stretchesChart
         let defaultWeekStart = spending.defaultWeekStart
         self._scrollPosition = State(initialValue: defaultWeekStart)
         self._settledScrollPosition = State(initialValue: defaultWeekStart)
@@ -69,7 +71,7 @@ struct DailySpendingCard: View {
                 if hasData {
                     VStack(spacing: DesignSystem.Spacing.medium.rawValue) {
                         chart(spending, selectedDay: selectedDay)
-                            .frame(height: 210)
+                            .frame(minHeight: 210, idealHeight: 210, maxHeight: stretchesChart ? .infinity : 210)
                         dock(spending, selectedDay: selectedDay)
                             .id(selectedDay?.date)
                             .transition(.opacity)
@@ -97,10 +99,7 @@ struct DailySpendingCard: View {
         switch mode {
         case .month:
             if spending.today != nil { return String(localized: "This Month") }
-            let isCurrentYear = calendar.isDate(.now, equalTo: spending.monthStartDay, toGranularity: .year)
-            return isCurrentYear
-                ? spending.monthStartDay.formatted(.dateTime.month(.wide))
-                : spending.monthStartDay.formatted(.dateTime.month(.wide).year())
+            return Month.name(startingOn: spending.monthStartDay)
         case .week:
             let window = spending.weekWindow(at: scrollPosition)
             if let today = spending.today, calendar.isDate(window.upperBound, inSameDayAs: today) {
@@ -214,7 +213,9 @@ struct DailySpendingCard: View {
     private func dock(_ spending: DailySpending, selectedDay: DailySpend?) -> some View {
         if let selectedDay {
             Dock(
-                title: selectedDay.date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated)),
+                title: selectedDay.date.formatted(
+                    Date.FormatStyle(capitalizationContext: .beginningOfSentence).weekday(.wide).day().month(.abbreviated)
+                ),
                 days: [selectedDay],
                 currencyCode: currencyCode
             )

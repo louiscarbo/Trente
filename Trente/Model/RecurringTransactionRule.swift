@@ -54,6 +54,12 @@ extension RecurringTransactionRule {
         repartition.values.reduce(0, +)
     }
 
+    var categories: [BudgetCategory] {
+        BudgetCategory.allCases.filter { category in
+            (repartition[category] ?? 0) != 0
+        }
+    }
+
     var transactions: [TransactionGroup] {
         get { storedTransactions ?? [] }
         set { storedTransactions = newValue }
@@ -103,7 +109,7 @@ extension RecurringTransactionRule {
 }
 
 extension Int {
-    private static let ordinalDayLanguages: Set<String> = ["en", "de"]
+    private static let ordinalDayLanguages: Set<String> = ["en", "de", "sv", "da", "nb"]
 
     func dayOfMonthString(localization: String = Bundle.main.preferredLocalizations.first ?? "en") -> String {
         let locale = Locale(identifier: localization)
@@ -144,8 +150,26 @@ extension RecurringTransactionRule {
         occurrences(in: month).filter { isPending(on: $0.date) }
     }
 
+    func nextPendingDate(onOrAfter date: Date, calendar: Calendar = .current) -> Date? {
+        var searchStart = date
+        while let candidate = schedule.firstDate(onOrAfter: searchStart, calendar: calendar) {
+            if isPending(on: candidate, calendar: calendar) {
+                return candidate
+            }
+            guard let dayAfter = calendar.date(byAdding: .day, value: 1, to: candidate) else { return nil }
+            searchStart = dayAfter
+        }
+        return nil
+    }
+
     func isPending(on date: Date, calendar: Calendar = .current) -> Bool {
         !isSettled(on: date, calendar: calendar) && !isSkipped(on: date, calendar: calendar)
+    }
+
+    func nextDateIfPending(onOrAfter date: Date, calendar: Calendar = .current) -> Date? {
+        guard let nextDate = schedule.firstDate(onOrAfter: date, calendar: calendar),
+              isPending(on: nextDate, calendar: calendar) else { return nil }
+        return nextDate
     }
 
     func dueAutomaticOccurrences(in month: Month, by date: Date) -> [RecurringTransactionOccurrence] {

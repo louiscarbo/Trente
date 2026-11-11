@@ -60,7 +60,7 @@ struct AppIconPicker: View {
 }
 
 #Preview {
-    @Previewable @State var selection = AppIcon.green
+    @Previewable @State var selection = AppIcon.blue
 
     Form {
         Section {

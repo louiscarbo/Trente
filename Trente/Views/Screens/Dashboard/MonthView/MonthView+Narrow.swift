@@ -13,8 +13,11 @@ extension MonthView {
         // Data
         let month: Month
         var upcomingOccurrences: [RecurringTransactionOccurrence]
+        var pendingTransactions: [PendingTransaction]
+        var pendingCurrencyCode: String
         var hasTransactions: Bool
         var recurringTransactionsCount: Int
+        var onReviewPending: (PendingReview) -> Void
 
         // View State
         @State private var carouselPage: CarouselPage?
@@ -39,6 +42,15 @@ extension MonthView {
                         card(for: page)
                     }
 
+                    if !pendingTransactions.isEmpty {
+                        PendingPurchases(
+                            pendingTransactions: pendingTransactions,
+                            currencyCode: pendingCurrencyCode,
+                            onReview: onReviewPending
+                        )
+                        .padding(.horizontal)
+                    }
+
                     LatestTransactions(
                         transactions: month.latestTransactions,
                         hasTransactions: hasTransactions
@@ -48,6 +60,7 @@ extension MonthView {
                     .padding(.horizontal)
 
                     UpcomingRecurring(
+                        month: month,
                         upcomingOccurrences: upcomingOccurrences,
                         recurringTransactionsCount: recurringTransactionsCount
                     ) {

@@ -12,11 +12,12 @@ struct TransactionListFilter {
     var firstDay: Date
     var lastDay: Date
     var categories: Set<BudgetCategory> = []
-    var sort: SortOption = .dateDesc
+    var sort: SortOption
 
-    init(month: Month) {
+    init(month: Month, sort: SortOption = .dateDesc) {
         firstDay = month.startDate
         lastDay = month.endDate()
+        self.sort = sort
     }
 
     func isActive(for month: Month) -> Bool {
@@ -30,12 +31,41 @@ struct TransactionListFilter {
         categories = []
     }
 
-    func apply(to items: [DisplayableTransaction]) -> [DisplayableTransaction] {
-        let shownDays = Self.days(from: firstDay, through: lastDay)
-        return items
+    var shownDays: Range<Date> {
+        Self.days(from: firstDay, through: lastDay)
+    }
+
+    var shownSingleDay: Date? {
+        let calendar = Calendar.current
+        guard calendar.isDate(firstDay, inSameDayAs: lastDay) else { return nil }
+        return calendar.startOfDay(for: firstDay)
+    }
+
+    mutating func toggleDay(_ day: Date, in month: Month) {
+        let tappedDay = Calendar.current.startOfDay(for: day)
+        if shownSingleDay == tappedDay {
+            clearDay(in: month)
+        } else {
+            firstDay = tappedDay
+            lastDay = tappedDay
+        }
+    }
+
+    mutating func clearDay(in month: Month) {
+        firstDay = month.startDate
+        lastDay = month.endDate()
+    }
+
+    func matchingOnAnyDay(_ items: [DisplayableTransaction]) -> [DisplayableTransaction] {
+        items
             .filter { item in searchText.isEmpty || item.searchableString.localizedStandardContains(searchText) }
-            .filter { item in shownDays.contains(item.date) }
             .filter { item in categories.isEmpty || item.categories.contains(where: categories.contains) }
+    }
+
+    func apply(to items: [DisplayableTransaction]) -> [DisplayableTransaction] {
+        let shownDays = shownDays
+        return matchingOnAnyDay(items)
+            .filter { item in shownDays.contains(item.date) }
             .sorted { lhs, rhs in
                 switch sort {
                 case .dateAsc: lhs.date < rhs.date

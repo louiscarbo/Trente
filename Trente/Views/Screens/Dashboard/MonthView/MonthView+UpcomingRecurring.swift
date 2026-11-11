@@ -10,36 +10,76 @@ import SwiftData
 
 extension MonthView {
     struct UpcomingRecurring<AllOccurrences: View>: View {
+        let month: Month
         let upcomingOccurrences: [RecurringTransactionOccurrence]
         let recurringTransactionsCount: Int
         var transactionCount: Int = 3
         @ViewBuilder let allOccurrences: () -> AllOccurrences
 
+        @State private var selectedDay: Date?
         @State private var presentedOccurrence: RecurringTransactionOccurrence?
 
+        private var selectedOccurrences: [RecurringTransactionOccurrence] {
+            guard let selectedDay else { return [] }
+            let dayOccurrences = upcomingOccurrences.filter { occurrence in
+                Calendar.current.isDate(occurrence.date, inSameDayAs: selectedDay)
+            }
+            return Array(dayOccurrences.prefix(transactionCount))
+        }
+
+        private var dueOccurrences: [RecurringTransactionOccurrence] {
+            Array(upcomingOccurrences.filter(\.isDue).prefix(transactionCount))
+        }
+
+        private var shownSelectedDay: Date? {
+            selectedOccurrences.isEmpty ? nil : selectedDay
+        }
+
+        private var shownDays: Range<Date> {
+            if let shownSelectedDay {
+                return TransactionListFilter.days(from: shownSelectedDay, through: shownSelectedDay)
+            }
+            return TransactionListFilter.days(from: month.startDate, through: month.endDate())
+        }
+
         var body: some View {
-            let shownOccurrences = Array(upcomingOccurrences.prefix(transactionCount))
-
             GroupBox(label: Label("Expected This Month", systemImage: "calendar.badge.clock")) {
-                ForEach(shownOccurrences) { occurrence in
-                    RecurringTransactionRowView(occurrence: occurrence) {
-                        presentedOccurrence = occurrence
+                if upcomingOccurrences.isEmpty {
+                    HStack {
+                        if recurringTransactionsCount == 0 {
+                            Text("Add your first Recurring Transaction by tapping 'Add Transaction'.")
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Text("Nothing else expected this month.")
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                    }
+                } else {
+                    RecurringCalendarGrid(
+                        layout: RecurringCalendar(month: month, occurrences: upcomingOccurrences),
+                        today: Calendar.current.startOfDay(for: .now),
+                        shownDays: shownDays,
+                        selectedDay: shownSelectedDay
+                    ) { day in
+                        withAnimation(.snappy) {
+                            selectedDay = day == shownSelectedDay ? nil : day
+                        }
                     }
 
-                    if occurrence != shownOccurrences.last {
+                    let rows = shownSelectedDay == nil ? dueOccurrences : selectedOccurrences
+                    if !rows.isEmpty {
                         Divider()
-                    }
-                }
+                        ForEach(rows) { occurrence in
+                            RecurringTransactionRowView(occurrence: occurrence, showsDateBadge: shownSelectedDay == nil) {
+                                presentedOccurrence = occurrence
+                            }
 
-                HStack {
-                    if recurringTransactionsCount == 0 {
-                        Text("Add your first Recurring Transaction by tapping 'Add Transaction'.")
-                            .foregroundStyle(.secondary)
-                    } else if upcomingOccurrences.isEmpty {
-                        Text("Nothing else expected this month.")
-                            .foregroundStyle(.secondary)
+                            if occurrence != rows.last {
+                                Divider()
+                            }
+                        }
                     }
-                    Spacer()
                 }
 
                 if recurringTransactionsCount > 0 {

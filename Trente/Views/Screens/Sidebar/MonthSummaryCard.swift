@@ -131,14 +131,14 @@ struct MonthSummaryCard: View {
 #Preview {
     VStack(spacing: 20) {
         MonthSummaryCard(
-            name: "October 2026",
+            name: "October",
             remaining: 1_240,
             spent: 760,
             currencyCode: "EUR",
             isOverspent: false
         )
         MonthSummaryCard(
-            name: "October 2026",
+            name: "October",
             remaining: 0,
             spent: 0,
             currencyCode: "EUR",
@@ -146,7 +146,7 @@ struct MonthSummaryCard: View {
             isSelected: true
         ) {}
         MonthSummaryCard(
-            name: "October 2026",
+            name: "October",
             remaining: -120,
             spent: 2_120,
             currencyCode: "EUR",

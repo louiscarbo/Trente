@@ -24,6 +24,21 @@ struct OnboardingModelTests {
         #expect(model.draft.idealRepartition.values.allSatisfy { $0 == 0 })
     }
 
+    @Test(
+        "The default currency follows the region",
+        arguments: [
+            ("ja_JP", "JPY"),
+            ("el_GR", "EUR"),
+            ("sv_SE", "SEK"),
+            ("da_DK", "DKK"),
+            ("nb_NO", "NOK"),
+            ("fr_CA", "CAD")
+        ]
+    )
+    func defaultCurrencyFollowsRegion(identifier: String, expectedCode: String) {
+        #expect(OnboardingModel.defaultCurrency(for: Locale(identifier: identifier)).isoCode == expectedCode)
+    }
+
     @Test("The default currency falls back to euros when the locale's currency is unsupported")
     func defaultCurrencyFallback() {
         let currency = OnboardingModel.defaultCurrency(for: Locale(identifier: "ar_EG"))
