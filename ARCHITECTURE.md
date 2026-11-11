@@ -49,7 +49,7 @@ Model says what's true and what's allowed. Services make it happen.
 - Validation lives in Model and returns problems as values, one validation per kind of record for every path that writes it. The write itself runs it, so no path can skip it. The screens turn problems into text. The TrenteVingt import skips the title check only, so it never drops a row over a blank title.
 - Amounts are hundredths of the main unit for every currency, even yen. Convert only through the pair of functions in `TrenteValues`, never with `* 100` or `/ 100`.
 - The service around a rule fetches what it needs, calls the rule, saves, and handles side effects such as notifications and Trente+ checks.
-- Once Model is a package, the stored properties a rule guards are `public internal(set)`: other modules can read them, and only Model changes them.
+- Only Model writes a model's stored properties. Sample data, the importer and the duplicate cleaner go through Model functions too. Once Model is a package, every stored property is `public internal(set)`: other modules can read it, and only Model changes it.
 
 ## Services
 
@@ -59,14 +59,14 @@ Model says what's true and what's allowed. Services make it happen.
 
 There is no app-wide state object. SwiftData is the app's state and storage: root views read with `@Query` and write through `ModelContext` and Services.
 
-An object that holds state lives in the environment when views read it (`CloudSyncMonitor`, the routers), is owned by `TrenteApp` when only the app uses it (`NotificationScheduler`, `WidgetRefresher`), and is `.shared` only when exactly one must exist for the system or for several layers (`TrentePlusStatus`, `CatchUpService`, `NotificationDelegate`, `TrenteContainer`). Navigation state, such as the routers, lives in Screens.
+An object that holds state lives in the environment when views read it (`CloudSyncMonitor`, the routers), is owned by `TrenteApp` when only the app uses it (`NotificationScheduler`, `WidgetRefresher`), and is `.shared` only when exactly one must exist for the system or for several layers (`TrentePlusStatus`, `CatchUpService`, `NotificationDelegate`, `TrenteContainer`, and `DataProvider` for previews). Navigation state, such as the routers, lives in Screens.
 
 ## Files
 
 - One primary type per file. Small companions that only serve it, such as an error or option enum, may share its file.
 - A destination screen, or a type used by several screens, gets its own top-level file.
 - Folders are synchronized with the file system: a new file joins the app target with no project edit.
-- The widget compiles a hand-picked list of app files (`membershipExceptions` in the project file). Don't move those files or reference app-only types from them, and build the `Trente` scheme after touching them, until `Trente Dev` builds the widget too. The list goes away once the widget imports the four packages, apart from the String Catalog, which stays shared.
+- The widget compiles a hand-picked list of app files (`membershipExceptions` in the project file). Moving or renaming one of those files means updating the list in the same commit. Don't reference app-only types from them, and build the `Trente` scheme after touching them, until `Trente Dev` builds the widget too. The list goes away once the widget imports the four packages, apart from the String Catalog, which stays shared.
 
 ## Modules
 
@@ -82,6 +82,7 @@ Planned. Each layer becomes a local Swift package, so the compiler enforces the 
 - An architecture check script runs as a build phase of the app and reads the sources to check what lint can't, such as layer direction and fr-CA in every String Catalog. A build always has the sources, so the script fails the same way everywhere.
 - Xcode Cloud builds every push to `develop` in a Check workflow (one Build action, no archive), and tests and archives at release.
 - Each package turns on `MemberImportVisibility`, `InternalImportsByDefault` and the explicit target dependency check.
+- Rules no tool can check are checked in review: what a leaf presents, what a root holds, a top-level leaf calling Services, where screen content lives, reusing the components we have, when a screen earns a view model, no app-wide state object, and the file rules.
 
 ## Persistence
 
