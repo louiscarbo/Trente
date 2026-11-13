@@ -17,7 +17,6 @@ struct IncomeRepartitionComponent: View {
     @State private var remainingAmount: Int = 0
     
     @Environment(\.isEnabled) private var isEnabled: Bool
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, formatter: NumberFormatter, isRepartitionComplete: Binding<Bool>) {
         self._repartition = repartition
@@ -73,7 +72,6 @@ struct IncomeRepartitionComponent: View {
                 let content = HStack {
                     Label {
                         Text(isSplit ? "Everything is split" : "Left to split")
-                            .contentTransition(.opacity)
                     } icon: {
                         Image(systemName: isSplit ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
                             .contentTransition(.symbolEffect(.replace))
@@ -81,7 +79,6 @@ struct IncomeRepartitionComponent: View {
                     Spacer()
                     if !isSplit {
                         Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
-                            .transition(.opacity)
                     }
                 }
                 .font(.subheadline)
@@ -127,7 +124,6 @@ struct IncomeRepartitionComponent: View {
         .onPreferenceChange(HeightKey.self) { h in
             remainingMeasuredHeight = h
         }
-        .animation(reduceMotion ? nil : .smooth(duration: 0.3), value: isSplit)
     }
 }
 
