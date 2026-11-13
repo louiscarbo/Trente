@@ -38,7 +38,7 @@ struct OnboardingView: View {
         }
         .refreshesNotificationPermission(notificationPermission)
         .sheet(isPresented: $isShowingPaywall, onDismiss: onFinish) {
-            SubscriptionView()
+            SubscriptionView(showsOptionalNote: true)
         }
         .sheet(isPresented: $isShowingShortcutsSetup, onDismiss: goForward) {
             ShortcutsSetupSheet()
