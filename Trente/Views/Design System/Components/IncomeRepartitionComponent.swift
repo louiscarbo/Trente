@@ -17,6 +17,7 @@ struct IncomeRepartitionComponent: View {
     @State private var remainingAmount: Int = 0
     
     @Environment(\.isEnabled) private var isEnabled: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(repartition: Binding<[BudgetCategory: Int]>, amountToSplit: Int, formatter: NumberFormatter, isRepartitionComplete: Binding<Bool>) {
         self._repartition = repartition
@@ -53,7 +54,7 @@ struct IncomeRepartitionComponent: View {
     
     var remainingAmountSection: some View {
         let isSplit = remainingAmount == 0
-        let color: Color = isSplit ? .gray : .pink
+        let color: Color = .pink
 
         return GeometryReader { geo in
             let width = geo.size.width
@@ -63,25 +64,24 @@ struct IncomeRepartitionComponent: View {
             let fillWidth = isSplit ? 0 : min(proportion * (width - 3) + 3, width)
 
             ZStack(alignment: .leading) {
-                color.lighten(0.25)
+                (isSplit ? Color.gray.opacity(0.15) : color.lighten(0.25))
 
                 Rectangle()
                     .fill(color.gradient)
                     .frame(width: fillWidth)
 
                 let content = HStack {
-                    Label(
-                        isSplit ? "Everything is split" : "Left to split",
-                        systemImage: isSplit
-                            ? "checkmark.circle.fill"
-                            : "exclamationmark.triangle.fill"
-                    )
-                    .contentTransition(
-                        .symbolEffect(.replace)
-                    )
+                    Label {
+                        Text(isSplit ? "Everything is split" : "Left to split")
+                            .contentTransition(.opacity)
+                    } icon: {
+                        Image(systemName: isSplit ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
+                            .contentTransition(.symbolEffect(.replace))
+                    }
                     Spacer()
                     if !isSplit {
                         Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+                            .transition(.opacity)
                     }
                 }
                 .font(.subheadline)
@@ -106,7 +106,7 @@ struct IncomeRepartitionComponent: View {
                         )
 
                     content
-                        .foregroundColor(color.darken(0.6))
+                        .foregroundColor(isSplit ? .secondary : color.darken(0.6))
                         .mask(
                             HStack(spacing: 0) {
                                 Spacer(minLength: 0)
@@ -120,13 +120,14 @@ struct IncomeRepartitionComponent: View {
         .clipShape(Capsule())
         .overlay {
             RoundedRectangle(cornerRadius: .large)
-                .strokeBorder(color.darken(0.1), lineWidth: 3)
+                .strokeBorder(isSplit ? Color.gray.opacity(0.45) : color.darken(0.1), lineWidth: 3)
         }
         .glassEffect(.regular.interactive(false), in: .capsule)
         .accessibilityElement(children: .combine)
         .onPreferenceChange(HeightKey.self) { h in
             remainingMeasuredHeight = h
         }
+        .animation(reduceMotion ? nil : .smooth(duration: 0.3), value: isSplit)
     }
 }
 
