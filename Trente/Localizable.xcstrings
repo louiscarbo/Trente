@@ -5299,6 +5299,94 @@
         }
       }
     },
+    "Pre-filled with your %@ split. Adjust it if you need." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udfyldt på forhånd med din fordeling for %@. Tilpas den, hvis du har brug for det."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorausgefüllt mit deiner Aufteilung für %@. Passe sie an, wenn nötig."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσυμπληρωμένο με την κατανομή σας του μήνα (%@). Προσαρμόστε την αν χρειάζεται."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rellenado con tu reparto de %@. Ajústalo si lo necesitas."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rellenado con tu reparto de %@. Ajústalo si lo necesitas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prérempli avec votre répartition pour %@. Modifiez-la au besoin."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prérempli avec votre répartition pour %@. Modifiez-la au besoin."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precompilato con la tua ripartizione di %@. Modificala se serve."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@の配分があらかじめ入力されています。必要に応じて調整してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 배분이 미리 입력되어 있어요. 필요하면 조정하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forhåndsutfylt med fordelingen din for %@. Juster den om nødvendig."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preenchido com a sua divisão de %@. Ajuste se precisar."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preenchido com a sua divisão de %@. Ajuste-a se necessário."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Förifylld med din fördelning för %@. Justera den vid behov."
+          }
+        }
+      }
+    },
     "Rent, salary, subscriptions: added automatically, without you having to think about it." : {
       "localizations" : {
         "da" : {

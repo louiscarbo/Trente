@@ -15,23 +15,43 @@ struct IncomeRepartitionView: View {
     
     // View State
     @Binding var isRepartitionComplete: Bool
-        
+    var prefilledMonthName: String?
+
     var body: some View {
         ScrollView {
-            GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
-                VStack(alignment: .leading, spacing: .large) {
-                    Text("How would you like to split this income?")
-                    IncomeRepartitionComponent(
-                        repartition: $repartition,
-                        amountToSplit: transactionAmount,
-                        formatter: currency.roundFormatter,
-                        isRepartitionComplete: $isRepartitionComplete
-                    )
+            VStack(spacing: .medium) {
+                GroupBox(label: Label("Income Repartition", systemImage: "chart.pie.fill")) {
+                    VStack(alignment: .leading, spacing: .large) {
+                        Text("How would you like to split this income?")
+                        IncomeRepartitionComponent(
+                            repartition: $repartition,
+                            amountToSplit: transactionAmount,
+                            formatter: currency.roundFormatter,
+                            isRepartitionComplete: $isRepartitionComplete
+                        )
+                    }
+                }
+                .groupBoxStyle(TrenteGroupBoxStyle())
+
+                if let prefilledMonthName {
+                    prefilledNote(monthName: prefilledMonthName)
                 }
             }
-            .groupBoxStyle(TrenteGroupBoxStyle())
             .padding()
         }
+    }
+
+    private func prefilledNote(monthName: String) -> some View {
+        Label {
+            Text("Pre-filled with your \(monthName) split. Adjust it if you need.")
+                .font(.footnote)
+        } icon: {
+            Image(systemName: "sparkles")
+        }
+        .foregroundStyle(.secondary)
+        .padding(.horizontal, 4)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -44,6 +64,7 @@ struct IncomeRepartitionView: View {
         currency: Currencies.currency(for: "EUR")!,
         transactionAmount: 1000,
         repartition: $repartition,
-        isRepartitionComplete: $isRepartitionComplete
+        isRepartitionComplete: $isRepartitionComplete,
+        prefilledMonthName: "December"
     )
 }

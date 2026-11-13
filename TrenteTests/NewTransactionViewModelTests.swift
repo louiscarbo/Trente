@@ -141,6 +141,103 @@ struct NewTransactionViewModelTests {
         #expect(viewModel.request.repartition == [.needs: 0, .wants: 0, .savingsAndDebts: 0])
     }
 
+    private func month(repartition: [BudgetCategory: Int]) -> Month {
+        Month(
+            startDate: Calendar.current.date(from: DateComponents(year: 2026, month: 12, day: 1))!,
+            currency: Currencies.currency(for: "EUR")!,
+            idealBudgetCents: 3000_00,
+            idealRepartition: repartition
+        )
+    }
+
+    private func incomeAtTitleStep(amountCents: Int, month: Month) -> NewTransactionViewModel {
+        let viewModel = incomeAtTitleStep(amountCents: amountCents)
+        viewModel.setMonth(month)
+        return viewModel
+    }
+
+    @Test("An income is pre-split like the month it is added to")
+    func splitStartsFromTheMonthsSplit() {
+        let viewModel = incomeAtTitleStep(
+            amountCents: 1_000_00,
+            month: month(repartition: [.needs: 900_00, .wants: 1200_00, .savingsAndDebts: 900_00])
+        )
+
+        viewModel.nextStep()
+
+        #expect(viewModel.request.repartition == [.needs: 300_00, .wants: 400_00, .savingsAndDebts: 300_00])
+        #expect(viewModel.prefilledMonthName != nil)
+    }
+
+    @Test("The pre-filled split adds up to the income even with odd cents")
+    func prefilledSplitAddsUp() {
+        let viewModel = incomeAtTitleStep(
+            amountCents: 1_000_01,
+            month: month(repartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20])
+        )
+
+        viewModel.nextStep()
+
+        #expect(viewModel.request.repartition.values.reduce(0, +) == 1_000_01)
+    }
+
+    @Test("A month with no split of its own opens at zero without a note")
+    func monthWithoutSplitOpensAtZero() {
+        let viewModel = incomeAtTitleStep(
+            amountCents: 1_000_00,
+            month: month(repartition: [.needs: 0, .wants: 0, .savingsAndDebts: 0])
+        )
+
+        viewModel.nextStep()
+
+        #expect(viewModel.request.repartition == [.needs: 0, .wants: 0, .savingsAndDebts: 0])
+        #expect(viewModel.prefilledMonthName == nil)
+    }
+
+    @Test("Manual edits to the pre-filled split survive going back and forth")
+    func editsToThePrefilledSplitSurvive() {
+        let viewModel = incomeAtTitleStep(
+            amountCents: 1_000_00,
+            month: month(repartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20])
+        )
+        viewModel.nextStep()
+        viewModel.request.repartition = [.needs: 700_00, .wants: 200_00, .savingsAndDebts: 100_00]
+
+        viewModel.previousStep()
+        viewModel.nextStep()
+
+        #expect(viewModel.request.repartition == [.needs: 700_00, .wants: 200_00, .savingsAndDebts: 100_00])
+    }
+
+    @Test("Changing the amount applies the month's split to the new amount")
+    func prefilledSplitFollowsTheNewAmount() {
+        let viewModel = incomeAtTitleStep(
+            amountCents: 1_000_00,
+            month: month(repartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20])
+        )
+        viewModel.nextStep()
+        viewModel.request.repartition = [.needs: 1_000_00, .wants: 0, .savingsAndDebts: 0]
+
+        viewModel.previousStep()
+        viewModel.request.amountCents = 2_000_00
+        viewModel.nextStep()
+
+        #expect(viewModel.request.repartition == [.needs: 1_000_00, .wants: 600_00, .savingsAndDebts: 400_00])
+    }
+
+    @Test("A recurring income gets the same pre-filled split")
+    func recurringIncomeIsPrefilledToo() {
+        let viewModel = incomeAtTitleStep(
+            amountCents: 1_000_00,
+            month: month(repartition: [.needs: 50, .wants: 30, .savingsAndDebts: 20])
+        )
+        viewModel.request.isRecurrent = true
+
+        viewModel.nextStep()
+
+        #expect(viewModel.request.repartition == [.needs: 500_00, .wants: 300_00, .savingsAndDebts: 200_00])
+    }
+
     @Test("A picked photo still lands after leaving its step")
     func photoSurvivesLeavingTheStep() async {
         let viewModel = NewTransactionViewModel()
