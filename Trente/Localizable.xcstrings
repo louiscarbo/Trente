@@ -1297,6 +1297,100 @@
         }
       }
     },
+    "After taxes, before rent and bills." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efter skat, før husleje og regninger."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach Steuern, vor Miete und Rechnungen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μετά τους φόρους, πριν από ενοίκιο και λογαριασμούς."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After tax, before rent and bills."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Después de impuestos, antes de alquiler y facturas."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Después de impuestos, antes de alquiler y cuentas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après impôts, avant loyer et factures."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après impôts, avant loyer et factures."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al netto delle tasse, prima di affitto e bollette."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "税引き後、家賃や支払いの前の金額です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "세금을 뗀 후, 월세와 공과금을 내기 전 금액이에요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etter skatt, før husleie og regninger."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois dos impostos, antes de aluguel e contas."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois de impostos, antes da renda da casa e das contas."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efter skatt, före hyra och räkningar."
+          }
+        }
+      }
+    },
     "Amount, highest first" : {
       "localizations" : {
         "da" : {
@@ -2729,6 +2823,188 @@
         }
       }
     },
+    "Enter the income you expect this month, after taxes. A rough figure is fine." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angiv den indtægt, du forventer denne måned, efter skat. Et groft tal er helt fint."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gib das Einkommen ein, das du diesen Monat erwartest, nach Steuern. Eine grobe Zahl reicht."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εισαγάγετε το εισόδημα που περιμένετε αυτόν τον μήνα, μετά τους φόρους. Μια πρόχειρη τιμή αρκεί."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the income you expect this month, after tax. A rough figure is fine."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce los ingresos que esperas este mes, después de impuestos. Una cifra aproximada basta."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingresa los ingresos que esperas este mes, después de impuestos. Una cifra aproximada basta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indiquez le revenu que vous attendez ce mois-ci, après impôts. Un chiffre approximatif suffit."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indiquez le revenu que vous attendez ce mois-ci, après impôts. Un chiffre approximatif suffit."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci le entrate che prevedi questo mese, al netto delle tasse. Una cifra approssimativa va bene."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月入ってくる見込みの収入を、税引き後で入力してください。おおよその金額で大丈夫です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이번 달에 들어올 것으로 예상되는 수입을 세금을 뗀 금액으로 입력하세요. 대략적인 금액이어도 괜찮아요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppgi inntekten du forventer denne måneden, etter skatt. Et grovt anslag holder."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informe a renda que você espera neste mês, depois dos impostos. Um valor aproximado já serve."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indique o rendimento que espera este mês, depois de impostos. Um valor aproximado chega."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ange den inkomst du förväntar dig den här månaden, efter skatt. En grov uppskattning räcker."
+          }
+        }
+      }
+    },
+    "Expected Income" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forventet indtægt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erwartete Einnahme"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αναμενόμενο έσοδο"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingreso esperado"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingreso esperado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revenu attendu"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revenu attendu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrata prevista"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "見込みの収入"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예상 수입"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forventet inntekt"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renda esperada"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendimento previsto"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Förväntad inkomst"
+          }
+        }
+      }
+    },
     "Extra" : {
       "localizations" : {
         "da" : {
@@ -3693,6 +3969,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Den markerades en annan dag än planerat."
+          }
+        }
+      }
+    },
+    "Just an estimate for this month. You can change it every month, and log your incomes as they arrive." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blot et skøn for denne måned. Du kan ændre det hver måned og registrere dine indtægter, efterhånden som de kommer."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur eine Schätzung für diesen Monat. Du kannst sie jeden Monat ändern und deine Einnahmen erfassen, sobald sie eingehen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μόνο μια εκτίμηση για αυτόν τον μήνα. Μπορείτε να την αλλάζετε κάθε μήνα και να καταγράφετε τα έσοδά σας καθώς έρχονται."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo una estimación para este mes. Puedes cambiarla cada mes y registrar tus ingresos a medida que lleguen."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo una estimación para este mes. Puedes cambiarla cada mes y registrar tus ingresos a medida que lleguen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une estimation pour ce mois-ci suffit. Vous pouvez la changer chaque mois et enregistrer vos revenus au fil de l’eau."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une estimation pour ce mois-ci suffit. Vous pouvez la changer chaque mois et enregistrer vos revenus au fur et à mesure."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo una stima per questo mese. Puoi cambiarla ogni mese e registrare le tue entrate man mano che arrivano."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月のおおよその見込みで大丈夫です。毎月変更でき、収入は入ったときに記録できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이번 달의 대략적인 추정치예요. 매달 바꿀 수 있고, 수입은 들어올 때마다 기록하면 돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bare et anslag for denne måneden. Du kan endre det hver måned og registrere inntektene dine etter hvert som de kommer."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "É só uma estimativa para este mês. Você pode alterá-la todo mês e registrar suas rendas conforme elas entram."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "É apenas uma estimativa para este mês. Pode alterá-la todos os meses e registar os seus rendimentos à medida que entram."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bara en uppskattning för den här månaden. Du kan ändra den varje månad och logga dina inkomster när de kommer in."
           }
         }
       }
@@ -5817,6 +6181,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det som är kvar är de inkomster du har loggat den här månaden, minus dina utgifter.\nVisar månaden inget belopp kvar? Börja med att lägga till en inkomst: tryck på ”Lägg till transaktion”."
+          }
+        }
+      }
+    },
+    "The day you typically receive your income." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den dag, du normalt modtager din indtægt."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Tag, an dem du normalerweise dein Einkommen erhältst."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η ημέρα που συνήθως λαμβάνετε το εισόδημά σας."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El día en que sueles recibir tus ingresos."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El día en que normalmente recibes tus ingresos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jour où vous recevez habituellement votre revenu."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jour où vous recevez habituellement votre revenu."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il giorno in cui di solito ricevi le tue entrate."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "普段、収入を受け取る日です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보통 수입을 받는 날이에요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dagen du vanligvis får inntekten din."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O dia em que você costuma receber sua renda."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O dia em que costuma receber o seu rendimento."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dagen du vanligtvis får din inkomst."
           }
         }
       }
@@ -23622,94 +24074,6 @@
         }
       }
     },
-    "Ideal Budget" : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ideelt budget"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Idealbudget"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ιδανικός προϋπολογισμός"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Presupuesto ideal"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Presupuesto ideal"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Budget idéal"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Budget idéal"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Budget ideale"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "理想の予算"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이상적인 예산"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ideelt budsjett"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Orçamento ideal"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Orçamento ideal"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Idealbudget"
-          }
-        }
-      }
-    },
     "Illustrations" : {
       "localizations" : {
         "da" : {
@@ -38416,100 +38780,6 @@
         }
       }
     },
-    "Think of it as the money you're free to spend each month, once taxes are taken care of." : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Det er de penge, du frit kan bruge hver måned, når skatten er betalt."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Das ist das Geld, über das du jeden Monat frei verfügen kannst, nachdem die Steuern bezahlt sind."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Είναι τα χρήματα που μπορείτε να διαθέσετε ελεύθερα κάθε μήνα, αφού κρατηθούν οι φόροι και οι εισφορές."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Think of it as the money you're free to spend each month, after tax."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Es el dinero que puedes gastar libremente cada mes, una vez pagados los impuestos."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Es el dinero que puedes gastar libremente cada mes, una vez pagados los impuestos."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C’est l’argent dont vous disposez librement chaque mois, une fois les impôts réglés."
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C’est l’argent dont vous disposez librement chaque mois, une fois les impôts réglés."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sono i soldi che puoi spendere liberamente ogni mese, una volta pagate le tasse."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "税金や社会保険料が引かれたあとの、毎月自由に使えるお金のことです。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "세금을 낸 뒤 매달 자유롭게 쓸 수 있는 돈이라고 생각하면 돼요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Det er pengene du fritt kan bruke hver måned, etter at skatten er trukket."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pense nele como o dinheiro que você pode gastar livremente todo mês, depois de pagar os impostos."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "É o dinheiro de que dispõe livremente todos os meses, depois de pagos os impostos."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Det är pengarna du fritt kan använda varje månad, när skatten är betald."
-          }
-        }
-      }
-    },
     "This action cannot be undone." : {
       "localizations" : {
         "da" : {
@@ -41479,94 +41749,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Under budget"
-          }
-        }
-      }
-    },
-    "Use your best estimate. Log extra income as it comes in, and adjust next month's budget." : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Brug dit bedste skøn. Registrer ekstra indtægt, når den kommer, og tilpas næste måneds budget."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schätze so gut du kannst. Erfasse zusätzliche Einnahmen, sobald sie eingehen, und passe das Budget im nächsten Monat an."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Κάντε την καλύτερη εκτίμησή σας. Καταγράψτε τα επιπλέον έσοδα όταν έρχονται και προσαρμόστε τον προϋπολογισμό του επόμενου μήνα."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haz tu mejor estimación. Registra los ingresos extra a medida que lleguen y ajusta el presupuesto del mes siguiente."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haz tu mejor estimación. Registra los ingresos extra a medida que lleguen y ajusta el presupuesto del mes siguiente."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faites votre meilleure estimation. Enregistrez les revenus supplémentaires au fil de l’eau et ajustez le budget du mois suivant."
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faites votre meilleure estimation. Enregistrez les revenus supplémentaires au fur et à mesure et ajustez le budget du mois suivant."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fai la tua stima migliore. Registra le entrate extra man mano che arrivano e adatta il budget del mese successivo."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "おおよその見込みで入力してください。追加の収入は入ったときに記録し、翌月の予算で調整しましょう。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최대한 정확하게 추정해 보세요. 추가 수입은 들어올 때마다 기록하고, 다음 달 예산을 조정하세요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anslå så godt du kan. Registrer ekstra inntekt etter hvert som den kommer, og juster budsjettet for neste måned."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faça sua melhor estimativa. Registre receitas extras conforme elas entram e ajuste o orçamento do mês seguinte."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faça a sua melhor estimativa. Registe as receitas extra à medida que entram e ajuste o orçamento do mês seguinte."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gör din bästa uppskattning. Logga extra inkomster när de kommer in och justera nästa månads budget."
           }
         }
       }

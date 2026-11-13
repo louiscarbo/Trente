@@ -20,19 +20,23 @@ struct BudgetStepView: View {
         OnboardingStepLayout(isEditing: isAmountFocused) {
             OnboardingHeader(
                 title: "Your monthly budget",
-                subtitle: "Think of it as the money you're free to spend each month, once taxes are taken care of."
+                subtitle: "Enter the income you expect this month, after taxes. A rough figure is fine."
             )
         } secondary: {
             OnboardingScrollPane {
                 GroupBox(label: Label("Month Details", systemImage: "calendar")) {
                     VStack(spacing: .medium) {
                         MonthStartDatePicker(startDate: $startDate)
+                        Text("The day you typically receive your income.")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         MonthCurrencyPicker(currency: $currency)
                     }
                 }
                 .groupBoxStyle(TrenteGroupBoxStyle())
 
-                GroupBox(label: Label("Ideal Budget", systemImage: currency.sfSymbolName ?? currency.sfSymbolGaugeName)) {
+                GroupBox(label: Label("Expected Income", systemImage: currency.sfSymbolName ?? currency.sfSymbolGaugeName)) {
                     IdealBudgetField(
                         amountCents: $budgetCents,
                         currency: currency,
@@ -53,7 +57,7 @@ struct BudgetStepView: View {
         Label {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Income varies?")
-                Text("Use your best estimate. Log extra income as it comes in, and adjust next month's budget.")
+                Text("Just an estimate for this month. You can change it every month, and log your incomes as they arrive.")
                     .font(.footnote)
             }
         } icon: {
