@@ -46,9 +46,16 @@ extension Month {
         Month.name(startingOn: startDate)
     }
 
-    static func name(startingOn startDate: Date) -> String {
+    var nameWithinSentence: String {
+        Month.name(startingOn: startDate, capitalizationContext: .middleOfSentence)
+    }
+
+    static func name(
+        startingOn startDate: Date,
+        capitalizationContext: FormatStyleCapitalizationContext = .beginningOfSentence
+    ) -> String {
         let isCurrentYear = Calendar.current.isDate(startDate, equalTo: .now, toGranularity: .year)
-        let monthFormat = Date.FormatStyle(capitalizationContext: .beginningOfSentence).month(.wide)
+        let monthFormat = Date.FormatStyle(capitalizationContext: capitalizationContext).month(.wide)
         return startDate.formatted(isCurrentYear ? monthFormat : monthFormat.year())
     }
 
@@ -74,6 +81,10 @@ extension Month {
 
     var remainingAmount: Double {
         Double(remainingAmountCents) / 100
+    }
+
+    var idealBudgetAmount: Double {
+        Double(idealBudgetCents) / 100
     }
 
     var incomeAmount: Double {

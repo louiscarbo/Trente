@@ -10,6 +10,8 @@ import StoreKit
 
 extension SubscriptionView {
     struct MarketingHeader: View {
+        var showsOptionalNote = false
+
         @ScaledMetric(relativeTo: .headline) private var iconSize = 36.0
 
         var body: some View {
@@ -26,6 +28,10 @@ extension SubscriptionView {
                 }
                 .multilineTextAlignment(.center)
 
+                if showsOptionalNote {
+                    optionalNote
+                }
+
                 GroupBox(label: Label("Included with Trente+", systemImage: "sparkles")) {
                     VStack(alignment: .leading, spacing: .medium) {
                         ForEach(TrentePlusBenefit.all) { benefit in
@@ -35,6 +41,20 @@ extension SubscriptionView {
                 }
                 .groupBoxStyle(TrenteGroupBoxStyle())
             }
+        }
+
+        private var optionalNote: some View {
+            Label {
+                Text("Optional. Trente works fully without it.")
+            } icon: {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+            }
+            .font(.subheadline)
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(.green.opacity(0.12), in: .capsule)
         }
 
         private func benefitRow(_ benefit: TrentePlusBenefit) -> some View {
@@ -61,5 +81,10 @@ extension SubscriptionView {
 
 #Preview("Marketing Header", traits: .sizeThatFitsLayout) {
     SubscriptionView.MarketingHeader()
+        .frame(width: 402)
+}
+
+#Preview("Marketing Header, from onboarding", traits: .sizeThatFitsLayout) {
+    SubscriptionView.MarketingHeader(showsOptionalNote: true)
         .frame(width: 402)
 }

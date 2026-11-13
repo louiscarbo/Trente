@@ -22,7 +22,7 @@ struct MonthDetailsComponent: View {
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
             
-            GroupBox(label: Label("Ideal Budget", systemImage: month.currency.sfSymbolGaugeName)) {
+            GroupBox(label: Label("Expected Income", systemImage: month.currency.sfSymbolGaugeName)) {
                 VStack(spacing: .medium) {
                     IdealBudgetField(
                         amountCents: Binding(

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 extension MonthView {
     struct LatestTransactions<AllTransactions: View>: View {
@@ -46,6 +47,7 @@ extension MonthView {
                 }
             }
             .groupBoxStyle(TrenteGroupBoxStyle())
+            .popoverTip(FirstIncomeTip())
         }
     }
 }

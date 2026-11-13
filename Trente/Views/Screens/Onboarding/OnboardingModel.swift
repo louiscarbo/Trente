@@ -156,16 +156,6 @@ final class OnboardingModel {
     }
 
     static func suggestedRepartition(for budgetCents: Int) -> [BudgetCategory: Int] {
-        let needsCents = roundedDownToWholeUnits(budgetCents * suggestedPercentages[.needs, default: 0] / 100)
-        let wantsCents = roundedDownToWholeUnits(budgetCents * suggestedPercentages[.wants, default: 0] / 100)
-        return [
-            .needs: needsCents,
-            .wants: wantsCents,
-            .savingsAndDebts: budgetCents - needsCents - wantsCents
-        ]
-    }
-
-    private static func roundedDownToWholeUnits(_ cents: Int) -> Int {
-        (cents / 100) * 100
+        BudgetCategory.proportionalSplit(of: budgetCents, weights: suggestedPercentages)
     }
 }

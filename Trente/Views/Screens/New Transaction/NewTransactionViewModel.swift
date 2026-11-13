@@ -18,12 +18,15 @@ final class NewTransactionViewModel {
     // View State
     var step: NewTransactionStep = .amountCategory
     var isRepartitionComplete: Bool = false
+    private(set) var prefilledMonthName: String?
     var showErrorAlert: Bool = false
     let imageLoader = ImageAttachmentLoader()
 
     @ObservationIgnored private let permissionService: NotificationPermissionService
     @ObservationIgnored private(set) var permissionRequest: Task<Void, Never>?
     @ObservationIgnored private var repartitionAmountCents: Int?
+    @ObservationIgnored private var monthRepartition: [BudgetCategory: Int] = [:]
+    @ObservationIgnored private var monthNameWithinSentence = ""
 
     init(permissionService: NotificationPermissionService = NotificationPermissionService()) {
         self.permissionService = permissionService
@@ -80,9 +83,15 @@ final class NewTransactionViewModel {
         }
     }
 
+    func setMonth(_ month: Month) {
+        monthRepartition = month.idealRepartition
+        monthNameWithinSentence = month.nameWithinSentence
+    }
+
     private func prepareRepartition() {
         guard repartitionAmountCents != request.amountCents else { return }
-        request.repartition = Dictionary(uniqueKeysWithValues: BudgetCategory.allCases.map { ($0, 0) })
+        request.repartition = BudgetCategory.proportionalSplit(of: request.amountCents, weights: monthRepartition)
+        prefilledMonthName = monthRepartition.values.contains { $0 > 0 } ? monthNameWithinSentence : nil
         repartitionAmountCents = request.amountCents
     }
     

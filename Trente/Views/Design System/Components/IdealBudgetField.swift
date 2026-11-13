@@ -13,14 +13,21 @@ struct IdealBudgetField: View {
     var isFocused: FocusState<Bool>.Binding
 
     var body: some View {
-        CurrencyTextField(
-            amountCents: $amountCents,
-            currency: currency
-        )
-        .focused(isFocused)
-        .font(.title)
-        .bold()
-        .multilineTextAlignment(.center)
+        VStack(spacing: 4) {
+            CurrencyTextField(
+                amountCents: $amountCents,
+                currency: currency
+            )
+            .focused(isFocused)
+            .font(.title)
+            .bold()
+            .multilineTextAlignment(.center)
+
+            Text("After taxes, before rent and bills.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+        }
     }
 }
 

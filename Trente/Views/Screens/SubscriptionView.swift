@@ -9,11 +9,13 @@ import SwiftUI
 import StoreKit
 
 struct SubscriptionView: View {
+    var showsOptionalNote = false
+
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         SubscriptionStoreView(groupID: TrentePlus.groupID) {
-            MarketingHeader()
+            MarketingHeader(showsOptionalNote: showsOptionalNote)
         }
         .subscriptionStoreControlStyle(.compactPicker)
         .storeButton(.visible, for: .cancellation, .restorePurchases, .policies, .redeemCode)

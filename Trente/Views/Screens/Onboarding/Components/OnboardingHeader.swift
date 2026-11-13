@@ -38,7 +38,7 @@ struct OnboardingHeader: View {
         )
         OnboardingHeader(
             title: "Your monthly budget",
-            subtitle: "Think of it as the money you're free to spend each month, once taxes are taken care of."
+            subtitle: "Enter the income you expect this month, after taxes. A rough figure is fine."
         )
         OnboardingHeader(
             title: "Never miss an expense",

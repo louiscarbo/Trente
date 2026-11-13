@@ -25,7 +25,7 @@ struct SplitStepView: View {
             }
         } secondary: {
             OnboardingScrollPane {
-                GroupBox(label: Label("Ideal Budget", systemImage: currency.sfSymbolName ?? currency.sfSymbolGaugeName)) {
+                GroupBox(label: Label("Expected Income", systemImage: currency.sfSymbolName ?? currency.sfSymbolGaugeName)) {
                     VStack(spacing: .medium) {
                         Text(Double(budgetCents) / 100, format: .budget(currency.isoCode))
                             .font(.title)
