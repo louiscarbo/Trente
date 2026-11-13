@@ -80,7 +80,7 @@ struct TrentePlusBenefit: Identifiable {
         tint: .purple,
         comparison: Comparison(
             title: "App icons",
-            free: .text("Green only"),
+            free: .text("Blue only"),
             plus: .text("\(AppIcon.allCases.count) colors")
         )
     )
