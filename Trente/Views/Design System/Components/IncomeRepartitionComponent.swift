@@ -52,14 +52,15 @@ struct IncomeRepartitionComponent: View {
     }
     
     var remainingAmountSection: some View {
-        let color: Color = .pink
+        let isSplit = remainingAmount == 0
+        let color: Color = isSplit ? .gray : .pink
 
         return GeometryReader { geo in
             let width = geo.size.width
             let proportion = amountToSplit > 0
                 ? max(0, min(1, CGFloat(remainingAmount) / CGFloat(amountToSplit)))
                 : 0
-            let fillWidth = min(proportion * (width - 3) + 3, width)
+            let fillWidth = isSplit ? 0 : min(proportion * (width - 3) + 3, width)
 
             ZStack(alignment: .leading) {
                 color.lighten(0.25)
@@ -70,16 +71,18 @@ struct IncomeRepartitionComponent: View {
 
                 let content = HStack {
                     Label(
-                        "Amount to split",
-                        systemImage: remainingAmount > 0
-                            ? "exclamationmark.triangle.fill"
-                            : "checkmark.circle.fill"
+                        isSplit ? "Everything is split" : "Left to split",
+                        systemImage: isSplit
+                            ? "checkmark.circle.fill"
+                            : "exclamationmark.triangle.fill"
                     )
                     .contentTransition(
                         .symbolEffect(.replace)
                     )
                     Spacer()
-                    Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+                    if !isSplit {
+                        Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+                    }
                 }
                 .font(.subheadline)
                 .bold(remainingAmount < 100 && remainingAmount > 0)
@@ -117,7 +120,7 @@ struct IncomeRepartitionComponent: View {
         .clipShape(Capsule())
         .overlay {
             RoundedRectangle(cornerRadius: .large)
-                .strokeBorder(.pink.darken(0.1), lineWidth: 3)
+                .strokeBorder(color.darken(0.1), lineWidth: 3)
         }
         .glassEffect(.regular.interactive(false), in: .capsule)
         .accessibilityElement(children: .combine)
