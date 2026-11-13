@@ -24,7 +24,7 @@ extension MonthView {
         @State private var foldColumns: FoldColumns?
 
         private enum CarouselPage: Int, CaseIterable {
-            case gauges, dailySpending
+            case budgetRings, dailySpending
         }
 
         private var gridInsets: EdgeInsets {
@@ -39,7 +39,7 @@ extension MonthView {
         @ViewBuilder
         private func card(for page: CarouselPage) -> some View {
             switch page {
-            case .gauges: BudgetGauges(month: month)
+            case .budgetRings: BudgetRingsCard(rings: BudgetRings(month: month))
             case .dailySpending:
                 DailySpendingCard(
                     spending: DailySpending(month: month),
@@ -56,7 +56,7 @@ extension MonthView {
                     verticalSpacing: DesignSystem.Spacing.grid.rawValue
                 ) {
                     GridRow {
-                        BudgetRingsCard(rings: BudgetRings(month: month))
+                        BudgetGauges(month: month)
                             .frame(width: foldColumns?.leadingWidth)
                         VStack(spacing: .grid) {
                             if !pendingTransactions.isEmpty {

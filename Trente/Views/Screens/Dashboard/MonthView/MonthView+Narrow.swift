@@ -23,14 +23,14 @@ extension MonthView {
         @State private var carouselPage: CarouselPage?
 
         private enum CarouselPage: Int, CaseIterable {
-            case budgetRings, gauges, dailySpending
+            case gauges, budgetRings, dailySpending
         }
 
         @ViewBuilder
         private func card(for page: CarouselPage) -> some View {
             switch page {
-            case .budgetRings: BudgetRingsCard(rings: BudgetRings(month: month))
             case .gauges: BudgetGauges(month: month)
+            case .budgetRings: BudgetRingsCard(rings: BudgetRings(month: month))
             case .dailySpending: DailySpendingCard(spending: DailySpending(month: month), currencyCode: month.currency.isoCode)
             }
         }
