@@ -155,6 +155,10 @@ struct BudgetGaugeView: View {
         return .primary
     }
 
+    private var highlight: GaugeHighlight {
+        figures.gaugeHighlight(showingRemaining: showRemaining, in: scope)
+    }
+
     var body: some View {
         Gauge(value: figures.gaugeIndicator(in: scope)) {
             Text(scope.name)
@@ -166,7 +170,8 @@ struct BudgetGaugeView: View {
             TrenteGaugeStyle(
                 color: gaugeColor,
                 diameter: size,
-                highlight: figures.gaugeHighlight(showingRemaining: showRemaining, in: scope)
+                highlightsLeft: highlight.left,
+                highlightsSpent: highlight.spent
             )
         )
         .accessibilityElement(children: .ignore)

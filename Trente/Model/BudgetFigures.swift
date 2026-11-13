@@ -37,14 +37,20 @@ extension BudgetFigures {
         return min(max(remaining / income, 0), 1)
     }
 
-    func gaugeHighlight(showingRemaining: Bool, in scope: BudgetScope) -> ClosedRange<Double> {
-        let indicator = gaugeIndicator(in: scope)
-        guard extraSaved(in: scope) == 0 else { return 0...1 }
-        if showingRemaining {
-            return 0...indicator
+    func gaugeHighlight(showingRemaining: Bool, in scope: BudgetScope) -> GaugeHighlight {
+        if extraSaved(in: scope) > 0 {
+            return GaugeHighlight(left: true, spent: false)
         }
-        return spent > 0 ? indicator...1 : indicator...indicator
+        if showingRemaining {
+            return GaugeHighlight(left: true, spent: false)
+        }
+        return GaugeHighlight(left: false, spent: spent > 0)
     }
+}
+
+struct GaugeHighlight: Equatable, Sendable {
+    let left: Bool
+    let spent: Bool
 }
 
 extension BudgetScope {

@@ -11,7 +11,8 @@ import SwiftUI
 struct TrenteGaugeStyle: GaugeStyle {
     var color: Color
     var diameter: CGFloat = 100
-    var highlight: ClosedRange<Double> = 0...1
+    var highlightsLeft = true
+    var highlightsSpent = false
 
     var gradient: Gradient {
         Gradient(colors: [adjustHue(of: color, by: -20), color])
@@ -19,8 +20,8 @@ struct TrenteGaugeStyle: GaugeStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         let strokeWidth = diameter / 6
+        let splitPoint = 0.75 * configuration.value
         let roundStroke = StrokeStyle(lineWidth: strokeWidth, lineCap: .round)
-        let hasHighlight = highlight.upperBound > highlight.lowerBound
 
         ZStack {
             Circle()
@@ -29,10 +30,29 @@ struct TrenteGaugeStyle: GaugeStyle {
                 .rotationEffect(.degrees(135))
 
             Circle()
-                .trim(from: 0.75 * highlight.lowerBound, to: 0.75 * highlight.upperBound)
+                .trim(from: 0, to: splitPoint)
                 .stroke(gradient, style: roundStroke)
                 .rotationEffect(.degrees(135))
-                .opacity(hasHighlight ? 1 : 0)
+                .opacity(highlightsLeft ? 1 : 0)
+
+            Circle()
+                .trim(from: 0, to: 0.75)
+                .stroke(gradient, style: roundStroke)
+                .rotationEffect(.degrees(135))
+                .mask {
+                    Rectangle()
+                        .padding(-strokeWidth)
+                        .overlay {
+                            Circle()
+                                .trim(from: 0, to: splitPoint)
+                                .stroke(.black, style: roundStroke)
+                                .rotationEffect(.degrees(135))
+                                .frame(width: diameter, height: diameter)
+                                .blendMode(.destinationOut)
+                        }
+                        .compositingGroup()
+                }
+                .opacity(highlightsSpent ? 1 : 0)
 
             Circle()
                 .fill(Color.white)
