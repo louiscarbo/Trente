@@ -41,6 +41,12 @@ struct AmountCategoryView: View {
 
     private var fields: some View {
         VStack(alignment: .leading) {
+            Picker("Type", selection: $transactionType) {
+                Text("Expense").tag(TransactionType.expense)
+                Text("Income").tag(TransactionType.income)
+            }
+            .pickerStyle(.segmented)
+
             Label(transactionType == .income
                   ? String(localized: "You will select categories for this income in the next steps.")
                   : selectedCategory?.shortExamples ?? String(localized: "Select a category for this transaction."), systemImage: "info.circle")
@@ -58,14 +64,8 @@ struct AmountCategoryView: View {
             
             Spacer()
             
-            #if os(iOS)
-            HStack(spacing: 0) {
-                stackContent
-            }
-            #elseif os(macOS)
-            stackContent
-            #endif
-            
+            amountField
+
             Spacer()
             
             Toggle(isOn: $isRecurrent) {
@@ -80,24 +80,7 @@ struct AmountCategoryView: View {
         #endif
     }
     
-    @ViewBuilder
-    private var stackContent: some View {
-        #if os(iOS)
-        Picker("Income/Expense", selection: $transactionType) {
-            Label("Expense", systemImage: "minus").tag(TransactionType.expense)
-            Label("Income", systemImage: "plus").tag(TransactionType.income)
-        }
-        .labelStyle(.iconOnly)
-        .pickerStyle(.inline)
-        .frame(width: 60)
-        #elseif os(macOS)
-        Picker("Type", selection: $transactionType) {
-            Label("Expense", systemImage: "minus").tag(TransactionType.expense)
-            Label("Income", systemImage: "plus").tag(TransactionType.income)
-        }
-        .pickerStyle(.segmented)
-        #endif
-        
+    private var amountField: some View {
         CurrencyTextField(amountCents: $amountCents, currency: currency)
             .focused($currencyTextFieldFocused)
             #if os(iOS)

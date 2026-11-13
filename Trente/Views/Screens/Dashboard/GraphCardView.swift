@@ -13,7 +13,7 @@ struct GraphCardView: View {
     let currency: Currency
     var size: CGFloat = 100
 
-    @State private var showRemaining = false
+    @State private var showRemaining = true
 
     var body: some View {
         let isOverBudget = figures.isOverBudget(in: scope)
@@ -155,20 +155,12 @@ struct BudgetGaugeView: View {
         return .primary
     }
 
-    var gaugeValue: Double {
-        if figures.extraSaved(in: scope) > 0 {
-            figures.income
-        } else if showRemaining && figures.isOverspent {
-            1
-        } else if figures.isOverspent {
-            -1 * figures.remaining.truncatingRemainder(dividingBy: figures.income)
-        } else {
-            figures.spent
-        }
+    private var highlight: GaugeHighlight {
+        figures.gaugeHighlight(showingRemaining: showRemaining, in: scope)
     }
 
     var body: some View {
-        Gauge(value: gaugeValue, in: 0...figures.income) {
+        Gauge(value: figures.gaugeIndicator(in: scope)) {
             Text(scope.name)
         } currentValueLabel: {
             centerLabel
@@ -178,7 +170,8 @@ struct BudgetGaugeView: View {
             TrenteGaugeStyle(
                 color: gaugeColor,
                 diameter: size,
-                highlightsRemaining: showRemaining
+                highlightsLeft: highlight.left,
+                highlightsSpent: highlight.spent
             )
         )
         .accessibilityElement(children: .ignore)

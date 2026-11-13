@@ -30,6 +30,29 @@ struct BudgetFigures: Hashable, Sendable {
     }
 }
 
+extension BudgetFigures {
+    func gaugeIndicator(in scope: BudgetScope) -> Double {
+        guard income > 0 else { return 0 }
+        guard extraSaved(in: scope) == 0 else { return 1 }
+        return min(max(remaining / income, 0), 1)
+    }
+
+    func gaugeHighlight(showingRemaining: Bool, in scope: BudgetScope) -> GaugeHighlight {
+        if extraSaved(in: scope) > 0 {
+            return GaugeHighlight(left: true, spent: false)
+        }
+        if showingRemaining {
+            return GaugeHighlight(left: true, spent: false)
+        }
+        return GaugeHighlight(left: false, spent: spent > 0)
+    }
+}
+
+struct GaugeHighlight: Equatable, Sendable {
+    let left: Bool
+    let spent: Bool
+}
+
 extension BudgetScope {
     var isSavings: Bool {
         self == .category(.savingsAndDebts)

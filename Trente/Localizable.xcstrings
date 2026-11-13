@@ -186,6 +186,94 @@
         }
       }
     },
+    "%@ left" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ tilbage"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ übrig"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απομένουν %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quedan %@"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quedan %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ restants"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ restants"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ rimanenti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残り%@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 남음"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ igjen"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ restantes"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ restantes"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kvar"
+          }
+        }
+      }
+    },
     "%@ left of %@" : {
       "localizations" : {
         "da" : {
@@ -1293,6 +1381,100 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bifoga ett kvitto, ett foto eller en anteckning till dina transaktioner."
+          }
+        }
+      }
+    },
+    "After taxes, before rent and bills." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efter skat, før husleje og regninger."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach Steuern, vor Miete und Rechnungen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μετά τους φόρους, πριν από ενοίκιο και λογαριασμούς."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After tax, before rent and bills."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Después de impuestos, antes de alquiler y facturas."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Después de impuestos, antes de alquiler y cuentas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après impôts, avant loyer et factures."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Après impôts, avant loyer et factures."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al netto delle tasse, prima di affitto e bollette."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "税引き後、家賃や支払いの前の金額です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "세금을 뗀 후, 월세와 공과금을 내기 전 금액이에요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etter skatt, før husleie og regninger."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois dos impostos, antes de aluguel e contas."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois de impostos, antes da renda da casa e das contas."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efter skatt, före hyra och räkningar."
           }
         }
       }
@@ -2729,6 +2911,276 @@
         }
       }
     },
+    "Enter the income you expect this month, after taxes. A rough figure is fine." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angiv den indtægt, du forventer denne måned, efter skat. Et groft tal er helt fint."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gib das Einkommen ein, das du diesen Monat erwartest, nach Steuern. Eine grobe Zahl reicht."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εισαγάγετε το εισόδημα που περιμένετε αυτόν τον μήνα, μετά τους φόρους. Μια πρόχειρη τιμή αρκεί."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the income you expect this month, after tax. A rough figure is fine."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce los ingresos que esperas este mes, después de impuestos. Una cifra aproximada basta."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingresa los ingresos que esperas este mes, después de impuestos. Una cifra aproximada basta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indiquez le revenu que vous attendez ce mois-ci, après impôts. Un chiffre approximatif suffit."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indiquez le revenu que vous attendez ce mois-ci, après impôts. Un chiffre approximatif suffit."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci le entrate che prevedi questo mese, al netto delle tasse. Una cifra approssimativa va bene."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月入ってくる見込みの収入を、税引き後で入力してください。おおよその金額で大丈夫です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이번 달에 들어올 것으로 예상되는 수입을 세금을 뗀 금액으로 입력하세요. 대략적인 금액이어도 괜찮아요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppgi inntekten du forventer denne måneden, etter skatt. Et grovt anslag holder."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informe a renda que você espera neste mês, depois dos impostos. Um valor aproximado já serve."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indique o rendimento que espera este mês, depois de impostos. Um valor aproximado chega."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ange den inkomst du förväntar dig den här månaden, efter skatt. En grov uppskattning räcker."
+          }
+        }
+      }
+    },
+    "Everything is split" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alt er fordelt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles ist aufgeteilt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Όλα έχουν κατανεμηθεί"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todo está repartido"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todo está repartido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout est réparti"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout est réparti"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutto è ripartito"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべて配分済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두 나눴어요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alt er fordelt"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tudo foi dividido"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tudo está dividido"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allt är fördelat"
+          }
+        }
+      }
+    },
+    "Expected Income" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forventet indtægt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erwartete Einnahme"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αναμενόμενο έσοδο"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingreso esperado"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingreso esperado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revenu attendu"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revenu attendu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrata prevista"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "見込みの収入"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예상 수입"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forventet inntekt"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renda esperada"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendimento previsto"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Förväntad inkomst"
+          }
+        }
+      }
+    },
     "Extra" : {
       "localizations" : {
         "da" : {
@@ -3697,6 +4149,182 @@
         }
       }
     },
+    "Just an estimate for this month. You can change it every month, and log your incomes as they arrive." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blot et skøn for denne måned. Du kan ændre det hver måned og registrere dine indtægter, efterhånden som de kommer."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur eine Schätzung für diesen Monat. Du kannst sie jeden Monat ändern und deine Einnahmen erfassen, sobald sie eingehen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μόνο μια εκτίμηση για αυτόν τον μήνα. Μπορείτε να την αλλάζετε κάθε μήνα και να καταγράφετε τα έσοδά σας καθώς έρχονται."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo una estimación para este mes. Puedes cambiarla cada mes y registrar tus ingresos a medida que lleguen."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo una estimación para este mes. Puedes cambiarla cada mes y registrar tus ingresos a medida que lleguen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une estimation pour ce mois-ci suffit. Vous pouvez la changer chaque mois et enregistrer vos revenus au fil de l’eau."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une estimation pour ce mois-ci suffit. Vous pouvez la changer chaque mois et enregistrer vos revenus au fur et à mesure."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo una stima per questo mese. Puoi cambiarla ogni mese e registrare le tue entrate man mano che arrivano."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今月のおおよその見込みで大丈夫です。毎月変更でき、収入は入ったときに記録できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이번 달의 대략적인 추정치예요. 매달 바꿀 수 있고, 수입은 들어올 때마다 기록하면 돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bare et anslag for denne måneden. Du kan endre det hver måned og registrere inntektene dine etter hvert som de kommer."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "É só uma estimativa para este mês. Você pode alterá-la todo mês e registrar suas rendas conforme elas entram."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "É apenas uma estimativa para este mês. Pode alterá-la todos os meses e registar os seus rendimentos à medida que entram."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bara en uppskattning för den här månaden. Du kan ändra den varje månad och logga dina inkomster när de kommer in."
+          }
+        }
+      }
+    },
+    "Left to split" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbage at fordele"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch aufzuteilen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Απομένουν προς κατανομή"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falta por repartir"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falta por repartir"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reste à répartir"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reste à répartir"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resta da ripartire"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未配分"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 나눌 금액"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Igjen å fordele"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falta dividir"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falta dividir"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvar att fördela"
+          }
+        }
+      }
+    },
     "Let Trente+ do the typing, and unlock new features." : {
       "localizations" : {
         "da" : {
@@ -4407,6 +5035,182 @@
         }
       }
     },
+    "of %@" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "af %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "von %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "από %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sur %@"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sur %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "su %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@のうち"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 중"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "av %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de %@"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "av %@"
+          }
+        }
+      }
+    },
+    "Once it's set up" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når det er sat op"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobald es eingerichtet ist"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μόλις ρυθμιστεί"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una vez configurado"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una vez configurado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une fois configuré :"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une fois configuré :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una volta configurato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定が完了すると"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정이 끝나면"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når det er satt opp"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois de configurado"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois de configurado"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "När det är konfigurerat"
+          }
+        }
+      }
+    },
     "Open TrenteVingt on this device to find your data here, or choose an export file." : {
       "localizations" : {
         "da" : {
@@ -4495,6 +5299,94 @@
         }
       }
     },
+    "Optional. Trente works fully without it." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valgfrit. Trente fungerer fuldt ud uden."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optional. Trente funktioniert auch ohne vollständig."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προαιρετικό. Το Trente λειτουργεί πλήρως και χωρίς αυτό."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opcional. Trente funciona perfectamente sin ello."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opcional. Trente funciona perfectamente sin ello."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facultatif. Trente fonctionne très bien sans."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facultatif. Trente fonctionne très bien sans."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facoltativo. Trente funziona benissimo anche senza."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任意です。Trenteはこれがなくても問題なく使えます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택 사항이에요. Trente는 이것 없이도 모두 사용할 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valgfritt. Trente fungerer helt fint uten."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opcional. O Trente funciona perfeitamente sem ele."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opcional. O Trente funciona perfeitamente sem ele."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valfritt. Trente fungerar helt utan det."
+          }
+        }
+      }
+    },
     "Outer ring: planned · Inner ring: spent" : {
       "localizations" : {
         "da" : {
@@ -4579,6 +5471,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yttre ring: planerat · Inre ring: spenderat"
+          }
+        }
+      }
+    },
+    "Pre-filled with your %@ split. Adjust it if you need." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udfyldt på forhånd med din fordeling for %@. Tilpas den, hvis du har brug for det."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorausgefüllt mit deiner Aufteilung für %@. Passe sie an, wenn nötig."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσυμπληρωμένο με την κατανομή σας του μήνα (%@). Προσαρμόστε την αν χρειάζεται."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rellenado con tu reparto de %@. Ajústalo si lo necesitas."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rellenado con tu reparto de %@. Ajústalo si lo necesitas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prérempli avec votre répartition pour %@. Modifiez-la au besoin."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prérempli avec votre répartition pour %@. Modifiez-la au besoin."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precompilato con la tua ripartizione di %@. Modificala se serve."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@の配分があらかじめ入力されています。必要に応じて調整してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 배분이 미리 입력되어 있어요. 필요하면 조정하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forhåndsutfylt med fordelingen din for %@. Juster den om nødvendig."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preenchido com a sua divisão de %@. Ajuste se precisar."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preenchido com a sua divisão de %@. Ajuste-a se necessário."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Förifylld med din fördelning för %@. Justera den vid behov."
           }
         }
       }
@@ -4761,6 +5741,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Granska"
+          }
+        }
+      }
+    },
+    "Set Up · about 2 min" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indstil · ca. 2 min"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einrichten · ca. 2 Min."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ρύθμιση · περίπου 2 λεπτά"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar · unos 2 min"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar · unos 2 min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurer · environ 2 min"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurer · environ 2 min"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configura · circa 2 min"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定する・約2分"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정하기 · 약 2분"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfigurer · ca. 2 min"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar · cerca de 2 min"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar · cerca de 2 min"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfigurera · cirka 2 min"
           }
         }
       }
@@ -5557,6 +6625,94 @@
         }
       }
     },
+    "That's your first income" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det er din første indtægt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ist deine erste Einnahme"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτό είναι το πρώτο σας έσοδο"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este es tu primer ingreso"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este es tu primer ingreso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C’est votre premier revenu"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C’est votre premier revenu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "È la tua prima entrata"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "これが最初の収入です"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫 번째 수입이에요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette er din første inntekt"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta é a sua primeira receita"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta é a sua primeira receita"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det här är din första inkomst"
+          }
+        }
+      }
+    },
     "The amount left is the income you've logged this month, minus your expenses.\nIf your month shows no amount left, start by adding an income: tap “Add Transaction”." : {
       "localizations" : {
         "da" : {
@@ -5641,6 +6797,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det som är kvar är de inkomster du har loggat den här månaden, minus dina utgifter.\nVisar månaden inget belopp kvar? Börja med att lägga till en inkomst: tryck på ”Lägg till transaktion”."
+          }
+        }
+      }
+    },
+    "The day you typically receive your income." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den dag, du normalt modtager din indtægt."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Tag, an dem du normalerweise dein Einkommen erhältst."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η ημέρα που συνήθως λαμβάνετε το εισόδημά σας."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El día en que sueles recibir tus ingresos."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El día en que normalmente recibes tus ingresos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jour où vous recevez habituellement votre revenu."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le jour où vous recevez habituellement votre revenu."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il giorno in cui di solito ricevi le tue entrate."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "普段、収入を受け取る日です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보통 수입을 받는 날이에요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dagen du vanligvis får inntekten din."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O dia em que você costuma receber sua renda."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O dia em que costuma receber o seu rendimento."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dagen du vanligtvis får din inkomst."
           }
         }
       }
@@ -7502,6 +8746,94 @@
     "Trente & Wallet" : {
       "shouldTranslate" : false
     },
+    "Trente added it from your budget and will log it every month. Tap to change the day, edit it, or stop it." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente har tilføjet den ud fra dit budget og registrerer den hver måned. Tryk for at ændre dagen, redigere den eller stoppe den."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente hat sie aus deinem Budget angelegt und erfasst sie jeden Monat. Tippe, um den Tag zu ändern, sie zu bearbeiten oder zu beenden."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente το πρόσθεσε από τον προϋπολογισμό σας και θα το καταγράφει κάθε μήνα. Αγγίξτε για να αλλάξετε την ημέρα, να το επεξεργαστείτε ή να το σταματήσετε."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente lo añadió a partir de tu presupuesto y lo registrará cada mes. Toca para cambiar el día, editarlo o detenerlo."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente lo agregó a partir de tu presupuesto y lo registrará cada mes. Toca para cambiar el día, editarlo o detenerlo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente l’a ajouté à partir de votre budget et l’enregistrera chaque mois. Touchez pour changer le jour, le modifier ou l’arrêter."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente l’a ajouté à partir de votre budget et l’enregistrera chaque mois. Touchez pour changer le jour, le modifier ou l’arrêter."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente l’ha aggiunta dal tuo budget e la registrerà ogni mese. Tocca per cambiare il giorno, modificarla o interromperla."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteが予算から追加しました。毎月自動で記録されます。タップすると、日付の変更、編集、停止ができます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente가 예산을 바탕으로 추가했고, 매달 기록해요. 탭해서 날짜를 바꾸거나 수정하거나 중지할 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente la den til ut fra budsjettet ditt og registrerer den hver måned. Trykk for å endre dagen, redigere den eller stoppe den."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente a adicionou com base no seu orçamento e vai registrá-la todo mês. Toque para mudar o dia, editá-la ou interrompê-la."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente adicionou-a a partir do seu orçamento e vai registá-la todos os meses. Toque para alterar o dia, editá-la ou interrompê-la."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente lade till den från din budget och loggar den varje månad. Tryck för att ändra dag, redigera den eller stoppa den."
+          }
+        }
+      }
+    },
     "Trente is designed and maintained entirely by one person." : {
       "localizations" : {
         "da" : {
@@ -7586,6 +8918,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente designas och underhålls helt av en enda person."
+          }
+        }
+      }
+    },
+    "Trente sends you a notification." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sender dig en notifikation."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente schickt dir eine Mitteilung."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente σας στέλνει μια ειδοποίηση."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te envía una notificación."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te envía una notificación."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous envoie une notification."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous envoie une notification."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente ti invia una notifica."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteから通知が届きます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente가 알림을 보내요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sender deg et varsel."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente envia uma notificação."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente envia-lhe uma notificação."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente skickar en avisering."
           }
         }
       }
@@ -8296,94 +9716,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gratis: %1$@, Trente+: %2$@"
-          }
-        }
-      }
-    },
-    "Green only" : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kun grøn"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nur Grün"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Μόνο πράσινο"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo verde"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo verde"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vert seulement"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vert seulement"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo verde"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "グリーンのみ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "그린만"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bare grønn"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apenas verde"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apenas verde"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bara grön"
           }
         }
       }
@@ -10834,6 +12166,182 @@
         }
       }
     },
+    "You pay with Apple Pay." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du betaler med Apple Pay."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du zahlst mit Apple Pay."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πληρώνετε με Apple Pay."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pagas con Apple Pay."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pagas con Apple Pay."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous payez avec Apple Pay."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous payez avec Apple Pay."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paghi con Apple Pay."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Payで支払います。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay로 결제해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du betaler med Apple Pay."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você paga com o Apple Pay."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paga com o Apple Pay."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du betalar med Apple Pay."
+          }
+        }
+      }
+    },
+    "You tap it to log the purchase." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du trykker på den for at registrere købet."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du tippst darauf, um den Kauf zu erfassen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Την αγγίζετε για να καταγράψετε την αγορά."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La tocas para registrar la compra."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La tocas para registrar la compra."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous la touchez pour enregistrer l’achat."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous la touchez pour enregistrer l’achat."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La tocchi per registrare l’acquisto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知をタップして購入を記録します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알림을 탭하면 구매가 기록돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du trykker på det for å registrere kjøpet."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você toca nela para registrar a compra."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca nela para registar a compra."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du trycker på den för att logga köpet."
+          }
+        }
+      }
+    },
     "You've used your %lld free Apple Pay logs this month. Get Trente+ for unlimited automatic logging." : {
       "localizations" : {
         "da" : {
@@ -10918,6 +12426,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du har loggat %lld Apple Pay-köp gratis den här månaden. Skaffa Trente+ för att logga automatiskt utan gräns."
+          }
+        }
+      }
+    },
+    "Your card payments show up in Trente, ready to review. One-time setup, about 2 minutes, guided step by step." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dine kortbetalinger dukker op i Trente, klar til gennemgang. Engangsopsætning på ca. 2 minutter, guidet trin for trin."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Kartenzahlungen erscheinen in Trente, bereit zur Prüfung. Einmalige Einrichtung, etwa 2 Minuten, Schritt für Schritt begleitet."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Οι πληρωμές σας με κάρτα εμφανίζονται στο Trente, έτοιμες για έλεγχο. Εφάπαξ ρύθμιση, περίπου 2 λεπτά, με καθοδήγηση βήμα προς βήμα."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus pagos con tarjeta aparecen en Trente, listos para revisar. Configuración única, unos 2 minutos, guiada paso a paso."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus pagos con tarjeta aparecen en Trente, listos para revisar. Configuración única, unos 2 minutos, guiada paso a paso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos paiements par carte apparaissent dans Trente, prêts à être vérifiés. Configuration unique, environ 2 minutes, guidée pas à pas."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos paiements par carte apparaissent dans Trente, prêts à être vérifiés. Configuration unique, environ 2 minutes, guidée pas à pas."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I tuoi pagamenti con carta compaiono in Trente, pronti da verificare. Configurazione una tantum, circa 2 minuti, guidata passo dopo passo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カードでの支払いがTrenteに表示され、すぐに確認できます。設定は一度だけ、約2分で、手順に沿って進められます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카드 결제가 Trente에 표시되어 바로 확인할 수 있어요. 한 번만 설정하면 되고, 약 2분이면 단계별 안내를 따라 끝낼 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kortbetalingene dine dukker opp i Trente, klare til gjennomgang. Engangsoppsett på ca. 2 minutter, veiledet steg for steg."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seus pagamentos com cartão aparecem no Trente, prontos para revisar. Configuração única, cerca de 2 minutos, guiada passo a passo."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os seus pagamentos com cartão aparecem no Trente, prontos a rever. Configuração única, cerca de 2 minutos, guiada passo a passo."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dina kortbetalningar dyker upp i Trente, redo att granskas. Engångsinställning, cirka 2 minuter, guidad steg för steg."
           }
         }
       }
@@ -14737,94 +16333,6 @@
         }
       }
     },
-    "Amount to split" : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beløb at fordele"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aufzuteilender Betrag"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ποσό προς κατανομή"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importe a repartir"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importe a repartir"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montant à répartir"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montant à répartir"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importo da ripartire"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "配分する金額"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "나눌 금액"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beløp å fordele"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Valor a dividir"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montante a dividir"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belopp att fördela"
-          }
-        }
-      }
-    },
     "An error occurred" : {
       "localizations" : {
         "da" : {
@@ -15701,6 +17209,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blå"
+          }
+        }
+      }
+    },
+    "Blue only" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kun blå"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur Blau"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μόνο μπλε"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo azul"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo azul"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bleu seulement"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bleu seulement"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo blu"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ブルーのみ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "블루만"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bare blå"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apenas azul"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apenas azul"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bara blå"
           }
         }
       }
@@ -23358,94 +24954,6 @@
         }
       }
     },
-    "Ideal Budget" : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ideelt budget"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Idealbudget"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ιδανικός προϋπολογισμός"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Presupuesto ideal"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Presupuesto ideal"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Budget idéal"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Budget idéal"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Budget ideale"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "理想の予算"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이상적인 예산"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ideelt budsjett"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Orçamento ideal"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Orçamento ideal"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Idealbudget"
-          }
-        }
-      }
-    },
     "Illustrations" : {
       "localizations" : {
         "da" : {
@@ -24146,94 +25654,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Varierar din inkomst?"
-          }
-        }
-      }
-    },
-    "Income/Expense" : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indtægt/udgift"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einnahme/Ausgabe"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Έσοδο/Έξοδο"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ingreso/Gasto"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ingreso/Gasto"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Revenu/Dépense"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Revenu/Dépense"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entrata/Spesa"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "収入/支出"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "수입/지출"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inntekt/utgift"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Receita/Despesa"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Receita/Despesa"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inkomst/utgift"
           }
         }
       }
@@ -38152,100 +39572,6 @@
         }
       }
     },
-    "Think of it as the money you're free to spend each month, once taxes are taken care of." : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Det er de penge, du frit kan bruge hver måned, når skatten er betalt."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Das ist das Geld, über das du jeden Monat frei verfügen kannst, nachdem die Steuern bezahlt sind."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Είναι τα χρήματα που μπορείτε να διαθέσετε ελεύθερα κάθε μήνα, αφού κρατηθούν οι φόροι και οι εισφορές."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Think of it as the money you're free to spend each month, after tax."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Es el dinero que puedes gastar libremente cada mes, una vez pagados los impuestos."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Es el dinero que puedes gastar libremente cada mes, una vez pagados los impuestos."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C’est l’argent dont vous disposez librement chaque mois, une fois les impôts réglés."
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C’est l’argent dont vous disposez librement chaque mois, une fois les impôts réglés."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sono i soldi che puoi spendere liberamente ogni mese, una volta pagate le tasse."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "税金や社会保険料が引かれたあとの、毎月自由に使えるお金のことです。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "세금을 낸 뒤 매달 자유롭게 쓸 수 있는 돈이라고 생각하면 돼요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Det er pengene du fritt kan bruke hver måned, etter at skatten er trukket."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pense nele como o dinheiro que você pode gastar livremente todo mês, depois de pagar os impostos."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "É o dinheiro de que dispõe livremente todos os meses, depois de pagos os impostos."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Det är pengarna du fritt kan använda varje månad, när skatten är betald."
-          }
-        }
-      }
-    },
     "This action cannot be undone." : {
       "localizations" : {
         "da" : {
@@ -41215,94 +42541,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Under budget"
-          }
-        }
-      }
-    },
-    "Use your best estimate. Log extra income as it comes in, and adjust next month's budget." : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Brug dit bedste skøn. Registrer ekstra indtægt, når den kommer, og tilpas næste måneds budget."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schätze so gut du kannst. Erfasse zusätzliche Einnahmen, sobald sie eingehen, und passe das Budget im nächsten Monat an."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Κάντε την καλύτερη εκτίμησή σας. Καταγράψτε τα επιπλέον έσοδα όταν έρχονται και προσαρμόστε τον προϋπολογισμό του επόμενου μήνα."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haz tu mejor estimación. Registra los ingresos extra a medida que lleguen y ajusta el presupuesto del mes siguiente."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haz tu mejor estimación. Registra los ingresos extra a medida que lleguen y ajusta el presupuesto del mes siguiente."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faites votre meilleure estimation. Enregistrez les revenus supplémentaires au fil de l’eau et ajustez le budget du mois suivant."
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faites votre meilleure estimation. Enregistrez les revenus supplémentaires au fur et à mesure et ajustez le budget du mois suivant."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fai la tua stima migliore. Registra le entrate extra man mano che arrivano e adatta il budget del mese successivo."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "おおよその見込みで入力してください。追加の収入は入ったときに記録し、翌月の予算で調整しましょう。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "최대한 정확하게 추정해 보세요. 추가 수입은 들어올 때마다 기록하고, 다음 달 예산을 조정하세요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anslå så godt du kan. Registrer ekstra inntekt etter hvert som den kommer, og juster budsjettet for neste måned."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faça sua melhor estimativa. Registre receitas extras conforme elas entram e ajuste o orçamento do mês seguinte."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faça a sua melhor estimativa. Registe as receitas extra à medida que entram e ajuste o orçamento do mês seguinte."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gör din bästa uppskattning. Logga extra inkomster när de kommer in och justera nästa månads budget."
           }
         }
       }
@@ -45736,94 +46974,6 @@
         }
       }
     },
-    "Set Up" : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indstil"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einrichten"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ρύθμιση"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurar"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurer"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurer"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configura"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定する"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "설정하기"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konfigurer"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurar"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurar"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konfigurera"
-          }
-        }
-      }
-    },
     "Set this up on your iPhone" : {
       "localizations" : {
         "da" : {
@@ -45996,94 +47146,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Pay-köp når Trente via en automatisering i appen Genvägar på din iPhone. Öppna Trente där, gå till Inställningar och tryck på Anslut Trente till Apple Pay."
-          }
-        }
-      }
-    },
-    "Create one automation in the Shortcuts app. Every card payment then shows up in Trente, ready to review." : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opret én automatisering i appen Genveje. Derefter dukker hver kortbetaling op i Trente, klar til at blive gennemgået."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erstelle eine Automation in der App „Kurzbefehle“. Danach erscheint jede Kartenzahlung in Trente, bereit zur Prüfung."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Δημιουργήστε μία αυτοματοποίηση στην εφαρμογή Συντομεύσεις. Από εκεί και πέρα, κάθε πληρωμή με κάρτα εμφανίζεται στο Trente, έτοιμη για έλεγχο."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crea una automatización en la app Atajos. Cada pago con tarjeta aparecerá en Trente, listo para revisar."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crea una automatización en la app Atajos. Cada pago con tarjeta aparecerá en Trente, listo para revisar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Créez une automatisation dans l’app Raccourcis. Chaque paiement par carte apparaît ensuite dans Trente, prêt à être vérifié."
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Créez une automatisation dans l’app Raccourcis. Chaque paiement par carte apparaît ensuite dans Trente, prêt à être vérifié."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crea un’automazione nell’app Comandi Rapidi. Ogni pagamento con carta apparirà in Trente, pronto da verificare."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「ショートカット」アプリでオートメーションを1つ作成すると、カードでの支払いがすべてTrenteに表示され、すぐに確認できます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "단축어 앱에서 자동화를 하나 만드세요. 그러면 모든 카드 결제가 Trente에 표시되어 바로 확인할 수 있어요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opprett én automatisering i Snarveier-appen. Da dukker hver kortbetaling opp i Trente, klar til gjennomgang."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crie uma automação no app Atalhos. Cada pagamento com cartão vai aparecer no Trente, pronto para revisar."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crie uma automatização na app Atalhos. Cada pagamento com cartão passa a aparecer no Trente, pronto a rever."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skapa en automatisering i appen Genvägar. Sedan dyker varje kortbetalning upp i Trente, redo att granskas."
           }
         }
       }

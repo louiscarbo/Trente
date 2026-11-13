@@ -16,13 +16,21 @@ struct ApplePayStepView: View {
         OnboardingStepLayout {
             OnboardingHeader(
                 title: "Log Apple Pay purchases automatically",
-                subtitle: "Create one automation in the Shortcuts app. Every card payment then shows up in Trente, ready to review."
+                subtitle: "Your card payments show up in Trente, ready to review. One-time setup, about 2 minutes, guided step by step."
             )
         } secondary: {
             OnboardingScrollPane {
                 NotificationPreview(
                     title: NotificationText.amountTitle(amountCents: -4_50, currency: currency, title: String(localized: "Bakery")),
                     message: WalletNotificationService.body
+                )
+                SetupSteps(
+                    title: "Once it's set up",
+                    steps: [
+                        "You pay with Apple Pay.",
+                        "Trente sends you a notification.",
+                        "You tap it to log the purchase."
+                    ]
                 )
                 Label(
                     "Trente only receives the merchant name and the amount. Never your card details.",
@@ -33,10 +41,11 @@ struct ApplePayStepView: View {
                 .padding(.horizontal, 4)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .scrollClipDisabled()
             .frame(maxWidth: 370)
             .frame(maxWidth: .infinity)
         } actions: {
-            OnboardingContinueButton(title: "Set Up", action: onSetUp)
+            OnboardingContinueButton(title: "Set Up · about 2 min", action: onSetUp)
             Button(action: onContinue) {
                 Text("Set Up Later")
                     .frame(maxWidth: .infinity)

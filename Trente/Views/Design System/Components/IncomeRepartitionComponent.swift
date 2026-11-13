@@ -52,6 +52,7 @@ struct IncomeRepartitionComponent: View {
     }
     
     var remainingAmountSection: some View {
+        let isSplit = remainingAmount == 0
         let color: Color = .pink
 
         return GeometryReader { geo in
@@ -59,27 +60,26 @@ struct IncomeRepartitionComponent: View {
             let proportion = amountToSplit > 0
                 ? max(0, min(1, CGFloat(remainingAmount) / CGFloat(amountToSplit)))
                 : 0
-            let fillWidth = min(proportion * (width - 3) + 3, width)
+            let fillWidth = isSplit ? 0 : min(proportion * (width - 3) + 3, width)
 
             ZStack(alignment: .leading) {
-                color.lighten(0.25)
+                (isSplit ? Color.gray.opacity(0.15) : color.lighten(0.25))
 
                 Rectangle()
                     .fill(color.gradient)
                     .frame(width: fillWidth)
 
                 let content = HStack {
-                    Label(
-                        "Amount to split",
-                        systemImage: remainingAmount > 0
-                            ? "exclamationmark.triangle.fill"
-                            : "checkmark.circle.fill"
-                    )
-                    .contentTransition(
-                        .symbolEffect(.replace)
-                    )
+                    Label {
+                        Text(isSplit ? "Everything is split" : "Left to split")
+                    } icon: {
+                        Image(systemName: isSplit ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
+                            .contentTransition(.symbolEffect(.replace))
+                    }
                     Spacer()
-                    Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+                    if !isSplit {
+                        Text(formatter.string(from: NSNumber(value: Double(remainingAmount) / 100.0)) ?? "")
+                    }
                 }
                 .font(.subheadline)
                 .bold(remainingAmount < 100 && remainingAmount > 0)
@@ -103,7 +103,7 @@ struct IncomeRepartitionComponent: View {
                         )
 
                     content
-                        .foregroundColor(color.darken(0.6))
+                        .foregroundColor(isSplit ? .secondary : color.darken(0.6))
                         .mask(
                             HStack(spacing: 0) {
                                 Spacer(minLength: 0)
@@ -117,7 +117,7 @@ struct IncomeRepartitionComponent: View {
         .clipShape(Capsule())
         .overlay {
             RoundedRectangle(cornerRadius: .large)
-                .strokeBorder(.pink.darken(0.1), lineWidth: 3)
+                .strokeBorder(isSplit ? Color.gray.opacity(0.45) : color.darken(0.1), lineWidth: 3)
         }
         .glassEffect(.regular.interactive(false), in: .capsule)
         .accessibilityElement(children: .combine)

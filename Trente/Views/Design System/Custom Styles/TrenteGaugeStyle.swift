@@ -11,7 +11,8 @@ import SwiftUI
 struct TrenteGaugeStyle: GaugeStyle {
     var color: Color
     var diameter: CGFloat = 100
-    var highlightsRemaining = false
+    var highlightsLeft = true
+    var highlightsSpent = false
 
     var gradient: Gradient {
         Gradient(colors: [adjustHue(of: color, by: -20), color])
@@ -32,7 +33,7 @@ struct TrenteGaugeStyle: GaugeStyle {
                 .trim(from: 0, to: splitPoint)
                 .stroke(gradient, style: roundStroke)
                 .rotationEffect(.degrees(135))
-                .opacity(highlightsRemaining ? 0 : 1)
+                .opacity(highlightsLeft ? 1 : 0)
 
             Circle()
                 .trim(from: 0, to: 0.75)
@@ -51,7 +52,7 @@ struct TrenteGaugeStyle: GaugeStyle {
                         }
                         .compositingGroup()
                 }
-                .opacity(highlightsRemaining ? 1 : 0)
+                .opacity(highlightsSpent ? 1 : 0)
 
             Circle()
                 .fill(Color.white)

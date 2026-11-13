@@ -30,6 +30,11 @@ struct NewTransactionView: View {
                     navigationButtons
                 }
         }
+        .onAppear {
+            if let month {
+                viewModel.setMonth(month)
+            }
+        }
         .onChange(of: viewModel.step) { _, newStep in
             if newStep != .title {
                 focusedField = nil
@@ -111,7 +116,8 @@ struct NewTransactionView: View {
                     currency: context.currency,
                     transactionAmount: viewModel.request.amountCents,
                     repartition: $viewModel.request.repartition,
-                    isRepartitionComplete: $viewModel.isRepartitionComplete
+                    isRepartitionComplete: $viewModel.isRepartitionComplete,
+                    prefilledMonthName: viewModel.prefilledMonthName
                 )
             case .recurrence:
                 RecurrenceView(
