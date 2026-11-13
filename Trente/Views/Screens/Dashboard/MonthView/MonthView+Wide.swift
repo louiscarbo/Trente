@@ -55,6 +55,11 @@ extension MonthView {
                     horizontalSpacing: foldColumns?.spacing ?? DesignSystem.Spacing.grid.rawValue,
                     verticalSpacing: DesignSystem.Spacing.grid.rawValue
                 ) {
+                    RemainingLine(
+                        remaining: month.remainingAmount,
+                        income: month.incomeAmount,
+                        currencyCode: month.currency.isoCode
+                    )
                     GridRow {
                         BudgetGauges(month: month)
                             .frame(width: foldColumns?.leadingWidth)

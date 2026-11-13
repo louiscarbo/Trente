@@ -38,6 +38,13 @@ extension MonthView {
         var body: some View {
             ScrollView {
                 LazyVStack(spacing: 20) {
+                    RemainingLine(
+                        remaining: month.remainingAmount,
+                        income: month.incomeAmount,
+                        currencyCode: month.currency.isoCode
+                    )
+                    .padding(.horizontal)
+
                     CardCarousel(selection: $carouselPage, safeAreaPadding: true) { page in
                         card(for: page)
                     }
