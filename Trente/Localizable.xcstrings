@@ -4947,6 +4947,94 @@
         }
       }
     },
+    "Once it's set up" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når det er sat op"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobald es eingerichtet ist"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μόλις ρυθμιστεί"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una vez configurado"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una vez configurado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une fois configuré :"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une fois configuré :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una volta configurato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定が完了すると"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정이 끝나면"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når det er satt opp"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois de configurado"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depois de configurado"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "När det är konfigurerat"
+          }
+        }
+      }
+    },
     "Open TrenteVingt on this device to find your data here, or choose an export file." : {
       "localizations" : {
         "da" : {
@@ -5389,6 +5477,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Granska"
+          }
+        }
+      }
+    },
+    "Set Up · about 2 min" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indstil · ca. 2 min"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einrichten · ca. 2 Min."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ρύθμιση · περίπου 2 λεπτά"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar · unos 2 min"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar · unos 2 min"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurer · environ 2 min"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurer · environ 2 min"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configura · circa 2 min"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定する・約2分"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정하기 · 약 2분"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfigurer · ca. 2 min"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar · cerca de 2 min"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurar · cerca de 2 min"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfigurera · cirka 2 min"
           }
         }
       }
@@ -8478,6 +8654,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trente designas och underhålls helt av en enda person."
+          }
+        }
+      }
+    },
+    "Trente sends you a notification." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sender dig en notifikation."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente schickt dir eine Mitteilung."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente σας στέλνει μια ειδοποίηση."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te envía una notificación."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente te envía una notificación."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous envoie une notification."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente vous envoie une notification."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente ti invia una notifica."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteから通知が届きます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente가 알림을 보내요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente sender deg et varsel."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente envia uma notificação."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente envia-lhe uma notificação."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente skickar en avisering."
           }
         }
       }
@@ -11638,6 +11902,182 @@
         }
       }
     },
+    "You pay with Apple Pay." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du betaler med Apple Pay."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du zahlst mit Apple Pay."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πληρώνετε με Apple Pay."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pagas con Apple Pay."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pagas con Apple Pay."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous payez avec Apple Pay."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous payez avec Apple Pay."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paghi con Apple Pay."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Payで支払います。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Pay로 결제해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du betaler med Apple Pay."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você paga com o Apple Pay."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paga com o Apple Pay."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du betalar med Apple Pay."
+          }
+        }
+      }
+    },
+    "You tap it to log the purchase." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du trykker på den for at registrere købet."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du tippst darauf, um den Kauf zu erfassen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Την αγγίζετε για να καταγράψετε την αγορά."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La tocas para registrar la compra."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La tocas para registrar la compra."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous la touchez pour enregistrer l’achat."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous la touchez pour enregistrer l’achat."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La tocchi per registrare l’acquisto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知をタップして購入を記録します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알림을 탭하면 구매가 기록돼요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du trykker på det for å registrere kjøpet."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você toca nela para registrar a compra."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca nela para registar a compra."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du trycker på den för att logga köpet."
+          }
+        }
+      }
+    },
     "You've used your %lld free Apple Pay logs this month. Get Trente+ for unlimited automatic logging." : {
       "localizations" : {
         "da" : {
@@ -11722,6 +12162,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du har loggat %lld Apple Pay-köp gratis den här månaden. Skaffa Trente+ för att logga automatiskt utan gräns."
+          }
+        }
+      }
+    },
+    "Your card payments show up in Trente, ready to review. One-time setup, about 2 minutes, guided step by step." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dine kortbetalinger dukker op i Trente, klar til gennemgang. Engangsopsætning på ca. 2 minutter, guidet trin for trin."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Kartenzahlungen erscheinen in Trente, bereit zur Prüfung. Einmalige Einrichtung, etwa 2 Minuten, Schritt für Schritt begleitet."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Οι πληρωμές σας με κάρτα εμφανίζονται στο Trente, έτοιμες για έλεγχο. Εφάπαξ ρύθμιση, περίπου 2 λεπτά, με καθοδήγηση βήμα προς βήμα."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus pagos con tarjeta aparecen en Trente, listos para revisar. Configuración única, unos 2 minutos, guiada paso a paso."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus pagos con tarjeta aparecen en Trente, listos para revisar. Configuración única, unos 2 minutos, guiada paso a paso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos paiements par carte apparaissent dans Trente, prêts à être vérifiés. Configuration unique, environ 2 minutes, guidée pas à pas."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos paiements par carte apparaissent dans Trente, prêts à être vérifiés. Configuration unique, environ 2 minutes, guidée pas à pas."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I tuoi pagamenti con carta compaiono in Trente, pronti da verificare. Configurazione una tantum, circa 2 minuti, guidata passo dopo passo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カードでの支払いがTrenteに表示され、すぐに確認できます。設定は一度だけ、約2分で、手順に沿って進められます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카드 결제가 Trente에 표시되어 바로 확인할 수 있어요. 한 번만 설정하면 되고, 약 2분이면 단계별 안내를 따라 끝낼 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kortbetalingene dine dukker opp i Trente, klare til gjennomgang. Engangsoppsett på ca. 2 minutter, veiledet steg for steg."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seus pagamentos com cartão aparecem no Trente, prontos para revisar. Configuração única, cerca de 2 minutos, guiada passo a passo."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os seus pagamentos com cartão aparecem no Trente, prontos a rever. Configuração única, cerca de 2 minutos, guiada passo a passo."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dina kortbetalningar dyker upp i Trente, redo att granskas. Engångsinställning, cirka 2 minuter, guidad steg för steg."
           }
         }
       }
@@ -46270,94 +46798,6 @@
         }
       }
     },
-    "Set Up" : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indstil"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einrichten"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ρύθμιση"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurar"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurar"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurer"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurer"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configura"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定する"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "설정하기"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konfigurer"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurar"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configurar"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konfigurera"
-          }
-        }
-      }
-    },
     "Set this up on your iPhone" : {
       "localizations" : {
         "da" : {
@@ -46530,94 +46970,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Pay-köp når Trente via en automatisering i appen Genvägar på din iPhone. Öppna Trente där, gå till Inställningar och tryck på Anslut Trente till Apple Pay."
-          }
-        }
-      }
-    },
-    "Create one automation in the Shortcuts app. Every card payment then shows up in Trente, ready to review." : {
-      "localizations" : {
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opret én automatisering i appen Genveje. Derefter dukker hver kortbetaling op i Trente, klar til at blive gennemgået."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erstelle eine Automation in der App „Kurzbefehle“. Danach erscheint jede Kartenzahlung in Trente, bereit zur Prüfung."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Δημιουργήστε μία αυτοματοποίηση στην εφαρμογή Συντομεύσεις. Από εκεί και πέρα, κάθε πληρωμή με κάρτα εμφανίζεται στο Trente, έτοιμη για έλεγχο."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crea una automatización en la app Atajos. Cada pago con tarjeta aparecerá en Trente, listo para revisar."
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crea una automatización en la app Atajos. Cada pago con tarjeta aparecerá en Trente, listo para revisar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Créez une automatisation dans l’app Raccourcis. Chaque paiement par carte apparaît ensuite dans Trente, prêt à être vérifié."
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Créez une automatisation dans l’app Raccourcis. Chaque paiement par carte apparaît ensuite dans Trente, prêt à être vérifié."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crea un’automazione nell’app Comandi Rapidi. Ogni pagamento con carta apparirà in Trente, pronto da verificare."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「ショートカット」アプリでオートメーションを1つ作成すると、カードでの支払いがすべてTrenteに表示され、すぐに確認できます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "단축어 앱에서 자동화를 하나 만드세요. 그러면 모든 카드 결제가 Trente에 표시되어 바로 확인할 수 있어요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opprett én automatisering i Snarveier-appen. Da dukker hver kortbetaling opp i Trente, klar til gjennomgang."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crie uma automação no app Atalhos. Cada pagamento com cartão vai aparecer no Trente, pronto para revisar."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crie uma automatização na app Atalhos. Cada pagamento com cartão passa a aparecer no Trente, pronto a rever."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skapa en automatisering i appen Genvägar. Sedan dyker varje kortbetalning upp i Trente, redo att granskas."
           }
         }
       }
