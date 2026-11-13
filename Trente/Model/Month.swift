@@ -76,6 +76,10 @@ extension Month {
         Double(remainingAmountCents) / 100
     }
 
+    var idealBudgetAmount: Double {
+        Double(idealBudgetCents) / 100
+    }
+
     var incomeAmount: Double {
         Double(incomeAmountCents) / 100
     }

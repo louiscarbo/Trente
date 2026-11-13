@@ -26,7 +26,7 @@ struct AllSetStepView: View {
             if let month {
                 MonthSummaryCard(
                     name: month.name,
-                    remaining: month.remainingAmount,
+                    remaining: month.idealBudgetAmount,
                     spent: month.spentAmount(in: .all),
                     currencyCode: month.currency.isoCode,
                     isOverspent: month.overSpent
