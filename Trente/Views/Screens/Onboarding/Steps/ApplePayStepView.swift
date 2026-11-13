@@ -41,6 +41,7 @@ struct ApplePayStepView: View {
                 .padding(.horizontal, 4)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .scrollClipDisabled()
             .frame(maxWidth: 370)
             .frame(maxWidth: .infinity)
         } actions: {
