@@ -5645,6 +5645,94 @@
         }
       }
     },
+    "That's your first income" : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det er din første indtægt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ist deine erste Einnahme"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτό είναι το πρώτο σας έσοδο"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este es tu primer ingreso"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este es tu primer ingreso"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C’est votre premier revenu"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C’est votre premier revenu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "È la tua prima entrata"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "これが最初の収入です"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫 번째 수입이에요"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette er din første inntekt"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta é a sua primeira receita"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta é a sua primeira receita"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det här är din första inkomst"
+          }
+        }
+      }
+    },
     "The amount left is the income you've logged this month, minus your expenses.\nIf your month shows no amount left, start by adding an income: tap “Add Transaction”." : {
       "localizations" : {
         "da" : {
@@ -7589,6 +7677,94 @@
     },
     "Trente & Wallet" : {
       "shouldTranslate" : false
+    },
+    "Trente added it from your budget and will log it every month. Tap to change the day, edit it, or stop it." : {
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente har tilføjet den ud fra dit budget og registrerer den hver måned. Tryk for at ændre dagen, redigere den eller stoppe den."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente hat sie aus deinem Budget angelegt und erfasst sie jeden Monat. Tippe, um den Tag zu ändern, sie zu bearbeiten oder zu beenden."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το Trente το πρόσθεσε από τον προϋπολογισμό σας και θα το καταγράφει κάθε μήνα. Αγγίξτε για να αλλάξετε την ημέρα, να το επεξεργαστείτε ή να το σταματήσετε."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente lo añadió a partir de tu presupuesto y lo registrará cada mes. Toca para cambiar el día, editarlo o detenerlo."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente lo agregó a partir de tu presupuesto y lo registrará cada mes. Toca para cambiar el día, editarlo o detenerlo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente l’a ajouté à partir de votre budget et l’enregistrera chaque mois. Touchez pour changer le jour, le modifier ou l’arrêter."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente l’a ajouté à partir de votre budget et l’enregistrera chaque mois. Touchez pour changer le jour, le modifier ou l’arrêter."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente l’ha aggiunta dal tuo budget e la registrerà ogni mese. Tocca per cambiare il giorno, modificarla o interromperla."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenteが予算から追加しました。毎月自動で記録されます。タップすると、日付の変更、編集、停止ができます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente가 예산을 바탕으로 추가했고, 매달 기록해요. 탭해서 날짜를 바꾸거나 수정하거나 중지할 수 있어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente la den til ut fra budsjettet ditt og registrerer den hver måned. Trykk for å endre dagen, redigere den eller stoppe den."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente a adicionou com base no seu orçamento e vai registrá-la todo mês. Toque para mudar o dia, editá-la ou interrompê-la."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Trente adicionou-a a partir do seu orçamento e vai registá-la todos os meses. Toque para alterar o dia, editá-la ou interrompê-la."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trente lade till den från din budget och loggar den varje månad. Tryck för att ändra dag, redigera den eller stoppa den."
+          }
+        }
+      }
     },
     "Trente is designed and maintained entirely by one person." : {
       "localizations" : {

@@ -14,6 +14,7 @@ struct TrenteApp: App {
     @State private var trentePlus = TrentePlusStatus.shared
 
     init() {
+        TipsConfiguration.start()
         CloudSyncMonitor.shared.start()
         TrentePlusStatus.shared.start()
         container = TrenteContainer.shared

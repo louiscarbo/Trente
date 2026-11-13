@@ -186,6 +186,9 @@ struct OnboardingView: View {
     private func startTracking() {
         do {
             try model.addIncome(in: modelContext)
+            if model.hasAddedIncome {
+                Task { await MonthView.FirstIncomeTip.incomeAdded.donate() }
+            }
             isShowingPaywall = true
         } catch {
             incomeErrorMessage = error.localizedDescription
