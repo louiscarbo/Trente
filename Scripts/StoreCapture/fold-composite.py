@@ -13,8 +13,8 @@ DEFAULT_BEZEL_DIRECTORY = "~/Pictures/Trente Store Assets/iPhone Duo"
 def homography(source_points, destination_points):
     rows = []
     for (source_x, source_y), (destination_x, destination_y) in zip(source_points, destination_points):
-        rows.append([source_x, source_y, 1, 0, 0, 0, -destination_x * source_x, -destination_x * source_y, destination_x])
-        rows.append([0, 0, 0, source_x, source_y, 1, -destination_y * source_x, -destination_y * source_y, destination_y])
+        rows.append([source_x, source_y, 1, 0, 0, 0, -destination_x * source_x, -destination_x * source_y, -destination_x])
+        rows.append([0, 0, 0, source_x, source_y, 1, -destination_y * source_x, -destination_y * source_y, -destination_y])
     _, _, right_vectors = np.linalg.svd(np.asarray(rows, dtype=np.float64))
     return right_vectors[-1].reshape(3, 3)
 
@@ -50,10 +50,6 @@ class Bezel:
         curve_points = curve_layer.tagged_blocks.get_data(b"curv").data[0]
         self.curve_input = np.asarray([point[0] for point in curve_points], dtype=np.float32) / 255
         self.curve_output = np.asarray([point[1] for point in curve_points], dtype=np.float32) / 255
-        self.camera = [
-            (np.asarray(layer.topil().convert("RGBA"), dtype=np.float32) / 255, layer.bbox)
-            for layer in layers["Camera"]
-        ]
         warp = layers["Screen Content"].tagged_blocks.get_data(b"SoLd").data[b"filterFX"][b"filterFXList"][0][b"Fltr"]
         self.reference = warp[b"referenceRect"]
         self.vertices = [(point[b"Hrzn"].value, point[b"Vrtc"].value) for point in warp[b"vertices"]]
@@ -79,6 +75,8 @@ class Bezel:
             source_xs = sorted(point[0] for point in source)
             crop = (max(0, int(source_xs[0]) - 2), 0, min(CAPTURE_SIZE[0], int(source_xs[-1]) + 3), CAPTURE_SIZE[1])
             shifted = coefficients.copy()
+            shifted[0] -= crop[0] * coefficients[6]
+            shifted[1] -= crop[0] * coefficients[7]
             shifted[2] -= crop[0]
             panel = capture.crop(crop).transform(self.size, Image.PERSPECTIVE, shifted, Image.BICUBIC)
             panel_mask = white.crop(crop).transform(self.size, Image.PERSPECTIVE, shifted, Image.BILINEAR)
@@ -100,10 +98,6 @@ class Bezel:
         shifted = np.clip(screened + (target - luminance)[..., None], 0, 1)
         reflection = self.reflection_amount[..., None]
         result = screened * (1 - reflection) + shifted * reflection
-        for pixels, bbox in self.camera:
-            region = result[bbox[1]:bbox[3], bbox[0]:bbox[2]]
-            alpha = pixels[..., 3:4]
-            region[:] = region * (1 - alpha) + pixels[..., :3] * alpha
         rgba = np.dstack([result, self.hardware[..., 3]])
         return Image.fromarray((rgba * 255 + 0.5).astype(np.uint8), "RGBA")
 
