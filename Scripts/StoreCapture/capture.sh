@@ -185,7 +185,7 @@ set_duo_system_language() {
 duo_clock() {
     case $1 in
         en|es|ja) print -r -- "9:41" ;;
-        da) print -r -- "09.41" ;;
+        da) date -u -j -f "%Y-%m-%d %H:%M:%S" "$(date +%F) 09:41:00" +%Y-%m-%dT%H:%M:%S.000Z ;;
         *) print -r -- "09:41" ;;
     esac
 }
