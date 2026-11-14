@@ -19,7 +19,7 @@ MAC_APPEARANCES=(${=STORE_CAPTURE_MAC_APPEARANCES:-light dark})
 SETTLE=${STORE_CAPTURE_SETTLE:-15}
 RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-0
 IPHONE_NAME="iPhone 17 Pro Max"
-IPAD_NAME="iPad Pro 13-inch (M5)"
+IPAD_NAME="iPad (A16)"
 DUO_NAME="iPhone Duo"
 DUO_RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-1
 DUO_HINGE="$ROOT/Scripts/DuoHinge/duo-hinge"
