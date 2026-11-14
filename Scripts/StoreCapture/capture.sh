@@ -2,7 +2,7 @@
 # Retakes the App Store dashboard captures without taking over the Mac:
 # low-priority builds, headless simulators, Mac window activated for ~1 s per language.
 #
-# Usage: Scripts/StoreCapture/capture.sh [iphone] [ipad] [mac] [duo]
+# Usage: Scripts/StoreCapture/capture.sh [iphone] [ipad] [mac] [duo] [duo-composite]
 # Env:   STORE_CAPTURE_LANGUAGES="en fr"  STORE_CAPTURE_MAC_APPEARANCES="dark"
 #        STORE_CAPTURE_OUT=<dir>  STORE_CAPTURE_SKIP_BUILD=1
 
@@ -24,6 +24,8 @@ DUO_NAME="iPhone Duo"
 DUO_RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-1
 DUO_HINGE="$ROOT/Scripts/DuoHinge/duo-hinge"
 DUO_FOLDED_ANGLE=165
+DUO_COMPOSITE_SCALE=0.5502
+DUO_VENV="$HOME/Library/Caches/TrenteStoreCapture/duo-venv"
 MAC_WINDOW=(1260 800)
 HELPER="$DERIVED/store-capture-helper"
 
@@ -240,6 +242,29 @@ capture_duo() {
         log "Saved $language/duo-folded.png"
         shutdown_booted
     done
+    composite_duo
+}
+
+ensure_duo_venv() {
+    [[ -x "$DUO_VENV/bin/python" ]] && return
+    mkdir -p "${DUO_VENV:h}"
+    if command -v uv >/dev/null; then
+        uv venv -q "$DUO_VENV"
+        uv pip install -q --python "$DUO_VENV/bin/python" psd-tools numpy pillow
+    else
+        python3 -m venv "$DUO_VENV"
+        "$DUO_VENV/bin/pip" install -q psd-tools numpy pillow
+    fi
+}
+
+composite_duo() {
+    ensure_duo_venv
+    local arguments=()
+    for language in $LANGUAGES; do
+        [[ -f "$OUT/$language/duo-folded.png" ]] || continue
+        arguments+=("$OUT/$language/duo-folded.png" "$OUT/$language/duo-folded-composite.png")
+    done
+    "$DUO_VENV/bin/python" "$SCRIPT_DIR/fold-composite.py" $DUO_COMPOSITE_SCALE $arguments
 }
 
 frontmost_bundle() {
@@ -301,6 +326,8 @@ if (( ${TARGETS[(I)iphone]} || ${TARGETS[(I)ipad]} || ${TARGETS[(I)duo]} )); the
     if (( ${TARGETS[(I)ipad]} )); then capture_ipad "$ios_app" $ios_bundle; fi
     if (( ${TARGETS[(I)duo]} )); then capture_duo "$ios_app" $ios_bundle; fi
 fi
+
+if (( ${TARGETS[(I)duo-composite]} )); then composite_duo; fi
 
 if (( ${TARGETS[(I)mac]} )); then
     build "platform=macOS"
