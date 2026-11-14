@@ -2,7 +2,7 @@
 # Retakes the App Store dashboard captures without taking over the Mac:
 # low-priority builds, headless simulators, Mac window activated for ~1 s per language.
 #
-# Usage: Scripts/StoreCapture/capture.sh [iphone] [ipad] [mac]
+# Usage: Scripts/StoreCapture/capture.sh [iphone] [ipad] [mac] [duo]
 # Env:   STORE_CAPTURE_LANGUAGES="en fr"  STORE_CAPTURE_MAC_APPEARANCES="dark"
 #        STORE_CAPTURE_OUT=<dir>  STORE_CAPTURE_SKIP_BUILD=1
 
@@ -14,12 +14,16 @@ OUT=${STORE_CAPTURE_OUT:-"$HOME/Pictures/Trente App Store Captures/$(date +%F)"}
 DERIVED=${STORE_CAPTURE_DERIVED_DATA:-"$HOME/Library/Developer/Xcode/DerivedData/TrenteStoreCapture"}
 LANGUAGES=(${=STORE_CAPTURE_LANGUAGES:-en fr es it de ko pt-BR pt-PT da el ja sv nb})
 TARGETS=("$@")
-(( $# )) || TARGETS=(iphone ipad mac)
+(( $# )) || TARGETS=(iphone ipad mac duo)
 MAC_APPEARANCES=(${=STORE_CAPTURE_MAC_APPEARANCES:-light dark})
 SETTLE=${STORE_CAPTURE_SETTLE:-15}
 RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-0
 IPHONE_NAME="iPhone 17 Pro Max"
 IPAD_NAME="iPad Pro 13-inch (M5)"
+DUO_NAME="iPhone Duo"
+DUO_RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-1
+DUO_HINGE="$ROOT/Scripts/DuoHinge/duo-hinge"
+DUO_FOLDED_ANGLE=165
 MAC_WINDOW=(1260 800)
 HELPER="$DERIVED/store-capture-helper"
 
@@ -69,7 +73,7 @@ udid_for() {
 import json, sys
 devices = json.load(sys.stdin)["devices"].get(sys.argv[1], [])
 print(next(d["udid"] for d in devices if d["name"] == sys.argv[2]))
-' $RUNTIME $1
+' ${2:-$RUNTIME} $1
 }
 
 set_system_language() {
@@ -86,14 +90,14 @@ set_system_language() {
 }
 
 boot() {
-    local udid=$1
+    local udid=$1 clock=${2:-9:41}
     log "Booting $udid headless…"
     xcrun simctl boot $udid
     BOOTED_UDID=$udid
     xcrun simctl bootstatus $udid >/dev/null
     sleep $(( SETTLE * 2 ))
     xcrun simctl status_bar $udid override \
-        --time "9:41" --dataNetwork wifi --wifiMode active --wifiBars 3 \
+        --time "$clock" --dataNetwork wifi --wifiMode active --wifiBars 3 \
         --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
 }
 
@@ -163,6 +167,81 @@ capture_ipad() {
     done
 }
 
+set_duo_system_language() {
+    local udid=$1 language=$2
+    local prefs="$HOME/Library/Developer/CoreSimulator/Devices/$udid/data/Library/Preferences/.GlobalPreferences.plist"
+    [[ -f $prefs ]] || plutil -create xml1 "$prefs"
+    plutil -replace AppleLanguages -json "[\"$language\"]" "$prefs"
+    plutil -replace AppleLocale -string $LOCALES[$language] "$prefs"
+    plutil -remove AppleICUForce24HourTime "$prefs" 2>/dev/null || true
+    plutil -remove AppleICUForce12HourTime "$prefs" 2>/dev/null || true
+    case $language in
+        en) ;;
+        es) plutil -replace AppleICUForce12HourTime -bool YES "$prefs" ;;
+        *) plutil -replace AppleICUForce24HourTime -bool YES "$prefs" ;;
+    esac
+}
+
+duo_clock() {
+    case $1 in
+        en|es|ja) print -r -- "9:41" ;;
+        da) print -r -- "09.41" ;;
+        *) print -r -- "09:41" ;;
+    esac
+}
+
+set_duo_pose() {
+    local udid=$1 angle=$2 orientation=$3
+    "$DUO_HINGE" $angle --orientation $orientation --device $udid --verify >/dev/null \
+        || { log "The hinge did not move to $angle°"; exit 1 }
+}
+
+screenshot_duo() {
+    local udid=$1 bundle=$2 language=$3 display=$4 file=$5 launch_flags=$6
+    xcrun simctl io $udid screenshot --display=$display --type=png "$file" >/dev/null 2>&1
+    if (( $("$HELPER" distinct-colors "$file") < 8 )); then
+        log "Blank shot, retrying once: ${file:t}"
+        launch_duo $udid $bundle $language $=launch_flags
+        xcrun simctl io $udid screenshot --display=$display --type=png "$file" >/dev/null 2>&1
+    fi
+}
+
+launch_duo() {
+    local udid=$1 bundle=$2 language=$3
+    shift 3
+    xcrun simctl launch --terminate-running-process $udid $bundle \
+        -storeCapture $@ -AppleLanguages "($language)" -AppleLocale $LOCALES[$language] >/dev/null
+    sleep $SETTLE
+}
+
+capture_duo() {
+    local app=$1 bundle=$2 udid=$(udid_for $DUO_NAME $DUO_RUNTIME)
+    simslim on $udid --preserve-boot-state >/dev/null
+    for language in $LANGUAGES; do
+        local folder="$OUT/$language"
+        mkdir -p "$folder"
+        set_duo_system_language $udid $language
+        boot $udid $(duo_clock $language)
+        xcrun simctl install $udid "$app"
+        xcrun simctl ui $udid appearance light
+
+        launch_duo $udid $bundle $language
+        screenshot_duo $udid $bundle $language primary "$folder/duo-closed.png" ""
+        log "Saved $language/duo-closed.png"
+
+        set_duo_pose $udid 180 landscape-left
+        launch_duo $udid $bundle $language
+        screenshot_duo $udid $bundle $language primary-1 "$folder/duo-open.png" ""
+        log "Saved $language/duo-open.png"
+
+        set_duo_pose $udid $DUO_FOLDED_ANGLE portrait
+        launch_duo $udid $bundle $language -storeCaptureDetailOnly
+        screenshot_duo $udid $bundle $language primary-1 "$folder/duo-folded.png" "-storeCaptureDetailOnly"
+        log "Saved $language/duo-folded.png"
+        shutdown_booted
+    done
+}
+
 frontmost_bundle() {
     lsappinfo info "$(lsappinfo front)" | sed -n 's/.*bundleID="\(.*\)".*/\1/p' | head -1
 }
@@ -214,12 +293,13 @@ capture_mac() {
 
 compile_helper
 
-if (( ${TARGETS[(I)iphone]} || ${TARGETS[(I)ipad]} )); then
+if (( ${TARGETS[(I)iphone]} || ${TARGETS[(I)ipad]} || ${TARGETS[(I)duo]} )); then
     build "generic/platform=iOS Simulator"
     ios_app=$(prepare_ios_app)
     ios_bundle=$(/usr/libexec/PlistBuddy -c "Print CFBundleIdentifier" "$ios_app/Info.plist")
     if (( ${TARGETS[(I)iphone]} )); then capture_iphone "$ios_app" $ios_bundle; fi
     if (( ${TARGETS[(I)ipad]} )); then capture_ipad "$ios_app" $ios_bundle; fi
+    if (( ${TARGETS[(I)duo]} )); then capture_duo "$ios_app" $ios_bundle; fi
 fi
 
 if (( ${TARGETS[(I)mac]} )); then

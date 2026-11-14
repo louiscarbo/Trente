@@ -313,6 +313,85 @@
     "nb/mac-dashboard-dark.png": [
       "855:7395",
       "855:7397"
+    ],
+    "en/duo-closed.png": [
+      "878:1083"
+    ],
+    "en/duo-folded-composite.png": [
+      "966:18952"
+    ],
+    "fr/duo-closed.png": [
+      "878:1086"
+    ],
+    "fr/duo-folded-composite.png": [
+      "966:18954"
+    ],
+    "es/duo-closed.png": [
+      "878:1089"
+    ],
+    "es/duo-folded-composite.png": [
+      "966:18956"
+    ],
+    "it/duo-closed.png": [
+      "878:1092"
+    ],
+    "it/duo-folded-composite.png": [
+      "966:18958"
+    ],
+    "de/duo-closed.png": [
+      "878:1095"
+    ],
+    "de/duo-folded-composite.png": [
+      "966:18960"
+    ],
+    "ko/duo-closed.png": [
+      "878:1098"
+    ],
+    "ko/duo-folded-composite.png": [
+      "966:18962"
+    ],
+    "pt-BR/duo-closed.png": [
+      "878:1101"
+    ],
+    "pt-BR/duo-folded-composite.png": [
+      "966:18964"
+    ],
+    "pt-PT/duo-closed.png": [
+      "878:1104"
+    ],
+    "pt-PT/duo-folded-composite.png": [
+      "966:18966"
+    ],
+    "da/duo-closed.png": [
+      "919:18313"
+    ],
+    "da/duo-folded-composite.png": [
+      "966:18968"
+    ],
+    "el/duo-closed.png": [
+      "919:18316"
+    ],
+    "el/duo-folded-composite.png": [
+      "966:18970"
+    ],
+    "ja/duo-closed.png": [
+      "919:18319"
+    ],
+    "ja/duo-folded-composite.png": [
+      "966:18972"
+    ],
+    "sv/duo-closed.png": [
+      "919:18322"
+    ],
+    "sv/duo-folded-composite.png": [
+      "966:18974"
+    ],
+    "nb/duo-closed.png": [
+      "919:18325"
+    ],
+    "nb/duo-folded-composite.png": [
+      "966:18976"
     ]
-  }
+  },
+  "duoPageId": "876:5799"
 }
