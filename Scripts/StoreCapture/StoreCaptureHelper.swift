@@ -48,20 +48,15 @@ func save(_ context: CGContext, to path: String) {
 func paintGrabber(at path: String) {
     let image = loadImage(at: path)
     let context = makeContext(for: image)
-    let background = rgb(in: context, x: 1990, topY: 2750)
+    let size = 64
+    let background = rgb(in: context, x: image.width - size - 16, topY: image.height - 4)
     context.setFillColor(
         red: CGFloat(background >> 16 & 0xFF) / 255,
         green: CGFloat(background >> 8 & 0xFF) / 255,
         blue: CGFloat(background & 0xFF) / 255,
         alpha: 1
     )
-    let topRects = [
-        CGRect(x: 2035, y: 2688, width: image.width - 2035, height: 2752 - 2688),
-        CGRect(x: 2000, y: 2722, width: image.width - 2000, height: image.height - 2722)
-    ]
-    for rect in topRects {
-        context.fill(CGRect(x: rect.minX, y: CGFloat(image.height) - rect.maxY, width: rect.width, height: rect.height))
-    }
+    context.fill(CGRect(x: image.width - size, y: 0, width: size, height: size))
     save(context, to: path)
 }
 
