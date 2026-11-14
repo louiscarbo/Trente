@@ -18,7 +18,7 @@ TARGETS=("$@")
 MAC_APPEARANCES=(${=STORE_CAPTURE_MAC_APPEARANCES:-light dark})
 SETTLE=${STORE_CAPTURE_SETTLE:-15}
 RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-0
-IPHONE_NAME="iPhone 17 Pro Max"
+IPHONE_NAME="iPhone 18 Pro"
 IPAD_NAME="iPad (A16)"
 DUO_NAME="iPhone Duo"
 DUO_RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-1
