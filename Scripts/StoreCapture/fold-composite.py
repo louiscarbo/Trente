@@ -6,7 +6,7 @@ from PIL import Image
 from psd_tools import PSDImage
 
 CAPTURE_SIZE = (2853, 2007)
-DEFAULT_BEZEL_NAME = "iPhone Duo - Night Sky - Inner Partially Open Landscape.psd"
+DEFAULT_BEZEL_NAME = "iPhone Duo - Star White - Inner Partially Open Landscape.psd"
 DEFAULT_BEZEL_DIRECTORY = "~/Pictures/Trente Store Assets/iPhone Duo"
 
 
