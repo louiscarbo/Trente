@@ -11,25 +11,47 @@ enum ReviewRequestPolicy {
     enum Keys {
         static let lastRequestedVersion = "reviewRequest.lastVersion"
         static let lastRequestedMonthCount = "reviewRequest.lastMonthCount"
+        static let lastRequestedTransactionCount = "reviewRequest.lastTransactionCount"
         static let firstUseTimestamp = "reviewRequest.firstUseTimestamp"
     }
 
     static let minimumMonthCount = 2
+    static let minimumTransactionCount = 10
     static let minimumDaysOfUse = 14
     static let delay: Duration = .seconds(3)
 
     static func shouldRequest(
         monthCount: Int,
         lastRequestedMonthCount: Int,
+        transactionCount: Int,
+        lastRequestedTransactionCount: Int,
         lastRequestedVersion: String,
         currentVersion: String,
         firstUseDate: Date?,
         now: Date,
         calendar: Calendar = .current
     ) -> Bool {
+        guard currentVersion != lastRequestedVersion else { return false }
+        let reachedTransactionCount = transactionCount >= minimumTransactionCount
+            && lastRequestedTransactionCount < minimumTransactionCount
+        return reachedTransactionCount || startedNewMonth(
+            monthCount: monthCount,
+            lastRequestedMonthCount: lastRequestedMonthCount,
+            firstUseDate: firstUseDate,
+            now: now,
+            calendar: calendar
+        )
+    }
+
+    private static func startedNewMonth(
+        monthCount: Int,
+        lastRequestedMonthCount: Int,
+        firstUseDate: Date?,
+        now: Date,
+        calendar: Calendar
+    ) -> Bool {
         guard monthCount >= minimumMonthCount,
               monthCount > lastRequestedMonthCount,
-              currentVersion != lastRequestedVersion,
               let firstUseDate,
               let daysOfUse = calendar.dateComponents(
                   [.day],

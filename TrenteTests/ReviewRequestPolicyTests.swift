@@ -34,6 +34,8 @@ struct ReviewRequestPolicyTests {
         let shouldRequest = ReviewRequestPolicy.shouldRequest(
             monthCount: monthCount,
             lastRequestedMonthCount: 0,
+            transactionCount: 0,
+            lastRequestedTransactionCount: 0,
             lastRequestedVersion: "",
             currentVersion: "1.0",
             firstUseDate: firstUse,
@@ -49,6 +51,8 @@ struct ReviewRequestPolicyTests {
         let shouldRequest = ReviewRequestPolicy.shouldRequest(
             monthCount: 3,
             lastRequestedMonthCount: 0,
+            transactionCount: 0,
+            lastRequestedTransactionCount: 0,
             lastRequestedVersion: "",
             currentVersion: "1.0",
             firstUseDate: nil,
@@ -79,6 +83,8 @@ struct ReviewRequestPolicyTests {
         let shouldRequest = ReviewRequestPolicy.shouldRequest(
             monthCount: monthCount,
             lastRequestedMonthCount: lastRequestedMonthCount,
+            transactionCount: 0,
+            lastRequestedTransactionCount: 0,
             lastRequestedVersion: lastRequestedVersion,
             currentVersion: currentVersion,
             firstUseDate: day(2026, 1, 1),
@@ -94,6 +100,8 @@ struct ReviewRequestPolicyTests {
         let shouldRequest = ReviewRequestPolicy.shouldRequest(
             monthCount: 2,
             lastRequestedMonthCount: 0,
+            transactionCount: 0,
+            lastRequestedTransactionCount: 0,
             lastRequestedVersion: "",
             currentVersion: "1.0",
             firstUseDate: day(2026, 1, 1, hour: 23),
@@ -102,5 +110,55 @@ struct ReviewRequestPolicyTests {
         )
 
         #expect(shouldRequest)
+    }
+
+    @Test(
+        "Asks once the tenth transaction is logged, without waiting for a second month or two weeks",
+        arguments: [
+            (9, 0, false),
+            (10, 0, true),
+            (25, 0, true),
+            (10, 10, false),
+            (25, 12, false),
+            (10, 9, true)
+        ]
+    )
+    func transactionCount(
+        transactionCount: Int,
+        lastRequestedTransactionCount: Int,
+        expected: Bool
+    ) {
+        let firstUse = day(2026, 1, 1)
+
+        let shouldRequest = ReviewRequestPolicy.shouldRequest(
+            monthCount: 1,
+            lastRequestedMonthCount: 0,
+            transactionCount: transactionCount,
+            lastRequestedTransactionCount: lastRequestedTransactionCount,
+            lastRequestedVersion: "",
+            currentVersion: "1.2",
+            firstUseDate: firstUse,
+            now: firstUse,
+            calendar: calendar
+        )
+
+        #expect(shouldRequest == expected)
+    }
+
+    @Test("Never asks twice in one version, whichever trigger comes second")
+    func sharedVersionLimit() {
+        let shouldRequest = ReviewRequestPolicy.shouldRequest(
+            monthCount: 3,
+            lastRequestedMonthCount: 2,
+            transactionCount: 10,
+            lastRequestedTransactionCount: 4,
+            lastRequestedVersion: "1.2",
+            currentVersion: "1.2",
+            firstUseDate: day(2026, 1, 1),
+            now: day(2026, 6, 1),
+            calendar: calendar
+        )
+
+        #expect(!shouldRequest)
     }
 }
