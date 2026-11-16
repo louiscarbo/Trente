@@ -7,6 +7,7 @@
 
 import SwiftUI
 import StoreKit
+import SwiftData
 
 private struct ReviewPromptTrigger: Equatable {
     let monthCount: Int
@@ -18,10 +19,12 @@ private struct ReviewPromptModifier: ViewModifier {
     let isShowingLatestMonth: Bool
     let isPresentingSheet: Bool
 
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.requestReview) private var requestReview
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage(ReviewRequestPolicy.Keys.lastRequestedVersion) private var lastRequestedVersion = ""
     @AppStorage(ReviewRequestPolicy.Keys.lastRequestedMonthCount) private var lastRequestedMonthCount = 0
+    @AppStorage(ReviewRequestPolicy.Keys.lastRequestedTransactionCount) private var lastRequestedTransactionCount = 0
     @AppStorage(ReviewRequestPolicy.Keys.firstUseTimestamp) private var firstUseTimestamp: Double = 0
 
     private var isCalm: Bool {
@@ -49,9 +52,12 @@ private struct ReviewPromptModifier: ViewModifier {
             return
         }
         let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+        let transactionCount = loggedTransactionCount()
         let shouldRequest = ReviewRequestPolicy.shouldRequest(
             monthCount: monthCount,
             lastRequestedMonthCount: lastRequestedMonthCount,
+            transactionCount: transactionCount,
+            lastRequestedTransactionCount: lastRequestedTransactionCount,
             lastRequestedVersion: lastRequestedVersion,
             currentVersion: currentVersion,
             firstUseDate: firstUseTimestamp == 0 ? nil : Date(timeIntervalSinceReferenceDate: firstUseTimestamp),
@@ -60,7 +66,15 @@ private struct ReviewPromptModifier: ViewModifier {
         guard shouldRequest else { return }
         lastRequestedVersion = currentVersion
         lastRequestedMonthCount = monthCount
+        lastRequestedTransactionCount = transactionCount
         requestReview()
+    }
+
+    private func loggedTransactionCount() -> Int {
+        let descriptor = FetchDescriptor<TransactionGroup>(
+            predicate: #Predicate { $0.recurringOccurrenceDate == nil }
+        )
+        return (try? modelContext.fetchCount(descriptor)) ?? 0
     }
 }
 
