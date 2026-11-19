@@ -1,0 +1,55 @@
+#!/bin/zsh
+set -euo pipefail
+
+SOURCE=${0:A:h}/duo-hinge.m
+BINARY=${XDG_CACHE_HOME:-$HOME/Library/Caches}/duo-hinge/duo-hinge
+HINGE_LOG='process == "SpringBoard" AND eventMessage CONTAINS "Hinge state changed from"'
+
+usage() {
+    print -r -- "usage: duo-hinge <angle> [--device <udid>] [--verify] [--from <angle>] [--duration <seconds>]
+                 [--orientation <name>] [--standby <0|1>] [--hold <seconds>] [--verbose]
+
+Sets the hinge of a booted iPhone Duo simulator: 0 is closed, 180 is open flat.
+  --device <udid>   simulator to drive (default: the booted one)
+  --verify          wait for the simulator to report the new hinge state and print it
+Everything else is passed to the tool that runs inside the simulator; see README.md."
+}
+
+device=booted
+verify=0
+arguments=()
+while (( $# )); do
+    case $1 in
+        --device) device=${2:?--device needs a UDID}; shift 2 ;;
+        --verify) verify=1; shift ;;
+        -h|--help) usage; exit 0 ;;
+        *) arguments+=$1; shift ;;
+    esac
+done
+(( ${#arguments} )) || { usage >&2; exit 64 }
+
+if [[ ! -x $BINARY || $SOURCE -nt $BINARY ]]; then
+    mkdir -p ${BINARY:h}
+    xcrun --sdk iphonesimulator clang -target arm64-apple-ios17.0-simulator -fobjc-arc -O1 \
+        -framework Foundation -framework IOKit -o $BINARY $SOURCE
+    codesign --force --sign - $BINARY 2>/dev/null
+fi
+
+if (( ! verify )); then
+    exec xcrun simctl spawn $device $BINARY $arguments
+fi
+
+transitions=$(mktemp)
+xcrun simctl spawn $device log stream --level debug --style compact --predicate $HINGE_LOG > $transitions 2>/dev/null &
+stream=$!
+trap 'kill $stream 2>/dev/null; rm -f $transitions' EXIT
+sleep 1.5
+xcrun simctl spawn $device $BINARY $arguments
+sleep 1.5
+state=$(grep -o 'Hinge state changed from .*' $transitions | tail -1 || true)
+if [[ -n $state ]]; then
+    print -r -- $state
+else
+    print -r -- "No hinge state change reported: the simulator was already in that state, or ignored the event." >&2
+    exit 1
+fi
