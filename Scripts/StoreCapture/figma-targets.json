@@ -193,6 +193,126 @@
     "pt-PT/mac-dashboard-dark.png": [
       "288:4527",
       "288:4529"
+    ],
+    "da/iphone-dashboard-light.png": [
+      "855:7259",
+      "855:7265"
+    ],
+    "da/iphone-dashboard-dark.png": [
+      "855:7262",
+      "855:7267"
+    ],
+    "da/ipad-dashboard-light.png": [
+      "855:7309",
+      "855:7312"
+    ],
+    "da/ipad-dashboard-dark.png": [
+      "855:7314",
+      "855:7317"
+    ],
+    "da/mac-dashboard-light.png": [
+      "855:7359",
+      "855:7361"
+    ],
+    "da/mac-dashboard-dark.png": [
+      "855:7363",
+      "855:7365"
+    ],
+    "el/iphone-dashboard-light.png": [
+      "855:7269",
+      "855:7275"
+    ],
+    "el/iphone-dashboard-dark.png": [
+      "855:7272",
+      "855:7277"
+    ],
+    "el/ipad-dashboard-light.png": [
+      "855:7319",
+      "855:7322"
+    ],
+    "el/ipad-dashboard-dark.png": [
+      "855:7324",
+      "855:7327"
+    ],
+    "el/mac-dashboard-light.png": [
+      "855:7367",
+      "855:7369"
+    ],
+    "el/mac-dashboard-dark.png": [
+      "855:7371",
+      "855:7373"
+    ],
+    "ja/iphone-dashboard-light.png": [
+      "855:7279",
+      "855:7285"
+    ],
+    "ja/iphone-dashboard-dark.png": [
+      "855:7282",
+      "855:7287"
+    ],
+    "ja/ipad-dashboard-light.png": [
+      "855:7329",
+      "855:7332"
+    ],
+    "ja/ipad-dashboard-dark.png": [
+      "855:7334",
+      "855:7337"
+    ],
+    "ja/mac-dashboard-light.png": [
+      "855:7375",
+      "855:7377"
+    ],
+    "ja/mac-dashboard-dark.png": [
+      "855:7379",
+      "855:7381"
+    ],
+    "sv/iphone-dashboard-light.png": [
+      "855:7289",
+      "855:7295"
+    ],
+    "sv/iphone-dashboard-dark.png": [
+      "855:7292",
+      "855:7297"
+    ],
+    "sv/ipad-dashboard-light.png": [
+      "855:7339",
+      "855:7342"
+    ],
+    "sv/ipad-dashboard-dark.png": [
+      "855:7344",
+      "855:7347"
+    ],
+    "sv/mac-dashboard-light.png": [
+      "855:7383",
+      "855:7385"
+    ],
+    "sv/mac-dashboard-dark.png": [
+      "855:7387",
+      "855:7389"
+    ],
+    "nb/iphone-dashboard-light.png": [
+      "855:7299",
+      "855:7305"
+    ],
+    "nb/iphone-dashboard-dark.png": [
+      "855:7302",
+      "855:7307"
+    ],
+    "nb/ipad-dashboard-light.png": [
+      "855:7349",
+      "855:7352"
+    ],
+    "nb/ipad-dashboard-dark.png": [
+      "855:7354",
+      "855:7357"
+    ],
+    "nb/mac-dashboard-light.png": [
+      "855:7391",
+      "855:7393"
+    ],
+    "nb/mac-dashboard-dark.png": [
+      "855:7395",
+      "855:7397"
     ]
   }
 }
