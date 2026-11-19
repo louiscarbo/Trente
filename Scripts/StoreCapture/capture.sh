@@ -237,8 +237,8 @@ capture_duo() {
         log "Saved $language/duo-open.png"
 
         set_duo_pose $udid $DUO_FOLDED_ANGLE portrait
-        launch_duo $udid $bundle $language -storeCaptureDetailOnly
-        screenshot_duo $udid $bundle $language primary-1 "$folder/duo-folded.png" "-storeCaptureDetailOnly"
+        launch_duo $udid $bundle $language
+        screenshot_duo $udid $bundle $language primary-1 "$folder/duo-folded.png" ""
         log "Saved $language/duo-folded.png"
         shutdown_booted
     done
